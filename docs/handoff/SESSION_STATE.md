@@ -39,11 +39,17 @@
 - Checked connected Vercel projects: no project linked to repository `As` found.
 - Re-opened the v1.6.1 task register and confirmed Phase P precedes Phase 0, and Phase 0 must pass before Phase 1.
 - Added `docs/audit/P0_DEPENDENCY_VERIFICATION.md` with the evidence matrix and unblock sequence.
-- No production DDL, migration, data mutation, reset, force-push, or destructive action was executed.
+- Added `docs/handoff/CLAUDE-EXECUTION-MASTER.md` as the future Claude implementation contract.
+- Added `docs/handoff/CLAUDE-IMPLEMENTATION-ROADMAP.md` as the future execution/gate sequence.
+- Added `docs/architecture/FOUNDATION-ENGINEERING-MAP.md` covering platform, repository, domain, data, tenancy, security, UI/UX, Figma, integrations, AI, testing, observability and release foundations.
+- Added `docs/design/FIGMA-UX-UI-ENGINEERING-CONTRACT.md` defining Figma, design tokens, components, UX states, visual QA and Figma↔code governance.
+- No application code was created.
+- No database schema/migration was created or executed.
+- No production DDL, migration, data mutation, reset, force-push, deployment, or destructive action was executed.
 
 ## Active workstream
 
-**R0/P0 dependency verification for repository `As`, before Phase 1 implementation.**
+**Foundation architecture and Claude handoff hardening — documentation/design only.**
 
 ## Immediate next gate
 
@@ -51,9 +57,13 @@ The next meaningful blocker is **platform identity**, not application coding:
 
 1. Identify the actual Supabase production project belonging to `As`.
 2. Identify the intended Vercel project for `As`, or establish that it does not yet exist.
-3. Once platform identity is verified, execute only the applicable Phase P provisioning tasks.
+3. Once platform identity is verified, execute only the applicable Phase P provisioning tasks — by Claude after founder GO.
 4. Then perform Phase 0 forensic/schema baseline against the actual production reality.
 5. Only after the Phase 0 exit gate is green, begin T-1.1 → T-1.9 in order.
+
+## Explicit execution boundary
+
+The founder has explicitly requested that the current work remain **foundation-only**. Do not create application code, database schema, migrations, deployments, or production changes in this workstream. The purpose is to prepare the architecture, contracts, UX/UI system, Figma workflow, engineering gates, testing model, security model, observability model, and Claude execution instructions so the later implementation operator can execute safely and coherently.
 
 ## Explicit correction
 
