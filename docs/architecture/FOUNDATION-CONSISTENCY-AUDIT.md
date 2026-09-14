@@ -2,108 +2,111 @@
 
 **Status:** DESIGN / HANDOFF ONLY — no implementation authorized.
 **Date:** 2026-09-14
-**Scope:** Blueprint v1.6.1, machine-readable registers, ADRs, current repository contracts, UX/Figma contracts.
+**Scope:** Blueprint v1.6.1, machine-readable registers, ADRs, current repository contracts, UX/Figma contracts and current primary-source technology research.
 
 ## 1. Purpose
 
-This audit checks whether the current foundation can be handed to an implementation operator without silently resolving contradictions during coding.
+This audit checks whether the foundation can be handed to an implementation operator without silently resolving contradictions during coding.
 
-The audit is intentionally conservative: a contradiction is recorded rather than "fixed" by inference. The founder remains the decision owner for product scope, domain boundaries, new events, and other Tier-C changes.
+The audit is conservative: contradictions are recorded rather than fixed by inference. Founder remains the decision owner for product scope, domain boundaries, new events and other Tier-C changes.
 
 ## 2. Executive verdict
 
-**FOUNDATION: SUBSTANTIALLY SPECIFIED, BUT NOT YET CONTRACT-CONSISTENT.**
+**FOUNDATION: SUBSTANTIALLY SPECIFIED; CONTRACT NORMALIZATION IS NOW THE REMAINING HARDENING LAYER.**
 
-The remaining work is no longer broad architecture design. It is contract normalization and traceability.
-
-No application code, schema, migration, deployment, or production mutation is required to resolve the findings below.
+The broad architecture is sufficiently defined. The work now is to make vocabulary and traceability mechanically unambiguous before business-feature implementation.
 
 ## 3. Findings
 
-### F-01 — Bounded-context count and boundary model conflict
+### F-01 — Repository context map was inconsistent with the Blueprint operating protocol
 
 **Severity:** BLOCKER before domain implementation.
 
-The v1.6.1 ADR-0002 defines nine bounded contexts: Identity/Core, CRM, Sales, Finance, Inventory, Studio, Marketing, Scheduling, Analytics, plus the public-site face. The package's event register separately states that its 11 event-routing groups are not the nine bounded contexts and that Studio/Marketing are merged while Approvals/Workflow/Notifications are platform engines.
+The package's AGENTS operating protocol explicitly defines nine bounded contexts: Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics and Documents. It also explicitly states that Scheduling is hosted as a CRM submodule and that the context map remains nine. fileciteturn99file0L2-L2
 
-The current repository Domain Contracts Map instead presents eight contexts and combines Reservations & Contracts and Integrations & Scheduling, while not explicitly modeling Analytics or the public-site face as bounded contexts.
+The repository Domain Contracts Map previously presented eight contexts and combined Reservations & Contracts with Integrations & Scheduling while omitting Analytics and Documents as explicit contexts.
 
-**Required action:** do not silently choose one model. Produce a founder-approved canonical context map and explicitly classify each item as bounded context, submodule, platform engine, projection, or product surface.
+**Resolution performed:** `docs/architecture/CONTEXT-MAP-CANONICALIZATION.md` was added and `DOMAIN-CONTRACTS-MAP.md` was updated to use the nine-context classification. Scheduling is now explicitly CRM-hosted; public website is explicitly a product surface; integrations/workflow/notifications/audit/search are explicitly classified as platform capabilities or projections.
 
-**Recommended direction:** retain the modular-monolith architecture but normalize the vocabulary around the Blueprint's nine-context decision, while explicitly documenting that some contexts are hosted as submodules/engines rather than services.
+**Remaining gate:** verify this classification against the exact Blueprint/ADR artifact during Gate 00 before implementation. If the authoritative artifact differs, stop rather than silently editing the register.
 
 ### F-02 — State-machine structure is incomplete
 
-The register contains 11 machines, but only B.1 has a fully structured transition table. B.2–B.11 contain prose/linear transition descriptions in the machine-readable register.
+The register contains 11 canonical machines. The implementation contract requires exhaustive transition representation rather than UI-derived status logic.
 
-The current Domain Contracts Map already acknowledges this and requires canonicalization before implementation where the register requires structured transitions.
+**Resolution performed:** `STATE-MACHINE-NORMALIZATION.md` now defines the canonical 11-machine set and the required transition record: edge, trigger/command, actor, permission, scope, preconditions, reason, side effects, audit, event, terminal/reversible semantics, idempotency and conflict behavior.
 
-**Required action:** before implementing lifecycle services, convert every governed machine to an exhaustive structured transition representation containing: machine ID, state set, legal edge, trigger/command, actor class, authorization requirement, reason requirement, side effects, emitted event, terminal/reversible semantics, and idempotency behavior.
+**Remaining gate:** populate/verify exact transitions from Appendix B/register before implementing each machine. No transition is invented by the implementation operator.
 
-### F-03 — Event vocabulary is not normalized
+### F-03 — Event vocabulary requires one canonical identity
 
-The machine-readable event register uses dotted identifiers such as `apartment.published`, `reservation.created`, `receipt.allocated`, and `page.published`. The repository Domain Contracts Map uses PascalCase names such as `ApartmentCreated`, `ReservationConfirmed`, `ReceiptRecorded`, and `PagePublished`.
+The register uses dotted event identities while the repository contract previously used PascalCase labels.
 
-There is currently no explicit canonical mapping document defining whether these are aliases, different event layers, or distinct events.
-
-**Required action:** establish one canonical event identity grammar and a mapping table where legacy/register names differ from domain-facing names. Every emitted event must resolve to exactly one registered event identity and version.
+**Resolution performed:** `EVENT-TAXONOMY-CONTRACT.md` establishes the registered dotted identifier as the canonical wire/event identity. PascalCase is allowed only as an in-code symbol mapping one-to-one to the registered identity/version.
 
 ### F-04 — Permission-to-command coverage is implicit
 
-The permission register contains 50 permissions, but the Domain Contracts Map lists commands such as construction-status transition, hold release/expiry, reservation approval/confirmation/expiry, contract activation, payment-schedule generation, receipt allocation, ledger posting, calendar synchronization and provider delivery recovery without a formal command → permission → scope mapping.
+The 50 permission keys and eight personas are the authorization source of record, but commands require explicit mapping to permission, scope and ABAC semantics.
 
-Broad permissions may legitimately authorize several commands, but that must be explicit rather than inferred by the implementation operator.
+**Resolution performed:** `AUTHORIZATION-TRACEABILITY.md` defines the required command authorization record and negative test matrix. Exact permission keys are intentionally not invented; they must be resolved against Appendix A.
 
-**Required action:** create an authorization traceability matrix for every mutating command with resource.action permission, minimum scope, ABAC predicates, deny behavior, audit requirement, and applicable personas.
+### F-05 — Event register versus domain-contract coverage requires classification
 
-### F-05 — Event register versus domain contract coverage is incomplete
+The 103 registered events must be explicitly classified rather than assuming every event listed in a context summary is a canonical domain event.
 
-The event register contains 103 events across 11 routing groups. The current domain contract lists only a selected subset of events per context. The relationship between the complete event register and the smaller domain-contract list is not explicitly stated.
+**Resolution performed:** `EVENT-TAXONOMY-CONTRACT.md` defines the required event classes and producer/consumer rules.
 
-**Required action:** classify all registered events as one of: canonical domain event, integration event, platform event, notification event, projection/telemetry event, or deprecated/legacy. Only canonical domain events may be treated as lifecycle facts by domain code.
+### F-06 — UX command traceability must become explicit
 
-### F-06 — UX command traceability needs to become machine-checkable
+The Golden Journey contract is strong, but critical actions need stable command/permission/event linkage.
 
-The UX contract correctly defines the workflow chain `Persona → Job → Entry → Screens → States → Permission → Command → Domain event → Feedback → Next best action → Exit`, and the Golden Journeys use this model. However, there is not yet a durable matrix connecting each critical journey action to the exact command, permission, state machine and event identity.
+**Resolution:** `CONTRACT-TRACEABILITY-MATRIX.md` remains the required structure; the next implementation-readiness pass must populate exact IDs for J1–J12 from the authoritative registers.
 
-**Required action:** create a journey/action traceability matrix for J1–J12. This is especially mandatory for J5 reservation race, J6 finance, J7 publishing, and J10 permissions administration.
+### F-07 — Figma/domain linkage must be explicit
 
-### F-07 — Figma contract is strong, but design-to-domain linkage must be explicit
+The Figma contract correctly prevents Figma from redefining domain behavior. Current Figma documentation confirms that the official MCP server provides structured access to variables/components/layout and supports Claude Code; the remote server is the preferred general setup. citeturn0search1turn0search13
 
-The Figma contract correctly prevents Figma from redefining domain behavior and requires mapping variables/components/states to implementation. The remaining gap is an explicit screen-action contract showing which UI action invokes which governed command and which server-authoritative result/state is rendered.
-
-**Required action:** each critical Figma flow must carry stable screen/action identifiers that resolve to a UX journey action and domain command. This prevents a visually correct screen from implementing an incorrect business mutation.
+**Resolution:** preserve Figma as structured design context and add stable screen/action IDs to the critical journey traceability rows. Figma remains subordinate to product/domain/token contracts.
 
 ### F-08 — Package verification claim is not backed by the delivered verifier artifact
 
-The delivered package contains 69 checksum entries, 119 tasks, 103 events, 50 permission rows, 11 state machines, 42 component-inventory rows, 59 Prisma models and 17 enums. A search of the delivered package found no verification script matching the package's claimed verifier artifact.
+Measured package facts remain: 69 checksum entries, 119 tasks, 103 events, 50 permission rows, 11 state machines, 42 component-inventory rows, 59 Prisma models and 17 enums. The claimed verifier script was not found in the delivered package.
 
-**Required action:** treat the measured counts as observed facts and the claimed verifier script as **MISSING / NOT VERIFIED** until the artifact is supplied or the package documentation is corrected.
+**Status:** MISSING / NOT VERIFIED. Do not treat the prose claim as evidence.
 
 ### F-09 — Repository identity must remain authoritative
 
-The package contains its own repository-oriented guidance, while the founder has explicitly established `asas-erp-saas-1/As` as the canonical repository. The repository contract correctly states that historical `Asas-website` material is excluded.
+Canonical repository is `asas-erp-saas-1/As`. Historical `Asas-website` material is explicitly excluded from the current project.
 
-**Required action:** implementation must use the repository identity recorded in `SESSION_STATE.md`, never infer identity from package naming or similarly named historical repositories.
+**Status:** RESOLVED in repository session state and Claude execution contract.
 
-## 4. Required normalization order
+## 4. External research conclusions
 
-1. Canonical bounded-context map.
-2. Canonical state-machine transition registry.
-3. Canonical event identity + version map.
-4. Command → permission → scope/ABAC matrix.
-5. Domain command → event → state-machine traceability.
-6. Golden Journey action → command → permission → event → UI-state traceability.
-7. Figma screen/action IDs → UX actions → governed commands.
-8. Package verification claims reconciled with measured artifacts.
+Current primary-source research produced no architectural reason to change the foundation:
 
-This order matters because UX and implementation should not be used to discover domain truth after coding has started.
+- Figma officially supports structured MCP access for Claude Code and recommends remote MCP for most users. citeturn0search1turn0search15
+- Current Next.js documentation continues to support the App Router/server-component model used by the foundation. citeturn0search4
+- Current Prisma documentation reinforces migration/drift verification and reproducible migration history. citeturn0search2turn0search5turn0search12
+- Current Supabase documentation reinforces RLS as database-level defense in depth and explicit policy testing. citeturn0search0turn0search16
 
-## 5. Stop conditions
+These facts are recorded separately in `docs/research/FOUNDATION-TECHNOLOGY-RESEARCH-2026-09.md`.
+
+## 5. Normalization order
+
+1. Canonical bounded-context classification — completed as repository contract, pending Gate 00 source reconciliation.
+2. State-machine normalization contract — completed; exact transitions remain register-derived.
+3. Event identity/version contract — completed.
+4. Command → permission → scope/ABAC contract — completed structurally; exact matrix remains Appendix-A-derived.
+5. Domain command → event → state-machine traceability — next population pass.
+6. Golden Journey action → command → permission → event → UI-state traceability — next population pass.
+7. Figma screen/action → UX action → command linkage — next population pass.
+8. Package verification claim reconciliation — remains blocked on missing verifier artifact/document correction.
+
+## 6. Stop conditions
 
 Do not begin feature implementation if any of the following remains unresolved:
 
-- two competing bounded-context definitions;
+- authoritative context source contradicts repository classification;
 - an implementation-critical state machine lacks exhaustive transitions;
 - a mutating command has no explicit authorization mapping;
 - an emitted event is not registered/versioned;
@@ -111,22 +114,6 @@ Do not begin feature implementation if any of the following remains unresolved:
 - a Figma interaction contradicts the domain contract;
 - package verification claims are presented as evidence without the underlying artifact.
 
-## 6. Evidence required from Claude later
-
-For each normalized contract, Claude must provide exact file paths and tests proving:
-
-- state transition coverage;
-- authorization matrix coverage;
-- event registration/version coverage;
-- tenant isolation;
-- audit/outbox atomicity;
-- UX command mapping;
-- Figma/design-token mapping for UI tasks;
-- accessibility/RTL/responsive evidence;
-- migration/drift evidence where database behavior is involved.
-
 ## 7. Current decision posture
 
-The findings above are **architecture-contract findings**, not implementation tasks. Claude must stop at a Tier-C decision whenever resolving them would change product scope, bounded-context ownership, money/legal semantics, security posture, or canonical domain events.
-
-The founder can therefore approve the normalization direction without authorizing application implementation.
+The normalization documents are **contracts for future implementation**, not implementation authorization. Any change to bounded-context ownership, money/legal semantics, security posture, or canonical events remains Tier-C.
