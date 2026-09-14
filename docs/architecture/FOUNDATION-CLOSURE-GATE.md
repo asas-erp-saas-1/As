@@ -1,7 +1,7 @@
 # ASAS Foundation Closure Gate
 
-**Status:** DESIGN / HANDOFF ONLY — no implementation authorized.
-**Date:** 2026-09-14
+**Status:** DESIGN / HANDOFF ONLY — no implementation authorized.  
+**Date:** 2026-09-14  
 **Purpose:** final pre-execution checklist for the architecture, UX/UI, Figma, security, quality, integration and Claude handoff foundation.
 
 ## 1. Closure principle
@@ -17,27 +17,51 @@ This document does not authorize implementation. It determines readiness for a f
 | Product truth | READY |
 | Repository identity | VERIFIED |
 | Canonical nine-context map | ESTABLISHED; Gate 00 source reconciliation required |
-| Domain contracts | READY for review |
-| API/application boundary | READY |
-| Data integrity | BLOCKED on real production identity |
-| Tenancy/RLS | BLOCKED until Phase 0 implementation/evidence |
-| IAM | BLOCKED until Phase 0 exit |
-| State-machine normalization contract | ESTABLISHED; exact register-derived edges still required before each lifecycle implementation |
-| Event taxonomy/version contract | ESTABLISHED; 103-event mapping still required |
+| Domain contracts | READY for review; adversarial gaps OPEN |
+| API/application boundary | READY structurally; abuse/idempotency/property controls OPEN |
+| Data integrity | BLOCKED on real production identity; concurrency/finance invariants OPEN |
+| Tenancy/RLS | BLOCKED until Phase 0 implementation/evidence; negative-path matrix OPEN |
+| IAM | BLOCKED until Phase 0 exit; object/property authorization closure OPEN |
+| State-machine normalization contract | ESTABLISHED; exact register-derived edges still required |
+| Event taxonomy/version contract | ESTABLISHED; 103-event mapping plus outbox/inbox semantics OPEN |
 | Authorization traceability | ESTABLISHED structurally; exact 50-permission command mapping still required |
 | UX/Figma traceability | STRUCTURE ESTABLISHED; exact critical-flow IDs still required |
-| Finance | READY for implementation review |
-| Inventory | READY for implementation review |
-| CRM | READY for implementation review |
-| Studio | READY for implementation review |
-| Integrations/plugins | READY for implementation review |
-| AI | READY for implementation review |
-| Security | READY for implementation review |
-| Quality/evidence | READY |
-| Claude handoff | READY |
+| Finance | DESIGN READY; accounting invariants/rounding/period rules OPEN |
+| Inventory | DESIGN READY; reservation concurrency proof OPEN |
+| CRM | DESIGN READY |
+| Studio | DESIGN READY; public/private projection and media security OPEN |
+| Integrations/plugins | DESIGN READY; secret/webhook/egress controls OPEN |
+| AI | DESIGN READY; tool-level data-egress controls OPEN |
+| Security | BASELINE READY; adversarial closure OPEN |
+| Quality/evidence | STRUCTURE READY; invariant/concurrency/negative tests OPEN |
+| Claude handoff | READY for constrained execution after gates |
 | Platform identity | BLOCKED |
 
-## 3. Hard blockers before Claude implementation
+## 3. New adversarial closure layer
+
+The package is not treated as complete merely because its registers and prose are internally coherent. An independent failure-mode review has added `docs/audit/FOUNDATION-ADVERSARIAL-GAP-REGISTER.md`.
+
+The review identified **30 additional hardening findings**, with the highest-risk classes being:
+
+- reservation concurrency and duplicate-winner prevention;
+- durable idempotency semantics;
+- transactional outbox relay/inbox behavior;
+- object-level and property-level authorization;
+- sensitive-business-flow abuse controls;
+- append-only/tamper-evident audit behavior;
+- accounting invariants and money/currency semantics;
+- PII lifecycle and retention;
+- secrets and webhook replay/security;
+- observability correlation and SLO/RPO/RTO;
+- migration safety;
+- tenant-negative testing across every access path;
+- AI tool/data egress controls;
+- public/private projection boundaries;
+- invariant/property/concurrency test strategy.
+
+This adversarial layer is now part of the closure criteria.
+
+## 4. Hard blockers before Claude implementation
 
 ### B1 — Platform identity
 The actual Supabase production project for `As` is not verified. The actual Vercel project for `As` is not verified. Do not infer either from similarly named projects.
@@ -46,15 +70,21 @@ The actual Supabase production project for `As` is not verified. The actual Verc
 The v1.6.1 path requires inspection of the actual production schema before schema-touching work. Without the real database identity, Phase 0 forensic reconciliation cannot truthfully pass.
 
 ### B3 — Restore evidence
-The required production protection/restore drill cannot be claimed until the correct production project is identified.
+The required production protection/restore drill cannot be claimed until the correct production project is identified, and RPO/RTO targets must be explicit.
 
 ### B4 — Phase 0 exit gate
-Tenant isolation, migration baseline/drift protection, transactional outbox and observability must be proven before Phase 1 IAM implementation.
+Tenant isolation, migration baseline/drift protection, transactional outbox/inbox semantics and observability must be proven before Phase 1 IAM implementation.
 
 ### B5 — Exact register traceability
-Before business-feature implementation, the implementation operator must resolve the exact state-machine, event and permission mappings from the authoritative registers. The new normalization documents define the structure; they do not authorize inventing missing semantics.
+Before business-feature implementation, the implementation operator must resolve the exact state-machine, event and permission mappings from the authoritative registers. The normalization documents define the structure; they do not authorize inventing missing semantics.
 
-## 4. Package consistency watchlist
+### B6 — Critical invariant closure
+Before implementation readiness, the architecture must specify verification for reservation single-winner, finance balance/allocation, idempotency replay, audit append-only behavior and cross-tenant negative paths.
+
+### B7 — Public/private and AI data boundaries
+Public projections and AI tools must have explicit field/tool allowlists and tenant-aware authorization before either surface can be considered production-safe.
+
+## 5. Package consistency watchlist
 
 Direct inspection of the delivered package found measurable prose/artifact discrepancies:
 
@@ -67,7 +97,25 @@ Full detail is recorded in `docs/audit/PACKAGE-CONSISTENCY-REPORT.md`.
 
 A prose claim is not evidence until the underlying artifact is present and inspected.
 
-## 5. Claude execution contract
+## 6. Required closure sequence
+
+The next workstream is no longer “implement Phase 1.” It is:
+
+1. authoritative register reconciliation;
+2. adversarial domain invariants;
+3. command/permission/object/property authorization matrix;
+4. concurrency + idempotency + outbox/inbox contract;
+5. tenant-negative access matrix;
+6. finance invariants and money/time/data lifecycle contracts;
+7. public/private projection + media + AI egress boundaries;
+8. observability + SLO/RPO/RTO + recovery evidence design;
+9. security/supply-chain/migration gates;
+10. Golden Journey → Figma → command → permission → event → test evidence;
+11. only then platform identity / Phase P/0 execution planning.
+
+No stage is green merely because a document exists. Each stage needs an authoritative source and an objective verification method.
+
+## 7. Claude execution contract
 
 Claude must read, in order:
 
@@ -90,11 +138,12 @@ Claude must read, in order:
 17. `docs/integrations/INTEGRATION-AND-PLUGIN-CONTRACT.md`
 18. `docs/ai/AI-COPILOT-GOVERNANCE.md`
 19. `docs/quality/QUALITY-GATES-AND-EVIDENCE-MATRIX.md`
-20. relevant Blueprint chapter/register/ADR/skill.
+20. `docs/audit/FOUNDATION-ADVERSARIAL-GAP-REGISTER.md`
+21. relevant Blueprint chapter/register/ADR/skill.
 
 Then execute Gate 00 before implementation. Gate 01 and Gate 02 must pass before Phase 1.
 
-## 6. UI/Figma non-negotiable
+## 8. UI/Figma non-negotiable
 
 For UI work:
 
@@ -102,22 +151,24 @@ For UI work:
 
 Figma does not redefine domain behavior. Code does not invent a second token system. Screenshots are evidence, not the source of business truth.
 
-## 7. Current technology research gate
+## 9. Technology research gate
 
-The current primary-source research pass found no reason to change the foundation architecture. Current official sources confirm:
+The current primary-source research pass found no reason to change the chosen foundation architecture. The new adversarial pass strengthens, rather than replaces, the existing choices:
 
-- Figma MCP supports structured design context for Claude Code and recommends remote MCP for most users. citeturn0search1turn0search15
-- Next.js continues to document App Router and Server Components as the current modern routing model. citeturn0search4
-- Prisma documents migration/drift verification and reproducible migration history. citeturn0search2turn0search5turn0search12
-- Supabase documents PostgreSQL RLS as database-level defense in depth and recommends explicit policy tests. citeturn0search0turn0search16
+- PostgreSQL supports row-level locking appropriate for protecting high-contention business invariants when used correctly. citeturn0search0
+- Prisma documents interactive transactions, idempotent APIs and optimistic concurrency control for read-modify-write workflows. citeturn0search5turn0search9
+- OWASP identifies object-level/property-level authorization, sensitive business-flow abuse and unrestricted resource consumption as major API risks. citeturn0search1turn0search4turn0search6turn0search8
+- OpenTelemetry provides semantic conventions across traces, metrics, logs and events, supporting a consistent correlation vocabulary. citeturn0search3turn0search7turn0search10
+- Supabase documents daily backups and PITR behavior; recovery targets must be selected and verified rather than assumed. citeturn0search14
+- NIST SSDF provides a secure-development framework for integrating security into the SDLC. citeturn0search19turn0search22
 
 Version-sensitive facts must be re-verified when the corresponding implementation task starts.
 
-## 8. Release stop conditions
+## 10. Release stop conditions
 
-Stop the release for any reproducible tenant breakout, financial invariant violation, duplicate reservation winner, default-allow protected route, unsafe migration, critical accessibility failure, missing critical evidence, secret exposure, unverified provider trust, or material production-contract contradiction.
+Stop the release for any reproducible tenant breakout, financial invariant violation, duplicate reservation winner, idempotency replay that creates duplicate side effects, outbox loss/corruption, default-allow protected route, unauthorized property exposure, unsafe migration, critical accessibility failure, missing critical evidence, secret exposure, unsafe webhook replay, unverified provider trust, public/private data leak, AI tool authorization bypass, or material production-contract contradiction.
 
-## 9. Founder GO boundary
+## 11. Founder GO boundary
 
 Before Founder GO:
 
@@ -129,13 +180,15 @@ Before Founder GO:
 
 After Founder GO, Claude may execute only the approved roadmap and must preserve the same stop conditions.
 
-## 10. Current verdict
+## 12. Current verdict
 
-**FOUNDATION ARCHITECTURE: SUBSTANTIALLY SPECIFIED.**
+**FOUNDATION ARCHITECTURE: SUBSTANTIALLY SPECIFIED, BUT NOT CLOSED.**
 
 **FOUNDATION NORMALIZATION: STRUCTURALLY ESTABLISHED; EXACT REGISTER-TRACEABILITY STILL OPEN.**
 
-**IMPLEMENTATION READINESS: BLOCKED by platform identity, Phase P/Phase 0 evidence, and exact register-derived traceability.**
+**ADVERSARIAL HARDENING: OPEN — 30 findings recorded; P0 classes must be contractually closed before implementation readiness.**
+
+**IMPLEMENTATION READINESS: BLOCKED by platform identity, Phase P/Phase 0 evidence, exact register-derived traceability, and critical invariant/security closure.**
 
 **APPLICATION IMPLEMENTATION: NOT AUTHORIZED in this workstream.**
 
