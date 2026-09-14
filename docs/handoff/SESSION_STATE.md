@@ -19,6 +19,7 @@
 - `docs/handoff/CLAUDE-SESSION-BOOTSTRAP.md`
 - `docs/handoff/CLAUDE-BUILD-AUTONOMY-CONTRACT.md`
 - `docs/architecture/ENGINEERING-BUILD-ORDERS.md`
+- `docs/architecture/USER-PERSONA-AND-SYSTEM-PILLAR-AUTONOMY.md`
 - `docs/architecture/SALES-REPRESENTATIVE-HR-LIFECYCLE.md`
 - `docs/architecture/FOUNDATION-ENGINEERING-MAP.md`
 - `docs/architecture/DOMAIN-CONTRACTS-MAP.md`
@@ -51,13 +52,14 @@
 - Added Sales Representative / HR lifecycle contract separating employment, assignment, access, onboarding, compensation and offboarding.
 - Added Claude autonomy contract with A0/A1 autonomous execution, A2/A3 escalation and hard prohibitions.
 - Added dependency-aware engineering build orders and autonomous task-selection rules.
+- Added the complete canonical user/persona coverage map and 20 system-pillar engineering contract, including persona-to-command traceability, workforce lifecycle separation, handover, public/private boundaries, AI authority and pillar completion criteria.
 - No application code, schema, migration, deployment, production mutation, reset or force-push was executed.
 
 ## Current verdict
 
 **FOUNDATION ARCHITECTURE: SUBSTANTIALLY SPECIFIED, BUT NOT CLOSED.**
 
-**AUTONOMOUS ENGINEERING HANDOFF: STRENGTHENED.** Claude now has enough structure to continue authorized engineering work without asking for routine implementation decisions, while founder control remains over business/legal/financial/security boundaries.
+**AUTONOMOUS ENGINEERING HANDOFF: STRENGTHENED.** Claude now has an explicit coverage model for the user universe and system pillars and can continue authorized engineering work across personas/pillars without asking for routine implementation decisions, while founder control remains over business/legal/financial/security boundaries.
 
 ## Remaining closure work
 
@@ -65,9 +67,10 @@
 2. Map 103 events to producer/aggregate/command/consumer/version/transaction/outbox/retry/security metadata.
 3. Map 50 permissions to commands/object/property/scope/ABAC/deny semantics.
 4. Complete command registry, invariant matrix and J1–J12 traceability.
-5. Close idempotency/concurrency/outbox/inbox, finance/money/time/data lifecycle and tenant-negative/public-private/AI-ejection contracts.
+5. Close idempotency/concurrency/outbox/inbox, finance/money/time/data lifecycle and tenant-negative/public-private/AI-egress contracts.
 6. Complete Figma action mapping and package verifier reconciliation.
 7. Decide canonical HR ownership and normalize its lifecycle machines before implementation.
+8. Expand each persona/pillar into implementation-ready task packets only after the upstream contracts are authoritative.
 
 ## Active workstream
 
@@ -75,7 +78,7 @@
 
 ## Immediate next gate
 
-Continue: B.2–B.11 normalization → event matrix → permission matrix → command/invariant matrix → idempotency/concurrency/outbox → finance/time/data lifecycle → security/public/private/AI egress → J1–J12 → Figma mapping → verifier reconciliation → HR ownership/state closure → Phase P/0 planning.
+Continue: B.2–B.11 normalization → event matrix → permission matrix → command/invariant matrix → idempotency/concurrency/outbox → finance/time/data lifecycle → security/public/private/AI egress → J1–J12 → Figma mapping → verifier reconciliation → HR ownership/state closure → persona/pillar task-packet expansion → Phase P/0 planning.
 
 ## Explicit execution boundary
 
@@ -87,4 +90,4 @@ VERIFIED / FAILED / BLOCKED / NOT EXECUTED / NOT VERIFIED / OPEN
 
 ## Resume rule
 
-When the founder says `أكمل عملك على المسار`, verify `asas-erp-saas-1/As`, load this file plus the foundation closure/audit/register/autonomy/build-order contracts, then continue the highest-priority unblocked foundation task without restarting the project.
+When the founder says `أكمل عملك على المسار`, verify `asas-erp-saas-1/As`, load this file plus the foundation closure/audit/register/autonomy/build-order/persona-pillar contracts, then continue the highest-priority unblocked foundation task without restarting the project.
