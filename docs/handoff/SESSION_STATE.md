@@ -54,6 +54,7 @@
 - `docs/architecture/FOUNDATION-CLOSURE-GATE.md`
 - `docs/architecture/FOUNDATION-CONSISTENCY-AUDIT.md`
 - `docs/research/FOUNDATION-TECHNOLOGY-RESEARCH-2026-09.md`
+- `docs/audit/FOUNDATION-ADVERSARIAL-GAP-REGISTER.md`
 
 ## Verified work completed in this workstream
 
@@ -65,26 +66,32 @@
 - Corrected the repository Domain Contracts Map to the nine-context classification stated by the Blueprint operating protocol.
 - Added canonical context classification, state-machine normalization contract, event taxonomy/version contract and authorization traceability contract.
 - Recorded current primary-source research for Figma MCP, Next.js, Prisma migration/drift and Supabase RLS.
+- Performed an independent adversarial review beyond package transcription and recorded 30 additional hardening findings covering concurrency, idempotency, outbox/inbox, object/property authorization, business-flow abuse, audit integrity, finance invariants, money/currency, time, PII lifecycle, secrets/webhooks, observability, SLO/RPO/RTO, migration safety, tenant-negative testing, search/cache/media, AI egress, contract versioning, testing, supply chain, public/private projections and decision traceability.
+- Strengthened the foundation closure gate so these failure modes are now explicit closure criteria.
 - No application code was created.
 - No database schema/migration was created or executed.
 - No production DDL, migration, data mutation, reset, force-push, deployment or destructive action was executed.
 
 ## Foundation audit verdict
 
-**FOUNDATION ARCHITECTURE: SUBSTANTIALLY SPECIFIED.**
+**FOUNDATION ARCHITECTURE: SUBSTANTIALLY SPECIFIED, BUT NOT CLOSED.**
 
 **FOUNDATION CONTRACT NORMALIZATION: STRUCTURE ESTABLISHED; EXACT REGISTER-DERIVED MATRICES STILL TO BE POPULATED/VERIFIED.**
 
-The main ambiguity in the repository vocabulary has been corrected: the canonical nine-context model is now explicit. The remaining work is exact traceability against the source registers, not invention of new architecture.
+**ADVERSARIAL HARDENING: OPEN — 30 findings recorded; P0 classes require contractual closure and later objective evidence.**
+
+The package remains a strong architectural source, but it is not treated as proof of implementation readiness. External failure-mode analysis has expanded the closure criteria rather than blindly accepting package completeness claims.
 
 ## Remaining contract-hardening items
 
 1. Populate exact B.1–B.11 transition edges from the authoritative register; do not invent missing edges.
 2. Map every one of the 103 registered events to class/producer/aggregate/command/consumers/version.
-3. Map every mutating command to one of the 50 registered permissions plus scope/ABAC/deny semantics.
+3. Map every mutating command to one of the 50 registered permissions plus scope/ABAC/deny semantics, including object-level and property-level authorization.
 4. Complete J1–J12 action traceability to commands, permissions, state machines and events.
 5. Complete Figma screen/action identifiers for critical journeys.
 6. Reconcile the missing package verifier claim.
+7. Close the adversarial P0 contracts in `docs/audit/FOUNDATION-ADVERSARIAL-GAP-REGISTER.md`.
+8. Define objective evidence for concurrency, idempotency, outbox/inbox, finance invariants, tenant-negative tests, public/private projections and AI tool authorization.
 
 ## Remaining execution blockers
 
@@ -93,28 +100,34 @@ The main ambiguity in the repository vocabulary has been corrected: the canonica
 2. Actual Vercel project for `As` is not verified.
 3. Actual production database must be identified before schema-touching Phase 0 work.
 4. Required production backup/restore drill cannot be passed before correct project identity is known.
-5. Phase 0 tenant isolation, migration baseline/drift, outbox and observability evidence must be proven before IAM.
+5. Phase 0 tenant isolation, migration baseline/drift, outbox/inbox and observability evidence must be proven before IAM.
 
-### Contract
+### Contract / correctness
 6. Exact source-register reconciliation remains required before feature implementation.
 7. Package verifier claim remains MISSING / NOT VERIFIED.
+8. Critical invariant/security contracts remain OPEN until explicitly specified and later evidenced.
 
 ## Active workstream
 
-**Foundation architecture, research and Claude handoff hardening — documentation/design only.**
+**Foundation architecture, adversarial research, contract normalization and Claude handoff hardening — documentation/design only.**
 
 ## Immediate next gate
 
-Continue with exact register-derived traceability:
+Continue in this order:
 
-1. state-machine edges;
-2. event taxonomy mapping;
-3. permission/command/scope matrix;
-4. Golden Journey command/event mapping;
-5. Figma screen/action mapping;
-6. package verification reconciliation.
+1. exact register-derived state-machine edges;
+2. 103-event producer/aggregate/command/consumer/version matrix;
+3. 50-permission command/object/property/scope/ABAC matrix;
+4. command registry and domain invariant matrix;
+5. idempotency + concurrency + outbox/inbox contract;
+6. finance/money/time/data-lifecycle contracts;
+7. tenant-negative/public-private/AI egress matrices;
+8. J1–J12 command/event traceability;
+9. Figma screen/action mapping;
+10. package verifier reconciliation;
+11. then platform identity and Phase P/0 execution planning.
 
-Only after contract normalization is closed should the workflow return to platform identity and Phase P execution planning.
+No stage is considered green because a document exists. Each stage requires authoritative provenance plus a concrete verification method.
 
 ## Explicit execution boundary
 
@@ -122,8 +135,8 @@ The founder requested foundation-only work. Do not create application code, data
 
 ## Evidence vocabulary
 
-VERIFIED / FAILED / BLOCKED / NOT EXECUTED
+VERIFIED / FAILED / BLOCKED / NOT EXECUTED / NOT VERIFIED / OPEN
 
 ## Resume rule
 
-A future session receiving "أكمل عملك على المسار" must start from this file, verify `asas-erp-saas-1/As`, review the foundation closure gate and consistency audit, and continue the exact register-derived normalization before any implementation action.
+A future session receiving "أكمل عملك على المسار" must start from this file, verify `asas-erp-saas-1/As`, review the foundation closure gate, consistency audit and adversarial gap register, and continue contract hardening before any implementation action.
