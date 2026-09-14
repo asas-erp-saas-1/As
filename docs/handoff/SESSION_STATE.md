@@ -41,8 +41,16 @@
 - Added `docs/audit/P0_DEPENDENCY_VERIFICATION.md` with the evidence matrix and unblock sequence.
 - Added `docs/handoff/CLAUDE-EXECUTION-MASTER.md` as the future Claude implementation contract.
 - Added `docs/handoff/CLAUDE-IMPLEMENTATION-ROADMAP.md` as the future execution/gate sequence.
+- Added `docs/handoff/CLAUDE-SESSION-BOOTSTRAP.md` as deterministic startup/read-order instructions for Claude.
 - Added `docs/architecture/FOUNDATION-ENGINEERING-MAP.md` covering platform, repository, domain, data, tenancy, security, UI/UX, Figma, integrations, AI, testing, observability and release foundations.
+- Added `docs/architecture/DOMAIN-CONTRACTS-MAP.md` defining bounded-context ownership, aggregates, commands, events and invariants.
+- Added `docs/architecture/API-CONTRACT-MAP.md` defining Server Actions/API/public API contracts, authorization, tenant, idempotency, errors and transaction rules.
 - Added `docs/design/FIGMA-UX-UI-ENGINEERING-CONTRACT.md` defining Figma, design tokens, components, UX states, visual QA and Figma↔code governance.
+- Added `docs/ux/GOLDEN-JOURNEYS-UX-SPEC.md` defining 12 critical UX journeys and universal state/responsive/RTL contracts.
+- Added `docs/security/THREAT-MODEL-AND-SECURITY-BASELINE.md` covering tenant breakout, privilege escalation, sessions, reservation races, finance, webhooks, public abuse, Studio, SSRF, secrets and AI boundaries.
+- Added `docs/integrations/INTEGRATION-AND-PLUGIN-CONTRACT.md` defining provider adapters, credentials, webhooks, retries, scheduling and future plugin governance.
+- Added `docs/ai/AI-COPILOT-GOVERNANCE.md` defining AI read/recommend/draft/act boundaries, tenant isolation, tool permissions, approval and traceability.
+- Added `docs/quality/QUALITY-GATES-AND-EVIDENCE-MATRIX.md` defining release gates, adversarial testing and evidence requirements.
 - No application code was created.
 - No database schema/migration was created or executed.
 - No production DDL, migration, data mutation, reset, force-push, deployment, or destructive action was executed.
@@ -63,7 +71,7 @@ The next meaningful blocker is **platform identity**, not application coding:
 
 ## Explicit execution boundary
 
-The founder has explicitly requested that the current work remain **foundation-only**. Do not create application code, database schema, migrations, deployments, or production changes in this workstream. The purpose is to prepare the architecture, contracts, UX/UI system, Figma workflow, engineering gates, testing model, security model, observability model, and Claude execution instructions so the later implementation operator can execute safely and coherently.
+The founder has explicitly requested that the current work remain **foundation-only**. Do not create application code, database schema, migrations, deployments, or production changes in this workstream. The purpose is to prepare the architecture, contracts, UX/UI system, Figma workflow, engineering gates, testing model, security model, observability model, integration/plugin model, AI governance and Claude execution instructions so the later implementation operator can execute safely and coherently.
 
 ## Explicit correction
 
