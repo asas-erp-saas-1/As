@@ -55,6 +55,7 @@
 - `docs/architecture/FOUNDATION-CONSISTENCY-AUDIT.md`
 - `docs/research/FOUNDATION-TECHNOLOGY-RESEARCH-2026-09.md`
 - `docs/audit/FOUNDATION-ADVERSARIAL-GAP-REGISTER.md`
+- `docs/audit/REGISTER-TRACEABILITY-CLOSURE.md`
 
 ## Verified work completed in this workstream
 
@@ -68,6 +69,9 @@
 - Recorded current primary-source research for Figma MCP, Next.js, Prisma migration/drift and Supabase RLS.
 - Performed an independent adversarial review beyond package transcription and recorded 30 additional hardening findings covering concurrency, idempotency, outbox/inbox, object/property authorization, business-flow abuse, audit integrity, finance invariants, money/currency, time, PII lifecycle, secrets/webhooks, observability, SLO/RPO/RTO, migration safety, tenant-negative testing, search/cache/media, AI egress, contract versioning, testing, supply chain, public/private projections and decision traceability.
 - Strengthened the foundation closure gate so these failure modes are now explicit closure criteria.
+- Extracted and reconciled the machine-readable register inventory against the normalized contracts, including all 103 event IDs, all 50 permission keys and the 11 state machines.
+- Produced `docs/audit/REGISTER-TRACEABILITY-CLOSURE.md` with the exact registered event inventory, state-machine coverage status, permission hardening observations, cross-register invariants and explicit non-invented open questions.
+- Confirmed B.1's corrected canonical compound events (`apartment.sold`, `apartment.released`) must remain the only event vocabulary for those transitions.
 - No application code was created.
 - No database schema/migration was created or executed.
 - No production DDL, migration, data mutation, reset, force-push, deployment or destructive action was executed.
@@ -76,7 +80,7 @@
 
 **FOUNDATION ARCHITECTURE: SUBSTANTIALLY SPECIFIED, BUT NOT CLOSED.**
 
-**FOUNDATION CONTRACT NORMALIZATION: STRUCTURE ESTABLISHED; EXACT REGISTER-DERIVED MATRICES STILL TO BE POPULATED/VERIFIED.**
+**FOUNDATION CONTRACT NORMALIZATION: REGISTER INVENTORY EXTRACTED; EXACT COMMAND/PRODUCER/CONSUMER/ABAC MATRICES STILL OPEN.**
 
 **ADVERSARIAL HARDENING: OPEN — 30 findings recorded; P0 classes require contractual closure and later objective evidence.**
 
@@ -84,8 +88,8 @@ The package remains a strong architectural source, but it is not treated as proo
 
 ## Remaining contract-hardening items
 
-1. Populate exact B.1–B.11 transition edges from the authoritative register; do not invent missing edges.
-2. Map every one of the 103 registered events to class/producer/aggregate/command/consumers/version.
+1. Normalize exact B.2–B.11 transition edges from authoritative register prose without inventing edges; B.1 explicit edges are now captured.
+2. Map every one of the 103 registered events to class/producer/aggregate/command/consumers/version/transaction/outbox/retry/security metadata.
 3. Map every mutating command to one of the 50 registered permissions plus scope/ABAC/deny semantics, including object-level and property-level authorization.
 4. Complete J1–J12 action traceability to commands, permissions, state machines and events.
 5. Complete Figma screen/action identifiers for critical journeys.
@@ -115,7 +119,7 @@ The package remains a strong architectural source, but it is not treated as proo
 
 Continue in this order:
 
-1. exact register-derived state-machine edges;
+1. exact B.2–B.11 state-machine normalization;
 2. 103-event producer/aggregate/command/consumer/version matrix;
 3. 50-permission command/object/property/scope/ABAC matrix;
 4. command registry and domain invariant matrix;
@@ -139,4 +143,4 @@ VERIFIED / FAILED / BLOCKED / NOT EXECUTED / NOT VERIFIED / OPEN
 
 ## Resume rule
 
-A future session receiving "أكمل عملك على المسار" must start from this file, verify `asas-erp-saas-1/As`, review the foundation closure gate, consistency audit and adversarial gap register, and continue contract hardening before any implementation action.
+A future session receiving "أكمل عملك على المسار" must start from this file, verify `asas-erp-saas-1/As`, review the foundation closure gate, consistency audit, adversarial gap register and register traceability closure, and continue contract hardening before any implementation action.
