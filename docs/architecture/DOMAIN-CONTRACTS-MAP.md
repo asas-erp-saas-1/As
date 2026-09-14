@@ -1,13 +1,13 @@
 # ASAS Real Estate OS — Domain Contracts Map
 
 **Status:** DESIGN / HANDOFF ONLY — no implementation authorized.
-**Authority:** Blueprint v1.6.1, registers, ADRs, founder Product Truth.
+**Authority:** Blueprint v1.6.1, registers, ADRs, founder Product Truth and canonical context classification.
 
 ## 1. Purpose
 
-This document converts the Blueprint's domain architecture into an implementation contract. It defines what belongs to a bounded context, which mutations are commands, which facts become domain events, and which invariants must be enforced below the UI.
+This document converts the Blueprint's domain architecture into an implementation contract. It defines bounded-context ownership, mutations, facts, invariants and cross-context boundaries.
 
-The implementation must remain a modular monolith. Module boundaries are logical ownership boundaries, not a mandate for microservices.
+The implementation remains a modular monolith. Bounded contexts are logical ownership boundaries, not microservices.
 
 ## 2. Canonical dependency rule
 
@@ -17,17 +17,15 @@ The implementation must remain a modular monolith. Module boundaries are logical
 
 Domain code never imports UI, HTTP, Prisma, Supabase clients, provider SDKs, or framework-specific request objects.
 
-Cross-context collaboration uses explicit application contracts, domain events, or read models. No direct mutation of another context's aggregates.
+Cross-context collaboration uses explicit application contracts, domain/integration events or read models. No direct mutation of another context's aggregates.
 
 ## 3. Canonical chain
 
 `Agency/Workspace → Developer relationship → Project → Building → Unit → Public presentation → Lead → Qualification → Visit → Offer → Reservation → Contract → Payment schedule → Collection → Accounting/Finance → Post-sale`
 
-Inventory is transactional truth. Finance is the contractual/financial truth. Integrations are adapters and never alternate sources of truth.
+Inventory is transactional truth. Finance is contractual/financial truth. Studio owns public publishing state. Integrations are adapters, never alternate sources of truth.
 
 ## 4. Contract vocabulary
-
-Every context must distinguish:
 
 - **Entity:** identity-bearing business object.
 - **Aggregate:** consistency boundary with one authoritative mutation root.
@@ -37,122 +35,151 @@ Every context must distinguish:
 - **Domain Event:** immutable fact that a business transition occurred.
 - **Invariant:** condition that must never be violated.
 - **Policy:** decision rule that may depend on context/configuration.
-- **Projection:** derived/read-optimized representation; never the source of truth.
+- **Projection:** derived/read-optimized representation; never the source of transactional truth.
 
-## 5. Context map
+## 5. Canonical bounded contexts
 
-### 5.1 Core / Organization & IAM
-**Owns:** tenant/workspace hierarchy, companies, branches, teams, users, roles, permissions, grants, sessions, impersonation.
+The Blueprint operating protocol defines nine contexts. Scheduling is hosted inside CRM; it is not a tenth context. Public website is a product surface, not a bounded context. Integration, notification, workflow/approval and audit mechanisms are platform capabilities unless the authoritative register explicitly assigns ownership elsewhere.
 
-**Commands:** assign role, revoke grant, create session, revoke session, impersonate subject.
+### 5.1 Core / Identity & Access
+**Owns:** tenant/workspace hierarchy, companies, branches, teams, users, roles, permissions, grants, sessions and impersonation.
 
-**Events:** UserRoleGranted, UserRoleRevoked, SessionCreated, SessionRevoked, ImpersonationStarted.
+**Commands:** assign role, revoke grant, create/revoke session, impersonate subject.
 
-**Invariants:** deny by default; tenant guard first; scope cannot exceed grant; deny overrides; privileged actions are auditable.
+**Invariants:** deny by default; tenant guard first; scope cannot exceed grant; explicit deny overrides; privileged actions are auditable.
 
-### 5.2 Inventory
-**Owns:** projects, buildings, apartments/units, floor plans, media associations, commercial status, construction status, holds, milestones, published availability projection.
+### 5.2 CRM
+**Owns:** leads, lead working/lifecycle state, customer context, opportunities, appointments/scheduling submodule, commercial activity and source references.
 
-**Commands:** create/update inventory entity, transition commercial status, transition construction status, place/release/expire hold, publish availability.
+**Commands:** create/qualify/assign lead, schedule appointment, advance opportunity, record activity, issue/advance commercial opportunity where assigned by the contract.
 
-**Events:** ProjectCreated, BuildingCreated, ApartmentCreated, ApartmentCommercialStatusChanged, ApartmentConstructionStatusChanged, HoldPlaced, HoldReleased, AvailabilityPublished.
+**Invariants:** lifecycle transitions use canonical state machines; ownership/scoping is authorization-aware; public lead capture cannot bypass tenant attribution; ASAS appointment truth is authoritative over external calendars.
 
-**Invariants:** dual-axis lifecycle; no arbitrary status setter; reservation/hold race safety; unique inventory identity; published availability is derived from transactional truth.
+### 5.3 Sales
+**Owns:** offers, reservation/contract commercial lifecycle, sales approvals and sales-side contractual workflow.
 
-### 5.3 CRM & Sales
-**Owns:** leads, lead working state, opportunities, offers, appointments, sales ownership, source/attribution references.
+**Commands:** issue offer, request reservation, approve/reject, confirm/cancel/expire reservation, create/activate contract.
 
-**Commands:** create/qualify/assign lead, schedule appointment, advance opportunity, issue offer, withdraw/loss.
+**Invariants:** reservation is race-safe; eligibility/approval gates are enforced; historical commercial facts are immutable; every governed transition records actor/reason.
 
-**Events:** LeadCreated, LeadQualified, AppointmentScheduled, AppointmentCompleted, OpportunityStageChanged, OfferIssued, OpportunityWon, OpportunityLost.
+### 5.4 Inventory
+**Owns:** projects, buildings, apartments/units, floor plans, inventory media associations, commercial status, construction status, holds, milestones and availability truth/projection.
 
-**Invariants:** lifecycle transitions use canonical state machines; ownership/scoping is authorization-aware; public lead capture cannot bypass tenant attribution.
+**Commands:** create/update inventory entity, transition commercial/construction status, place/release/expire hold, publish availability projection.
 
-### 5.4 Reservations & Contracts
-**Owns:** reservation lifecycle, contractual reservation facts, contracts, approval requests and decisions where contractually required.
-
-**Commands:** request reservation, approve/reject, confirm reservation, cancel/expire, create/activate contract.
-
-**Events:** ReservationRequested, ReservationApproved, ReservationConfirmed, ReservationExpired, ContractCreated, ContractActivated.
-
-**Invariants:** single-winner inventory reservation; eligibility/approval gates; immutable historical facts; every state transition records actor/reason.
+**Invariants:** dual-axis lifecycle; no arbitrary status setter; database-enforced reservation/hold race safety; unique inventory identity; published availability is derived from transactional truth.
 
 ### 5.5 Finance
 **Owns:** payment plans, schedule items, receipts, allocations, accounts, ledger entries, accounting periods, commissions and payouts.
 
 **Commands:** generate schedule, record receipt, allocate receipt, post ledger, close period, calculate/approve/pay commission.
 
-**Events:** PaymentScheduleCreated, ReceiptRecorded, ReceiptAllocated, LedgerPosted, AccountingPeriodClosed, CommissionAccrued, CommissionPaid.
-
 **Invariants:** integer DZD centimes plus explicit currency; double-entry balance; posted records immutable; allocation cannot exceed available receipt; closed periods reject mutation except governed reversal/correction.
 
-### 5.6 Studio / Publishing
-**Owns:** pages, page versions, publishing status, section composition, SEO metadata, forms/CTA bindings and contextual public presentation configuration.
+### 5.6 Website Studio
+**Owns:** pages, page versions, section composition, SEO metadata, forms/CTA bindings, contextual public presentation and publishing lifecycle.
 
-**Commands:** create page, edit draft, create version, preview, submit approval, publish, rollback.
+**Commands:** create page, edit draft, autosave, create version, preview, submit approval, publish, rollback.
 
-**Events:** PageDraftSaved, PageVersionCreated, PageSubmittedForApproval, PagePublished, PageRolledBack.
+**Invariants:** published versions are immutable; publication is explicit; rollback is governed; public output comes from approved/published state; operational inventory truth is not silently mutated by content editing.
 
-**Invariants:** published versions are immutable; publication is explicit; rollback creates a governed version transition; public output is generated from approved state.
-
-### 5.7 Marketing & Attribution
-**Owns:** campaigns, lead sources, UTM events, ad leads, attribution touches, campaign spend, conversion tasks and web events.
+### 5.7 Marketing
+**Owns:** campaigns, lead sources, UTM/web events, ad leads, attribution touches, campaign spend and conversion attribution.
 
 **Commands:** register campaign/source, ingest ad lead, attribute touch, record spend, create conversion task.
 
-**Events:** CampaignCreated, AdLeadIngested, AttributionRecorded, CampaignSpendRecorded, ConversionTaskCreated.
+**Invariants:** provider payloads are idempotent; attribution is traceable; raw provider identifiers remain available for reconciliation; marketing consent is respected.
 
-**Invariants:** provider payloads are idempotent; attribution is traceable; raw provider identifiers remain available for reconciliation.
+### 5.8 Analytics
+**Owns:** derived analytical models, KPI/read models, executive reporting and analytical projections.
 
-### 5.8 Integrations & Scheduling
-**Owns:** provider accounts/credentials metadata, provider events, webhook endpoints/deliveries, calendar connections, availability rules/overrides, external busy blocks and integration delivery state.
+**Commands:** rebuild/refresh projections, define governed analytical models where the contract permits.
 
-**Commands:** connect provider, rotate credential, receive webhook, acknowledge/retry delivery, sync calendar, create/update availability rule.
+**Invariants:** analytics does not become transactional source of truth; projections are rebuildable; stale/partial analytical data is surfaced rather than presented as authoritative current state.
 
-**Events:** IntegrationConnected, ProviderEventReceived, WebhookDeliverySucceeded, WebhookDeliveryFailed, CalendarSynced.
+### 5.9 Documents
+**Owns:** document metadata, attachment references, templates, versions and document lifecycle capabilities.
 
-**Invariants:** signatures verified before processing; secrets never exposed to clients/logs; retries are bounded and idempotent; external systems cannot directly mutate canonical domain state.
+**Commands:** create document, attach/version, generate from approved template, approve/archive according to applicable workflow.
 
-## 6. State machines
+**Invariants:** version history is preserved; document access is permission/tenant scoped; document storage credentials never leak to domain/UI code.
 
-The 11 Blueprint machines are canonical. Current structured machines include apartment commercial status, with the remaining prose-defined machines to be canonicalized before implementation where the register requires it.
+## 6. Hosted submodules and platform capabilities
 
-Implementation rule: one transition service per state machine; illegal transitions return a typed domain error; no generic `setStatus`; transition emits audit + domain event in the same business transaction.
+### Scheduling
+Hosted under CRM. External calendars are integrations; ASAS owns appointment truth.
 
-## 7. Command contract
+### Integrations
+Provider adapters, webhook verification, credentials, retries and delivery state are infrastructure/application capabilities. Provider SDKs do not cross into domain code.
 
-Every state-changing command must declare:
+### Workflow / approvals / notifications
+Reusable platform capabilities. They execute policies for context-owned operations and do not acquire ownership of those aggregates.
+
+### Audit / timeline
+Append-only evidence/projection mechanisms over governed events. They do not own the business state they describe.
+
+### Search
+Derived read model. Search results never authorize or mutate transactional state.
+
+### Public Experience
+Product surface composed from approved Studio content plus canonical Inventory/Marketing/CRM data. It is not an alternate database of property truth.
+
+## 7. State machines
+
+The 11 Blueprint machines are canonical:
+
+`B.1 apartment commercial status`
+`B.2 apartment construction status`
+`B.3 lead lifecycle`
+`B.4 lead working`
+`B.5 opportunity pipeline`
+`B.6 reservation`
+`B.7 contract`
+`B.8 payment schedule item`
+`B.9 approval request`
+`B.10 Studio page version`
+`B.11 appointment`
+
+Implementation rule: one transition service per machine; illegal transitions return typed domain errors; no generic `setStatus`; audit and required domain event are committed with the transition.
+
+## 8. Command contract
+
+Every state-changing command declares:
 
 `actor → tenant → target aggregate → preconditions → authorization → idempotency → mutation → audit → outbox event → response`
 
-A command must be safe to retry or explicitly reject duplicate execution.
+A command must be retry-safe or explicitly reject duplicate execution.
 
-## 8. Read-model contract
+## 9. Event contract
 
-Read models may denormalize for speed, search and dashboards. They must be rebuildable from canonical state and events where applicable. No UI may treat a projection as authoritative for a financial or inventory mutation.
+The registered dotted event identity is canonical. In-code PascalCase names, if used, are aliases/symbols only and must map one-to-one to the registered event identity and version. See `EVENT-TAXONOMY-CONTRACT.md`.
 
-## 9. Cross-context rule
+## 10. Read-model contract
+
+Read models may denormalize for speed, search and dashboards. They must be rebuildable from canonical state/events where applicable. No UI may treat an analytical, availability or search projection as authoritative for a financial or inventory mutation.
+
+## 11. Cross-context rule
 
 When a feature appears to require direct access to another module's tables, stop and determine whether the correct solution is:
 
-1. an application port,
-2. a domain event,
-3. a projection/read model,
-4. an explicit shared kernel value object,
-5. or a founder-approved boundary change.
+1. application port,
+2. domain/integration event,
+3. projection/read model,
+4. shared kernel value object,
+5. or founder-approved boundary change.
 
 Do not solve boundary pressure with uncontrolled imports.
 
-## 10. Acceptance criteria for future implementation
+## 12. Acceptance criteria
 
 Before a context is considered implemented:
 
-- all aggregates and commands are mapped to a contract;
+- aggregates and commands are mapped to authoritative contracts;
 - invariants have executable tests;
 - authorization and tenant scope are explicit;
-- domain events are registered before emission;
-- state transitions are exhaustive for the governed machine;
-- persistence constraints exist for invariants that require database enforcement;
+- events are registered before emission;
+- state transitions are exhaustive for governed machines;
+- database constraints exist for invariants requiring database enforcement;
 - failure/retry behavior is specified;
 - audit/outbox behavior is demonstrated;
 - UI workflows map to commands rather than arbitrary field setters.
