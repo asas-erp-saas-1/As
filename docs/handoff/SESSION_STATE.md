@@ -21,6 +21,7 @@
 - `docs/audit/OUTBOX-INBOX-CONTRACT.md` — atomic outbox/inbox, ordering, retry, DLQ and replay contract.
 - `docs/audit/FINANCE-CORRECTNESS-CONTRACT.md` — finance invariants, money, double-entry, immutability, payment/allocation, period-close and failure semantics.
 - `docs/audit/B4-LEAD-WORKING-STATUS-DECISION-GATE.md` — evidence boundary for B.4, explicit supported semantics, unresolved legal edges, and the minimum founder/product decision packet.
+- `docs/audit/STATE-TRIGGER-PRECONDITION-CLOSURE.md` — trigger/precondition closure pass for B.1–B.11, preserving source-open semantics and cross-machine invariants.
 
 ## Verified work completed
 
@@ -28,9 +29,10 @@
 - Re-read the authoritative v1.6.1 blueprint passages for CRM dual-track lifecycle, inbound engagement behavior, scoring/SLA behavior, and CRM engineer constraints.
 - Closed B.1 exact registered edges and B.10 version semantics.
 - Closed the authoritative lifecycle/order portions of B.2, B.3, B.5, B.6, B.7, B.8, B.9 and B.11 without inventing unspecified edges.
+- Formalized the maximum supported trigger/precondition semantics for B.1–B.11 without promoting candidate event names into causal law.
 - B.4 remains RED: the authoritative source defines the state vocabulary, rep-control model, and inbound-engagement auto-promotion to `CONNECTED`, but does not enumerate its legal graph.
 - Formalized the B.4 evidence boundary and extracted the minimum decision questions needed to make the graph normative; no inferred transition was promoted into product truth.
-- Preserved source-open items for milestone mapping, stage exit criteria, approval SLA/delegation, finance timing, legal validation fields, appointment cancellation/reschedule graph, and cross-aggregate transaction semantics.
+- Preserved source-open items for milestone mapping, lifecycle qualification, opportunity stage exit criteria, reservation cross-aggregate atomicity, legal validation fields, finance timing/policy, approval SLA/delegation, and appointment graph/calendar consistency.
 - Formalized idempotency as a P0 correctness contract.
 - Formalized concurrency/race hazards and outbox/inbox reliability contracts.
 - Formalized finance correctness as a P0 contract: integer DZD centimes, double-entry balance, immutable posted records, compensating correction, duplicate-payment protection, allocation bounds, period-close boundary and explicit accounting-policy OPEN items.
@@ -38,26 +40,32 @@
 
 ## Current verdict
 
-**FOUNDATION ARCHITECTURE: OPEN — B.4 remains the principal RED semantic blocker.**
+**FOUNDATION ARCHITECTURE: OPEN — trigger/precondition semantics are materially deeper, but executable implementation remains gated by unresolved authoritative/product contracts.**
 
-The authoritative source does not justify inventing its legal graph. The correct next move is to freeze the founder/product decisions listed in `B4-LEAD-WORKING-STATUS-DECISION-GATE.md`, then produce the normative B.4 edge matrix. Until then, command-kernel lifecycle coverage remains gated.
+The principal blocker remains B.4. Other material OPEN policy areas remain: approval SLA/delegation, finance policy, time semantics, PII retention/public-private projections, AI egress/governance, exact cross-aggregate transaction boundaries, HR ownership/state, and platform identity/reality verification.
 
 ## Remaining closure work — ordered
 
-1. Founder/product decision closure for B.4, then normative B.4 edge matrix.
-2. Close remaining B.2–B.3/B.5–B.11 trigger/precondition semantics.
-3. Resolve canonical command IDs and complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
-4. Close exact idempotency storage/retention/canonicalization policy where still OPEN.
-5. Close exact concurrency implementation constraints after live schema reality inspection.
-6. Close time/timezone/calendar and appointment semantics.
-7. Close PII/data classification, retention/anonymization and public/private projection contract.
-8. Close AI tool/action registry, data-egress policy and governed mutation path.
-9. Close J1–J12 golden-journey traceability.
-10. Close Figma action mapping and package verifier reconciliation.
-11. Close canonical HR ownership/state semantics without creating an unauthorized tenth bounded context.
-12. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
-13. Phase P/0 planning, still gated by platform identity/reality verification.
-14. Only after the above gates: executable command kernel and application implementation.
+1. Founder/product closure of B.4 exact graph.
+2. B.2 milestone taxonomy and edge predicates.
+3. B.3 lifecycle trigger/precondition matrix.
+4. B.5 stage exit criteria and offer-expiry target semantics.
+5. B.6 reservation/hold cross-aggregate transaction semantics.
+6. B.7 exact legal-generation validation predicate and completion semantics.
+7. B.8 due/grace/invoice/waiver/cancellation policy.
+8. B.9 approval SLA/delegation/escalation/expiry semantics.
+9. B.11 appointment cancellation/reschedule/check-in/calendar semantics.
+10. Resolve canonical command IDs and complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
+11. Close exact idempotency storage/retention/canonicalization policy where still OPEN.
+12. Close exact concurrency implementation constraints after live schema reality inspection.
+13. Close PII/data classification, retention/anonymization and public/private projection contract.
+14. Close AI tool/action registry, data-egress policy and governed mutation path.
+15. Close J1–J12 golden-journey traceability.
+16. Close Figma action mapping and package verifier reconciliation.
+17. Close canonical HR ownership/state semantics without creating an unauthorized tenth bounded context.
+18. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
+19. Phase P/0 planning, still gated by platform identity/reality verification.
+20. Only after the above gates: executable command kernel and application implementation.
 
 ## Active workstream
 
