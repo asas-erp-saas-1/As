@@ -1,7 +1,7 @@
 # ASAS Session State
 
 **Repository:** `asas-erp-saas-1/As`  
-**Active branch:** `feat/foundation-closure-pass-2`  
+**Active branch:** `feat/foundation-command-registry`  
 **Last updated:** 2026-09-15
 
 ## Current state
@@ -14,41 +14,42 @@
 
 ## New closure artifacts in this pass
 
-- `docs/audit/EVENT-TRACEABILITY-MATRIX.md` — exhaustive 103-event closure surface.
-- `docs/audit/PERMISSION-CLOSURE-MATRIX.md` — exhaustive 50-permission closure surface.
+- `docs/audit/STATE-EDGE-CLOSURE.md` — exact normative state edges, source-open semantics, and implementation gate for B.1–B.11.
+- `docs/audit/COMMAND-CONTRACT-CLOSURE.md` — canonical mutation contract surface and 50-permission command obligations.
+- Earlier event, permission, invariant, persona/pillar, autonomy and build-order artifacts remain authoritative on this branch lineage.
 
 ## Verified work completed
 
-- Re-read the authoritative v1.6.1 event register: 103 registered events.
-- Preserved canonical event IDs exactly; fields not supplied by the register remain explicitly OPEN.
-- Preserved the transactional-outbox requirement and `(eventId, handler)` consumer idempotency rule as hard baseline requirements.
-- Built the exhaustive permission matrix against the eight source role columns.
-- Isolated high-risk authorization semantics: price thresholds, discount approvals, refund limits, self-scoped calendar connections, PII access, user/role requests, and AI non-transitivity.
+- Re-read the authoritative v1.6.1 state-machine register: 11 machines.
+- Closed B.1 exact registered edges and B.10 version semantics.
+- Closed the authoritative lifecycle/order portions of B.2, B.3, B.5, B.6, B.7, B.8, B.9 and B.11 without inventing unspecified edges.
+- Marked B.4 RED because the authoritative source does not enumerate its legal graph.
+- Preserved source-open items for milestone mapping, stage exit criteria, approval SLA/delegation, finance timing, legal validation fields, appointment cancellation/reschedule graph, and cross-aggregate transaction semantics.
 - No application code, schema, migration, deployment, production mutation, reset or force-push was executed.
 
 ## Current verdict
 
-**FOUNDATION ARCHITECTURE: STILL OPEN — coverage is now materially deeper.**
+**FOUNDATION ARCHITECTURE: OPEN — state semantics are substantially closed, but command execution remains gated.**
 
-The event and permission catalogs now have explicit closure surfaces, but they are not implementation-GREEN until command ownership, state edges, payload/version policy, ABAC, idempotency storage, concurrency, outbox/inbox, audit and executable evidence are closed.
+The next hard blockers are B.4 graph closure and the unresolved policy/transaction semantics that materially affect authorization, money, legal effect, or cross-aggregate consistency.
 
 ## Remaining closure work — ordered
 
-1. Exact B.2–B.11 state-edge closure.
-2. Canonical command registry and command ↔ permission ↔ state-edge ↔ event mapping.
-3. Domain invariant catalog with executable-test definitions.
-4. Idempotency-key catalog and retention semantics.
-5. Concurrency/race catalog, especially reservation/hold single-winner enforcement.
-6. Outbox/inbox persistence, ordering, retry, dead-letter and replay contract.
-7. Finance correctness: money/currency, accounting equation, posting/period-close/reversal semantics.
-8. Time/timezone/calendar and appointment semantics.
-9. PII/data classification, retention/anonymization and public/private projection contract.
-10. AI tool/action registry, data-egress policy and governed mutation path.
-11. J1–J12 golden-journey traceability.
-12. Figma action mapping and package verifier reconciliation.
-13. Canonical HR ownership/state closure.
-14. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
-15. Phase P/0 planning, still gated by platform identity/reality verification.
+1. Close B.4 exact graph and remaining B.2–B.3/B.5–B.11 trigger/precondition semantics.
+2. Resolve canonical command IDs from authoritative product/design decisions; complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
+3. Close idempotency-key catalog and retention semantics.
+4. Close concurrency/race catalog, especially reservation/hold single-winner enforcement.
+5. Close outbox/inbox persistence, ordering, retry, dead-letter and replay contract.
+6. Close finance correctness: money/currency, accounting equation, posting/period-close/reversal semantics.
+7. Close time/timezone/calendar and appointment semantics.
+8. Close PII/data classification, retention/anonymization and public/private projection contract.
+9. Close AI tool/action registry, data-egress policy and governed mutation path.
+10. Close J1–J12 golden-journey traceability.
+11. Close Figma action mapping and package verifier reconciliation.
+12. Close canonical HR ownership/state semantics without creating an unauthorized tenth bounded context.
+13. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
+14. Phase P/0 planning, still gated by platform identity/reality verification.
+15. Only after the above gates: executable command kernel and application implementation.
 
 ## Active workstream
 
