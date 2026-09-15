@@ -14,15 +14,16 @@
 
 ## New closure artifacts in this pass
 
-- `docs/audit/STATE-EDGE-CLOSURE.md` — exact normative state edges, source-open semantics, and implementation gate for B.1–B.11.
-- `docs/audit/COMMAND-CONTRACT-CLOSURE.md` — canonical mutation contract surface and 50-permission command obligations.
-- `docs/audit/IDEMPOTENCY-CATALOG.md` — idempotency classes, P0 mutation inventory, replay/conflict semantics, tenant/security boundary, and required evidence.
-- `docs/audit/CONCURRENCY-RACE-CATALOG.md` — P0 concurrency hazards and deterministic single-winner/failure contracts.
-- `docs/audit/OUTBOX-INBOX-CONTRACT.md` — atomic outbox/inbox, ordering, retry, DLQ and replay contract.
-- `docs/audit/FINANCE-CORRECTNESS-CONTRACT.md` — finance invariants, money, double-entry, immutability, payment/allocation, period-close and failure semantics.
-- `docs/audit/B4-LEAD-WORKING-STATUS-DECISION-GATE.md` — evidence boundary for B.4, explicit supported semantics, unresolved legal edges, and the minimum founder/product decision packet.
-- `docs/audit/STATE-TRIGGER-PRECONDITION-CLOSURE.md` — trigger/precondition closure pass for B.1–B.11, preserving source-open semantics and cross-machine invariants.
-- `docs/audit/STATE-TRIGGER-PRECONDITION-CLOSURE-B2-B3-B5.md` — focused evidence-boundary closure for B.2, B.3 and B.5, including source conflicts and exact remaining contract gaps.
+- `docs/audit/STATE-EDGE-CLOSURE.md`
+- `docs/audit/COMMAND-CONTRACT-CLOSURE.md`
+- `docs/audit/IDEMPOTENCY-CATALOG.md`
+- `docs/audit/CONCURRENCY-RACE-CATALOG.md`
+- `docs/audit/OUTBOX-INBOX-CONTRACT.md`
+- `docs/audit/FINANCE-CORRECTNESS-CONTRACT.md`
+- `docs/audit/B4-LEAD-WORKING-STATUS-DECISION-GATE.md`
+- `docs/audit/STATE-TRIGGER-PRECONDITION-CLOSURE.md`
+- `docs/audit/STATE-TRIGGER-PRECONDITION-CLOSURE-B2-B3-B5.md`
+- `docs/architecture/EXTERNAL-INTEGRATION-ECOSYSTEM-STRATEGY.md` — research-backed integration ecosystem strategy, provider-neutral connector architecture, priority tiers, Google/Meta/Microsoft ecosystem coverage, payment/eSignature/open questions, webhook/security/reconciliation contracts, and marketplace direction.
 
 ## Verified work completed
 
@@ -32,9 +33,10 @@
 - Closed the authoritative lifecycle/order portions of B.2, B.3, B.5, B.6, B.7, B.8, B.9 and B.11 without inventing unspecified edges.
 - Formalized the maximum supported trigger/precondition semantics for B.1–B.11 without promoting candidate event names into causal law.
 - B.4 remains RED: the authoritative source defines the state vocabulary, rep-control model, and inbound-engagement auto-promotion to `CONNECTED`, but does not enumerate its legal graph.
-- Formalized the B.4 evidence boundary and extracted the minimum decision questions needed to make the graph normative; no inferred transition was promoted into product truth.
 - Added focused B.2/B.3/B.5 closure: B.2 exposes a building-scoped milestone trigger against an apartment-scoped aggregate; B.3 lifecycle shape is closed but exact triggers/preconditions remain source-open; B.5 stage shape/probabilities and sanctioned offer-expiry regression are closed, while stage exit criteria and cross-context mappings remain open.
-- Preserved source-open items for milestone mapping, lifecycle qualification, opportunity stage exit criteria, reservation cross-aggregate atomicity, legal validation fields, finance timing/policy, approval SLA/delegation, and appointment graph/calendar consistency.
+- Researched the external integration ecosystem using current official documentation, including Google Maps/Routes/Places, Google Calendar watch/freebusy/events, Microsoft Graph Calendar, WhatsApp Cloud API, Google Ads offline/enhanced conversions, GA4 Measurement Protocol, Google Business Profile, Google Workspace Identity/Gmail/Drive/Meet/YouTube, LinkedIn Marketing/Conversions, TikTok events, Zoom, Dropbox Sign, and Stripe Connect.
+- Established the architectural decision that external providers are capability providers/projections, not alternate sources of ASAS domain truth.
+- Preserved source-open items for milestone mapping, lifecycle qualification, opportunity stage exit criteria, reservation cross-aggregate atomicity, legal validation fields, finance timing/policy, approval SLA/delegation, appointment graph/calendar consistency, Algeria payment rails, eSignature legal validity, property-portal APIs, and country-specific data residency/compliance.
 - Formalized idempotency as a P0 correctness contract.
 - Formalized concurrency/race hazards and outbox/inbox reliability contracts.
 - Formalized finance correctness as a P0 contract: integer DZD centimes, double-entry balance, immutable posted records, compensating correction, duplicate-payment protection, allocation bounds, period-close boundary and explicit accounting-policy OPEN items.
@@ -42,9 +44,9 @@
 
 ## Current verdict
 
-**FOUNDATION ARCHITECTURE: OPEN — trigger/precondition semantics are materially deeper, but executable implementation remains gated by unresolved authoritative/product contracts.**
+**FOUNDATION ARCHITECTURE: OPEN — integration architecture is now explicitly part of the foundation contract, but executable implementation remains gated by unresolved authoritative/product contracts.**
 
-The principal blocker remains B.4. Other material OPEN policy areas remain: approval SLA/delegation, finance policy, time semantics, PII retention/public-private projections, AI egress/governance, exact cross-aggregate transaction boundaries, HR ownership/state, and platform identity/reality verification.
+The principal blocker remains B.4. Other material OPEN policy areas remain: approval SLA/delegation, finance policy, time semantics, PII retention/public-private projections, AI egress/governance, exact cross-aggregate transaction boundaries, HR ownership/state, integration capability/security/reconciliation contracts, Algeria payment rails, eSignature legal semantics, and platform identity/reality verification.
 
 ## Remaining closure work — ordered
 
@@ -57,21 +59,22 @@ The principal blocker remains B.4. Other material OPEN policy areas remain: appr
 7. B.8 due/grace/invoice/waiver/cancellation policy.
 8. B.9 approval SLA/delegation/escalation/expiry semantics.
 9. B.11 appointment cancellation/reschedule/check-in/calendar semantics.
-10. Resolve canonical command IDs and complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
-11. Close exact idempotency storage/retention/canonicalization policy where still OPEN.
-12. Close exact concurrency implementation constraints after live schema reality inspection.
-13. Close PII/data classification, retention/anonymization and public/private projection contract.
-14. Close AI tool/action registry, data-egress policy and governed mutation path.
-15. Close J1–J12 golden-journey traceability.
-16. Close Figma action mapping and package verifier reconciliation.
-17. Close canonical HR ownership/state semantics without creating an unauthorized tenth bounded context.
-18. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
-19. Phase P/0 planning, still gated by platform identity/reality verification.
-20. Only after the above gates: executable command kernel and application implementation.
+10. Integration capability registry + provider-neutral external object model + OAuth/credential security + webhook/reconciliation contracts.
+11. Resolve canonical command IDs and complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
+12. Close exact idempotency storage/retention/canonicalization policy where still OPEN.
+13. Close exact concurrency implementation constraints after live schema reality inspection.
+14. Close PII/data classification, retention/anonymization and public/private projection contract.
+15. Close AI tool/action registry, data-egress policy and governed mutation path.
+16. Close J1–J12 golden-journey traceability.
+17. Close Figma action mapping and package verifier reconciliation.
+18. Close canonical HR ownership/state semantics without creating an unauthorized tenth bounded context.
+19. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
+20. Phase P/0 planning, still gated by platform identity/reality verification.
+21. Only after the above gates: executable command kernel and application implementation.
 
 ## Active workstream
 
-**Foundation architecture, adversarial research, contract normalization and Claude handoff hardening — documentation/design only.**
+**Foundation architecture, adversarial research, contract normalization, integration ecosystem design and Claude handoff hardening — documentation/design only.**
 
 ## Explicit execution boundary
 
@@ -79,4 +82,4 @@ Do not create application code, database schema, migrations, deployments or prod
 
 ## Resume rule
 
-When the founder says `أكمل عملك على المسار`, verify `asas-erp-saas-1/As`, load this state plus the closure/audit/register/autonomy/build-order/persona-pillar contracts, then continue the highest-priority unblocked foundation task without restarting the project.
+When the founder says `أكمل عملك على المسار`, verify `asas-erp-saas-1/As`, load this state plus the closure/audit/register/autonomy/build-order/persona-pillar/integration contracts, then continue the highest-priority unblocked foundation task without restarting the project.
