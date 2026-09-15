@@ -1,7 +1,7 @@
 # ASAS Session State
 
 **Repository:** `asas-erp-saas-1/As`  
-**Active branch:** `feat/phase-1-iam-foundation`  
+**Active branch:** `feat/foundation-closure-pass-2`  
 **Last updated:** 2026-09-15
 
 ## Current state
@@ -12,82 +12,52 @@
 - Supabase/Vercel project identity is not yet verified; Phase P/0 and Phase 1 remain blocked.
 - Architecture uses nine canonical bounded contexts. HR/People is currently an enterprise capability, not silently a tenth bounded context.
 
-## Foundation contracts established
+## New closure artifacts in this pass
 
-- `docs/handoff/CLAUDE-EXECUTION-MASTER.md`
-- `docs/handoff/CLAUDE-IMPLEMENTATION-ROADMAP.md`
-- `docs/handoff/CLAUDE-SESSION-BOOTSTRAP.md`
-- `docs/handoff/CLAUDE-BUILD-AUTONOMY-CONTRACT.md`
-- `docs/architecture/ENGINEERING-BUILD-ORDERS.md`
-- `docs/architecture/USER-PERSONA-AND-SYSTEM-PILLAR-AUTONOMY.md`
-- `docs/architecture/SALES-REPRESENTATIVE-HR-LIFECYCLE.md`
-- `docs/architecture/FOUNDATION-ENGINEERING-MAP.md`
-- `docs/architecture/DOMAIN-CONTRACTS-MAP.md`
-- `docs/architecture/CONTEXT-MAP-CANONICALIZATION.md`
-- `docs/architecture/STATE-MACHINE-NORMALIZATION.md`
-- `docs/architecture/EVENT-TAXONOMY-CONTRACT.md`
-- `docs/architecture/AUTHORIZATION-TRACEABILITY.md`
-- `docs/architecture/API-CONTRACT-MAP.md`
-- `docs/architecture/CONTRACT-TRACEABILITY-MATRIX.md`
-- `docs/design/FIGMA-UX-UI-ENGINEERING-CONTRACT.md`
-- `docs/ux/GOLDEN-JOURNEYS-UX-SPEC.md`
-- `docs/security/THREAT-MODEL-AND-SECURITY-BASELINE.md`
-- `docs/integrations/INTEGRATION-AND-PLUGIN-CONTRACT.md`
-- `docs/ai/AI-COPILOT-GOVERNANCE.md`
-- `docs/quality/QUALITY-GATES-AND-EVIDENCE-MATRIX.md`
-- `docs/architecture/FOUNDATION-CLOSURE-GATE.md`
-- `docs/architecture/FOUNDATION-CONSISTENCY-AUDIT.md`
-- `docs/research/FOUNDATION-TECHNOLOGY-RESEARCH-2026-09.md`
-- `docs/audit/FOUNDATION-ADVERSARIAL-GAP-REGISTER.md`
-- `docs/audit/REGISTER-TRACEABILITY-CLOSURE.md`
+- `docs/audit/EVENT-TRACEABILITY-MATRIX.md` — exhaustive 103-event closure surface.
+- `docs/audit/PERMISSION-CLOSURE-MATRIX.md` — exhaustive 50-permission closure surface.
 
 ## Verified work completed
 
-- Re-verified repository/branch and documentation-only boundary.
-- Measured v1.6.1 package: 119 tasks, 103 events, 50 permissions, 11 state machines, 42 component rows, 59 Prisma models, 17 enums, 69 checksum entries.
-- Reconciled package inconsistencies and confirmed missing verifier claim.
-- Normalized nine-context architecture, state-machine contract, event contract and authorization traceability.
-- Recorded 30 adversarial hardening findings.
-- Added exact register traceability closure.
-- Added Sales Representative / HR lifecycle contract separating employment, assignment, access, onboarding, compensation and offboarding.
-- Added Claude autonomy contract with A0/A1 autonomous execution, A2/A3 escalation and hard prohibitions.
-- Added dependency-aware engineering build orders and autonomous task-selection rules.
-- Added the complete canonical user/persona coverage map and 20 system-pillar engineering contract, including persona-to-command traceability, workforce lifecycle separation, handover, public/private boundaries, AI authority and pillar completion criteria.
+- Re-read the authoritative v1.6.1 event register: 103 registered events.
+- Preserved canonical event IDs exactly; fields not supplied by the register remain explicitly OPEN.
+- Preserved the transactional-outbox requirement and `(eventId, handler)` consumer idempotency rule as hard baseline requirements.
+- Built the exhaustive permission matrix against the eight source role columns.
+- Isolated high-risk authorization semantics: price thresholds, discount approvals, refund limits, self-scoped calendar connections, PII access, user/role requests, and AI non-transitivity.
 - No application code, schema, migration, deployment, production mutation, reset or force-push was executed.
 
 ## Current verdict
 
-**FOUNDATION ARCHITECTURE: SUBSTANTIALLY SPECIFIED, BUT NOT CLOSED.**
+**FOUNDATION ARCHITECTURE: STILL OPEN — coverage is now materially deeper.**
 
-**AUTONOMOUS ENGINEERING HANDOFF: STRENGTHENED.** Claude now has an explicit coverage model for the user universe and system pillars and can continue authorized engineering work across personas/pillars without asking for routine implementation decisions, while founder control remains over business/legal/financial/security boundaries.
+The event and permission catalogs now have explicit closure surfaces, but they are not implementation-GREEN until command ownership, state edges, payload/version policy, ABAC, idempotency storage, concurrency, outbox/inbox, audit and executable evidence are closed.
 
-## Remaining closure work
+## Remaining closure work — ordered
 
-1. Normalize exact B.2–B.11 state edges without inventing edges.
-2. Map 103 events to producer/aggregate/command/consumer/version/transaction/outbox/retry/security metadata.
-3. Map 50 permissions to commands/object/property/scope/ABAC/deny semantics.
-4. Complete command registry, invariant matrix and J1–J12 traceability.
-5. Close idempotency/concurrency/outbox/inbox, finance/money/time/data lifecycle and tenant-negative/public-private/AI-egress contracts.
-6. Complete Figma action mapping and package verifier reconciliation.
-7. Decide canonical HR ownership and normalize its lifecycle machines before implementation.
-8. Expand each persona/pillar into implementation-ready task packets only after the upstream contracts are authoritative.
+1. Exact B.2–B.11 state-edge closure.
+2. Canonical command registry and command ↔ permission ↔ state-edge ↔ event mapping.
+3. Domain invariant catalog with executable-test definitions.
+4. Idempotency-key catalog and retention semantics.
+5. Concurrency/race catalog, especially reservation/hold single-winner enforcement.
+6. Outbox/inbox persistence, ordering, retry, dead-letter and replay contract.
+7. Finance correctness: money/currency, accounting equation, posting/period-close/reversal semantics.
+8. Time/timezone/calendar and appointment semantics.
+9. PII/data classification, retention/anonymization and public/private projection contract.
+10. AI tool/action registry, data-egress policy and governed mutation path.
+11. J1–J12 golden-journey traceability.
+12. Figma action mapping and package verifier reconciliation.
+13. Canonical HR ownership/state closure.
+14. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
+15. Phase P/0 planning, still gated by platform identity/reality verification.
 
 ## Active workstream
 
 **Foundation architecture, adversarial research, contract normalization and Claude handoff hardening — documentation/design only.**
 
-## Immediate next gate
-
-Continue: B.2–B.11 normalization → event matrix → permission matrix → command/invariant matrix → idempotency/concurrency/outbox → finance/time/data lifecycle → security/public/private/AI egress → J1–J12 → Figma mapping → verifier reconciliation → HR ownership/state closure → persona/pillar task-packet expansion → Phase P/0 planning.
-
 ## Explicit execution boundary
 
 Do not create application code, database schema, migrations, deployments or production changes in this foundation-only workstream.
 
-## Evidence vocabulary
-
-VERIFIED / FAILED / BLOCKED / NOT EXECUTED / NOT VERIFIED / OPEN
-
 ## Resume rule
 
-When the founder says `أكمل عملك على المسار`, verify `asas-erp-saas-1/As`, load this file plus the foundation closure/audit/register/autonomy/build-order/persona-pillar contracts, then continue the highest-priority unblocked foundation task without restarting the project.
+When the founder says `أكمل عملك على المسار`, verify `asas-erp-saas-1/As`, load this state plus the closure/audit/register/autonomy/build-order/persona-pillar contracts, then continue the highest-priority unblocked foundation task without restarting the project.
