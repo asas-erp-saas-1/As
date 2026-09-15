@@ -20,13 +20,16 @@
 - `docs/audit/CONCURRENCY-RACE-CATALOG.md` — P0 concurrency hazards and deterministic single-winner/failure contracts.
 - `docs/audit/OUTBOX-INBOX-CONTRACT.md` — atomic outbox/inbox, ordering, retry, DLQ and replay contract.
 - `docs/audit/FINANCE-CORRECTNESS-CONTRACT.md` — finance invariants, money, double-entry, immutability, payment/allocation, period-close and failure semantics.
+- `docs/audit/B4-LEAD-WORKING-STATUS-DECISION-GATE.md` — evidence boundary for B.4, explicit supported semantics, unresolved legal edges, and the minimum founder/product decision packet.
 
 ## Verified work completed
 
 - Re-read the authoritative v1.6.1 state-machine register: 11 machines.
+- Re-read the authoritative v1.6.1 blueprint passages for CRM dual-track lifecycle, inbound engagement behavior, scoring/SLA behavior, and CRM engineer constraints.
 - Closed B.1 exact registered edges and B.10 version semantics.
 - Closed the authoritative lifecycle/order portions of B.2, B.3, B.5, B.6, B.7, B.8, B.9 and B.11 without inventing unspecified edges.
-- Marked B.4 RED because the authoritative source does not enumerate its legal graph.
+- B.4 remains RED: the authoritative source defines the state vocabulary, rep-control model, and inbound-engagement auto-promotion to `CONNECTED`, but does not enumerate its legal graph.
+- Formalized the B.4 evidence boundary and extracted the minimum decision questions needed to make the graph normative; no inferred transition was promoted into product truth.
 - Preserved source-open items for milestone mapping, stage exit criteria, approval SLA/delegation, finance timing, legal validation fields, appointment cancellation/reschedule graph, and cross-aggregate transaction semantics.
 - Formalized idempotency as a P0 correctness contract.
 - Formalized concurrency/race hazards and outbox/inbox reliability contracts.
@@ -35,25 +38,26 @@
 
 ## Current verdict
 
-**FOUNDATION ARCHITECTURE: OPEN — state semantics, idempotency, concurrency, messaging reliability and finance correctness are contractually deeper, but executable implementation remains gated.**
+**FOUNDATION ARCHITECTURE: OPEN — B.4 remains the principal RED semantic blocker.**
 
-The principal unresolved semantic blocker remains B.4, alongside policy decisions that cannot be safely inferred: approval SLA/delegation, finance policy, time semantics, PII retention, AI egress, and platform identity/reality verification.
+The authoritative source does not justify inventing its legal graph. The correct next move is to freeze the founder/product decisions listed in `B4-LEAD-WORKING-STATUS-DECISION-GATE.md`, then produce the normative B.4 edge matrix. Until then, command-kernel lifecycle coverage remains gated.
 
 ## Remaining closure work — ordered
 
-1. Close B.4 exact graph and remaining B.2–B.3/B.5–B.11 trigger/precondition semantics.
-2. Resolve canonical command IDs and complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
-3. Close exact idempotency storage/retention/canonicalization policy where still OPEN.
-4. Close exact concurrency implementation constraints after live schema reality inspection.
-5. Close time/timezone/calendar and appointment semantics.
-6. Close PII/data classification, retention/anonymization and public/private projection contract.
-7. Close AI tool/action registry, data-egress policy and governed mutation path.
-8. Close J1–J12 golden-journey traceability.
-9. Close Figma action mapping and package verifier reconciliation.
-10. Close canonical HR ownership/state semantics without creating an unauthorized tenth bounded context.
-11. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
-12. Phase P/0 planning, still gated by platform identity/reality verification.
-13. Only after the above gates: executable command kernel and application implementation.
+1. Founder/product decision closure for B.4, then normative B.4 edge matrix.
+2. Close remaining B.2–B.3/B.5–B.11 trigger/precondition semantics.
+3. Resolve canonical command IDs and complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
+4. Close exact idempotency storage/retention/canonicalization policy where still OPEN.
+5. Close exact concurrency implementation constraints after live schema reality inspection.
+6. Close time/timezone/calendar and appointment semantics.
+7. Close PII/data classification, retention/anonymization and public/private projection contract.
+8. Close AI tool/action registry, data-egress policy and governed mutation path.
+9. Close J1–J12 golden-journey traceability.
+10. Close Figma action mapping and package verifier reconciliation.
+11. Close canonical HR ownership/state semantics without creating an unauthorized tenth bounded context.
+12. Expand 22 personas × 20 pillars into implementation-ready task packets only after upstream contracts are authoritative.
+13. Phase P/0 planning, still gated by platform identity/reality verification.
+14. Only after the above gates: executable command kernel and application implementation.
 
 ## Active workstream
 
