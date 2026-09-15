@@ -16,6 +16,7 @@
 
 - `docs/audit/STATE-EDGE-CLOSURE.md` — exact normative state edges, source-open semantics, and implementation gate for B.1–B.11.
 - `docs/audit/COMMAND-CONTRACT-CLOSURE.md` — canonical mutation contract surface and 50-permission command obligations.
+- `docs/audit/IDEMPOTENCY-CATALOG.md` — idempotency classes, P0 mutation inventory, replay/conflict semantics, tenant/security boundary, and required evidence.
 - Earlier event, permission, invariant, persona/pillar, autonomy and build-order artifacts remain authoritative on this branch lineage.
 
 ## Verified work completed
@@ -25,19 +26,20 @@
 - Closed the authoritative lifecycle/order portions of B.2, B.3, B.5, B.6, B.7, B.8, B.9 and B.11 without inventing unspecified edges.
 - Marked B.4 RED because the authoritative source does not enumerate its legal graph.
 - Preserved source-open items for milestone mapping, stage exit criteria, approval SLA/delegation, finance timing, legal validation fields, appointment cancellation/reschedule graph, and cross-aggregate transaction semantics.
+- Formalized idempotency as a P0 correctness contract. Critical flows are now classified into command-transaction, event-consumer, integration/webhook, and scheduled/background execution classes without inventing retention values or a final storage schema.
 - No application code, schema, migration, deployment, production mutation, reset or force-push was executed.
 
 ## Current verdict
 
-**FOUNDATION ARCHITECTURE: OPEN — state semantics are substantially closed, but command execution remains gated.**
+**FOUNDATION ARCHITECTURE: OPEN — state semantics and idempotency are materially deeper, but command execution remains gated.**
 
-The next hard blockers are B.4 graph closure and the unresolved policy/transaction semantics that materially affect authorization, money, legal effect, or cross-aggregate consistency.
+The next hard blockers are B.4 graph closure, unresolved policy/transaction semantics, and the concurrency/outbox contracts that materially affect authorization, money, legal effect, or cross-aggregate consistency.
 
 ## Remaining closure work — ordered
 
 1. Close B.4 exact graph and remaining B.2–B.3/B.5–B.11 trigger/precondition semantics.
 2. Resolve canonical command IDs from authoritative product/design decisions; complete command ↔ permission ↔ ABAC ↔ approval ↔ state-edge ↔ event mappings.
-3. Close idempotency-key catalog and retention semantics.
+3. Close exact idempotency storage/retention/canonicalization policy where still OPEN.
 4. Close concurrency/race catalog, especially reservation/hold single-winner enforcement.
 5. Close outbox/inbox persistence, ordering, retry, dead-letter and replay contract.
 6. Close finance correctness: money/currency, accounting equation, posting/period-close/reversal semantics.
