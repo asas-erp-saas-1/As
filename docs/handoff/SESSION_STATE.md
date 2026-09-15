@@ -22,6 +22,7 @@
 - `docs/audit/FINANCE-CORRECTNESS-CONTRACT.md` — finance invariants, money, double-entry, immutability, payment/allocation, period-close and failure semantics.
 - `docs/audit/B4-LEAD-WORKING-STATUS-DECISION-GATE.md` — evidence boundary for B.4, explicit supported semantics, unresolved legal edges, and the minimum founder/product decision packet.
 - `docs/audit/STATE-TRIGGER-PRECONDITION-CLOSURE.md` — trigger/precondition closure pass for B.1–B.11, preserving source-open semantics and cross-machine invariants.
+- `docs/audit/STATE-TRIGGER-PRECONDITION-CLOSURE-B2-B3-B5.md` — focused evidence-boundary closure for B.2, B.3 and B.5, including source conflicts and exact remaining contract gaps.
 
 ## Verified work completed
 
@@ -32,6 +33,7 @@
 - Formalized the maximum supported trigger/precondition semantics for B.1–B.11 without promoting candidate event names into causal law.
 - B.4 remains RED: the authoritative source defines the state vocabulary, rep-control model, and inbound-engagement auto-promotion to `CONNECTED`, but does not enumerate its legal graph.
 - Formalized the B.4 evidence boundary and extracted the minimum decision questions needed to make the graph normative; no inferred transition was promoted into product truth.
+- Added focused B.2/B.3/B.5 closure: B.2 exposes a building-scoped milestone trigger against an apartment-scoped aggregate; B.3 lifecycle shape is closed but exact triggers/preconditions remain source-open; B.5 stage shape/probabilities and sanctioned offer-expiry regression are closed, while stage exit criteria and cross-context mappings remain open.
 - Preserved source-open items for milestone mapping, lifecycle qualification, opportunity stage exit criteria, reservation cross-aggregate atomicity, legal validation fields, finance timing/policy, approval SLA/delegation, and appointment graph/calendar consistency.
 - Formalized idempotency as a P0 correctness contract.
 - Formalized concurrency/race hazards and outbox/inbox reliability contracts.
