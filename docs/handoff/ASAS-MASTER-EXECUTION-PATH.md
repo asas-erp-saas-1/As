@@ -242,10 +242,12 @@ As of 2026-09-15:
 - Canonical repository: VERIFIED as `asas-erp-saas-1/As`.
 - `Asas-website`: explicitly excluded.
 - Foundation documents and adversarial contracts: substantially established.
-- B.6 reservation/hold/deposit: high-risk and not yet implementation-ready.
-- The previously inspected Supabase project `asas-web-site` is **NOT** evidence for `As`; its findings must not be used as ASAS database reality.
-- Actual `As` Supabase/Vercel identity remains to be verified.
-- No application/database implementation is authorized until the implementation-readiness gate is passed.
+- **GATE-00 executed read-only:** repository identity verified; connected platform inventories do not prove an `As` deployment/database identity.
+- Current connected Supabase inventory exposes only `asas-web-site` (`xwokfufeeodobkuaxvgx`), explicitly excluded.
+- Current connected Vercel team exposes no project linked to `asas-erp-saas-1/As`.
+- Current `As` branch contains no `package.json`, `vercel.json`, `.vercel/project.json`, or `.github/workflows`, so repository-local deployment linkage is not available.
+- B.6 reservation/hold/deposit remains high-risk and not implementation-ready.
+- No application/database implementation is authorized until GATE-00 and the complete implementation-readiness gate are passed.
 
 ## 13. Required update discipline
 
