@@ -13,9 +13,7 @@ This path is not a documentation exercise. Documentation exists to make implemen
 
 ## 2. Repository identity — absolute rule
 
-The active product repository is:
-
-`asas-erp-saas-1/As`
+The active product repository is `asas-erp-saas-1/As`.
 
 `asas-erp-saas-1/Asas-website` is a different project and must never be used as evidence, codebase, deployment, database, migration history, or product state for ASAS.
 
@@ -23,249 +21,81 @@ Any similarly named Supabase/Vercel project is UNKNOWN until explicitly verified
 
 ## 3. Resume protocol
 
-Whenever the founder says:
-
-> **أكمل عملك على المسار**
-
-Claude must immediately:
-
-1. open this file first;
+Whenever the founder says **أكمل عملك على المسار**, immediately:
+1. open this file;
 2. open `docs/handoff/SESSION_STATE.md`;
-3. inspect the current `As` branch/commit state;
+3. inspect current `As` branch/commit state;
 4. inspect the active task register and closure evidence;
 5. identify the highest-priority unblocked task;
-6. continue from its recorded checkpoint;
+6. continue from its checkpoint;
 7. update this file and `SESSION_STATE.md` after substantive work;
 8. commit durable changes to the active task branch;
-9. continue automatically until an A2/A3 decision, hard blocker, or completed work boundary is reached.
+9. continue automatically until an A2/A3 decision, hard blocker, or completed work boundary.
 
-Claude must not restart the project, repeat completed work, or ask what to do next when the dependency graph already determines the next task.
+Do not restart the project or repeat completed work.
 
 ## 4. Operating layers
 
-### Layer 0 — Reality
-Repository, branch, deployment identity, database identity, migrations, backups/restores, runtime and CI.
-
-### Layer 1 — Kernel
-Identity, tenant, authorization, command boundary, validation, transaction, idempotency, audit, outbox/inbox.
-
-### Layer 2 — Domain correctness
-Aggregates, invariants, state machines, concurrency, money, time, document/version semantics.
-
-### Layer 3 — Golden workflows
-Lead → qualification → visit → opportunity → offer → reservation → contract → payment/collection.
-
-### Layer 4 — Experience
-Role/task UX, Studio, public experience, responsive behavior, RTL/LTR, accessibility and error/permission states.
-
-### Layer 5 — Integrations
-Calendar, WhatsApp, payments, marketing, identity, storage, documents and provider adapters.
-
-### Layer 6 — Intelligence
-Analytics, AI recommendations and governed AI actions.
-
-### Layer 7 — Scale/reliability
-Performance, queues, caching, projections, rate limits, SLO/RPO/RTO, recovery and cost controls.
+Layer 0 Reality → Layer 1 Kernel → Layer 2 Domain correctness → Layer 3 Golden workflows → Layer 4 Experience → Layer 5 Integrations → Layer 6 Intelligence → Layer 7 Scale/reliability.
 
 Never use a downstream layer to conceal an upstream correctness defect.
 
 ## 5. Task lifecycle
 
-Every task has exactly one lifecycle state:
+`BLOCKED → READY → IN_PROGRESS → VERIFYING → DONE` or `IN_PROGRESS → ESCALATED`.
 
-`BLOCKED → READY → IN_PROGRESS → VERIFYING → DONE`
-
-or:
-
-`IN_PROGRESS → ESCALATED`
-
-A task cannot be `DONE` because code was written. It is DONE only when the closure standard below is satisfied and evidence is recorded.
+DONE requires evidence, not a claim that code was written.
 
 ## 6. Task closure standard
 
-A task closes only if all applicable gates are GREEN:
+Applicable gates must be GREEN across: C1 Contract, C2 Reality, C3 Design, C4 Security/Tenancy, C5 Correctness, C6 Persistence/Migration, C7 External Effects, C8 UX, C9 Observability, C10 Verification Evidence, C11 Documentation/State, C12 Git Hygiene.
 
-### C1 — Contract
-- authoritative source identified;
-- scope and non-goals explicit;
-- no unresolved semantic contradiction.
+## 7. Autonomous authority
 
-### C2 — Reality
-- relevant repository/runtime/database/migration reality inspected;
-- no assumption substituted for evidence.
+A0: execute inside closed contracts.  
+A1: execute + micro-ADR for technically equivalent alternatives.  
+A2: stop dependent task for founder decision when semantics change money, law, employment, contracts, canonical ownership/events/permissions, tenant/data ownership, public/private boundaries, privileged AI, production transformation or material lock-in/cost.  
+A3: never reset production, force-push, disable RLS/security gates, commit secrets, delete production data to hide defects, or silently rewrite canonical contracts.
 
-### C3 — Design
-- command(s), state edge(s), permission(s), invariant(s), event(s), transaction boundary and integration effects mapped where applicable;
-- OPEN items are explicitly recorded.
+## 8. Automatic task selection
 
-### C4 — Security & tenancy
-- authentication/authorization path verified;
-- tenant/object/property boundaries verified;
-- negative tests for unauthorized access exist where applicable;
-- public/private exposure checked.
+When no A2/A3 blocker exists: choose P0 first, then the task that unblocks the most downstream work; execute to DONE; record evidence; select the next unblocked task.
 
-### C5 — Correctness
-- positive tests prove intended behavior;
-- negative tests prove rejection of illegal behavior;
-- idempotency verified where mutation/retry can occur;
-- concurrency/race behavior verified where contention can occur;
-- finance invariants verified for financial work.
+## 9. Stop-the-line conditions
 
-### C6 — Persistence & migration
-- transaction boundary is explicit;
-- audit/outbox/inbox behavior verified where applicable;
-- migrations are expand/contract safe;
-- backfill/invariant validation is evidenced;
-- rollback or forward-fix path is documented.
+Tenant breakout, unauthorized protected access, duplicate reservation winner, unbalanced ledger, duplicate non-idempotent side effect, audit tampering, lost outbox/inbox event, unsafe migration, public/private leak, AI authorization bypass, secret exposure, unsafe webhook replay, or material reality/contract contradiction blocks the affected dependency chain.
 
-### C7 — External effects
-- provider adapter boundary preserved;
-- webhook signature/replay protection verified where applicable;
-- external side effects are idempotent/retry-safe;
-- credentials are isolated and never exposed.
+## 10. Foundation-to-implementation gate
 
-### C8 — UX
-For UI work only:
-- loading/empty/error/permission states;
-- responsive 360–430, 768–1024 and 1280–2560;
-- Arabic/French/English;
-- RTL/LTR;
-- keyboard/accessibility;
-- visual evidence against approved design/Figma where required.
+Implementation readiness requires: verified `As` repository identity; verified actual deployment/database identity; reproducible reality baseline; closed critical state/command/event/permission mappings; executable tenant/IAM contract; implementable idempotency/concurrency/outbox/inbox; required finance invariants; explicit public/private and AI egress boundaries; safe migration strategy; precise Claude task packets; objective verification commands/evidence.
 
-### C9 — Observability
-- logs/traces/metrics/correlation added where operationally relevant;
-- failures are diagnosable;
-- business-critical events are observable.
+No requirement for perfect documentation is imposed. The gate is implementation sufficiency.
 
-### C10 — Verification evidence
-The task record must contain exact commands/checks/results, not statements such as “tested” or “works”.
+## 11. Current checkpoint — 2026-09-15
 
-### C11 — Documentation/state
-- task packet updated;
-- residual OPEN risks recorded;
-- ADR added for A1 technical decisions;
-- SESSION_STATE updated;
-- this master path updated with the new checkpoint.
+- Canonical repository: VERIFIED — `asas-erp-saas-1/As`.
+- Historical `Asas-website`: EXCLUDED.
+- Architecture/handoff/audit foundation: substantially established.
+- Claude handoff pack: PRESENT.
+- Authority & contradiction register: **PRESENT — newly added** at `docs/audit/FOUNDATION-AUTHORITY-AND-CONTRADICTION-REGISTER-2026-09-15.md`.
+- Package consistency: known discrepancies remain explicitly recorded.
+- Machine-readable v1.6.1 registers/schema/design/skills/runbooks: **SOURCE AVAILABLE in delivered package; repository copies still need controlled restoration and verification.**
+- GATE-00 platform identity: **BLOCKED** — actual `As → Vercel → Supabase/PostgreSQL` linkage remains unproven.
+- Application implementation: NOT STARTED.
+- Database implementation: NOT STARTED.
+- No production mutation, destructive migration, reset or force-push performed.
 
-### C12 — Git hygiene
-- task-scoped branch/PR/commit;
-- no force-push/reset;
-- no unrelated changes;
-- no secrets;
-- CI/checks green where applicable.
+### Active foundation task
 
-## 7. Minimum evidence by task type
+**G-04 / G-05 — executable artifact inventory + authority/contradiction closure.**
 
-| Task | Required evidence |
-|---|---|
-| Documentation/contract | source traceability + consistency check |
-| Domain command | unit + negative authorization + invariant + integration transaction evidence |
-| Database/migration | schema diff + migration test + backfill/invariant validation + rollback/forward-fix evidence |
-| Auth/RLS | positive + cross-tenant negative + object/property negative |
-| Payment/finance | idempotency + duplicate/replay + balance/allocation + period rules |
-| Webhook/integration | signature + replay + duplicate delivery + retry/DLQ + reconciliation |
-| UI | responsive + RTL/LTR + accessibility + loading/error/permission + visual evidence |
-| AI action | tool authorization + tenant scope + data egress + audit + refusal/negative tests |
-| Performance | baseline + target budget + measured result |
-| Reliability | failure injection + recovery + RPO/RTO evidence where applicable |
+The next safe action is to restore the exact machine-readable handoff artifacts from the v1.6.1 source package into the canonical repository, without changing their semantics, then verify counts/checksums and reconcile the protocol's prose claims. G-01 remains an external reality blocker but does not prevent this documentation-only work.
 
-## 8. Autonomous authority
+## 12. Required update discipline
 
-### A0 — execute
-Claude may implement when the contract is sufficient, the scope is authorized, the change is reversible/safely migratable, and objective verification exists.
+After every substantive session update this file, `SESSION_STATE.md`, the relevant task/closure artifact, and the durable commit checkpoint. If blocked, record blocker → evidence → affected tasks → founder decision required → safe next work.
 
-### A1 — execute + micro-ADR
-Claude may select among technically equivalent options without changing business semantics. Record the decision and trade-offs.
-
-### A2 — stop for Founder
-Stop before implementation when semantics change money, law, employment, contracts, canonical ownership/events/permissions, tenant/data ownership, public/private boundaries, privileged AI, production-data transformation, irreversible migration, or material provider lock-in/cost.
-
-### A3 — prohibited
-Never reset production, force-push, disable security/RLS to make code work, commit secrets, delete production data to hide defects, or silently rewrite canonical contracts.
-
-## 9. Automatic task selection
-
-When no A2/A3 blocker exists:
-
-1. inspect all READY tasks;
-2. choose P0 before P1/P2;
-3. choose the task that unblocks the most downstream work;
-4. prefer a complete vertical slice over isolated CRUD;
-5. execute to DONE;
-6. update evidence/state;
-7. select the next unblocked task;
-8. repeat.
-
-## 10. Stop-the-line conditions
-
-Immediately stop downstream implementation for:
-
-- tenant breakout;
-- unauthorized protected access;
-- duplicate reservation winner;
-- unbalanced ledger;
-- duplicate non-idempotent side effect;
-- audit tampering;
-- lost outbox/inbox event;
-- unsafe migration;
-- public/private data leak;
-- AI authorization bypass;
-- secret exposure;
-- unsafe webhook replay;
-- material contradiction between reality and canonical contract.
-
-Only the affected dependency chain is blocked; unrelated safe READY work may continue.
-
-## 11. Foundation-to-implementation gate
-
-The project becomes implementation-ready only when:
-
-1. `As` repository identity is verified;
-2. actual `As` deployment and database identity are verified;
-3. reality baseline is reproducible;
-4. critical state/command/event/permission mappings are closed;
-5. tenant/IAM kernel contract is executable;
-6. idempotency/concurrency/outbox/inbox contracts are implementable;
-7. finance invariants affecting the first financial workflow are closed;
-8. public/private and AI egress boundaries are explicit;
-9. migration strategy is safe;
-10. Claude task packets are sufficiently precise for autonomous implementation;
-11. required tests/evidence can objectively prove completion.
-
-No requirement for perfect documentation is imposed. The gate is **implementation sufficiency**, not paperwork completeness.
-
-## 12. Current checkpoint
-
-As of 2026-09-15:
-
-- Canonical repository: VERIFIED as `asas-erp-saas-1/As`.
-- `Asas-website`: explicitly excluded.
-- Foundation documents and adversarial contracts: substantially established.
-- **GATE-00 executed read-only:** repository identity verified; connected platform inventories do not prove an `As` deployment/database identity.
-- Current connected Supabase inventory exposes only `asas-web-site` (`xwokfufeeodobkuaxvgx`), explicitly excluded.
-- Current connected Vercel team exposes no project linked to `asas-erp-saas-1/As`.
-- Current `As` branch contains no `package.json`, `vercel.json`, `.vercel/project.json`, or `.github/workflows`, so repository-local deployment linkage is not available.
-- `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` is now present on the active branch as the canonical Claude readiness/handoff contract.
-- `docs/audit/LIVE-DB-REALITY-BASELINE-2026-09-15.md` has been corrected so the excluded `asas-web-site` environment cannot be mistaken for ASAS database reality.
-- B.6 reservation/hold/deposit remains high-risk and not implementation-ready.
-- No application/database implementation is authorized until GATE-00 and the complete implementation-readiness gate are passed.
-
-## 13. Required update discipline
-
-After every substantive work session, update:
-
-1. this file — current checkpoint, completed gates, next task;
-2. `docs/handoff/SESSION_STATE.md` — durable session summary;
-3. relevant task/closure artifact — exact evidence;
-4. commit SHA — exact durable checkpoint.
-
-If a task is blocked, record:
-`BLOCKER → evidence → affected tasks → founder decision required (if any) → safe next work`.
-
-## 14. Final rule
-
-The path exists to make Claude productive, not to keep Claude waiting.
+## 13. Final rule
 
 **Close the contract enough to implement. Implement. Prove. Record. Continue.**
 
