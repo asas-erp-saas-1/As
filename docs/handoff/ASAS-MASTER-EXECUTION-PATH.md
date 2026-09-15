@@ -246,6 +246,8 @@ As of 2026-09-15:
 - Current connected Supabase inventory exposes only `asas-web-site` (`xwokfufeeodobkuaxvgx`), explicitly excluded.
 - Current connected Vercel team exposes no project linked to `asas-erp-saas-1/As`.
 - Current `As` branch contains no `package.json`, `vercel.json`, `.vercel/project.json`, or `.github/workflows`, so repository-local deployment linkage is not available.
+- `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` is now present on the active branch as the canonical Claude readiness/handoff contract.
+- `docs/audit/LIVE-DB-REALITY-BASELINE-2026-09-15.md` has been corrected so the excluded `asas-web-site` environment cannot be mistaken for ASAS database reality.
 - B.6 reservation/hold/deposit remains high-risk and not implementation-ready.
 - No application/database implementation is authorized until GATE-00 and the complete implementation-readiness gate are passed.
 
