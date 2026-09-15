@@ -11,9 +11,14 @@
 - Repository remains documentation/bootstrap-only; no application implementation has been added.
 - Supabase/Vercel project identity is not yet verified; Phase P/0 and Phase 1 remain blocked.
 - Architecture uses nine canonical bounded contexts. HR/People is currently an enterprise capability, not silently a tenth bounded context.
+- GATE-00 platform identity investigation was executed read-only on 2026-09-15.
+- Current connected Supabase inventory exposes only `asas-web-site`, which is explicitly excluded from `As`.
+- Current connected Vercel team exposes no project linked to `asas-erp-saas-1/As`.
+- Current `As` branch contains no `package.json`, `vercel.json`, `.vercel/project.json`, or `.github/workflows`, so repository-local deployment linkage is not currently available.
 
-## New closure artifacts in this pass
+## New closure / evidence artifacts in this pass
 
+- `docs/audit/GATE-00-PLATFORM-IDENTITY-EVIDENCE-2026-09-15.md` — read-only repository/Supabase/Vercel identity investigation; gate remains BLOCKED.
 - `docs/audit/STATE-EDGE-CLOSURE.md`
 - `docs/audit/COMMAND-CONTRACT-CLOSURE.md`
 - `docs/audit/IDEMPOTENCY-CATALOG.md`
@@ -40,21 +45,37 @@
 - Formalized idempotency as a P0 correctness contract.
 - Formalized concurrency/race hazards and outbox/inbox reliability contracts.
 - Formalized finance correctness as a P0 contract: integer DZD centimes, double-entry balance, immutable posted records, compensating correction, duplicate-payment protection, allocation bounds, period-close boundary and explicit accounting-policy OPEN items.
+- Executed GATE-00 read-only platform identity discovery. Repository identity is verified; actual Supabase and Vercel identity for `As` is still unproven.
 - No application code, schema, migration, deployment, production mutation, reset or force-push was executed.
+
+## GATE-00 result
+
+**BLOCKED — identity evidence insufficient.**
+
+Evidence proves:
+
+`asas-erp-saas-1/As` → verified repository
+
+but does not prove:
+
+`As → Vercel project → Supabase project → PostgreSQL database`.
+
+No project may be selected by name similarity. The only connected Supabase project is excluded, and the connected Vercel inventory contains no project linked to `As`.
 
 ## Current verdict
 
-**FOUNDATION ARCHITECTURE: OPEN — integration architecture is now explicitly part of the foundation contract, but executable implementation remains gated by unresolved authoritative/product contracts.**
+**FOUNDATION ARCHITECTURE: OPEN — GATE-00 remains the active stop-the-line dependency for reality/schema work.**
 
-The principal blocker remains B.4. Other material OPEN policy areas remain: approval SLA/delegation, finance policy, time semantics, PII retention/public-private projections, AI egress/governance, exact cross-aggregate transaction boundaries, HR ownership/state, integration capability/security/reconciliation contracts, Algeria payment rails, eSignature legal semantics, and platform identity/reality verification.
+The principal product-contract blocker remains B.4. Other material OPEN policy areas remain: approval SLA/delegation, finance policy, time semantics, PII retention/public-private projections, AI egress/governance, exact cross-aggregate transaction boundaries, HR ownership/state, integration capability/security/reconciliation contracts, Algeria payment rails, eSignature legal semantics, and platform identity/reality verification.
 
 ## Remaining closure work — ordered
 
+0. **GATE-00:** obtain authoritative linkage proving the actual `As` deployment/database environment; then perform read-only DB reconciliation.
 1. Founder/product closure of B.4 exact graph.
 2. B.2 milestone taxonomy and edge predicates.
 3. B.3 lifecycle trigger/precondition matrix.
 4. B.5 stage exit criteria and offer-expiry target semantics.
-5. B.6 reservation/hold cross-aggregate transaction semantics.
+5. B.6 reservation/hold cross-aggregate transaction semantics after reality inspection.
 6. B.7 exact legal-generation validation predicate and completion semantics.
 7. B.8 due/grace/invoice/waiver/cancellation policy.
 8. B.9 approval SLA/delegation/escalation/expiry semantics.
