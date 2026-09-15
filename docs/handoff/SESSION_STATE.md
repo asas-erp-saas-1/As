@@ -15,10 +15,13 @@
 - Current connected Supabase inventory exposes only `asas-web-site`, which is explicitly excluded from `As`.
 - Current connected Vercel team exposes no project linked to `asas-erp-saas-1/As`.
 - Current `As` branch contains no `package.json`, `vercel.json`, `.vercel/project.json`, or `.github/workflows`, so repository-local deployment linkage is not currently available.
+- Active branch HEAD after this checkpoint: `2abc1325bb5db6f840d1bbf33697adac553d55cc`.
 
 ## New closure / evidence artifacts in this pass
 
 - `docs/audit/GATE-00-PLATFORM-IDENTITY-EVIDENCE-2026-09-15.md` — read-only repository/Supabase/Vercel identity investigation; gate remains BLOCKED.
+- `docs/audit/LIVE-DB-REALITY-BASELINE-2026-09-15.md` — corrected authoritative identity-gated baseline; explicitly withdraws the earlier mistaken use of `asas-web-site` as ASAS database reality.
+- `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` — canonical Claude handoff/readiness gate, autonomy boundary and implementation sequence.
 - `docs/audit/STATE-EDGE-CLOSURE.md`
 - `docs/audit/COMMAND-CONTRACT-CLOSURE.md`
 - `docs/audit/IDEMPOTENCY-CATALOG.md`
@@ -46,6 +49,8 @@
 - Formalized concurrency/race hazards and outbox/inbox reliability contracts.
 - Formalized finance correctness as a P0 contract: integer DZD centimes, double-entry balance, immutable posted records, compensating correction, duplicate-payment protection, allocation bounds, period-close boundary and explicit accounting-policy OPEN items.
 - Executed GATE-00 read-only platform identity discovery. Repository identity is verified; actual Supabase and Vercel identity for `As` is still unproven.
+- Added the canonical Claude implementation-readiness master to the active branch.
+- Corrected the live DB reality baseline so the excluded `asas-web-site` environment cannot be mistaken for ASAS database reality.
 - No application code, schema, migration, deployment, production mutation, reset or force-push was executed.
 
 ## GATE-00 result
@@ -61,6 +66,8 @@ but does not prove:
 `As → Vercel project → Supabase project → PostgreSQL database`.
 
 No project may be selected by name similarity. The only connected Supabase project is excluded, and the connected Vercel inventory contains no project linked to `As`.
+
+The corrected live baseline explicitly withdraws all earlier claims derived from `asas-web-site`; its schema/row/table findings must not be treated as ASAS production reality.
 
 ## Current verdict
 
