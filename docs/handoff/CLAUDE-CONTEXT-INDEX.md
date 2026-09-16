@@ -7,15 +7,19 @@
 3. `docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md`
 4. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 5. `docs/handoff/CURRENT-SESSION-STATE.md`
-6. Current task packet
-7. Dependencies named by the task
-8. Canonical registers/contracts
-9. Architecture/decisions relevant to the task
-10. Research and supporting evidence
+6. `docs/governance/FOUNDATION-GATE-REGISTER.md`
+7. `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`
+8. Current task packet
+9. Dependencies named by the task
+10. Canonical registers/contracts
+11. Architecture/decisions relevant to the task
+12. Research and supporting evidence
 
 ## Context loading rule
 
 The Master Execution Path and Current Session State are mandatory canonical handoff files. If either is missing, stale, or internally inconsistent with repository reality, Claude MUST treat handoff integrity as blocked and repair/reconcile the handoff before implementation.
+
+The Foundation Gate Register and Canonical Artifact Register are mandatory governance controls during foundation work. They describe what is proven, what remains unresolved, and which referenced artifacts are actually present. They do not themselves prove runtime conditions.
 
 Do not load the entire repository indiscriminately and infer requirements from volume. Load the smallest authoritative context necessary for the task, then inspect affected implementation files and dependencies.
 
@@ -33,4 +37,4 @@ The uploaded/source ASAS package is an input to the architecture process, not a 
 
 ## Resume rule
 
-When the operator says `أكمل عملك على المسار`, reload this index, then the Master Execution Path and Current Session State from the current repository ref before selecting the next task. Do not rely on conversational memory as the checkpoint.
+When the operator says `أكمل عملك على المسار`, reload this index, then the Master Execution Path, Current Session State, Foundation Gate Register, and Canonical Artifact Register from the current repository ref before selecting the next task. Do not rely on conversational memory as the checkpoint.
