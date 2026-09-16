@@ -30,13 +30,14 @@ jobs:
           required=(
             AGENTS.md
             docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
-            docs/handoff/SESSION_STATE.md
+            docs/handoff/CURRENT-SESSION-STATE.md
             docs/handoff/CLAUDE-START-HERE.md
             docs/handoff/CLAUDE-CONTEXT-INDEX.md
             docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
             docs/handoff/CLAUDE-EXECUTION-CHECKLIST.md
             docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
             docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+            docs/governance/CANONICAL-ARTIFACT-REGISTER.md
             .github/PULL_REQUEST_TEMPLATE.md
             CODEOWNERS
           )
@@ -82,9 +83,19 @@ jobs:
               print(f'VALID JSON: {path}')
           PY
 
+      - name: Verify canonical session state references
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RIn --exclude-dir=.git 'docs/handoff/SESSION_STATE.md' docs/handoff/CLAUDE-CONTEXT-INDEX.md docs/handoff/ASAS-MASTER-EXECUTION-PATH.md docs/handoff/CLAUDE-START-HERE.md; then
+            echo 'ERROR: canonical handoff files must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
+            exit 1
+          fi
+          test -f docs/handoff/CURRENT-SESSION-STATE.md
+
       - name: Foundation status is explicit
         shell: bash
         run: |
           set -euo pipefail
-          grep -Eq '\b(BLOCKED|OPEN|IN PROGRESS|VERIFIED|FAILED|NOT EXECUTED)\b' docs/handoff/SESSION_STATE.md
+          grep -Eq '\b(BLOCKED|OPEN|IN PROGRESS|VERIFIED|FAILED|NOT EXECUTED)\b' docs/handoff/CURRENT-SESSION-STATE.md
           echo 'Foundation status vocabulary present.'
