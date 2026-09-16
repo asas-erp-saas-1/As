@@ -1,0 +1,15 @@
+# ASAS CODEOWNERS
+# Keep ownership explicit. Replace placeholders with the final engineering
+# owners/team handles before enabling required CODEOWNERS reviews.
+
+/.github/ @asas-erp-saas-1
+/docs/ @asas-erp-saas-1
+/AGENTS.md @asas-erp-saas-1
+
+# Sensitive implementation areas
+/schema/ @asas-erp-saas-1
+/migrations/ @asas-erp-saas-1
+/src/auth/ @asas-erp-saas-1
+/src/security/ @asas-erp-saas-1
+/src/finance/ @asas-erp-saas-1
+/src/integrations/ @asas-erp-saas-1
