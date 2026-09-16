@@ -6,7 +6,7 @@
 2. `docs/handoff/CLAUDE-START-HERE.md`
 3. `docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md`
 4. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
-5. `docs/handoff/SESSION_STATE.md`
+5. `docs/handoff/CURRENT-SESSION-STATE.md`
 6. Current task packet
 7. Dependencies named by the task
 8. Canonical registers/contracts
@@ -15,7 +15,7 @@
 
 ## Context loading rule
 
-The Master Execution Path and Session State are mandatory canonical handoff files. If either is missing, stale, or internally inconsistent with repository reality, Claude MUST treat handoff integrity as blocked and repair/reconcile the handoff before implementation.
+The Master Execution Path and Current Session State are mandatory canonical handoff files. If either is missing, stale, or internally inconsistent with repository reality, Claude MUST treat handoff integrity as blocked and repair/reconcile the handoff before implementation.
 
 Do not load the entire repository indiscriminately and infer requirements from volume. Load the smallest authoritative context necessary for the task, then inspect affected implementation files and dependencies.
 
@@ -33,4 +33,4 @@ The uploaded/source ASAS package is an input to the architecture process, not a 
 
 ## Resume rule
 
-When the operator says `أكمل عملك على المسار`, reload this index, then the Master Execution Path and Session State from the current repository ref before selecting the next task. Do not rely on conversational memory as the checkpoint.
+When the operator says `أكمل عملك على المسار`, reload this index, then the Master Execution Path and Current Session State from the current repository ref before selecting the next task. Do not rely on conversational memory as the checkpoint.
