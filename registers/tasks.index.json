@@ -1,40 +1,14 @@
 {
   "name": "ASAS Blueprint Task Register Index",
-  "status": "DERIVATION-CONTROLLED / NOT YET CANONICAL",
-  "source": {
-    "document": "ASAS Enterprise Architecture Blueprint v1.6.1",
-    "authority": "Blueprint",
-    "derivation_rule": "Blueprint -> register -> implementation"
-  },
+  "status": "DERIVATION-CONTROLLED / RECONCILIATION REQUIRED",
+  "source": {"document":"ASAS Real Estate OS — Task Register","version":"v1.6.1","authority":"Blueprint v1.6.1","derivation_rule":"Blueprint -> derived task register -> implementation"},
   "declared_total": 114,
+  "observed_source_task_entries": 119,
   "recurring_intelligence_rituals": 3,
-  "note": "The authoritative source states that registers/tasks.json contains all 114 playbook tasks across platform pre-phase P and delivery phases, plus recurring rituals. This index deliberately does not invent task bodies that have not been extracted and reconciled from the source package.",
-  "phases": [
-    {"id":"P","status":"PENDING_EXTRACT"},
-    {"id":"0","status":"PENDING_EXTRACT"},
-    {"id":"1","status":"PENDING_EXTRACT"},
-    {"id":"1.5","status":"PENDING_EXTRACT"},
-    {"id":"2","status":"PENDING_EXTRACT"},
-    {"id":"3","status":"PENDING_EXTRACT"},
-    {"id":"4","status":"PENDING_EXTRACT"},
-    {"id":"5","status":"PENDING_EXTRACT"},
-    {"id":"6","status":"PENDING_EXTRACT"},
-    {"id":"7","status":"PENDING_EXTRACT"},
-    {"id":"8","status":"PENDING_EXTRACT"},
-    {"id":"9","status":"PENDING_EXTRACT"},
-    {"id":"10","status":"PENDING_EXTRACT"},
-    {"id":"11","status":"PENDING_EXTRACT"},
-    {"id":"12","status":"PENDING_EXTRACT"}
-  ],
-  "recurring": [
-    {"id":"T-R.1","status":"PENDING_EXTRACT"},
-    {"id":"T-R.2","status":"PENDING_EXTRACT"},
-    {"id":"T-R.3","status":"PENDING_EXTRACT"}
-  ],
-  "canonicalization_requirements": [
-    "Every task keeps its permanent source ID.",
-    "Task contract and acceptance evidence must be preserved.",
-    "No task is marked implementation-ready until dependencies and applicable gates are resolved.",
-    "Counts, IDs, references, and provenance must validate against the source before promotion."
-  ]
+  "discrepancy": {"status":"OPEN","delta":5,"rule":"Do not silently choose a normative count; reconcile against the authoritative source/edition before promotion."},
+  "phase_counts": {"P":9,"0":11,"1":9,"1.5":2,"2":14,"3":12,"4":9,"5":8,"6":12,"7":10,"8":5,"9":7,"10":5,"11":6},
+  "source_ids_verified_by_parse": true,
+  "canonicalization_requirements": ["Every task keeps its permanent source ID.","Task contract and acceptance evidence are preserved.","No task is implementation-ready until dependencies and applicable gates are resolved.","Counts, IDs, references, and provenance validate against the source.","Observed-vs-declared count discrepancies require explicit reconciliation."],
+  "source_artifact": "ASAS-AI-PACKAGE-v1.6.1/02-HANDOFF/registers/tasks.json",
+  "repository_copy_policy": "Do not blindly copy the package; derived shards/manifests must remain provenance-tagged and non-ambiguous."
 }
