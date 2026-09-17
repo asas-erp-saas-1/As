@@ -1,9 +1,24 @@
 {
-  "artifact":"ASAS Blueprint Source Observation Manifest",
-  "status":"RECONCILIATION REQUIRED",
-  "source_package":"ASAS-AI-PACKAGE-v1.6.1",
-  "task_register":{"path":"02-HANDOFF/registers/tasks.json","declared_total":114,"observed_entries":119,"recurring_rituals":3,"phase_counts":{"P":9,"0":11,"1":9,"1.5":2,"2":14,"3":12,"4":9,"5":8,"6":12,"7":10,"8":5,"9":7,"10":5,"11":6}},
-  "schema_contract":{"path":"02-HANDOFF/schema/asas-contracts.prisma","declared_models":59,"observed_models":59,"declared_enums":16,"observed_enums":17,"declared_indexes":15,"observed_model_index_declarations":56},
-  "interpretation":"Observed values are parsed from the supplied v1.6.1 source artifacts. Declared and observed values are retained separately. No discrepancy is silently normalized.",
-  "implementation_boundary":"Observation and derivation only. This file authorizes neither application code nor database migration."
+  "format": "asas.blueprint-extraction-manifest.v1",
+  "source_version": "v1.6.1",
+  "status": "EXTRACTED_SOURCE_VERIFIED_PENDING_CANONICAL_PROMOTION",
+  "source_files": {
+    "registers/tasks.json": {"sha256": "59972b54f6ac5f9d498c13857aaa6d493bccf54e66e622899021e2b3757080a4", "bytes": 62866},
+    "registers/events.json": {"sha256": "7f25a34dec1769c4c0dfc076da4bb337a3bc3194fb9c3bb13911bc0667f56580", "bytes": 4636},
+    "registers/permissions.csv": {"sha256": "1a9ca150f77bb091c8e462c2d018503c5dd4ab5f3d963a17bf42a0d41d116a1b", "bytes": 2885},
+    "registers/state-machines.json": {"sha256": "12652e591d864168b80fe8662a87ec7ca7ba5de627befb84162515adc40fa019", "bytes": 8589},
+    "schema/asas-contracts.prisma": {"sha256": "65fee768efa8338f3d7ed953d3f3f5f9c6d076fc9c477a822c81433860394a2d", "bytes": 52127}
+  },
+  "observations": {
+    "tasks": {"declared": 114, "observed_phase_tasks": 119, "recurring_rituals": 3, "unique_all_ids": 122, "phase_counts": {"P": 9, "0": 11, "1": 9, "1.5": 2, "2": 14, "3": 12, "4": 9, "5": 8, "6": 12, "7": 10, "8": 5, "9": 7, "10": 5, "11": 6}},
+    "events": {"declared": 103, "observed": 103},
+    "schema": {"models": 59, "enums": 17, "indexes": 56, "uniques": 22},
+    "state_machines": {"observed": 11}
+  },
+  "reconciliation_rules": [
+    "Never silently change a source count to match prose.",
+    "Never fabricate missing task bodies, models, enums, indexes, events, permissions, or transitions.",
+    "Canonical promotion requires semantic reconciliation plus provenance and validation evidence.",
+    "This manifest is evidence/control metadata, not an implementation schema and must not be applied to a database."
+  ]
 }
