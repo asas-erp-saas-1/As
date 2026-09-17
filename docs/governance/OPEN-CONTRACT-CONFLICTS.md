@@ -4,49 +4,53 @@ Status: CANONICAL FOUNDATION BLOCKER REGISTER
 
 ## Purpose
 
-Record material contradictions discovered across approved/source artifacts before implementation. This file does not choose a winner. It prevents Claude from silently reconciling conflicting architecture.
+Record material contradictions discovered across approved/source artifacts before implementation. This file does not silently choose a winner. It prevents Claude from reconciling conflicting architecture without an explicit recorded decision.
 
 ## C2-001 — Bounded-context/module count and decomposition
 
 ### Conflict
 
-The source set contains two materially different architectural decompositions:
+The source set contains two materially different architectural summaries:
 
-- `AGENTS.md` describes ASAS as a modular monolith with **nine bounded contexts**: Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics, Documents; Scheduling is explicitly a CRM submodule.
-- `ASAS_Master_Implementation_Specification` describes **15 modules / 15 database schemas**, including Lead & CRM, Property & Inventory, Visit Management, Reservation & Contract, Payment & Finance, Commission & Payout, Communication, Identity/Access/Workspace, Notification, Collaboration/Extensibility, Calendar/Scheduling, Activity/Timeline/Audit, Search, Reporting/Analytics, Workflow/Automation.
+- `AGENTS.md` contains a condensed nine-context description and places Scheduling under CRM.
+- `ASAS_Enterprise_Domain_Model` and the approved Phase 1.5 roadmap identify **15 bounded contexts**.
+- `ASAS_Master_Implementation_Specification` defines **15 independent modules / 15 PostgreSQL schemas** and explicit module communication rules.
 
-These are not safely interchangeable: they imply different ownership boundaries, persistence boundaries, event contracts, dependency rules, and implementation structure.
+### Reconciliation finding
 
-### Classification
+The 15-context decomposition is the only source set that provides the granular implementation boundaries required for module ownership, persistence, event contracts, dependency enforcement, worker/process ownership, and future extraction. The nine-context statement is therefore classified as a **legacy condensed summary**, not the implementation decomposition.
 
-C2 — semantic/architectural conflict.
+This finding is recorded in `docs/decisions/ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` as a **PROPOSED** decision.
+
+### Proposed canonical decomposition
+
+1. Lead & CRM — `lead_crm`
+2. Property & Inventory — `property_inventory`
+3. Visit Management — `visit_management`
+4. Reservation & Contract — `reservation_contract`
+5. Payment & Finance — `payment_finance`
+6. Commission & Payout — `commission_payout`
+7. Communication — `communication`
+8. Identity, Access & Workspace — `identity_access`
+9. Notification — `notification`
+10. Collaboration & Extensibility — `collaboration`
+11. Calendar & Scheduling — `calendar_scheduling`
+12. Activity, Timeline & Audit — `activity_audit`
+13. Search — `search`
+14. Reporting & Analytics — `reporting`
+15. Workflow & Automation Engine — `workflow_engine`
+
+The deployment shape remains a modular monolith with enforced boundaries; this reconciliation does not authorize microservices.
 
 ### Current disposition
 
-OPEN — HARD STOP for any implementation that depends on the affected decomposition.
+**PROVISIONALLY RECONCILED — IMPLEMENTATION BLOCKED PENDING FOUNDER ACCEPTANCE OF ADR-0001.**
 
-### Non-conflicting principle
+The contradiction is no longer an extraction mystery: the source hierarchy supports the 15-context implementation map. It is not marked CLOSED because the repository governance requires explicit founder/product architecture acceptance for a C2 decision.
 
-Both sources support a modular, boundary-enforced architecture and do not justify premature distributed microservices. The exact context/module mapping remains unresolved.
+### Required acceptance
 
-### Required decision
-
-Produce one canonical Context-to-Module Map defining:
-
-1. bounded context name and ID;
-2. module name and ID;
-3. aggregate ownership;
-4. persistence/schema ownership;
-5. synchronous published interfaces;
-6. asynchronous events;
-7. allowed dependencies;
-8. tenant/security authority;
-9. process/worker ownership;
-10. extraction boundary if the module is later separated.
-
-### Authority required
-
-Founder/product architecture decision recorded as an ADR, after reconciliation of the approved Blueprint and implementation specification.
+Founder accepts or rejects ADR-0001. If accepted, update the condensed `AGENTS.md` wording and promote the Context-to-Module Map to canonical. If rejected, record the alternative mapping and its complete impact analysis before implementation.
 
 ## C2-002 — Current live-database claim versus repository implementation target
 
@@ -68,6 +72,6 @@ When live environment access is intentionally authorized, capture database ident
 
 ## Closure rule
 
-An entry is CLOSED only after the conflicting sources are explicitly identified, the canonical interpretation is recorded in an ADR or approved contract, affected registers/tasks are traced, and verification requirements are updated.
+An entry is CLOSED only after the conflicting sources are explicitly identified, the canonical interpretation is recorded in an accepted ADR or approved contract, affected registers/tasks are traced, and verification requirements are updated.
 
 Claude MUST NOT resolve these conflicts silently.
