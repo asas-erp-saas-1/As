@@ -1,6 +1,0 @@
-{
-  "artifact": "ASAS Blueprint Derived Task Register Shard",
-  "schema_version": "1.0",
-  "source": {"document": "ASAS Real Estate OS — Task Register", "version": "v1.6.1", "authority": "Blueprint v1.6.1", "derivation": "phase-group shard from source tasks.json"},
-  "phases": []
-}
