@@ -1,0 +1,9 @@
+{
+  "artifact":"ASAS Blueprint Source Observation Manifest",
+  "status":"RECONCILIATION REQUIRED",
+  "source_package":"ASAS-AI-PACKAGE-v1.6.1",
+  "task_register":{"path":"02-HANDOFF/registers/tasks.json","declared_total":114,"observed_entries":119,"recurring_rituals":3,"phase_counts":{"P":9,"0":11,"1":9,"1.5":2,"2":14,"3":12,"4":9,"5":8,"6":12,"7":10,"8":5,"9":7,"10":5,"11":6}},
+  "schema_contract":{"path":"02-HANDOFF/schema/asas-contracts.prisma","declared_models":59,"observed_models":59,"declared_enums":16,"observed_enums":17,"declared_indexes":15,"observed_model_index_declarations":56},
+  "interpretation":"Observed values are parsed from the supplied v1.6.1 source artifacts. Declared and observed values are retained separately. No discrepancy is silently normalized.",
+  "implementation_boundary":"Observation and derivation only. This file authorizes neither application code nor database migration."
+}
