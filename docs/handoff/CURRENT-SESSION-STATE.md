@@ -5,7 +5,7 @@ Status: CANONICAL FOUNDATION CHECKPOINT
 ## Repository
 - Canonical repository: `asas-erp-saas-1/As`
 - Canonical integration branch: `main`
-- Current foundation work is tracked on `main`; feature/foundation branches are change vehicles only.
+- Foundation changes are merged to `main`; feature/foundation branches are change vehicles only.
 
 ## Phase
 FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
@@ -21,20 +21,29 @@ FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
 - Master execution path
 - Foundation gate register and closure protocol
 - Canonical artifact register
-- Phase 11 scalability blueprint
-- Blueprint-derived domain event register (`registers/events.json`)
-- Blueprint-derived permission register (`registers/permissions.csv`)
-- Blueprint-derived state-machine register (`registers/state-machines.json`)
-- Blueprint-derived design token shadow (`design/design-tokens.json`)
-- Blueprint-derived component contract inventory (`design/component-inventory.md`)
+- Blueprint-derived domain event register
+- Blueprint-derived permission register
+- Blueprint-derived state-machine register
+- Blueprint-derived design token shadow
+- Blueprint-derived component contract inventory
+- Blueprint source observation manifest
+- Phase P task shard with all 9 source tasks
+- Declared-vs-observed reconciliation checkpoint
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
 
+## Verified source observations
+- Source task register contains 119 task entries across phases P–11, plus 3 recurring rituals, while an earlier repository declaration said 114. Delta +5 is OPEN and explicitly preserved.
+- Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These are source/repository discrepancies and are not silently normalized.
+- Phase P source shard `registers/tasks/phase-P.json` is complete for its 9 tasks.
+- The remaining task phases and the structured schema contract are still pending canonical promotion until reconciliation is complete.
+
 ## Current active blocker set
 - C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
 - C2-002: live-database/runtime reality is not accepted as verified until live evidence is captured.
-- Blueprint task register and consolidated Prisma contract still require controlled ingestion/sharding into the canonical repository; do not fabricate or silently simplify them.
+- Task-register count discrepancy: declared 114 vs observed 119 is OPEN.
+- Schema-contract count discrepancy: declared 59/16/15 vs observed 59/17/56 is OPEN.
 
 ## Gate status
 G0 GREEN
@@ -57,12 +66,13 @@ No application code, database schema implementation, migrations, production conf
 
 ## Next sequence
 1. Resolve C2-001 into one canonical Context-to-Module Map and trace affected contracts/tasks.
-2. Complete controlled ingestion of the Blueprint task register and schema contract, preferably as context-efficient phase/module shards with a canonical index rather than one giant context file.
-3. Reconcile the derived registers against the Blueprint source and record counts/hashes/provenance.
-4. Close security/tenancy doctrine against the canonical domain decomposition.
-5. Complete repository-level CI/handoff verification for the derived-register layer.
-6. Verify live platform/database reality only when the required connected evidence is intentionally available.
-7. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
+2. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
+3. Complete the non-executable structured schema contract and reconcile every model, enum, relation, constraint, and index against the source.
+4. Reconcile counts/IDs/references and record provenance; do not silently normalize discrepancies.
+5. Close security/tenancy doctrine against the canonical domain decomposition.
+6. Complete repository-level CI/handoff verification for the derived-register layer.
+7. Verify live platform/database reality only when the required connected evidence is intentionally available.
+8. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, and `docs/governance/OPEN-CONTRACT-CONFLICTS.md` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
