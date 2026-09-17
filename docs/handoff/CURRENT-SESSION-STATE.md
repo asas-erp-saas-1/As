@@ -27,17 +27,19 @@ FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
 - Blueprint-derived design token shadow
 - Blueprint-derived component contract inventory
 - Blueprint source observation manifest
-- Phase P task shard with all 9 source tasks
-- Declared-vs-observed reconciliation checkpoint
+- Source-level task/schema extraction and count validation
+- Blueprint register reconciliation report
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
 
 ## Verified source observations
-- Source task register contains 119 task entries across phases P–11, plus 3 recurring rituals, while an earlier repository declaration said 114. Delta +5 is OPEN and explicitly preserved.
-- Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These are source/repository discrepancies and are not silently normalized.
-- Phase P source shard `registers/tasks/phase-P.json` is complete for its 9 tasks.
-- The remaining task phases and the structured schema contract are still pending canonical promotion until reconciliation is complete.
+- Source task register parses to 119 phase-task entries across P–11, plus 3 recurring rituals. Its metadata declares 114 playbook tasks. Delta +5 remains OPEN.
+- Source schema contract parses to 59 models, 17 enums, 56 `@@index` declarations and 22 `@@unique` declarations. Earlier project summaries state 59/16/15; discrepancy remains OPEN.
+- Source event register parses to 103 events.
+- Source state-machine register parses to 11 machines.
+- The source artifacts were extracted directly from the supplied v1.6.1 package and their SHA-256/byte evidence is recorded in `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json`.
+- `registers/tasks.source-map.json` records the observed task IDs by phase without pretending to be the full task contract.
 
 ## Current active blocker set
 - C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
@@ -66,13 +68,13 @@ No application code, database schema implementation, migrations, production conf
 
 ## Next sequence
 1. Resolve C2-001 into one canonical Context-to-Module Map and trace affected contracts/tasks.
-2. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
-3. Complete the non-executable structured schema contract and reconcile every model, enum, relation, constraint, and index against the source.
-4. Reconcile counts/IDs/references and record provenance; do not silently normalize discrepancies.
+2. Reconcile the 114-vs-119 task discrepancy against the authoritative v1.6.1 Blueprint sections; do not delete or renumber entries to force a count.
+3. Reconcile the 16-vs-17 enum and 15-vs-56 index discrepancies against Chapter 39 and Appendix W; preserve observed source truth until disposition.
+4. Promote the complete task catalog and schema contract only after semantic/reference validation passes.
 5. Close security/tenancy doctrine against the canonical domain decomposition.
 6. Complete repository-level CI/handoff verification for the derived-register layer.
 7. Verify live platform/database reality only when the required connected evidence is intentionally available.
 8. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json`, and `docs/governance/BLUEPRINT-REGISTER-RECONCILIATION-REPORT.md` first. Resume from the first unresolved dependency; do not restart from conversation history.
