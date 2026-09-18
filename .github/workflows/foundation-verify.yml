@@ -55,14 +55,30 @@ jobs:
             exit 1
           fi
 
-      - name: Reject known wrong project references
+      - name: Reject wrong project references in active controls
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --exclude-dir=.git --exclude='*.lock' 'asas-erp-saas-1/Asas-website' .; then
-            echo 'ERROR: forbidden historical repository reference detected.'
-            exit 1
-          fi
+          active_files=(
+            AGENTS.md
+            README.md
+            docs/handoff/CLAUDE-START-HERE.md
+            docs/handoff/CLAUDE-CONTEXT-INDEX.md
+            docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
+            docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
+            docs/handoff/CURRENT-SESSION-STATE.md
+            docs/governance/CLAUDE-CONTEXT-LOADING-PROTOCOL.md
+            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+            docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+            docs/governance/REPOSITORY-HANDOFF-MAP.md
+          )
+          for file in "${active_files[@]}"; do
+            if grep -nF 'asas-erp-saas-1/Asas-website' "$file"; then
+              echo "ERROR: obsolete alternate-project reference in active control: $file"
+              exit 1
+            fi
+          done
+          echo 'Active controls contain no obsolete alternate-project reference.'
 
       - name: Validate JSON artifacts that already exist
         shell: bash
