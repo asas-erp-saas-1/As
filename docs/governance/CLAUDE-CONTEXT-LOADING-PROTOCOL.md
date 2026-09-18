@@ -11,10 +11,10 @@ Give Claude enough context to act safely without forcing it to ingest the entire
 
 ### Tier 0 — Identity and control
 1. `AGENTS.md`
-2. `CLAUDE-START-HERE.md`
-3. `CLAUDE-IMPLEMENTATION-BOUNDARY.md`
+2. `docs/handoff/CLAUDE-START-HERE.md`
+3. `docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md`
 4. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
-5. `docs/handoff/SESSION_STATE.md`
+5. `docs/handoff/CURRENT-SESSION-STATE.md`
 
 ### Tier 1 — Current execution scope
 6. Current task packet
@@ -64,3 +64,7 @@ Claude must be able to answer:
 - What evidence closes the task?
 
 If any critical answer is unknown, the task is not implementation-ready.
+
+## Naming consistency rule
+
+`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. Any historical `SESSION_STATE.md` artifact is compatibility/history only and must not be loaded as current state.
