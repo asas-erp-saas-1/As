@@ -15,24 +15,25 @@ Give Claude enough context to act safely without forcing it to ingest the entire
 3. `docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md`
 4. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 5. `docs/handoff/CURRENT-SESSION-STATE.md`
+6. `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`
 
 ### Tier 1 — Current execution scope
-6. Current task packet
-7. Task graph and predecessor evidence
-8. Relevant Definition of Done / gate matrix
-9. Relevant ADRs and reconciliation records
+7. Current task packet
+8. Task graph and predecessor evidence
+9. Relevant Definition of Done / gate matrix
+10. Relevant ADRs and reconciliation records
 
 ### Tier 2 — Domain context
-10. Relevant bounded-context contract
-11. Relevant command/event/state/permission/data registers
-12. Relevant UX/Figma contract
-13. Relevant integration contract
+11. Relevant bounded-context contract
+12. Relevant command/event/state/permission/data registers
+13. Relevant UX/Figma contract
+14. Relevant integration contract
 
 ### Tier 3 — Repository reality
-14. Existing implementation files in the declared scope
-15. Tests and fixtures
-16. Migration/schema artifacts when explicitly authorized
-17. Runtime/provider configuration only when the task requires it
+15. Existing implementation files in the declared scope
+16. Tests and fixtures
+17. Migration/schema artifacts when explicitly authorized
+18. Runtime/provider configuration only when the task requires it
 
 ## Context minimization
 
@@ -68,3 +69,7 @@ If any critical answer is unknown, the task is not implementation-ready.
 ## Naming consistency rule
 
 `docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. Any historical `SESSION_STATE.md` artifact is compatibility/history only and must not be loaded as current state.
+
+## Canonical-artifact rule
+
+Before relying on a named contract, Claude MUST check `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`. A referenced artifact that is marked `NOT PRESENT`, `BLOCKED`, or otherwise non-canonical MUST NOT be fabricated from memory, prose, or implementation code. The task must follow the register's unlock condition or escalate through the reconciliation protocol.
