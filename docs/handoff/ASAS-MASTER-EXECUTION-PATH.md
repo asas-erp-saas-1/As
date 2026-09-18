@@ -63,4 +63,4 @@ When the operator says `أكمل عملك على المسار` / `continue the p
 This path governs execution order. It does not override higher-authority product decisions or reconciled domain contracts. If a contradiction exists, invoke the Contract Reconciliation Protocol and stop the affected implementation slice.
 
 ## Canonical checkpoint rule
-`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. `docs/handoff/SESSION_STATE.md` is retained only as historical compatibility material and MUST NOT be used as the current checkpoint. New automation, documentation, or task packets MUST reference `CURRENT-SESSION-STATE.md`.
+`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. `docs/handoff/SESSION-STATE.md` is retained only as a compatibility pointer; `docs/handoff/SESSION-STATE-HISTORICAL.md` is provenance/history only. New automation, documentation, or task packets MUST reference `CURRENT-SESSION-STATE.md`.
