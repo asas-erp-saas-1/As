@@ -62,13 +62,16 @@ Before changing code Claude must load, in order:
 2. `docs/handoff/CLAUDE-START-HERE.md`;
 3. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`;
 4. `docs/handoff/CURRENT-SESSION-STATE.md`;
-5. the task packet;
-6. named dependencies and canonical contracts;
-7. relevant architecture/design/security/integration documents.
+5. `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`;
+6. the task packet;
+7. named dependencies and canonical contracts;
+8. relevant architecture/design/security/integration documents.
 
-Historical session material is never part of the active loading sequence. `docs/handoff/SESSION-STATE.md` is a compatibility pointer only; `docs/handoff/SESSION-STATE-HISTORICAL.md` is provenance/history only.
+Historical session material is never part of the active loading sequence. `docs/handoff/SESSION_STATE.md` is a compatibility pointer only; `docs/handoff/SESSION_STATE-HISTORICAL.md` is provenance/history only.
 
 Then inspect the actual repository state. Documentation never substitutes for repository reality.
+
+If a named canonical artifact is marked missing, blocked, historical, or non-canonical by the artifact register, Claude MUST NOT recreate it from memory or implementation code. Follow its stated unlock condition or escalate through reconciliation.
 
 ## Implementation sequence
 
