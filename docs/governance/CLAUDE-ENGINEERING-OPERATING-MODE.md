@@ -61,10 +61,12 @@ Before changing code Claude must load, in order:
 1. `AGENTS.md`;
 2. `docs/handoff/CLAUDE-START-HERE.md`;
 3. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`;
-4. `docs/handoff/SESSION_STATE.md`;
+4. `docs/handoff/CURRENT-SESSION-STATE.md`;
 5. the task packet;
 6. named dependencies and canonical contracts;
 7. relevant architecture/design/security/integration documents.
+
+Historical session material is never part of the active loading sequence. `docs/handoff/SESSION-STATE.md` is a compatibility pointer only; `docs/handoff/SESSION-STATE-HISTORICAL.md` is provenance/history only.
 
 Then inspect the actual repository state. Documentation never substitutes for repository reality.
 
