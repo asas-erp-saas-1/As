@@ -38,6 +38,7 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 - C2-001 evidence/reconciliation package
 - Integrated platform master execution blueprint
 - External-audit repository-control repairs on the active foundation branch: canonical artifact register state is reconciled; active Claude loading documents use `CURRENT-SESSION-STATE.md`; Foundation Verify now performs repository-wide historical session-state reference detection and canonical-register path existence checks.
+- Readiness-document ownership contract: `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` establishes one operational readiness authority and bounded ownership for supporting readiness artifacts; the context-loading protocol now loads the authority and its master readiness contract when evaluating implementation readiness.
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the primary source authority. Repository artifacts are derived shadows unless explicitly approved as canonical decisions. If a derived artifact disagrees with the source, preserve the discrepancy and reconcile it; do not silently normalize it. Registers must flow source → register → implementation, never code → register.
@@ -74,16 +75,16 @@ G12 BLOCKED
 G13 AMBER
 
 ## Foundation verification evidence
-- Foundation Verify **PASSED** on the prior verified foundation head `375c955ef7b506265ff4e68003d3b3b36da9d51f` — Run #182.
-- Latest foundation-control change: `ca0fea268ffada61942cd9571346543d6de803d5` updates the CI controls, but GitHub currently reports **no workflow run yet** for that commit. Therefore the new CI controls are **NOT EXECUTED** and are not claimed verified.
+- Foundation Verify **PASSED** on the prior verified foundation head `375c955ef7b506265ff4e6800333b3b36da9d51f` — Run #182.
+- Latest foundation-control changes `ca0fea268ffada61942cd9571346543d6de803d5` and `1535b185cfe6539470bd702fb087c29db7eb5b71` have not yet received workflow-run evidence from GitHub. Therefore the new CI controls are **NOT EXECUTED** and are not claimed verified.
 
 ## Hard stop
 No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not a migration and must not be treated as live database truth.
 
 ## Current execution sequence
 1. **Repair canonical artifact register and context-loading references identified by the external audit — IMPLEMENTED on the active foundation branch; awaiting CI execution evidence.**
-2. **Consolidate readiness-document ownership and loading chain — NEXT.**
-3. Recover and inspect the authoritative approved Domain Model v2 and Context Map v2 plus provenance/approval evidence.
+2. **Consolidate readiness-document ownership and loading chain — IMPLEMENTED on the active foundation branch.** `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` is the ownership contract and `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` is the single operational readiness authority. Supporting readiness artifacts remain scoped as documented.
+3. **Recover and inspect the authoritative approved Domain Model v2 and Context Map v2 plus provenance/approval evidence — NEXT.**
 4. Record the required Founder/Product Architecture decision as an ADR; do not invent the decision.
 5. Produce the canonical Context → Module ownership map from that decision.
 6. Reconcile task IDs/counts and complete the task packet layer.
