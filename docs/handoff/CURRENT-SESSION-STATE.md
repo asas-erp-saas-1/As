@@ -6,6 +6,7 @@ Status: CANONICAL FOUNDATION CHECKPOINT
 - Canonical repository: `asas-erp-saas-1/As`
 - Canonical integration branch: `main`
 - Current foundation work is carried on `foundation/repository-file-organization-v1` under PR #13; it is **OPEN / DRAFT / NOT MERGED**. Do not describe these branch changes as merged to `main` until GitHub confirms the merge.
+- Repository visibility is currently **PUBLIC**. This is an administrative/security decision requiring owner confirmation; do not change visibility automatically.
 
 ## Phase
 FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
@@ -21,8 +22,10 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 - Task register reconciliation: IN PROGRESS under `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`.
 - Schema contract reconciliation: OPEN.
 - Security/tenancy readiness: OPEN.
-- GATE-00 platform identity: BLOCKED pending technical evidence.
+- GATE-00 platform identity: BLOCKED pending direct technical evidence.
+- Platform identity pre-flight guard: IMPLEMENTED as `scripts/foundation/verify-platform-identity.sh`; it fails closed until `docs/audit/PLATFORM-IDENTITY-VERIFIED.json` exists and the runtime project reference matches it.
 - Foundation CI execution evidence: PENDING.
+- Repository visibility review: OPEN; current visibility is public and has not been changed automatically.
 
 ## Latest verified source observations
 - Source task register contains 119 task entries across phases P–11 plus 3 recurring rituals, while an earlier repository declaration said 114. The delta is OPEN; no count has been silently normalized.
@@ -31,6 +34,8 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 - The recovered implementation specification defines 15 implementation modules/schemas, but its 15-row decomposition does not contain dedicated `Website Studio` or `Marketing` module rows. This is now an explicit architecture-to-implementation gap, not a reason to invent modules.
 - `docs/architecture/ADR-0021-CANONICAL-BOUNDED-CONTEXT-RECONCILIATION.md` remains **PROPOSED / NOT YET CLOSED**.
 - `registers/events.json` contains 103 registered events across 11 emission modules; `registers/state-machines.json` contains 11 lifecycle machines; `registers/permissions.csv` contains 50 permission keys across eight persona columns. These counts are independently supported by the current source/register evidence.
+- `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` on the active foundation branch now reflects the actual present machine-readable artifacts; this repair is not yet merged to `main`.
+- The active foundation branch context-loading protocol and operating mode now point to `CURRENT-SESSION-STATE.md`; the repository-wide CI check is also configured to reject stale `SESSION_STATE.md` execution references. The corresponding fixes are not yet merged to `main`.
 
 ## Latest foundation changes
 1. `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`
@@ -57,6 +62,12 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 8. `docs/architecture/STATE-MACHINE-IMPLEMENTATION-CONTRACT.md`
    - Commit: `451dc7eafa7bbeb193f9d02fbc7d3d2ac132b547`
    - Purpose: define the non-negotiable lifecycle transition contract before application implementation.
+9. `docs/audit/PLATFORM-IDENTITY-VERIFICATION-CONTRACT.md`
+   - Commit: `e6fae735b5dc11e4298cbfb262211ca2a92c3f05`
+   - Purpose: convert the documented Supabase identity near-miss into a fail-closed Gate-00 contract without guessing the real project reference.
+10. `scripts/foundation/verify-platform-identity.sh`
+   - Commit: `e9b819a5283f1023fc23a84e46418ebfd73c541e`
+   - Purpose: technically fail closed on missing/mismatched verified Supabase project identity before schema-affecting work.
 
 ## Architecture working conclusion
 The current engineering baseline is a modular monolith with a nine-context direction, explicit separation of contexts/modules/aggregates/events/read models, Agency → Workspace → Branch tenancy, transactional outbox, state-machine controlled mutations, integer-centime immutable finance, and evidence-first database evolution. This is a **working foundation contract**, not a replacement for the proposed ADR-0021 approval gate.
@@ -71,7 +82,7 @@ No application code, database schema implementation, migrations, production conf
 
 ## Current execution sequence
 1. Foundation repository-control repairs — IMPLEMENTED; CI execution evidence pending.
-2. Readiness-document ownership/loading chain — IMPLEMENTED.
+2. Readiness-document ownership/loading chain — IMPLEMENTED; consolidation of overlapping readiness artifacts remains OPEN.
 3. C2-001 source recovery — SUBSTANTIALLY RESOLVED.
 4. Repository architecture reconciliation — IN PROGRESS; ADR-0021 awaits acceptance.
 5. Context → Module ownership — IN PROGRESS; 15-module matrix completed as a working reconciliation artifact.
@@ -81,10 +92,12 @@ No application code, database schema implementation, migrations, production conf
 9. Reconcile task IDs/counts using the task-register reconciliation protocol.
 10. Reconcile the non-executable schema contract against authoritative source observations.
 11. Close security/tenancy dependencies against the canonical decomposition.
-12. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
-13. Establish database drift/backup/restore evidence without destructive mutation.
-14. Run the complete Claude implementation-readiness gate.
-15. Authorize only the first bounded implementation slice.
+12. Finish platform identity/GATE-00 with direct provider evidence and execute the new pre-flight guard.
+13. Resolve repository visibility decision with owner authorization; do not change it implicitly.
+14. Consolidate overlapping readiness artifacts and wire the canonical survivor into every loading chain.
+15. Establish database drift/backup/restore evidence without destructive mutation.
+16. Run the complete Claude implementation-readiness gate.
+17. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
-When asked to continue, read this checkpoint and resume from the first unresolved dependency. Do not restart from conversation history. Do not use `asas-website`. Do not perform destructive database, Git, or deployment actions without explicit authorization and evidence.
+When asked to continue, read this checkpoint and resume from the first unresolved dependency. Do not restart from conversation history. Do not use `asas-website`. Do not perform destructive database, Git, visibility, or deployment actions without explicit authorization and evidence.
