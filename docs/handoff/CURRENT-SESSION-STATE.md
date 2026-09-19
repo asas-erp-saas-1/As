@@ -29,6 +29,8 @@ FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
 - Blueprint source observation manifest
 - Phase P task shard with all 9 source tasks
 - Declared-vs-observed reconciliation checkpoint
+- Repository current inventory and canonical ownership map
+- Claude project context pack (non-authoritative orientation layer)
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
@@ -62,23 +64,22 @@ G12 BLOCKED
 G13 AMBER
 
 ## Foundation verification evidence
-- Foundation Verify previously passed on the foundation branch at commit `3481b800...`.
-- The stale session-state guard was widened on the same branch at commit `2e06c43b...` so future verification scans the repository rather than a hand-maintained subset of canonical loaders.
-- The new CI guard has not yet produced a workflow result for `2e06c43b...`; therefore this new guard is `NOT EXECUTED`, not VERIFIED.
+- Foundation Verify **PASSED** on the current foundation head `375c955ef7b506265ff4e68003d3b3b36da9d51f` — Run #182.
+- The verification now checks the active Claude-loader/session-state contract without incorrectly treating historical/compatibility provenance references as active-loader violations.
+- The current PR #13 head includes the repository organization/naming controls, current inventory/canonical ownership work, Claude context-pack layer, artifact-register reconciliation, schema-contract observation reconciliation, gate-matrix ownership correction, README alignment, and Foundation CI guard.
 
 ## Hard stop
 No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not a migration and must not be treated as live database truth.
 
 ## Next sequence
-1. Verify the updated Foundation CI on `2e06c43b...` and record the result.
-2. Resolve C2-001 into one canonical Context-to-Module Map and trace affected contracts/tasks.
-3. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
-4. Complete the non-executable structured schema contract and reconcile every model, enum, relation, constraint, and index against the source.
-5. Reconcile counts/IDs/references and record provenance; do not silently normalize discrepancies.
-6. Close security/tenancy doctrine against the canonical domain decomposition.
-7. Complete repository-level CI/handoff verification for the derived-register layer.
-8. Verify live platform/database reality only when the required connected evidence is intentionally available.
-9. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
+1. Resolve C2-001 into one canonical Context-to-Module Map and trace affected contracts/tasks.
+2. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
+3. Complete the non-executable structured schema contract and reconcile every model, enum, relation, constraint, and index against the source.
+4. Reconcile counts/IDs/references and record provenance; do not silently normalize discrepancies.
+5. Close security/tenancy doctrine against the canonical domain decomposition.
+6. Complete repository-level CI/handoff verification for the derived-register layer.
+7. Verify live platform/database reality only when the required connected evidence is intentionally available.
+8. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
 
 ## Continuation rule
 When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
