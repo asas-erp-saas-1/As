@@ -104,14 +104,26 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RInE 'docs/handoff/SESSION_STATE\.md|docs/handoff/SESSION-STATE\.md' . \
-            --exclude-dir=.git \
-            --exclude='SESSION_STATE.md' \
-            --exclude='SESSION-STATE.md'; then
-            echo 'ERROR: repository contains a historical/compatibility session-state reference outside the retained compatibility artifact.'
-            exit 1
-          fi
+          loader_files=(
+            AGENTS.md
+            docs/handoff/CLAUDE-START-HERE.md
+            docs/handoff/CLAUDE-CONTEXT-INDEX.md
+            docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
+            docs/handoff/CLAUDE-EXECUTION-CHECKLIST.md
+            docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
+            docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
+            docs/handoff/CURRENT-SESSION-STATE.md
+            docs/governance/CLAUDE-CONTEXT-LOADING-PROTOCOL.md
+            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+          )
+          for file in "${loader_files[@]}"; do
+            if grep -nE 'docs/handoff/SESSION_STATE\.md|docs/handoff/SESSION-STATE\.md' "$file"; then
+              echo "ERROR: active Claude loader references historical/compatibility session state: $file"
+              exit 1
+            fi
+          done
           test -f docs/handoff/CURRENT-SESSION-STATE.md
+          echo 'Active Claude loaders reference only the canonical current checkpoint.'
 
       - name: Foundation status is explicit
         shell: bash
