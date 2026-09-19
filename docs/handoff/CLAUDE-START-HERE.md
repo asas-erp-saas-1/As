@@ -64,4 +64,4 @@ This repository is being prepared for implementation. Do **not** assume global i
 
 ## Canonical checkpoint
 
-`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. `docs/handoff/SESSION_STATE.md` is a compatibility pointer only, and `docs/handoff/SESSION-STATE-HISTORICAL.md` is historical provenance. Neither may be used as current execution state.
+`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. Historical and compatibility session-state artifacts are retained only for provenance/compatibility and MUST NOT be referenced by active automation, documentation, or task packets. New automation, documentation, or task packets MUST reference `CURRENT-SESSION-STATE.md`.
