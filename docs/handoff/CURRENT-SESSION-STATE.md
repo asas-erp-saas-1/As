@@ -35,6 +35,7 @@ FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
 - Declared-vs-observed reconciliation checkpoint
 - Repository current inventory and canonical ownership map
 - Claude project context pack (non-authoritative orientation layer)
+- C2-001 evidence/reconciliation package
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
@@ -44,9 +45,11 @@ The v1.6.1 Blueprint/package remains the authority. Repository artifacts are der
 - Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These are source/repository discrepancies and are not silently normalized.
 - Phase P source shard `registers/tasks/phase-P.json` is complete for its 9 tasks.
 - The remaining task phases and the structured schema contract are still pending canonical promotion until reconciliation is complete.
+- C2-001 evidence review confirms three distinct source claims: the roadmap claims an approved v2 model with 15 bounded contexts; the available Enterprise Domain Model artifact is marked Draft and visibly contains 13 contexts; the Master Implementation Specification defines 15 implementation modules/schemas. These are preserved as separate evidence claims and are not silently reconciled.
 
 ## Current active blocker set
-- C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
+- C2-001: bounded-context/module decomposition conflict is OPEN / HARD STOP. Evidence package: `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`.
+- C2-001 next dependency: recover/inspect the actual approved `Domain Model v2` and `Context Map v2` plus provenance/approval evidence before drafting the final ADR.
 - C2-002: live-database/runtime reality is not accepted as verified until live evidence is captured.
 - Task-register count discrepancy: declared 114 vs observed 119 is OPEN.
 - Schema-contract count discrepancy: declared 59/16/15 vs observed 59/17/56 is OPEN.
@@ -68,15 +71,15 @@ G12 BLOCKED
 G13 AMBER
 
 ## Foundation verification evidence
-- Foundation Verify **PASSED** on the current foundation head `375c955ef7b506265ff4e68003d3b3b36da9d51f` — Run #182.
-- The verification now checks the active Claude-loader/session-state contract without incorrectly treating historical/compatibility provenance references as active-loader violations.
-- The current PR #13 head includes the repository organization/naming controls, current inventory/canonical ownership work, Claude context-pack layer, artifact-register reconciliation, schema-contract observation reconciliation, gate-matrix ownership correction, README alignment, and Foundation CI guard.
+- Foundation Verify **PASSED** on the prior verified foundation head `375c955ef7b506265ff4e68003d3b3b36da9d51f` — Run #182.
+- The verification checks the active Claude-loader/session-state contract without incorrectly treating historical/compatibility provenance references as active-loader violations.
+- Subsequent foundation commits are not claimed to have a new CI result until GitHub provides that evidence.
 
 ## Hard stop
 No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not a migration and must not be treated as live database truth.
 
 ## Current execution sequence
-1. Build the C2-001 evidence/reconciliation package from authoritative sources.
+1. Recover and inspect the authoritative approved Domain Model v2 and Context Map v2 plus provenance/approval evidence.
 2. Record the required Founder/Product Architecture decision as an ADR; do not invent the decision.
 3. Produce the canonical Context → Module ownership map from that decision.
 4. Reconcile task IDs/counts and complete the task packet layer.
@@ -88,4 +91,4 @@ No application code, database schema implementation, migrations, production conf
 10. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
