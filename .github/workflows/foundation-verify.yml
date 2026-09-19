@@ -37,6 +37,7 @@ jobs:
             docs/handoff/CLAUDE-EXECUTION-CHECKLIST.md
             docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
             docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+            docs/governance/CLAUDE-CONTEXT-LOADING-PROTOCOL.md
             docs/governance/CANONICAL-ARTIFACT-REGISTER.md
             .github/PULL_REQUEST_TEMPLATE.md
             CODEOWNERS
@@ -54,14 +55,30 @@ jobs:
             exit 1
           fi
 
-      - name: Reject known wrong project references
+      - name: Reject wrong project references in active controls
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --exclude-dir=.git --exclude='*.lock' 'asas-erp-saas-1/Asas-website' .; then
-            echo 'ERROR: forbidden historical repository reference detected.'
-            exit 1
-          fi
+          active_files=(
+            AGENTS.md
+            README.md
+            docs/handoff/CLAUDE-START-HERE.md
+            docs/handoff/CLAUDE-CONTEXT-INDEX.md
+            docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
+            docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
+            docs/handoff/CURRENT-SESSION-STATE.md
+            docs/governance/CLAUDE-CONTEXT-LOADING-PROTOCOL.md
+            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+            docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+            docs/governance/REPOSITORY-HANDOFF-MAP.md
+          )
+          for file in "${active_files[@]}"; do
+            if grep -nF 'asas-erp-saas-1/Asas-website' "$file"; then
+              echo "ERROR: obsolete alternate-project reference in active control: $file"
+              exit 1
+            fi
+          done
+          echo 'Active controls contain no obsolete alternate-project reference.'
 
       - name: Validate JSON artifacts that already exist
         shell: bash
@@ -83,15 +100,36 @@ jobs:
               print(f'VALID JSON: {path}')
           PY
 
-      - name: Verify canonical session state references
+      - name: Verify canonical session state references repository-wide
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --exclude-dir=.git 'docs/handoff/SESSION_STATE.md' docs/handoff/CLAUDE-CONTEXT-INDEX.md docs/handoff/ASAS-MASTER-EXECUTION-PATH.md docs/handoff/CLAUDE-START-HERE.md; then
-            echo 'ERROR: canonical handoff files must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
+          matches=$(grep -RIn --exclude-dir=.git --exclude='SESSION_STATE.md' --exclude='SESSION-STATE.md' -E 'docs/handoff/SESSION_STATE\.md|docs/handoff/SESSION-STATE\.md' . || true)
+          if [[ -n "$matches" ]]; then
+            echo "$matches"
+            echo 'ERROR: active repository content references the historical/compatibility session-state path.'
             exit 1
           fi
           test -f docs/handoff/CURRENT-SESSION-STATE.md
+          echo 'Repository-wide session-state reference check passed.'
+
+      - name: Verify canonical artifact register paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          register='docs/governance/CANONICAL-ARTIFACT-REGISTER.md'
+          drift=0
+          while IFS= read -r path; do
+            if [[ -n "$path" && ! -e "$path" ]]; then
+              echo "REGISTERED BUT MISSING: $path"
+              drift=1
+            fi
+          done < <(grep -oE '`(registers|schema|design)/[^`]+`' "$register" | tr -d '`' | sort -u)
+          if [[ "$drift" -ne 0 ]]; then
+            echo 'ERROR: canonical artifact register contains paths that do not exist.'
+            exit 1
+          fi
+          echo 'Canonical artifact register paths resolve.'
 
       - name: Foundation status is explicit
         shell: bash

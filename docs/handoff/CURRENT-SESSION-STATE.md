@@ -5,74 +5,56 @@ Status: CANONICAL FOUNDATION CHECKPOINT
 ## Repository
 - Canonical repository: `asas-erp-saas-1/As`
 - Canonical integration branch: `main`
-- Foundation changes are merged to `main`; feature/foundation branches are change vehicles only.
+- Current foundation work is carried on `foundation/repository-file-organization-v1` under PR #13; it is **OPEN / DRAFT / NOT MERGED**. Do not describe these branch changes as merged to `main` until GitHub confirms the merge.
 
 ## Phase
-FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
+FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 
-## Completed foundation layers
-- Repository identity and boundary
-- Claude context/operating model
-- Branch and PR governance
-- Foundation verification contract
-- Task graph and task packet model
-- Contract reconciliation protocol
-- Core lifecycle and capability coverage
-- Master execution path
-- Foundation gate register and closure protocol
-- Canonical artifact register
-- Blueprint-derived domain event register
-- Blueprint-derived permission register
-- Blueprint-derived state-machine register
-- Blueprint-derived design token shadow
-- Blueprint-derived component contract inventory
-- Blueprint source observation manifest
-- Phase P task shard with all 9 source tasks
-- Declared-vs-observed reconciliation checkpoint
+## Current active workstreams
+- C2-001 architecture reconciliation: OPEN; proposed nine-context reconciliation awaits founder acceptance.
+- Architecture decision baseline: ADOPTED AS WORKING FOUNDATION CONTRACT; it does not replace ADR-0021 acceptance.
+- Task register reconciliation: IN PROGRESS under `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`.
+- Schema contract reconciliation: OPEN.
+- Security/tenancy readiness: OPEN.
+- GATE-00 platform identity: BLOCKED pending technical evidence.
+- Foundation CI execution evidence: PENDING.
 
-## Source discipline
-The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
+## Latest verified source observations
+- Source task register contains 119 task entries across phases P–11 plus 3 recurring rituals, while an earlier repository declaration said 114. The delta is OPEN; no count has been silently normalized.
+- Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These remain source/repository discrepancies.
+- Source package recovery found `ASAS-Complete-Package/MASTER-SPEC.md` v3.3 dated 2026-09-14 and accepted source ADR-0002 dated 2026-09-02, both supporting a nine-bounded-context direction.
+- `docs/architecture/ADR-0021-CANONICAL-BOUNDED-CONTEXT-RECONCILIATION.md` remains **PROPOSED / NOT YET CLOSED**.
 
-## Verified source observations
-- Source task register contains 119 task entries across phases P–11, plus 3 recurring rituals, while an earlier repository declaration said 114. Delta +5 is OPEN and explicitly preserved.
-- Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These are source/repository discrepancies and are not silently normalized.
-- Phase P source shard `registers/tasks/phase-P.json` is complete for its 9 tasks.
-- The remaining task phases and the structured schema contract are still pending canonical promotion until reconciliation is complete.
+## Latest foundation changes
+1. `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`
+   - Commit: `ce96a49804253e31756c63e84712d7d1767a90d5`
+   - Purpose: evidence-first reconciliation of the 114-vs-119 task-register discrepancy.
+2. `docs/architecture/ASAS-CANONICAL-ARCHITECTURE-DECISIONS.md`
+   - Commit: `9e1bc9ac87d9229e396293c6cbc5b3463d302912`
+   - Purpose: translate verified source evidence into an explicit engineering baseline without copying source artifacts.
+3. `docs/architecture/IMPLEMENTATION-BOUNDARIES-AND-DECISION-RULES.md`
+   - Commit: `274a498e7622f0602e9c6039e2016d666928bce6`
+   - Purpose: define implementation boundaries, decision authority, defaults, forbidden shortcuts, and first-slice contract.
 
-## Current active blocker set
-- C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
-- C2-002: live-database/runtime reality is not accepted as verified until live evidence is captured.
-- Task-register count discrepancy: declared 114 vs observed 119 is OPEN.
-- Schema-contract count discrepancy: declared 59/16/15 vs observed 59/17/56 is OPEN.
-
-## Gate status
-G0 GREEN
-G1 AMBER
-G2 GREEN
-G3 AMBER
-G4 AMBER
-G5 AMBER
-G6 BLOCKED
-G7 BLOCKED
-G8 AMBER
-G9 AMBER
-G10 NOT STARTED
-G11 NOT STARTED
-G12 BLOCKED
-G13 AMBER
+## Architecture working conclusion
+The current engineering baseline is a modular monolith with a nine-context direction, explicit separation of contexts/modules/aggregates/events/read models, Agency → Workspace → Branch tenancy, transactional outbox, state-machine controlled mutations, integer-centime immutable finance, and evidence-first database evolution. This is a **working foundation contract**, not a replacement for the proposed ADR-0021 approval gate.
 
 ## Hard stop
-No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not a migration and must not be treated as live database truth.
+No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not live database truth.
 
-## Next sequence
-1. Resolve C2-001 into one canonical Context-to-Module Map and trace affected contracts/tasks.
-2. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
-3. Complete the non-executable structured schema contract and reconcile every model, enum, relation, constraint, and index against the source.
-4. Reconcile counts/IDs/references and record provenance; do not silently normalize discrepancies.
-5. Close security/tenancy doctrine against the canonical domain decomposition.
-6. Complete repository-level CI/handoff verification for the derived-register layer.
-7. Verify live platform/database reality only when the required connected evidence is intentionally available.
-8. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
+## Current execution sequence
+1. Foundation repository-control repairs — IMPLEMENTED; CI execution evidence pending.
+2. Readiness-document ownership/loading chain — IMPLEMENTED.
+3. C2-001 source recovery — SUBSTANTIALLY RESOLVED.
+4. Repository architecture reconciliation — IN PROGRESS; ADR-0021 awaits acceptance.
+5. Build/verify Context → Module ownership map against the working architecture baseline, without promoting unresolved mappings to canonical.
+6. Reconcile task IDs/counts using the task-register reconciliation protocol.
+7. Reconcile the non-executable schema contract against authoritative source observations.
+8. Close security/tenancy dependencies against the canonical decomposition.
+9. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
+10. Establish database drift/backup/restore evidence without destructive mutation.
+11. Run the complete Claude implementation-readiness gate.
+12. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue, read this checkpoint and resume from the first unresolved dependency. Do not restart from conversation history. Do not use `asas-website`. Do not perform destructive database, Git, or deployment actions without explicit authorization and evidence.

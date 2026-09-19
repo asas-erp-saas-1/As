@@ -2,6 +2,14 @@
 
 ASAS is being engineered as a Real Estate Operating System for real-estate agencies, developers, and future ASAS Group operations.
 
+## Canonical project
+
+The canonical implementation repository is:
+
+`asas-erp-saas-1/As`
+
+Similarly named repositories or deployments are not implementation authority unless their linkage is explicitly proven in current governance records.
+
 ## Product direction
 
 - Premium public real-estate website and publishing Studio
@@ -16,26 +24,54 @@ ASAS is being engineered as a Real Estate Operating System for real-estate agenc
 
 ## Engineering doctrine
 
-The uploaded ASAS Enterprise Architecture Blueprint v1.6.1 and its machine-readable handoff package are the specification baseline. Reality must be inspected before schema-touching work. Extend; do not rewrite production data. Every important implementation claim requires execution evidence.
+The ASAS Enterprise Architecture Blueprint v1.6.1 and its machine-readable handoff package are the specification baseline. Repository artifacts are derived shadows unless explicitly promoted. Reality must be inspected before schema-touching work. Extend; do not rewrite production data. Every important implementation claim requires execution evidence.
 
-## Repository status
+## Current repository state
 
-This repository was empty at initialization. The first commit establishes the workspace and product-truth layer. Application implementation will be added through task-scoped branches and pull requests.
+The repository is in **foundation hardening / pre-implementation**. Governance, handoff, source provenance, derived registers, design contracts, and verification controls are being reconciled before application/database implementation.
 
-## Planned top-level workspace
+Application implementation is task-scoped and is not authorized merely because the repository exists.
+
+## Canonical workspace
 
 ```text
-/docs
-  /product
-  /architecture
-  /research
-  /decisions
-  /handoff
-/src
-/prisma
-/tests
-/scripts
-/.github
+/
+├── AGENTS.md
+├── CODEOWNERS
+├── .github/
+├── design/
+├── docs/
+│   ├── audit/
+│   ├── architecture/
+│   ├── contracts/
+│   ├── decisions/
+│   ├── domains/
+│   ├── governance/
+│   ├── handoff/
+│   ├── product/
+│   └── research/
+├── registers/
+├── schema/
+├── src/          # implementation gate
+├── prisma/       # database/migration gate
+├── tests/        # implementation gate
+└── scripts/      # deterministic tooling
 ```
 
-The exact application structure will be finalized from the validated architecture and existing production reality; this skeleton does not authorize speculative code or database changes.
+## Start here
+
+For Claude/implementation agents, load:
+
+1. `AGENTS.md`
+2. `docs/handoff/CLAUDE-START-HERE.md`
+3. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
+4. `docs/handoff/CURRENT-SESSION-STATE.md`
+5. the current task packet and its dependencies
+
+Then inspect repository reality and the applicable canonical contracts.
+
+## Important boundary
+
+`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current checkpoint. Historical and compatibility artifacts must never be used as current execution state.
+
+The exact application architecture is finalized from validated domain/contracts and verified platform reality; this repository does not authorize speculative code or destructive database changes.
