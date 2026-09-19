@@ -22,19 +22,21 @@ Give Claude enough context to act safely without forcing it to ingest the entire
 8. Current task packet
 9. Task graph and predecessor evidence
 10. Relevant Definition of Done / gate matrix
-11. Relevant ADRs and reconciliation records
+11. `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` when evaluating implementation readiness
+12. `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` when evaluating implementation readiness
+13. Relevant ADRs and reconciliation records
 
 ### Tier 2 — Domain context
-12. Relevant bounded-context contract
-13. Relevant command/event/state/permission/data registers
-14. Relevant UX/Figma contract
-15. Relevant integration contract
+14. Relevant bounded-context contract
+15. Relevant command/event/state/permission/data registers
+16. Relevant UX/Figma contract
+17. Relevant integration contract
 
 ### Tier 3 — Repository reality
-16. Existing implementation files in the declared scope
-17. Tests and fixtures
-18. Migration/schema artifacts when explicitly authorized
-19. Runtime/provider configuration only when the task requires it
+18. Existing implementation files in the declared scope
+19. Tests and fixtures
+20. Migration/schema artifacts when explicitly authorized
+21. Runtime/provider configuration only when the task requires it
 
 ## Context minimization
 
