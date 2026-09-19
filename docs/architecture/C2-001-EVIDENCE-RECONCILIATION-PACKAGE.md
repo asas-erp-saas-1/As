@@ -1,139 +1,207 @@
-# C2-001 — Architecture Evidence & Reconciliation Package
+# ASAS C2-001 — Evidence & Reconciliation Package
 
-Status: OPEN / DECISION REQUIRED
+Status: INVESTIGATING / HARD STOP
 Repository: `asas-erp-saas-1/As`
+Branch: `foundation/repository-file-organization-v1`
 Date: 2026-09-19
 
 ## 1. Purpose
 
-Establish an evidence-backed decision package for reconciling the ASAS Enterprise Real Estate OS domain/context model with implementation modules and persistence boundaries.
+This package is the evidence record for C2-001: reconciliation of the authoritative Domain Model / Context Map with the later implementation-module decomposition.
 
-This package does not choose the final context cardinality. It separates strategic vision from canonical implementation authority and defines the evidence required for the final ADR.
+It does **not** choose a canonical context cardinality. It prevents accidental promotion of a module list into a bounded-context decision and prepares the evidence required for an approved ADR.
 
-## 2. Source observations
+Governing rule:
 
-### Strategic enterprise source
+`Source → Provenance → Comparison → Decision authority → ADR → Canonical map → Verification`
 
-The Enterprise Real Estate OS material defines a broad enterprise vision covering competitor reverse engineering, enterprise strategy, domain architecture, operating-system architecture, event-driven architecture, module inventory, real-estate operating model, data architecture, AI operating system, UX, security/governance, scalability, and product roadmap.
+## 2. Evidence hierarchy used
 
-It explicitly presents an Enterprise Real Estate OS progression through MVP, V1, V2, V3, V4, Enterprise Edition and Holding OS.
+1. approved source / Blueprint authority;
+2. current governance and operating contracts;
+3. canonical registers and current checkpoint;
+4. reconciled architecture contracts;
+5. approved product requirements;
+6. repository implementation;
+7. historical/reference artifacts;
+8. inference only when explicitly labelled.
 
-It also contains a `Phase 1.5 — Enterprise Domain Model` statement describing 15 bounded contexts.
+A derived repository register cannot override its source.
 
-### Repository roadmap source
+## 3. Evidence A — Master Roadmap claim
 
-`ASAS_Master_Roadmap` records Phase 1.5 as approved v2 and states that its deliverables are Domain Model v2 with 15 bounded contexts and Context Map v2. It then defines Phase 2.1 as the work that determines how those bounded contexts become modules/services.
+`ASAS_Master_Roadmap` and its later copies explicitly state:
 
-### Current repository governance
+- Phase 1.5 — Enterprise Domain Model is marked Approved (v2).
+- Its stated deliverables are `Domain Model v2 (15 bounded contexts)` and `Context Map v2`.
+- It says Phase 2.1 depends on those bounded contexts, aggregates, and event stream.
 
-Current repository governance separately identifies a conflict between a 9-context decomposition and implementation material describing 15 modules/schemas. It explicitly prohibits treating context, module, schema, aggregate, read model, worker or event consumer as interchangeable concepts.
+This is strong evidence of an approved **claim**, but the currently available source evidence must still identify the actual Domain Model v2 and Context Map v2 artifacts and their provenance before the 15-context claim is promoted into the canonical implementation map.
 
-## 3. Reconciliation facts
+## 4. Evidence B — Enterprise Domain Model artifact
 
-The following are facts, not conclusions:
+The available `ASAS_Enterprise_Domain_Model` artifact is explicitly labelled:
 
-1. The enterprise source is broader than the MVP.
-2. The enterprise source contains a 15-bounded-context statement.
-3. The repository roadmap records 15 bounded contexts as an approved Phase 1.5 deliverable.
-4. Other current governance material records a 9-context model.
-5. Implementation material describes 15 modules/schemas.
-6. Therefore, the repository currently contains a semantic decomposition conflict that must be reconciled before implementation ownership is frozen.
+`Status: Draft — for stakeholder review before Phase 2 begins`.
 
-## 4. What the enterprise source contributes
+Its visible bounded-context table contains these 13 contexts:
 
-The enterprise source should be used to enrich the target-state vision with:
+1. Lead & CRM
+2. Property & Inventory
+3. Visit Management
+4. Reservation & Contract
+5. Payment & Finance
+6. Commission & Payout
+7. Communication
+8. Identity & Access
+9. Notification
+10. Document & Attachment
+11. Activity, Timeline & Audit
+12. Search
+13. Reporting & Analytics
 
-- real-estate lifecycle coverage;
-- enterprise capability breadth;
-- multi-company/group evolution;
-- multi-country evolution;
-- AI operating-system direction;
-- security/governance principles;
-- scalability concerns;
-- executive/operational/financial layers;
-- productization direction.
+The artifact also describes AI / Intelligence as future supporting capability, not as a current context.
 
-It should not be used alone to prove:
+This artifact therefore **cannot by itself prove** the approved 15-context cardinality, because its own status is Draft and its visible table contains 13 contexts.
 
-- live database state;
-- current Supabase identity;
-- current Vercel identity;
-- deployed infrastructure;
-- actual repository implementation;
-- final legal/accounting semantics;
-- final bounded-context ownership when repository sources conflict.
+## 5. Evidence C — Context Map artifact
 
-## 5. Required final decision model
+`ASAS_Context_Map.mermaid` visually represents the same domain shape: Identity and Access, Lead and CRM, Property and Inventory, Visit Management, Reservation and Contract, Payment and Finance, Commission and Payout, Communication, Document and Attachment, Activity/Timeline/Audit, Notification, Search, Reporting and Analytics, plus a future AI Assistant and a shared Domain Event Stream.
 
-The final ADR must define, for every canonical bounded context:
+The map therefore corroborates the draft 13-context model rather than independently proving a 15-context approved model.
 
-- Context ID and name;
-- purpose and responsibility;
-- explicit non-responsibilities;
-- upstream/downstream relationships;
-- aggregate ownership;
-- module mapping;
-- schema ownership;
-- commands and write ownership;
-- domain/integration events;
-- read-model ownership;
-- worker/process ownership;
-- permission authority;
-- tenant boundary;
-- transaction boundary;
-- external side effects;
-- dependency direction;
-- migration boundary;
-- evidence/provenance.
+## 6. Evidence D — Master Implementation Specification
 
-## 6. Decision options to evaluate
+`ASAS_Master_Implementation_Specification` explicitly states a modular-monolith design with **15 independent modules**, described as one per Domain-Model bounded context, and a schema-per-module PostgreSQL strategy.
 
-The decision-maker should evaluate at least:
+The 15 implementation modules are:
 
-### Option A — retain the repository's current 9-context model
+1. Lead & CRM → `lead_crm`
+2. Property & Inventory → `property_inventory`
+3. Visit Management → `visit_management`
+4. Reservation & Contract → `reservation_contract`
+5. Payment & Finance → `payment_finance`
+6. Commission & Payout → `commission_payout`
+7. Communication → `communication`
+8. Identity, Access & Workspace → `identity_access`
+9. Notification → `notification`
+10. Collaboration & Extensibility → `collaboration`
+11. Calendar & Scheduling → `calendar_scheduling`
+12. Activity, Timeline & Audit → `activity_audit`
+13. Search → `search`
+14. Reporting & Analytics → `reporting`
+15. Workflow & Automation Engine → `workflow_engine`
 
-Evaluate whether it faithfully represents the approved Phase 1.5 domain model and whether implementation modules can map cleanly without semantic overload.
+The specification also states that Activity/Audit, Notification, Search, Reporting, and Workflow are asynchronous event consumers/read-model/worker-oriented components, while Identity/Access/Workspace is the Open Host Service for identity and tenancy.
 
-### Option B — adopt the approved Phase 1.5 15-context model
+## 7. Observed structural delta
 
-Evaluate whether the underlying approved Domain Model v2 and Context Map v2 are recoverable and whether each context has independent business responsibility and ownership rather than being a module-shaped decomposition.
+The evidence currently supports:
 
-### Option C — revise the context model
+`Roadmap claim: 15 approved bounded contexts`
 
-Permitted only if the evidence demonstrates that the recorded Phase 1.5 model is obsolete, internally inconsistent, or superseded by a higher-authority approved decision. Any split, merge, rename or removal requires explicit provenance and ADR treatment.
+versus
 
-No option is selected by this package.
+`Draft Domain Model / Context Map: 13 visible contexts`
 
-## 7. Required evidence before ADR closure
+versus
 
-1. Locate and inspect the authoritative Domain Model v2.
-2. Locate and inspect the authoritative Context Map v2.
-3. Identify their provenance and approval status.
-4. Extract all context IDs and responsibilities.
-5. Map each context to implementation modules without assuming one-to-one cardinality.
-6. Map aggregate ownership.
-7. Map schema ownership.
-8. Identify cross-context writes and reject ambiguous ownership.
-9. Identify read models/workers/event consumers that are not business-rule owners.
-10. Identify task references affected by any context decision.
-11. Identify security/tenant implications.
-12. Record unresolved decisions for Founder/Product Architecture approval.
+`Implementation Specification: 15 implementation modules`
 
-## 8. Hard stops
+The additional implementation concepts not visible as separate bounded contexts in the Draft Domain Model include:
 
-Do not:
+- Collaboration & Extensibility
+- Workflow & Automation Engine
+- Calendar & Scheduling as an explicit module boundary, while Scheduling is not independently established as a bounded context in the draft artifact.
 
-- create executable schema from the unresolved model;
-- create migrations to force one decomposition;
-- rename contexts silently;
-- convert every module into a context;
-- convert every worker/read model into a context;
-- close C2-001 based on documentation existence alone.
+**This observation is not a decision that these modules are or are not bounded contexts.** It is only the current evidence delta.
 
-## 9. Exit criteria
+## 8. Non-interchangeability rule
 
-C2-001 can become `VERIFIED` only when:
+The following identities are prohibited:
 
-`Authoritative source identified → Context Map approved → responsibilities verified → module mapping verified → aggregate/schema/event/permission ownership verified → conflicts resolved → ADR recorded → canonical map published → references updated → verification passed`
+`Bounded Context ≠ Implementation Module ≠ PostgreSQL Schema ≠ Aggregate ≠ Read Model ≠ Worker ≠ Event Consumer`
 
-Until then: `BLOCKED` for affected implementation slices.
+The implementation specification's phrase “one per Domain-Model bounded context” is therefore a source claim that must be checked against the approved Domain Model v2, not sufficient proof by itself.
+
+## 9. Stable architectural principles already supported
+
+The available source material establishes several principles that are not currently in dispute:
+
+- modular boundaries are required;
+- the preferred near-term deployment model is a modular monolith rather than premature distributed microservices;
+- event-driven integration is central to Timeline/Audit, Notification, Search, Reporting and future AI consumers;
+- Identity/Access/Workspace is intended to provide tenancy and authorization authority;
+- future AI is a downstream consumer of governed domain events rather than a reason to create a separate business context prematurely.
+
+These principles may be carried forward independently of the unresolved context cardinality.
+
+## 10. Decisions that must NOT be inferred
+
+The following remain unresolved until the authoritative approved Domain Model v2 / Context Map v2 is recovered and validated:
+
+- whether the canonical model has 13, 15, or another number of bounded contexts;
+- whether Collaboration & Extensibility is a bounded context or generic/supporting module;
+- whether Workflow & Automation is a bounded context, infrastructure capability, or supporting module;
+- whether Calendar & Scheduling is an independent context or a capability/submodule;
+- whether Document & Attachment remains a generic subdomain/context boundary;
+- exact aggregate ownership for any newly separated context;
+- schema ownership and transaction boundaries derived from those decisions.
+
+## 11. Required next evidence
+
+Before the ADR can be closed, locate and inspect the actual approved artifacts named by the roadmap:
+
+1. `Domain Model v2`
+2. `Context Map v2`
+3. their approval/provenance record
+4. any later approved architecture decision that supersedes them
+
+If those artifacts cannot be recovered from the canonical source set, the correct state is `BLOCKED / SOURCE RECOVERY REQUIRED`, not an invented reconciliation.
+
+## 12. ADR decision template
+
+The eventual ADR must record:
+
+- Decision ID
+- Source versions reviewed
+- Approval/provenance evidence
+- Canonical bounded-context list and IDs
+- Context responsibilities
+- Explicit non-responsibilities
+- Aggregate ownership
+- Context → module mapping
+- Schema ownership
+- Command/event ownership
+- Synchronous interfaces
+- Asynchronous events
+- Dependency direction
+- Tenant/security authority
+- Worker/read-model ownership
+- Future extraction boundaries
+- Explicit rejected interpretations
+- Impacted registers/tasks/contracts
+- Verification evidence
+- Effective date/status
+
+## 13. Closure condition
+
+C2-001 may move from `BLOCKED` to `RESOLVED` only when an authorized architecture decision is recorded and the canonical Context → Module map is verified against it.
+
+Until then:
+
+`No executable schema implementation`
+`No migration`
+`No implementation slice whose correctness depends on unresolved context ownership`
+
+## 14. Source observations used
+
+The evidence above is derived from the project source materials currently available in the ASAS working environment, especially:
+
+- `ASAS_Master_Roadmap` / later copies — Phase 1.5 approved-v2 claim;
+- `ASAS_Enterprise_Domain_Model` — draft 13-context model and context relationships;
+- `ASAS_Context_Map.mermaid` — visual corroboration of the draft context map;
+- `ASAS_Master_Implementation_Specification` — 15-module/schema implementation decomposition;
+- repository `OPEN-CONTRACT-CONFLICTS.md` — current canonical blocker classification.
+
+This package preserves the source distinctions and does not silently normalize them.
