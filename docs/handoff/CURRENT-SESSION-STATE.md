@@ -39,7 +39,8 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 - Integrated platform master execution blueprint
 - External-audit repository-control repairs on the active foundation branch: canonical artifact register state is reconciled; active Claude loading documents use `CURRENT-SESSION-STATE.md`; Foundation Verify now performs repository-wide historical session-state reference detection and canonical-register path existence checks.
 - Readiness-document ownership contract: `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` establishes one operational readiness authority and bounded ownership for supporting readiness artifacts; the context-loading protocol now loads the authority and its master readiness contract when evaluating implementation readiness.
-- C2-001 source-recovery attempt: the available source set was searched for the actual approved Domain Model v2, Context Map v2, and approval/provenance evidence. The recovery found the 15-context Approved-v2 roadmap claim, the Draft 13-context Domain Model/Context Map, the 15-module Implementation Specification, and the 9-context AGENTS claim, but no separately identifiable approved v2 artifacts with provenance. This finding is recorded in the C2-001 evidence package.
+- C2-001 source-recovery attempt: the available source set was searched for the actual approved Domain Model v2, Context Map v2, and approval/provenance evidence. The recovery found the 15-context Approved-v2 roadmap claim, the Draft 13-context Domain Model/Context Map, the 15-module Implementation Specification, and the 9-context AGENTS claim, but no separately identifiable approved v2 artifacts with provenance.
+- C2-001 decision packet: GitHub Issue #15 records the evidence, hard-stop status, required closure evidence, and the two permitted resolution paths (provenance recovery or authorized architecture ADR).
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the primary source authority. Repository artifacts are derived shadows unless explicitly approved as canonical decisions. If a derived artifact disagrees with the source, preserve the discrepancy and reconcile it; do not silently normalize it. Registers must flow source → register → implementation, never code → register.
@@ -52,7 +53,7 @@ The v1.6.1 Blueprint/package remains the primary source authority. Repository ar
 - C2-001 evidence review now confirms four distinct architecture claims: the roadmap claims an approved v2 model with 15 bounded contexts; the available Enterprise Domain Model artifact is Draft and visibly contains 13 contexts; the Master Implementation Specification defines 15 implementation modules/schemas; the current AGENTS root contract describes 9 contexts and treats Scheduling as a CRM submodule. These are preserved as separate evidence claims and are not silently reconciled.
 
 ## Current active blocker set
-- C2-001: bounded-context/module decomposition conflict is OPEN / HARD STOP. Evidence package: `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`.
+- C2-001: bounded-context/module decomposition conflict is OPEN / HARD STOP. Evidence package: `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`. Decision packet: GitHub Issue #15.
 - C2-001 source recovery is **INCOMPLETE**: no separately identifiable approved `Domain Model v2` / `Context Map v2` with provenance was recovered from the available source set. This is a source-recovery blocker, not a conclusion that the roadmap claim is false.
 - C2-002: live-database/runtime reality is not accepted as verified until live evidence is captured.
 - Task-register count discrepancy: declared 114 vs observed 119 is OPEN.
@@ -86,7 +87,7 @@ No application code, database schema implementation, migrations, production conf
 1. **Repair canonical artifact register and context-loading references identified by the external audit — IMPLEMENTED on the active foundation branch; awaiting CI execution evidence.**
 2. **Consolidate readiness-document ownership and loading chain — IMPLEMENTED on the active foundation branch.** `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` is the ownership contract and `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` is the single operational readiness authority. Supporting readiness artifacts remain scoped as documented.
 3. **Recover and inspect the authoritative approved Domain Model v2 and Context Map v2 plus provenance/approval evidence — SOURCE RECOVERY ATTEMPTED; approved artifacts not separately recovered; C2-001 remains BLOCKED.**
-4. **Resolve the source-recovery blocker through an authorized architecture decision/provenance recovery path.** Do not invent the missing approved artifacts and do not select 9/13/15 by inference.
+4. **Resolve the source-recovery blocker through an authorized architecture decision/provenance recovery path.** GitHub Issue #15 is the active decision packet. Do not invent the missing approved artifacts and do not select 9/13/15 by inference.
 5. Record the required Founder/Product Architecture decision as an ADR once the evidence/decision authority is sufficient.
 6. Produce the canonical Context → Module ownership map from that decision.
 7. Reconcile task IDs/counts and complete the task packet layer.
