@@ -13,7 +13,7 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 ## Current active workstreams
 - C2-001 architecture reconciliation: OPEN; proposed nine-context reconciliation awaits founder acceptance.
 - Architecture decision baseline: ADOPTED AS WORKING FOUNDATION CONTRACT; it does not replace ADR-0021 acceptance.
-- Context → Module ownership: IN PROGRESS; working classifications exist, but aggregate/event/permission/schema/task ownership is not yet canonical.
+- Context → Module ownership: IN PROGRESS; the authoritative 15-module decomposition has now been explicitly reconciled against the nine-context working baseline, but aggregate/event/permission/schema/task ownership is not yet canonical.
 - Domain ownership & traceability contract: ADDED as `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md`; it remains a working contract until the architecture and task gates close.
 - Task register reconciliation: IN PROGRESS under `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`.
 - Schema contract reconciliation: OPEN.
@@ -25,6 +25,7 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 - Source task register contains 119 task entries across phases P–11 plus 3 recurring rituals, while an earlier repository declaration said 114. The delta is OPEN; no count has been silently normalized.
 - Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These remain source/repository discrepancies.
 - Source package recovery found `ASAS-Complete-Package/MASTER-SPEC.md` v3.3 dated 2026-09-14 and accepted source ADR-0002 dated 2026-09-02, both supporting a nine-bounded-context direction.
+- The recovered implementation specification defines 15 implementation modules/schemas, but its 15-row decomposition does not contain dedicated `Website Studio` or `Marketing` module rows. This is now an explicit architecture-to-implementation gap, not a reason to invent modules.
 - `docs/architecture/ADR-0021-CANONICAL-BOUNDED-CONTEXT-RECONCILIATION.md` remains **PROPOSED / NOT YET CLOSED**.
 
 ## Latest foundation changes
@@ -40,9 +41,15 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 4. `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md`
    - Commit: `f1f463afa9b41217b93d7c1c9a87d072dc610dee`
    - Purpose: establish context → aggregate → command → event → permission → persistence → task → verification ownership rules.
+5. `docs/architecture/CONTEXT-MODULE-OWNERSHIP-RECONCILIATION.md`
+   - Commit: `b45e5c058ca59b884dfdd84cd9d0f05323f673d3`
+   - Purpose: reconcile the 15 implementation modules against the nine-context working baseline and expose unresolved Website Studio / Marketing / Communication / Collaboration / Document capability boundaries without inventing architecture.
 
 ## Architecture working conclusion
 The current engineering baseline is a modular monolith with a nine-context direction, explicit separation of contexts/modules/aggregates/events/read models, Agency → Workspace → Branch tenancy, transactional outbox, state-machine controlled mutations, integer-centime immutable finance, and evidence-first database evolution. This is a **working foundation contract**, not a replacement for the proposed ADR-0021 approval gate.
+
+## Newly exposed architecture gap
+The 15-module implementation specification includes CRM, Inventory, Visit, Sales, Finance, Commission, Communication, Identity, Notification, Collaboration, Calendar, Audit, Search, Reporting, and Workflow. The nine-context baseline additionally names Website Studio and Marketing. There is currently insufficient evidence to assign concrete implementation modules, persistence ownership, tasks, and permissions to Website Studio and Marketing. Do not invent module names or schema boundaries to make the counts match. Track these as explicit reconciliation blockers C2-MOD-004 and C2-MOD-005.
 
 ## Hard stop
 No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not live database truth.
@@ -52,8 +59,8 @@ No application code, database schema implementation, migrations, production conf
 2. Readiness-document ownership/loading chain — IMPLEMENTED.
 3. C2-001 source recovery — SUBSTANTIALLY RESOLVED.
 4. Repository architecture reconciliation — IN PROGRESS; ADR-0021 awaits acceptance.
-5. Build/verify Context → Module ownership against the working architecture baseline.
-6. Build aggregate/event/permission ownership evidence and classify unresolved cross-context modules.
+5. Context → Module ownership — IN PROGRESS; 15-module matrix completed as a working reconciliation artifact.
+6. Resolve aggregate/event/permission ownership and the newly exposed Website Studio / Marketing implementation boundary gaps where authoritative evidence exists.
 7. Reconcile task IDs/counts using the task-register reconciliation protocol.
 8. Reconcile the non-executable schema contract against authoritative source observations.
 9. Close security/tenancy dependencies against the canonical decomposition.
