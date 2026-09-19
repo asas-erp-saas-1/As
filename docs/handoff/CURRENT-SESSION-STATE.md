@@ -8,11 +8,11 @@ Status: CANONICAL FOUNDATION CHECKPOINT
 - Current foundation work is carried on `foundation/repository-file-organization-v1` under PR #13; it is **OPEN / DRAFT / NOT MERGED**. Do not describe these branch changes as merged to `main` until GitHub confirms the merge.
 
 ## Phase
-FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
+FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 
 ## Canonical execution roadmap
-- `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md` is the canonical operational roadmap for the remaining foundation work and the transition into bounded Claude implementation.
-- It does not override the Blueprint, approved product decisions, architecture contracts, or live runtime evidence.
+- `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md` remains the operational foundation roadmap.
+- `docs/architecture/ASAS-PLATFORM-MASTER-EXECUTION-BLUEPRINT.md` is the integrated derived execution blueprint consolidating distributed source truth into one implementation path. It does not override source authority or live runtime evidence.
 
 ## Completed foundation layers
 - Repository identity and boundary
@@ -24,7 +24,7 @@ FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
 - Core lifecycle and capability coverage
 - Master execution path
 - Foundation gate register and closure protocol
-- Canonical artifact register
+- Canonical artifact register framework
 - Blueprint-derived domain event register
 - Blueprint-derived permission register
 - Blueprint-derived state-machine register
@@ -36,9 +36,10 @@ FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
 - Repository current inventory and canonical ownership map
 - Claude project context pack (non-authoritative orientation layer)
 - C2-001 evidence/reconciliation package
+- Integrated platform master execution blueprint
 
 ## Source discipline
-The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
+The v1.6.1 Blueprint/package remains the primary source authority. Repository artifacts are derived shadows unless explicitly approved as canonical decisions. If a derived artifact disagrees with the source, preserve the discrepancy and reconcile it; do not silently normalize it. Registers must flow source → register → implementation, never code → register.
 
 ## Verified source observations
 - Source task register contains 119 task entries across phases P–11, plus 3 recurring rituals, while an earlier repository declaration said 114. Delta +5 is OPEN and explicitly preserved.
@@ -53,6 +54,7 @@ The v1.6.1 Blueprint/package remains the authority. Repository artifacts are der
 - C2-002: live-database/runtime reality is not accepted as verified until live evidence is captured.
 - Task-register count discrepancy: declared 114 vs observed 119 is OPEN.
 - Schema-contract count discrepancy: declared 59/16/15 vs observed 59/17/56 is OPEN.
+- External audit findings remain open until independently verified closed: stale artifact register, deprecated session-state references outside the CI scan, platform identity/GATE-00, branch hygiene, repository visibility, and readiness-document duplication.
 
 ## Gate status
 G0 GREEN
@@ -72,23 +74,24 @@ G13 AMBER
 
 ## Foundation verification evidence
 - Foundation Verify **PASSED** on the prior verified foundation head `375c955ef7b506265ff4e68003d3b3b36da9d51f` — Run #182.
-- The verification checks the active Claude-loader/session-state contract without incorrectly treating historical/compatibility provenance references as active-loader violations.
 - Subsequent foundation commits are not claimed to have a new CI result until GitHub provides that evidence.
 
 ## Hard stop
 No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not a migration and must not be treated as live database truth.
 
 ## Current execution sequence
-1. Recover and inspect the authoritative approved Domain Model v2 and Context Map v2 plus provenance/approval evidence.
-2. Record the required Founder/Product Architecture decision as an ADR; do not invent the decision.
-3. Produce the canonical Context → Module ownership map from that decision.
-4. Reconcile task IDs/counts and complete the task packet layer.
-5. Reconcile the non-executable schema contract against authoritative Blueprint/source observations.
-6. Close security/tenancy dependencies against the canonical decomposition.
-7. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
-8. Establish database drift/backup/restore evidence without destructive mutation.
-9. Run the complete Claude implementation-readiness gate.
-10. Authorize only the first bounded implementation slice.
+1. Repair canonical artifact register and context-loading references identified by the external audit.
+2. Consolidate readiness-document ownership and loading chain.
+3. Recover and inspect the authoritative approved Domain Model v2 and Context Map v2 plus provenance/approval evidence.
+4. Record the required Founder/Product Architecture decision as an ADR; do not invent the decision.
+5. Produce the canonical Context → Module ownership map from that decision.
+6. Reconcile task IDs/counts and complete the task packet layer.
+7. Reconcile the non-executable schema contract against authoritative Blueprint/source observations.
+8. Close security/tenancy dependencies against the canonical decomposition.
+9. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
+10. Establish database drift/backup/restore evidence without destructive mutation.
+11. Run the complete Claude implementation-readiness gate.
+12. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md`, `docs/architecture/ASAS-PLATFORM-MASTER-EXECUTION-BLUEPRINT.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
