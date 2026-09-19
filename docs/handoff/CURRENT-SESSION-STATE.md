@@ -42,6 +42,7 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 - C2-001 source-recovery attempt: the available source set was searched for the actual approved Domain Model v2, Context Map v2, and approval/provenance evidence. The recovery found the 15-context Approved-v2 roadmap claim, the Draft 13-context Domain Model/Context Map, the 15-module Implementation Specification, and the 9-context AGENTS claim, but no separately identifiable approved v2 artifacts with provenance.
 - C2-001 decision packet: GitHub Issue #15 records the evidence, hard-stop status, required closure evidence, and the two permitted resolution paths (provenance recovery or authorized architecture ADR).
 - C2-001 source authority matrix: `docs/architecture/C2-001-SOURCE-AUTHORITY-MATRIX.md` now consolidates the distributed sources by authority role and records the distinction between strategic North Star, approval claim, draft domain evidence, implementation decomposition, and repository operating claim.
+- Phase 11 scalability blueprint: `docs/architecture/PHASE-11-SCALABILITY-BLUEPRINT.md` was strengthened from the source blueprint's seven scalability gaps into explicit pre-implementation controls for event ordering, idempotency, rate limiting, CQRS/read separation, caching, cost control, load shedding, capacity testing, backpressure, circuit breaking, AI isolation, SLOs and extraction evidence. This remains design-only; no runtime scaling claim has been made.
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the primary source authority. Repository artifacts are derived shadows unless explicitly approved as canonical decisions. If a derived artifact disagrees with the source, preserve the discrepancy and reconcile it; do not silently normalize it. Registers must flow source → register → implementation, never code → register.
@@ -53,6 +54,7 @@ The v1.6.1 Blueprint/package remains the primary source authority. Repository ar
 - The remaining task phases and the structured schema contract are still pending canonical promotion until reconciliation is complete.
 - C2-001 evidence review now confirms four distinct architecture claims: the roadmap claims an approved v2 model with 15 bounded contexts; the available Enterprise Domain Model artifact is Draft and visibly contains 13 contexts; the Master Implementation Specification defines 15 implementation modules/schemas; the current AGENTS root contract describes 9 contexts and treats Scheduling as a CRM submodule. These are preserved as separate evidence claims and are not silently reconciled.
 - The broad enterprise master directive (`asas.docx`) is treated as strategic North Star evidence: it establishes the enterprise-first operating-system vision and calls for a canonical domain/context map, but the recovered material does not provide a final numeric bounded-context decision.
+- Phase 11 source blueprint identifies seven critical scalability gaps: event ordering, idempotency, rate limiting, CQRS/read separation, caching, cost control and load shedding. The repository Phase 11 design now preserves these as controls while explicitly refusing premature distribution.
 
 ## Current active blocker set
 - C2-001: bounded-context/module decomposition conflict is OPEN / HARD STOP. Evidence package: `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`. Source authority matrix: `docs/architecture/C2-001-SOURCE-AUTHORITY-MATRIX.md`. Decision packet: GitHub Issue #15.
@@ -61,6 +63,7 @@ The v1.6.1 Blueprint/package remains the primary source authority. Repository ar
 - Task-register count discrepancy: declared 114 vs observed 119 is OPEN.
 - Schema-contract count discrepancy: declared 59/16/15 vs observed 59/17/56 is OPEN.
 - External audit findings remain open until independently verified closed: platform identity/GATE-00, branch hygiene, repository visibility, and readiness-document duplication. The artifact-register and active-loader reference findings have been remediated on this branch but are not closed until the new CI controls execute successfully.
+- Phase 11 task-graph dependency: the scalability blueprint now defines the required load/reliability task packets, but the repository search did not identify an existing canonical task graph instance containing those Phase 11 packets. Therefore Phase 11 exit criteria are **NOT CLOSED**.
 
 ## Gate status
 G0 GREEN
@@ -102,4 +105,4 @@ No application code, database schema implementation, migrations, production conf
 14. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md`, `docs/architecture/ASAS-PLATFORM-MASTER-EXECUTION-BLUEPRINT.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`, `docs/architecture/C2-001-SOURCE-AUTHORITY-MATRIX.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md`, `docs/architecture/ASAS-PLATFORM-MASTER-EXECUTION-BLUEPRINT.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, `docs/architecture/C2-001-EVIDENCE-RECONCILIATION-PACKAGE.md`, `docs/architecture/C2-001-SOURCE-AUTHORITY-MATRIX.md`, `docs/architecture/PHASE-11-SCALABILITY-BLUEPRINT.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
