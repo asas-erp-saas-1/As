@@ -10,6 +10,10 @@ Status: CANONICAL FOUNDATION CHECKPOINT
 ## Phase
 FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
 
+## Canonical execution roadmap
+- `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md` is the canonical operational roadmap for the remaining foundation work and the transition into bounded Claude implementation.
+- It does not override the Blueprint, approved product decisions, architecture contracts, or live runtime evidence.
+
 ## Completed foundation layers
 - Repository identity and boundary
 - Claude context/operating model
@@ -71,15 +75,17 @@ G13 AMBER
 ## Hard stop
 No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not a migration and must not be treated as live database truth.
 
-## Next sequence
-1. Resolve C2-001 into one canonical Context-to-Module Map and trace affected contracts/tasks.
-2. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
-3. Complete the non-executable structured schema contract and reconcile every model, enum, relation, constraint, and index against the source.
-4. Reconcile counts/IDs/references and record provenance; do not silently normalize discrepancies.
-5. Close security/tenancy doctrine against the canonical domain decomposition.
-6. Complete repository-level CI/handoff verification for the derived-register layer.
-7. Verify live platform/database reality only when the required connected evidence is intentionally available.
-8. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
+## Current execution sequence
+1. Build the C2-001 evidence/reconciliation package from authoritative sources.
+2. Record the required Founder/Product Architecture decision as an ADR; do not invent the decision.
+3. Produce the canonical Context → Module ownership map from that decision.
+4. Reconcile task IDs/counts and complete the task packet layer.
+5. Reconcile the non-executable schema contract against authoritative Blueprint/source observations.
+6. Close security/tenancy dependencies against the canonical decomposition.
+7. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
+8. Establish database drift/backup/restore evidence without destructive mutation.
+9. Run the complete Claude implementation-readiness gate.
+10. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/handoff/ASAS-FOUNDATION-EXECUTION-ROADMAP.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
