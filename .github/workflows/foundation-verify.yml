@@ -100,30 +100,36 @@ jobs:
               print(f'VALID JSON: {path}')
           PY
 
-      - name: Verify canonical session state references
+      - name: Verify canonical session state references repository-wide
         shell: bash
         run: |
           set -euo pipefail
-          loader_files=(
-            AGENTS.md
-            docs/handoff/CLAUDE-START-HERE.md
-            docs/handoff/CLAUDE-CONTEXT-INDEX.md
-            docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
-            docs/handoff/CLAUDE-EXECUTION-CHECKLIST.md
-            docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
-            docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
-            docs/handoff/CURRENT-SESSION-STATE.md
-            docs/governance/CLAUDE-CONTEXT-LOADING-PROTOCOL.md
-            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
-          )
-          for file in "${loader_files[@]}"; do
-            if grep -nE 'docs/handoff/SESSION_STATE\.md|docs/handoff/SESSION-STATE\.md' "$file"; then
-              echo "ERROR: active Claude loader references historical/compatibility session state: $file"
-              exit 1
-            fi
-          done
+          matches=$(grep -RIn --exclude-dir=.git --exclude='SESSION_STATE.md' --exclude='SESSION-STATE.md' -E 'docs/handoff/SESSION_STATE\.md|docs/handoff/SESSION-STATE\.md' . || true)
+          if [[ -n "$matches" ]]; then
+            echo "$matches"
+            echo 'ERROR: active repository content references the historical/compatibility session-state path.'
+            exit 1
+          fi
           test -f docs/handoff/CURRENT-SESSION-STATE.md
-          echo 'Active Claude loaders reference only the canonical current checkpoint.'
+          echo 'Repository-wide session-state reference check passed.'
+
+      - name: Verify canonical artifact register paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          register='docs/governance/CANONICAL-ARTIFACT-REGISTER.md'
+          drift=0
+          while IFS= read -r path; do
+            if [[ -n "$path" && ! -e "$path" ]]; then
+              echo "REGISTERED BUT MISSING: $path"
+              drift=1
+            fi
+          done < <(grep -oE '`(registers|schema|design)/[^`]+`' "$register" | tr -d '`' | sort -u)
+          if [[ "$drift" -ne 0 ]]; then
+            echo 'ERROR: canonical artifact register contains paths that do not exist.'
+            exit 1
+          fi
+          echo 'Canonical artifact register paths resolve.'
 
       - name: Foundation status is explicit
         shell: bash
