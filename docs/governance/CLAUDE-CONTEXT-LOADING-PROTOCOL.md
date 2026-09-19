@@ -11,28 +11,32 @@ Give Claude enough context to act safely without forcing it to ingest the entire
 
 ### Tier 0 — Identity and control
 1. `AGENTS.md`
-2. `CLAUDE-START-HERE.md`
-3. `CLAUDE-IMPLEMENTATION-BOUNDARY.md`
+2. `docs/handoff/CLAUDE-START-HERE.md`
+3. `docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md`
 4. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
-5. `docs/handoff/SESSION_STATE.md`
+5. `docs/handoff/CURRENT-SESSION-STATE.md`
+6. `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`
+7. `docs/handoff/CLAUDE-PROJECT-CONTEXT-PACK.md`
 
 ### Tier 1 — Current execution scope
-6. Current task packet
-7. Task graph and predecessor evidence
-8. Relevant Definition of Done / gate matrix
-9. Relevant ADRs and reconciliation records
+8. Current task packet
+9. Task graph and predecessor evidence
+10. Relevant Definition of Done / gate matrix
+11. `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` when evaluating implementation readiness
+12. `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` when evaluating implementation readiness
+13. Relevant ADRs and reconciliation records
 
 ### Tier 2 — Domain context
-10. Relevant bounded-context contract
-11. Relevant command/event/state/permission/data registers
-12. Relevant UX/Figma contract
-13. Relevant integration contract
+14. Relevant bounded-context contract
+15. Relevant command/event/state/permission/data registers
+16. Relevant UX/Figma contract
+17. Relevant integration contract
 
 ### Tier 3 — Repository reality
-14. Existing implementation files in the declared scope
-15. Tests and fixtures
-16. Migration/schema artifacts when explicitly authorized
-17. Runtime/provider configuration only when the task requires it
+18. Existing implementation files in the declared scope
+19. Tests and fixtures
+20. Migration/schema artifacts when explicitly authorized
+21. Runtime/provider configuration only when the task requires it
 
 ## Context minimization
 
@@ -64,3 +68,15 @@ Claude must be able to answer:
 - What evidence closes the task?
 
 If any critical answer is unknown, the task is not implementation-ready.
+
+## Naming consistency rule
+
+`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. Any historical `SESSION_STATE.md` artifact is compatibility/history only and must not be loaded as current state.
+
+## Canonical-artifact rule
+
+Before relying on a named contract, Claude MUST check `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`. A referenced artifact that is marked `NOT PRESENT`, `BLOCKED`, or otherwise non-canonical MUST NOT be fabricated from memory, prose, or implementation code. The task must follow the register's unlock condition or escalate through the reconciliation protocol.
+
+## Context-pack rule
+
+`docs/handoff/CLAUDE-PROJECT-CONTEXT-PACK.md` is an orientation layer. It is intentionally comprehensive but non-authoritative. It must never override `AGENTS.md`, the current session checkpoint, canonical contracts, approved decisions, validated registers, or verified repository/runtime evidence.

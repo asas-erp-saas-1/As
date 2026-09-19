@@ -5,74 +5,99 @@ Status: CANONICAL FOUNDATION CHECKPOINT
 ## Repository
 - Canonical repository: `asas-erp-saas-1/As`
 - Canonical integration branch: `main`
-- Foundation changes are merged to `main`; feature/foundation branches are change vehicles only.
+- Current foundation work is carried on `foundation/repository-file-organization-v1` under PR #13; it is **OPEN / DRAFT / NOT MERGED**. Do not describe these branch changes as merged to `main` until GitHub confirms the merge.
+- Repository visibility is currently **PUBLIC**. This is an administrative/security decision requiring owner confirmation; do not change visibility automatically.
 
 ## Phase
-FOUNDATION HARDENING — BLUEPRINT DERIVATION / PRE-IMPLEMENTATION
+FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 
-## Completed foundation layers
-- Repository identity and boundary
-- Claude context/operating model
-- Branch and PR governance
-- Foundation verification contract
-- Task graph and task packet model
-- Contract reconciliation protocol
-- Core lifecycle and capability coverage
-- Master execution path
-- Foundation gate register and closure protocol
-- Canonical artifact register
-- Blueprint-derived domain event register
-- Blueprint-derived permission register
-- Blueprint-derived state-machine register
-- Blueprint-derived design token shadow
-- Blueprint-derived component contract inventory
-- Blueprint source observation manifest
-- Phase P task shard with all 9 source tasks
-- Declared-vs-observed reconciliation checkpoint
+## Current active workstreams
+- C2-001 architecture reconciliation: OPEN; proposed nine-context reconciliation awaits founder acceptance.
+- Architecture decision baseline: ADOPTED AS WORKING FOUNDATION CONTRACT; it does not replace ADR-0021 acceptance.
+- Context → Module ownership: IN PROGRESS; the authoritative 15-module decomposition has now been explicitly reconciled against the nine-context working baseline, but aggregate/event/permission/schema/task ownership is not yet canonical.
+- Domain ownership & traceability contract: ADDED as `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md`; it remains a working contract until the architecture and task gates close.
+- Event / State / Permission traceability: IN PROGRESS under `docs/architecture/EVENT-STATE-PERMISSION-TRACEABILITY-MATRIX.md`.
+- Event ownership Wave 2: IN PROGRESS under `docs/architecture/EVENT-OWNERSHIP-TRACEABILITY-WAVE-2.md`.
+- State-machine implementation contract: ADDED as `docs/architecture/STATE-MACHINE-IMPLEMENTATION-CONTRACT.md`.
+- Task register reconciliation: IN PROGRESS under `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`.
+- Schema contract reconciliation: OPEN.
+- Security/tenancy readiness: OPEN.
+- GATE-00 platform identity: BLOCKED pending direct technical evidence.
+- Platform identity pre-flight guard: IMPLEMENTED as `scripts/foundation/verify-platform-identity.sh`; it fails closed until `docs/audit/PLATFORM-IDENTITY-VERIFIED.json` exists and the runtime project reference matches it.
+- Foundation CI execution evidence: PENDING.
+- Repository visibility review: OPEN; current visibility is public and has not been changed automatically.
 
-## Source discipline
-The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
+## Latest verified source observations
+- Source task register contains 119 task entries across phases P–11 plus 3 recurring rituals, while an earlier repository declaration said 114. The delta is OPEN; no count has been silently normalized.
+- Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These remain source/repository discrepancies.
+- Source package recovery found `ASAS-Complete-Package/MASTER-SPEC.md` v3.3 dated 2026-09-14 and accepted source ADR-0002 dated 2026-09-02, both supporting a nine-bounded-context direction.
+- The recovered implementation specification defines 15 implementation modules/schemas, but its 15-row decomposition does not contain dedicated `Website Studio` or `Marketing` module rows. This is now an explicit architecture-to-implementation gap, not a reason to invent modules.
+- `docs/architecture/ADR-0021-CANONICAL-BOUNDED-CONTEXT-RECONCILIATION.md` remains **PROPOSED / NOT YET CLOSED**.
+- `registers/events.json` contains 103 registered events across 11 emission modules; `registers/state-machines.json` contains 11 lifecycle machines; `registers/permissions.csv` contains 50 permission keys across eight persona columns. These counts are independently supported by the current source/register evidence.
+- `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` on the active foundation branch now reflects the actual present machine-readable artifacts; this repair is not yet merged to `main`.
+- The active foundation branch context-loading protocol and operating mode now point to `CURRENT-SESSION-STATE.md`; the repository-wide CI check is also configured to reject stale `SESSION_STATE.md` execution references. The corresponding fixes are not yet merged to `main`.
 
-## Verified source observations
-- Source task register contains 119 task entries across phases P–11, plus 3 recurring rituals, while an earlier repository declaration said 114. Delta +5 is OPEN and explicitly preserved.
-- Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. These are source/repository discrepancies and are not silently normalized.
-- Phase P source shard `registers/tasks/phase-P.json` is complete for its 9 tasks.
-- The remaining task phases and the structured schema contract are still pending canonical promotion until reconciliation is complete.
+## Latest foundation changes
+1. `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`
+   - Commit: `ce96a49804253e31756c63e84712d7d1767a90d5`
+   - Purpose: evidence-first reconciliation of the 114-vs-119 task-register discrepancy.
+2. `docs/architecture/ASAS-CANONICAL-ARCHITECTURE-DECISIONS.md`
+   - Commit: `9e1bc9ac87d9229e396293c6cbc5b3463d302912`
+   - Purpose: translate verified source evidence into an explicit engineering baseline without copying source artifacts.
+3. `docs/architecture/IMPLEMENTATION-BOUNDARIES-AND-DECISION-RULES.md`
+   - Commit: `274a498e7622f0602e9c6039e2016d666928bce6`
+   - Purpose: define implementation boundaries, decision authority, defaults, forbidden shortcuts, and first-slice contract.
+4. `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md`
+   - Commit: `f1f463afa9b41217b93d7c1c9a87d072dc610dee`
+   - Purpose: establish context → aggregate → command → event → permission → persistence → task → verification ownership rules.
+5. `docs/architecture/CONTEXT-MODULE-OWNERSHIP-RECONCILIATION.md`
+   - Commit: `b45e5c058ca59b884dfdd84cd9d0f05323f673d3`
+   - Purpose: reconcile the 15 implementation modules against the nine-context working baseline and expose unresolved Website Studio / Marketing / Communication / Collaboration / Document capability boundaries without inventing architecture.
+6. `docs/architecture/EVENT-STATE-PERMISSION-TRACEABILITY-MATRIX.md`
+   - Commit: `f922cea10f85d1d2525d3f3198758065779604fd`
+   - Purpose: connect lifecycle state machines to registered domain events and permission controls, establish Wave-1 lifecycle chains, and define the next full 103-event / 50-permission / 11-state-machine traceability waves.
+7. `docs/architecture/EVENT-OWNERSHIP-TRACEABILITY-WAVE-2.md`
+   - Commit: `a93fe79c037727283b7ba3b80023d209c76eb2ed`
+   - Purpose: establish the evidence contract and execution sequence for mapping all 103 events to producer context/module, aggregate/invariant, transaction boundary, consumers, idempotency and verification.
+8. `docs/architecture/STATE-MACHINE-IMPLEMENTATION-CONTRACT.md`
+   - Commit: `451dc7eafa7bbeb193f9d02fbc7d3d2ac132b547`
+   - Purpose: define the non-negotiable lifecycle transition contract before application implementation.
+9. `docs/audit/PLATFORM-IDENTITY-VERIFICATION-CONTRACT.md`
+   - Commit: `e6fae735b5dc11e4298cbfb262211ca2a92c3f05`
+   - Purpose: convert the documented Supabase identity near-miss into a fail-closed Gate-00 contract without guessing the real project reference.
+10. `scripts/foundation/verify-platform-identity.sh`
+   - Commit: `e9b819a5283f1023fc23a84e46418ebfd73c541e`
+   - Purpose: technically fail closed on missing/mismatched verified Supabase project identity before schema-affecting work.
 
-## Current active blocker set
-- C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
-- C2-002: live-database/runtime reality is not accepted as verified until live evidence is captured.
-- Task-register count discrepancy: declared 114 vs observed 119 is OPEN.
-- Schema-contract count discrepancy: declared 59/16/15 vs observed 59/17/56 is OPEN.
+## Architecture working conclusion
+The current engineering baseline is a modular monolith with a nine-context direction, explicit separation of contexts/modules/aggregates/events/read models, Agency → Workspace → Branch tenancy, transactional outbox, state-machine controlled mutations, integer-centime immutable finance, and evidence-first database evolution. This is a **working foundation contract**, not a replacement for the proposed ADR-0021 approval gate.
 
-## Gate status
-G0 GREEN
-G1 AMBER
-G2 GREEN
-G3 AMBER
-G4 AMBER
-G5 AMBER
-G6 BLOCKED
-G7 BLOCKED
-G8 AMBER
-G9 AMBER
-G10 NOT STARTED
-G11 NOT STARTED
-G12 BLOCKED
-G13 AMBER
+## Newly exposed architecture gaps
+The 15-module implementation specification includes CRM, Inventory, Visit, Sales, Finance, Commission, Communication, Identity, Notification, Collaboration, Calendar, Audit, Search, Reporting, and Workflow. The nine-context baseline additionally names Website Studio and Marketing. There is currently insufficient evidence to assign concrete implementation modules, persistence ownership, tasks, and permissions to Website Studio and Marketing. Do not invent module names or schema boundaries to make the counts match. Track these as explicit reconciliation blockers C2-MOD-004 and C2-MOD-005.
+
+The traceability wave also leaves the following explicitly unresolved until authoritative evidence is mapped: Communication ownership, Collaboration & Extensibility ownership, Documents implementation placement, complete event-consumer mapping, complete permission-resource mapping, and canonical task IDs for every lifecycle row.
 
 ## Hard stop
-No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not a migration and must not be treated as live database truth.
+No application code, database schema implementation, migrations, production configuration, or deployment implementation is authorized by this checkpoint. A schema contract may be stored as a non-executable design artifact, but it is not live database truth.
 
-## Next sequence
-1. Resolve C2-001 into one canonical Context-to-Module Map and trace affected contracts/tasks.
-2. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
-3. Complete the non-executable structured schema contract and reconcile every model, enum, relation, constraint, and index against the source.
-4. Reconcile counts/IDs/references and record provenance; do not silently normalize discrepancies.
-5. Close security/tenancy doctrine against the canonical domain decomposition.
-6. Complete repository-level CI/handoff verification for the derived-register layer.
-7. Verify live platform/database reality only when the required connected evidence is intentionally available.
-8. Authorize Claude implementation only for tasks whose relevant gates and contracts are GREEN.
+## Current execution sequence
+1. Foundation repository-control repairs — IMPLEMENTED; CI execution evidence pending.
+2. Readiness-document ownership/loading chain — IMPLEMENTED; consolidation of overlapping readiness artifacts remains OPEN.
+3. C2-001 source recovery — SUBSTANTIALLY RESOLVED.
+4. Repository architecture reconciliation — IN PROGRESS; ADR-0021 awaits acceptance.
+5. Context → Module ownership — IN PROGRESS; 15-module matrix completed as a working reconciliation artifact.
+6. Event / State / Permission traceability Wave 1 — COMPLETED as a working matrix; full 103-event / 50-permission / 11-state-machine coverage remains IN PROGRESS.
+7. Event ownership Wave 2 — IN PROGRESS; ownership contract established, full event-by-event evidence still required.
+8. Resolve aggregate/event/permission ownership and Website Studio / Marketing implementation-boundary gaps where authoritative evidence exists.
+9. Reconcile task IDs/counts using the task-register reconciliation protocol.
+10. Reconcile the non-executable schema contract against authoritative source observations.
+11. Close security/tenancy dependencies against the canonical decomposition.
+12. Finish platform identity/GATE-00 with direct provider evidence and execute the new pre-flight guard.
+13. Resolve repository visibility decision with owner authorization; do not change it implicitly.
+14. Consolidate overlapping readiness artifacts and wire the canonical survivor into every loading chain.
+15. Establish database drift/backup/restore evidence without destructive mutation.
+16. Run the complete Claude implementation-readiness gate.
+17. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+When asked to continue, read this checkpoint and resume from the first unresolved dependency. Do not restart from conversation history. Do not use `asas-website`. Do not perform destructive database, Git, visibility, or deployment actions without explicit authorization and evidence.
