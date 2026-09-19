@@ -13,6 +13,8 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 ## Current active workstreams
 - C2-001 architecture reconciliation: OPEN; proposed nine-context reconciliation awaits founder acceptance.
 - Architecture decision baseline: ADOPTED AS WORKING FOUNDATION CONTRACT; it does not replace ADR-0021 acceptance.
+- Context → Module ownership: IN PROGRESS; working classifications exist, but aggregate/event/permission/schema/task ownership is not yet canonical.
+- Domain ownership & traceability contract: ADDED as `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md`; it remains a working contract until the architecture and task gates close.
 - Task register reconciliation: IN PROGRESS under `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`.
 - Schema contract reconciliation: OPEN.
 - Security/tenancy readiness: OPEN.
@@ -35,6 +37,9 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 3. `docs/architecture/IMPLEMENTATION-BOUNDARIES-AND-DECISION-RULES.md`
    - Commit: `274a498e7622f0602e9c6039e2016d666928bce6`
    - Purpose: define implementation boundaries, decision authority, defaults, forbidden shortcuts, and first-slice contract.
+4. `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md`
+   - Commit: `f1f463afa9b41217b93d7c1c9a87d072dc610dee`
+   - Purpose: establish context → aggregate → command → event → permission → persistence → task → verification ownership rules.
 
 ## Architecture working conclusion
 The current engineering baseline is a modular monolith with a nine-context direction, explicit separation of contexts/modules/aggregates/events/read models, Agency → Workspace → Branch tenancy, transactional outbox, state-machine controlled mutations, integer-centime immutable finance, and evidence-first database evolution. This is a **working foundation contract**, not a replacement for the proposed ADR-0021 approval gate.
@@ -47,14 +52,15 @@ No application code, database schema implementation, migrations, production conf
 2. Readiness-document ownership/loading chain — IMPLEMENTED.
 3. C2-001 source recovery — SUBSTANTIALLY RESOLVED.
 4. Repository architecture reconciliation — IN PROGRESS; ADR-0021 awaits acceptance.
-5. Build/verify Context → Module ownership map against the working architecture baseline, without promoting unresolved mappings to canonical.
-6. Reconcile task IDs/counts using the task-register reconciliation protocol.
-7. Reconcile the non-executable schema contract against authoritative source observations.
-8. Close security/tenancy dependencies against the canonical decomposition.
-9. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
-10. Establish database drift/backup/restore evidence without destructive mutation.
-11. Run the complete Claude implementation-readiness gate.
-12. Authorize only the first bounded implementation slice.
+5. Build/verify Context → Module ownership against the working architecture baseline.
+6. Build aggregate/event/permission ownership evidence and classify unresolved cross-context modules.
+7. Reconcile task IDs/counts using the task-register reconciliation protocol.
+8. Reconcile the non-executable schema contract against authoritative source observations.
+9. Close security/tenancy dependencies against the canonical decomposition.
+10. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
+11. Establish database drift/backup/restore evidence without destructive mutation.
+12. Run the complete Claude implementation-readiness gate.
+13. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
 When asked to continue, read this checkpoint and resume from the first unresolved dependency. Do not restart from conversation history. Do not use `asas-website`. Do not perform destructive database, Git, or deployment actions without explicit authorization and evidence.
