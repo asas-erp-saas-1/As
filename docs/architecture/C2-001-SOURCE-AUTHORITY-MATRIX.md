@@ -24,13 +24,13 @@ This matrix consolidates the distributed source evidence relevant to the canonic
 
 ## Key finding
 
-The broadest and earliest enterprise directive (`asas.docx`) is useful as the strategic North Star because it explicitly frames ASAS as an enterprise real-estate operating system and calls for business-capability, domain, event, workflow, data, AI, security, scalability, and governance layers. It does **not**, in the recovered evidence, provide a final numeric bounded-context decision. fileciteturn185file2
+The broadest and earliest enterprise directive (`asas.docx`) is useful as the strategic North Star because it explicitly frames ASAS as an enterprise real-estate operating system and calls for business-capability, domain, event, workflow, data, AI, security, scalability, and governance layers. It does **not**, in the recovered evidence, provide a final numeric bounded-context decision.
 
-The later roadmap is the strongest evidence that a 15-context Domain Model v2 was intended to be approved, because it explicitly records Phase 1.5 as Approved v2 and names the 15-context Domain Model v2 and Context Map v2 as deliverables. fileciteturn185file4
+The later roadmap is the strongest evidence that a 15-context Domain Model v2 was intended to be approved, because it explicitly records Phase 1.5 as Approved v2 and names the 15-context Domain Model v2 and Context Map v2 as deliverables.
 
-The available Domain Model artifact contradicts that status at the artifact level: it is explicitly Draft and presents the 13-context model. fileciteturn185file0turn185file14
+The available Domain Model artifact contradicts that status at the artifact level: it is explicitly Draft and presents the 13-context model.
 
-The Implementation Specification is later in time and technically detailed, and it defines 15 modules/schemas. However, it cannot independently prove that those 15 modules are the approved bounded-context model; its own statement that the modules are one per Domain-Model bounded context must be checked against the missing approved Domain Model v2. fileciteturn185file3
+The Implementation Specification is later in time and technically detailed, and it defines 15 modules/schemas. However, it cannot independently prove that those 15 modules are the approved bounded-context model; its own statement that the modules are one per Domain-Model bounded context must be checked against the missing approved Domain Model v2.
 
 ## Authority rule derived from the evidence
 
