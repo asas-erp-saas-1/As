@@ -1,7 +1,7 @@
 # ASAS Canonical Artifact Register
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.1
+Version: 1.2
 
 ## Purpose
 
@@ -31,6 +31,7 @@ This register identifies the repository's authoritative, derived, operational, e
 | `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` | A3 | YES | Artifact authority/status |
 | `docs/governance/CONTRACT-RECONCILIATION-PROTOCOL.md` | A4 | YES | Conflict resolution |
 | `docs/governance/RECONCILIATION-RECORD-TEMPLATE.md` | A4 | WHEN RECONCILING | Evidence format |
+| `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` | A4 | WHEN EVALUATING READINESS | Single readiness ownership contract |
 
 ## Machine-readable artifacts actually present
 
@@ -63,6 +64,14 @@ This register identifies the repository's authoritative, derived, operational, e
 | `docs/governance/FOUNDATION-CANONICAL-ARTIFACTS.md` | Foundation navigation index |
 | `docs/governance/FOUNDATION-GATE-MATRIX.md` | Gate definitions/dependencies; status authority remains the Gate Register |
 | `docs/governance/FOUNDATION-GATE-REGISTER.md` | Current gate status |
+
+## Foundation safety controls
+
+| Artifact | Classification | Purpose |
+|---|---|---|
+| `docs/audit/PLATFORM-IDENTITY-VERIFICATION-CONTRACT.md` | A4 | Fail-closed platform identity requirements before schema-affecting work |
+| `scripts/foundation/verify-platform-identity.sh` | A4 / operational guard | Runtime Supabase project identity pre-flight check |
+| `docs/governance/FOUNDATION-READINESS-AUTHORITY.md` | A4 | Prevent competing readiness authorities |
 
 ## Handoff compatibility artifact
 
