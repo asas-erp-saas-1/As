@@ -10,7 +10,7 @@ This file is an execution entry point. It is **not** the product specification a
 
 Canonical repository: `asas-erp-saas-1/As`.
 
-`asas-erp-saas-1/Asas-website` is a different project and is not an ASAS implementation source.
+Any separate historical repository/project is out of scope and must not be used as an ASAS implementation source.
 
 ## Before changing anything
 
