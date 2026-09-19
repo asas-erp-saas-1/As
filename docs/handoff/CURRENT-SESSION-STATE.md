@@ -16,6 +16,8 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 - Context → Module ownership: IN PROGRESS; the authoritative 15-module decomposition has now been explicitly reconciled against the nine-context working baseline, but aggregate/event/permission/schema/task ownership is not yet canonical.
 - Domain ownership & traceability contract: ADDED as `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md`; it remains a working contract until the architecture and task gates close.
 - Event / State / Permission traceability: IN PROGRESS under `docs/architecture/EVENT-STATE-PERMISSION-TRACEABILITY-MATRIX.md`.
+- Event ownership Wave 2: IN PROGRESS under `docs/architecture/EVENT-OWNERSHIP-TRACEABILITY-WAVE-2.md`.
+- State-machine implementation contract: ADDED as `docs/architecture/STATE-MACHINE-IMPLEMENTATION-CONTRACT.md`.
 - Task register reconciliation: IN PROGRESS under `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md`.
 - Schema contract reconciliation: OPEN.
 - Security/tenancy readiness: OPEN.
@@ -49,6 +51,12 @@ FOUNDATION HARDENING — BLUEPRINT RECONCILIATION / PRE-IMPLEMENTATION
 6. `docs/architecture/EVENT-STATE-PERMISSION-TRACEABILITY-MATRIX.md`
    - Commit: `f922cea10f85d1d2525d3f3198758065779604fd`
    - Purpose: connect lifecycle state machines to registered domain events and permission controls, establish Wave-1 lifecycle chains, and define the next full 103-event / 50-permission / 11-state-machine traceability waves.
+7. `docs/architecture/EVENT-OWNERSHIP-TRACEABILITY-WAVE-2.md`
+   - Commit: `a93fe79c037727283b7ba3b80023d209c76eb2ed`
+   - Purpose: establish the evidence contract and execution sequence for mapping all 103 events to producer context/module, aggregate/invariant, transaction boundary, consumers, idempotency and verification.
+8. `docs/architecture/STATE-MACHINE-IMPLEMENTATION-CONTRACT.md`
+   - Commit: `451dc7eafa7bbeb193f9d02fbc7d3d2ac132b547`
+   - Purpose: define the non-negotiable lifecycle transition contract before application implementation.
 
 ## Architecture working conclusion
 The current engineering baseline is a modular monolith with a nine-context direction, explicit separation of contexts/modules/aggregates/events/read models, Agency → Workspace → Branch tenancy, transactional outbox, state-machine controlled mutations, integer-centime immutable finance, and evidence-first database evolution. This is a **working foundation contract**, not a replacement for the proposed ADR-0021 approval gate.
@@ -68,14 +76,15 @@ No application code, database schema implementation, migrations, production conf
 4. Repository architecture reconciliation — IN PROGRESS; ADR-0021 awaits acceptance.
 5. Context → Module ownership — IN PROGRESS; 15-module matrix completed as a working reconciliation artifact.
 6. Event / State / Permission traceability Wave 1 — COMPLETED as a working matrix; full 103-event / 50-permission / 11-state-machine coverage remains IN PROGRESS.
-7. Resolve aggregate/event/permission ownership and Website Studio / Marketing implementation-boundary gaps where authoritative evidence exists.
-8. Reconcile task IDs/counts using the task-register reconciliation protocol.
-9. Reconcile the non-executable schema contract against authoritative source observations.
-10. Close security/tenancy dependencies against the canonical decomposition.
-11. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
-12. Establish database drift/backup/restore evidence without destructive mutation.
-13. Run the complete Claude implementation-readiness gate.
-14. Authorize only the first bounded implementation slice.
+7. Event ownership Wave 2 — IN PROGRESS; ownership contract established, full event-by-event evidence still required.
+8. Resolve aggregate/event/permission ownership and Website Studio / Marketing implementation-boundary gaps where authoritative evidence exists.
+9. Reconcile task IDs/counts using the task-register reconciliation protocol.
+10. Reconcile the non-executable schema contract against authoritative source observations.
+11. Close security/tenancy dependencies against the canonical decomposition.
+12. Finish platform identity/GATE-00 with technical evidence and a pre-flight guard.
+13. Establish database drift/backup/restore evidence without destructive mutation.
+14. Run the complete Claude implementation-readiness gate.
+15. Authorize only the first bounded implementation slice.
 
 ## Continuation rule
 When asked to continue, read this checkpoint and resume from the first unresolved dependency. Do not restart from conversation history. Do not use `asas-website`. Do not perform destructive database, Git, or deployment actions without explicit authorization and evidence.
