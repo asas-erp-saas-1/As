@@ -104,19 +104,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          canonical_files=(
-            docs/handoff/CLAUDE-CONTEXT-INDEX.md
-            docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
-            docs/handoff/CLAUDE-START-HERE.md
-            docs/governance/CLAUDE-CONTEXT-LOADING-PROTOCOL.md
-            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
-          )
-          for file in "${canonical_files[@]}"; do
-            if grep -nE 'docs/handoff/SESSION_STATE\.md|docs/handoff/SESSION-STATE\.md' "$file"; then
-              echo "ERROR: active canonical loader references a historical/compatibility session-state path: $file"
-              exit 1
-            fi
-          done
+          if grep -RInE 'docs/handoff/SESSION_STATE\.md|docs/handoff/SESSION-STATE\.md' . \
+            --exclude-dir=.git \
+            --exclude='SESSION_STATE.md' \
+            --exclude='SESSION-STATE.md'; then
+            echo 'ERROR: repository contains a historical/compatibility session-state reference outside the retained compatibility artifact.'
+            exit 1
+          fi
           test -f docs/handoff/CURRENT-SESSION-STATE.md
 
       - name: Foundation status is explicit
