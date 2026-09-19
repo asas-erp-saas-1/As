@@ -94,11 +94,31 @@ The 15 implementation modules are:
 
 The specification also states that Activity/Audit, Notification, Search, Reporting, and Workflow are asynchronous event consumers/read-model/worker-oriented components, while Identity/Access/Workspace is the Open Host Service for identity and tenancy.
 
-## 7. Observed structural delta
+## 7. Evidence E — Current repository root contract
 
-The evidence currently supports:
+The currently supplied `AGENTS.md` artifact contains a separate, older/current-operating claim that ASAS has **nine bounded contexts**:
 
-`Roadmap claim: 15 approved bounded contexts`
+- Core
+- CRM
+- Sales
+- Inventory
+- Finance
+- Website Studio
+- Marketing
+- Analytics
+- Documents
+
+It explicitly states that Scheduling is a CRM submodule and that the context map remains at nine.
+
+This is materially different from both the 13-context Draft Domain Model and the 15-context Approved-v2 claim in the roadmap. Because `AGENTS.md` is the root operating contract but its architecture statement is itself a derived/condensed Blueprint digest, it is evidence of a repository-level claim, not proof that it supersedes the explicitly named approved Domain Model v2.
+
+It must therefore be reconciled rather than silently treated as the final architecture.
+
+## 8. Observed structural delta
+
+The complete evidence set currently supports at least four distinct claims:
+
+`Roadmap: 15 approved bounded contexts`
 
 versus
 
@@ -108,15 +128,21 @@ versus
 
 `Implementation Specification: 15 implementation modules`
 
+versus
+
+`Current AGENTS root contract: 9 bounded contexts`
+
 The additional implementation concepts not visible as separate bounded contexts in the Draft Domain Model include:
 
 - Collaboration & Extensibility
 - Workflow & Automation Engine
 - Calendar & Scheduling as an explicit module boundary, while Scheduling is not independently established as a bounded context in the draft artifact.
 
-**This observation is not a decision that these modules are or are not bounded contexts.** It is only the current evidence delta.
+The 9-context AGENTS decomposition also groups concepts differently and cannot be mapped to the 13/15 model by filename or label similarity alone.
 
-## 8. Non-interchangeability rule
+**This observation is not a decision that any of these decompositions is correct.** It is the current evidence delta.
+
+## 9. Non-interchangeability rule
 
 The following identities are prohibited:
 
@@ -124,7 +150,7 @@ The following identities are prohibited:
 
 The implementation specification's phrase “one per Domain-Model bounded context” is therefore a source claim that must be checked against the approved Domain Model v2, not sufficient proof by itself.
 
-## 9. Stable architectural principles already supported
+## 10. Stable architectural principles already supported
 
 The available source material establishes several principles that are not currently in dispute:
 
@@ -136,30 +162,49 @@ The available source material establishes several principles that are not curren
 
 These principles may be carried forward independently of the unresolved context cardinality.
 
-## 10. Decisions that must NOT be inferred
+## 11. Source-recovery attempt — 2026-09-19
 
-The following remain unresolved until the authoritative approved Domain Model v2 / Context Map v2 is recovered and validated:
+A targeted recovery search was performed across the available ASAS source/file set for:
 
-- whether the canonical model has 13, 15, or another number of bounded contexts;
+- the actual `Domain Model v2` artifact;
+- the actual `Context Map v2` artifact;
+- explicit approval/provenance evidence for those artifacts;
+- later architecture decisions that supersede the Draft Domain Model.
+
+The search recovered the roadmap's explicit Approved-v2 claim, the Draft 13-context Domain Model, the draft Context Map, the 15-module Implementation Specification, and the 9-context AGENTS claim. It did **not** recover a separately identifiable approved `Domain Model v2` artifact or a separately identifiable approved `Context Map v2` artifact with provenance/approval evidence.
+
+Therefore the current state is:
+
+`SOURCE RECOVERY INCOMPLETE / C2-001 BLOCKED`
+
+This is a source-recovery finding, not a conclusion that the roadmap's Approved-v2 claim is false.
+
+## 12. Decisions that must NOT be inferred
+
+The following remain unresolved until authoritative approval/provenance is recovered or an authorized Founder/Product Architecture decision formally resolves them:
+
+- whether the canonical model has 9, 13, 15, or another number of bounded contexts;
 - whether Collaboration & Extensibility is a bounded context or generic/supporting module;
 - whether Workflow & Automation is a bounded context, infrastructure capability, or supporting module;
 - whether Calendar & Scheduling is an independent context or a capability/submodule;
 - whether Document & Attachment remains a generic subdomain/context boundary;
+- how the 9-context AGENTS model reconciles with the later roadmap/model claims;
 - exact aggregate ownership for any newly separated context;
 - schema ownership and transaction boundaries derived from those decisions.
 
-## 11. Required next evidence
+## 13. Required next evidence
 
-Before the ADR can be closed, locate and inspect the actual approved artifacts named by the roadmap:
+Before the ADR can be closed, locate or formally establish through an authorized decision process:
 
 1. `Domain Model v2`
 2. `Context Map v2`
 3. their approval/provenance record
 4. any later approved architecture decision that supersedes them
+5. the intended disposition of the 9-context AGENTS architecture statement.
 
 If those artifacts cannot be recovered from the canonical source set, the correct state is `BLOCKED / SOURCE RECOVERY REQUIRED`, not an invented reconciliation.
 
-## 12. ADR decision template
+## 14. ADR decision template
 
 The eventual ADR must record:
 
@@ -184,7 +229,7 @@ The eventual ADR must record:
 - Verification evidence
 - Effective date/status
 
-## 13. Closure condition
+## 15. Closure condition
 
 C2-001 may move from `BLOCKED` to `RESOLVED` only when an authorized architecture decision is recorded and the canonical Context → Module map is verified against it.
 
@@ -194,7 +239,7 @@ Until then:
 `No migration`
 `No implementation slice whose correctness depends on unresolved context ownership`
 
-## 14. Source observations used
+## 16. Source observations used
 
 The evidence above is derived from the project source materials currently available in the ASAS working environment, especially:
 
@@ -202,6 +247,7 @@ The evidence above is derived from the project source materials currently availa
 - `ASAS_Enterprise_Domain_Model` — draft 13-context model and context relationships;
 - `ASAS_Context_Map.mermaid` — visual corroboration of the draft context map;
 - `ASAS_Master_Implementation_Specification` — 15-module/schema implementation decomposition;
+- `AGENTS.md` — repository root operating contract containing the 9-context architecture claim;
 - repository `OPEN-CONTRACT-CONFLICTS.md` — current canonical blocker classification.
 
 This package preserves the source distinctions and does not silently normalize them.
