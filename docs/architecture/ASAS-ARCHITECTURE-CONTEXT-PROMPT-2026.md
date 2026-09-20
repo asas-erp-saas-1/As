@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.5.0  
+**Version:** 1.6.0  
 **Purpose:** Prevent context loss, source confusion, architectural guessing, premature coding and uncontrolled scope expansion during the ASAS architecture program.  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
 **Historical amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — superseded by Blueprint v1.4.0 and retained as historical provenance  
@@ -10,7 +10,8 @@
 **Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
 **Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`  
 **Command contract companion:** `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`  
-**Offer contract companion:** `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
+**Offer contract companion:** `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`  
+**Research protocol companion:** `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
 
 ---
 
@@ -40,11 +41,12 @@ Before every non-trivial task load, in this order:
 10. `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`;
 11. `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`;
 12. `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md` when Offer/commercial lifecycle work is involved;
-13. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
-14. `docs/governance/FOUNDER-DECISIONS.md`;
-15. relevant ADRs/contracts/registers;
-16. source package/files when provenance is required;
-17. live runtime/database only when explicitly authorized and identity is verified.
+13. `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` when external, branch, source-package or provenance research is involved;
+14. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
+15. `docs/governance/FOUNDER-DECISIONS.md`;
+16. relevant ADRs/contracts/registers;
+17. source package/files when provenance is required;
+18. live runtime/database only when explicitly authorized and identity is verified.
 
 Never resume from conversation memory when repository evidence exists.
 
@@ -66,6 +68,9 @@ ROADMAP
 
 CONTEXT PROMPT
   = HOW the agent must operate
+
+RESEARCH PROTOCOL
+  = HOW external, branch and source-package evidence is discovered and qualified
 ```
 
 The Context/Domain/Module Evidence Matrix, Aggregate/Invariant Boundary Register, Command/Action Register and Offer Contract are derived evidence/contract artifacts. They do not silently become higher authority than approved ADRs, founder decisions, canonical registers or live brownfield reality.
@@ -287,9 +292,39 @@ AI cannot directly mutate authoritative financial, reservation, contract, tenanc
 
 ---
 
-# 18. EXTERNAL RESEARCH RULE
+# 18. EXTERNAL / CROSS-SOURCE RESEARCH RULE
 
-Use official documentation, standards/specifications, primary engineering sources, authoritative research and reputable analysis in that order. Record source/date/version/finding/conflict/impact.
+Use `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`.
+
+For every material task, inspect relevant evidence across:
+
+```text
+canonical branch
+→ all remote branches
+→ relevant commit history / PRs / workflow evidence
+→ repository source files
+→ attached source packages
+→ current official external documentation / standards
+→ reputable independent evidence when risk warrants
+```
+
+Use branch existence as evidence only, never as authority. Preserve historical branches until provenance is classified. Do not delete branches merely because they are old.
+
+Reference local discovery commands include:
+
+```bash
+git fetch --all --prune
+git branch -a --no-color
+git ls-remote --heads origin
+git log --oneline origin/main..<branch>
+git diff --name-status origin/main...<branch>
+git log --follow -- <path>
+rg -n "C2-001|C2-002|ADR-0018|SESSION_STATE\.md|CURRENT-SESSION-STATE\.md" .
+```
+
+For external research use the source hierarchy above and record question, source/date/version, finding, conflict, decision, impact and review date.
+
+Current research protocol also records the verified observation that the active architecture branch is behind `main` and that the repository contains many repeated foundation branches. This is a reconciliation concern, not authorization to reset the branch.
 
 ---
 
