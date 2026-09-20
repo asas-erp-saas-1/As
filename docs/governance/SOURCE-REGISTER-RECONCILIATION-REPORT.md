@@ -2,11 +2,12 @@
 
 Status: FOUNDATION RECONCILIATION BASELINE
 Source: ASAS-Complete-Package / blueprint package v1.6.1
-Date: 2026-09-17
+Original verification date: 2026-09-17
+Updated forensic date: 2026-09-20
 
 ## Purpose
 
-Record the objectively verified shape of the approved source package before promoting machine-readable artifacts into the canonical repository. This is a reconciliation record, not an implementation artifact and not a copy of the source package.
+Record the objectively verified shape of the approved source package and the current promotion state of derived repository artifacts. This is a reconciliation record, not an implementation artifact and not a copy of the source package.
 
 ## Verified source artifacts
 
@@ -28,9 +29,11 @@ Record the objectively verified shape of the approved source package before prom
 - State-machine register: 11 machines.
 - Design token source: 14 top-level sections.
 
-## Important correction
+## Important corrections
 
-Earlier planning references described the task register as containing 114 tasks. The current verified v1.6.1 source contains 119 top-level phase tasks and 121 task IDs when nested records are included. The verified source artifact is authoritative for this count; no older count should be treated as current.
+1. Earlier planning references described the task register as containing 114 tasks. The current verified v1.6.1 source contains 119 top-level phase tasks and 121 task IDs when nested records are included. The verified source artifact is authoritative for this count; no older count should be treated as current.
+2. The repository now contains selected derived shadows (`events.json`, `permissions.csv`, `state-machines.json`, task index/shard, design artifacts and schema index). Their presence does not mean the full source package has been promoted or that executable implementation exists.
+3. `schema/asas-contracts.prisma` remains intentionally absent because the source contract has not yet passed complete extraction and cross-register reconciliation in the repository.
 
 ## Promotion policy
 
@@ -44,18 +47,20 @@ The source artifacts are not automatically canonical merely because they are app
 6. Permission keys checked against actors/scopes.
 7. Task contract/evidence references checked for resolvability.
 8. Schema model names checked against the domain vocabulary.
-9. Design tokens checked for DTCG/source consistency and component references.
+9. Design tokens checked for source consistency and component references.
 10. Promotion recorded as a deliberate canonicalization event.
 
-## Current repository state
+## Current repository promotion state
 
-The selected machine-readable source artifacts are still intentionally absent from the canonical repository until the reconciliation pass is complete. The repository must not fabricate them from memory or from stale conversation state.
-
-## Next gate
-
-`REG-01 — Machine Register Promotion Gate`
-
-Exit condition: all seven selected artifacts have validated syntax, provenance, internal consistency, and cross-reference reconciliation, with a recorded promotion decision.
+| Artifact | Repository state | Promotion status |
+|---|---|---|
+| Events | `registers/events.json` | DERIVED SHADOW PRESENT |
+| Permissions | `registers/permissions.csv` | DERIVED SHADOW PRESENT |
+| State machines | `registers/state-machines.json` | DERIVED SHADOW PRESENT |
+| Tasks | `registers/tasks.index.json` + `registers/tasks/phase-P.json` | PARTIAL / RECONCILIATION REQUIRED |
+| Schema | `schema/asas-contracts.index.json` | INDEX ONLY / RECONCILIATION REQUIRED |
+| Design tokens | `design/design-tokens.json` | DERIVED SHADOW PRESENT |
+| Components | `design/component-inventory.md` | DERIVED SHADOW PRESENT |
 
 ## Non-goals
 
