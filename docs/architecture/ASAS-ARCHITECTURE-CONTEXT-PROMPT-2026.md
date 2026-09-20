@@ -2,11 +2,12 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.3.0  
+**Version:** 1.4.0  
 **Purpose:** Prevent context loss, source confusion, architectural guessing, premature coding and uncontrolled scope expansion during the ASAS architecture program.  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
 **Execution companion:** `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`  
-**Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
+**Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
+**Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
 
 ---
 
@@ -33,11 +34,12 @@ Before every non-trivial task load, in this order:
 7. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`;
 8. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`;
 9. `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`;
-10. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
-11. `docs/governance/FOUNDER-DECISIONS.md`;
-12. relevant ADRs/contracts/registers;
-13. source package/files when provenance is required;
-14. live runtime/database only when explicitly authorized and identity is verified.
+10. `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`;
+11. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
+12. `docs/governance/FOUNDER-DECISIONS.md`;
+13. relevant ADRs/contracts/registers;
+14. source package/files when provenance is required;
+15. live runtime/database only when explicitly authorized and identity is verified.
 
 Never resume from conversation memory when repository evidence exists.
 
@@ -61,11 +63,11 @@ CONTEXT PROMPT
   = HOW the agent must operate
 ```
 
-The **Context/Domain/Module Evidence Matrix** is a derived evidence artifact, not a competing architecture authority. It records unresolved mappings and candidate ownership so the agent does not guess.
+The **Context/Domain/Module Evidence Matrix** and **Aggregate/Invariant Boundary Register** are derived evidence/contract artifacts. They do not silently become higher authority than approved ADRs, founder decisions, canonical registers or live brownfield reality.
 
 Supporting canonical registers remain authoritative for their own concepts.
 
-Do not create a competing architecture document. If a concept needs a new owner, update the artifact map and use an ADR.
+Do not create a competing architecture document. If a concept needs a new owner, update the artifact map and use an ADR when the change is material.
 
 ---
 
@@ -96,6 +98,7 @@ Do not guess, average, or edit one source merely to make it agree with another.
 Use only:
 
 - `VERIFIED`
+- `SUPPORTED`
 - `PARTIAL`
 - `BLOCKED`
 - `NOT_EXECUTED`
@@ -151,7 +154,7 @@ Counts found in source artifacts are observations, not quotas.
 
 Do not force contexts to equal modules, modules to equal services, aggregates to equal tables, events to equal commands, or files to equal phases.
 
-If engineering evidence requires a different structure, record the conflict, determine authority, and use an ADR. Never distort architecture to preserve a number.
+The historical 15-module proposal is evidence for implementation decomposition, not an automatic second bounded-context architecture. The current engineering question is ownership mapping, not choosing a number.
 
 ---
 
@@ -172,41 +175,112 @@ Bounded Context
 ≠ Platform Capability
 ```
 
+An aggregate is a consistency boundary. It is not automatically a table.
+
 ---
 
 # 9. CURRENT DOMAIN/MODULE AUTHORITY STATUS
 
-There is a confirmed unresolved conflict in the repository:
+Current target domain grouping:
 
-### Condensed domain view
 `Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
 
-### Historical implementation candidate
-A proposed 15-module architecture exists in `ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` and `CANONICAL-CONTEXT-TO-MODULE-MAP.md`.
+Historical implementation candidate:
 
-That ADR explicitly says **PROPOSED — awaiting explicit founder acceptance**.
+`ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` and `CANONICAL-CONTEXT-TO-MODULE-MAP.md` contain a proposed 15-module decomposition and explicitly mark it as awaiting founder acceptance.
 
 Therefore:
 
-`C2-001 = CONFLICT / FOUNDER DECISION REQUIRED`
+`C2-001 = OPEN ARCHITECTURAL REFINEMENT`
 
-Do not treat the nine-context grouping as the final implementation map.
-Do not treat the 15-module proposal as accepted.
-Do not create schemas, migrations or task ownership from either model as if the conflict were closed.
+Do not ask the founder to choose between the numbers 9 and 15 merely to unblock engineering. Derive module boundaries from semantic cohesion, business ownership, aggregate/transaction boundaries, authorization, data ownership, change cadence, failure isolation, scaling behavior and integration cost.
 
-Use `ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` as the evidence map while the conflict remains open.
+Scheduling is different:
 
-A valid future decision may establish a two-level architecture in which a high-level domain grouping and a finer implementation module decomposition coexist, but this is a proposal until accepted.
+- historical `ADR-0018` accepted Scheduling as a Core/CRM-hosted capability;
+- the 2026 architecture reopened the question.
 
-Scheduling remains separately:
+Therefore:
 
-`FOUNDER DECISION REQUIRED`
+`C2-002 = OPEN / PROPOSED SUPERSESSION`
+
+Do not silently supersede ADR-0018. Keep it as evidence until a new decision explicitly replaces it or the 2026 baseline explicitly adopts it.
 
 ---
 
-# 10. SOURCE REGISTER RULE
+# 10. AGGREGATE & INVARIANT RULE
 
-The v1.6.1 Blueprint/package is the current foundation source baseline.
+Before schema design, read:
+
+`docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+
+For every candidate aggregate establish:
+
+```text
+identity
+owner
+invariants
+commands
+legal transitions
+authorization
+tenant scope
+concurrency policy
+persistence boundary
+audit
+emitted events
+tests
+evidence
+```
+
+Do not promote a source object into an aggregate merely because it has a name in a document.
+
+Do not promote an aggregate into a database table without persistence evidence.
+
+Critical open boundaries currently include:
+
+- Unit ↔ Reservation atomic consistency;
+- Offer ownership/invariants;
+- Payment vs PaymentSchedule vs Receipt semantics;
+- Building ownership/invariants;
+- Scheduling ownership.
+
+---
+
+# 11. RESERVATION CONCURRENCY RULE
+
+The requirement is:
+
+> exactly one active reservation winner per Unit under concurrency.
+
+The agent must reason from the invariant first and select the database mechanism only after the schema, workload and retry model are known.
+
+Required evidence eventually includes:
+
+- duplicate command/idempotency test;
+- two-agent race test;
+- expiry-vs-conversion race test;
+- database constraint/conditional-write evidence;
+- audit evidence;
+- outbox/event evidence;
+- reconciliation behavior after partial failure.
+
+Do not prescribe a lock primitive merely because it is familiar.
+
+---
+
+# 12. DOMAIN CONTRACT RULE
+
+Every implementation-critical behavior needs:
+
+`owner / invariant / command / legal state transitions / authorization / tenant scope / concurrency / event / audit / test / evidence`
+
+If any field is unknown, keep the behavior `OPEN` or `BLOCKED` rather than inventing it.
+
+---
+
+# 13. SOURCE REGISTER RULE
+
+The v1.6.1 Blueprint/package is the foundation source baseline.
 
 Known structural observations:
 
@@ -226,7 +300,7 @@ These numbers describe source artifacts, not runtime implementation and not futu
 
 ---
 
-# 11. TASK PACKET RULE
+# 14. TASK PACKET RULE
 
 Source task records must not be rewritten to manufacture missing fields.
 
@@ -236,11 +310,11 @@ Create derived implementation packets containing:
 
 A task without this information is not implementation-ready.
 
-If ownership depends on C2-001, mark it `BLOCKED` rather than guessing.
+If ownership depends on unresolved architecture, mark it `BLOCKED` rather than guessing.
 
 ---
 
-# 12. DATABASE RULE
+# 15. DATABASE RULE
 
 Always distinguish:
 
@@ -262,7 +336,7 @@ Never use destructive production operations as a shortcut.
 
 ---
 
-# 13. CLOUD RULE
+# 16. CLOUD RULE
 
 Cloud is an integration/runtime target, not a prerequisite for architectural thinking or initial engineering.
 
@@ -274,7 +348,7 @@ Remote state must be treated as reality only after identity verification.
 
 ---
 
-# 14. SECURITY RULE
+# 17. SECURITY RULE
 
 Security controls must exist at multiple layers:
 
@@ -288,7 +362,7 @@ AI tools must follow least privilege. Excessive functionality, permissions and a
 
 ---
 
-# 15. STATE MACHINE RULE
+# 18. STATE MACHINE RULE
 
 Never mutate governed status directly.
 
@@ -300,7 +374,7 @@ Illegal transitions must be tested as aggressively as legal ones.
 
 ---
 
-# 16. EVENT RULE
+# 19. EVENT RULE
 
 A registered event is not an implemented event.
 
@@ -308,7 +382,7 @@ Before declaring event architecture complete verify producer, transaction bounda
 
 ---
 
-# 17. AI RULE
+# 20. AI RULE
 
 AI operates through the same domain authority model as every other actor.
 
@@ -332,7 +406,7 @@ High-impact actions require approval or a controlled reversible path unless an e
 
 ---
 
-# 18. EXTERNAL RESEARCH RULE
+# 21. EXTERNAL RESEARCH RULE
 
 For current external facts, research before deciding.
 
@@ -353,7 +427,7 @@ Never use model memory as current-version authority.
 
 ---
 
-# 19. DESIGN ENGINEERING RULE
+# 22. DESIGN ENGINEERING RULE
 
 Design is engineered before screens are coded:
 
@@ -363,7 +437,7 @@ Support Arabic/RTL, French/English, mobile-first field operations, accessibility
 
 ---
 
-# 20. TESTING RULE
+# 23. TESTING RULE
 
 No critical behavior is considered implemented without appropriate evidence:
 
@@ -385,7 +459,7 @@ Critical commercial loop:
 
 ---
 
-# 21. RED-TEAM RULE
+# 24. RED-TEAM RULE
 
 After every significant change ask:
 
@@ -397,7 +471,7 @@ Then fix and retest.
 
 ---
 
-# 22. SCALABILITY RULE
+# 25. SCALABILITY RULE
 
 Do not select infrastructure because a competitor uses it.
 
@@ -407,13 +481,11 @@ Use:
 
 `measure → diagnose → optimize → isolate → extract if justified`
 
-Potential extraction evidence includes materially different scaling profiles, independent availability requirements, security isolation, deployment cadence conflicts, team ownership boundaries, technology incompatibility or measured operational benefit greater than distributed-system cost.
-
 Microservices, Kafka, Kubernetes, service mesh and multi-region are options, not milestones.
 
 ---
 
-# 23. CHANGE CONTROL
+# 26. CHANGE CONTROL
 
 For every material architecture change:
 
@@ -425,17 +497,18 @@ For every material architecture change:
 6. update this prompt if agent behavior changes;
 7. update the Source of Truth when consolidated knowledge changes;
 8. update the Context/Domain/Module Evidence Matrix when ownership evidence changes;
-9. create/update ADR;
-10. update registers;
-11. update checkpoint;
-12. run reference/consistency checks;
-13. record evidence.
+9. update the Aggregate/Invariant Boundary Register when aggregate/invariant evidence changes;
+10. create/update ADR;
+11. update registers;
+12. update checkpoint;
+13. run reference/consistency checks;
+14. record evidence.
 
-The four architecture control resources must remain synchronized.
+The architecture control resources must remain synchronized.
 
 ---
 
-# 24. STOP CONDITIONS
+# 27. STOP CONDITIONS
 
 STOP and escalate when:
 
@@ -454,7 +527,7 @@ Do not improvise around a stop condition.
 
 ---
 
-# 25. FINAL RESPONSE CONTRACT FOR EVERY ENGINEERING PASS
+# 28. FINAL RESPONSE CONTRACT FOR EVERY ENGINEERING PASS
 
 Report exactly:
 
@@ -476,7 +549,7 @@ Never claim execution without evidence.
 
 ---
 
-# 26. CURRENT CHECKPOINT
+# 29. CURRENT CHECKPOINT
 
 As of 2026-09-20:
 
@@ -484,22 +557,24 @@ As of 2026-09-20:
 - Architecture branch: `VERIFIED`
 - Application implementation: `BLOCKED`
 - Live database identity: `BLOCKED`
-- Context/module decomposition: `CONFLICT / FOUNDER DECISION REQUIRED`
-- Scheduling ownership: `FOUNDER DECISION REQUIRED`
+- Context grouping: `SUPPORTED TARGET — 9 CONTEXT VIEW`
+- Module decomposition: `OPEN ARCHITECTURAL REFINEMENT`
+- Scheduling ownership: `OPEN / PROPOSED SUPERSESSION`
 - Context/domain/module evidence matrix: `CREATED / DERIVED / NOT AUTHORITY`
+- Aggregate/invariant boundary register: `CREATED / DERIVED CONTRACT / OPEN`
 - Task structural counts: `VERIFIED`
 - Task packet completeness: `OPEN`
 - Schema source counts: `VERIFIED`
-- Executable schema promotion: `OPEN`
+- Executable schema promotion: `BLOCKED`
 - Security enforcement: `BLOCKED`
 - RLS/runtime tenancy: `BLOCKED`
 - Implementation authorization: `BLOCKED`
 
-The next permissible work is architecture closure and derived contract engineering, not uncontrolled application implementation.
+The next permissible work is aggregate/invariant closure, command/query contracts, event reconciliation and security/tenancy contract engineering—not uncontrolled application implementation.
 
 ---
 
-# 27. EXTERNAL ENGINEERING BASELINE
+# 30. EXTERNAL ENGINEERING BASELINE
 
 The operating model has been cross-checked against current authoritative guidance covering DDD/hexagonal architecture, staged modular decomposition, PostgreSQL concurrency, local-first Supabase workflows, CI status evidence and OWASP AI excessive-agency risks.
 
