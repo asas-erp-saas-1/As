@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 2.0
+Version: 2.1
 Date: 2026-09-20
 
 ## Repository
@@ -22,15 +22,16 @@ ARCHITECTURE ENGINEERING — H1.4 COMMAND / ACTION CONTRACT CLOSURE
 The 2026 architecture program uses controlled navigation resources:
 
 1. `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — consolidated engineering truth, provenance and routing.
-2. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` — WHAT the target architecture is.
-3. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — current proposed authority reconciliation amendment to the Blueprint.
-4. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — HOW the architecture is engineered and verified.
-5. `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — HOW an AI engineering agent must operate.
+2. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` — WHAT the target architecture is; v1.4.0 now incorporates Amendment 001.
+3. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — HOW the architecture is engineered and verified; v1.5.0.
+4. `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — HOW an AI engineering agent must operate; v1.5.0.
+5. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — HISTORICAL provenance; superseded by Blueprint v1.4.0 and retained, not active competing authority.
 
 Derived contract companions:
 - `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
 - `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
 - `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
+- `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
 - `docs/architecture/ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`
 - `docs/architecture/ASAS-COMMERCIAL-FINANCE-SEMANTIC-RECONCILIATION-2026.md`
 
@@ -61,14 +62,15 @@ Supporting registers remain canonical for their own concepts. No competing archi
 - Corrected source/register promotion state
 - Structural task-register parse and count correction
 - Source register structural reconciliation evidence
-- 2026 platform architecture blueprint v1.3
-- Blueprint authority reconciliation amendment 001
-- 2026 architecture engineering roadmap v1.4.1
-- 2026 architecture context prompt v1.4.1
+- 2026 platform architecture blueprint v1.4.0
+- Blueprint authority reconciliation amendment 001 — incorporated and historical
+- 2026 architecture engineering roadmap v1.5.0
+- 2026 architecture context prompt v1.5.0
 - 2026 context/domain/module evidence matrix v1.0
 - consolidated engineering source of truth v1.2
 - aggregate/invariant boundary register v1.0.1
 - command/action contract register v1.0.1
+- Offer domain contract v1.0
 - Unit/Reservation consistency contract v1.0.1
 - Commercial/Finance semantic reconciliation v1.0
 
@@ -78,7 +80,7 @@ The v1.6.1 Blueprint/package remains the foundation source baseline for source f
 ## Important source reconciliation
 The source package contains accepted ADR-0017 specifying the reservation protocol: transactional lock/re-verification plus partial uniqueness constraints for active reservations and unreleased holds. The 2026 consistency contract now records that decision as the current approved architectural baseline while keeping executable/runtime enforcement UNVERIFIED.
 
-The source package schema contract also explicitly defines `Offer`, `PaymentPlan`, `PaymentScheduleItem`, `Receipt`, and `ReceiptAllocation`. Therefore the earlier ambiguity has been refined:
+The source package schema contract also explicitly defines `Offer`, `PaymentPlan`, `PaymentScheduleItem`, `Receipt`, and `ReceiptAllocation`. Therefore:
 - Offer is a supported Sales aggregate candidate, but command/state/permission/event closure remains open.
 - The launch finance vocabulary does not require a standalone Payment aggregate merely because V3 uses the word Payment.
 - Current source semantics are `Contract → PaymentPlan/schedule items → Receipt → ReceiptAllocation → Finance/Ledger where authorized`.
@@ -98,9 +100,9 @@ The source package schema contract also explicitly defines `Offer`, `PaymentPlan
 The business invariant and approved ADR-0017 protocol are now reconciled. Remaining work is executable schema verification, permission/tenant mapping, event mapping, idempotency details, race tests and evidence.
 
 ### Offer
-`SUPPORTED AGGREGATE CANDIDATE / CONTRACT OPEN`
+`SUPPORTED AGGREGATE CANDIDATE / DOMAIN CONTRACT OPEN`
 
-Source schema evidence establishes an Offer business record with Opportunity and Unit relationships, pricing snapshot, discount and lifecycle fields. Final command/state/permission/event contract remains open.
+Source evidence establishes Offer as a commercial record with Opportunity and Unit relationships, pricing snapshot, discount and lifecycle fields. A dedicated derived Offer contract now defines supported invariants, candidate Sales ownership, command requirements, concurrency risks and closure criteria. State, permission, approval threshold and event mappings remain open.
 
 ### Payment / PaymentSchedule / Receipt
 `PARTIALLY CLOSED / EXECUTABLE FINANCE CONTRACT OPEN`
@@ -127,7 +129,7 @@ Historical accepted ADR remains active evidence until explicitly superseded.
 
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
-G1 AMBER — authority reconciliation ongoing
+G1 AMBER — authority reconciliation ongoing; Blueprint v1.4.0 now incorporates the previous amendment
 G2 AMBER — domain grouping supported; module decomposition remains open; Scheduling reopening remains open
 G3 AMBER — aggregate/invariant contracts active; Unit/Reservation logical protocol reconciled; Offer/Building/finance boundaries remain open
 G4 AMBER — invariant doctrine exists; executable enforcement absent
@@ -160,4 +162,4 @@ No application feature implementation, production schema mutation, migration dep
 11. Authorize the first bounded vertical implementation slice only after dependencies and gates are GREEN.
 
 ## Continuation rule
-On continuation, load this checkpoint plus the Source of Truth, Blueprint, Blueprint Amendment 001, Roadmap, Context Prompt, Evidence Matrix, Aggregate/Invariant Register, Command/Action Register, Unit/Reservation Consistency Contract, Commercial/Finance Semantic Reconciliation, then open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
+On continuation, load this checkpoint plus the Source of Truth, Blueprint, Roadmap, Context Prompt, Evidence Matrix, Aggregate/Invariant Register, Command/Action Register, Offer Contract, Unit/Reservation Consistency Contract, Commercial/Finance Semantic Reconciliation, then open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
