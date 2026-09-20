@@ -2,18 +2,19 @@
 
 **Artifact ID:** ASAS-ARCH-PLATFORM-2026-001  
 **Status:** PROPOSED — ENGINEERING BASELINE  
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Effective date:** 2026-09-20  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Canonical role:** Single architectural truth for the 2026 engineering program, subject to explicit ADR supersession  
 **Branch:** `platform-architecture-2026`  
 **Parent checkpoint:** `docs/handoff/CURRENT-SESSION-STATE.md`  
+**Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
 
 > This document is the reconciled architectural target. It is not a claim that the application, database, runtime, or infrastructure already exists. Existing repository/runtime facts remain evidence sources; this blueprint defines the desired engineering state.
 
 ---
 
-## 0. NON-NEGOTIABLE ARCHITECTURAL PRINCIPLES
+# 0. NON-NEGOTIABLE ARCHITECTURAL PRINCIPLES
 
 1. **Reality before intent.** Existing runtime/database state is never overwritten by documentation.
 2. **Architecture before implementation.** Domain boundaries, contracts, invariants, state machines, data ownership, security model, design system, and verification strategy precede application code and database programming.
@@ -182,43 +183,37 @@ Infrastructure must not become the owner of business semantics.
 
 ---
 
-# 4. DOMAIN AND MODULE RECONCILIATION
-
-## 4.1 Current architectural conflict
+# 4. DOMAIN / MODULE RECONCILIATION — CURRENT STATUS
 
 The repository contains two materially different architectural descriptions:
 
-**A. Nine-context condensed baseline**
+### A. Nine-context condensed domain view
 
 `Core / CRM / Sales / Inventory / Finance / Website Studio / Marketing / Analytics / Documents`
 
-**B. Fifteen-module candidate implementation decomposition** documented by the historical `ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` and `CANONICAL-CONTEXT-TO-MODULE-MAP.md`, including Lead & CRM, Property & Inventory, Visit Management, Reservation & Contract, Payment & Finance, Commission & Payout, Communication, Identity/Access/Workspace, Notification, Collaboration & Extensibility, Calendar & Scheduling, Activity/Timeline/Audit, Search, Reporting & Analytics, and Workflow & Automation Engine.
+### B. Fifteen-module implementation candidate
 
-The historical ADR explicitly states that its 15-module proposal is **PROPOSED — awaiting explicit founder acceptance**. Therefore neither the nine-context summary nor the 15-module proposal may be silently promoted to an implementation contract.
+The historical `ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` and `CANONICAL-CONTEXT-TO-MODULE-MAP.md` propose:
 
-### Current status
+`Lead & CRM / Property & Inventory / Visit Management / Reservation & Contract / Payment & Finance / Commission & Payout / Communication / Identity, Access & Workspace / Notification / Collaboration & Extensibility / Calendar & Scheduling / Activity, Timeline & Audit / Search / Reporting & Analytics / Workflow & Automation Engine`
 
-**CONFLICT / FOUNDER DECISION REQUIRED**
+The historical ADR explicitly states that this 15-module proposal is **PROPOSED — awaiting explicit founder acceptance**.
 
-## 4.2 Engineering interpretation pending decision
+### Current architectural truth
 
-The current safe architectural position is:
+**C2-001 = CONFLICT / FOUNDER DECISION REQUIRED.**
 
-```text
-STRATEGIC / DOMAIN VIEW
-        ↕
-IMPLEMENTATION MODULE VIEW
-```
+The blueprint deliberately does not force the nine-context view to equal the 15-module view. The relationship must be decided from evidence rather than counting.
 
-The nine-context document may represent a high-level grouping while the 15-module artifact may represent a finer implementation decomposition. That interpretation is plausible but is **not yet an accepted architectural decision**.
+The canonical evidence matrix is:
 
-Do not assume that every implementation module is a bounded context.
-Do not assume that every bounded context is a database schema.
-Do not assume that a technical capability is a domain context.
+`docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
 
-## 4.3 Boundary decision criteria
+It records candidate mappings, candidate aggregate ownership, platform capability classification, dependency evidence and unresolved boundaries without authorizing implementation.
 
-The final model must be selected using evidence for:
+## 4.1 Boundary decision criteria
+
+The accepted model must be evaluated against:
 
 - semantic cohesion;
 - ubiquitous language;
@@ -229,18 +224,16 @@ The final model must be selected using evidence for:
 - change cadence;
 - failure isolation;
 - scaling characteristics;
-- team ownership;
+- team/agent ownership;
 - synchronous coupling;
 - event coupling;
 - operational complexity.
 
-The accepted ADR must preserve rejected alternatives and explain why the selected model is safer.
+## 4.2 Platform capabilities
 
-## 4.4 Platform capabilities
+Identity, Tenancy, Authorization, Audit, Events, Workflow, Scheduling, Search, Media, Notifications, Integrations, Configuration, AI and SaaS control remain platform capabilities/candidate modules until ownership is explicitly accepted.
 
-Identity, Tenancy, Authorization, Audit, Events, Workflow, Scheduling, Search, Media, Notifications, Integrations, Configuration, AI and SaaS control remain candidates for platform capabilities or modules until ownership is explicitly decided.
-
-Scheduling remains specifically **FOUNDER DECISION REQUIRED**.
+Scheduling remains **FOUNDER DECISION REQUIRED**.
 
 ---
 
@@ -424,8 +417,6 @@ LIVE DATABASE
 
 `schema contract → local PostgreSQL/Supabase stack → migrations → tests → CI → controlled remote deployment`
 
-Supabase documents local development, versioned migrations and schema diff workflows suitable for this construction model.
-
 ## 12.2 Migration rules
 
 - forward-only migration history;
@@ -513,8 +504,6 @@ AI must not directly mutate authoritative business data.
 - **Approval-required:** human approval before commit.
 - **Prohibited autonomous:** destructive production changes, financial corrections, tenant deletion, security bypass, risky credential rotation, legal/contract-signature decisions, unauthorized mass communication.
 
-OWASP's current GenAI guidance identifies excessive functionality, permissions and autonomy as major causes of excessive-agency risk. ASAS therefore requires least-privilege tools, policy-gated execution and caller-authority inheritance.
-
 ---
 
 # 15. OBSERVABILITY AND RELIABILITY
@@ -597,7 +586,7 @@ Every implementation-critical requirement must be traceable:
 
 `Requirement → ADR → Context/Module → Aggregate → Invariant → Command → Permission → Event → Schema → Task → Implementation → Test → Evidence`
 
-Unresolved nodes remain explicitly marked `OPEN`, `CONFLICT`, or `BLOCKED`.
+Unresolved nodes remain explicitly `OPEN`, `CONFLICT`, or `BLOCKED`.
 
 ---
 
@@ -676,10 +665,11 @@ Any architectural change must:
 10. verify references and CI;
 11. preserve historical evidence.
 
-The three-document architecture control plane remains:
+The architecture control plane is:
 
 - **Blueprint** = what the architecture is.
 - **Roadmap** = how architecture is engineered and verified.
 - **Context Prompt** = how the AI engineering agent operates.
+- **Source of Truth** = consolidated provenance and routing; it does not silently supersede domain-specific authority.
 
-No fourth competing architecture blueprint should be created without explicit supersession.
+No competing architecture blueprint should be created without explicit supersession.
