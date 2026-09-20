@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-AGGREGATE-INVARIANT-2026-001  
 **Status:** DERIVED ARCHITECTURAL CONTRACT — OPEN / EVIDENCE-BACKED  
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Effective date:** 2026-09-20  
 **Owner:** Lead Architecture / Domain Engineering  
 **Branch:** `platform-architecture-2026`  
@@ -68,7 +68,7 @@ These statements are source-derived. They are not claims that the current reposi
 | AGG-005 | Unit | Property & Inventory | Unit availability/pricing/construction facts | availability transitions; project ownership; commercial/construction state separation | **critical reservation race** | SUPPORTED | Enterprise Domain Model + V3 reservation safety |
 | AGG-006 | Listing | Property & Inventory | Brokerage listing | mandate/ownership, price, availability | concurrent listing edits | SUPPORTED | Enterprise Domain Model |
 | AGG-007 | Visit | Visit/Scheduling ownership TBD | Visit lifecycle | scheduled time, lead/property relationship, outcome | double booking / reschedule race | OPEN | Enterprise Domain Model; Scheduling ownership unresolved |
-| AGG-008 | Offer | Sales / ownership TBD | Offer terms | authorization and discount/approval semantics | concurrent competing offers | OPEN | V3 commercial spine; detailed aggregate contract not sufficiently sourced |
+| AGG-008 | Offer | Sales / ownership TBD | Offer terms | authorization and discount/approval semantics | concurrent competing offers | **OPEN — CONTRACT IN PROGRESS** | V3 commercial spine + ASAS-OFFER-DOMAIN-CONTRACT-2026 |
 | AGG-009 | Reservation | Reservation & Contract / Sales boundary TBD | Reservation lifecycle | approved ownership of a unit/property; expiration; one active winner per unit | **critical concurrency** | SUPPORTED | Enterprise Domain Model + V3 reservation safety |
 | AGG-010 | Contract | Reservation & Contract | Contract lifecycle | cannot exist without approved Reservation; signature/status governed | concurrent approval/signature state | SUPPORTED | Enterprise Domain Model |
 | AGG-011 | PaymentSchedule | Payment & Finance | payment obligations | installments owned by schedule; collection gated by contract milestone where applicable | payment posting/reconciliation race | SUPPORTED | Enterprise Domain Model |
@@ -144,6 +144,33 @@ Rule: consumers must tolerate duplicate delivery without creating duplicate busi
 ### INV-015 — AI authority inheritance
 Rule: AI tools cannot widen the authority of the human/service principal invoking them. Owner: Security/Authorization platform. Status: SUPPORTED target rule / runtime UNVERIFIED.
 
+### INV-016 — Offer tenant boundary
+Rule: Offer access and mutation require organization/tenant scope before the Offer is read or changed. Owner: Sales/Commercial + Identity/Tenancy. Status: SUPPORTED target rule / runtime UNVERIFIED.
+
+### INV-017 — Offer unit integrity
+Rule: an Offer must reference a valid commercial Unit/property according to the accepted Inventory contract. Owner: Sales/Commercial + Inventory. Status: SUPPORTED semantic rule / implementation UNVERIFIED.
+
+### INV-018 — Offer opportunity integrity
+Rule: an Offer must remain associated with the relevant opportunity/lead according to the accepted CRM contract. Owner: Sales/Commercial + CRM. Status: SUPPORTED semantic rule / implementation UNVERIFIED.
+
+### INV-019 — Offer effective-price authority
+Rule: effective price is derived from authoritative pricing inputs and explicit currency/rounding semantics; client- or AI-supplied effective price is not authoritative. Owner: Sales/Commercial + Finance pricing policy. Status: SUPPORTED target rule.
+
+### INV-020 — Offer discount authority
+Rule: a discount or commercial deviation becomes effective only after server-side authorization according to the canonical approval policy. Thresholds and permission key remain OPEN. Owner: Sales/Commercial + Authorization. Status: SUPPORTED target rule / policy OPEN.
+
+### INV-021 — Offer validity
+Rule: an expired Offer cannot be treated as a current valid commercial proposal without an explicit reissue/new lifecycle action. Owner: Sales/Commercial. Status: SUPPORTED target rule / state model OPEN.
+
+### INV-022 — Offer/reservation separation
+Rule: Offer submission/approval does not reserve inventory. Reservation ownership is established only through the authorized Reservation contract and concurrency protocol. Owner: Sales + Inventory/Reservation. Status: SUPPORTED.
+
+### INV-023 — Offer material-change audit
+Rule: material Offer term and approval-status changes produce auditable evidence. Owner: Sales/Commercial + Audit platform. Status: SUPPORTED target rule.
+
+### INV-024 — Offer idempotent mutation
+Rule: retryable API/external/AI operations that can create duplicate Offers or duplicate approval effects require idempotency semantics. Key design remains OPEN. Owner: Sales/Commercial + platform idempotency. Status: SUPPORTED target rule / key OPEN.
+
 ## 7. TRANSACTION BOUNDARY RULES
 
 The following are architectural candidates, not implementation commands:
@@ -154,6 +181,7 @@ The following are architectural candidates, not implementation commands:
 4. Contract approval/signature state: contract lifecycle mutation must preserve Reservation prerequisite and authorization.
 5. Financial posting: authoritative financial mutation must atomically preserve idempotency, ledger invariants and audit/outbox requirements.
 6. Commission approval: calculated/adjusted commission state must preserve approval semantics.
+7. Offer mutation: Offer creation/submission/approval must atomically preserve Offer invariants, authorization outcome, audit and required durable event publication. It must not acquire reservation ownership as an implicit side effect.
 
 Cross-context side effects should normally be asynchronous and idempotent unless an explicit consistency requirement proves synchronous coupling necessary.
 
@@ -169,11 +197,41 @@ Before implementation authorization, critical race tests must exist for:
 - payment retry after timeout;
 - commission adjustment racing with approval;
 - duplicate webhook delivery;
-- event consumer retry after partial failure.
+- event consumer retry after partial failure;
+- duplicate Offer creation/retry with the same idempotency key;
+- concurrent Offer approval/rejection or material-term mutation where policy permits both requests to race.
 
 Exact database locking/isolation mechanisms remain implementation decisions until workload and schema contracts are validated.
 
-## 9. OPEN BOUNDARY QUESTIONS
+## 9. OFFER CLOSURE GATE — H1.4.2
+
+This gate advances the Offer contract without inventing persistence or permission identifiers.
+
+| Dimension | Current disposition | Closure requirement |
+|---|---|---|
+| Business meaning | SUPPORTED | preserve Offer as time-bounded commercial proposal; Offer ≠ Reservation |
+| Candidate ownership | OPEN | confirm Sales/Commercial ownership through accepted boundary decision/ADR or source authority |
+| Tenant scope | SUPPORTED TARGET | map to canonical tenant/authorization contract |
+| Unit reference | SUPPORTED | reconcile with Inventory Unit contract |
+| Opportunity reference | SUPPORTED | reconcile with CRM/Opportunity contract |
+| Pricing derivation | SUPPORTED TARGET | close authoritative pricing/rounding contract before executable schema |
+| Discount policy | OPEN | canonical threshold + approval authority required |
+| State machine | OPEN | canonical state register must accept exact states/transitions |
+| `submit_offer` command | OPEN | command/permission/state/event mapping required |
+| `approve_discount` command | OPEN | approval authority + permission + state/event mapping required |
+| Permission key | OPEN | must reference existing canonical permission; no invented key |
+| Domain events | OPEN | producer/version/tenant/correlation/idempotency contract required |
+| Idempotency | OPEN | key scope, uniqueness and replay outcome required |
+| Concurrency | OPEN | race catalogue + acceptance behavior required |
+| Audit | SUPPORTED TARGET | audit record/evidence contract required |
+| Persistence/schema | BLOCKED | not authorized until the above are closed |
+| Application implementation | BLOCKED | task packet not yet implementation-ready |
+
+**H1.4.2 status:** `PARTIAL`.
+
+No database model, migration, API endpoint or production change is authorized by this gate.
+
+## 10. OPEN BOUNDARY QUESTIONS
 
 ### OI-001 — Lead vs Opportunity/Deal
 Source model deliberately keeps one Lead aggregate across the 17-stage pipeline. This is source-supported, but future product requirements may justify separation. No split is authorized without an ADR.
@@ -185,7 +243,7 @@ Source model deliberately makes Unit its own aggregate because units are concurr
 The commercial spine and source domain model place Reservation in Reservation & Contract, while inventory availability is owned by Unit. The exact atomic boundary is now governed by `ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`. Aggregate separation remains; implementation mechanism remains OPEN.
 
 ### OI-004 — Offer ownership
-V3 includes Offer in the commercial spine, but the supplied Enterprise Domain Model does not provide a detailed Offer aggregate. Ownership and invariants are therefore OPEN.
+V3 includes Offer in the commercial spine, while the supplied Enterprise Domain Model does not provide a detailed Offer aggregate. The derived Offer contract now establishes semantic invariants and candidate Sales/Commercial ownership, but ownership is not yet accepted as an implementation boundary. **Status: OPEN — CONTRACT IN PROGRESS.**
 
 ### OI-005 — Payment vs PaymentSchedule
 The source model defines PaymentSchedule and PaymentReceived event, while V3 includes Payment as a business object. Do not create a Payment aggregate/table solely to reconcile naming. Define the authoritative payment fact and its relationship to schedules before schema promotion.
@@ -199,7 +257,7 @@ Building appears in the real-estate hierarchy and commercial spine, but source a
 ### OI-008 — Scheduling
 Scheduling ownership remains separately unresolved. Do not move Visit into a new bounded context solely to solve the naming issue.
 
-## 10. NON-GOALS
+## 11. NON-GOALS
 
 This register does not:
 
@@ -212,9 +270,9 @@ This register does not:
 - convert historical architecture into current authority;
 - create microservice boundaries.
 
-## 11. NEXT ACTIONS
+## 12. NEXT ACTIONS
 
-1. Close Offer ownership/invariants without inventing persistence structures.
+1. Close Offer ownership/invariants and its command/state/permission/event mapping without inventing persistence structures.
 2. Reconcile Payment vs PaymentSchedule vs Receipt semantics.
 3. Define Building ownership and invariants.
 4. Map critical invariants to the registered state machine/permission/event where available.
