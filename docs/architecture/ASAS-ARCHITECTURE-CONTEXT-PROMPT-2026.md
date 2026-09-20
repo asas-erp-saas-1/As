@@ -2,13 +2,15 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.4.1  
+**Version:** 1.5.0  
 **Purpose:** Prevent context loss, source confusion, architectural guessing, premature coding and uncontrolled scope expansion during the ASAS architecture program.  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
-**Blueprint amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md`  
+**Historical amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — superseded by Blueprint v1.4.0 and retained as historical provenance  
 **Execution companion:** `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`  
 **Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
-**Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+**Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`  
+**Command contract companion:** `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`  
+**Offer contract companion:** `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
 
 ---
 
@@ -33,15 +35,16 @@ Before every non-trivial task load, in this order:
 5. this prompt;
 6. `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`;
 7. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`;
-8. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md`;
-9. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`;
-10. `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`;
-11. `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`;
-12. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
-13. `docs/governance/FOUNDER-DECISIONS.md`;
-14. relevant ADRs/contracts/registers;
-15. source package/files when provenance is required;
-16. live runtime/database only when explicitly authorized and identity is verified.
+8. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`;
+9. `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`;
+10. `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`;
+11. `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`;
+12. `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md` when Offer/commercial lifecycle work is involved;
+13. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
+14. `docs/governance/FOUNDER-DECISIONS.md`;
+15. relevant ADRs/contracts/registers;
+16. source package/files when provenance is required;
+17. live runtime/database only when explicitly authorized and identity is verified.
 
 Never resume from conversation memory when repository evidence exists.
 
@@ -55,7 +58,7 @@ Use these control resources together:
 SOURCE OF TRUTH
   = consolidated engineering truth, provenance and routing
 
-BLUEPRINT + APPROVED AMENDMENTS
+BLUEPRINT
   = WHAT the target architecture is
 
 ROADMAP
@@ -65,7 +68,7 @@ CONTEXT PROMPT
   = HOW the agent must operate
 ```
 
-The Context/Domain/Module Evidence Matrix and Aggregate/Invariant Boundary Register are derived evidence/contract artifacts. They do not silently become higher authority than approved ADRs, founder decisions, canonical registers or live brownfield reality.
+The Context/Domain/Module Evidence Matrix, Aggregate/Invariant Boundary Register, Command/Action Register and Offer Contract are derived evidence/contract artifacts. They do not silently become higher authority than approved ADRs, founder decisions, canonical registers or live brownfield reality.
 
 Supporting canonical registers remain authoritative for their own concepts.
 
@@ -197,6 +200,14 @@ Current critical open boundaries:
 - Building ownership/invariants;
 - Scheduling ownership.
 
+### Offer
+
+Read:
+
+`docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
+
+Offer is a source-supported commercial concept and a candidate Sales-owned aggregate/object, but ownership, state machine, permission mapping, approval thresholds, event mapping and concurrency contract remain OPEN. Do not create a new bounded context for Offer.
+
 ---
 
 # 11. RESERVATION CONCURRENCY RULE
@@ -205,7 +216,7 @@ The required invariant is:
 
 > exactly one active reservation winner per Unit under concurrency.
 
-Do not prescribe a lock primitive before schema/workload/retry evidence exists.
+The approved historical reservation protocol is evidence for the logical requirement; the 2026 consistency contract governs the current derived contract. Do not invent a different concurrency mechanism without reconciling the approved source evidence.
 
 Required evidence eventually includes duplicate-command, two-agent race, expiry-vs-conversion race, database constraint/conditional-write, audit, outbox and partial-failure reconciliation tests.
 
@@ -329,6 +340,8 @@ For every material architecture change:
 11. run reference/consistency checks;
 12. record evidence.
 
+When an amendment is incorporated into the parent Blueprint, retain the amendment as historical provenance and remove it from active loading as a competing authority.
+
 ---
 
 # 23. STOP CONDITIONS
@@ -370,12 +383,14 @@ As of 2026-09-20:
 - Scheduling ownership: `OPEN / PROPOSED SUPERSESSION`
 - Context/domain/module evidence matrix: `CREATED / DERIVED / NOT AUTHORITY`
 - Aggregate/invariant boundary register: `CREATED / DERIVED CONTRACT / OPEN`
-- Task structural counts: `VERIFIED`
+- Command/action contract register: `CREATED / DERIVED CONTRACT / OPEN`
+- Offer domain contract: `CREATED / DERIVED CONTRACT / OPEN`
+- Payment semantic reconciliation: `PARTIAL`
+- Building ownership: `OPEN`
 - Task packet completeness: `OPEN`
-- Schema source counts: `VERIFIED`
 - Executable schema promotion: `BLOCKED`
 - Security enforcement: `BLOCKED`
 - RLS/runtime tenancy: `BLOCKED`
 - Implementation authorization: `BLOCKED`
 
-Next permissible work: aggregate/invariant closure, command/query contracts, event reconciliation and security/tenancy contract engineering.
+Next permissible work: Offer closure, Building ownership/invariants, Payment/Receipt contract closure, Scheduling ADR reconciliation, command→permission→state→event mapping, then query/read-model contracts. No schema promotion or application implementation is implied.
