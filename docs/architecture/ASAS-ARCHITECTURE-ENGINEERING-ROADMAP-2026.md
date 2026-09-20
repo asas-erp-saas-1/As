@@ -2,10 +2,11 @@
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
 **Status:** ACTIVE PROPOSED ROADMAP  
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Owner:** Lead Architecture / Technical Program Lead  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
-**Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`
+**Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`  
+**Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
 
 ## PURPOSE
 
@@ -73,6 +74,22 @@ Historical `ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` explicitly remai
 10. Record rejected alternatives.
 11. Define extraction triggers for future modular decomposition.
 12. Preserve the distinction between high-level domain grouping and implementation module decomposition until the founder decision is made.
+
+### H1.2 — Evidence matrix completed
+The evidence layer is now materialized in:
+
+`docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
+
+It records the nine-context view, the historical 15-module candidate, platform capability classification, candidate aggregate ownership, candidate dependency rules, and unresolved boundaries without promoting them to implementation authority.
+
+### H1.3 — Decision preparation
+Before any schema or application ownership is assigned:
+
+- prepare C2-001 founder decision packet;
+- prepare C2-002 Scheduling decision packet;
+- prepare explicit boundary criteria and rejected alternatives;
+- derive ownership-dependent task packets only after the decisions;
+- keep non-decision-dependent invariant/event/security analysis moving in parallel.
 
 ### Boundary test
 A boundary is acceptable only when semantic cohesion, ownership, consistency, authorization, data ownership, change cadence, failure behavior, scaling characteristics, team ownership and integration cost have been considered.
@@ -496,34 +513,37 @@ No work is added merely for complexity, and no work is removed merely to make th
 ### Q0 — Resolve architectural authority conflict
 **BLOCKED:** C2-001 and Scheduling require founder authority.
 
-### Q1 — Task packet derivation
+### Q1 — Evidence matrix and decision packets
+**COMPLETED / CONTINUING:** context/domain/module evidence matrix is created. Founder decision packets are now the next decision-bound work product.
+
+### Q2 — Task packet derivation
 **READY:** can proceed without changing source task semantics, but ownership fields depending on C2-001 remain unresolved.
 
-### Q2 — Context/domain ↔ module dependency and aggregate contract closure
+### Q3 — Context/domain ↔ module dependency and aggregate contract closure
 **DEPENDENT:** Q0 where ownership is affected.
 
-### Q3 — Event/integration contract reconciliation
-**DEPENDENT:** Q2.
+### Q4 — Event/integration contract reconciliation
+**DEPENDENT:** Q3.
 
-### Q4 — Security/tenancy contract closure
-**DEPENDENT:** Q2/Q3.
+### Q5 — Security/tenancy contract closure
+**DEPENDENT:** Q3/Q4.
 
-### Q5 — Schema contract promotion
-**DEPENDENT:** Q2/Q4.
+### Q6 — Schema contract promotion
+**DEPENDENT:** Q3/Q5.
 
-### Q6 — Local database foundation
-**DEPENDENT:** Q5.
+### Q7 — Local database foundation
+**DEPENDENT:** Q6.
 
-### Q7 — Design system engineering
+### Q8 — Design system engineering
 **PARTIALLY READY:** can proceed in parallel where it does not assume unresolved domain ownership.
 
-### Q8 — Application shell
-**DEPENDENT:** architecture implementation gate + Q5.
+### Q9 — Application shell
+**DEPENDENT:** architecture implementation gate + Q6.
 
-### Q9 — First vertical slice
-**DEPENDENT:** Q8 + authorized task packets.
+### Q10 — First vertical slice
+**DEPENDENT:** Q9 + authorized task packets.
 
-### Q10 — Runtime integration
+### Q11 — Runtime integration
 **DEPENDENT:** local verification + platform identity gate.
 
 ---
@@ -554,6 +574,7 @@ Required before implementation authorization:
 6. schema promotion plan;
 7. canonical artifact map;
 8. architecture gate status update;
-9. research/provenance record for material decisions.
+9. research/provenance record for material decisions;
+10. decision packets recorded in the founder-decision register.
 
 No code/database implementation authorization is implied by this roadmap.
