@@ -2,10 +2,11 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Purpose:** Prevent context loss, source confusion, architectural guessing, premature coding and uncontrolled scope expansion during the ASAS architecture program.  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
-**Execution companion:** `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`
+**Execution companion:** `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`  
+**Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
 
 ---
 
@@ -28,32 +29,39 @@ Before every non-trivial task load, in this order:
 3. `AGENTS.md`;
 4. `docs/handoff/CURRENT-SESSION-STATE.md`;
 5. this prompt;
-6. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`;
-7. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`;
-8. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
-9. `docs/governance/FOUNDER-DECISIONS.md`;
-10. relevant ADRs/contracts/registers;
-11. source package/files when provenance is required;
-12. live runtime/database only when explicitly authorized and identity is verified.
+6. `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`;
+7. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`;
+8. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`;
+9. `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`;
+10. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
+11. `docs/governance/FOUNDER-DECISIONS.md`;
+12. relevant ADRs/contracts/registers;
+13. source package/files when provenance is required;
+14. live runtime/database only when explicitly authorized and identity is verified.
 
 Never resume from conversation memory when repository evidence exists.
 
 ---
 
-# 2. SINGLE ARCHITECTURAL TRUTH
+# 2. SINGLE ARCHITECTURAL CONTROL PLANE
 
-Use this three-document control plane:
+Use these four architecture control resources together:
 
 ```text
+SOURCE OF TRUTH
+  = consolidated engineering truth, provenance and routing
+
 BLUEPRINT
-  = WHAT THE ARCHITECTURE IS
+  = WHAT the target architecture is
 
 ROADMAP
-  = HOW THE ARCHITECTURE IS ENGINEERED AND VERIFIED
+  = HOW the architecture is engineered and verified
 
 CONTEXT PROMPT
-  = HOW THE AGENT MUST OPERATE
+  = HOW the agent must operate
 ```
+
+The **Context/Domain/Module Evidence Matrix** is a derived evidence artifact, not a competing architecture authority. It records unresolved mappings and candidate ownership so the agent does not guess.
 
 Supporting canonical registers remain authoritative for their own concepts.
 
@@ -185,6 +193,8 @@ Therefore:
 Do not treat the nine-context grouping as the final implementation map.
 Do not treat the 15-module proposal as accepted.
 Do not create schemas, migrations or task ownership from either model as if the conflict were closed.
+
+Use `ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` as the evidence map while the conflict remains open.
 
 A valid future decision may establish a two-level architecture in which a high-level domain grouping and a finer implementation module decomposition coexist, but this is a proposal until accepted.
 
@@ -413,13 +423,15 @@ For every material architecture change:
 4. update Blueprint;
 5. update Roadmap if sequencing changes;
 6. update this prompt if agent behavior changes;
-7. create/update ADR;
-8. update registers;
-9. update checkpoint;
-10. run reference/consistency checks;
-11. record evidence.
+7. update the Source of Truth when consolidated knowledge changes;
+8. update the Context/Domain/Module Evidence Matrix when ownership evidence changes;
+9. create/update ADR;
+10. update registers;
+11. update checkpoint;
+12. run reference/consistency checks;
+13. record evidence.
 
-These three files must remain synchronized.
+The four architecture control resources must remain synchronized.
 
 ---
 
@@ -474,6 +486,7 @@ As of 2026-09-20:
 - Live database identity: `BLOCKED`
 - Context/module decomposition: `CONFLICT / FOUNDER DECISION REQUIRED`
 - Scheduling ownership: `FOUNDER DECISION REQUIRED`
+- Context/domain/module evidence matrix: `CREATED / DERIVED / NOT AUTHORITY`
 - Task structural counts: `VERIFIED`
 - Task packet completeness: `OPEN`
 - Schema source counts: `VERIFIED`
