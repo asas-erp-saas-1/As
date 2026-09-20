@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.7.0  
+**Version:** 1.8.0  
 **Canonical branch:** `platform-architecture-2026`
 
 ## Operating mission
@@ -63,7 +63,15 @@ Nine bounded contexts remain the supported target view:
 
 Scheduling, Integrations, Workflow, AI, Search, Media, Notifications and SaaS Control remain platform capabilities/subdomains unless an approved ADR proves an independent bounded-context boundary.
 
-Scheduling remains `OPEN / PROPOSED SUPERSESSION` until the historical ADR and current architecture are reconciled explicitly.
+### Scheduling conflict — explicit authority stop
+
+The supplied Blueprint v1.6.1 explicitly states that Scheduling is the **CRM context's scheduling submodule** and gives the intended repository home as `src/modules/crm/scheduling/`. The same source package contains ADR-0018, which records Scheduling as a **Core-hosted** submodule. The current `AGENTS.md` also states CRM ownership. These sources are materially inconsistent.
+
+Therefore the status is:
+
+`FOUNDER DECISION REQUIRED`
+
+No implementation ownership, persistence ownership, event ownership, permission ownership or dependency rule for Scheduling may be changed until an explicit ADR confirms or supersedes the historical decision.
 
 ## Contract-first execution
 
@@ -77,7 +85,7 @@ Critical domain work must close:
 
 ## Current work sequence
 
-`Evidence control → canonical artifact/branch provenance → Building → Offer → Payment/Receipt/Ledger → Scheduling → cross-domain reconciliation → schema authority → implementation authorization`
+`Evidence control → canonical artifact/branch provenance → Building → Offer → Payment/Receipt/Ledger → Scheduling decision → cross-domain reconciliation → schema authority → implementation authorization`
 
 ## Branch and research commands
 
@@ -88,10 +96,13 @@ git ls-remote --heads origin
 git log --all --oneline --decorate --graph --date-order
 git log --all --follow -- <path>
 git diff --name-status <canonical>...<candidate>
-rg -n "SESSION_STATE|CURRENT-SESSION-STATE|CANONICAL-ARTIFACT|ADR-|events\.json|permissions\.csv|state-machines\.json" .
+git show <branch>:<path>
+rg -n "SESSION_STATE|CURRENT-SESSION-STATE|CANONICAL-ARTIFACT|ADR-|events\.json|permissions\.csv|state-machines\.json|Scheduling|building_id" .
 ```
 
-Do not delete branches solely because they are old. Classify provenance first.
+For branch-level comparison, use the GitHub compare/commit history when available. For source-package provenance, inspect the supplied package directly. For technical claims, prefer official documentation and standards. Do not treat branch existence as authority.
+
+Do not delete branches solely because they are old. Classify provenance first and preserve unique evidence until its authority is reconciled.
 
 ## Safety boundaries
 
@@ -103,6 +114,6 @@ A finding is closed only when root cause, corrective action, references, verific
 
 ## Current checkpoint
 
-**ARCH-2026-W0.4 — Canonical artifact and branch provenance reconciliation.**
+**ARCH-2026-H1.4-CROSS-SOURCE-CONTRACT-CLOSURE**
 
-Current blockers include live DB identity, security/runtime verification, implementation authorization, unresolved Scheduling ownership, and incomplete domain contract closure.
+Current blockers include live DB identity, security/runtime verification, implementation authorization, unresolved Scheduling ownership, and incomplete Offer/Building/Finance contract closure.
