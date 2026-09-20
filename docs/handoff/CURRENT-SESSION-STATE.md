@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 2.2
+Version: 2.3
 Date: 2026-09-20
 
 ## Repository
@@ -28,7 +28,7 @@ The 2026 architecture program uses controlled navigation resources:
 5. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — HISTORICAL provenance; superseded by Blueprint v1.4.0 and retained, not active competing authority.
 
 Derived contract companions:
-- `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
+- `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` — v1.1.0; reconciled with current C2-001 classification.
 - `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
 - `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
 - `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
@@ -66,7 +66,7 @@ Supporting registers remain canonical for their own concepts. No competing archi
 - Blueprint authority reconciliation amendment 001 — incorporated and historical
 - 2026 architecture engineering roadmap v1.5.0
 - 2026 architecture context prompt v1.5.0
-- 2026 context/domain/module evidence matrix v1.0
+- 2026 context/domain/module evidence matrix v1.1.0 — canonical C2-001 reconciliation applied
 - consolidated engineering source of truth v1.3
 - aggregate/invariant boundary register v1.0.2
 - command/action contract register v1.0.1
