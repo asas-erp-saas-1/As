@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 2.1
+Version: 2.2
 Date: 2026-09-20
 
 ## Repository
@@ -16,7 +16,7 @@ Date: 2026-09-20
 ARCHITECTURE ENGINEERING — H1.4 COMMAND / ACTION CONTRACT CLOSURE
 
 ## Current checkpoint
-`ARCH-2026-H1.4-COMMAND-QUERY-CONTRACT-CLOSURE`
+`ARCH-2026-H1.4.2-OFFER-CONTRACT-CLOSURE`
 
 ## Canonical architecture control plane
 The 2026 architecture program uses controlled navigation resources:
@@ -67,12 +67,13 @@ Supporting registers remain canonical for their own concepts. No competing archi
 - 2026 architecture engineering roadmap v1.5.0
 - 2026 architecture context prompt v1.5.0
 - 2026 context/domain/module evidence matrix v1.0
-- consolidated engineering source of truth v1.2
-- aggregate/invariant boundary register v1.0.1
+- consolidated engineering source of truth v1.3
+- aggregate/invariant boundary register v1.0.2
 - command/action contract register v1.0.1
 - Offer domain contract v1.0
 - Unit/Reservation consistency contract v1.0.1
 - Commercial/Finance semantic reconciliation v1.0
+- Offer invariant/closure gate H1.4.2 — partial, no persistence authorization
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the foundation source baseline for source facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering techniques but does not override repository or founder authority.
@@ -88,10 +89,13 @@ The source package schema contract also explicitly defines `Offer`, `PaymentPlan
 
 ## Current architecture position
 ### C2-001
-`OPEN ARCHITECTURAL REFINEMENT` — nine-context target grouping remains supported; historical 15-module proposal is implementation evidence, not equal-authority competing bounded-context architecture.
+`OPEN ARCHITECTURAL REFINEMENT` — nine-context target grouping remains supported; historical 15-module proposal is implementation evidence, not equal-authority competing bounded-context architecture. This is not a count-based founder blocker.
 
-### C2-002
-`OPEN / PROPOSED SUPERSESSION` — historical ADR-0018 accepted Scheduling as a Core-hosted capability; 2026 reopening remains proposed. No silent ownership reassignment.
+### Scheduling ownership
+`OPEN / FOUNDER DECISION REQUIRED` — current architecture control plane does not silently reassign Scheduling ownership. Historical ADR evidence remains preserved until an explicit confirmation/supersession decision.
+
+### Live runtime identity
+`BLOCKED / NOT VERIFIED` — the similarly named connected Supabase project is not accepted as the canonical runtime for `asas-erp-saas-1/As`.
 
 ## H1.4 status
 ### Unit ↔ Reservation
@@ -100,9 +104,9 @@ The source package schema contract also explicitly defines `Offer`, `PaymentPlan
 The business invariant and approved ADR-0017 protocol are now reconciled. Remaining work is executable schema verification, permission/tenant mapping, event mapping, idempotency details, race tests and evidence.
 
 ### Offer
-`SUPPORTED AGGREGATE CANDIDATE / DOMAIN CONTRACT OPEN`
+`H1.4.2 PARTIAL / IMPLEMENTATION BLOCKED`
 
-Source evidence establishes Offer as a commercial record with Opportunity and Unit relationships, pricing snapshot, discount and lifecycle fields. A dedicated derived Offer contract now defines supported invariants, candidate Sales ownership, command requirements, concurrency risks and closure criteria. State, permission, approval threshold and event mappings remain open.
+The derived Offer contract and aggregate register now establish supported semantic invariants: tenant scope, Unit and opportunity integrity, deterministic effective-price authority, discount authorization boundary, validity semantics, Offer/Reservation separation, auditability and idempotent mutation requirements. The exact state machine, canonical permission keys, discount thresholds/approval authority, event schema, idempotency-key design and candidate ownership acceptance remain open. No schema/API implementation is authorized.
 
 ### Payment / PaymentSchedule / Receipt
 `PARTIALLY CLOSED / EXECUTABLE FINANCE CONTRACT OPEN`
@@ -115,7 +119,7 @@ Source schema and accepted payment posture support manual receipt recording/reco
 Ownership and invariants still require closure.
 
 ### Scheduling
-`OPEN / PROPOSED SUPERSESSION`
+`OPEN / FOUNDER DECISION REQUIRED`
 
 Historical accepted ADR remains active evidence until explicitly superseded.
 
@@ -125,12 +129,14 @@ Historical accepted ADR remains active evidence until explicitly superseded.
 - Full task packets are not yet derived from source task records.
 - Application implementation authorization is not granted.
 - Security/RLS runtime enforcement is not evidenced.
+- Offer command/state/permission/event closure is incomplete.
+- Scheduling ownership remains unresolved.
 - Production implementation authorization is not granted.
 
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
 G1 AMBER — authority reconciliation ongoing; Blueprint v1.4.0 now incorporates the previous amendment
-G2 AMBER — domain grouping supported; module decomposition remains open; Scheduling reopening remains open
+G2 AMBER — domain grouping supported; module decomposition remains open; Scheduling ownership remains open
 G3 AMBER — aggregate/invariant contracts active; Unit/Reservation logical protocol reconciled; Offer/Building/finance boundaries remain open
 G4 AMBER — invariant doctrine exists; executable enforcement absent
 G5 AMBER — state-machine register exists; runtime enforcement absent
@@ -149,7 +155,7 @@ G15 BLOCKED — implementation authorization absent
 No application feature implementation, production schema mutation, migration deployment, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the relevant architecture gates are closed.
 
 ## Next execution sequence
-1. Close Offer command/state/permission/event contract.
+1. Close Offer state/permission/event contract and candidate ownership decision without inventing persistence structures.
 2. Define Building ownership and invariants.
 3. Complete receipt/allocation/ledger contract.
 4. Reconcile Scheduling through an explicit ADR confirmation/supersession path.
