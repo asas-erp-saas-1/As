@@ -2,14 +2,15 @@
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
 **Status:** ACTIVE PROPOSED ROADMAP  
-**Version:** 1.4.1  
+**Version:** 1.5.0  
 **Owner:** Lead Architecture / Technical Program Lead  
-**Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
-**Blueprint amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md`  
-**Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`  
+**Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` v1.4.0  
+**Historical amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — superseded by Blueprint v1.4.0 and retained as provenance  
+**Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` v1.5.0  
 **Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
 **Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`  
-**Command contract companion:** `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
+**Command contract companion:** `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`  
+**Offer contract companion:** `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
 
 ## PURPOSE
 
@@ -56,17 +57,9 @@ Establish one trusted understanding of what exists.
 ### Objective
 Freeze the semantic architecture sufficiently for safe contract engineering—not by forcing a fixed number of contexts, but by proving ownership boundaries.
 
-### Important correction to the previous H1 interpretation
-
-The historical 15-module proposal is **not itself an equal-authority competing bounded-context architecture**. The current evidence supports a nine-context condensed domain view, while the 15-module artifact is a proposed implementation decomposition awaiting explicit acceptance. The engineering question is therefore:
-
-> **How should implementation modules map to the accepted domain model?**
-
-It is not necessary to choose a number merely to make the architecture coherent.
-
 ### C2 status
 
-- `C2-001` — **RECLASSIFIED: OPEN ARCHITECTURAL REFINEMENT**. Nine contexts remain the current target domain grouping; the 15-module proposal remains historical/proposed implementation evidence. Module decomposition must be derived from ownership and consistency evidence.
+- `C2-001` — **OPEN ARCHITECTURAL REFINEMENT**. Nine contexts remain the current target domain grouping; the 15-module proposal remains historical/proposed implementation evidence. Module decomposition must be derived from ownership and consistency evidence; no founder decision is required merely to choose between the counts.
 - `C2-002` — **OPEN / PROPOSED SUPERSESSION**. Historical `ADR-0018` accepted Scheduling as a Core/CRM-hosted capability; the 2026 architecture reopened that decision. The older ADR remains evidence until a new ADR explicitly supersedes it. No silent reassignment is permitted.
 
 ### Work
@@ -89,18 +82,27 @@ Active artifact:
 
 `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
 
-### H1.4 — Command / action contract baseline
-Created:
+### H1.4 — Command / action contract engineering
+Active artifacts:
 
-`docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
+- `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
+- `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
+- `docs/architecture/ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`
+- `docs/architecture/ASAS-COMMERCIAL-FINANCE-SEMANTIC-RECONCILIATION-2026.md`
 
-This register extracts only action vocabulary explicitly present in V3/source material. It does not invent APIs, payloads, permissions, schemas or implementation ownership. It remains OPEN until aggregate, state, permission and event mappings are closed.
+The current H1.4 objective is not endpoint design. It is to close command semantics against aggregate ownership, invariants, state transitions, authorization, tenancy, concurrency, events, audit and failure behavior.
 
-### H1.3 current findings
+### Current findings
 
 The source Enterprise Domain Model supports Lead, Client, Project, Unit, Listing, Visit, Reservation, Contract, PaymentSchedule, CommissionRule, CommissionRecord, Agency, Branch, User and NotificationPreference as aggregate candidates. Communication, Attachment, Activity/Timeline/Audit, Search and Reporting are described differently and must not be converted into aggregates merely because they are named objects/capabilities.
 
-The most important unresolved boundary is the atomic relationship between **Unit availability** and **Reservation creation**. The architecture requires one active reservation winner under concurrency, but the exact implementation boundary and persistence strategy remain open until the module/contract and workload evidence are complete.
+The Unit/Reservation logical invariant is supported: one active reservation winner per Unit under concurrency. The exact executable persistence strategy remains implementation work after contract closure and workload validation.
+
+Offer is source-supported as a commercial concept and candidate Sales-owned aggregate/object. Its ownership, state machine, permission mapping, approval thresholds, event mapping and concurrency contract remain OPEN.
+
+Payment semantics have been partially reconciled: do not create a standalone Payment aggregate/table solely to reconcile terminology between V3 and the source schema. Payment fact, PaymentSchedule, Receipt, ReceiptAllocation and Ledger semantics must be closed explicitly before schema promotion.
+
+Building ownership and Scheduling ownership remain OPEN.
 
 ### Boundary test
 A boundary is acceptable only when semantic cohesion, ownership, consistency, authorization, data ownership, change cadence, failure behavior, scaling characteristics, team ownership and integration cost have been considered.
@@ -117,7 +119,7 @@ A boundary is acceptable only when semantic cohesion, ownership, consistency, au
 - no hidden implementation-critical ownership ambiguity.
 
 ### Current state
-`PARTIAL — H1.3/H1.4 active; ownership-dependent items remain OPEN/BLOCKED`
+`PARTIAL — H1.4 active; Offer/Building/Finance/Scheduling ownership-dependent items remain OPEN/BLOCKED`
 
 ---
 
@@ -148,7 +150,7 @@ Do not generate database tables merely because a domain object exists.
 Every implementation-critical behavior has an owner, invariant, command, state transition, authorization rule and test strategy.
 
 ### Current state
-`PARTIAL`
+`PARTIAL — dependent on H1 closure`
 
 ---
 
@@ -522,43 +524,52 @@ No work is added merely for complexity, and no work is removed merely to make th
 # 17. CURRENT EXECUTION QUEUE
 
 ### Q0 — Authority reconciliation
-**ACTIVE:** C2-001 has been reclassified from a false binary context-count choice to a domain-grouping/module-decomposition refinement. Scheduling remains an explicit reopening decision.
+**CLOSED FOR CURRENT CONFLICT:** C2-001 is no longer treated as a binary 9-vs-15 founder choice. It is an open refinement of implementation module boundaries. Scheduling remains a separate reopening decision.
 
-### Q1 — Evidence matrix and aggregate/invariant contracts
-**ACTIVE:** context/domain/module evidence matrix is established; aggregate/invariant boundary register is created. Continue non-decision-dependent contract engineering.
+### Q1 — Aggregate/invariant boundary engineering
+**ACTIVE:** Unit/Reservation logical consistency is contractually defined; Offer, Building, Finance and Scheduling boundaries remain open where evidence is incomplete.
 
-### Q2 — Command/action contract baseline
-**ACTIVE:** source-derived action vocabulary is now captured in `ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`. Payloads, permissions, event mappings and implementation ownership remain open until contract closure.
+### Q2 — Command/action contract engineering
+**ACTIVE:** source-derived actions are captured. Offer now has a dedicated domain contract. Permission/state/event mappings remain to be closed.
 
-### Q3 — Decision packets
-**ACTIVE:** prepare Scheduling supersession/confirmation packet and any founder-level decisions actually required by product authority. Do not ask the founder to choose arbitrary module counts.
+### Q3 — Payment semantic closure
+**ACTIVE:** reconcile payment fact, PaymentSchedule, Receipt/Allocation and Ledger without inventing a standalone Payment model merely from terminology.
 
-### Q4 — Task packet derivation
-**READY WITH GUARDS:** derive implementation packets only where ownership is proven; ownership-dependent tasks remain blocked.
+### Q4 — Scheduling decision packet
+**ACTIVE:** prepare explicit ADR confirmation/supersession. Do not silently change ownership.
 
-### Q5 — Event/integration contract reconciliation
-**DEPENDENT:** Q1/Q2/Q4.
+### Q5 — Building boundary
+**ACTIVE:** define Building ownership and invariants from source evidence before schema promotion.
 
-### Q6 — Security/tenancy contract closure
-**DEPENDENT:** Q1/Q5.
+### Q6 — State/permission/event traceability
+**NEXT:** map critical commands to canonical state machines, permission keys and registered events.
 
-### Q7 — Schema contract promotion
-**DEPENDENT:** Q1/Q6.
+### Q7 — Query/read-model contracts
+**NEXT:** define read responsibilities for the commercial spine without giving projections mutation authority.
 
-### Q8 — Local database foundation
-**DEPENDENT:** Q7.
+### Q8 — Task packet derivation
+**GUARDED:** derive implementation packets only where ownership and contracts are proven.
 
-### Q9 — Design system engineering
-**PARTIALLY READY:** can proceed in parallel where it does not assume unresolved domain ownership.
+### Q9 — Security/tenancy contract closure
+**DEPENDENT:** Q6 + final ownership model.
 
-### Q10 — Application shell
-**DEPENDENT:** architecture implementation gate + Q7.
+### Q10 — Schema contract promotion
+**BLOCKED:** dependent on Q3/Q5/Q6/Q9 and architecture gates.
 
-### Q11 — First vertical slice
-**DEPENDENT:** Q10 + authorized task packets.
+### Q11 — Local database foundation
+**BLOCKED:** dependent on Q10.
 
-### Q12 — Runtime integration
-**DEPENDENT:** local verification + platform identity gate.
+### Q12 — Design system engineering
+**PARTIALLY READY:** may proceed where it does not assume unresolved domain ownership.
+
+### Q13 — Application shell
+**BLOCKED:** implementation authorization not granted.
+
+### Q14 — First vertical slice
+**BLOCKED:** dependent on Q13 + authorized task packets.
+
+### Q15 — Runtime/cloud verification
+**BLOCKED:** canonical runtime identity unresolved.
 
 ---
 
@@ -578,17 +589,17 @@ If the correct outcome is uncertainty, the phase remains explicitly `OPEN`, `CON
 
 **ARCH-2026-H1.4-COMMAND-QUERY-CONTRACT-CLOSURE**
 
-Required before schema promotion:
+Immediate sequence:
 
-1. Unit/Reservation atomic boundary;
-2. Offer ownership/invariants;
-3. Payment vs PaymentSchedule vs Receipt semantic contract;
-4. Building ownership/invariants;
-5. Scheduling ADR decision or explicit reaffirmation;
-6. command/action → aggregate → permission → state → event traceability;
-7. derived query/read-model contract for the commercial spine;
-8. task packet mapping where ownership is proven;
-9. updated Source of Truth and Context Prompt;
-10. evidence for every claimed closure.
+1. Offer ownership/invariant/state closure;
+2. Payment/PaymentSchedule/Receipt/Ledger semantic closure;
+3. Building ownership/invariants;
+4. Scheduling ADR confirmation/supersession;
+5. command/action → aggregate → permission → state → event traceability;
+6. derived query/read-model contracts;
+7. task packet mapping where ownership is proven;
+8. update Source of Truth and checkpoint;
+9. verify references and architecture consistency;
+10. only then evaluate schema promotion.
 
 No code/database implementation authorization is implied by this checkpoint.
