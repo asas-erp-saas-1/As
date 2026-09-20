@@ -2,37 +2,37 @@
 
 **Artifact ID:** ASAS-ARCH-PLATFORM-2026-001  
 **Status:** PROPOSED — ENGINEERING BASELINE  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Effective date:** 2026-09-20  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Canonical role:** Single architectural truth for the 2026 engineering program, subject to explicit ADR supersession  
 **Branch:** `platform-architecture-2026`  
-**Parent checkpoint:** `docs/handoff/CURRENT-SESSION-STATE.md` v1.3  
+**Parent checkpoint:** `docs/handoff/CURRENT-SESSION-STATE.md`  
 
-> This document is a reconstructed architectural blueprint. It is not a claim that the application, database, runtime, or infrastructure already exists. Existing repository/runtime facts remain evidence sources; this blueprint defines the desired engineering state.
+> This document is the reconciled architectural target. It is not a claim that the application, database, runtime, or infrastructure already exists. Existing repository/runtime facts remain evidence sources; this blueprint defines the desired engineering state.
 
 ---
 
 ## 0. NON-NEGOTIABLE ARCHITECTURAL PRINCIPLES
 
 1. **Reality before intent.** Existing runtime/database state is never overwritten by documentation.
-2. **Architecture before implementation.** Domain boundaries, contracts, invariants, state machines, data ownership, security model, and verification strategy precede application code and database programming.
+2. **Architecture before implementation.** Domain boundaries, contracts, invariants, state machines, data ownership, security model, design system, and verification strategy precede application code and database programming.
 3. **Contract before code.** An implementation task is authorized only when its contract, scope, ownership, dependencies, invariants, authorization, and evidence requirements are defined.
 4. **Modular monolith first.** No microservices, Kafka, Kubernetes, service mesh, multi-region, data lake, or distributed architecture becomes mandatory without measured extraction/scaling evidence and an ADR.
-5. **One concept, one canonical owner.** Derived artifacts may mirror authoritative sources but cannot silently redefine them.
-6. **Server authority.** Client UI, AI, browser state, and external integrations never become authoritative for permissions, money, inventory, reservations, contracts, or tenancy.
-7. **Database safety.** Schema evolution is forward-only, migration-controlled, locally reproducible, reversible where technically possible, and never destructive by default.
-8. **Evidence over claims.** `VERIFIED` means executed and evidenced; otherwise use `PARTIAL`, `BLOCKED`, `NOT_EXECUTED`, or `OPEN`.
-9. **Human authority boundaries.** Founder decisions, legal interpretation, destructive production operations, financial corrections, credential changes with outage risk, tenant deletion, and autonomous high-impact AI actions require human authorization.
-10. **Local-first engineering.** Architecture, code, schema, migrations, tests, fixtures, and CI must be reproducible locally before cloud deployment. Remote systems are integration/runtime targets, not the primary authoring environment.
+5. **No architecture by counting.** Numbers of contexts, modules, tables, events, permissions, workers, services, or screens are observations or consequences—not design objectives. The correct boundary is the one justified by cohesion, coupling, ownership, consistency, security, change cadence, and operational evidence.
+6. **One concept, one canonical owner.** Derived artifacts may mirror authoritative sources but cannot silently redefine them.
+7. **Server authority.** Client UI, AI, browser state, and external integrations never become authoritative for permissions, money, inventory, reservations, contracts, or tenancy.
+8. **Database safety.** Schema evolution is forward-only, migration-controlled, locally reproducible, reversible where technically possible, and never destructive by default.
+9. **Evidence over claims.** `VERIFIED` means executed and evidenced; otherwise use `PARTIAL`, `BLOCKED`, `NOT_EXECUTED`, `OPEN`, or `CONFLICT`.
+10. **Human authority boundaries.** Founder decisions, legal interpretation, destructive production operations, financial corrections, credential changes with outage risk, tenant deletion, and autonomous high-impact AI actions require human authorization.
+11. **Local-first engineering.** Architecture, code, schema, migrations, tests, fixtures, and CI must be reproducible locally before cloud deployment. Remote systems are integration/runtime targets, not the primary authoring environment.
+12. **Evolution is evidence-driven.** The target architecture is allowed to change when new domain evidence, runtime evidence, security evidence, performance evidence, or product decisions justify the change. No target-state document is treated as permanently frozen.
 
 ---
 
 # 1. AUTHORITY AND PROVENANCE
 
-## 1.1 Current authority model
-
-### Existing/brownfield reality
+## 1.1 Existing/brownfield reality
 
 `LIVE RUNTIME / LIVE DATABASE`  
 `>` `REPOSITORY IMPLEMENTATION`  
@@ -41,7 +41,7 @@
 `>` `HISTORICAL ARTIFACT`  
 `>` `INFERENCE`
 
-### Desired future behavior
+## 1.2 Desired future behavior
 
 `FOUNDER / PRODUCT DECISION`  
 `>` `APPROVED ARCHITECTURE`  
@@ -51,17 +51,18 @@
 
 If authorities conflict, the state is **CONFLICT** until provenance resolves it. No silent reconciliation.
 
-## 1.2 Source classes
+## 1.3 Source classes
 
 - **AUTHORITATIVE SOURCE:** approved product decision, approved architecture, approved ADR, verified runtime/database evidence.
 - **CANONICAL DERIVED:** machine-readable register generated from an authoritative source.
 - **OPERATIONAL:** task/checkpoint/runbook material.
 - **HISTORICAL:** preserved evidence from superseded states.
+- **EXTERNAL RESEARCH:** current official documentation, standards, regulator material, primary engineering research, and reputable technical analysis used to validate engineering choices.
 - **INFERENCE:** engineering interpretation; never sufficient to close a gate.
 
-## 1.3 Current source baseline
+## 1.4 Current source baseline
 
-The supplied v1.6.1 Blueprint/package remains the principal historical/source specification for the current foundation. Repository registers are derived shadows. The current repository checkpoint confirms the source contains:
+The supplied v1.6.1 Blueprint/package remains the principal historical/source specification for the current foundation. Repository registers are derived shadows. Current source observations include:
 
 - 119 unique phase task IDs;
 - 3 recurring ritual IDs;
@@ -75,7 +76,7 @@ The supplied v1.6.1 Blueprint/package remains the principal historical/source sp
 - 50 permission keys across eight persona columns;
 - 11 state machines.
 
-These are **source observations**, not proof of runtime implementation.
+These are **source observations**, not runtime implementation targets and not architectural quotas.
 
 ---
 
@@ -85,13 +86,17 @@ ASAS is architected as a **premium real-estate sales and marketing platform with
 
 The platform must support the commercial reality of property development and sales without prematurely becoming a generic ERP, construction suite, accounting package, marketplace, or global data platform.
 
+The long-term ambition may extend beyond the initial real-estate domain, but future breadth is an architectural reservation unless separately authorized.
+
 ## 2.1 Core business loop
 
 `Project → Building → Unit → Lead → Assignment → Activity → Visit → Offer → Reservation → Contract → Payment Plan → Payment → Receipt → Audit → Reporting`
 
+This is a critical commercial trace, not a requirement that every phase be implemented in one transaction or one context.
+
 ## 2.2 Product layers
 
-### MVP / first controlled implementation
+### Controlled initial implementation
 
 - property/project presentation;
 - inventory visibility;
@@ -117,7 +122,9 @@ The platform must support the commercial reality of property development and sal
 - property-management suite;
 - developer platform;
 - ontology/data lake at global scale;
-- microservice decomposition.
+- microservice decomposition;
+- event streaming infrastructure beyond the proven transactional-outbox need;
+- separate deployables for every bounded context.
 
 ---
 
@@ -133,7 +140,7 @@ APPLICATION & DECISION PLANE
   Commands / Queries / Policies / Approvals / Workflows / Jobs / Calculations / Simulations
 
 DOMAIN PLANE
-  Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents
+  Current bounded-context set justified by domain evidence
 
 PLATFORM KERNEL
   Identity / Tenancy / Authorization / Audit / Events / Search / Media / Notifications /
@@ -150,13 +157,29 @@ The planes are architectural responsibilities, not automatically separate deploy
 
 The initial deployment unit is a **modular monolith**. Internal module boundaries must be explicit so future extraction is possible without designing distributed infrastructure prematurely.
 
+## 3.3 Dependency direction
+
+```text
+Experience
+   ↓
+Application / Decision
+   ↓
+Domain
+   ↓
+Ports / Contracts
+   ↓
+Infrastructure adapters
+```
+
+Infrastructure must not become the owner of business semantics. Domain code must not depend directly on UI frameworks, transport details, or vendor-specific persistence APIs.
+
 ---
 
 # 4. DOMAIN MODEL
 
-## 4.1 Nine bounded contexts
+## 4.1 Current bounded-context baseline
 
-The current canonical DDD decomposition remains:
+The current architecture candidate contains **nine bounded contexts**:
 
 1. **Core** — platform identity-adjacent domain primitives and cross-domain business foundations.
 2. **CRM** — people, organizations, leads, ownership, activities and relationship history.
@@ -168,11 +191,11 @@ The current canonical DDD decomposition remains:
 8. **Analytics** — reporting, metrics, projections and analytical read models.
 9. **Documents** — controlled document metadata, versions, access and lifecycle.
 
-These are semantic ownership boundaries, not necessarily nine database schemas or nine deployables.
+**Important:** nine is the current reconciled baseline, not an architectural quota. A future context may be added, merged, split, or re-scoped only through domain evidence and an ADR. No agent may create or remove a context simply to make a document's numbers match another document.
 
 ## 4.2 Platform capabilities are not automatically bounded contexts
 
-The following remain platform capabilities unless a future ADR establishes independent domain ownership and transaction boundaries:
+The following remain platform capabilities unless a future ADR establishes independent semantic ownership, lifecycle, team ownership, consistency boundary, and meaningful reason for separate evolution:
 
 - Identity
 - Tenancy
@@ -194,7 +217,26 @@ The following remain platform capabilities unless a future ADR establishes indep
 
 `Bounded Context ≠ Implementation Module ≠ Aggregate ≠ Database Schema ≠ Read Model ≠ Worker ≠ Event Consumer`
 
-No count-matching exercise is permitted.
+A single bounded context may contain multiple modules and read models. A platform capability may be shared by several contexts without becoming a context. A worker may implement behavior for one or more contracts without owning the domain concept.
+
+## 4.4 Boundary decision criteria
+
+A candidate boundary must be evaluated against:
+
+- semantic cohesion;
+- business capability ownership;
+- ubiquitous language;
+- transaction/consistency boundary;
+- authorization boundary;
+- data ownership;
+- change cadence;
+- failure isolation;
+- scaling characteristics;
+- team ownership;
+- integration frequency and complexity;
+- operational cost.
+
+The decision record must preserve rejected alternatives and the evidence behind the selected boundary.
 
 ---
 
@@ -214,6 +256,8 @@ Every aggregate must have:
 - persistence boundary.
 
 Cross-context writes are prohibited as an implicit convenience pattern. They must be mediated by explicit application/domain contracts and, where asynchronous, events/outbox.
+
+An entity does not automatically become an aggregate. An aggregate does not automatically become a table. A table does not automatically become a context.
 
 ---
 
@@ -263,7 +307,7 @@ Required properties:
 - audit of reservation creation, extension, conversion, expiry and cancellation;
 - reconciliation path for failed/partial transactions.
 
-The exact persistence mechanism is an implementation decision to be proven against the chosen PostgreSQL design; this blueprint does not invent a specific SQL locking primitive before the schema contract is promoted.
+The exact persistence mechanism is an implementation decision to be proven against the chosen PostgreSQL design. PostgreSQL supports transaction isolation including Serializable, and application-defined advisory locks; these are tools, not automatic prescriptions. The selected mechanism must be justified by the actual reservation invariant, workload, failure behavior, and retry model.
 
 ---
 
@@ -331,7 +375,7 @@ Each event contract must define:
 
 The transactional outbox is the default reliability boundary for durable domain events.
 
-The existence of 103 registered events does not imply that 103 events are implemented.
+The existence of 103 registered events does not imply that 103 events are implemented, nor does it prohibit future event additions or retirement through governed change control.
 
 ---
 
@@ -378,9 +422,7 @@ The development architecture shall support:
 
 `schema contract → local PostgreSQL/Supabase stack → migrations → tests → CI → controlled remote deployment`
 
-Supabase officially supports local development, versioned migrations, local resets, schema pull/diff, and reproducible local environments. cite-reference-placeholder
-
-No remote database is required for authoring the initial architecture or building the first migration set.
+Supabase documents local development, versioned migrations, schema diff/pull workflows and local database testing. Remote deployment is therefore not required to construct or validate the initial local architecture.
 
 ## 12.2 Migration rules
 
@@ -430,6 +472,7 @@ Threat model must cover at minimum:
 - reservation race conditions;
 - API abuse/rate-limit bypass;
 - AI prompt injection;
+- AI excessive agency;
 - AI tool abuse;
 - cross-tenant analytics leakage;
 - storage access violations.
@@ -481,7 +524,7 @@ Human approval required before commit.
 - legal interpretation or contract-signature decisions;
 - unauthorized mass communication.
 
-AI tools inherit caller authority and must not widen it.
+AI tools inherit caller authority and must not widen it. OWASP's current GenAI guidance identifies excessive functionality, permissions and autonomy as core causes of excessive-agency risk; ASAS therefore treats least-privilege tool design and policy-gated execution as architectural controls, not optional prompt hygiene.
 
 ---
 
@@ -579,7 +622,40 @@ This is not anti-cloud; it is anti-dependency on an unverified remote environmen
 
 ---
 
-# 19. QUALITY MODEL
+# 19. SCALABILITY AND EXTRACTION POLICY
+
+Scalability is treated as an evidence problem, not a technology shopping list.
+
+The default evolution is:
+
+```text
+Modular Monolith
+ → measured bottleneck
+ → targeted optimization
+ → module isolation
+ → extraction assessment
+ → ADR
+ → independent deployable only if justified
+```
+
+Extraction triggers may include, but are not limited to:
+
+- sustained workload isolation requirement;
+- materially different scaling profile;
+- independent availability requirement;
+- security/isolation requirement;
+- deployment cadence conflict;
+- team ownership boundary;
+- technology/runtime incompatibility;
+- demonstrated operational benefit exceeding distributed-system cost.
+
+Kafka, Kubernetes, service mesh, multi-region and microservices are therefore **options**, not architectural achievements.
+
+AWS guidance supports decomposing by business capability/subdomain when boundaries are understood, while also warning that excessive decomposition increases integration and operational complexity. ASAS adopts the same evidence-first principle.
+
+---
+
+# 20. QUALITY MODEL
 
 Every implementation-critical requirement must be traceable:
 
@@ -589,7 +665,7 @@ Unresolved nodes remain explicitly marked `OPEN`, `CONFLICT`, or `BLOCKED`.
 
 ---
 
-# 20. ARCHITECTURE GATES
+# 21. ARCHITECTURE GATES
 
 | Gate | Meaning | Required evidence |
 |---|---|---|
@@ -614,7 +690,7 @@ Allowed states: `VERIFIED / PARTIAL / BLOCKED / NOT_EXECUTED / OPEN`.
 
 ---
 
-# 21. IMPLEMENTATION AUTHORIZATION RULE
+# 22. IMPLEMENTATION AUTHORIZATION RULE
 
 No application implementation begins merely because the architecture document exists.
 
@@ -635,7 +711,7 @@ The first authorized implementation slice must have:
 
 ---
 
-# 22. CURRENT OPEN DECISIONS
+# 23. CURRENT OPEN DECISIONS
 
 1. C2-001 — bounded-context/module decomposition reconciliation.
 2. Scheduling ownership — CRM vs platform/Core-hosted placement.
@@ -648,22 +724,22 @@ These remain open unless an approved ADR closes them.
 
 ---
 
-# 23. RESEARCH BASELINE
+# 24. RESEARCH BASELINE
 
-External engineering principles used to validate this blueprint were checked against current official/authoritative sources including:
+External engineering principles were checked against current authoritative sources, including:
 
-- Next.js documentation: App Router/full-stack application model.
-- Supabase Local Development, migration, declarative schema and RLS documentation.
-- PostgreSQL documentation for transactional/database primitives.
-- OWASP security guidance/ASVS for application security controls.
-- W3C WCAG for accessibility.
-- Cloud architecture reliability guidance for tested recovery, RPO/RTO and resilience.
+- AWS Prescriptive Guidance on DDD, hexagonal architecture, bounded-context decomposition, modular monoliths and staged extraction.
+- PostgreSQL documentation on transaction isolation, Serializable behavior and advisory locking.
+- Supabase documentation on local development, migrations and schema diff workflows.
+- GitHub documentation on workflow triggers and status checks as evidence-bearing CI mechanisms.
+- OWASP GenAI guidance on excessive agency and prompt-injection-related risk.
+- W3C WCAG guidance for accessibility engineering.
 
-The external sources validate engineering patterns; they do not override ASAS product decisions or repository authority.
+The research validates patterns and constraints; it does not override ASAS product decisions, founder authority, repository evidence or runtime reality.
 
 ---
 
-# 24. CHANGE PROTOCOL
+# 25. CHANGE PROTOCOL
 
 Any architectural change must:
 
@@ -674,9 +750,10 @@ Any architectural change must:
 5. update the roadmap if sequencing changes;
 6. update the context prompt if agent behavior changes;
 7. create/update an ADR when the decision is material;
-8. update the current checkpoint;
-9. verify references and CI;
-10. preserve historical evidence.
+8. update registers when their canonical concept changes;
+9. update the current checkpoint;
+10. verify references and CI;
+11. preserve historical evidence.
 
 This three-document set is the controlled architecture navigation layer:
 
