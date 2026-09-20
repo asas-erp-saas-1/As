@@ -2,12 +2,12 @@
 
 **Artifact ID:** ASAS-ARCH-MATRIX-2026-001
 **Status:** CANONICAL DERIVED EVIDENCE MATRIX — PROPOSED
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Effective date:** 2026-09-20
 **Owner:** Lead Architecture
 **Authority:** Derived from the 2026 Blueprint, AGENTS material, historical module-map candidate, task/register evidence, and current architecture checkpoint.
 **Branch:** `platform-architecture-2026`
-**Decision boundary:** This matrix does not resolve C2-001 or C2-002. It makes the evidence and unresolved ownership explicit so those decisions can be made without architectural guessing.
+**Decision boundary:** This matrix does not silently resolve founder-boundary decisions. It records the current canonical classification and unresolved ownership so implementation cannot infer authority from stale historical wording.
 
 > **Core rule:** Bounded Context, Domain Group, Implementation Module, Aggregate, Database Schema, Read Model, Worker and Event Consumer are different architectural objects. A row below is evidence, not automatic authorization.
 
@@ -66,13 +66,13 @@ The 2026 architecture material repeatedly names these nine domain contexts:
 
 **Status:** PROPOSED DOMAIN VIEW / NOT YET ACCEPTED AS THE SOLE IMPLEMENTATION DECOMPOSITION.
 
-The nine-context view is therefore preserved as a domain-level architectural statement, not converted into a one-context-one-module or one-context-one-schema rule.
+The nine-context view is preserved as a domain-level architectural statement, not converted into a one-context-one-module or one-context-one-schema rule.
 
 ---
 
 ## 4. Candidate implementation module evidence
 
-The historical `CANONICAL-CONTEXT-TO-MODULE-MAP.md` proposes a 15-module modular-monolith decomposition. It explicitly remains `PROPOSED` until ADR-0001 is accepted.
+The historical `CANONICAL-CONTEXT-TO-MODULE-MAP.md` proposes a 15-module modular-monolith decomposition. It explicitly remains `PROPOSED` until its ownership/dependency ADRs are accepted.
 
 | ID | Candidate module | Primary responsibility evidenced | Candidate aggregates / owned concepts | Candidate schema | Process | High-level domain relationship | Current status |
 |---|---|---|---|---|---|---|---|
@@ -103,7 +103,7 @@ The historical `CANONICAL-CONTEXT-TO-MODULE-MAP.md` proposes a 15-module modular
 | Identity | Platform capability | Open | E1/E3 | Must provide caller identity; exact module ownership not yet accepted |
 | Tenancy | Platform capability | Open | E1/E3 | Must be enforced across all tenant-owned resources |
 | Authorization | Platform capability | Open | E1/E2/E3 | Server authority required; exact module ownership unresolved |
-| Audit | Platform capability / read model | Proposed | E3 | Must not become an upstream owner of business state |
+| Audit | Platform capability / read model | Proposed | E1/E3 | Must not become an upstream owner of business state |
 | Events / Outbox | Platform capability | Proposed | E1/E3 | Reliability mechanism; domain event ownership remains with producer |
 | Workflow | Platform capability / candidate module | Proposed | E3 | Cannot mutate arbitrary contexts directly |
 | Scheduling | Platform capability / candidate module | **Founder decision required** | E1/E3 | No schema/module ownership may be assumed |
@@ -120,29 +120,31 @@ The historical `CANONICAL-CONTEXT-TO-MODULE-MAP.md` proposes a 15-module modular
 
 ## 6. Evidence-based relationship model
 
-The current safe model is a two-level architecture until founder decisions are recorded:
+The current safe model is a two-level architecture until the remaining ownership decisions are recorded:
 
 ```text
 HIGH-LEVEL DOMAIN VIEW
 Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents
                            │
-                           │ relationship NOT YET FORMALLY ACCEPTED
+                           │ relationship is NOT assumed to be one-to-one
                            ▼
 IMPLEMENTATION MODULE VIEW
 M01 ... M15 candidate modular-monolith decomposition
 ```
 
+The nine-context view is **not** itself a founder blocker. C2-001 has been reclassified as **OPEN ARCHITECTURAL REFINEMENT** because the numerical difference from the historical 15-module candidate does not establish a semantic contradiction.
+
 Neither side is allowed to silently redefine the other.
 
-### Required decision output
+### Required ownership decision output
 
-The accepted ADR must choose one of these classes explicitly:
+For each material mapping, the accepted ADR/contract must establish one of these classes explicitly:
 
-1. **One-to-one:** a bounded context maps to one implementation module.
-2. **One-to-many:** a bounded context groups several implementation modules.
-3. **Many-to-one:** several domain groupings share one implementation module for justified cohesion.
-4. **Cross-cutting platform:** capability does not constitute a domain context.
-5. **Hybrid:** explicit mapping with documented exceptions.
+1. **One-to-one**
+2. **One-to-many**
+3. **Many-to-one**
+4. **Cross-cutting platform**
+5. **Hybrid**
 
 The decision must be based on semantics, ownership, invariants, consistency, authorization, data ownership, change cadence, failure isolation, scaling and integration cost.
 
@@ -195,7 +197,9 @@ These are **candidate aggregate ownership statements**, not verified aggregate b
 
 ### C2-001 — Domain grouping vs implementation decomposition
 
-**Status:** CONFLICT / FOUNDER DECISION REQUIRED
+**Status:** OPEN ARCHITECTURAL REFINEMENT — NOT A COUNT-BASED FOUNDER BLOCKER
+
+**Reason:** The nine-context view and historical 15-module view represent different architectural layers. The numerical difference does not itself constitute a contradiction. Individual ownership/dependency decisions remain subject to evidence and ADR/contract closure.
 
 ### C2-002 — Scheduling ownership
 
@@ -280,16 +284,17 @@ Founder/ADR authority
 
 H1 can close only when:
 
-- C2-001 is resolved by an accepted ADR/founder decision;
+- the domain/module relationship is explicit for all implementation-critical boundaries;
 - Scheduling ownership is resolved;
-- domain/module relationship is explicit;
-- aggregate ownership is accepted;
+- aggregate ownership is accepted where implementation is authorized;
 - dependency matrix is accepted;
 - platform capabilities are classified;
 - unresolved boundaries have owners and next actions;
 - no implementation-critical task depends on an unstated ownership assumption.
 
-Until then:
+The historical C2-001 count difference is not itself an H1 blocker.
+
+Until the remaining implementation-critical boundaries are closed:
 
 **H1 = BLOCKED.**
 
@@ -312,6 +317,6 @@ Historical evidence is retained for provenance and is not silently promoted.
 
 ## 14. Current status
 
-**H1.2 — EVIDENCE MATRIX CREATED / ARCHITECTURAL DECISION STILL BLOCKED**
+**H1.3 — EVIDENCE MATRIX RECONCILED WITH CANONICAL C2 STATUS / IMPLEMENTATION STILL BLOCKED**
 
-Next permitted work: non-decision-dependent contract analysis, task packet normalization, invariant extraction, event-to-command reconciliation and research. No schema/application ownership may be inferred from this matrix until C2-001/C2-002 are resolved.
+Next permitted work: non-decision-dependent contract analysis, task packet normalization, invariant extraction, event-to-command reconciliation and research. Schema/application ownership may not be inferred from this matrix until the relevant ownership contracts and founder decisions are resolved.
