@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
 **Status:** ACTIVE PROPOSED ROADMAP  
-**Version:** 1.1.0  
+**Version:** 1.2.0  
 **Owner:** Lead Architecture / Technical Program Lead  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
 **Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`
@@ -26,7 +26,7 @@ Establish one trusted understanding of what exists.
 
 ### Work
 - verify canonical repository, branch and commit;
-- inventory all relevant branches and classify branch purpose/provenance;
+- inventory relevant branches and classify branch purpose/provenance;
 - identify canonical checkpoint;
 - classify artifacts;
 - reconcile source package against repository shadows;
@@ -40,7 +40,7 @@ Establish one trusted understanding of what exists.
 - canonical checkpoint verified;
 - source/derived/historical classes documented;
 - no ambiguous active checkpoint;
-- runtime identity is either verified or explicitly blocked.
+- runtime identity either verified or explicitly blocked.
 
 ### Current state
 `PARTIAL`
@@ -52,33 +52,42 @@ Establish one trusted understanding of what exists.
 ### Objective
 Freeze the semantic architecture sufficiently for safe contract engineering—not by forcing a fixed number of contexts, but by proving ownership boundaries.
 
+### Confirmed conflict
+Historical source evidence contains both:
+
+- a nine-context condensed architecture: Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics, Documents;
+- a proposed 15-module implementation architecture with explicit module schemas and ownership.
+
+Historical `ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` explicitly remains **PROPOSED — awaiting founder acceptance**. Therefore the architecture must not silently promote either model to sole implementation authority.
+
 ### Work
 1. Resolve C2-001 context/module conflict.
 2. Resolve Scheduling ownership.
-3. Build Context → Module → Aggregate → Capability map.
+3. Build Context/Domain View → Module View → Aggregate → Capability map.
 4. Define platform planes.
 5. Define dependency direction.
 6. Define bounded-context interaction rules.
 7. Define shared-kernel rules.
 8. Define anti-corruption/integration boundaries.
 9. Define boundary decision criteria and evidence requirements.
-10. Identify contexts/modules that remain intentionally unresolved.
-11. Record rejected boundary alternatives.
-12. Define extraction triggers for future modular decomposition.
+10. Record rejected alternatives.
+11. Define extraction triggers for future modular decomposition.
+12. Preserve the distinction between high-level domain grouping and implementation module decomposition until the founder decision is made.
 
 ### Boundary test
-A boundary is acceptable only when semantic cohesion, ownership, consistency, authorization, data ownership, change cadence, failure behavior, scaling characteristics, and integration cost have been considered.
+A boundary is acceptable only when semantic cohesion, ownership, consistency, authorization, data ownership, change cadence, failure behavior, scaling characteristics, team ownership and integration cost have been considered.
 
 ### Exit evidence
-- approved architecture decision(s);
-- context map;
+- accepted architecture decision(s);
+- context/domain map;
+- module map;
 - dependency matrix;
 - ownership matrix;
 - unresolved boundaries explicitly marked;
 - no hidden implementation-critical ownership ambiguity.
 
 ### Current state
-`BLOCKED — founder decisions required`
+`BLOCKED — founder decision required`
 
 ---
 
@@ -100,7 +109,7 @@ Convert the semantic model into implementation-safe contracts.
 - failure semantics;
 - consistency boundaries;
 - domain service responsibilities;
-- cross-context contract rules.
+- cross-context/module contract rules.
 
 ### Critical rule
 Do not generate database tables merely because a domain object exists.
@@ -165,7 +174,7 @@ Make unauthorized access structurally difficult and detectable.
 Every sensitive command has explicit permission/scope; application and database controls have independent verification; AI tools cannot widen caller authority.
 
 ### Current state
-`BLOCKED — final domain ownership and live runtime identity unresolved`
+`BLOCKED — final domain/module ownership and live runtime identity unresolved`
 
 ---
 
@@ -182,7 +191,7 @@ Create a reproducible, local-first data engineering foundation.
 5. Define audit/outbox/idempotency structures.
 6. Define financial immutability.
 7. Define concurrency constraints.
-8. Define indexing strategy from access patterns, not guesswork.
+8. Define indexing strategy from access patterns.
 9. Generate migration baseline.
 10. Run local PostgreSQL/Supabase stack.
 11. Replay migrations locally.
@@ -382,8 +391,8 @@ Title
 Objective
 Scope
 Non-goals
-Context
-Module
+Context/domain owner
+Implementation module
 Owner
 Dependencies
 Contract references
@@ -444,20 +453,13 @@ For external technical facts:
 5. reputable secondary analysis;
 6. community evidence only as supplementary evidence.
 
-Research must be proportional to risk. High-impact architectural decisions require corroboration; routine implementation questions do not need unnecessary research overhead.
+Research depth must be proportional to risk and architectural impact.
 
 Record:
 
 `question → source/date/version → finding → conflict → decision → impact → review date`
 
-Current research confirms the following principles relevant to ASAS:
-
-- DDD and hexagonal architecture favor business-logic boundaries and domain-first modeling.
-- Modular monoliths are valid when internal boundaries are strong; extraction should follow evidence rather than fashion.
-- PostgreSQL provides strong transaction isolation and explicit locking mechanisms, but concurrency strategy must be matched to the invariant and workload.
-- Supabase supports local development and migration workflows suitable for local-first schema construction.
-- GitHub status checks are evidence-bearing only when workflows actually trigger and report results.
-- OWASP identifies excessive functionality, permissions and autonomy as major risks for AI agents.
+Current research validates DDD/domain-first boundaries, modular-monolith evolution, PostgreSQL concurrency options, Supabase local migration workflows, GitHub status-check evidence, and OWASP AI excessive-agency controls.
 
 ---
 
@@ -465,7 +467,7 @@ Current research confirms the following principles relevant to ASAS:
 
 The platform does not need cloud connectivity to construct the architecture or build the initial code/database framework.
 
-The preferred sequence is:
+Preferred sequence:
 
 `Local design → local schema → local migrations → local tests → CI → controlled staging → controlled production`
 
@@ -491,13 +493,13 @@ No work is added merely for complexity, and no work is removed merely to make th
 
 # 17. CURRENT EXECUTION QUEUE
 
-### Q0 — Architecture authority closure
-**BLOCKED:** founder decisions and unresolved authority boundaries.
+### Q0 — Resolve architectural authority conflict
+**BLOCKED:** C2-001 and Scheduling require founder authority.
 
 ### Q1 — Task packet derivation
-**READY:** can proceed without changing source task semantics.
+**READY:** can proceed without changing source task semantics, but ownership fields depending on C2-001 remain unresolved.
 
-### Q2 — Context dependency and aggregate contract closure
+### Q2 — Context/domain ↔ module dependency and aggregate contract closure
 **DEPENDENT:** Q0 where ownership is affected.
 
 ### Q3 — Event/integration contract reconciliation
@@ -534,21 +536,19 @@ A phase is complete only when:
 
 `decision resolved + artifact updated + implementation constraint explicit + tests/evidence defined + references reconciled + no contradictory canonical artifact remains`
 
-If the correct outcome is uncertainty, the phase remains explicitly `OPEN` or `BLOCKED`.
+If the correct outcome is uncertainty, the phase remains explicitly `OPEN`, `CONFLICT`, or `BLOCKED`.
 
 ---
 
 # 19. NEXT CHECKPOINT
 
-The next engineering checkpoint is:
-
 **ARCH-2026-H1-CLOSURE**
 
-Required before H8:
+Required before implementation authorization:
 
-1. C2-001 resolution;
-2. Scheduling ownership resolution;
-3. context/module map;
+1. C2-001 founder decision;
+2. Scheduling ownership decision;
+3. accepted context/domain ↔ module model;
 4. dependency matrix;
 5. derived task packet framework;
 6. schema promotion plan;
