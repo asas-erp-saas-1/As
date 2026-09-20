@@ -1,18 +1,27 @@
 # ASAS Current Session State
 
-Status: CANONICAL FOUNDATION CHECKPOINT
-Version: 1.3
+Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
+Version: 1.4
 Date: 2026-09-20
 
 ## Repository
 - Canonical repository: `asas-erp-saas-1/As`
 - Canonical integration branch: `main`
-- Audited `main` commit: `0b8a0e3e80056bffb93f4edc37a61fe6185ce28d`
-- Forensic remediation branch: `foundation/forensic-repository-reconstruction-2026-09-20`
-- Foundation changes must merge to `main`; feature/foundation branches are change vehicles only.
+- Architecture engineering branch: `platform-architecture-2026`
+- Parent foundation branch: `foundation/forensic-repository-reconstruction-2026-09-20`
+- Architecture changes must merge through reviewed PRs; this branch is the current architecture engineering vehicle.
 
 ## Phase
-FOUNDATION HARDENING — FORENSIC REPOSITORY RECONSTRUCTION / PRE-IMPLEMENTATION
+ARCHITECTURE ENGINEERING — PRE-IMPLEMENTATION BASELINE
+
+## Canonical architecture control plane
+The 2026 architecture program uses exactly three controlled navigation artifacts:
+
+1. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` — WHAT the architecture is.
+2. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — HOW the architecture is engineered and verified.
+3. `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — HOW an AI engineering agent must operate.
+
+Supporting registers remain canonical for their own concepts. No competing architecture blueprint should be created without explicit supersession.
 
 ## Completed foundation layers
 - Repository identity and boundary
@@ -39,77 +48,67 @@ FOUNDATION HARDENING — FORENSIC REPOSITORY RECONSTRUCTION / PRE-IMPLEMENTATION
 - Corrected source/register promotion state
 - Structural task-register parse and count correction
 - Source register structural reconciliation evidence
+- 2026 platform architecture blueprint
+- 2026 architecture engineering roadmap
+- 2026 architecture context prompt
 
 ## Source discipline
-The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
-
-## Verified repository observations
-- Canonical repository identity is verified as `asas-erp-saas-1/As`.
-- Audited `main` commit is `0b8a0e3e80056bffb93f4edc37a61fe6185ce28d`.
-- The audited repository is foundation/governance oriented; no application `src/`, package manifest, executable Prisma schema, migration directory or application test suite was observed in the recursive tree.
-- `registers/events.json`, `registers/permissions.csv`, and `registers/state-machines.json` are present as derived shadows.
-- `registers/tasks.index.json` and `registers/tasks/phase-P.json` are present; the full task shadow is not yet present.
-- `schema/asas-contracts.index.json` is present; `schema/asas-contracts.prisma` is not.
-- `docs/handoff/SESSION_STATE.md` exists only as historical compatibility material; `CURRENT-SESSION-STATE.md` remains the sole current checkpoint.
+The v1.6.1 Blueprint/package remains the principal source baseline for foundation facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior.
 
 ## Verified source observations
-- Direct structural parse of authoritative v1.6.1 `tasks.json`: 119 unique phase task IDs, 3 unique recurring ritual IDs, 0 duplicate task IDs, 0 nested task IDs. Therefore 122 `T-*` identifiers exist when recurring rituals are included. Earlier repository declaration said 114 phase tasks; delta +5 remains OPEN as a historical/source-edition reconciliation issue, but the current source structure itself is no longer ambiguous.
-- The source task records contain only `id`, `title`, `contracts`, and `evidence`. They are therefore source task records, not complete implementation task packets. Task-packet enrichment remains an explicit derivation step.
-- Source schema contract contains 59 models, 17 enums, 56 `@@index` declarations, 22 `@@unique` declarations, and 19 `@relation(...)` annotations. Earlier repository summaries said 59/16/15. This discrepancy is now structurally explained and the current source counts are VERIFIED.
-- Source event register contains 103 event names across 11 emission modules.
-- Source permission register contains 50 permission keys across eight persona columns.
-- State-machine register contains 11 machines.
+- 119 unique phase task IDs.
+- 3 recurring ritual IDs.
+- 122 `T-*` identifiers including recurring rituals.
+- 59 models, 17 enums, 56 indexes, 22 unique constraints, 19 relation annotations in the source schema contract.
+- 103 domain event names across 11 emission modules.
+- 50 permission keys across eight persona columns.
+- 11 state machines.
 
-## Current active blocker set
-- C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
-- Scheduling ownership conflict is OPEN / FOUNDER DECISION REQUIRED.
-- C2-002: live-database/runtime reality is not accepted as verified until canonical project identity and live evidence are captured.
-- Historical-vs-source task count discrepancy remains OPEN; structural source parsing is VERIFIED at 119 phase tasks + 3 recurring rituals.
-- Task-packet completeness is OPEN because the source task register does not encode all implementation-critical packet fields.
-- Schema executable repository promotion remains OPEN even though source structural counts are VERIFIED.
-- Application implementation readiness is BLOCKED because the application source tree is not present in the audited repository state.
+## Current architecture position
+- Nine bounded contexts remain the working canonical DDD baseline: Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics, Documents.
+- Platform capabilities such as Scheduling, Workflow, Search, Media, Notifications, Integrations and AI are not automatically bounded contexts.
+- C2-001 context/module decomposition remains OPEN pending explicit decision/ADR.
+- Scheduling ownership remains FOUNDER DECISION REQUIRED.
 
-## Connected platform observation
-The connected Supabase account currently exposes one project named `asas-web-site` (ref `xwokfufeeodobkuaxvgx`). This is not accepted as the canonical runtime for `asas-erp-saas-1/As` without explicit identity evidence. No database query or mutation was executed against it during this forensic pass.
+## Current blockers
+- Canonical ASAS live database/project identity is not verified.
+- Executable schema promotion is not complete.
+- Full task packets are not yet derived from source task records.
+- Application implementation tree is not present in the audited foundation state.
+- Security/RLS runtime enforcement is not evidenced.
+- Production implementation authorization is not granted.
 
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
 G1 AMBER — authority reconciliation ongoing
-G2 PARTIAL — context claims are recorded, but decomposition conflict remains an active hard stop
-G3 AMBER — scope protected; implementation phase not authorized
-G4 AMBER — invariant doctrine present, executable enforcement absent
-G5 AMBER — state-machine register present, runtime enforcement absent
-G6 BLOCKED — event register present, full implementation absent
-G7 BLOCKED — permission register present, executable authorization absent
-G8 BLOCKED — live tenancy/RLS not verified
-G9 AMBER — security doctrine present, executable evidence absent
-G10 BLOCKED — live/database identity and executable schema not verified
-G11 PARTIAL — foundation CI workflow exists; execution evidence and application CI do not yet exist
+G2 PARTIAL — context decomposition conflict remains open
+G3 AMBER — scope protected
+G4 AMBER — invariant doctrine exists; executable enforcement absent
+G5 AMBER — state-machine register exists; runtime enforcement absent
+G6 BLOCKED — event implementation absent
+G7 BLOCKED — executable authorization absent
+G8 BLOCKED — live tenancy/RLS absent
+G9 AMBER — security doctrine exists; executable evidence absent
+G10 BLOCKED — live DB identity and executable schema absent
+G11 PARTIAL — foundation CI exists; execution evidence incomplete
 G12 BLOCKED — application observability/recovery evidence absent
 G13 BLOCKED — live backup/restore evidence absent
-G14 AMBER — AI safety doctrine exists; executable AI tooling absent
-G15 BLOCKED — implementation authorization is not granted
+G14 AMBER — AI safety doctrine exists; executable tooling absent
+G15 BLOCKED — implementation authorization absent
 
 ## Hard stop
-No application code, database schema implementation, migrations, production configuration, deployment implementation, destructive operation, or autonomous financial/AI mutation is authorized by this checkpoint.
+No application feature implementation, production schema mutation, migration deployment, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the relevant architecture gates are closed.
 
-## Canonical forensic artifacts
-- `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md`
-- `docs/audit/SOURCE-REGISTER-STRUCTURAL-RECONCILIATION-2026-09-20.md`
-- `docs/governance/REPOSITORY-REALITY-MAP.md`
-- `docs/governance/FOUNDER-DECISIONS.md`
-- `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`
-- `docs/governance/SOURCE-REGISTER-RECONCILIATION-REPORT.md`
-
-## Next sequence
-1. Founder resolves C2-001 and Scheduling ownership; record ADRs and update the canonical Context-to-Module Map.
-2. Derive implementation task packets from the 119 source tasks without changing source task semantics; every packet must add explicit scope, owner/context, dependencies, authorization, data boundary, invariants, state transitions, evidence and definition of done.
-3. Promote the complete non-executable schema contract with provenance after structural validation; reconcile every model, enum, relation, constraint and index.
-4. Reconcile counts/IDs/references and provenance; do not silently normalize discrepancies.
-5. Execute foundation CI and capture reproducible workflow evidence.
-6. Close security/tenancy doctrine against the resolved domain decomposition.
-7. Verify the actual ASAS runtime/database identity and capture live schema/RLS evidence when intentionally authorized.
-8. Only then authorize the first controlled application implementation task whose dependencies and gates are GREEN.
+## Next execution sequence
+1. Resolve C2-001 and Scheduling ownership.
+2. Derive implementation task packets without changing source task semantics.
+3. Promote and validate the complete executable schema contract.
+4. Build the context/module/aggregate/schema traceability map.
+5. Close tenancy/security contracts against the resolved architecture.
+6. Establish reproducible local database and application foundation.
+7. Run architecture CI and capture evidence.
+8. Verify canonical runtime identity before any remote introspection.
+9. Authorize the first bounded vertical implementation slice only after its dependencies and gates are GREEN.
 
 ## Continuation rule
-When asked to continue the path, read this checkpoint, `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`, `docs/governance/OPEN-CONTRACT-CONFLICTS.md`, `docs/governance/FOUNDER-DECISIONS.md`, `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md`, and `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` first. Resume from the first unresolved dependency; do not restart from conversation history.
+On continuation, load this checkpoint plus the three architecture control-plane artifacts, then the open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
