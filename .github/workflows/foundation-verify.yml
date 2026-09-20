@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, 'foundation/**']
+    branches: [main, 'foundation/**', 'platform-architecture-2026']
 
 permissions:
   contents: read
@@ -61,9 +61,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Governance and audit documents intentionally mention the separate repository
-          # to prevent agents from using it as evidence. The forbidden-reference check
-          # therefore targets executable/configuration surfaces, not explanatory docs.
           if git grep -n 'asas-erp-saas-1/Asas-website' -- \
             ':!docs/**' \
             ':!AGENTS.md' \
@@ -92,12 +89,14 @@ jobs:
               print(f'VALID JSON: {path}')
           PY
 
-      - name: Verify canonical session state references
+      - name: Verify canonical session state references repository-wide
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --exclude-dir=.git 'docs/handoff/SESSION_STATE.md' docs/handoff/CLAUDE-CONTEXT-INDEX.md docs/handoff/ASAS-MASTER-EXECUTION-PATH.md docs/handoff/CLAUDE-START-HERE.md; then
-            echo 'ERROR: canonical handoff files must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
+          matches=$(grep -RIn --exclude-dir=.git --exclude='SESSION_STATE.md' 'docs/handoff/SESSION_STATE.md' . || true)
+          if [[ -n "$matches" ]]; then
+            echo "$matches"
+            echo 'ERROR: active repository artifacts must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
             exit 1
           fi
           test -f docs/handoff/CURRENT-SESSION-STATE.md
