@@ -2,14 +2,13 @@
 
 **Artifact ID:** ASAS-ARCH-COMMAND-ACTION-2026-001  
 **Status:** DERIVED CONTRACT BASELINE — OPEN / NOT IMPLEMENTATION AUTHORITY  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Effective date:** 2026-09-20  
 **Branch:** `platform-architecture-2026`  
-**Companion:** `ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+**Companion:** `ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`  
+**Consistency companion:** `ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`
 
 > This register extracts action vocabulary already present in ASAS V3 and related source material. It deliberately does not invent payloads, APIs, permissions, schemas or implementation ownership where the sources do not establish them.
-
----
 
 ## 1. CONTRACT RULE
 
@@ -21,11 +20,7 @@ Until then, status remains `OPEN`, `SUPPORTED`, or `BLOCKED`.
 
 An ontology action name is not automatically an API endpoint or domain command.
 
----
-
 ## 2. SOURCE-DERIVED ACTION INVENTORY
-
-The following action vocabulary is explicitly present in V3:
 
 | ID | Action | Current source implication | Likely target | Status |
 |---|---|---|---|---|
@@ -35,9 +30,9 @@ The following action vocabulary is explicitly present in V3:
 | ACT-004 | `complete_visit` | visit completion action | Visit | SUPPORTED |
 | ACT-005 | `submit_offer` | commercial offer action | Offer | OPEN — Offer ownership |
 | ACT-006 | `approve_discount` | approval-controlled commercial action | Offer/Policy | OPEN |
-| ACT-007 | `place_hold` | inventory hold action | Unit/Hold | OPEN — atomic boundary |
-| ACT-008 | `create_reservation` | reservation creation | Reservation + Unit availability | OPEN — atomic boundary |
-| ACT-009 | `release_reservation` | reservation release | Reservation + Unit availability | OPEN — atomic boundary |
+| ACT-007 | `place_hold` | inventory hold action | Unit/Hold | OPEN — governed by Unit/Reservation consistency contract |
+| ACT-008 | `create_reservation` | reservation creation | Reservation + Unit availability | OPEN — governed by Unit/Reservation consistency contract |
+| ACT-009 | `release_reservation` | reservation release | Reservation + Unit availability | OPEN — governed by Unit/Reservation consistency contract |
 | ACT-010 | `prepare_contract` | contract preparation | Contract | SUPPORTED |
 | ACT-011 | `record_payment` | financial payment recording | Payment / PaymentSchedule semantics unresolved | OPEN |
 | ACT-012 | `issue_receipt` | receipt issuance | Receipt | OPEN |
@@ -52,8 +47,6 @@ The following action vocabulary is explicitly present in V3:
 | ACT-021 | `run_simulation` | simulation action | Decision/Application plane | OPEN |
 
 These names are source-derived. They do not authorize creation of one endpoint per action.
-
----
 
 ## 3. STATE / INVARIANT TRACEABILITY
 
@@ -71,7 +64,7 @@ These names are source-derived. They do not authorize creation of one endpoint p
 
 ### Unit / Reservation
 
-`place_hold`, `create_reservation`, `release_reservation` participate in the highest-risk concurrency boundary currently identified. They must not be implemented as independent writes that can violate the one-active-winner invariant.
+`place_hold`, `create_reservation`, `release_reservation` are governed by `docs/architecture/ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`. The contract establishes the required single-winner consistency outcome and required failure/race-test categories without prematurely selecting a database locking primitive or schema.
 
 ### Contract
 
@@ -80,8 +73,6 @@ These names are source-derived. They do not authorize creation of one endpoint p
 ### Finance
 
 `record_payment`, `issue_receipt`, `post_ledger_entry` must not be finalized until Payment/PaymentSchedule/Receipt semantics and financial authority are reconciled.
-
----
 
 ## 4. COMMAND PIPELINE
 
@@ -119,8 +110,6 @@ Commit
 
 Queries and projections must not acquire mutation authority merely because they expose action metadata.
 
----
-
 ## 5. AI ACTION RULE
 
 AI may request an action only through the same authorization path as a human actor.
@@ -139,8 +128,6 @@ AI intent
 
 AI cannot create a hidden alternate command path.
 
----
-
 ## 6. IDEMPOTENCY CANDIDATES
 
 Idempotency is mandatory for actions whose retry can create duplicate business effects, especially:
@@ -155,14 +142,12 @@ Idempotency is mandatory for actions whose retry can create duplicate business e
 
 Exact key shape remains an implementation contract to be defined after aggregate/schema closure.
 
----
-
 ## 7. OPEN CONTRACTS
 
 The following must be resolved before implementation authorization:
 
 1. Offer aggregate and ownership.
-2. Unit/Hold/Reservation atomic boundary.
+2. Unit/Hold/Reservation atomic boundary — logical consistency outcome is now contractually defined; concrete persistence/concurrency mechanism remains open.
 3. Payment fact vs PaymentSchedule semantics.
 4. Receipt as financial projection/document vs independently governed object.
 5. Building ownership.
@@ -171,8 +156,6 @@ The following must be resolved before implementation authorization:
 8. Event mapping for every successful state transition.
 9. Error/failure semantics for each critical action.
 10. Concurrency strategy and race tests for critical actions.
-
----
 
 ## 8. NON-GOALS
 
@@ -186,10 +169,8 @@ This register does not:
 - create events that do not exist in the event register;
 - authorize implementation.
 
----
-
 ## 9. NEXT CHECKPOINT
 
 `ARCH-2026-H1.4-COMMAND-QUERY-CONTRACT-CLOSURE`
 
-Entry requires H1.3 aggregate/invariant boundaries to be sufficiently stable for command ownership mapping. No schema promotion is implied.
+Next work: Offer ownership/invariants, Payment/PaymentSchedule/Receipt semantic reconciliation, Building ownership, then command → permission → state → event mapping. No schema promotion is implied.
