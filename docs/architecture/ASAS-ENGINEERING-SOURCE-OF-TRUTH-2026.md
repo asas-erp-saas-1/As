@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONTROL RESOURCE — PROPOSED / EVIDENCE-BACKED  
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Effective date:** 2026-09-20  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
@@ -44,15 +44,19 @@ Status vocabulary:
 
 | Role | Canonical resource | State |
 |---|---|---|
-| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.3 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE PROPOSED v1.4 |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v1.4 |
-| Consolidated engineering truth | this file | CANONICAL CONTROL RESOURCE v1.2 |
+| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.4.0 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE PROPOSED v1.5.0 |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v1.5.0 |
+| Consolidated engineering truth | this file | CANONICAL CONTROL RESOURCE v1.3 |
 | Context/domain/module evidence | `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` | CANONICAL DERIVED EVIDENCE |
 | Aggregate/invariant contract | `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md` | DERIVED CONTRACT v1.0 / OPEN |
+| Command/action contract | `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md` | DERIVED CONTRACT v1.0.1 / OPEN |
+| Offer domain contract | `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md` | DERIVED CONTRACT v1.0 / OPEN |
 | Current checkpoint | `docs/handoff/CURRENT-SESSION-STATE.md` | sole current checkpoint |
 | Artifact authority | `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` | governance register |
 | Founder decisions | `docs/governance/FOUNDER-DECISIONS.md` | decision boundary |
+
+`ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` is retained as historical provenance after incorporation into Blueprint v1.4.0; it is not an active competing blueprint authority.
 
 ---
 
@@ -171,6 +175,8 @@ Critical open boundaries:
 - Building ownership and invariants;
 - Scheduling ownership.
 
+Offer now has a dedicated derived domain contract at `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`; it remains OPEN until state, permission, approval, event and concurrency mappings are closed.
+
 ---
 
 # 8. CORE INVARIANTS
@@ -214,7 +220,7 @@ Required evidence:
 - expiry-vs-conversion race tests;
 - reconciliation after partial failure.
 
-The exact PostgreSQL mechanism is not prescribed until schema/workload evidence is available.
+The approved historical reservation protocol is preserved as source evidence and reconciled into the current consistency contract. The exact executable PostgreSQL mechanism is not promoted until schema/workload evidence is available.
 
 ---
 
@@ -358,8 +364,8 @@ No implementation authorization is implied.
 # 20. CURRENT ROADMAP
 
 - H0 Reality and Source Control — PARTIAL
-- H1 Architectural Reconciliation — PARTIAL / H1.3 ACTIVE
-- H2 Domain Contracts — PARTIAL
+- H1 Architectural Reconciliation — PARTIAL / H1.4 ACTIVE
+- H2 Domain Contracts — PARTIAL / H1-dependent
 - H3 Events and Integrations — BLOCKED for runtime implementation
 - H4 Security/Tenancy — BLOCKED
 - H5 Data Architecture — BLOCKED
@@ -374,26 +380,25 @@ No implementation authorization is implied.
 
 # 21. BRANCH CONSOLIDATION
 
-Historical branches remain provenance. The current GitHub integration does not expose branch deletion, so no historical branch is reported deleted without evidence.
-
-Before any future deletion:
-
-`inventory → provenance extraction → reference search → canonical promotion → verification → maintainer-approved deletion`
+Historical branches remain provenance. The current GitHub connection can inventory and modify branch refs but no branch is reported deleted unless deletion is actually executed with evidence. Branch cleanup must follow provenance extraction, reference search, canonical promotion and verification.
 
 ---
 
 # 22. CURRENT CHECKPOINT
 
-**ARCH-2026-H1.3-AGGREGATE-INVARIANT-CLOSURE**
+**ARCH-2026-H1.4-COMMAND-QUERY-CONTRACT-CLOSURE**
 
-Next work:
+Immediate sequence:
 
-1. close Unit/Reservation atomic boundary;
-2. define Offer ownership/invariants;
-3. reconcile Payment/PaymentSchedule/Receipt semantics;
-4. define Building ownership/invariants;
-5. map invariants to state machines, permissions and events;
-6. resolve or explicitly reaffirm Scheduling through ADR;
-7. only then promote schema contracts toward executable local design.
+1. close Offer command/state/permission/event contract;
+2. define Building ownership/invariants;
+3. complete receipt/allocation/ledger contract;
+4. reconcile Scheduling through an explicit ADR confirmation/supersession path;
+5. build query/read-model contracts;
+6. reconcile critical actions against canonical permission and event registers;
+7. only then promote executable schema design toward local implementation;
+8. establish reproducible local database/application foundation;
+9. run architecture CI and capture evidence;
+10. verify canonical runtime identity before any remote introspection.
 
 No application or production database implementation is authorized by this document.
