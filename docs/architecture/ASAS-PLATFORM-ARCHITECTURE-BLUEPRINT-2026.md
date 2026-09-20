@@ -2,14 +2,15 @@
 
 **Artifact ID:** ASAS-ARCH-PLATFORM-2026-001  
 **Status:** PROPOSED — ENGINEERING BASELINE  
-**Version:** 1.4.0  
+**Version:** 1.5.0  
 **Effective date:** 2026-09-20  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Canonical role:** Single architectural truth for the 2026 engineering program, subject to explicit ADR supersession  
 **Branch:** `platform-architecture-2026`  
 **Parent checkpoint:** `docs/handoff/CURRENT-SESSION-STATE.md`  
 **Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
-**Amendment incorporated:** `ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md`
+**Amendment incorporated:** `ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md`  
+**Research protocol:** `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
 
 > This document is the reconciled architectural target. It is not a claim that the application, database, runtime, or infrastructure already exists. Existing repository/runtime facts remain evidence sources; this blueprint defines the desired engineering state.
 
@@ -29,6 +30,7 @@
 10. **Human authority boundaries.** Founder decisions, legal interpretation, destructive production operations, financial corrections, credential changes with outage risk, tenant deletion, and autonomous high-impact AI actions require human authorization.
 11. **Local-first engineering.** Architecture, code, schema, migrations, tests, fixtures, and CI must be reproducible locally before cloud deployment.
 12. **Evolution is evidence-driven.** The architecture may change when new domain, runtime, security, performance, or product evidence justifies it.
+13. **Cross-source research is mandatory for material uncertainty.** Relevant branches, source packages and current authoritative external engineering sources are evidence inputs; none silently overrides ASAS authority.
 
 ---
 
@@ -654,16 +656,13 @@ The first authorized implementation slice must have resolved ownership, approved
 
 # 24. RESEARCH BASELINE
 
-External engineering principles were checked against current authoritative sources including:
+External engineering principles are to be validated before material implementation decisions through the dedicated research protocol:
 
-- AWS Prescriptive Guidance on DDD, hexagonal architecture, bounded-context decomposition, modular monoliths and staged extraction;
-- PostgreSQL documentation on transaction isolation and advisory locking;
-- Supabase documentation on local development and migration workflows;
-- GitHub documentation on workflow/status-check evidence;
-- OWASP GenAI guidance on excessive agency and prompt-injection-related risk;
-- W3C WCAG accessibility guidance.
+`docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
 
-The research validates engineering patterns; it does not override ASAS authority.
+Current verification work has specifically included GitHub repository governance documentation. GitHub supports required pull requests, required status checks, force-push restrictions, code scanning/quality rules and path restrictions through rulesets; rulesets can layer with branch protection and the most restrictive applicable rule applies. The existence of these capabilities does not prove that ASAS `main` currently has them enabled; repository configuration remains a fact to verify. citeturn0search0turn0search1turn0search8
+
+The research protocol also requires current official documentation/standards and, where risk warrants, independent corroboration for technology, security, database, accessibility and platform decisions. External research validates technique; ASAS authority and runtime evidence remain controlling.
 
 ---
 
@@ -688,6 +687,7 @@ The architecture control plane is:
 - **Blueprint** = what the architecture is.
 - **Roadmap** = how architecture is engineered and verified.
 - **Context Prompt** = how the AI engineering agent operates.
+- **Research Protocol** = how cross-branch, source-package and external evidence is discovered and qualified.
 - **Source of Truth** = consolidated provenance and routing; it does not silently supersede domain-specific authority.
 
 No competing architecture blueprint should be created without explicit supersession.
