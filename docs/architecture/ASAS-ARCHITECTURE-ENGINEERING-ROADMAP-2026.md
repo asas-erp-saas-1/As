@@ -2,12 +2,14 @@
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
 **Status:** ACTIVE PROPOSED ROADMAP  
-**Version:** 1.4.0  
+**Version:** 1.4.1  
 **Owner:** Lead Architecture / Technical Program Lead  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
+**Blueprint amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md`  
 **Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`  
 **Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
-**Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+**Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`  
+**Command contract companion:** `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
 
 ## PURPOSE
 
@@ -87,17 +89,12 @@ Active artifact:
 
 `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
 
-Current work includes:
+### H1.4 — Command / action contract baseline
+Created:
 
-- candidate aggregate catalog;
-- invariant catalog;
-- transaction boundary candidates;
-- reservation concurrency boundary;
-- finance integrity boundaries;
-- permission/tenancy implications;
-- event/outbox implications;
-- open ownership questions for Offer, Building, Payment and Receipt;
-- concurrency test catalog.
+`docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
+
+This register extracts only action vocabulary explicitly present in V3/source material. It does not invent APIs, payloads, permissions, schemas or implementation ownership. It remains OPEN until aggregate, state, permission and event mappings are closed.
 
 ### H1.3 current findings
 
@@ -114,12 +111,13 @@ A boundary is acceptable only when semantic cohesion, ownership, consistency, au
 - aggregate ownership matrix;
 - invariant catalog;
 - transaction-boundary matrix;
+- command/action contract map;
 - dependency matrix;
 - unresolved boundaries explicitly marked;
 - no hidden implementation-critical ownership ambiguity.
 
 ### Current state
-`PARTIAL — H1.3 active; ownership-dependent items remain OPEN/BLOCKED`
+`PARTIAL — H1.3/H1.4 active; ownership-dependent items remain OPEN/BLOCKED`
 
 ---
 
@@ -527,36 +525,39 @@ No work is added merely for complexity, and no work is removed merely to make th
 **ACTIVE:** C2-001 has been reclassified from a false binary context-count choice to a domain-grouping/module-decomposition refinement. Scheduling remains an explicit reopening decision.
 
 ### Q1 — Evidence matrix and aggregate/invariant contracts
-**ACTIVE:** context/domain/module evidence matrix is established; aggregate/invariant boundary register is now created. Continue non-decision-dependent contract engineering.
+**ACTIVE:** context/domain/module evidence matrix is established; aggregate/invariant boundary register is created. Continue non-decision-dependent contract engineering.
 
-### Q2 — Decision packets
+### Q2 — Command/action contract baseline
+**ACTIVE:** source-derived action vocabulary is now captured in `ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`. Payloads, permissions, event mappings and implementation ownership remain open until contract closure.
+
+### Q3 — Decision packets
 **ACTIVE:** prepare Scheduling supersession/confirmation packet and any founder-level decisions actually required by product authority. Do not ask the founder to choose arbitrary module counts.
 
-### Q3 — Task packet derivation
+### Q4 — Task packet derivation
 **READY WITH GUARDS:** derive implementation packets only where ownership is proven; ownership-dependent tasks remain blocked.
 
-### Q4 — Event/integration contract reconciliation
-**DEPENDENT:** Q1/Q3.
+### Q5 — Event/integration contract reconciliation
+**DEPENDENT:** Q1/Q2/Q4.
 
-### Q5 — Security/tenancy contract closure
-**DEPENDENT:** Q1/Q4.
-
-### Q6 — Schema contract promotion
+### Q6 — Security/tenancy contract closure
 **DEPENDENT:** Q1/Q5.
 
-### Q7 — Local database foundation
-**DEPENDENT:** Q6.
+### Q7 — Schema contract promotion
+**DEPENDENT:** Q1/Q6.
 
-### Q8 — Design system engineering
+### Q8 — Local database foundation
+**DEPENDENT:** Q7.
+
+### Q9 — Design system engineering
 **PARTIALLY READY:** can proceed in parallel where it does not assume unresolved domain ownership.
 
-### Q9 — Application shell
-**DEPENDENT:** architecture implementation gate + Q6.
+### Q10 — Application shell
+**DEPENDENT:** architecture implementation gate + Q7.
 
-### Q10 — First vertical slice
-**DEPENDENT:** Q9 + authorized task packets.
+### Q11 — First vertical slice
+**DEPENDENT:** Q10 + authorized task packets.
 
-### Q11 — Runtime integration
+### Q12 — Runtime integration
 **DEPENDENT:** local verification + platform identity gate.
 
 ---
@@ -575,19 +576,19 @@ If the correct outcome is uncertainty, the phase remains explicitly `OPEN`, `CON
 
 # 19. NEXT CHECKPOINT
 
-**ARCH-2026-H1.3-AGGREGATE-INVARIANT-CLOSURE**
+**ARCH-2026-H1.4-COMMAND-QUERY-CONTRACT-CLOSURE**
 
 Required before schema promotion:
 
-1. aggregate ownership matrix;
-2. invariant catalog;
-3. Unit/Reservation atomic-boundary decision;
-4. Offer ownership/invariants;
-5. Payment vs PaymentSchedule vs Receipt semantic contract;
-6. Building ownership/invariants;
-7. state-machine and permission/event traceability for critical aggregates;
-8. founder/ADR decision for Scheduling if the 2026 reopening remains;
+1. Unit/Reservation atomic boundary;
+2. Offer ownership/invariants;
+3. Payment vs PaymentSchedule vs Receipt semantic contract;
+4. Building ownership/invariants;
+5. Scheduling ADR decision or explicit reaffirmation;
+6. command/action → aggregate → permission → state → event traceability;
+7. derived query/read-model contract for the commercial spine;
+8. task packet mapping where ownership is proven;
 9. updated Source of Truth and Context Prompt;
-10. evidence for each claimed closure.
+10. evidence for every claimed closure.
 
 No code/database implementation authorization is implied by this checkpoint.
