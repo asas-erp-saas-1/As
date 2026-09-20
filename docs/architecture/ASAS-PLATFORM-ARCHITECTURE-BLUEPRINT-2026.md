@@ -2,13 +2,14 @@
 
 **Artifact ID:** ASAS-ARCH-PLATFORM-2026-001  
 **Status:** PROPOSED — ENGINEERING BASELINE  
-**Version:** 1.3.0  
+**Version:** 1.4.0  
 **Effective date:** 2026-09-20  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Canonical role:** Single architectural truth for the 2026 engineering program, subject to explicit ADR supersession  
 **Branch:** `platform-architecture-2026`  
 **Parent checkpoint:** `docs/handoff/CURRENT-SESSION-STATE.md`  
 **Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
+**Amendment incorporated:** `ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md`
 
 > This document is the reconciled architectural target. It is not a claim that the application, database, runtime, or infrastructure already exists. Existing repository/runtime facts remain evidence sources; this blueprint defines the desired engineering state.
 
@@ -201,9 +202,9 @@ The historical ADR explicitly states that this 15-module proposal is **PROPOSED 
 
 ### Current architectural truth
 
-**C2-001 = CONFLICT / FOUNDER DECISION REQUIRED.**
+**C2-001 = OPEN ARCHITECTURAL REFINEMENT.**
 
-The blueprint deliberately does not force the nine-context view to equal the 15-module view. The relationship must be decided from evidence rather than counting.
+The current evidence does not establish two equal-authority bounded-context architectures. The nine-context view remains the current target domain grouping. The 15-module artifact remains historical/proposed implementation evidence. The engineering task is to derive implementation module boundaries from ownership, consistency, authorization, data ownership, failure isolation, scaling and integration evidence. No founder decision is required merely to choose between the numbers 9 and 15.
 
 The canonical evidence matrix is:
 
@@ -233,7 +234,7 @@ The accepted model must be evaluated against:
 
 Identity, Tenancy, Authorization, Audit, Events, Workflow, Scheduling, Search, Media, Notifications, Integrations, Configuration, AI and SaaS control remain platform capabilities/candidate modules until ownership is explicitly accepted.
 
-Scheduling remains **FOUNDER DECISION REQUIRED**.
+Scheduling remains **OPEN / PROPOSED SUPERSESSION** under C2-002. Historical ADR-0018 remains evidence until explicitly superseded or reaffirmed. No implementation ownership changes solely because the question was reopened.
 
 ---
 
@@ -255,6 +256,14 @@ Every aggregate must have:
 An entity does not automatically become an aggregate. An aggregate does not automatically become a table. A table does not automatically become a context.
 
 Cross-context writes are prohibited as an implicit convenience pattern.
+
+The derived boundary register is:
+
+`docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+
+The command/action contract register is:
+
+`docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
 
 ---
 
@@ -304,7 +313,7 @@ Required properties:
 - audit of reservation creation, extension, conversion, expiry and cancellation;
 - reconciliation path for failed/partial transactions.
 
-PostgreSQL supports Serializable transactions and application-defined advisory locks; the final mechanism must be selected from the actual invariant, workload and retry model rather than prescribed prematurely.
+The approved historical reservation protocol is preserved as source evidence; the 2026 consistency contract records the logical outcome and test requirements. The concrete persistence mechanism is not promoted until schema/workload validation is complete.
 
 ---
 
@@ -327,6 +336,12 @@ Required invariants:
 - complete audit trail.
 
 No financial correction is autonomous or destructive.
+
+The current semantic reconciliation is recorded in:
+
+`docs/architecture/ASAS-COMMERCIAL-FINANCE-SEMANTIC-RECONCILIATION-2026.md`
+
+Do not create a standalone Payment aggregate/table solely to reconcile naming until the authoritative payment fact and its relationship to PaymentSchedule, Receipt and Ledger are closed.
 
 ---
 
@@ -625,12 +640,15 @@ The first authorized implementation slice must have resolved ownership, approved
 
 # 23. CURRENT OPEN DECISIONS
 
-1. **C2-001 — context/module decomposition:** CONFLICT / FOUNDER DECISION REQUIRED. Historical ADR-0001 proposes a 15-module implementation decomposition; the condensed architecture describes nine higher-level contexts. Neither may be silently promoted as the sole canonical implementation model.
-2. **Scheduling ownership:** FOUNDER DECISION REQUIRED.
+1. **C2-001 — context/module decomposition:** OPEN ARCHITECTURAL REFINEMENT. Nine contexts remain the current target domain grouping; the historical 15-module decomposition remains proposed implementation evidence. Derive module boundaries from evidence rather than counting. No founder decision is required merely to choose 9 versus 15.
+2. **C2-002 — Scheduling ownership:** OPEN / PROPOSED SUPERSESSION. Historical ADR-0018 remains evidence until a new ADR explicitly supersedes it or the baseline reaffirms it.
 3. **Canonical ASAS live database/project identity:** BLOCKED / UNVERIFIED.
 4. **Complete task-packet derivation:** OPEN.
 5. **Promotion of executable schema contract:** OPEN.
 6. **Security/tenancy closure against final domain/module decomposition:** BLOCKED.
+7. **Offer ownership/invariant contract:** OPEN.
+8. **Payment/PaymentSchedule/Receipt semantic closure:** PARTIAL.
+9. **Building ownership/invariant contract:** OPEN.
 
 ---
 
