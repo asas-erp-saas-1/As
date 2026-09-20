@@ -38,6 +38,9 @@ jobs:
             docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
             docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
             docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+            docs/governance/REPOSITORY-REALITY-MAP.md
+            docs/governance/FOUNDER-DECISIONS.md
+            docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md
             .github/PULL_REQUEST_TEMPLATE.md
             CODEOWNERS
           )
@@ -54,12 +57,18 @@ jobs:
             exit 1
           fi
 
-      - name: Reject known wrong project references
+      - name: Reject wrong-project references in executable/configuration surfaces
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --exclude-dir=.git --exclude='*.lock' 'asas-erp-saas-1/Asas-website' .; then
-            echo 'ERROR: forbidden historical repository reference detected.'
+          # Governance and audit documents intentionally mention the separate repository
+          # to prevent agents from using it as evidence. The forbidden-reference check
+          # therefore targets executable/configuration surfaces, not explanatory docs.
+          if git grep -n 'asas-erp-saas-1/Asas-website' -- \
+            ':!docs/**' \
+            ':!AGENTS.md' \
+            ':!.github/workflows/foundation-verify.yml'; then
+            echo 'ERROR: wrong ASAS repository reference detected outside approved governance/audit documentation.'
             exit 1
           fi
 
@@ -92,6 +101,16 @@ jobs:
             exit 1
           fi
           test -f docs/handoff/CURRENT-SESSION-STATE.md
+
+      - name: Verify promoted-shadow inventory is internally classified
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'registers/events.json' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'registers/permissions.csv' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'registers/state-machines.json' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'schema/asas-contracts.prisma.*NOT PRESENT' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          echo 'Canonical promoted-shadow inventory is present.'
 
       - name: Foundation status is explicit
         shell: bash
