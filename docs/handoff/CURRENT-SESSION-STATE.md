@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION CHECKPOINT
-Version: 1.2
+Version: 1.3
 Date: 2026-09-20
 
 ## Repository
@@ -38,6 +38,7 @@ FOUNDATION HARDENING — FORENSIC REPOSITORY RECONSTRUCTION / PRE-IMPLEMENTATION
 - Founder decision register
 - Corrected source/register promotion state
 - Structural task-register parse and count correction
+- Source register structural reconciliation evidence
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
@@ -52,8 +53,9 @@ The v1.6.1 Blueprint/package remains the authority. Repository artifacts are der
 - `docs/handoff/SESSION_STATE.md` exists only as historical compatibility material; `CURRENT-SESSION-STATE.md` remains the sole current checkpoint.
 
 ## Verified source observations
-- Direct structural parse of authoritative v1.6.1 `tasks.json`: 119 unique phase task IDs, 3 unique recurring ritual IDs, 0 duplicate task IDs, 0 nested task IDs. Therefore 122 `T-*` identifiers exist when recurring rituals are included. Earlier repository declaration said 114 phase tasks; delta +5 remains OPEN as a source-edition reconciliation issue, but the current source structure itself is no longer ambiguous.
-- Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. This discrepancy is OPEN and not silently normalized.
+- Direct structural parse of authoritative v1.6.1 `tasks.json`: 119 unique phase task IDs, 3 unique recurring ritual IDs, 0 duplicate task IDs, 0 nested task IDs. Therefore 122 `T-*` identifiers exist when recurring rituals are included. Earlier repository declaration said 114 phase tasks; delta +5 remains OPEN as a historical/source-edition reconciliation issue, but the current source structure itself is no longer ambiguous.
+- The source task records contain only `id`, `title`, `contracts`, and `evidence`. They are therefore source task records, not complete implementation task packets. Task-packet enrichment remains an explicit derivation step.
+- Source schema contract contains 59 models, 17 enums, 56 `@@index` declarations, 22 `@@unique` declarations, and 19 `@relation(...)` annotations. Earlier repository summaries said 59/16/15. This discrepancy is now structurally explained and the current source counts are VERIFIED.
 - Source event register contains 103 event names across 11 emission modules.
 - Source permission register contains 50 permission keys across eight persona columns.
 - State-machine register contains 11 machines.
@@ -62,12 +64,13 @@ The v1.6.1 Blueprint/package remains the authority. Repository artifacts are der
 - C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
 - Scheduling ownership conflict is OPEN / FOUNDER DECISION REQUIRED.
 - C2-002: live-database/runtime reality is not accepted as verified until canonical project identity and live evidence are captured.
-- Historical-vs-source task count discrepancy remains OPEN; structural source parsing is now VERIFIED at 119 phase tasks + 3 recurring rituals.
-- Schema-contract count discrepancy is OPEN.
+- Historical-vs-source task count discrepancy remains OPEN; structural source parsing is VERIFIED at 119 phase tasks + 3 recurring rituals.
+- Task-packet completeness is OPEN because the source task register does not encode all implementation-critical packet fields.
+- Schema executable repository promotion remains OPEN even though source structural counts are VERIFIED.
 - Application implementation readiness is BLOCKED because the application source tree is not present in the audited repository state.
 
 ## Connected platform observation
-The connected Supabase account currently exposes one project named `asas-web-site` (ref `xwokfufeeodobkuaxvgx`). This is not accepted as the canonical runtime for `asas-erp-saas-1/As` without explicit identity evidence. No database query or mutation was executed against it during this forensic pass.
+The connected Supabase account currently exposes one project named `asas-web-site` (ref `xwokfufeeodobkuaxvgx). This is not accepted as the canonical runtime for `asas-erp-saas-1/As` without explicit identity evidence. No database query or mutation was executed against it during this forensic pass.
 
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
@@ -92,6 +95,7 @@ No application code, database schema implementation, migrations, production conf
 
 ## Canonical forensic artifacts
 - `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md`
+- `docs/audit/SOURCE-REGISTER-STRUCTURAL-RECONCILIATION-2026-09-20.md`
 - `docs/governance/REPOSITORY-REALITY-MAP.md`
 - `docs/governance/FOUNDER-DECISIONS.md`
 - `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`
@@ -99,8 +103,8 @@ No application code, database schema implementation, migrations, production conf
 
 ## Next sequence
 1. Founder resolves C2-001 and Scheduling ownership; record ADRs and update the canonical Context-to-Module Map.
-2. Complete source-derived task catalog coverage for phases 0–11 and recurring rituals, preserving contracts/evidence.
-3. Extract and validate the complete non-executable schema contract; reconcile every model, enum, relation, constraint and index.
+2. Derive implementation task packets from the 119 source tasks without changing source task semantics; every packet must add explicit scope, owner/context, dependencies, authorization, data boundary, invariants, state transitions, evidence and definition of done.
+3. Promote the complete non-executable schema contract with provenance after structural validation; reconcile every model, enum, relation, constraint and index.
 4. Reconcile counts/IDs/references and provenance; do not silently normalize discrepancies.
 5. Execute foundation CI and capture reproducible workflow evidence.
 6. Close security/tenancy doctrine against the resolved domain decomposition.
