@@ -1,13 +1,13 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION CHECKPOINT
-Version: 1.1
+Version: 1.2
 Date: 2026-09-20
 
 ## Repository
 - Canonical repository: `asas-erp-saas-1/As`
 - Canonical integration branch: `main`
-- Audited main commit: `0b8a0e3e80056bffb93f4edc37a61fe6185ce28d`
+- Audited `main` commit: `0b8a0e3e80056bffb93f4edc37a61fe6185ce28d`
 - Forensic remediation branch: `foundation/forensic-repository-reconstruction-2026-09-20`
 - Foundation changes must merge to `main`; feature/foundation branches are change vehicles only.
 
@@ -37,6 +37,7 @@ FOUNDATION HARDENING — FORENSIC REPOSITORY RECONSTRUCTION / PRE-IMPLEMENTATION
 - Forensic repository reconstruction audit
 - Founder decision register
 - Corrected source/register promotion state
+- Structural task-register parse and count correction
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the authority. Repository artifacts are derived shadows, not replacements for the source. If a derived artifact disagrees with the Blueprint, the Blueprint wins and the shadow is stale. Registers must flow Blueprint → register → implementation; never code → register.
@@ -51,7 +52,7 @@ The v1.6.1 Blueprint/package remains the authority. Repository artifacts are der
 - `docs/handoff/SESSION_STATE.md` exists only as historical compatibility material; `CURRENT-SESSION-STATE.md` remains the sole current checkpoint.
 
 ## Verified source observations
-- Source task register contains 119 top-level phase tasks and 121 task IDs when nested records are included, plus 3 recurring rituals. Earlier declaration said 114. Delta is OPEN and explicitly preserved.
+- Direct structural parse of authoritative v1.6.1 `tasks.json`: 119 unique phase task IDs, 3 unique recurring ritual IDs, 0 duplicate task IDs, 0 nested task IDs. Therefore 122 `T-*` identifiers exist when recurring rituals are included. Earlier repository declaration said 114 phase tasks; delta +5 remains OPEN as a source-edition reconciliation issue, but the current source structure itself is no longer ambiguous.
 - Source schema contract contains 59 models, 17 enums, and 56 `@@index` declarations. Earlier repository summaries said 59/16/15. This discrepancy is OPEN and not silently normalized.
 - Source event register contains 103 event names across 11 emission modules.
 - Source permission register contains 50 permission keys across eight persona columns.
@@ -61,7 +62,7 @@ The v1.6.1 Blueprint/package remains the authority. Repository artifacts are der
 - C2-001: bounded-context/module decomposition conflict is OPEN. See `docs/governance/OPEN-CONTRACT-CONFLICTS.md`.
 - Scheduling ownership conflict is OPEN / FOUNDER DECISION REQUIRED.
 - C2-002: live-database/runtime reality is not accepted as verified until canonical project identity and live evidence are captured.
-- Task-register count discrepancy is OPEN.
+- Historical-vs-source task count discrepancy remains OPEN; structural source parsing is now VERIFIED at 119 phase tasks + 3 recurring rituals.
 - Schema-contract count discrepancy is OPEN.
 - Application implementation readiness is BLOCKED because the application source tree is not present in the audited repository state.
 
@@ -71,7 +72,7 @@ The connected Supabase account currently exposes one project named `asas-web-sit
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
 G1 AMBER — authority reconciliation ongoing
-G2 GREEN — current context claims recorded; decomposition conflict remains separate
+G2 PARTIAL — context claims are recorded, but decomposition conflict remains an active hard stop
 G3 AMBER — scope protected; implementation phase not authorized
 G4 AMBER — invariant doctrine present, executable enforcement absent
 G5 AMBER — state-machine register present, runtime enforcement absent
