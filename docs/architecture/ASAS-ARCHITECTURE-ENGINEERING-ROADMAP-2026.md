@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
 **Status:** ACTIVE PROPOSED ROADMAP  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Owner:** Lead Architecture / Technical Program Lead  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
 **Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`
@@ -15,6 +15,8 @@ Build the ASAS engineering framework in the correct order:
 
 The roadmap deliberately prevents code and database programming from becoming the source of architectural truth.
 
+> **Scale principle:** phases and counts are planning aids, not quotas. Work continues until the engineering objective and evidence are satisfied. If new evidence reveals additional architecture work, the roadmap expands through controlled change; it does not compress the work to fit an arbitrary count.
+
 ---
 
 # H0 — REALITY AND SOURCE CONTROL
@@ -24,19 +26,21 @@ Establish one trusted understanding of what exists.
 
 ### Work
 - verify canonical repository, branch and commit;
-- inventory all branches and classify branch purpose/provenance;
+- inventory all relevant branches and classify branch purpose/provenance;
 - identify canonical checkpoint;
 - classify artifacts;
 - reconcile source package against repository shadows;
 - preserve historical evidence;
 - eliminate stale canonical references;
-- establish one artifact authority map.
+- establish one artifact authority map;
+- identify runtime/database identity separately from repository identity.
 
 ### Exit evidence
 - repository identity verified;
 - canonical checkpoint verified;
 - source/derived/historical classes documented;
-- no ambiguous active checkpoint.
+- no ambiguous active checkpoint;
+- runtime identity is either verified or explicitly blocked.
 
 ### Current state
 `PARTIAL`
@@ -46,7 +50,7 @@ Establish one trusted understanding of what exists.
 # H1 — ARCHITECTURAL RECONCILIATION
 
 ### Objective
-Freeze the semantic architecture before implementation.
+Freeze the semantic architecture sufficiently for safe contract engineering—not by forcing a fixed number of contexts, but by proving ownership boundaries.
 
 ### Work
 1. Resolve C2-001 context/module conflict.
@@ -55,14 +59,23 @@ Freeze the semantic architecture before implementation.
 4. Define platform planes.
 5. Define dependency direction.
 6. Define bounded-context interaction rules.
-7. Define shared kernel rules.
+7. Define shared-kernel rules.
 8. Define anti-corruption/integration boundaries.
+9. Define boundary decision criteria and evidence requirements.
+10. Identify contexts/modules that remain intentionally unresolved.
+11. Record rejected boundary alternatives.
+12. Define extraction triggers for future modular decomposition.
+
+### Boundary test
+A boundary is acceptable only when semantic cohesion, ownership, consistency, authorization, data ownership, change cadence, failure behavior, scaling characteristics, and integration cost have been considered.
 
 ### Exit evidence
 - approved architecture decision(s);
 - context map;
 - dependency matrix;
-- no unresolved implementation-critical ownership ambiguity.
+- ownership matrix;
+- unresolved boundaries explicitly marked;
+- no hidden implementation-critical ownership ambiguity.
 
 ### Current state
 `BLOCKED — founder decisions required`
@@ -84,13 +97,16 @@ Convert the semantic model into implementation-safe contracts.
 - approval rules;
 - business policy catalog;
 - concurrency rules;
-- failure semantics.
+- failure semantics;
+- consistency boundaries;
+- domain service responsibilities;
+- cross-context contract rules.
 
 ### Critical rule
 Do not generate database tables merely because a domain object exists.
 
 ### Exit evidence
-Every implementation-critical behavior has an owner, invariant, command, state transition and test strategy.
+Every implementation-critical behavior has an owner, invariant, command, state transition, authorization rule and test strategy.
 
 ### Current state
 `PARTIAL`
@@ -103,7 +119,7 @@ Every implementation-critical behavior has an owner, invariant, command, state t
 Make asynchronous behavior explicit and reliable.
 
 ### Work
-- reconcile 103 registered events;
+- reconcile registered events;
 - define event schemas/versioning;
 - producer/consumer ownership;
 - transactional outbox;
@@ -112,10 +128,12 @@ Make asynchronous behavior explicit and reliable.
 - replay policy;
 - dead-letter handling;
 - ordering scope;
-- integration/webhook contracts.
+- integration/webhook contracts;
+- compatibility/deprecation rules;
+- event-to-command traceability.
 
 ### Exit evidence
-Event register reconciled against domain commands and transaction boundaries; critical events have testable consumers.
+Event register reconciled against domain commands and transaction boundaries; critical events have testable consumers, failure semantics and evidence.
 
 ### Current state
 `BLOCKED — application implementation absent`
@@ -128,7 +146,7 @@ Event register reconciled against domain commands and transaction boundaries; cr
 Make unauthorized access structurally difficult and detectable.
 
 ### Work
-- reconcile 50 permission keys × 8 personas;
+- reconcile permission register;
 - resource/action/scope matrix;
 - tenant hierarchy;
 - support/admin access;
@@ -138,10 +156,13 @@ Make unauthorized access structurally difficult and detectable.
 - storage security;
 - threat matrix;
 - security test plan;
-- AI tool authority model.
+- AI tool authority model;
+- prompt-injection/excessive-agency controls;
+- webhook trust boundaries;
+- data classification and privacy controls.
 
 ### Exit evidence
-Every sensitive command has explicit permission/scope; database and application controls have independent verification.
+Every sensitive command has explicit permission/scope; application and database controls have independent verification; AI tools cannot widen caller authority.
 
 ### Current state
 `BLOCKED — final domain ownership and live runtime identity unresolved`
@@ -155,23 +176,27 @@ Create a reproducible, local-first data engineering foundation.
 
 ### Work
 1. Promote source schema contract after structural validation.
-2. Reconcile all models, enums, relations, unique constraints and indexes.
+2. Reconcile models, enums, relations, unique constraints and indexes.
 3. Separate domain model from persistence model.
 4. Design tenant keys and ownership fields.
-5. Define audit/outbox/idempotency tables.
+5. Define audit/outbox/idempotency structures.
 6. Define financial immutability.
 7. Define concurrency constraints.
-8. Generate migration baseline.
-9. Run local PostgreSQL/Supabase stack.
-10. Replay migrations locally.
-11. Add database tests.
-12. Add RLS tests.
+8. Define indexing strategy from access patterns, not guesswork.
+9. Generate migration baseline.
+10. Run local PostgreSQL/Supabase stack.
+11. Replay migrations locally.
+12. Add database tests.
+13. Add RLS tests.
+14. Add concurrency tests for sensitive workflows.
+15. Capture schema diff evidence.
 
 ### Exit evidence
 - executable schema exists;
 - migration history is reproducible;
 - local reset/replay passes;
 - constraints are tested;
+- concurrency semantics are proven for critical operations;
 - no production database has been touched.
 
 ### Current state
@@ -191,14 +216,17 @@ Create the UI architecture before page-by-page coding.
 - color semantics;
 - elevation;
 - RTL/LTR rules;
-- responsive breakpoints;
+- responsive behavior;
 - accessibility rules;
 - primitive components;
 - domain components;
 - workspace patterns;
 - public property patterns;
 - mobile field patterns;
-- loading/error/empty states.
+- loading/error/empty/offline states;
+- interaction contracts;
+- form validation and error semantics;
+- visual regression strategy.
 
 ### Exit evidence
 Design system contract and component inventory are implementation-ready and independently testable.
@@ -224,13 +252,14 @@ Create the smallest executable modular-monolith shell.
 - auth/session boundary;
 - command/query application layer;
 - test harness;
-- local database adapter.
+- local database adapter;
+- architecture enforcement rules.
 
 ### Rule
 No domain feature is implemented merely to prove the framework works.
 
 ### Exit evidence
-Local application starts, health checks work, test harness runs, module boundaries are enforceable.
+Local application starts, health checks work, test harness runs, module boundaries are enforceable, and architectural violations fail verification.
 
 ### Current state
 `BLOCKED — implementation authorization not yet granted`
@@ -249,6 +278,8 @@ Then extend through:
 
 `Offer → Reservation → Contract → Payment Plan → Payment → Receipt → Audit → Reporting`
 
+The exact slice boundary may change if architecture evidence identifies a safer vertical cut.
+
 ### Required evidence
 - unit/integration/contract tests;
 - authorization tests;
@@ -257,7 +288,8 @@ Then extend through:
 - concurrency tests where relevant;
 - event/outbox tests;
 - audit verification;
-- browser/E2E verification.
+- browser/E2E verification;
+- failure/retry verification.
 
 ### Exit evidence
 One complete business slice is production-shaped and independently auditable.
@@ -281,7 +313,9 @@ Prove the platform can be operated safely.
 - backup verification;
 - restore rehearsal;
 - RPO/RTO definition;
-- incident/runbook design.
+- incident/runbook design;
+- capacity evidence;
+- degradation/failure-mode tests.
 
 ### Exit evidence
 Measured operational behavior, tested restore and documented recovery evidence.
@@ -302,9 +336,10 @@ Introduce remote dependencies only after local architecture is stable.
 - verify RLS;
 - verify storage;
 - configure environment separation;
-- integrate Vercel/hosting when appropriate;
+- integrate hosting when appropriate;
 - run staging verification;
-- compare local and remote migration state.
+- compare local and remote migration state;
+- verify remote observability and recovery controls.
 
 ### Exit evidence
 Every remote system has identity evidence and environment mapping.
@@ -320,7 +355,7 @@ Every remote system has identity evidence and environment mapping.
 Permit controlled production operation only after evidence closure.
 
 ### Gates
-- architecture gates 00–15;
+- architecture gates;
 - security review;
 - recovery test;
 - performance budget;
@@ -329,7 +364,8 @@ Permit controlled production operation only after evidence closure.
 - observability;
 - rollback plan;
 - incident ownership;
-- release evidence.
+- release evidence;
+- operational readiness review.
 
 ### Current state
 `BLOCKED`
@@ -368,7 +404,7 @@ Rollback/recovery consideration
 Authorization state
 ```
 
-Source task semantics are preserved; this packet is a derived implementation layer.
+Source task semantics are preserved; this packet is a derived implementation layer. Missing fields are not silently guessed.
 
 ---
 
@@ -408,11 +444,20 @@ For external technical facts:
 5. reputable secondary analysis;
 6. community evidence only as supplementary evidence.
 
+Research must be proportional to risk. High-impact architectural decisions require corroboration; routine implementation questions do not need unnecessary research overhead.
+
 Record:
 
 `question → source/date/version → finding → conflict → decision → impact → review date`
 
-Current official references consulted for this roadmap include Next.js documentation and Supabase local development/migration/RLS guidance, plus reliability guidance emphasizing tested restoration and RPO/RTO evidence.
+Current research confirms the following principles relevant to ASAS:
+
+- DDD and hexagonal architecture favor business-logic boundaries and domain-first modeling.
+- Modular monoliths are valid when internal boundaries are strong; extraction should follow evidence rather than fashion.
+- PostgreSQL provides strong transaction isolation and explicit locking mechanisms, but concurrency strategy must be matched to the invariant and workload.
+- Supabase supports local development and migration workflows suitable for local-first schema construction.
+- GitHub status checks are evidence-bearing only when workflows actually trigger and report results.
+- OWASP identifies excessive functionality, permissions and autonomy as major risks for AI agents.
 
 ---
 
@@ -424,39 +469,64 @@ The preferred sequence is:
 
 `Local design → local schema → local migrations → local tests → CI → controlled staging → controlled production`
 
-This is supported by Supabase's documented local workflow: local stacks, version-controlled migrations, schema pull/diff, seed data and database tests are supported before remote deployment.
+Remote runtime is introduced only when the corresponding verification stage requires it.
 
 ---
 
-# 16. CURRENT EXECUTION QUEUE
+# 16. ARCHITECTURE CHANGE / EXPANSION RULE
+
+The roadmap is not a fixed checklist of a predetermined number of files, contexts, services or phases.
+
+When engineering evidence reveals a missing concern:
+
+`DISCOVER → CLASSIFY → IMPACT ASSESS → ADD WORK → UPDATE BLUEPRINT/ROADMAP/PROMPT → ADR IF MATERIAL → VERIFY`
+
+When a planned item becomes unnecessary:
+
+`EVIDENCE → DEFER/REMOVE → RECORD REASON → UPDATE DEPENDENCIES`
+
+No work is added merely for complexity, and no work is removed merely to make the roadmap look complete.
+
+---
+
+# 17. CURRENT EXECUTION QUEUE
 
 ### Q0 — Architecture authority closure
-**BLOCKED:** founder decisions.
+**BLOCKED:** founder decisions and unresolved authority boundaries.
 
 ### Q1 — Task packet derivation
 **READY:** can proceed without changing source task semantics.
 
-### Q2 — Schema contract promotion
-**READY AFTER:** Q0 where ownership affects schema.
+### Q2 — Context dependency and aggregate contract closure
+**DEPENDENT:** Q0 where ownership is affected.
 
-### Q3 — Security/tenancy contract closure
-**DEPENDENT:** Q0/Q2.
+### Q3 — Event/integration contract reconciliation
+**DEPENDENT:** Q2.
 
-### Q4 — Local database foundation
+### Q4 — Security/tenancy contract closure
 **DEPENDENT:** Q2/Q3.
 
-### Q5 — Application shell
-**DEPENDENT:** architecture implementation gate.
+### Q5 — Schema contract promotion
+**DEPENDENT:** Q2/Q4.
 
-### Q6 — First vertical slice
-**DEPENDENT:** Q5 + task authorization.
+### Q6 — Local database foundation
+**DEPENDENT:** Q5.
 
-### Q7 — Runtime integration
+### Q7 — Design system engineering
+**PARTIALLY READY:** can proceed in parallel where it does not assume unresolved domain ownership.
+
+### Q8 — Application shell
+**DEPENDENT:** architecture implementation gate + Q5.
+
+### Q9 — First vertical slice
+**DEPENDENT:** Q8 + authorized task packets.
+
+### Q10 — Runtime integration
 **DEPENDENT:** local verification + platform identity gate.
 
 ---
 
-# 17. DEFINITION OF DONE FOR ARCHITECTURE
+# 18. DEFINITION OF DONE FOR ARCHITECTURE
 
 Architecture is not complete because the document is long.
 
@@ -464,22 +534,26 @@ A phase is complete only when:
 
 `decision resolved + artifact updated + implementation constraint explicit + tests/evidence defined + references reconciled + no contradictory canonical artifact remains`
 
+If the correct outcome is uncertainty, the phase remains explicitly `OPEN` or `BLOCKED`.
+
 ---
 
-# 18. NEXT CHECKPOINT
+# 19. NEXT CHECKPOINT
 
 The next engineering checkpoint is:
 
 **ARCH-2026-H1-CLOSURE**
 
-Required before H7:
+Required before H8:
 
 1. C2-001 resolution;
 2. Scheduling ownership resolution;
 3. context/module map;
-4. derived task packet framework;
-5. schema promotion plan;
-6. canonical artifact map;
-7. architecture gate status update.
+4. dependency matrix;
+5. derived task packet framework;
+6. schema promotion plan;
+7. canonical artifact map;
+8. architecture gate status update;
+9. research/provenance record for material decisions.
 
 No code/database implementation authorization is implied by this roadmap.
