@@ -1,12 +1,12 @@
 # ASAS Canonical Artifact Register
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.1
+Version: 1.2
 Date: 2026-09-20
 
 ## Purpose
 
-This register defines which repository artifacts are authoritative, which are derived, and which are historical or not yet promoted. It prevents Claude or another implementation agent from assuming that a referenced artifact exists merely because an instruction mentions it.
+This register defines which repository artifacts are authoritative, derived, operational, evidence, or historical. It prevents Claude or another implementation agent from assuming that a referenced artifact exists merely because an instruction mentions it.
 
 ## Authority classes
 
@@ -15,7 +15,14 @@ This register defines which repository artifacts are authoritative, which are de
 - **A3 — Operational state:** current verified repository/session state.
 - **A4 — Procedure:** workflow/runbook/instruction; cannot override A1/A2.
 - **A5 — Evidence:** proof of an observed condition; never a substitute for a contract.
+- **A6 — Consolidated engineering control:** cross-source synthesis used for routing, reconciliation and context; cannot silently override an A1 source.
 - **H — Historical:** retained for provenance only; never a current source of truth.
+
+## Single consolidation resource
+
+`docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
+
+This is the canonical consolidation/routing resource for the 2026 architecture program. It records provenance, reconciled facts, conflicts, current statuses and next checkpoints. It does **not** erase source authority. Domain-specific canonical artifacts remain authoritative for their own concepts.
 
 ## Canonical handoff chain
 
@@ -26,6 +33,10 @@ This register defines which repository artifacts are authoritative, which are de
 | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | A4 | YES | Execution sequence |
 | `docs/handoff/CURRENT-SESSION-STATE.md` | A3 | YES | Sole current checkpoint |
 | `docs/handoff/CLAUDE-CONTEXT-INDEX.md` | A4 | YES | Context routing |
+| `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | A6 | YES | Consolidated architecture-engineering truth/routing resource |
+| `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | A1 candidate | YES | Desired architecture; unresolved items remain blocked |
+| `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | A4/A6 | YES | Ordered engineering route |
+| `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | A4/A6 | YES | AI engineering operating context |
 | `docs/governance/FOUNDATION-GATE-REGISTER.md` | A3 | YES | Gate status |
 | `docs/governance/CONTRACT-RECONCILIATION-PROTOCOL.md` | A4 | YES | Conflict resolution |
 | `docs/governance/RECONCILIATION-RECORD-TEMPLATE.md` | A4 | WHEN RECONCILING | Evidence format |
@@ -35,46 +46,50 @@ This register defines which repository artifacts are authoritative, which are de
 
 ## Current machine-readable shadows
 
-The following source-derived artifacts are now present on `main`/the current foundation line. Their presence does **not** mean they are fully reconciled or implementation-authoritative.
-
 | Artifact | Authority | Current state | Verification state |
 |---|---|---|---|
-| `registers/events.json` | A2 derived from Blueprint Appendix C | PRESENT | PARTIAL — source/provenance recorded; runtime enforcement absent |
-| `registers/permissions.csv` | A2 derived from Blueprint Appendix A | PRESENT | PARTIAL — source/provenance recorded; executable enforcement absent |
-| `registers/state-machines.json` | A2 derived from Blueprint Appendix B | PRESENT | PARTIAL — source/provenance recorded; executable enforcement absent |
-| `registers/tasks.index.json` | A2 reconciliation index | PRESENT | OPEN — 114 vs 119/121 discrepancy preserved |
-| `registers/tasks/phase-P.json` | A2 derived task shard | PRESENT | VERIFIED for the nine Phase-P source tasks per checkpoint |
-| `schema/asas-contracts.index.json` | A2 reconciliation index | PRESENT | OPEN — historical 59/16/15 vs observed 59/17/56 |
+| `registers/events.json` | A2 derived from source Blueprint | PRESENT | VERIFIED structurally — 103 events / 11 groups |
+| `registers/permissions.csv` | A2 derived from source Blueprint | PRESENT | VERIFIED structurally — 50 keys / 8 persona columns |
+| `registers/state-machines.json` | A2 derived from source Blueprint | PRESENT | VERIFIED structurally — 11 machines |
+| `registers/tasks.index.json` | A2 reconciliation index | PRESENT | OPEN/RECONCILED — historical counts preserved |
+| `registers/tasks/phase-P.json` | A2 derived task shard | PRESENT | VERIFIED for its declared source slice |
+| `schema/asas-contracts.index.json` | A2 reconciliation index | PRESENT | OPEN — source schema requires promotion/reconciliation |
 | `schema/asas-contracts.prisma` | A2 executable shadow | NOT PRESENT | BLOCKED pending complete source extraction/reconciliation |
-| `registers/tasks.json` | A2 full task shadow | NOT PRESENT | BLOCKED pending full task reconciliation |
-| `design/design-tokens.json` | A2 design shadow | PRESENT | SOURCE-DERIVED; promotion/validation status governed by foundation gates |
-| `design/component-inventory.md` | A2 component contract | PRESENT | SOURCE-DERIVED; validation status governed by foundation gates |
+| `registers/tasks.json` | A2 full task shadow | NOT PRESENT | BLOCKED; source semantics currently represented by shards/indexes |
+| `design/design-tokens.json` | A2 design shadow | PRESENT | SOURCE-DERIVED / validation governed by gates |
+| `design/component-inventory.md` | A2 component contract | PRESENT | VERIFIED structurally — 42 primitives |
 
-## Critical rule
+## Canonicality rules
 
-A reference to a missing canonical artifact is a foundation gap, not permission to invent a replacement. The correct action is to extract and reconcile the artifact from its authoritative source, record provenance, validate internal consistency, then promote it to canonical status.
+1. One concept has one canonical owner.
+2. A derived artifact cannot silently redefine its source.
+3. Historical artifacts remain available for provenance.
+4. Runtime facts are not replaced by target architecture.
+5. Missing canonical artifacts are foundation gaps, not permission to invent replacements.
+6. Conflicts remain `CONFLICT` until authority resolves them.
+7. A status is `VERIFIED` only with objective evidence.
+8. Branch content does not become canonical merely because it is newer or more detailed.
+9. The consolidated Source of Truth is a routing/control resource, not a license to flatten provenance.
 
-## Historical material
+## Branch consolidation rule
 
-Uploaded/source-package files remain research inputs unless explicitly promoted. Copies, generated summaries, and prior conversation artifacts do not become canonical merely by being committed.
-
-`docs/handoff/SESSION_STATE.md` is retained as historical compatibility material and is not the current checkpoint.
+Historical branches may be reviewed and their unique evidence incorporated into the consolidation resource. They must not be treated as active architecture authority afterward. Branch deletion requires a GitHub branch-delete capability and provenance verification. The current engineering connector exposes branch discovery and ref movement but not branch deletion; therefore branch deletion is **NOT_EXECUTED** and must not be simulated by force-moving refs.
 
 ## Promotion rule
 
 An artifact may become canonical only when:
 
-1. its authority source is identified;
+1. authority source is identified;
 2. provenance is recorded;
 3. terminology and IDs are reconciled;
 4. internal references resolve;
 5. required validation passes;
-6. the gate register is updated with evidence.
+6. gate status is updated with evidence.
 
 ## Anti-drift rule
 
-Never edit a canonical register merely to make it agree with implementation. If implementation conflicts with the register, stop, classify the conflict, and reconcile the contract first.
+Never edit a canonical register merely to make it agree with implementation. If implementation conflicts with a register, stop, classify the conflict, and reconcile the contract first.
 
 ## Forensic correction
 
-This version corrects the previous inventory statement that the event/permission/state-machine shadows were absent. They are present in the audited repository tree. Presence is not equivalent to full implementation verification.
+This version retains the corrected finding that event/permission/state-machine/design shadows are present. Presence is not equivalent to runtime enforcement.
