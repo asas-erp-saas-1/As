@@ -70,7 +70,7 @@ The v1.6.1 Blueprint/package remains the authority. Repository artifacts are der
 - Application implementation readiness is BLOCKED because the application source tree is not present in the audited repository state.
 
 ## Connected platform observation
-The connected Supabase account currently exposes one project named `asas-web-site` (ref `xwokfufeeodobkuaxvgx). This is not accepted as the canonical runtime for `asas-erp-saas-1/As` without explicit identity evidence. No database query or mutation was executed against it during this forensic pass.
+The connected Supabase account currently exposes one project named `asas-web-site` (ref `xwokfufeeodobkuaxvgx`). This is not accepted as the canonical runtime for `asas-erp-saas-1/As` without explicit identity evidence. No database query or mutation was executed against it during this forensic pass.
 
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
