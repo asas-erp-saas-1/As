@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 1.7
+Version: 1.8
 Date: 2026-09-20
 
 ## Repository
@@ -13,18 +13,20 @@ Date: 2026-09-20
 - Architecture changes must merge through reviewed PRs; this branch is the current architecture engineering vehicle.
 
 ## Phase
-ARCHITECTURE ENGINEERING — H1 RECONCILIATION / PRE-IMPLEMENTATION BASELINE
+ARCHITECTURE ENGINEERING — H1.3 AGGREGATE / INVARIANT CLOSURE
 
 ## Canonical architecture control plane
-The 2026 architecture program now uses four controlled navigation resources:
+The 2026 architecture program uses controlled navigation resources:
 
 1. `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — consolidated engineering truth, provenance and routing.
 2. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` — WHAT the target architecture is.
-3. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — HOW the architecture is engineered and verified.
-4. `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — HOW an AI engineering agent must operate.
+3. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — current proposed authority reconciliation amendment to the Blueprint.
+4. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — HOW the architecture is engineered and verified.
+5. `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — HOW an AI engineering agent must operate.
 
-Derived evidence companion:
+Derived evidence/contract companions:
 - `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` — context/domain/module evidence mapping; not an independent authority.
+- `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md` — aggregate/invariant/transaction evidence contract; not a schema or implementation authorization.
 
 Supporting registers remain canonical for their own concepts. No competing architecture blueprint should be created without explicit supersession.
 
@@ -54,13 +56,15 @@ Supporting registers remain canonical for their own concepts. No competing archi
 - Structural task-register parse and count correction
 - Source register structural reconciliation evidence
 - 2026 platform architecture blueprint v1.3
-- 2026 architecture engineering roadmap v1.3
-- 2026 architecture context prompt v1.3
+- Blueprint authority reconciliation amendment 001
+- 2026 architecture engineering roadmap v1.4
+- 2026 architecture context prompt v1.4.1
 - 2026 context/domain/module evidence matrix v1.0
-- consolidated engineering source of truth v1.1
+- consolidated engineering source of truth v1.2
+- aggregate/invariant boundary register v1.0
 
 ## Source discipline
-The v1.6.1 Blueprint/package remains the principal source baseline for foundation facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering techniques but does not override repository or founder authority.
+The v1.6.1 Blueprint/package remains the foundation source baseline for source facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering techniques but does not override repository or founder authority.
 
 ## Verified source observations
 - 119 unique phase task IDs.
@@ -75,14 +79,39 @@ The v1.6.1 Blueprint/package remains the principal source baseline for foundatio
 These values are source observations, not architectural quotas.
 
 ## Current architecture position
-- The repository contains a **confirmed architecture authority conflict**: a nine-context condensed domain view versus a historical proposed 15-module implementation decomposition.
-- Historical `docs/decisions/ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` is explicitly PROPOSED and awaiting founder acceptance.
-- Therefore C2-001 is `CONFLICT / FOUNDER DECISION REQUIRED`.
-- The safe interim model is to preserve both views as evidence and keep the distinction between domain grouping and implementation module decomposition explicit.
-- The evidence is consolidated in `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`.
-- Scheduling ownership remains `FOUNDER DECISION REQUIRED`.
-- Additional unresolved boundary findings: C2-003 Identity/Tenancy ownership OPEN; C2-004 Collaboration ownership OPEN; C2-005 Activity/Audit PARTIAL; C2-006 Analytics ownership PARTIAL.
-- No schemas, migrations, task ownership or application modules may be derived from the unresolved conflict as if it were closed.
+### C2-001 — reclassified
+The current evidence supports the nine-context target domain grouping:
+`Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`.
+
+The historical 15-module artifact is a proposed implementation decomposition whose ADR explicitly awaited founder acceptance. It is not currently an equal-authority competing bounded-context model.
+
+Therefore:
+`C2-001 = OPEN ARCHITECTURAL REFINEMENT`
+
+The engineering question is to derive implementation modules from ownership, aggregate boundaries, invariants, consistency, authorization, data ownership, change cadence, failure isolation, scaling behavior and integration cost. The founder is not required to choose an arbitrary number merely to unblock engineering.
+
+### C2-002 — Scheduling
+Historical `ADR-0018` accepted Scheduling as a Core/CRM-hosted capability. The 2026 architecture reopened the question.
+
+Therefore:
+`C2-002 = OPEN / PROPOSED SUPERSESSION`
+
+The historical ADR remains evidence. No implementation ownership change is authorized until the decision is explicitly reaffirmed or superseded through the proper ADR path.
+
+## H1.3 aggregate/invariant work
+The new derived contract is:
+`docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+
+Current source-supported aggregate candidates include Lead, Client, Project, Unit, Listing, Visit, Reservation, Contract, PaymentSchedule/Installment, CommissionRule, CommissionRecord, Agency, Branch, User and NotificationPreference.
+
+Source material describes CommunicationLog, Attachment, Activity/Timeline/Audit, Search and Reporting differently; they are not promoted to aggregates merely because they are named concepts.
+
+Critical open boundaries:
+1. Unit ↔ Reservation atomic consistency.
+2. Offer ownership/invariants.
+3. Payment vs PaymentSchedule vs Receipt semantics.
+4. Building ownership/invariants.
+5. Scheduling ownership.
 
 ## Current blockers
 - Canonical ASAS live database/project identity is not verified.
@@ -95,8 +124,8 @@ These values are source observations, not architectural quotas.
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
 G1 AMBER — authority reconciliation ongoing
-G2 BLOCKED — context/module authority conflict requires founder decision
-G3 AMBER — scope protected
+G2 AMBER — domain grouping supported; module decomposition remains open; Scheduling reopening remains open
+G3 AMBER — aggregate/invariant contract active; critical ownership boundaries unresolved
 G4 AMBER — invariant doctrine exists; executable enforcement absent
 G5 AMBER — state-machine register exists; runtime enforcement absent
 G6 BLOCKED — event implementation absent
@@ -110,19 +139,15 @@ G13 BLOCKED — live backup/restore evidence absent
 G14 AMBER — AI safety doctrine exists; executable tooling absent
 G15 BLOCKED — implementation authorization absent
 
-## H1 evidence work completed
-The context/domain/module evidence matrix now records:
+## H1 evidence work
+Completed:
+- context/domain/module evidence matrix;
+- aggregate/invariant boundary register;
+- Blueprint authority reconciliation amendment;
+- SOT reconciliation;
+- roadmap/prompt synchronization.
 
-- the nine-context domain view;
-- the historical 15-module candidate;
-- candidate aggregate ownership;
-- candidate dependency rules;
-- platform capability classification;
-- unresolved boundary findings;
-- schema-promotion guard;
-- H1 exit criteria.
-
-The matrix is derived evidence and does not resolve founder decisions.
+These artifacts do not authorize implementation.
 
 ## Research evidence incorporated
 Current external research has been used to refine the architecture baseline for DDD/domain-first boundaries, modular-monolith evolution, PostgreSQL transaction isolation and locking, Supabase local migration workflows, GitHub status-check evidence, and OWASP AI excessive-agency controls.
@@ -133,17 +158,18 @@ External sources validate engineering patterns; they do not close ASAS gates by 
 No application feature implementation, production schema mutation, migration deployment, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the relevant architecture gates are closed.
 
 ## Next execution sequence
-1. Prepare founder decision packet for C2-001: domain grouping versus implementation module decomposition.
-2. Prepare founder decision packet for Scheduling ownership.
-3. Derive implementation task packets without changing source task semantics; ownership-dependent packets remain blocked.
-4. Build aggregate/invariant/command traceability without promoting schema ownership.
-5. Build the context/domain ↔ module ↔ aggregate ↔ schema traceability map after ownership decisions.
-6. Promote and validate the executable schema contract only after ownership is resolved.
-7. Close tenancy/security contracts against the resolved architecture.
-8. Establish reproducible local database and application foundation.
-9. Run architecture CI and capture evidence.
-10. Verify canonical runtime identity before any remote introspection.
-11. Authorize the first bounded vertical implementation slice only after its dependencies and gates are GREEN.
+1. Close the Unit ↔ Reservation atomic consistency boundary.
+2. Define Offer ownership and invariants without inventing persistence structures.
+3. Reconcile Payment vs PaymentSchedule vs Receipt semantics.
+4. Define Building ownership and invariants.
+5. Map critical invariants to state machines, permissions and events.
+6. Resolve or explicitly reaffirm Scheduling through ADR.
+7. Derive command/query contracts.
+8. Promote the executable schema contract only after ownership/security gates permit it.
+9. Establish reproducible local database and application foundation.
+10. Run architecture CI and capture evidence.
+11. Verify canonical runtime identity before remote introspection.
+12. Authorize the first bounded vertical implementation slice only after dependencies and gates are GREEN.
 
 ## Continuation rule
-On continuation, load this checkpoint plus the Source of Truth, Blueprint, Roadmap, Context Prompt, Evidence Matrix, then the open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
+On continuation, load this checkpoint plus the Source of Truth, Blueprint, Blueprint Amendment 001, Roadmap, Context Prompt, Evidence Matrix, Aggregate/Invariant Register, then the open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
