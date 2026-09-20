@@ -2,15 +2,16 @@
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
 **Status:** ACTIVE PROPOSED ROADMAP  
-**Version:** 1.5.0  
+**Version:** 1.6.0  
 **Owner:** Lead Architecture / Technical Program Lead  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` v1.4.0  
 **Historical amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — superseded by Blueprint v1.4.0 and retained as provenance  
-**Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` v1.5.0  
+**Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` v1.6.0  
 **Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
 **Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`  
 **Command contract companion:** `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`  
-**Offer contract companion:** `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
+**Offer contract companion:** `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`  
+**Research protocol companion:** `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
 
 ## PURPOSE
 
@@ -38,13 +39,40 @@ Establish one trusted understanding of what exists.
 - preserve historical evidence;
 - eliminate stale canonical references;
 - establish one artifact authority map;
-- identify runtime/database identity separately from repository identity.
+- identify runtime/database identity separately from repository identity;
+- inspect all relevant GitHub branches, PRs, commits and workflow evidence;
+- compare divergent branches before any consolidation/deletion decision;
+- inspect attached/source-package material as provenance evidence;
+- perform current external research using official documentation and standards;
+- record source/date/version/finding/conflict/impact for material research.
+
+### Mandatory discovery protocol
+
+Use:
+
+`docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
+
+Reference local commands:
+
+```bash
+git fetch --all --prune
+git branch -a --no-color
+git ls-remote --heads origin
+git log --oneline origin/main..<branch>
+git diff --name-status origin/main...<branch>
+git log --follow -- <path>
+rg -n "C2-001|C2-002|ADR-0018|SESSION_STATE\.md|CURRENT-SESSION-STATE\.md" .
+```
+
+The connected GitHub integration must also be used when available to inspect all remote branches and branch-specific evidence. Internet research is supplementary engineering evidence, not ASAS product authority.
 
 ### Exit evidence
 - repository identity verified;
 - canonical checkpoint verified;
 - source/derived/historical classes documented;
 - no ambiguous active checkpoint;
+- relevant branches classified or explicitly queued for classification;
+- external research recorded where material;
 - runtime identity either verified or explicitly blocked.
 
 ### Current state
@@ -71,6 +99,7 @@ Freeze the semantic architecture sufficiently for safe contract engineering—no
 6. Define dependency direction and integration boundaries.
 7. Record rejected alternatives.
 8. Define extraction triggers for future decomposition.
+9. Incorporate relevant findings from cross-branch and external research without promoting them to authority unless approved.
 
 ### H1.2 — Evidence matrix
 Completed in:
@@ -491,6 +520,10 @@ Record:
 
 `question → source/date/version → finding → conflict → decision → impact → review date`
 
+The detailed cross-branch/GitHub/source-package/internet procedure is maintained in:
+
+`docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
+
 ---
 
 # 15. LOCAL-FIRST DATABASE PRINCIPLE
@@ -523,52 +556,55 @@ No work is added merely for complexity, and no work is removed merely to make th
 
 # 17. CURRENT EXECUTION QUEUE
 
-### Q0 — Authority reconciliation
+### Q0 — Cross-source authority reconciliation
+**ACTIVE:** inspect all relevant remote branches, branch-specific architecture evidence, source packages and current official external references before closing any material architectural gap. Branches are evidence, not authority; no branch is deleted solely because it is old.
+
+### Q1 — Authority reconciliation
 **CLOSED FOR CURRENT CONFLICT:** C2-001 is no longer treated as a binary 9-vs-15 founder choice. It is an open refinement of implementation module boundaries. Scheduling remains a separate reopening decision.
 
-### Q1 — Aggregate/invariant boundary engineering
+### Q2 — Aggregate/invariant boundary engineering
 **ACTIVE:** Unit/Reservation logical consistency is contractually defined; Offer, Building, Finance and Scheduling boundaries remain open where evidence is incomplete.
 
-### Q2 — Command/action contract engineering
+### Q3 — Command/action contract engineering
 **ACTIVE:** source-derived actions are captured. Offer now has a dedicated domain contract. Permission/state/event mappings remain to be closed.
 
-### Q3 — Payment semantic closure
+### Q4 — Payment semantic closure
 **ACTIVE:** reconcile payment fact, PaymentSchedule, Receipt/Allocation and Ledger without inventing a standalone Payment model merely from terminology.
 
-### Q4 — Scheduling decision packet
+### Q5 — Scheduling decision packet
 **ACTIVE:** prepare explicit ADR confirmation/supersession. Do not silently change ownership.
 
-### Q5 — Building boundary
+### Q6 — Building boundary
 **ACTIVE:** define Building ownership and invariants from source evidence before schema promotion.
 
-### Q6 — State/permission/event traceability
+### Q7 — State/permission/event traceability
 **NEXT:** map critical commands to canonical state machines, permission keys and registered events.
 
-### Q7 — Query/read-model contracts
+### Q8 — Query/read-model contracts
 **NEXT:** define read responsibilities for the commercial spine without giving projections mutation authority.
 
-### Q8 — Task packet derivation
+### Q9 — Task packet derivation
 **GUARDED:** derive implementation packets only where ownership and contracts are proven.
 
-### Q9 — Security/tenancy contract closure
-**DEPENDENT:** Q6 + final ownership model.
+### Q10 — Security/tenancy contract closure
+**DEPENDENT:** Q7 + final ownership model.
 
-### Q10 — Schema contract promotion
-**BLOCKED:** dependent on Q3/Q5/Q6/Q9 and architecture gates.
+### Q11 — Schema contract promotion
+**BLOCKED:** dependent on Q4/Q6/Q7/Q10 and architecture gates.
 
-### Q11 — Local database foundation
-**BLOCKED:** dependent on Q10.
+### Q12 — Local database foundation
+**BLOCKED:** dependent on Q11.
 
-### Q12 — Design system engineering
+### Q13 — Design system engineering
 **PARTIALLY READY:** may proceed where it does not assume unresolved domain ownership.
 
-### Q13 — Application shell
+### Q14 — Application shell
 **BLOCKED:** implementation authorization not granted.
 
-### Q14 — First vertical slice
-**BLOCKED:** dependent on Q13 + authorized task packets.
+### Q15 — First vertical slice
+**BLOCKED:** dependent on Q14 + authorized task packets.
 
-### Q15 — Runtime/cloud verification
+### Q16 — Runtime/cloud verification
 **BLOCKED:** canonical runtime identity unresolved.
 
 ---
@@ -587,19 +623,21 @@ If the correct outcome is uncertainty, the phase remains explicitly `OPEN`, `CON
 
 # 19. NEXT CHECKPOINT
 
-**ARCH-2026-H1.4-COMMAND-QUERY-CONTRACT-CLOSURE**
+**ARCH-2026-H1.4-CROSS-SOURCE-CONTRACT-CLOSURE**
 
 Immediate sequence:
 
-1. Offer ownership/invariant/state closure;
-2. Payment/PaymentSchedule/Receipt/Ledger semantic closure;
-3. Building ownership/invariants;
-4. Scheduling ADR confirmation/supersession;
-5. command/action → aggregate → permission → state → event traceability;
-6. derived query/read-model contracts;
-7. task packet mapping where ownership is proven;
-8. update Source of Truth and checkpoint;
-9. verify references and architecture consistency;
-10. only then evaluate schema promotion.
+1. classify divergent branch evidence;
+2. complete canonical-reference sweep;
+3. Offer ownership/invariant/state closure;
+4. Payment/PaymentSchedule/Receipt/Ledger semantic closure;
+5. Building ownership/invariants;
+6. Scheduling ADR confirmation/supersession;
+7. command/action → aggregate → permission → state → event traceability;
+8. derived query/read-model contracts;
+9. task packet mapping where ownership is proven;
+10. update Source of Truth and checkpoint;
+11. verify references and architecture consistency;
+12. only then evaluate schema promotion.
 
 No code/database implementation authorization is implied by this checkpoint.
