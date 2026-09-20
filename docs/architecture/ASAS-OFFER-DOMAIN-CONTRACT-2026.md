@@ -1,43 +1,33 @@
 # ASAS — OFFER DOMAIN CONTRACT 2026
 
 **Artifact ID:** ASAS-ARCH-OFFER-2026-001  
-**Status:** DERIVED DOMAIN CONTRACT — OPEN / NOT IMPLEMENTATION AUTHORITY  
-**Version:** 1.0.0  
+**Status:** DERIVED DOMAIN CONTRACT — PARTIAL / NOT IMPLEMENTATION AUTHORITY  
+**Version:** 1.1.0  
 **Effective date:** 2026-09-20  
 **Owner:** Sales / Commercial Domain — ownership confirmation required  
 **Branch:** `platform-architecture-2026`  
-**Authority:** Derived from the 2026 Blueprint, Command/Action Register, Aggregate/Invariant Register and source schema evidence. It does not override an approved ADR, founder decision, canonical register, live runtime or live database.
+**Authority:** Derived from the 2026 Blueprint, Command/Action Register, Aggregate/Invariant Register, State Machine Register, Permission Register and Event Register. It does not override an approved ADR, founder decision, canonical register, live runtime or live database.
 
 ## 1. PURPOSE
 
 Establish the minimum semantic contract for `Offer` before schema or application implementation is authorized.
 
-This artifact exists because `Offer` is explicitly present in the commercial traceability spine and source schema evidence, but its complete aggregate ownership, lifecycle, authorization and event contract was not previously closed.
-
-An Offer is not automatically:
-
-- a bounded context;
-- a module;
-- a database table;
-- an API endpoint;
-- a payment object;
-- a Reservation.
+An Offer is not automatically a bounded context, module, database table, API endpoint, payment object, or Reservation.
 
 ## 2. SOURCE-DERIVED FACTS
 
-Current source evidence establishes an Offer representation associated with:
+Current canonical evidence establishes Offer semantics within the commercial chain:
 
-- an organization/tenant boundary;
-- an opportunity/commercial lead relationship;
-- an apartment/unit relationship;
+- organization/tenant boundary;
+- opportunity/commercial lead relationship;
+- apartment/unit relationship;
 - list price;
 - discount percentage;
 - effective price;
-- status;
-- validity/expiration information;
+- status/validity semantics;
 - supporting document/reference information.
 
-These facts establish semantic existence, not final persistence design.
+The canonical event register contains `offer.created`, `offer.submitted`, `offer.approved`, `offer.rejected`, and `offer.expired` in the Sales emission group. The permission register contains `offer.create` and `offer.discount.request`. The state-machine register currently models `opportunity.stage` with `OFFER_SENT`, but does **not** define an authoritative `offer.status` state machine. Therefore Offer-specific lifecycle closure is still required.
 
 ## 3. PROVISIONAL OWNERSHIP
 
@@ -45,20 +35,11 @@ These facts establish semantic existence, not final persistence design.
 
 **Status:** `CANDIDATE — OWNERSHIP NOT YET ACCEPTED`.
 
-Rationale:
-
-- Offer is a commercial negotiation artifact.
-- Its terms are derived from inventory and commercial opportunity context.
-- Approval of discounts is an authorization/policy concern.
-- Reservation is a subsequent, distinct lifecycle object.
-
 No new bounded context is created for Offer.
 
 ## 4. CORE SEMANTIC MODEL
 
 An Offer represents a time-bounded commercial proposal for a specific opportunity/client interaction and a specific property/unit reference.
-
-Conceptual relationships:
 
 ```text
 Lead / Opportunity
@@ -79,236 +60,124 @@ Lead / Opportunity
  Reservation (separate lifecycle)
 ```
 
-The Offer does not itself establish reservation ownership of inventory.
+`APPROVED Offer ≠ Reservation`. Approval does not itself establish inventory ownership.
 
 ## 5. REQUIRED INVARIANTS — BASELINE
 
 ### OFF-INV-001 — Tenant ownership
-The Offer must be evaluated within the caller's organization/tenant scope before access or mutation.
-
-Status: `SUPPORTED TARGET RULE / RUNTIME UNVERIFIED`.
+Offer access/mutation requires tenant scope evaluation first. **Target rule; runtime unverified.**
 
 ### OFF-INV-002 — Unit/property reference integrity
-An Offer must reference a valid commercial property/unit object according to the accepted inventory contract.
-
-Status: `SUPPORTED SEMANTIC RULE / IMPLEMENTATION UNVERIFIED`.
+Offer references a valid inventory unit. **Target rule; implementation unverified.**
 
 ### OFF-INV-003 — Opportunity relationship
-An Offer must be associated with the relevant commercial opportunity/lead according to the accepted CRM contract.
-
-Status: `SUPPORTED SEMANTIC RULE / IMPLEMENTATION UNVERIFIED`.
+Offer is associated with the relevant opportunity/lead. **Target rule; implementation unverified.**
 
 ### OFF-INV-004 — Deterministic effective price
-The effective price must be derivable from the authoritative pricing inputs and explicit rounding/currency semantics. Client-calculated price is never authoritative.
-
-Status: `SUPPORTED TARGET RULE`.
+Effective price derives from authoritative pricing inputs with explicit currency/rounding semantics; client-calculated price is not authoritative. **Target rule.**
 
 ### OFF-INV-005 — Discount authority
-A discount above the configured authorization threshold must not become effective merely because a client or AI supplied it. Approval policy must be evaluated server-side.
-
-Status: `SUPPORTED TARGET RULE / THRESHOLDS OPEN`.
+Discount policy is enforced server-side. Existing permission evidence includes `offer.discount.request`; exact threshold semantics remain open. **Target rule; thresholds open.**
 
 ### OFF-INV-006 — Validity semantics
-An expired Offer cannot be treated as a current valid commercial proposal without an explicit new/reissued lifecycle action.
-
-Status: `SUPPORTED TARGET RULE / STATE MODEL OPEN`.
+An expired Offer is not a current valid commercial proposal without an explicit lifecycle action. **Target rule; state model open.**
 
 ### OFF-INV-007 — Reservation separation
-Creating or submitting an Offer must not silently reserve inventory. Reservation ownership follows the Reservation contract and its concurrency protocol.
-
-Status: `SUPPORTED`.
+Offer creation/submission does not silently reserve inventory. **Supported target rule.**
 
 ### OFF-INV-008 — Auditability
-Changes to material Offer terms and approval status must produce auditable evidence.
-
-Status: `SUPPORTED TARGET RULE`.
+Material Offer terms and approval status require auditable evidence. **Target rule.**
 
 ### OFF-INV-009 — Idempotent mutation
-Retryable external/API/AI actions that can create duplicate Offers or duplicate approval effects must be idempotent.
+Retryable creation/submission/approval effects require idempotency. **Target rule; key design open.**
 
-Status: `SUPPORTED TARGET RULE / KEY DESIGN OPEN`.
+## 6. CANONICAL REGISTER RECONCILIATION
 
-## 6. LIFECYCLE — NOT YET CLOSED
+### 6.1 Events — VERIFIED AGAINST REGISTER
 
-The exact state machine remains `OPEN`.
+Existing canonical event names relevant to Offer are:
 
-Minimum candidate states inferred from source semantics:
+- `offer.created`
+- `offer.submitted`
+- `offer.approved`
+- `offer.rejected`
+- `offer.expired`
 
-```text
-DRAFT
-  ↓
-SUBMITTED
-  ↓
-APPROVAL_REQUIRED ──→ REJECTED
-  ↓
-APPROVED
-  ↓
-EXPIRED
-  ↓
-WITHDRAWN
-```
+These are Sales emission-module events in `registers/events.json`. They are not yet a complete proof of transition coverage or payload schemas.
 
-This is a candidate model only. It must not be implemented until the canonical state-machine register establishes the authoritative states and transitions.
+### 6.2 Permissions — VERIFIED AGAINST REGISTER
 
-Important distinction:
+Existing canonical permission keys relevant to Offer are:
 
-`APPROVED Offer ≠ Reservation`
+- `offer.create`
+- `offer.discount.request`
 
-Approval means the commercial proposal passed the applicable policy. It does not grant inventory ownership unless a separate authorized Reservation command succeeds.
+The register expresses scope/authority by persona. Exact approval thresholds for discount effects remain unresolved and must not be invented in this contract.
+
+### 6.3 State — CONFLICT / OPEN
+
+The canonical state register has no dedicated `offer.status` machine. It does contain `opportunity.stage` with `OFFER_SENT`, `NEGOTIATION`, and related stages.
+
+Therefore the following distinction is mandatory:
+
+`Opportunity stage ≠ Offer lifecycle state`.
+
+No implementation may use `opportunity.stage` as an implicit substitute for an Offer state machine without an approved contract/ADR.
 
 ## 7. COMMAND CONTRACTS
 
-Source-derived actions currently mapped to Offer:
-
 ### `submit_offer`
 
-Purpose: submit a commercial Offer for evaluation.
+**Status:** OPEN.
 
-Required contract fields before implementation:
-
-- actor;
-- tenant scope;
-- opportunity/lead;
-- unit/property;
-- pricing inputs;
-- currency;
-- validity;
-- authorization;
-- preconditions;
-- idempotency;
-- resulting state;
-- audit event;
-- domain event;
-- failure semantics.
-
-Status: `OPEN`.
+Required before implementation: actor, tenant scope, opportunity, unit, authoritative pricing inputs, currency, validity, authorization, preconditions, idempotency, resulting state, audit and registered event, failure semantics.
 
 ### `approve_discount`
 
-Purpose: authorize a discount or commercial deviation according to policy.
+**Status:** OPEN.
 
-Required contract fields before implementation:
+The existing permission register provides `offer.discount.request`, but the canonical command/event/state linkage is not yet closed. Approval thresholds and final command naming require reconciliation with the approval policy before implementation.
 
-- actor;
-- tenant scope;
-- Offer;
-- requested discount;
-- threshold/policy;
-- approval authority;
-- resulting state;
-- audit;
-- event;
-- rejection semantics.
+## 8. CONCURRENCY
 
-Status: `OPEN`.
+Required tests/design:
 
-## 8. PERMISSION BOUNDARY
-
-Do not invent permission keys here.
-
-The Offer contract must reference an existing canonical permission key once the permission register is reconciled.
-
-Required mapping dimensions:
-
-`permission → action → resource → tenant/scope → persona → approval threshold → test`
-
-Status: `OPEN`.
-
-## 9. CONCURRENCY
-
-Potential races requiring explicit design/test include:
-
-1. two actors modifying the same Offer terms;
-2. approval racing with expiry;
+1. concurrent material Offer edits;
+2. approval versus expiry;
 3. duplicate submit retries;
-4. discount approval racing with another material term change;
-5. Offer approval occurring while inventory availability changes.
+4. discount approval versus material-term mutation;
+5. Offer approval while inventory availability changes.
 
-The Offer itself must not solve the Unit/Reservation race by becoming the inventory lock. Inventory ownership remains governed by the Unit/Reservation consistency contract.
+The Offer is not the inventory lock. Unit/Reservation concurrency remains authoritative for inventory ownership.
 
-Status: `OPEN — TEST MODEL REQUIRED`.
+## 9. CLOSURE GATE — H1.4.2
 
-## 10. EVENTS
+**Status:** `PARTIAL`
 
-Do not invent event names.
+Blocking conditions:
 
-The successful Offer transitions must be mapped to the canonical event register before implementation authorization.
+1. dedicated Offer state machine not yet present in canonical state register;
+2. command-to-permission-to-event mapping not fully reconciled;
+3. discount threshold policy unresolved;
+4. idempotency key semantics unresolved;
+5. concurrency acceptance tests not yet evidenced;
+6. Offer ownership remains candidate until context ownership is accepted.
 
-Required eventual mapping:
+**Implementation authorization:** `BLOCKED`.
 
-`Offer transition → registered event → producer → schema/version → tenant identity → consumers → idempotency → outbox → test`.
+No Prisma model, migration, API, service implementation or production mutation is authorized by this document.
 
-Status: `OPEN`.
+## 10. REQUIRED NEXT ARTIFACTS
 
-## 11. DOCUMENTS
+Before schema implementation:
 
-Supporting Offer documents/references must follow the canonical Document/Attachment ownership and tenant-access rules. An attachment reference does not become part of the Offer aggregate merely because the Offer points to it.
+- Offer state-machine contract/ADR;
+- command/action mapping;
+- permission/approval policy mapping;
+- event payload/version contract;
+- idempotency/concurrency test specification;
+- acceptance evidence.
 
-## 12. FAILURE SEMANTICS
+## 11. AUTHORITY RULE
 
-Implementation must distinguish at least:
-
-- unauthorized actor;
-- wrong tenant/scope;
-- invalid Offer data;
-- invalid unit/property reference;
-- invalid opportunity reference;
-- illegal lifecycle transition;
-- approval policy failure;
-- expired Offer;
-- stale version/concurrency conflict;
-- duplicate/idempotent retry;
-- downstream integration failure.
-
-Exact error codes are not yet defined and must not be invented in this contract.
-
-## 13. TRACEABILITY
-
-```text
-Commercial requirement
- → Offer domain concept
- → candidate Sales ownership
- → OFF-INV invariants
- → submit_offer / approve_discount
- → state machine [OPEN]
- → permission [OPEN]
- → event [OPEN]
- → schema [NOT AUTHORIZED]
- → task [NOT AUTHORIZED]
- → implementation [BLOCKED]
- → tests [TO BE DEFINED]
-```
-
-## 14. NON-GOALS
-
-This contract does not:
-
-- authorize a Prisma model;
-- authorize a database table;
-- define API URLs;
-- create permission keys;
-- create event names;
-- define a new bounded context;
-- define discount thresholds;
-- define legal contract semantics;
-- authorize production changes.
-
-## 15. CLOSURE CRITERIA
-
-Offer is implementation-ready only when all are evidenced:
-
-1. owner accepted;
-2. lifecycle/state machine accepted;
-3. invariants accepted;
-4. permission mapping accepted;
-5. approval thresholds/policy accepted;
-6. event mapping accepted;
-7. idempotency strategy accepted;
-8. concurrency tests defined;
-9. schema mapping reviewed;
-10. task packet authorized;
-11. implementation and verification evidence exists.
-
-**Current status:** `OPEN — DOMAIN CONTRACT CLOSURE IN PROGRESS`.
-
-**Next dependency:** canonical state-machine, permission and event registers.
+If this contract conflicts with a higher-authority founder decision, approved ADR, canonical register, live runtime or live database, mark the conflict explicitly and do not silently reconcile it.
