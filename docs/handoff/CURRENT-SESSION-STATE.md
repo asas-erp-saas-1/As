@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 1.5
+Version: 1.6
 Date: 2026-09-20
 
 ## Repository
@@ -9,7 +9,7 @@ Date: 2026-09-20
 - Canonical integration branch: `main`
 - Architecture engineering branch: `platform-architecture-2026`
 - Parent foundation branch: `foundation/forensic-repository-reconstruction-2026-09-20`
-- Current architecture branch head: `abb10981fb07000054ebe237dcfa73bfbf649e59`
+- Current architecture branch head: `7ef9c3f2b3357c3ceb4246f069913c85f79adf34`
 - Architecture changes must merge through reviewed PRs; this branch is the current architecture engineering vehicle.
 
 ## Phase
@@ -49,9 +49,9 @@ Supporting registers remain canonical for their own concepts. No competing archi
 - Corrected source/register promotion state
 - Structural task-register parse and count correction
 - Source register structural reconciliation evidence
-- 2026 platform architecture blueprint v1.1
-- 2026 architecture engineering roadmap v1.1
-- 2026 architecture context prompt v1.1
+- 2026 platform architecture blueprint v1.2
+- 2026 architecture engineering roadmap v1.2
+- 2026 architecture context prompt v1.2
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the principal source baseline for foundation facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering techniques but does not override repository or founder authority.
@@ -68,12 +68,12 @@ The v1.6.1 Blueprint/package remains the principal source baseline for foundatio
 These values are source observations, not architectural quotas.
 
 ## Current architecture position
-- Nine bounded contexts remain the working evidence-backed DDD baseline: Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics, Documents.
-- The nine-context count is not a permanent quota; future changes require domain evidence and an ADR.
-- Platform capabilities such as Scheduling, Workflow, Search, Media, Notifications, Integrations and AI are not automatically bounded contexts.
-- C2-001 context/module decomposition remains OPEN pending explicit decision/ADR.
-- Scheduling ownership remains FOUNDER DECISION REQUIRED.
-- Boundary selection now explicitly uses cohesion, ownership, consistency, authorization, data ownership, change cadence, failure isolation, scaling and integration cost.
+- The repository contains a **confirmed architecture authority conflict**: a nine-context condensed domain view versus a historical proposed 15-module implementation decomposition.
+- Historical `docs/decisions/ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` is explicitly PROPOSED and awaiting founder acceptance.
+- Therefore C2-001 is `CONFLICT / FOUNDER DECISION REQUIRED`.
+- The safe interim model is to preserve both views as evidence and keep the distinction between domain grouping and implementation module decomposition explicit.
+- Scheduling ownership remains `FOUNDER DECISION REQUIRED`.
+- No schemas, migrations, task ownership or application modules may be derived from the unresolved conflict as if it were closed.
 
 ## Current blockers
 - Canonical ASAS live database/project identity is not verified.
@@ -86,7 +86,7 @@ These values are source observations, not architectural quotas.
 ## Gate status
 G0 GREEN — repository identity/checkpoint evidence
 G1 AMBER — authority reconciliation ongoing
-G2 PARTIAL — context decomposition conflict remains open
+G2 BLOCKED — context/module authority conflict requires founder decision
 G3 AMBER — scope protected
 G4 AMBER — invariant doctrine exists; executable enforcement absent
 G5 AMBER — state-machine register exists; runtime enforcement absent
@@ -95,20 +95,14 @@ G7 BLOCKED — executable authorization absent
 G8 BLOCKED — live tenancy/RLS absent
 G9 AMBER — security doctrine exists; executable evidence absent
 G10 BLOCKED — live DB identity and executable schema absent
-G11 PARTIAL — foundation CI exists; current architecture commits still require CI execution evidence
+G11 PARTIAL — foundation CI exists; current architecture commits have no status checks
 G12 BLOCKED — application observability/recovery evidence absent
 G13 BLOCKED — live backup/restore evidence absent
 G14 AMBER — AI safety doctrine exists; executable tooling absent
 G15 BLOCKED — implementation authorization absent
 
 ## Research evidence incorporated
-Current external research has been used to refine the architecture baseline for:
-- DDD and hexagonal/domain-first boundaries;
-- modular monolith and staged extraction;
-- PostgreSQL transaction isolation and locking options;
-- Supabase local-first migration workflows;
-- GitHub status-check evidence semantics;
-- OWASP AI excessive-agency controls.
+Current external research has been used to refine the architecture baseline for DDD/domain-first boundaries, modular-monolith evolution, PostgreSQL transaction isolation and locking, Supabase local migration workflows, GitHub status-check evidence, and OWASP AI excessive-agency controls.
 
 External sources validate engineering patterns; they do not close ASAS gates by themselves.
 
@@ -116,15 +110,16 @@ External sources validate engineering patterns; they do not close ASAS gates by 
 No application feature implementation, production schema mutation, migration deployment, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the relevant architecture gates are closed.
 
 ## Next execution sequence
-1. Resolve C2-001 and Scheduling ownership.
-2. Derive implementation task packets without changing source task semantics.
-3. Build the context/module/aggregate/schema traceability map.
-4. Promote and validate the complete executable schema contract.
-5. Close tenancy/security contracts against the resolved architecture.
-6. Establish reproducible local database and application foundation.
-7. Run architecture CI and capture evidence.
-8. Verify canonical runtime identity before any remote introspection.
-9. Authorize the first bounded vertical implementation slice only after its dependencies and gates are GREEN.
+1. Founder decision on C2-001: domain grouping versus implementation module decomposition.
+2. Founder decision on Scheduling ownership.
+3. Derive implementation task packets without changing source task semantics; ownership-dependent packets remain blocked.
+4. Build the context/domain ↔ module ↔ aggregate ↔ schema traceability map.
+5. Promote and validate the complete executable schema contract only after ownership is resolved.
+6. Close tenancy/security contracts against the resolved architecture.
+7. Establish reproducible local database and application foundation.
+8. Run architecture CI and capture evidence.
+9. Verify canonical runtime identity before any remote introspection.
+10. Authorize the first bounded vertical implementation slice only after its dependencies and gates are GREEN.
 
 ## Continuation rule
 On continuation, load this checkpoint plus the three architecture control-plane artifacts, then the open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
