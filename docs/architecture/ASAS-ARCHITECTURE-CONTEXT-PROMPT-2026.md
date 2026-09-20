@@ -2,8 +2,8 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.0.0  
-**Purpose:** Prevent context loss, source confusion, architectural guessing and uncontrolled scope expansion during the ASAS architecture program.  
+**Version:** 1.1.0  
+**Purpose:** Prevent context loss, source confusion, architectural guessing, premature coding and uncontrolled scope expansion during the ASAS architecture program.  
 **Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
 **Execution companion:** `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`
 
@@ -46,7 +46,8 @@ Before every non-trivial task load, in this order:
 8. `docs/governance/OPEN-CONTRACT-CONFLICTS.md`;
 9. `docs/governance/FOUNDER-DECISIONS.md`;
 10. relevant ADRs/contracts/registers;
-11. live runtime/database only when explicitly authorized and identity is verified.
+11. source package/files when provenance is required;
+12. live runtime/database only when explicitly authorized and identity is verified.
 
 Never resume from conversation memory when repository evidence exists.
 
@@ -83,6 +84,10 @@ For brownfield facts:
 For future behavior:
 
 `FOUNDER/PRODUCT DECISION > APPROVED ARCHITECTURE > APPROVED ADR > CONTRACT/REGISTER > IMPLEMENTATION`
+
+For external engineering facts:
+
+`OFFICIAL DOCUMENTATION / STANDARD > PRIMARY ENGINEERING SOURCE > AUTHORITATIVE RESEARCH > REPUTABLE SECONDARY SOURCE > COMMUNITY`
 
 If two authorities conflict:
 
@@ -166,7 +171,25 @@ If unavailable:
 
 ---
 
-# 7. ARCHITECTURAL DISTINCTIONS
+# 7. NO ARCHITECTURE BY COUNTING
+
+Counts found in source artifacts are observations, not quotas.
+
+Do not force:
+
+- contexts to equal modules;
+- modules to equal services;
+- aggregates to equal tables;
+- events to equal commands;
+- permissions to equal personas × resources;
+- screens to equal features;
+- files to equal phases.
+
+If the correct architecture requires more or fewer elements than an historical specification, use evidence and an ADR. Never distort the architecture to preserve a number.
+
+---
+
+# 8. ARCHITECTURAL DISTINCTIONS
 
 Always preserve:
 
@@ -187,11 +210,13 @@ Never create additional contexts just to make a count look symmetrical.
 
 ---
 
-# 8. CURRENT DOMAIN BASELINE
+# 9. CURRENT DOMAIN BASELINE
 
 Current architecture candidate uses nine bounded contexts:
 
 `Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
+
+This is a **current evidence-backed baseline, not a permanent quota**.
 
 Platform capabilities such as Scheduling, Workflow, Search, Media, Notifications, Integrations and AI are not automatically bounded contexts.
 
@@ -199,7 +224,7 @@ If ownership is unresolved, mark it `OPEN` or `FOUNDER DECISION REQUIRED`.
 
 ---
 
-# 9. SOURCE REGISTER RULE
+# 10. SOURCE REGISTER RULE
 
 The v1.6.1 Blueprint/package is the current foundation source baseline.
 
@@ -217,11 +242,11 @@ Known structural observations:
 - 50 permission keys;
 - 11 state machines.
 
-These numbers describe source artifacts, not runtime implementation.
+These numbers describe source artifacts, not runtime implementation and not future architecture limits.
 
 ---
 
-# 10. TASK PACKET RULE
+# 11. TASK PACKET RULE
 
 Source task records must not be rewritten to manufacture missing fields.
 
@@ -231,9 +256,11 @@ Create derived implementation packets containing:
 
 A task without this information is not implementation-ready.
 
+If the information cannot be proven, mark the field `UNVERIFIED` rather than guessing.
+
 ---
 
-# 11. DATABASE RULE
+# 12. DATABASE RULE
 
 Always distinguish:
 
@@ -261,7 +288,7 @@ Never use destructive production operations as a shortcut.
 
 ---
 
-# 12. CLOUD RULE
+# 13. CLOUD RULE
 
 Cloud is an integration/runtime target, not a prerequisite for architectural thinking or initial engineering.
 
@@ -273,7 +300,7 @@ Remote state must be treated as reality only after identity verification.
 
 ---
 
-# 13. SECURITY RULE
+# 14. SECURITY RULE
 
 Security controls must exist at multiple layers:
 
@@ -290,9 +317,11 @@ Never trust:
 - webhook payloads;
 - external integration identities without verification.
 
+AI tools must follow least privilege. Excessive functionality, permissions and autonomy are treated as explicit security risks.
+
 ---
 
-# 14. STATE MACHINE RULE
+# 15. STATE MACHINE RULE
 
 Never mutate governed status directly.
 
@@ -304,7 +333,7 @@ Illegal transitions must be tested as aggressively as legal ones.
 
 ---
 
-# 15. EVENT RULE
+# 16. EVENT RULE
 
 A registered event is not an implemented event.
 
@@ -325,7 +354,7 @@ Before declaring event architecture complete verify:
 
 ---
 
-# 16. AI RULE
+# 17. AI RULE
 
 AI operates through the same domain authority model as every other actor.
 
@@ -345,9 +374,11 @@ AI cannot directly mutate authoritative financial, reservation, contract, tenanc
 
 AI must inherit caller authority and cannot widen scope.
 
+For high-impact actions, prefer explicit approval or reversible execution. Prompt instructions are never a substitute for server-side authorization.
+
 ---
 
-# 17. EXTERNAL RESEARCH RULE
+# 18. EXTERNAL RESEARCH RULE
 
 For current external facts, research before deciding.
 
@@ -360,13 +391,15 @@ Priority:
 5. reputable technical analysis;
 6. community sources as supplementary evidence.
 
+Research depth must be proportional to risk and architectural impact.
+
 Record the source, date/version, finding, conflict and impact.
 
 Never use model memory as current-version authority.
 
 ---
 
-# 18. DESIGN ENGINEERING RULE
+# 19. DESIGN ENGINEERING RULE
 
 Design is engineered before screens are coded.
 
@@ -381,12 +414,12 @@ Support:
 - mobile-first field operations;
 - accessibility;
 - responsive behavior;
-- error/loading/empty states;
+- error/loading/empty/offline states;
 - keyboard navigation.
 
 ---
 
-# 19. TESTING RULE
+# 20. TESTING RULE
 
 No critical behavior is considered implemented without the appropriate evidence class:
 
@@ -408,7 +441,7 @@ Critical commercial loop:
 
 ---
 
-# 20. RED-TEAM RULE
+# 21. RED-TEAM RULE
 
 After every significant change ask:
 
@@ -430,13 +463,30 @@ Attack:
 - network failure;
 - deployment failure;
 - AI prompt injection;
+- excessive AI agency;
 - misleading UI state.
 
 Then fix and retest.
 
 ---
 
-# 21. CHANGE CONTROL
+# 22. SCALABILITY RULE
+
+Do not select infrastructure because a competitor uses it.
+
+Start with the simplest architecture that satisfies verified requirements and preserves clear extraction seams.
+
+Escalate architecture only when evidence shows a real need:
+
+`measure → diagnose → optimize → isolate → extract if justified`
+
+Potential extraction evidence includes materially different scaling profiles, independent availability requirements, security isolation needs, deployment cadence conflicts, team ownership boundaries, or technology incompatibility.
+
+Microservices, Kafka, Kubernetes, service mesh and multi-region are options, not mandatory milestones.
+
+---
+
+# 23. CHANGE CONTROL
 
 For every material architecture change:
 
@@ -456,7 +506,7 @@ These three files must remain synchronized.
 
 ---
 
-# 22. STOP CONDITIONS
+# 24. STOP CONDITIONS
 
 STOP and escalate when:
 
@@ -475,7 +525,7 @@ Do not improvise around a stop condition.
 
 ---
 
-# 23. FINAL RESPONSE CONTRACT FOR EVERY ENGINEERING PASS
+# 25. FINAL RESPONSE CONTRACT FOR EVERY ENGINEERING PASS
 
 Report exactly:
 
@@ -497,11 +547,12 @@ Never claim execution without evidence.
 
 ---
 
-# 24. CURRENT CHECKPOINT
+# 26. CURRENT CHECKPOINT
 
 As of 2026-09-20:
 
 - Repository identity: `VERIFIED`
+- Architecture branch: `VERIFIED`
 - Application implementation: `BLOCKED`
 - Live database identity: `BLOCKED`
 - Context decomposition: `OPEN`
@@ -515,3 +566,11 @@ As of 2026-09-20:
 - Implementation authorization: `BLOCKED`
 
 The next permissible work is architecture closure and derived contract engineering, not uncontrolled application implementation.
+
+---
+
+# 27. EXTERNAL ENGINEERING BASELINE
+
+The operating model has been cross-checked against current authoritative engineering guidance covering DDD/hexagonal architecture, staged modular decomposition, PostgreSQL concurrency, local-first Supabase workflows, CI status evidence, accessibility, and AI excessive-agency risks.
+
+External guidance validates engineering techniques; it does not become ASAS product authority.
