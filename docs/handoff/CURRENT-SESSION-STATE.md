@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 1.8
+Version: 1.9
 Date: 2026-09-20
 
 ## Repository
@@ -13,7 +13,7 @@ Date: 2026-09-20
 - Architecture changes must merge through reviewed PRs; this branch is the current architecture engineering vehicle.
 
 ## Phase
-ARCHITECTURE ENGINEERING — H1.3 AGGREGATE / INVARIANT CLOSURE
+ARCHITECTURE ENGINEERING — H1.4 COMMAND / ACTION CONTRACT CLOSURE
 
 ## Canonical architecture control plane
 The 2026 architecture program uses controlled navigation resources:
@@ -27,6 +27,8 @@ The 2026 architecture program uses controlled navigation resources:
 Derived evidence/contract companions:
 - `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` — context/domain/module evidence mapping; not an independent authority.
 - `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md` — aggregate/invariant/transaction evidence contract; not a schema or implementation authorization.
+- `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md` — source-derived action vocabulary and command-contract readiness gate.
+- `docs/architecture/ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md` — critical Unit/Reservation consistency outcome and verification contract.
 
 Supporting registers remain canonical for their own concepts. No competing architecture blueprint should be created without explicit supersession.
 
@@ -61,7 +63,9 @@ Supporting registers remain canonical for their own concepts. No competing archi
 - 2026 architecture context prompt v1.4.1
 - 2026 context/domain/module evidence matrix v1.0
 - consolidated engineering source of truth v1.2
-- aggregate/invariant boundary register v1.0
+- aggregate/invariant boundary register v1.0.1
+- command/action contract register v1.0.1
+- Unit/Reservation consistency contract v1.0.0
 
 ## Source discipline
 The v1.6.1 Blueprint/package remains the foundation source baseline for source facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering techniques but does not override repository or founder authority.
@@ -88,8 +92,6 @@ The historical 15-module artifact is a proposed implementation decomposition who
 Therefore:
 `C2-001 = OPEN ARCHITECTURAL REFINEMENT`
 
-The engineering question is to derive implementation modules from ownership, aggregate boundaries, invariants, consistency, authorization, data ownership, change cadence, failure isolation, scaling behavior and integration cost. The founder is not required to choose an arbitrary number merely to unblock engineering.
-
 ### C2-002 — Scheduling
 Historical `ADR-0018` accepted Scheduling as a Core/CRM-hosted capability. The 2026 architecture reopened the question.
 
@@ -98,20 +100,25 @@ Therefore:
 
 The historical ADR remains evidence. No implementation ownership change is authorized until the decision is explicitly reaffirmed or superseded through the proper ADR path.
 
-## H1.3 aggregate/invariant work
-The new derived contract is:
-`docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+## H1.3 closure result
+The Unit/Reservation boundary now has an explicit derived consistency contract:
+`docs/architecture/ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`
 
-Current source-supported aggregate candidates include Lead, Client, Project, Unit, Listing, Visit, Reservation, Contract, PaymentSchedule/Installment, CommissionRule, CommissionRecord, Agency, Branch, User and NotificationPreference.
+The contract closes the required business outcome — one active authoritative reservation winner under concurrency — but does not select a database locking primitive, schema shape, API, or ORM mechanism. Therefore the domain boundary is sufficiently specified to continue H1.4, while executable implementation remains blocked.
 
-Source material describes CommunicationLog, Attachment, Activity/Timeline/Audit, Search and Reporting differently; they are not promoted to aggregates merely because they are named concepts.
+## H1.4 command/action work
+The command/action register is:
+`docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
 
-Critical open boundaries:
-1. Unit ↔ Reservation atomic consistency.
-2. Offer ownership/invariants.
-3. Payment vs PaymentSchedule vs Receipt semantics.
-4. Building ownership/invariants.
-5. Scheduling ownership.
+Current source-derived actions are mapped conservatively. `place_hold`, `create_reservation`, and `release_reservation` now reference the Unit/Reservation consistency contract. No endpoint, Prisma model, permission key or new event has been invented.
+
+Remaining H1.4 contract dependencies:
+1. Offer ownership/invariants.
+2. Payment vs PaymentSchedule vs Receipt semantics.
+3. Building ownership/invariants.
+4. Scheduling ownership/ADR reconciliation.
+5. Critical command → permission → state → event mapping.
+6. Query/read-model contracts.
 
 ## Current blockers
 - Canonical ASAS live database/project identity is not verified.
@@ -125,7 +132,7 @@ Critical open boundaries:
 G0 GREEN — repository identity/checkpoint evidence
 G1 AMBER — authority reconciliation ongoing
 G2 AMBER — domain grouping supported; module decomposition remains open; Scheduling reopening remains open
-G3 AMBER — aggregate/invariant contract active; critical ownership boundaries unresolved
+G3 AMBER — aggregate/invariant contract active; critical Unit/Reservation consistency outcome contract defined; other ownership boundaries unresolved
 G4 AMBER — invariant doctrine exists; executable enforcement absent
 G5 AMBER — state-machine register exists; runtime enforcement absent
 G6 BLOCKED — event implementation absent
@@ -133,43 +140,27 @@ G7 BLOCKED — executable authorization absent
 G8 BLOCKED — live tenancy/RLS absent
 G9 AMBER — security doctrine exists; executable evidence absent
 G10 BLOCKED — live DB identity and executable schema absent
-G11 PARTIAL — foundation CI exists; current architecture commits require fresh status evidence
+G11 PARTIAL — foundation CI exists; architecture changes require fresh status evidence
 G12 BLOCKED — application observability/recovery evidence absent
 G13 BLOCKED — live backup/restore evidence absent
 G14 AMBER — AI safety doctrine exists; executable tooling absent
 G15 BLOCKED — implementation authorization absent
 
-## H1 evidence work
-Completed:
-- context/domain/module evidence matrix;
-- aggregate/invariant boundary register;
-- Blueprint authority reconciliation amendment;
-- SOT reconciliation;
-- roadmap/prompt synchronization.
-
-These artifacts do not authorize implementation.
-
-## Research evidence incorporated
-Current external research has been used to refine the architecture baseline for DDD/domain-first boundaries, modular-monolith evolution, PostgreSQL transaction isolation and locking, Supabase local migration workflows, GitHub status-check evidence, and OWASP AI excessive-agency controls.
-
-External sources validate engineering patterns; they do not close ASAS gates by themselves.
-
 ## Hard stop
 No application feature implementation, production schema mutation, migration deployment, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the relevant architecture gates are closed.
 
 ## Next execution sequence
-1. Close the Unit ↔ Reservation atomic consistency boundary.
-2. Define Offer ownership and invariants without inventing persistence structures.
-3. Reconcile Payment vs PaymentSchedule vs Receipt semantics.
-4. Define Building ownership and invariants.
-5. Map critical invariants to state machines, permissions and events.
-6. Resolve or explicitly reaffirm Scheduling through ADR.
-7. Derive command/query contracts.
-8. Promote the executable schema contract only after ownership/security gates permit it.
-9. Establish reproducible local database and application foundation.
-10. Run architecture CI and capture evidence.
-11. Verify canonical runtime identity before remote introspection.
-12. Authorize the first bounded vertical implementation slice only after dependencies and gates are GREEN.
+1. Define Offer ownership and invariants without inventing persistence structures.
+2. Reconcile Payment vs PaymentSchedule vs Receipt semantics.
+3. Define Building ownership and invariants.
+4. Map critical invariants to the registered state machines, permissions and events.
+5. Resolve or explicitly reaffirm Scheduling through ADR.
+6. Derive command/query contracts.
+7. Promote the executable schema contract only after ownership/security gates permit it.
+8. Establish reproducible local database and application foundation.
+9. Run architecture CI and capture evidence.
+10. Verify canonical runtime identity before remote introspection.
+11. Authorize the first bounded vertical implementation slice only after dependencies and gates are GREEN.
 
 ## Continuation rule
-On continuation, load this checkpoint plus the Source of Truth, Blueprint, Blueprint Amendment 001, Roadmap, Context Prompt, Evidence Matrix, Aggregate/Invariant Register, then the open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
+On continuation, load this checkpoint plus the Source of Truth, Blueprint, Blueprint Amendment 001, Roadmap, Context Prompt, Evidence Matrix, Aggregate/Invariant Register, Command/Action Register, Unit/Reservation Consistency Contract, then the open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
