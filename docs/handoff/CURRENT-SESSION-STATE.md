@@ -1,7 +1,7 @@
 # ASAS Current Session State
 
 Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 1.4
+Version: 1.5
 Date: 2026-09-20
 
 ## Repository
@@ -9,6 +9,7 @@ Date: 2026-09-20
 - Canonical integration branch: `main`
 - Architecture engineering branch: `platform-architecture-2026`
 - Parent foundation branch: `foundation/forensic-repository-reconstruction-2026-09-20`
+- Current architecture branch head: `abb10981fb07000054ebe237dcfa73bfbf649e59`
 - Architecture changes must merge through reviewed PRs; this branch is the current architecture engineering vehicle.
 
 ## Phase
@@ -48,12 +49,12 @@ Supporting registers remain canonical for their own concepts. No competing archi
 - Corrected source/register promotion state
 - Structural task-register parse and count correction
 - Source register structural reconciliation evidence
-- 2026 platform architecture blueprint
-- 2026 architecture engineering roadmap
-- 2026 architecture context prompt
+- 2026 platform architecture blueprint v1.1
+- 2026 architecture engineering roadmap v1.1
+- 2026 architecture context prompt v1.1
 
 ## Source discipline
-The v1.6.1 Blueprint/package remains the principal source baseline for foundation facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior.
+The v1.6.1 Blueprint/package remains the principal source baseline for foundation facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering techniques but does not override repository or founder authority.
 
 ## Verified source observations
 - 119 unique phase task IDs.
@@ -64,11 +65,15 @@ The v1.6.1 Blueprint/package remains the principal source baseline for foundatio
 - 50 permission keys across eight persona columns.
 - 11 state machines.
 
+These values are source observations, not architectural quotas.
+
 ## Current architecture position
-- Nine bounded contexts remain the working canonical DDD baseline: Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics, Documents.
+- Nine bounded contexts remain the working evidence-backed DDD baseline: Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics, Documents.
+- The nine-context count is not a permanent quota; future changes require domain evidence and an ADR.
 - Platform capabilities such as Scheduling, Workflow, Search, Media, Notifications, Integrations and AI are not automatically bounded contexts.
 - C2-001 context/module decomposition remains OPEN pending explicit decision/ADR.
 - Scheduling ownership remains FOUNDER DECISION REQUIRED.
+- Boundary selection now explicitly uses cohesion, ownership, consistency, authorization, data ownership, change cadence, failure isolation, scaling and integration cost.
 
 ## Current blockers
 - Canonical ASAS live database/project identity is not verified.
@@ -90,11 +95,22 @@ G7 BLOCKED — executable authorization absent
 G8 BLOCKED — live tenancy/RLS absent
 G9 AMBER — security doctrine exists; executable evidence absent
 G10 BLOCKED — live DB identity and executable schema absent
-G11 PARTIAL — foundation CI exists; execution evidence incomplete
+G11 PARTIAL — foundation CI exists; current architecture commits still require CI execution evidence
 G12 BLOCKED — application observability/recovery evidence absent
 G13 BLOCKED — live backup/restore evidence absent
 G14 AMBER — AI safety doctrine exists; executable tooling absent
 G15 BLOCKED — implementation authorization absent
+
+## Research evidence incorporated
+Current external research has been used to refine the architecture baseline for:
+- DDD and hexagonal/domain-first boundaries;
+- modular monolith and staged extraction;
+- PostgreSQL transaction isolation and locking options;
+- Supabase local-first migration workflows;
+- GitHub status-check evidence semantics;
+- OWASP AI excessive-agency controls.
+
+External sources validate engineering patterns; they do not close ASAS gates by themselves.
 
 ## Hard stop
 No application feature implementation, production schema mutation, migration deployment, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the relevant architecture gates are closed.
@@ -102,8 +118,8 @@ No application feature implementation, production schema mutation, migration dep
 ## Next execution sequence
 1. Resolve C2-001 and Scheduling ownership.
 2. Derive implementation task packets without changing source task semantics.
-3. Promote and validate the complete executable schema contract.
-4. Build the context/module/aggregate/schema traceability map.
+3. Build the context/module/aggregate/schema traceability map.
+4. Promote and validate the complete executable schema contract.
 5. Close tenancy/security contracts against the resolved architecture.
 6. Establish reproducible local database and application foundation.
 7. Run architecture CI and capture evidence.
