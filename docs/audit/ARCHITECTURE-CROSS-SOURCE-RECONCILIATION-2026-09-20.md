@@ -1,105 +1,223 @@
 # ASAS — Architecture Cross-Source Reconciliation Record
 
 **Artifact ID:** ASAS-AUDIT-XSR-2026-09-20-001  
-**Status:** CANONICAL EVIDENCE RECORD  
-**Date:** 2026-09-20  
+**Status:** CANONICAL EVIDENCE RECORD — UPDATED 2026-09-21  
+**Date:** 2026-09-21  
 **Branch:** `platform-architecture-2026`  
-**Purpose:** Record the evidence used during continuation of the architecture engineering path without converting conflicting evidence into an implementation decision.
+**Purpose:** Record evidence used during continuation of the architecture engineering path, including branch comparison, source reconciliation, naming/version consistency, and Claude handoff controls. This record does not authorize implementation.
 
 ## 1. Repository branch reality
 
-`main` and `platform-architecture-2026` are distinct refs. The architecture branch is 80 commits ahead of `main` and has no commits behind it at the time of comparison. The architecture branch contains the 2026 architecture control-plane artifacts, including the Source of Truth, Blueprint, Roadmap, Context Prompt, evidence matrix, domain contracts, audit records and governance updates.
+The current repository is `asas-erp-saas-1/As`. The sole active architecture engineering branch is `platform-architecture-2026`.
 
-**Implication:** architecture work must continue on `platform-architecture-2026`; `main` remains the canonical integration branch according to the current checkpoint.
+Current GitHub comparison:
 
-## 2. Source package verification
+- `main` base commit: `0b8a0e3e80056bffb93f4edc37a61fe6185ce28d`;
+- `platform-architecture-2026` head: `5bed7be82bddda36daf06cdfd098a7a0dff85f74`;
+- branch is **91 commits ahead** of `main` and **0 commits behind**;
+- merge base is the current `main` commit above.
 
-The supplied `ASAS-AI-PACKAGE-v1.6.1` was inspected locally. Its handoff contains:
+The branch contains the 2026 architecture control-plane artifacts, contracts, evidence matrices, audit records, governance updates and handoff material.
 
-- Blueprint v1.6.1 PDF/DOCX;
-- AGENTS.md;
-- ADR-0001 through ADR-0020;
-- registers for events, permissions, state machines and tasks;
-- target Prisma contract;
-- design tokens/component inventory;
-- research and implementation skills;
-- runbooks.
+**Important:** branch age or existence does not establish authority. Unique branch information must be extracted and reconciled before branch deletion. Historical branches must not be deleted merely because they are old.
 
-The source package is provenance evidence and the Blueprint is the declared normative source. Repository shadows must not silently override it.
+## 2. Authority model confirmed
 
-## 3. Scheduling authority conflict — confirmed
+`AGENTS.md` establishes the project authority chain for brownfield reality:
 
-The supplied Blueprint v1.6.1 explicitly states that the Scheduling engine is the **CRM context's scheduling submodule**, including the intended module path `src/modules/crm/scheduling/`.
+`LIVE DATABASE → BLUEPRINT CONTRACT → BLUEPRINT REGISTERS/APPENDICES → BLUEPRINT PROSE → REPOSITORY PATTERNS → GENERAL BEST PRACTICE`
 
-The supplied `ADR-0018` states that Scheduling is a **Core-hosted submodule**, while the current `AGENTS.md` states that Scheduling is a CRM scheduling submodule.
+It also requires exhaustive repository/branch/source discovery, provenance classification, external research for material gaps, explicit marking of derived information, and verification before closure. fileciteturn613file0L2-L2
 
-Therefore this is a genuine authority conflict, not merely a naming variation.
+The 2026 Context Prompt independently requires the agent to load repository identity, branch, commit, `AGENTS.md`, the current checkpoint, evidence control, Blueprint, Roadmap, relevant contracts/registers, source packages and verified runtime/database evidence in that order. fileciteturn616file0L2-L2
+
+## 3. Critical control-plane version inconsistency — FOUND
+
+The branch currently contains materially inconsistent version metadata between its own canonical routing artifacts:
+
+| Artifact | Declared version in current branch | Observation |
+|---|---:|---|
+| Platform Architecture Blueprint | **1.5.0** | File header says Version 1.5.0 |
+| Architecture Engineering Roadmap | **1.6.0** | File header says Version 1.6.0 |
+| Architecture Context Prompt | **1.8.0** | File header says Version 1.8.0 |
+| Engineering Source of Truth | **1.3.0** | File header says Version 1.3.0 |
+| Current Session State | **2.4** | Checkpoint file |
+
+However, the Source of Truth's canonical-control table still describes the Blueprint as **v1.4.0**, Roadmap as **v1.5.0**, and Context Prompt as **v1.5.0**. The current checkpoint likewise describes Blueprint v1.4.0 and Roadmap/Prompt v1.6.0. fileciteturn622file0L2-L2 fileciteturn617file0L2-L2
 
 ### Classification
 
-`FOUNDER DECISION REQUIRED`
+`CONFLICT — CONTROL-PLANE METADATA`
+
+### Required corrective action
+
+Do not silently change semantic content. First perform a version-lineage audit using Git history and file headers, determine which versions are actually superseded, then update the Source of Truth and Current Session State so their routing metadata matches the actual canonical files. Historical versions must remain explicitly historical.
+
+This is a **documentation/governance blocker**, not a product decision.
+
+## 4. Blueprint status conflict — FOUND
+
+The Blueprint header on the active branch states:
+
+`Status: PROPOSED — ENGINEERING BASELINE`  
+`Version: 1.5.0`  
+`Canonical role: Single architectural truth for the 2026 engineering program`
+
+It also explicitly states that it is the reconciled architectural target and does not claim that application, database, runtime or infrastructure already exists. fileciteturn614file0L2-L2
+
+The Source of Truth, however, still labels the Blueprint as `PROPOSED v1.4.0`. fileciteturn622file0L2-L2
+
+### Classification
+
+`CONFLICT — VERSION/ROUTING METADATA`
+
+### Rule
+
+The Blueprint content itself remains the architecture target, but no agent may infer the canonical version from filename or branch alone. Version authority must be reconciled before Claude is handed the control plane.
+
+## 5. Domain/module architecture — correctly reclassified
+
+The active Blueprint explicitly rejects architecture-by-counting and distinguishes bounded contexts from implementation modules. It records the current nine-context target and treats the historical 15-module decomposition as proposed implementation evidence rather than an equal-authority bounded-context architecture. fileciteturn614file0L2-L2
+
+The Context Prompt repeats this distinction and currently supports the nine-context target:
+
+`Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
+
+while keeping Scheduling, Integrations, Workflow, AI, Search, Media, Notifications and SaaS Control as platform capabilities/subdomains unless evidence establishes an independent context. fileciteturn616file0L2-L2
+
+### Classification
+
+`SUPPORTED — CURRENT TARGET`
+
+The previous 9-vs-15 count conflict is therefore no longer treated as a numerical founder blocker. The real engineering work is ownership, aggregate, transaction, authorization, data and integration-boundary proof.
+
+## 6. Scheduling authority conflict — confirmed
+
+The current Context Prompt explicitly records that the supplied Blueprint assigns Scheduling to CRM while the historical ADR-0018 records Core-hosted Scheduling. It therefore marks the issue `FOUNDER DECISION REQUIRED`. fileciteturn616file0L2-L2
 
 ### Prohibited inference
 
-Do not create or relocate Scheduling modules, schemas, events, permissions, persistence ownership or dependency rules until an explicit ADR confirms the canonical owner or supersedes ADR-0018.
+Do not create, relocate or reassign Scheduling modules, schemas, events, permissions, persistence ownership or dependency rules until an explicit ADR confirms or supersedes the historical decision.
 
-## 4. Context/module decomposition
+## 7. Building evidence
 
-The historical candidate map contains 15 implementation modules. The current architecture control plane distinguishes this from the nine high-level domain contexts.
-
-The correct architectural distinction remains:
-
-`Bounded Context ≠ Implementation Module ≠ Aggregate ≠ Database Schema ≠ Read Model ≠ Worker ≠ Event Consumer`
-
-The numerical difference is not itself a defect. Individual ownership decisions remain subject to semantic evidence and contract closure.
-
-## 5. Building evidence
-
-Current architecture evidence supports the hierarchy:
+Current architecture evidence supports:
 
 `Project → Building → Unit`
 
-and places construction-lite tracking within Inventory because its purpose is unit readiness and payment-milestone truth.
+but does not authorize a standalone Building bounded context or a new Building state machine. Building remains a domain concept with open aggregate/persistence ownership.
 
-No verified evidence was found that authorizes a standalone Building bounded context or a new Building state machine. Therefore Building remains a domain concept with an open aggregate/persistence boundary.
+The current checkpoint records `ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE` and explicitly marks Building implementation blocked. fileciteturn617file0L2-L2
 
-### Status
+### Classification
 
 `OPEN / IMPLEMENTATION BLOCKED`
 
-## 6. Event/permission/state register status
+## 8. Offer / Finance / Reservation status
 
-The architecture branch contains derived machine shadows:
+The current checkpoint records:
+
+- Unit ↔ Reservation: partially closed logically, executable enforcement unverified;
+- Offer: partial, implementation blocked;
+- Payment / PaymentSchedule / Receipt: partially closed semantically, executable finance contract open;
+- Scheduling: open / founder decision required.
+
+It also confirms that the source schema defines Offer, PaymentPlan, PaymentScheduleItem, Receipt and ReceiptAllocation, so terminology must not be used as justification for inventing a standalone Payment aggregate. fileciteturn617file0L2-L2
+
+## 9. Machine-readable register status
+
+The active architecture branch contains derived shadows including:
 
 - `registers/events.json` — 103 events / 11 emission groups;
 - `registers/permissions.csv` — 50 permission keys / 8 persona columns;
 - `registers/state-machines.json` — 11 state machines.
 
-Presence of a register is not evidence of runtime enforcement. Each register remains a derived shadow of the Blueprint and must be reconciled before implementation.
+These are source-derived artifacts, not proof of runtime enforcement. Their values must be reconciled against the current source baseline before implementation closure.
 
-## 7. External engineering corroboration
+## 10. Repository organization / naming audit
 
-Current external evidence used during this continuation:
+The architecture branch contains both established repository areas and the newer 2026 architecture control plane. The current branch tree includes:
 
-- GitHub documentation confirms branches are separate development lines and supports compare-based inspection of branches/commits. GitHub rulesets/branch protections can enforce pull requests, status checks, signed commits and force-push restrictions, but repository configuration must be verified separately.
-- OWASP guidance supports deny-by-default and server-side authorization as baseline controls.
-- PostgreSQL documentation supports row-level locking as a concurrency primitive; no specific Building locking mechanism is selected by this evidence.
+- `.github/` and Foundation CI;
+- `architecture/` governance material;
+- `design/` machine-readable design artifacts;
+- `docs/architecture/` architecture control plane;
+- `docs/audit/` forensic/reconciliation evidence;
+- `docs/handoff/` Claude/current-state navigation;
+- `docs/governance/` governance registers and protocols;
+- `registers/` machine-readable derived shadows;
+- `schema/` executable/contract schema area;
+- implementation directories remain intentionally downstream of authorization.
 
-External sources validate engineering techniques; they do not override ASAS product or architecture authority.
+The repository must continue to use canonical ownership rather than duplicate documents. Before any rename/delete operation, search active references, determine authority/lifecycle, update consumers, run CI, then preserve historical provenance.
 
-## 8. Current engineering decision
+## 11. Claude deep-repository audit command
 
-Continue the path in this order:
+Claude must not begin by opening one architecture file and coding from it. For every architecture continuation, Claude must execute this sequence:
 
-1. Building source/branch reconciliation;
-2. Offer state/permission/event closure;
-3. Payment/Receipt/Allocation/Ledger semantic closure;
-4. explicit Scheduling founder decision / ADR confirmation or supersession;
-5. command → aggregate → permission → state → event traceability;
-6. query/read-model contracts;
-7. task packet derivation;
-8. schema promotion only after the architecture gates permit it.
+```text
+1. Identify repository, branch and exact HEAD commit.
+2. Read AGENTS.md completely.
+3. Read CURRENT-SESSION-STATE.md completely.
+4. Load the Source of Truth, Blueprint, Roadmap and Context Prompt.
+5. Enumerate the complete repository tree.
+6. Read every relevant governance, architecture, contract, register, handoff, schema and audit artifact required by the checkpoint.
+7. Inspect all relevant branches and compare each against the active architecture branch.
+8. Extract unique information from divergent branches before any deletion/consolidation decision.
+9. Search every active reference to candidate canonical files, old filenames, old versions and superseded terminology.
+10. Reconcile version metadata, authority labels, status labels and routing references.
+11. Build a finding table: ID / source / evidence / conflict / impact / proposed correction / verification / owner / status.
+12. Classify every finding as SOURCE-VERIFIED, RUNTIME-VERIFIED, TEST-VERIFIED, EXTERNALLY-VERIFIED, ENGINEERING-DERIVATION, PROPOSED, UNVERIFIED, CONFLICT, BLOCKED or FOUNDER-DECISION-REQUIRED.
+13. Never convert an inference into canonical truth.
+14. Decide the next work only from the first unresolved dependency in CURRENT-SESSION-STATE.md and the roadmap.
+15. Execute only changes authorized by the applicable gate.
+16. Verify changed files, references, tests and CI.
+17. Reconcile the checkpoint and affected canonical artifacts.
+18. Report exact commit, files changed, verification evidence and remaining blockers.
+```
 
-## 9. Implementation boundary
+### Deep-reading standard
 
-This record authorizes documentation, reconciliation and evidence work only. It does not authorize application code, Prisma schema promotion, migrations, live database changes, production configuration or autonomous financial/AI mutations.
+The instruction `read the repository carefully` means literal structural inspection and targeted full-content reading: file names, headers, versions, status fields, references, tables, identifiers, commands, contracts, invariants, and cross-document claims must be treated as evidence. Claude must not summarize from filenames alone.
+
+## 12. Branch comparison finding
+
+The current branch is **91 commits ahead of main** and contains substantial architecture work not present at the base commit. This makes blind branch deletion unsafe.
+
+Before the founder deletes other branches, the active branch must have a completed provenance sweep for any branch carrying unique commits, unique artifacts, or unique evidence. Duplicate branches may be safely classified after reference and SHA comparison; unique-SHA branches require content-level review before deletion.
+
+## 13. External engineering corroboration
+
+External technical research may validate implementation technique, security practice, database behavior or standards, but it cannot silently override ASAS product, architecture or founder authority. The Context Prompt and AGENTS.md both enforce this separation. fileciteturn613file0L2-L2 fileciteturn616file0L2-L2
+
+## 14. Current engineering decision
+
+Continue in this order:
+
+1. resolve control-plane version metadata conflict;
+2. complete Building contract closure;
+3. close Offer state/permission/event contract;
+4. complete Payment/Receipt/Allocation/Ledger semantic contract;
+5. resolve Scheduling through explicit ADR confirmation/supersession;
+6. reconcile query/read-model contracts;
+7. reconcile critical actions against permission/event/state registers;
+8. derive complete implementation task packets;
+9. reconcile executable schema contract against source and only then begin local implementation.
+
+## 15. Implementation boundary
+
+This record authorizes architecture inspection, reconciliation, evidence work and governance correction only. It does **not** authorize application feature implementation, Prisma schema promotion, migrations, live database changes, production configuration, destructive operations or autonomous financial/AI mutations.
+
+## 16. Closure criteria for this audit wave
+
+This audit wave is closed only when:
+
+- control-plane versions are internally consistent;
+- every canonical navigation reference resolves;
+- all active filenames and historical compatibility names are classified;
+- relevant branch provenance has been extracted;
+- every critical conflict has an owner and decision state;
+- Claude loading instructions point only to current canonical artifacts;
+- CI verifies the critical routing invariants;
+- the current checkpoint is updated with exact evidence;
+- no implementation authorization is implied by documentation closure.
