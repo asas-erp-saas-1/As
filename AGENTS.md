@@ -8,6 +8,7 @@ The ASAS Enterprise Architecture Blueprint v1.6.1 and its handoff package are th
 2. Blueprint Chapter 39 contracts (`schema/asas-contracts.prisma`)
 3. Blueprint appendices and machine-readable registers
 4. Blueprint chapter prose
+4a. `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — routing/consolidation resource; does not override the Blueprint or an approved ADR
 5. Existing repository patterns
 6. General best practice
 
