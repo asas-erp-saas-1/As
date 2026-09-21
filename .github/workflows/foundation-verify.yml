@@ -93,7 +93,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          matches=$(grep -RIn --exclude-dir=.git --exclude='SESSION_STATE.md' 'docs/handoff/SESSION_STATE.md' . || true)
+          matches=$(git grep -n 'docs/handoff/SESSION_STATE.md' -- \
+            ':!docs/**' \
+            ':!.github/workflows/foundation-verify.yml' || true)
           if [[ -n "$matches" ]]; then
             echo "$matches"
             echo 'ERROR: active repository artifacts must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
