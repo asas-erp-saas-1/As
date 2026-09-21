@@ -2,16 +2,39 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.8.0  
+**Version:** 1.9.0  
 **Canonical branch:** `platform-architecture-2026`
 
 ## Operating mission
 
 Operate ASAS through evidence-first architectural engineering. Never infer implementation authority from document naming, branch age, or model memory.
 
+The agent's responsibility is not merely to find a plausible implementation. It must reconstruct the current engineering truth from repository evidence, branch provenance, source-package evidence, approved architecture, runtime evidence where authorized, and authoritative external engineering sources.
+
 ## Mandatory loading order
 
 `repository identity → branch → commit → AGENTS.md → CURRENT-SESSION-STATE.md → this prompt → ASAS-CANONICAL-EVIDENCE-CONTROL-2026.md → blueprint → roadmap → relevant contracts/registers → source packages when provenance is required → live runtime/database only when identity and authorization are verified`
+
+## Deep repository reading standard
+
+When a task requests repository audit, reconciliation, organization, architecture review or continuation, do not summarize from filenames alone.
+
+The agent MUST:
+
+1. enumerate the complete repository tree;
+2. read `AGENTS.md` completely before making a plan;
+3. read the current checkpoint completely;
+4. read the complete active architecture control plane required by the checkpoint;
+5. inspect relevant governance, handoff, architecture, audit, contracts, registers, schema, design, CI and command/script artifacts;
+6. inspect headers, versions, status fields, authority labels, identifiers, tables, commands, references and cross-document claims;
+7. compare active branch state with `main` and relevant historical branches;
+8. extract unique information from divergent branches before any consolidation or deletion;
+9. search for all active references to canonical files, historical filenames, old version numbers and superseded terminology;
+10. identify duplicates, stale references, contradictory metadata, orphan artifacts and unresolved ownership;
+11. distinguish documentation presence from implementation/runtime evidence;
+12. produce a finding record with evidence and verification requirements before making a material correction.
+
+`Read carefully` means literal evidence inspection: file path, file name, header, version, status, owner, references, content claims and relationships are all part of the audit surface.
 
 ## Cross-source discovery rule
 
@@ -83,11 +106,77 @@ Critical domain work must close:
 
 `owner / invariant / command / state transition / authorization / tenant scope / concurrency / event / audit / test / evidence`
 
-## Current work sequence
+## Mandatory branch and repository audit command
 
-`Evidence control → canonical artifact/branch provenance → Building → Offer → Payment/Receipt/Ledger → Scheduling decision → cross-domain reconciliation → schema authority → implementation authorization`
+When performing repository audit, consolidation or continuation, execute this exact conceptual sequence before deciding what to change:
 
-## Branch and research commands
+```text
+IDENTIFY
+→ repository / branch / HEAD / merge-base
+
+READ
+→ AGENTS.md
+→ CURRENT-SESSION-STATE.md
+→ Source of Truth
+→ Blueprint
+→ Roadmap
+→ Context Prompt
+→ required contracts/registers
+
+ENUMERATE
+→ complete tree
+→ canonical files
+→ historical files
+→ machine-readable artifacts
+→ CI/scripts/configuration
+
+COMPARE
+→ platform-architecture-2026 vs main
+→ relevant historical branches
+→ commits / PRs / unique SHAs
+
+TRACE
+→ references to every canonical and legacy filename
+→ version numbers
+→ status/authority labels
+→ duplicated concepts
+
+CLASSIFY
+→ SOURCE-VERIFIED
+→ RUNTIME-VERIFIED
+→ TEST-VERIFIED
+→ EXTERNALLY-VERIFIED
+→ ENGINEERING-DERIVATION
+→ PROPOSED
+→ UNVERIFIED
+→ CONFLICT
+→ BLOCKED
+→ FOUNDER-DECISION-REQUIRED
+
+DECIDE
+→ use the first unresolved dependency from CURRENT-SESSION-STATE
+→ do not invent missing authority
+→ do not choose based on document age/count/name
+
+CHANGE
+→ smallest coherent correction
+→ update canonical owner
+→ update consumers/references
+→ preserve historical provenance
+
+VERIFY
+→ reference search
+→ structural validation
+→ tests/CI
+→ exact commit evidence
+
+CONVERGE
+→ update checkpoint
+→ update affected canonical routing artifacts
+→ record remaining blockers
+```
+
+### Repository reading command examples
 
 ```bash
 git fetch --all --prune
@@ -95,14 +184,18 @@ git branch -a --no-color
 git ls-remote --heads origin
 git log --all --oneline --decorate --graph --date-order
 git log --all --follow -- <path>
-git diff --name-status <canonical>...<candidate>
-git show <branch>:<path>
-rg -n "SESSION_STATE|CURRENT-SESSION-STATE|CANONICAL-ARTIFACT|ADR-|events\.json|permissions\.csv|state-machines\.json|Scheduling|building_id" .
+git diff --name-status main...platform-architecture-2026
+git diff --stat main...platform-architecture-2026
+rg -n "SESSION_STATE|CURRENT-SESSION-STATE|ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT|Version:|Status:|C2-001|C2-002|ADR-|Scheduling|building_id" .
 ```
 
 For branch-level comparison, use the GitHub compare/commit history when available. For source-package provenance, inspect the supplied package directly. For technical claims, prefer official documentation and standards. Do not treat branch existence as authority.
 
 Do not delete branches solely because they are old. Classify provenance first and preserve unique evidence until its authority is reconciled.
+
+## Current work sequence
+
+`Evidence control → canonical artifact/branch provenance → Building → Offer → Payment/Receipt/Ledger → Scheduling decision → cross-domain reconciliation → schema authority → implementation authorization`
 
 ## Safety boundaries
 
@@ -114,6 +207,6 @@ A finding is closed only when root cause, corrective action, references, verific
 
 ## Current checkpoint
 
-**ARCH-2026-H1.4-CROSS-SOURCE-CONTRACT-CLOSURE**
+**ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE**
 
-Current blockers include live DB identity, security/runtime verification, implementation authorization, unresolved Scheduling ownership, and incomplete Offer/Building/Finance contract closure.
+Current blockers include live DB identity, security/runtime verification, implementation authorization, unresolved Scheduling ownership, incomplete Offer/Building/Finance contract closure, and control-plane version metadata reconciliation.
