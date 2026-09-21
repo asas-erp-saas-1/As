@@ -14,7 +14,7 @@ Give Claude enough context to act safely without forcing it to ingest the entire
 2. `CLAUDE-START-HERE.md`
 3. `CLAUDE-IMPLEMENTATION-BOUNDARY.md`
 4. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
-5. `docs/handoff/SESSION_STATE.md`
+5. `docs/handoff/CURRENT-SESSION-STATE.md`
 
 ### Tier 1 — Current execution scope
 6. Current task packet
