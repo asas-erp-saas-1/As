@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 2.6  
+**Version:** 2.7  
 **Date:** 2026-09-22  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CONTROL-PLANE CONVERGENCE → H1.4 CONTRACT CLOSURE`
+`ARCHITECTURE ENGINEERING — CONTROL-PLANE CONVERGENCE → H1.4 BUILDING PROVENANCE RECONCILIATION`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE`
+`ARCH-2026-H1.4.4-BUILDING-PROVENANCE-RECONCILIATION`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
@@ -20,12 +20,13 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 
 | Role | Artifact | Current version/state |
 |---|---|---|
-| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.0 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.0 |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.0 |
+| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 |
 | Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.0 |
 | Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL v1.4.0 |
 | Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
+| Building provenance evidence | `docs/architecture/ASAS-BUILDING-SCHEMA-PROVENANCE-RECONCILIATION-2026.md` | EVIDENCE / OPEN |
 | Current checkpoint | this file | sole active checkpoint |
 
 Derived contracts remain canonical for their own concepts.
@@ -46,23 +47,25 @@ Derived contracts remain canonical for their own concepts.
 - source observation manifest;
 - forensic repository reality map and reconstruction audit;
 - founder decision register;
-- blueprint v1.5.0;
-- roadmap v2.0.0;
-- context prompt v2.0.0;
+- blueprint v1.5.1;
+- roadmap v2.0.1;
+- context prompt v2.0.2;
 - master execution path v2.0.0;
 - Source of Truth v1.4.0;
 - aggregate/invariant boundary register;
 - command/action contract register;
 - Offer domain contract;
 - Building domain contract;
+- Building historical schema provenance reconciliation;
 - Unit/Reservation consistency contract;
 - Commercial/Finance semantic reconciliation;
 - cross-source research protocol;
-- architecture gap-completion protocol.
+- architecture gap-completion protocol;
+- explicit v1.6.1 source-package governance decision.
 
 ## 5. Source discipline
 
-The source package/Blueprint v1.6.1 remains a baseline source for source facts. Repository artifacts are derived shadows unless explicitly promoted. Runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering technique but does not override ASAS authority.
+The source package/Blueprint v1.6.1 is a research/provenance source for the lead architect. It is not implementation authority for Claude Code or Codex. Repository artifacts are derived shadows unless explicitly promoted. Runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering technique but does not override ASAS authority.
 
 ## 6. Important reconciliations
 
@@ -92,7 +95,7 @@ Historical ADR-0017 reservation protocol is reconciled as approved architectural
 
 `OPEN / IMPLEMENTATION BLOCKED`
 
-Building is supported as a real-estate hierarchy concept. Historical schema evidence contains a Building model, but this does not automatically establish current executable schema authority. Aggregate/entity role, exact relationships, structural mutation, archival, concurrency and executable representation remain open.
+Building is supported as a real-estate hierarchy concept. Historical schema evidence now has a dedicated provenance record confirming that a Building model existed in prior ASAS material with Project and Apartment/Unit relationships. This changes evidence classification, not executable schema authority. Aggregate/entity role, exact relationships, structural mutation, archival, concurrency and executable representation remain open.
 
 ### Offer
 
@@ -112,11 +115,11 @@ Do not invent a standalone Payment aggregate solely from terminology.
 
 ## 7. Control-plane correction
 
-Earlier routing metadata contained stale version references. The active control plane is now explicitly aligned as:
+The active control plane is now:
 
-`Blueprint v1.5.0 → Roadmap v2.0.0 → Context Prompt v2.0.0 → Execution Path v2.0.0 → Source of Truth v1.4.0`
+`Blueprint v1.5.1 → Roadmap v2.0.1 → Context Prompt v2.0.2 → Execution Path v2.0.0 → Source of Truth v1.4.0`
 
-The source package version `v1.6.1` remains provenance/source baseline and is not the same thing as the repository Blueprint version.
+The source package version `v1.6.1` is explicitly research/provenance input for the lead architect and is not the repository Blueprint version or an implementation instruction for Claude Code/Codex.
 
 ## 8. Current blockers
 
@@ -153,11 +156,11 @@ The source package version `v1.6.1` remains provenance/source baseline and is no
 
 ### Q0 — Control-plane verification
 
-Verify the four routing artifacts and Source of Truth against HEAD after their latest commits.
+Verify the routing artifacts and Source of Truth against the latest HEAD after the current reconciliation commits.
 
 ### Q1 — Building
 
-Reconcile source schema/historical evidence and close entity/aggregate/relationship semantics without inventing persistence.
+Reconcile historical schema evidence with the current schema contract and, once platform identity is verified, live database reality. Close entity/aggregate/relationship semantics without inventing persistence.
 
 ### Q2 — Offer
 
