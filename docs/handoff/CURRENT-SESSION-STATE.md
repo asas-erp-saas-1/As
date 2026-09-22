@@ -1,188 +1,212 @@
-# ASAS Current Session State
+# ASAS — CURRENT SESSION STATE
 
-Status: CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT
-Version: 2.5
-Date: 2026-09-21
+**Status:** CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT  
+**Version:** 2.6  
+**Date:** 2026-09-22  
+**Repository:** `asas-erp-saas-1/As`  
+**Architecture branch:** `platform-architecture-2026`
 
-## Repository
-- Canonical repository: `asas-erp-saas-1/As`
-- Canonical integration branch: `main`
-- Architecture engineering branch: `platform-architecture-2026`
-- Parent foundation branch: `foundation/forensic-repository-reconstruction-2026-09-20`
-- Current architecture branch: `platform-architecture-2026`
-- Architecture changes must merge through reviewed PRs; this branch is the current architecture engineering vehicle.
+## 1. Current phase
 
-## Phase
-ARCHITECTURE ENGINEERING — H1.4 COMMAND / ACTION CONTRACT CLOSURE
+`ARCHITECTURE ENGINEERING — CONTROL-PLANE CONVERGENCE → H1.4 CONTRACT CLOSURE`
 
-## Current checkpoint
+## 2. Current checkpoint
+
 `ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE`
 
-## Canonical architecture control plane
-The 2026 architecture program uses controlled navigation resources:
+This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
-1. `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — consolidated engineering truth, provenance and routing; v1.3.0.
-2. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` — WHAT the target architecture is; v1.5.0 on this branch.
-3. `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — HOW the architecture is engineered and verified; v1.6.0.
-4. `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — HOW an AI engineering agent must operate; v1.9.0.
-5. `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` — HOW branch, source-package and external engineering evidence is discovered and qualified.
-6. `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — HISTORICAL provenance; superseded by the active Blueprint and retained, not active competing authority.
+## 3. Canonical control plane
 
-Derived contract companions:
-- `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` — v1.1.0; reconciled with current C2-001 classification.
-- `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
-- `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
-- `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md` — v1.1.0; Offer lifecycle closure remains partial.
-- `docs/architecture/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` — v1.0.0; Building boundary is open and implementation blocked.
-- `docs/architecture/ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`
-- `docs/architecture/ASAS-COMMERCIAL-FINANCE-SEMANTIC-RECONCILIATION-2026.md`
+| Role | Artifact | Current version/state |
+|---|---|---|
+| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.0 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.0 |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.0 |
+| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.0 |
+| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL v1.4.0 |
+| Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
+| Current checkpoint | this file | sole active checkpoint |
 
-Supporting registers remain canonical for their own concepts. No competing architecture blueprint should be created without explicit supersession.
+Derived contracts remain canonical for their own concepts.
 
-## Completed / materially advanced layers
-- Repository identity and boundary
-- Claude context/operating model
-- Branch and PR governance
-- Foundation verification contract
-- Task graph and task packet model
-- Contract reconciliation protocol
-- Core lifecycle and capability coverage
-- Master execution path
-- Foundation gate register and closure protocol
-- Canonical artifact register
-- Blueprint-derived domain event register
-- Blueprint-derived permission register
-- Blueprint-derived state-machine register
-- Blueprint-derived design token shadow
-- Blueprint-derived component contract inventory
-- Blueprint source observation manifest
-- Phase P task shard with all 9 source tasks
-- Declared-vs-observed reconciliation checkpoint
-- Forensic repository reality map
-- Forensic repository reconstruction audit
-- Founder decision register
-- Corrected source/register promotion state
-- Structural task-register parse and count correction
-- Source register structural reconciliation evidence
-- 2026 platform architecture blueprint v1.5.0
-- Blueprint authority reconciliation amendment 001 — incorporated and historical
-- 2026 architecture engineering roadmap v1.6.0
-- 2026 architecture context prompt v1.9.0
-- 2026 context/domain/module evidence matrix v1.1.0 — canonical C2-001 reconciliation applied
-- consolidated engineering source of truth v1.3.0
-- aggregate/invariant boundary register v1.0.2
-- command/action contract register v1.0.1
-- Offer domain contract v1.1.0
-- Unit/Reservation consistency contract v1.0.1
-- Commercial/Finance semantic reconciliation v1.0
-- Offer invariant/closure gate H1.4.2 — partial, no persistence authorization
-- Cross-source research/discovery protocol
-- Building domain contract v1.0.0 — open, implementation blocked
-- 2026 cross-source architecture audit updated with branch/version reconciliation findings
+## 4. Completed / materially advanced
 
-## Source discipline
-The v1.6.1 Blueprint/package remains the foundation source baseline for source facts. Repository artifacts are derived shadows unless explicitly promoted by an approved architecture/ADR decision. Existing runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering techniques but does not override repository or founder authority.
+- repository identity and canonical boundary;
+- Claude context and operating model;
+- branch/PR governance;
+- foundation verification contract;
+- task graph/task packet model;
+- contract reconciliation protocol;
+- core lifecycle and capability coverage;
+- master execution path;
+- foundation gate register;
+- canonical artifact register;
+- blueprint-derived event/permission/state-machine/design shadows;
+- source observation manifest;
+- forensic repository reality map and reconstruction audit;
+- founder decision register;
+- blueprint v1.5.0;
+- roadmap v2.0.0;
+- context prompt v2.0.0;
+- master execution path v2.0.0;
+- Source of Truth v1.4.0;
+- aggregate/invariant boundary register;
+- command/action contract register;
+- Offer domain contract;
+- Building domain contract;
+- Unit/Reservation consistency contract;
+- Commercial/Finance semantic reconciliation;
+- cross-source research protocol;
+- architecture gap-completion protocol.
 
-## Important source reconciliation
-The source package contains accepted ADR-0017 specifying the reservation protocol: transactional lock/re-verification plus partial uniqueness constraints for active reservations and unreleased holds. The 2026 consistency contract records that decision as the current approved architectural baseline while keeping executable/runtime enforcement UNVERIFIED.
+## 5. Source discipline
 
-The source package schema contract also explicitly defines `Offer`, `PaymentPlan`, `PaymentScheduleItem`, `Receipt`, and `ReceiptAllocation`. Therefore:
-- Offer is a supported Sales aggregate candidate, but command/state/permission/event closure remains open.
-- The launch finance vocabulary does not require a standalone Payment aggregate merely because V3 uses the word Payment.
-- Current source semantics are `Contract → PaymentPlan/schedule items → Receipt → ReceiptAllocation → Finance/Ledger where authorized`.
-- Finance semantic reconciliation is PARTIALLY CLOSED; executable ledger/receipt/allocation enforcement remains open.
+The source package/Blueprint v1.6.1 remains a baseline source for source facts. Repository artifacts are derived shadows unless explicitly promoted. Runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering technique but does not override ASAS authority.
 
-## Current architecture position
-### C2-001
-`OPEN ARCHITECTURAL REFINEMENT` — nine-context target grouping remains supported; historical 15-module proposal is implementation evidence, not equal-authority competing bounded-context architecture. This is not a count-based founder blocker.
+## 6. Important reconciliations
 
-### Scheduling ownership
-`OPEN / FOUNDER DECISION REQUIRED` — current architecture control plane does not silently reassign Scheduling ownership. Historical ADR evidence remains preserved until an explicit confirmation/supersession decision.
+### Contexts / modules
 
-### Live runtime identity
-`BLOCKED / NOT VERIFIED` — the similarly named connected Supabase project is not accepted as the canonical runtime for `asas-erp-saas-1/As`.
+Nine target contexts remain supported:
 
-### Control-plane metadata
-`OPEN / GOVERNANCE CORRECTION IN PROGRESS` — branch comparison found stale version references between the active Blueprint, Roadmap, Context Prompt, Source of Truth and this checkpoint. The active file headers are now recorded here; the Source of Truth routing table still requires alignment and verification.
+`Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
 
-## H1.4 status
-### Unit ↔ Reservation
-`PARTIALLY CLOSED / IMPLEMENTATION UNVERIFIED`
+The historical 15-module proposal is implementation evidence, not equal-authority bounded-context architecture.
 
-The business invariant and approved ADR-0017 protocol are reconciled. Remaining work is executable schema verification, permission/tenant mapping, event mapping, idempotency details, race tests and evidence.
-
-### Offer
-`H1.4.2 PARTIAL / IMPLEMENTATION BLOCKED`
-
-The derived Offer contract and aggregate register establish supported semantic invariants: tenant scope, Unit and opportunity integrity, deterministic effective-price authority, discount authorization boundary, validity semantics, Offer/Reservation separation, auditability and idempotent mutation requirements. The exact state machine, canonical permission keys, discount thresholds/approval authority, event schema, idempotency-key design and candidate ownership acceptance remain open. No schema/API implementation is authorized.
-
-### Building
-`H1.4.3 OPEN / IMPLEMENTATION BLOCKED`
-
-The Building contract establishes the supported hierarchy and conservative invariants without inventing a Building state machine, permission, event or persistence model. Candidate ownership is Real Estate / Inventory, but aggregate ownership remains unaccepted. Exact Project/Building/Unit relationship semantics, structural mutation policy, concurrency, archival/deletion semantics, and executable evidence remain open.
-
-### Payment / PaymentSchedule / Receipt
-`PARTIALLY CLOSED / EXECUTABLE FINANCE CONTRACT OPEN`
-
-Source schema and accepted payment posture support manual receipt recording/reconciliation at launch. Do not invent a standalone Payment aggregate without a separate business requirement/ADR.
+`C2-001 = OPEN ARCHITECTURAL REFINEMENT`
 
 ### Scheduling
-`OPEN / FOUNDER DECISION REQUIRED`
 
-Historical accepted ADR remains active evidence until explicitly superseded.
+Historical ADR-0018 and current architecture materials conflict on Scheduling ownership.
 
-## Current blockers
-- Control-plane version/routing metadata requires final reconciliation.
-- Canonical ASAS live database/project identity is not verified.
-- Executable schema promotion is not complete.
-- Full task packets are not yet derived from source task records.
-- Application implementation authorization is not granted.
-- Security/RLS runtime enforcement is not evidenced.
-- Offer command/state/permission/event closure is incomplete.
-- Building ownership and structural mutation semantics are incomplete.
-- Scheduling ownership remains unresolved.
-- Production implementation authorization is not granted.
+`C2-002 = FOUNDER-DECISION-REQUIRED`
 
-## Gate status
-G0 GREEN — repository identity/checkpoint evidence
-G1 AMBER — authority reconciliation ongoing; active 2026 control-plane versions require routing metadata convergence
-G2 AMBER — domain grouping supported; module decomposition remains open; Scheduling ownership remains open
-G3 AMBER — aggregate/invariant contracts active; Unit/Reservation logical protocol reconciled; Offer/Building/finance boundaries remain open
-G4 AMBER — invariant doctrine exists; executable enforcement absent
-G5 AMBER — state-machine register exists; runtime enforcement absent
-G6 BLOCKED — event implementation absent
-G7 BLOCKED — executable authorization absent
-G8 BLOCKED — live tenancy/RLS absent
-G9 AMBER — security doctrine exists; executable evidence absent
-G10 BLOCKED — live DB identity and executable schema absent
-G11 AMBER — foundation CI exists; architecture changes require fresh status evidence
-G12 BLOCKED — application observability/recovery evidence absent
-G13 BLOCKED — live backup/restore evidence absent
-G14 AMBER — AI safety doctrine exists; executable tooling absent
-G15 BLOCKED — implementation authorization absent
+No silent ownership change.
 
-## External engineering evidence incorporated for current work
-- PostgreSQL official documentation confirms row-level locks can coordinate concurrent writers, including `FOR UPDATE`, but this is implementation evidence only; no Building locking primitive has been selected.
-- OWASP authorization guidance confirms deny-by-default and server-side authorization as baseline security practices; ASAS-specific permissions remain governed by the canonical permission register.
-- Transactional outbox literature supports atomic persistence of business change plus durable event intent, with idempotent consumers for duplicate delivery; ASAS runtime implementation remains unverified.
+### Reservation
 
-## Hard stop
-No application feature implementation, production schema mutation, migration deployment, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the relevant architecture gates are closed.
+Historical ADR-0017 reservation protocol is reconciled as approved architectural evidence: transactional lock/re-verification plus partial uniqueness constraints for active reservations/unreleased holds. Executable enforcement remains unverified.
 
-## Next execution sequence
-1. Reconcile control-plane version metadata against Git history and active file headers; update the Source of Truth routing table after verification.
-2. Reconcile Building against source schema and historical branch evidence; determine aggregate vs entity status without inventing persistence structures.
-3. Close Offer state/permission/event contract and candidate ownership decision.
-4. Complete receipt/allocation/ledger contract.
-5. Reconcile Scheduling through an explicit ADR confirmation/supersession path.
-6. Build query/read-model contracts.
-7. Reconcile critical actions against canonical permission and event registers.
-8. Derive complete implementation task packets from source task records.
-9. Only then promote executable schema design toward local implementation.
-10. Establish reproducible local database/application foundation.
-11. Run architecture CI and capture evidence.
-12. Verify canonical runtime identity before any remote introspection.
-13. Authorize the first bounded vertical implementation slice only after dependencies and gates are GREEN.
+### Building
 
-## Continuation rule
-On continuation, load this checkpoint plus the Source of Truth, Blueprint, Roadmap, Context Prompt, Research Protocol, Evidence Matrix, Aggregate/Invariant Register, Command/Action Register, Offer Contract, Building Contract, Unit/Reservation Consistency Contract, Commercial/Finance Semantic Reconciliation, then open-conflict/founder-decision documents and relevant registers. Resume from the first unresolved dependency. Do not restart from conversation history and do not treat historical artifacts as current authority.
+`OPEN / IMPLEMENTATION BLOCKED`
+
+Building is supported as a real-estate hierarchy concept. Historical schema evidence contains a Building model, but this does not automatically establish current executable schema authority. Aggregate/entity role, exact relationships, structural mutation, archival, concurrency and executable representation remain open.
+
+### Offer
+
+`PARTIAL / IMPLEMENTATION BLOCKED`
+
+Offer is a supported Sales commercial concept. Server-computed effective price, Offer/Reservation separation and approval concepts are supported. Command/state/permission/event/idempotency/concurrency closure remains incomplete.
+
+### Finance
+
+`PARTIALLY CLOSED / EXECUTABLE CONTRACT OPEN`
+
+Current source semantics are:
+
+`Contract → PaymentPlan / schedule items → Receipt → ReceiptAllocation → Finance/Ledger where authorized`
+
+Do not invent a standalone Payment aggregate solely from terminology.
+
+## 7. Control-plane correction
+
+Earlier routing metadata contained stale version references. The active control plane is now explicitly aligned as:
+
+`Blueprint v1.5.0 → Roadmap v2.0.0 → Context Prompt v2.0.0 → Execution Path v2.0.0 → Source of Truth v1.4.0`
+
+The source package version `v1.6.1` remains provenance/source baseline and is not the same thing as the repository Blueprint version.
+
+## 8. Current blockers
+
+- canonical live DB/project identity not verified;
+- executable schema promotion incomplete;
+- full implementation task packets not yet derived;
+- Offer command/state/permission/event closure incomplete;
+- Building ownership and structural semantics incomplete;
+- Scheduling ownership unresolved;
+- runtime security/RLS evidence absent;
+- implementation authorization absent;
+- architecture CI requires final control-plane verification.
+
+## 9. Gate state
+
+`G0 GREEN` — repository identity/checkpoint evidence  
+`G1 AMBER` — control-plane convergence materially advanced; verification required  
+`G2 AMBER` — domain grouping supported; module refinement/Scheduling open  
+`G3 AMBER` — aggregate/invariant contracts active; several boundaries open  
+`G4 AMBER` — invariant doctrine exists; executable enforcement absent  
+`G5 AMBER` — state-machine register exists; runtime enforcement absent  
+`G6 BLOCKED` — runtime event implementation absent  
+`G7 BLOCKED` — implementation authorization absent  
+`G8 BLOCKED` — live tenancy/RLS evidence absent  
+`G9 AMBER` — security doctrine exists; executable evidence absent  
+`G10 BLOCKED` — live DB identity/executable schema absent  
+`G11 AMBER` — foundation CI exists; control-plane verification required  
+`G12 BLOCKED` — application observability/recovery evidence absent  
+`G13 BLOCKED` — restore evidence absent  
+`G14 AMBER` — AI safety doctrine exists; tooling evidence absent  
+`G15 BLOCKED` — implementation authorization absent
+
+## 10. Next execution queue
+
+### Q0 — Control-plane verification
+
+Verify the four routing artifacts and Source of Truth against HEAD after their latest commits.
+
+### Q1 — Building
+
+Reconcile source schema/historical evidence and close entity/aggregate/relationship semantics without inventing persistence.
+
+### Q2 — Offer
+
+Close commands, states, permissions, approvals, events, idempotency and concurrency.
+
+### Q3 — Finance
+
+Close PaymentPlan/schedule → Receipt → Allocation → Ledger and commission semantics.
+
+### Q4 — Scheduling
+
+Founder decision / explicit ADR confirmation or supersession.
+
+### Q5 — Query/read models
+
+Close read ownership, consistency and tenant-safe projections.
+
+### Q6 — Permission/event reconciliation
+
+Map critical commands to canonical permission/event registers.
+
+### Q7 — Task packets
+
+Derive implementation-ready packets without changing source semantics.
+
+### Q8 — Local executable schema
+
+Only after applicable contracts close.
+
+### Q9 — Architecture CI
+
+Machine-check the control plane and critical contracts.
+
+### Q10 — First vertical slice
+
+Authorize only after applicable gates become GREEN.
+
+## 11. Continuation rule
+
+When the operator says `Continue / أكمل العمل على المسار`:
+
+1. load this checkpoint;
+2. load the Roadmap, Context Prompt, Source of Truth and Master Execution Path;
+3. inspect current branch/HEAD;
+4. resume from the first unresolved dependency;
+5. research material gaps using authoritative external sources;
+6. make the smallest authorized correction;
+7. verify;
+8. update affected routing artifacts and this checkpoint;
+9. report exact evidence and next dependency.
+
+Never restart from conversation memory. Never mark a gate green because documentation exists.
