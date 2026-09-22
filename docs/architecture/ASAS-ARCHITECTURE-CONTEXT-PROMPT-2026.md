@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AI ENGINEERING OPERATING CONTEXT  
-**Version:** 2.0.1  
+**Version:** 2.0.2  
 **Effective date:** 2026-09-22  
 **Canonical branch:** `platform-architecture-2026`  
 **Repository:** `asas-erp-saas-1/As`  
@@ -487,3 +487,55 @@ When the operator says **Continue / أكمل العمل على المسار**:
 10. report exact evidence and next dependency.
 
 Never restart the project from conversation memory.
+
+---
+
+# 22 — ARCHITECT AUTHORITY AMENDMENT 002
+
+**Date:** 2026-09-22  
+**Reason:** Explicitly separate lead-architect decision authority from coding-agent execution authority and incorporate Building provenance evidence.
+
+## 22.1 Lead architect responsibility
+
+The lead architecture process is responsible for:
+
+- evaluating all available ASAS sources;
+- researching missing engineering knowledge;
+- comparing alternatives and failure modes;
+- resolving architecture-level contradictions within delegated authority;
+- choosing the smallest defensible architecture;
+- converting conclusions into canonical ADRs/contracts/registers;
+- deciding when a finding is ready for implementation authorization.
+
+Claude Code/Codex are downstream executors. They must not promote research material, historical branches or source-package claims into implementation requirements by themselves.
+
+## 22.2 v1.6.1 boundary
+
+`v1.6.1 = research/provenance input for the lead architect only.`
+
+The governing record is:
+
+`docs/architecture/ASAS-SOURCE-PACKAGE-ROLE-AND-DECISION-2026.md`
+
+## 22.3 Building provenance
+
+Historical schema evidence has now been recorded in:
+
+`docs/architecture/ASAS-BUILDING-SCHEMA-PROVENANCE-RECONCILIATION-2026.md`
+
+The correct interpretation is:
+
+```text
+Building concept                    SUPPORTED
+Historical schema representation    SOURCE-VERIFIED
+Current executable representation   OPEN
+Live representation                 UNVERIFIED
+Aggregate ownership                 OPEN
+Implementation                      BLOCKED
+```
+
+The agent must not convert historical fields into Prisma/schema requirements without current reconciliation.
+
+## 22.4 Resume behavior
+
+On every **Continue / أكمل العمل على المسار** instruction, the first unresolved dependency is authoritative. The agent must execute work on that dependency, not restart the entire project or invent a new roadmap.
