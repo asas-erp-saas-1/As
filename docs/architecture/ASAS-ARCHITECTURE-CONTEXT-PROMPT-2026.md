@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AI ENGINEERING OPERATING CONTEXT  
-**Version:** 2.0.0  
+**Version:** 2.0.1  
 **Effective date:** 2026-09-22  
 **Canonical branch:** `platform-architecture-2026`  
 **Repository:** `asas-erp-saas-1/As`  
@@ -103,7 +103,45 @@ Never call a document claim `VERIFIED` merely because the document exists.
 
 ---
 
-# 5 — Mandatory cross-source discovery
+# 5 — Source-package role: v1.6.1
+
+The supplied **ASAS Architecture Blueprint v1.6.1 / source package** is an **additional research and provenance source for the lead architect**.
+
+It is **not an implementation authority for Claude Code or Codex**.
+
+Its correct flow is:
+
+```text
+v1.6.1 source package
+→ architect research
+→ repository / branch evidence
+→ official and authoritative corroboration
+→ contradiction analysis
+→ engineering decision
+→ ADR / canonical contract / register / roadmap
+→ explicit implementation authorization
+→ Claude Code / Codex
+```
+
+Use v1.6.1 to discover historical rationale, missing concerns, alternative designs, risks and research questions. Do not copy its claims directly into implementation requirements.
+
+If v1.6.1 conflicts with verified repository/runtime evidence, classify the conflict and determine authority. Never force the repository to match the package merely because the package has a higher version number.
+
+Future capabilities found in v1.6.1 remain:
+
+`ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
+
+until explicitly promoted by the canonical architecture, ADR, contract, register and authorized task chain.
+
+The governing decision is recorded in:
+
+`docs/architecture/ASAS-SOURCE-PACKAGE-ROLE-AND-DECISION-2026.md`
+
+This rule exists because the lead architect is responsible for reconciling sources; an autonomous coding agent is responsible for executing already-authorized engineering work.
+
+---
+
+# 6 — Mandatory cross-source discovery
 
 Before any load-bearing architecture decision, inspect as applicable:
 
@@ -125,7 +163,7 @@ Historical artifacts remain historical until explicitly promoted.
 
 ---
 
-# 6 — Gap-completion protocol
+# 7 — Gap-completion protocol
 
 When the required answer is absent from ASAS sources:
 
@@ -151,7 +189,7 @@ Stop at `FOUNDER-DECISION-REQUIRED` for founder scope, unresolved ownership, leg
 
 ---
 
-# 7 — Architectural distinctions
+# 8 — Architectural distinctions
 
 Never collapse:
 
@@ -161,7 +199,7 @@ Counts are observations, not quotas.
 
 ---
 
-# 8 — Current target architecture
+# 9 — Current target architecture
 
 Current high-level target:
 
@@ -177,7 +215,7 @@ because historical ADR-0018 and current architecture material disagree on owners
 
 ---
 
-# 9 — Contract-first rule
+# 10 — Contract-first rule
 
 A feature is not implementation-ready because its noun exists in a document.
 
@@ -207,7 +245,7 @@ Direct governed status mutation is prohibited.
 
 ---
 
-# 10 — Database discipline
+# 11 — Database discipline
 
 Treat these separately:
 
@@ -225,7 +263,7 @@ Cloud access is not required for architecture construction or local foundation w
 
 ---
 
-# 11 — Security / tenancy
+# 12 — Security / tenancy
 
 Target hierarchy:
 
@@ -245,7 +283,7 @@ Threat model must cover tenant escape, IDOR, privilege escalation, mass assignme
 
 ---
 
-# 12 — AI safety
+# 13 — AI safety
 
 AI authority path:
 
@@ -264,7 +302,7 @@ AI may research, propose, analyze, test and implement within an explicitly autho
 
 ---
 
-# 13 — Design engineering
+# 14 — Design engineering
 
 Design precedes page coding:
 
@@ -278,7 +316,7 @@ Existing design artifacts are evidence and should be reconciled before duplicate
 
 ---
 
-# 14 — Task authorization
+# 15 — Task authorization
 
 An implementation task requires:
 
@@ -313,7 +351,7 @@ Missing fields remain `OPEN`/`BLOCKED`.
 
 ---
 
-# 15 — Architecture-as-code
+# 16 — Architecture-as-code
 
 Where a rule is machine-checkable, prefer CI enforcement.
 
@@ -336,7 +374,7 @@ Never invent a command solely to make CI green.
 
 ---
 
-# 16 — Branch/repository continuation protocol
+# 17 — Branch/repository continuation protocol
 
 When continuing work:
 
@@ -385,7 +423,7 @@ Do not delete historical branches solely because they are old. Branch deletion i
 
 ---
 
-# 17 — Current work route
+# 18 — Current work route
 
 ```text
 CONTROL-PLANE CONVERGENCE
@@ -405,7 +443,7 @@ The route expands if evidence reveals missing dependencies.
 
 ---
 
-# 18 — Current checkpoint
+# 19 — Current checkpoint
 
 `ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE`
 
@@ -423,7 +461,7 @@ Current blockers:
 
 ---
 
-# 19 — Closure rule
+# 20 — Closure rule
 
 A finding is CLOSED only when:
 
@@ -433,7 +471,7 @@ Otherwise it remains open/blocked/not executed.
 
 ---
 
-# 20 — Resume instruction
+# 21 — Resume instruction
 
 When the operator says **Continue / أكمل العمل على المسار**:
 
