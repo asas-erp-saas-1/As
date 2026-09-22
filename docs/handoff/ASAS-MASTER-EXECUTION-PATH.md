@@ -1,7 +1,7 @@
 # ASAS — MASTER EXECUTION PATH 2026
 
 **Status:** CANONICAL HANDOFF CONTROL  
-**Version:** 2.0.0  
+**Version:** 2.0.1  
 **Effective date:** 2026-09-22  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`  
@@ -66,7 +66,46 @@ Then inspect branch provenance and external sources only where the current depen
 
 ---
 
-# 3 — Current route
+# 3 — Source-package research boundary
+
+The supplied **v1.6.1 source package** is a research/provenance input for the lead architecture process. It is **not an implementation authority for Claude Code or Codex**.
+
+Use it to discover:
+
+- historical design rationale;
+- candidate capabilities;
+- missing concerns;
+- alternative architectures;
+- security/reliability gaps;
+- research questions.
+
+Do not promote its claims directly into implementation. The required path is:
+
+```text
+v1.6.1 / source package
+→ architect review
+→ repository + branch evidence
+→ official/authoritative corroboration
+→ contradiction analysis
+→ engineering decision
+→ ADR / canonical contract / register / roadmap
+→ explicit implementation authorization
+→ Claude Code / Codex
+```
+
+If v1.6.1 conflicts with verified repository/runtime evidence, classify the conflict and determine authority; never force the repository to match the package.
+
+Future capabilities from the package remain:
+
+`ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
+
+until explicitly promoted by an approved canonical artifact.
+
+See `docs/architecture/ASAS-SOURCE-PACKAGE-ROLE-AND-DECISION-2026.md`.
+
+---
+
+# 4 — Current route
 
 ```text
 Q0 CONTROL-PLANE CONVERGENCE
@@ -102,18 +141,20 @@ The route is evidence-driven. If Q1 reveals a missing prerequisite, the route ex
 
 ---
 
-# 4 — Q0 Control-plane convergence
+# 5 — Q0 Control-plane convergence
 
 Current architecture branch evidence identifies stale routing/version metadata between the Source of Truth, Blueprint, Roadmap and Context Prompt.
 
 The active branch now establishes:
 
 - Blueprint `v1.5.0`;
-- Roadmap `v2.0.0` after reconciliation;
-- Context Prompt `v2.0.0` after reconciliation;
-- Master Execution Path `v2.0.0` after reconciliation;
-- Source of Truth must be aligned next;
+- Roadmap `v2.0.0`;
+- Context Prompt `v2.0.0`;
+- Master Execution Path `v2.0.1`;
+- Source of Truth must remain aligned with these routing artifacts;
 - current checkpoint remains the operational state authority.
+
+The v1.6.1 source package is research-only for the architect and is never an implementation instruction for Claude Code/Codex.
 
 **Gate:** `PARTIAL`
 
@@ -121,7 +162,7 @@ Closure requires all routing metadata to agree and reference the same active art
 
 ---
 
-# 5 — Q1 Building contract
+# 6 — Q1 Building contract
 
 Resolve without inventing persistence:
 
@@ -149,7 +190,7 @@ No Building table/model/migration is authorized merely because historical schema
 
 ---
 
-# 6 — Q2 Offer contract
+# 7 — Q2 Offer contract
 
 Close:
 
@@ -173,7 +214,7 @@ Accepted Offer does not itself create an inventory winner.
 
 ---
 
-# 7 — Q3 Finance contract
+# 8 — Q3 Finance contract
 
 Reconcile:
 
@@ -209,7 +250,7 @@ Close:
 
 ---
 
-# 8 — Q4 Scheduling ADR
+# 9 — Q4 Scheduling ADR
 
 Historical ADR-0018 and current architecture material contain conflicting ownership statements.
 
@@ -223,7 +264,7 @@ No silent ownership change.
 
 ---
 
-# 9 — Q5 Query / Read-model contracts
+# 10 — Q5 Query / Read-model contracts
 
 Define read ownership separately from write ownership.
 
@@ -237,7 +278,7 @@ Read models must not become an accidental back door for cross-context writes or 
 
 ---
 
-# 10 — Q6 Permission / Event reconciliation
+# 11 — Q6 Permission / Event reconciliation
 
 Map every critical command to:
 
@@ -251,7 +292,7 @@ Catalog presence does not prove runtime enforcement.
 
 ---
 
-# 11 — Q7 Implementation task packets
+# 12 — Q7 Implementation task packets
 
 A task is executable only when it contains:
 
@@ -286,7 +327,7 @@ Missing information is `OPEN`/`BLOCKED`, never guessed.
 
 ---
 
-# 12 — Q8 Local executable schema
+# 13 — Q8 Local executable schema
 
 Only after relevant contract gates close:
 
@@ -308,7 +349,7 @@ No destructive production command is allowed.
 
 ---
 
-# 13 — Q9 Architecture-as-code / CI
+# 14 — Q9 Architecture-as-code / CI
 
 Machine-check what is actually checkable:
 
@@ -330,7 +371,7 @@ Never fabricate commands for a green CI result.
 
 ---
 
-# 14 — Q10 First authorized vertical slice
+# 15 — Q10 First authorized vertical slice
 
 Candidate commercial journey:
 
@@ -374,7 +415,7 @@ Required verification:
 
 ---
 
-# 15 — Q11 Controlled integration
+# 16 — Q11 Controlled integration
 
 Introduce remote systems only after local evidence exists.
 
@@ -391,7 +432,7 @@ Required:
 
 ---
 
-# 16 — Q12 Operational evidence
+# 17 — Q12 Operational evidence
 
 Measure:
 
@@ -405,7 +446,7 @@ A backup without restore evidence is not recovery readiness.
 
 ---
 
-# 17 — Q13 Production readiness
+# 18 — Q13 Production readiness
 
 Production is authorized only when all applicable gates are objectively evidenced:
 
@@ -415,7 +456,7 @@ No document-only green status.
 
 ---
 
-# 18 — Hard stops
+# 19 — Hard stops
 
 Stop the affected slice for:
 
@@ -436,7 +477,7 @@ Stop the affected slice for:
 
 ---
 
-# 19 — Claude autonomy boundary
+# 20 — Claude autonomy boundary
 
 Claude may inspect, research, reason, propose, implement, test and refactor within an authorized task.
 
@@ -452,9 +493,11 @@ Claude may not silently redefine:
 - irreversible data operations;
 - autonomous high-impact AI authority.
 
+The v1.6.1 source package is not an autonomous implementation instruction. Its promoted conclusions must first appear in the canonical architecture/contracts/ADRs/task packets.
+
 ---
 
-# 20 — Change loop
+# 21 — Change loop
 
 Every material change follows:
 
@@ -464,7 +507,7 @@ No step is silently skipped for a high-risk change.
 
 ---
 
-# 21 — Closure rule
+# 22 — Closure rule
 
 A finding/task/gate is closed only when:
 
@@ -476,7 +519,7 @@ Documentation alone cannot close an implementation gate.
 
 ---
 
-# 22 — Resume command
+# 23 — Resume command
 
 When the operator says **Continue / أكمل العمل على المسار**:
 
