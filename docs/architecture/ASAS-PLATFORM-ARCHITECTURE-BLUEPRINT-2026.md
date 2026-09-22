@@ -2,8 +2,8 @@
 
 **Artifact ID:** ASAS-ARCH-PLATFORM-2026-001  
 **Status:** PROPOSED — ENGINEERING BASELINE  
-**Version:** 1.5.0  
-**Effective date:** 2026-09-20  
+**Version:** 1.5.1  
+**Effective date:** 2026-09-22  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Canonical role:** Single architectural truth for the 2026 engineering program, subject to explicit ADR supersession  
 **Branch:** `platform-architecture-2026`  
@@ -93,6 +93,34 @@ The supplied v1.6.1 Blueprint/package remains the principal historical/source sp
 - 11 state machines.
 
 These are source observations, not architectural quotas and not proof of runtime implementation.
+
+## 1.7 Source package role — v1.6.1
+
+The supplied v1.6.1 package is an **additional research/provenance input for the lead architecture process**. It is not implementation authority for Claude Code or Codex.
+
+Correct flow:
+
+```text
+v1.6.1 package
+ → architect research
+ → repository/branch evidence
+ → official corroboration
+ → contradiction analysis
+ → engineering decision
+ → ADR / canonical contract / register / roadmap
+ → implementation authorization
+ → Claude Code / Codex
+```
+
+Future capabilities discovered in the package remain:
+
+`ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
+
+until explicitly promoted through the canonical control plane.
+
+The governing decision is:
+
+`docs/architecture/ASAS-SOURCE-PACKAGE-ROLE-AND-DECISION-2026.md`
 
 ---
 
@@ -660,9 +688,7 @@ External engineering principles are to be validated before material implementati
 
 `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
 
-Current verification work has specifically included GitHub repository governance documentation. GitHub supports required pull requests, required status checks, force-push restrictions, code scanning/quality rules and path restrictions through rulesets; rulesets can layer with branch protection and the most restrictive applicable rule applies. The existence of these capabilities does not prove that ASAS `main` currently has them enabled; repository configuration remains a fact to verify. citeturn0search0turn0search1turn0search8
-
-The research protocol also requires current official documentation/standards and, where risk warrants, independent corroboration for technology, security, database, accessibility and platform decisions. External research validates technique; ASAS authority and runtime evidence remain controlling.
+Current verification work has specifically included repository governance documentation. External research validates engineering technique; ASAS authority and runtime evidence remain controlling.
 
 ---
 
@@ -691,3 +717,60 @@ The architecture control plane is:
 - **Source of Truth** = consolidated provenance and routing; it does not silently supersede domain-specific authority.
 
 No competing architecture blueprint should be created without explicit supersession.
+
+---
+
+# 26. CURRENT RECONCILIATION AMENDMENT 002
+
+**Date:** 2026-09-22  
+**Purpose:** explicitly define the lead architect's authority boundary and record Building schema provenance without promoting historical schema into executable design.
+
+## 26.1 Lead architect authority
+
+The lead architecture process is responsible for researching, comparing, challenging, deriving and deciding architecture-level matters within delegated authority before they are handed to Claude Code/Codex.
+
+Claude Code/Codex are downstream implementation agents. They execute authorized contracts/tasks and must not promote source-package claims, historical branch material or unverified schema into implementation requirements.
+
+## 26.2 v1.6.1 source package
+
+`v1.6.1` is a research/provenance source for the lead architect only.
+
+Its value is:
+
+- historical rationale;
+- alternative architecture knowledge;
+- gap discovery;
+- security/reliability concerns;
+- scalability analysis;
+- research questions.
+
+Its claims become implementation requirements only after reconciliation and promotion through the canonical control plane.
+
+## 26.3 Building provenance
+
+Historical source evidence confirms that `Building` existed as a concrete schema concept in prior ASAS material with Project and Apartment/Unit relationships.
+
+This changes the evidence classification, not the executable schema:
+
+```text
+Building concept                    SUPPORTED
+Historical schema representation    SOURCE-VERIFIED
+Current executable representation   OPEN
+Live representation                 UNVERIFIED
+Aggregate ownership                 OPEN
+Implementation                      BLOCKED
+```
+
+The detailed provenance record is:
+
+`docs/architecture/ASAS-BUILDING-SCHEMA-PROVENANCE-RECONCILIATION-2026.md`
+
+## 26.4 Architectural consequence
+
+Do not remove Building from the model because current consolidated evidence is incomplete, and do not create/recreate its schema because historical evidence exists. Reconcile first.
+
+The current target remains:
+
+`Project → Building → Unit`
+
+with Building ownership, cardinality, identity, structural mutation and archival semantics still subject to contract closure.
