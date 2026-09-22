@@ -1,643 +1,530 @@
 # ASAS — ARCHITECTURE ENGINEERING ROADMAP 2026
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
-**Status:** ACTIVE PROPOSED ROADMAP  
-**Version:** 1.6.0  
-**Owner:** Lead Architecture / Technical Program Lead  
-**Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` v1.4.0  
-**Historical amendment:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` — superseded by Blueprint v1.4.0 and retained as provenance  
-**Agent operating companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` v1.6.0  
-**Evidence companion:** `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`  
-**Aggregate contract companion:** `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`  
-**Command contract companion:** `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`  
-**Offer contract companion:** `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`  
-**Research protocol companion:** `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
+**Status:** ACTIVE — RECONCILED ENGINEERING ROUTE  
+**Version:** 2.0.0  
+**Effective date:** 2026-09-22  
+**Owner:** Lead Architecture / Founder authority boundary  
+**Canonical branch:** `platform-architecture-2026`  
+**Canonical companion:** `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md`  
+**Agent companion:** `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`  
+**Execution path:** `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`  
+**Control resource:** `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`  
 
-## PURPOSE
-
-Build the ASAS engineering framework in the correct order:
-
-**Reality → Authority → Architecture → Domain Contracts → Data Contracts → Security → Design System → Local Platform → Tests → Implementation → Integration → Deployment → Production Evidence**
-
-The roadmap deliberately prevents code and database programming from becoming the source of architectural truth.
-
-> **Scale principle:** phases and counts are planning aids, not quotas. Work continues until the engineering objective and evidence are satisfied. If new evidence reveals additional architecture work, the roadmap expands through controlled change; it does not compress the work to fit an arbitrary count.
+> This roadmap governs HOW ASAS is engineered. It does not override product decisions, approved ADRs, domain contracts, runtime reality, or legal authority. It is intentionally evidence-driven and does not impose arbitrary counts of contexts, modules, services, tables, tasks, or phases.
 
 ---
 
-# H0 — REALITY AND SOURCE CONTROL
+# 0 — ENGINEERING OBJECTIVE
 
-### Objective
-Establish one trusted understanding of what exists.
+Build ASAS as a professional real-estate operating platform whose implementation can be executed by Claude Code without guessing about ownership, state, authority, data, security, concurrency or scope.
 
-### Work
-- verify canonical repository, branch and commit;
-- inventory relevant branches and classify branch purpose/provenance;
-- identify canonical checkpoint;
-- classify artifacts;
-- reconcile source package against repository shadows;
-- preserve historical evidence;
-- eliminate stale canonical references;
-- establish one artifact authority map;
-- identify runtime/database identity separately from repository identity;
-- inspect all relevant GitHub branches, PRs, commits and workflow evidence;
-- compare divergent branches before any consolidation/deletion decision;
-- inspect attached/source-package material as provenance evidence;
-- perform current external research using official documentation and standards;
-- record source/date/version/finding/conflict/impact for material research.
+The engineering order is:
 
-### Mandatory discovery protocol
+`REALITY → PROVENANCE → AUTHORITY → RECONCILIATION → DOMAIN MODEL → CONTRACTS → DATA MODEL → SECURITY → DESIGN SYSTEM → LOCAL PLATFORM → TESTS → CONTROLLED IMPLEMENTATION → INTEGRATION → RUNTIME EVIDENCE → PRODUCTION`
 
-Use:
+Code and database programming are downstream of architecture and contracts.
 
-`docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
-
-Reference local commands:
-
-```bash
-git fetch --all --prune
-git branch -a --no-color
-git ls-remote --heads origin
-git log --oneline origin/main..<branch>
-git diff --name-status origin/main...<branch>
-git log --follow -- <path>
-rg -n "C2-001|C2-002|ADR-0018|SESSION_STATE\.md|CURRENT-SESSION-STATE\.md" .
-```
-
-The connected GitHub integration must also be used when available to inspect all remote branches and branch-specific evidence. Internet research is supplementary engineering evidence, not ASAS product authority.
-
-### Exit evidence
-- repository identity verified;
-- canonical checkpoint verified;
-- source/derived/historical classes documented;
-- no ambiguous active checkpoint;
-- relevant branches classified or explicitly queued for classification;
-- external research recorded where material;
-- runtime identity either verified or explicitly blocked.
-
-### Current state
-`PARTIAL`
+Cloud services are not required to design the architecture or establish the initial local code/database foundation.
 
 ---
 
-# H1 — ARCHITECTURAL RECONCILIATION
+# 1 — SOURCE / AUTHORITY CONTROL PLANE
 
-### Objective
-Freeze the semantic architecture sufficiently for safe contract engineering—not by forcing a fixed number of contexts, but by proving ownership boundaries.
+## 1.1 Mandatory loading order
 
-### C2 status
+`Repository → branch → HEAD → AGENTS.md → CURRENT-SESSION-STATE.md → this roadmap → Context Prompt → Source of Truth → Blueprint → Master Execution Path → relevant contracts/registers → source packages → runtime/database only after identity + authorization`
 
-- `C2-001` — **OPEN ARCHITECTURAL REFINEMENT**. Nine contexts remain the current target domain grouping; the 15-module proposal remains historical/proposed implementation evidence. Module decomposition must be derived from ownership and consistency evidence; no founder decision is required merely to choose between the counts.
-- `C2-002` — **OPEN / PROPOSED SUPERSESSION**. Historical `ADR-0018` accepted Scheduling as a Core/CRM-hosted capability; the 2026 architecture reopened that decision. The older ADR remains evidence until a new ADR explicitly supersedes it. No silent reassignment is permitted.
+## 1.2 Authority
 
-### Work
-1. Maintain the nine-context domain grouping as the current target unless an approved ADR changes it.
-2. Reconcile implementation modules independently from context count.
-3. Define aggregate ownership and transaction boundaries.
-4. Define platform capability ownership.
-5. Close Scheduling through explicit decision/ADR if reopening is retained.
-6. Define dependency direction and integration boundaries.
-7. Record rejected alternatives.
-8. Define extraction triggers for future decomposition.
-9. Incorporate relevant findings from cross-branch and external research without promoting them to authority unless approved.
+Brownfield reality:
 
-### H1.2 — Evidence matrix
-Completed in:
+`LIVE DATABASE/RUNTIME > IMPLEMENTATION > APPROVED CONTRACT/REGISTER > APPROVED ARCHITECTURE > HISTORICAL ARTIFACT > INFERENCE`
 
-`docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md`
+Desired future behavior:
 
-### H1.3 — Aggregate & invariant boundary engineering
-Active artifact:
+`FOUNDER/PRODUCT DECISION > APPROVED ARCHITECTURE > APPROVED ADR > CANONICAL CONTRACT/REGISTER > IMPLEMENTATION`
 
-`docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+External technical facts:
 
-### H1.4 — Command / action contract engineering
-Active artifacts:
+`OFFICIAL DOCUMENTATION/STANDARD > PRIMARY ENGINEERING SOURCE > AUTHORITATIVE RESEARCH > REPUTABLE SECONDARY SOURCE > COMMUNITY`
 
-- `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md`
-- `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`
-- `docs/architecture/ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`
-- `docs/architecture/ASAS-COMMERCIAL-FINANCE-SEMANTIC-RECONCILIATION-2026.md`
+Conflicts are recorded, never silently averaged.
 
-The current H1.4 objective is not endpoint design. It is to close command semantics against aggregate ownership, invariants, state transitions, authorization, tenancy, concurrency, events, audit and failure behavior.
+## 1.3 Evidence vocabulary
 
-### Current findings
+`VERIFIED | SOURCE-VERIFIED | RUNTIME-VERIFIED | TEST-VERIFIED | EXTERNALLY-VERIFIED | SUPPORTED | ENGINEERING-DERIVATION | PROPOSED | PARTIAL | OPEN | CONFLICT | BLOCKED | NOT_EXECUTED | FOUNDER-DECISION-REQUIRED | ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
 
-The source Enterprise Domain Model supports Lead, Client, Project, Unit, Listing, Visit, Reservation, Contract, PaymentSchedule, CommissionRule, CommissionRecord, Agency, Branch, User and NotificationPreference as aggregate candidates. Communication, Attachment, Activity/Timeline/Audit, Search and Reporting are described differently and must not be converted into aggregates merely because they are named objects/capabilities.
-
-The Unit/Reservation logical invariant is supported: one active reservation winner per Unit under concurrency. The exact executable persistence strategy remains implementation work after contract closure and workload validation.
-
-Offer is source-supported as a commercial concept and candidate Sales-owned aggregate/object. Its ownership, state machine, permission mapping, approval thresholds, event mapping and concurrency contract remain OPEN.
-
-Payment semantics have been partially reconciled: do not create a standalone Payment aggregate/table solely to reconcile terminology between V3 and the source schema. Payment fact, PaymentSchedule, Receipt, ReceiptAllocation and Ledger semantics must be closed explicitly before schema promotion.
-
-Building ownership and Scheduling ownership remain OPEN.
-
-### Boundary test
-A boundary is acceptable only when semantic cohesion, ownership, consistency, authorization, data ownership, change cadence, failure behavior, scaling characteristics, team ownership and integration cost have been considered.
-
-### Exit evidence
-- accepted domain grouping;
-- implementation module map or explicitly accepted provisional map;
-- aggregate ownership matrix;
-- invariant catalog;
-- transaction-boundary matrix;
-- command/action contract map;
-- dependency matrix;
-- unresolved boundaries explicitly marked;
-- no hidden implementation-critical ownership ambiguity.
-
-### Current state
-`PARTIAL — H1.4 active; Offer/Building/Finance/Scheduling ownership-dependent items remain OPEN/BLOCKED`
+`VERIFIED` requires objective evidence.
 
 ---
 
-# H2 — DOMAIN CONTRACT ENGINEERING
+# 2 — H0: FORENSIC REALITY RECONSTRUCTION
 
-### Objective
-Convert the semantic model into implementation-safe contracts.
+**Objective:** establish what exists before deciding what to build.
 
-### Work
-- aggregate catalog;
-- value-object catalog;
-- invariant catalog;
-- command catalog;
-- query catalog;
-- state-machine catalog;
-- approval rules;
-- business policy catalog;
+### Required work
+
+- verify repository `asas-erp-saas-1/As`;
+- verify `platform-architecture-2026` and HEAD;
+- read AGENTS and sole current checkpoint completely;
+- inventory the complete target-branch tree;
+- classify canonical, derived, operational, evidence, historical and temporary artifacts;
+- inspect all relevant branches, commits, PRs and unique evidence;
+- compare architecture branch with `main` and foundation lineage;
+- inspect source packages and historical architecture material;
+- search all active references to legacy checkpoint names and old versions;
+- distinguish repository facts from runtime facts;
+- verify or explicitly block live runtime identity;
+- record external research for load-bearing technical/legal questions.
+
+### Branch rule
+
+Historical branches are evidence, not authority. No branch is deleted merely because it is old. Unique evidence must be extracted and provenance recorded first. Branch deletion is a separate repository-maintainer operation.
+
+### Current evidence
+
+The current branch is rooted in a substantial foundation reconstruction lineage. Comparisons show the architecture branch is materially ahead of the forensic foundation branch and diverged from older source-authority/command-contract branches. These branches remain provenance until their unique information is reconciled.
+
+### Exit gate H0
+
+- repository/branch/HEAD verified;
+- one current checkpoint;
+- authority map verified;
+- version metadata reconciled;
+- relevant branch provenance classified;
+- runtime identity verified or BLOCKED;
+- no hidden canonical duplicate.
+
+**Current:** `PARTIAL`
+
+---
+
+# 3 — H1: ARCHITECTURAL RECONCILIATION
+
+**Objective:** freeze semantic ownership sufficiently for contract engineering.
+
+## H1.1 Context model
+
+Current target grouping:
+
+`Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
+
+The historical 15-module proposal is not a second bounded-context architecture. Modules must be derived from ownership and consistency boundaries.
+
+## H1.2 Scheduling
+
+`C2-002 = FOUNDER-DECISION-REQUIRED`
+
+Historical ADR-0018 and current architecture materials disagree on Scheduling ownership. No silent reassignment of persistence, events, permissions or dependencies is allowed.
+
+## H1.3 Aggregate / invariant boundaries
+
+For every implementation-critical concept establish:
+
+`owner → aggregate/entity role → invariant → consistency boundary → command → permission → tenant scope → state transition → event → audit → test → evidence`
+
+Do not turn named objects into aggregates by convention.
+
+## H1.4 Current contract closure sequence
+
+The active sequence is:
+
+1. Unit ↔ Reservation consistency;
+2. Building ownership and relationship semantics;
+3. Offer command/state/permission/event closure;
+4. PaymentSchedule / Receipt / Allocation / Ledger semantics;
+5. Scheduling decision;
+6. cross-context write/read contracts.
+
+### Exit gate H1
+
+No implementation-critical ownership ambiguity remains in the authorized slice.
+
+**Current:** `PARTIAL / ACTIVE`
+
+---
+
+# 4 — H2: DOMAIN CONTRACT ENGINEERING
+
+Close:
+
+- aggregates and entities;
+- value objects;
+- commands/actions;
+- queries/read models;
+- invariants;
+- state machines;
+- approval policies;
+- business policies;
 - concurrency rules;
-- failure semantics;
 - consistency boundaries;
-- domain service responsibilities;
-- cross-context/module contract rules.
+- failure semantics;
+- cross-context contracts.
 
-### Critical rule
-Do not generate database tables merely because a domain object exists.
+### State-machine contract
 
-### Exit evidence
-Every implementation-critical behavior has an owner, invariant, command, state transition, authorization rule and test strategy.
+Every mutation follows:
 
-### Current state
-`PARTIAL — dependent on H1 closure`
+`Command → Authentication → Authorization → Tenant Scope → Aggregate Load → Preconditions → Legal Transition → Invariants → State Mutation → Audit → Domain Event → Transactional Outbox → Commit`
 
----
+Direct governed status mutation is prohibited.
 
-# H3 — EVENT AND INTEGRATION CONTRACTS
+### Exit gate H2
 
-### Objective
-Make asynchronous behavior explicit and reliable.
+Every implementation-critical behavior has a canonical owner, contract, invariant, authorization rule, failure model and test strategy.
 
-### Work
-- reconcile registered events;
-- define event schemas/versioning;
-- producer/consumer ownership;
-- transactional outbox;
-- idempotency keys;
-- correlation/causation IDs;
-- replay policy;
-- dead-letter handling;
-- ordering scope;
-- integration/webhook contracts;
-- compatibility/deprecation rules;
-- event-to-command traceability.
-
-### Exit evidence
-Event register reconciled against domain commands and transaction boundaries; critical events have testable consumers, failure semantics and evidence.
-
-### Current state
-`BLOCKED — application implementation absent`
+**Current:** `PARTIAL / H1-dependent`
 
 ---
 
-# H4 — AUTHORIZATION, TENANCY AND SECURITY ENGINEERING
+# 5 — H3: EVENT / INTEGRATION CONTRACTS
 
-### Objective
-Make unauthorized access structurally difficult and detectable.
+Reconcile every event against its producer command and transaction boundary.
 
-### Work
-- reconcile permission register;
-- resource/action/scope matrix;
-- tenant hierarchy;
-- support/admin access;
-- service-account/worker authority;
-- server authorization policy;
-- RLS policy model;
-- storage security;
-- threat matrix;
-- security test plan;
-- AI tool authority model;
-- prompt-injection/excessive-agency controls;
-- webhook trust boundaries;
-- data classification and privacy controls.
+Required fields:
 
-### Exit evidence
-Every sensitive command has explicit permission/scope; application and database controls have independent verification; AI tools cannot widen caller authority.
+`event ID / name / version / producer / aggregate / trigger / tenant / actor / causation / correlation / consumers / idempotency / ordering / replay / DLQ / retention / reconciliation / evidence`
 
-### Current state
-`BLOCKED — final domain/module ownership and live runtime identity unresolved`
+Use transactional outbox where durable asynchronous publication is required.
+
+Integration contracts must cover authentication, authorization, idempotency, retries, signatures, replay, rate limits, versioning and deprecation.
+
+### Exit gate H3
+
+Critical events and integrations are contractually testable; runtime publication is not claimed until implemented and evidenced.
+
+**Current:** `BLOCKED`
 
 ---
 
-# H5 — DATA ARCHITECTURE AND LOCAL DATABASE ENGINEERING
+# 6 — H4: SECURITY / TENANCY / AI SAFETY
 
-### Objective
-Create a reproducible, local-first data engineering foundation.
+## Tenancy model
 
-### Work
-1. Promote source schema contract after structural validation.
-2. Reconcile models, enums, relations, unique constraints and indexes.
-3. Separate domain model from persistence model.
-4. Design tenant keys and ownership fields.
-5. Define audit/outbox/idempotency structures.
-6. Define financial immutability.
-7. Define concurrency constraints.
-8. Define indexing strategy from access patterns.
-9. Generate migration baseline.
-10. Run local PostgreSQL/Supabase stack.
-11. Replay migrations locally.
-12. Add database tests.
-13. Add RLS tests.
-14. Add concurrency tests for sensitive workflows.
-15. Capture schema diff evidence.
+`Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`
 
-### Exit evidence
-- executable schema exists;
-- migration history is reproducible;
-- local reset/replay passes;
-- constraints are tested;
-- concurrency semantics are proven for critical operations;
-- no production database has been touched.
+Required controls:
 
-### Current state
-`BLOCKED`
+- deny-by-default;
+- server-side authorization;
+- tenant scope before sensitive access;
+- RLS as defense-in-depth;
+- tenant-aware cache/search/analytics/events;
+- service-worker authority boundaries;
+- support/admin access controls.
+
+## Threat model
+
+Cover at minimum:
+
+`tenant escape / IDOR / privilege escalation / mass assignment / injection / XSS / CSRF / webhook forgery / replay / secret exposure / PII leakage / financial manipulation / reservation races / API abuse / cross-tenant analytics / prompt injection / AI tool abuse`
+
+## AI
+
+`Intent → Proposal → Tool Request → Policy → Caller Authorization → Domain/Application Service → Transaction → Audit → Event`
+
+AI cannot become a direct database authority or widen caller permissions.
+
+### Exit gate H4
+
+Sensitive commands have permission/scope contracts and independent application/database verification; AI authority is bounded.
+
+**Current:** `BLOCKED`
 
 ---
 
-# H6 — DESIGN SYSTEM AND EXPERIENCE ARCHITECTURE
+# 7 — H5: DATA ARCHITECTURE / LOCAL DATABASE ENGINEERING
 
-### Objective
-Create the UI architecture before page-by-page coding.
+Treat these separately:
 
-### Work
-- design tokens;
-- typography;
-- spacing;
-- color semantics;
-- elevation;
-- RTL/LTR rules;
+`Domain Model ≠ Target Schema ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`
+
+### Sequence
+
+`Source schema extraction → structural validation → semantic reconciliation → executable schema design → local PostgreSQL/Supabase environment → migration baseline → replay → constraint tests → RLS tests → concurrency tests → evidence`
+
+### Financial controls
+
+- integer minor units;
+- explicit currency;
+- explicit rounding;
+- balanced journal posting;
+- immutable posted financial facts;
+- reversals instead of mutation;
+- allocation/reconciliation semantics;
+- commission separated from ledger truth.
+
+### Database safety
+
+No production `DROP`, `TRUNCATE`, `RESET`, blind recreation, destructive rename or unreviewed migration.
+
+### Exit gate H5
+
+Local schema and migrations are reproducible, constraints are tested, critical concurrency is evidenced, and no remote database was used as an undocumented design source.
+
+**Current:** `BLOCKED`
+
+---
+
+# 8 — H6: DESIGN / EXPERIENCE ARCHITECTURE
+
+Design precedes page coding:
+
+`tokens → primitives → components → patterns → templates → surfaces`
+
+Cover:
+
+- Arabic/RTL, French and English;
 - responsive behavior;
-- accessibility rules;
-- primitive components;
-- domain components;
-- workspace patterns;
-- public property patterns;
-- mobile field patterns;
-- loading/error/empty/offline states;
-- interaction contracts;
-- form validation and error semantics;
-- visual regression strategy.
+- accessibility;
+- forms/validation;
+- loading/empty/error/offline states;
+- mobile field operations;
+- public property/project experience;
+- admin/CRM/ERP workspace patterns;
+- visual regression.
 
-### Exit evidence
-Design system contract and component inventory are implementation-ready and independently testable.
+Existing design shadows are evidence and should be reconciled, not duplicated.
 
-### Current state
-`PARTIAL`
+**Current:** `PARTIAL`
 
 ---
 
-# H7 — APPLICATION PLATFORM SKELETON
+# 9 — H7: APPLICATION PLATFORM FOUNDATION
 
-### Objective
-Create the smallest executable modular-monolith shell.
+Build a modular-monolith foundation only after H2/H4/H5 prerequisites are satisfied for the selected slice.
 
-### Work
-- application structure;
+Foundation includes:
+
 - module boundaries;
-- dependency rules;
-- configuration boundary;
-- logging/observability boundary;
+- dependency enforcement;
+- configuration;
 - validation;
 - error model;
 - auth/session boundary;
 - command/query application layer;
+- observability boundary;
 - test harness;
-- local database adapter;
-- architecture enforcement rules.
+- local data adapter;
+- architecture CI.
 
-### Rule
-No domain feature is implemented merely to prove the framework works.
+Do not build broad feature sets merely to prove the framework.
 
-### Exit evidence
-Local application starts, health checks work, test harness runs, module boundaries are enforceable, and architectural violations fail verification.
-
-### Current state
-`BLOCKED — implementation authorization not yet granted`
+**Current:** `BLOCKED`
 
 ---
 
-# H8 — CONTROLLED COMMERCIAL SLICE
+# 10 — H8: CONTROLLED VERTICAL IMPLEMENTATION
 
-### Objective
-Implement one complete vertical slice rather than many partial features.
+Implement one complete, bounded slice.
 
-### Candidate slice
-`Project → Building → Unit → Lead → Assignment → Activity → Visit`
+Candidate journey:
 
-Then extend through:
+`Project → Building → Unit → Lead → Assignment → Activity → Visit → Offer → Reservation → Contract → Payment Plan → Payment/Receipt → Audit → Reporting`
 
-`Offer → Reservation → Contract → Payment Plan → Payment → Receipt → Audit → Reporting`
+The actual slice boundary must follow the dependency graph and may be reduced when a contract remains open.
 
-The exact slice boundary may change if architecture evidence identifies a safer vertical cut.
+Required evidence:
 
-### Required evidence
 - unit/integration/contract tests;
-- authorization tests;
-- tenancy tests;
+- authorization and tenancy tests;
 - state-machine tests;
-- concurrency tests where relevant;
+- concurrency/idempotency tests;
 - event/outbox tests;
 - audit verification;
-- browser/E2E verification;
-- failure/retry verification.
+- E2E/browser evidence;
+- failure/retry evidence;
+- migration evidence.
 
-### Exit evidence
-One complete business slice is production-shaped and independently auditable.
-
----
-
-# H9 — OBSERVABILITY, PERFORMANCE AND RECOVERY
-
-### Objective
-Prove the platform can be operated safely.
-
-### Work
-- structured logs;
-- metrics;
-- tracing where justified;
-- error tracking;
-- SLI/SLO definitions;
-- database health metrics;
-- queue/event lag;
-- performance budgets;
-- backup verification;
-- restore rehearsal;
-- RPO/RTO definition;
-- incident/runbook design;
-- capacity evidence;
-- degradation/failure-mode tests.
-
-### Exit evidence
-Measured operational behavior, tested restore and documented recovery evidence.
-
-### Current state
-`BLOCKED`
+**Current:** `BLOCKED`
 
 ---
 
-# H10 — INTEGRATION AND CLOUD VERIFICATION
+# 11 — H9: OBSERVABILITY / PERFORMANCE / RECOVERY
 
-### Objective
-Introduce remote dependencies only after local architecture is stable.
+Define and measure:
 
-### Work
-- verify canonical Supabase project identity;
-- reconcile live schema;
-- verify RLS;
-- verify storage;
+`SLI / SLO / error budget / latency / error rate / availability / queue lag / event lag / DB saturation / API saturation / reservation latency / financial posting latency`
+
+Recovery:
+
+`backup → restore → integrity verification → RPO → RTO → evidence`
+
+A backup without a verified restore is not recovery readiness.
+
+**Current:** `BLOCKED`
+
+---
+
+# 12 — H10: CONTROLLED CLOUD / RUNTIME VERIFICATION
+
+Only after local correctness:
+
+- identify canonical Supabase/runtime project;
+- introspect live schema;
+- reconcile drift;
+- verify RLS/storage;
 - configure environment separation;
-- integrate hosting when appropriate;
-- run staging verification;
-- compare local and remote migration state;
-- verify remote observability and recovery controls.
+- staging verification;
+- remote observability/recovery.
 
-### Exit evidence
-Every remote system has identity evidence and environment mapping.
+Remote infrastructure is not a prerequisite for architectural truth.
 
-### Current state
-`BLOCKED — canonical runtime identity unresolved`
+**Current:** `BLOCKED`
 
 ---
 
-# H11 — PRODUCTION READINESS
+# 13 — H11: PRODUCTION READINESS
 
-### Objective
-Permit controlled production operation only after evidence closure.
+Production requires objective evidence for:
 
-### Gates
 - architecture gates;
-- security review;
-- recovery test;
-- performance budget;
-- E2E critical workflows;
-- migration rehearsal;
+- security;
+- tenancy;
+- migrations;
+- performance;
+- critical E2E flows;
 - observability;
-- rollback plan;
+- recovery/restore;
+- rollback;
 - incident ownership;
-- release evidence;
-- operational readiness review.
+- release verification.
 
-### Current state
-`BLOCKED`
+**Current:** `BLOCKED`
 
 ---
 
-# 12. TASK PACKET STANDARD
+# 14 — TASK PACKET GATE
 
-No task enters implementation unless it contains:
+No implementation task is executable unless it contains:
 
-```text
-Task ID
-Title
-Objective
-Scope
-Non-goals
-Context/domain owner
-Implementation module
-Owner
-Dependencies
-Contract references
-Schema impact
-Commands
-Queries
-Permissions
-Invariants
-State transitions
-Events
-Concurrency
-Security considerations
-UX impact
-Tests
-Definition of Done
-Evidence required
-Rollback/recovery consideration
-Authorization state
-```
+`Task ID / objective / scope / non-goals / owner / context / module / dependencies / contracts / schema impact / commands / queries / permissions / invariants / state transitions / events / concurrency / security / UX / tests / DoD / evidence / rollback / authorization`
 
-Source task semantics are preserved; this is a derived implementation layer. Missing fields are not silently guessed.
+Missing fields remain `OPEN` or `BLOCKED`; they are never guessed.
 
 ---
 
-# 13. ENGINEERING LOOP
+# 15 — RESEARCH / GAP-COMPLETION PROTOCOL
 
-Every architectural or implementation change follows:
+When ASAS sources do not answer a required question:
 
-```text
-DISCOVER
- → CLASSIFY
- → RESEARCH
- → RECONCILE
- → MODEL
- → DECIDE
- → CONTRACT
- → PLAN
- → IMPLEMENT
- → TEST
- → ATTACK
- → VERIFY
- → CONVERGE
- → RECORD EVIDENCE
-```
+`exhaust repository → inspect branches/history → inspect source package → consult official technical/legal sources → corroborate → model alternatives/failure modes → derive smallest defensible solution → label ENGINEERING-DERIVATION → record provenance → convert to contract/ADR/test → verify`
 
-No step may be silently skipped for a high-risk change.
+External research cannot silently override ASAS authority.
+
+Founder/legal/production-data/financial/security exceptions stop at `FOUNDER-DECISION-REQUIRED` or `BLOCKED`.
 
 ---
 
-# 14. RESEARCH STANDARD
+# 16 — ARCHITECTURE-AS-CODE
 
-For external technical facts:
+CI must eventually verify, without fabricated commands:
 
-1. official documentation;
-2. standards/RFCs;
-3. primary engineering documentation;
-4. authoritative research;
-5. reputable secondary analysis;
-6. community evidence only as supplementary evidence.
+- canonical paths and headers;
+- stale checkpoint references;
+- version/routing consistency;
+- duplicate canonical concepts;
+- context/module ownership consistency;
+- event/register consistency;
+- permission/register consistency;
+- state-machine consistency;
+- task references;
+- schema-contract consistency;
+- forbidden destructive operations;
+- dangerous dependency introduction;
+- MVP/future-scope contamination.
 
-Research depth must be proportional to risk and architectural impact.
-
-Record:
-
-`question → source/date/version → finding → conflict → decision → impact → review date`
-
-The detailed cross-branch/GitHub/source-package/internet procedure is maintained in:
-
-`docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
-
----
-
-# 15. LOCAL-FIRST DATABASE PRINCIPLE
-
-The platform does not need cloud connectivity to construct the architecture or build the initial code/database framework.
-
-Preferred sequence:
-
-`Local design → local schema → local migrations → local tests → CI → controlled staging → controlled production`
-
-Remote runtime is introduced only when the corresponding verification stage requires it.
+A CI check is valid only when the command/script actually exists and its output is evidenced.
 
 ---
 
-# 16. ARCHITECTURE CHANGE / EXPANSION RULE
+# 17 — ROADMAP GOVERNANCE
 
-The roadmap is not a fixed checklist of a predetermined number of files, contexts, services or phases.
+The roadmap expands when evidence reveals missing engineering work. It does not compress the system to satisfy arbitrary counts.
 
-When engineering evidence reveals a missing concern:
+Every roadmap modification records:
 
-`DISCOVER → CLASSIFY → IMPACT ASSESS → ADD WORK → UPDATE BLUEPRINT/ROADMAP/PROMPT → ADR IF MATERIAL → VERIFY`
+`reason → evidence → authority → affected artifacts → risk → verification → checkpoint`
 
-When a planned item becomes unnecessary:
-
-`EVIDENCE → DEFER/REMOVE → RECORD REASON → UPDATE DEPENDENCIES`
-
-No work is added merely for complexity, and no work is removed merely to make the roadmap look complete.
+Historical artifacts are preserved. New canonical artifacts are created only when an existing canonical owner cannot safely absorb the concern.
 
 ---
 
-# 17. CURRENT EXECUTION QUEUE
+# 18 — CURRENT EXECUTION QUEUE
 
-### Q0 — Cross-source authority reconciliation
-**ACTIVE:** inspect all relevant remote branches, branch-specific architecture evidence, source packages and current official external references before closing any material architectural gap. Branches are evidence, not authority; no branch is deleted solely because it is old.
+### Q0 — Control-plane convergence
 
-### Q1 — Authority reconciliation
-**CLOSED FOR CURRENT CONFLICT:** C2-001 is no longer treated as a binary 9-vs-15 founder choice. It is an open refinement of implementation module boundaries. Scheduling remains a separate reopening decision.
+Reconcile active file headers and routing metadata. Current branch evidence shows Blueprint `v1.5.0`, Roadmap `v2.0.0` after this update, Context Prompt `v2.0.0` after this update, and Source of Truth metadata requiring alignment.
 
-### Q2 — Aggregate/invariant boundary engineering
-**ACTIVE:** Unit/Reservation logical consistency is contractually defined; Offer, Building, Finance and Scheduling boundaries remain open where evidence is incomplete.
+### Q1 — Building contract
 
-### Q3 — Command/action contract engineering
-**ACTIVE:** source-derived actions are captured. Offer now has a dedicated domain contract. Permission/state/event mappings remain to be closed.
+Resolve aggregate/entity role, relationship semantics, structural mutation, archival and persistence representation without inventing a table.
 
-### Q4 — Payment semantic closure
-**ACTIVE:** reconcile payment fact, PaymentSchedule, Receipt/Allocation and Ledger without inventing a standalone Payment model merely from terminology.
+### Q2 — Offer contract
 
-### Q5 — Scheduling decision packet
-**ACTIVE:** prepare explicit ADR confirmation/supersession. Do not silently change ownership.
+Close command/state/permission/approval/event/idempotency/concurrency semantics.
 
-### Q6 — Building boundary
-**ACTIVE:** define Building ownership and invariants from source evidence before schema promotion.
+### Q3 — Finance contract
 
-### Q7 — State/permission/event traceability
-**NEXT:** map critical commands to canonical state machines, permission keys and registered events.
+Close PaymentSchedule → Receipt → Allocation → Ledger semantics and legal assumptions.
 
-### Q8 — Query/read-model contracts
-**NEXT:** define read responsibilities for the commercial spine without giving projections mutation authority.
+### Q4 — Scheduling ADR
 
-### Q9 — Task packet derivation
-**GUARDED:** derive implementation packets only where ownership and contracts are proven.
+Founder decision / explicit supersession only.
 
-### Q10 — Security/tenancy contract closure
-**DEPENDENT:** Q7 + final ownership model.
+### Q5 — Query/read models
 
-### Q11 — Schema contract promotion
-**BLOCKED:** dependent on Q4/Q6/Q7/Q10 and architecture gates.
+Define read ownership without introducing write ownership leakage.
 
-### Q12 — Local database foundation
-**BLOCKED:** dependent on Q11.
+### Q6 — Permission/event reconciliation
 
-### Q13 — Design system engineering
-**PARTIALLY READY:** may proceed where it does not assume unresolved domain ownership.
+Map critical commands to canonical permission and event registers.
 
-### Q14 — Application shell
-**BLOCKED:** implementation authorization not granted.
+### Q7 — Task packet derivation
 
-### Q15 — First vertical slice
-**BLOCKED:** dependent on Q14 + authorized task packets.
+Convert source task records into implementation-ready packets without changing their semantics.
 
-### Q16 — Runtime/cloud verification
-**BLOCKED:** canonical runtime identity unresolved.
+### Q8 — Local executable schema
+
+Only after Q1–Q7 applicable blockers are closed.
+
+### Q9 — Architecture CI
+
+Machine-check the control plane and contracts.
+
+### Q10 — First vertical slice
+
+Only after implementation authorization is explicitly GREEN.
 
 ---
 
-# 18. DEFINITION OF DONE FOR ARCHITECTURE
+# 19 — DEFINITION OF DONE FOR ARCHITECTURE
 
-Architecture is not complete because the document is long.
+Architecture is not complete because documents exist.
 
-A phase is complete only when:
+A gate closes only when:
 
-`decision resolved + artifact updated + implementation constraint explicit + tests/evidence defined + references reconciled + no contradictory canonical artifact remains`
+`root cause resolved + authority identified + canonical artifact updated + references reconciled + implementation implications explicit + tests/verification defined or executed + evidence captured + no unresolved conflicting artifact remains`
 
-If the correct outcome is uncertainty, the phase remains explicitly `OPEN`, `CONFLICT`, or `BLOCKED`.
+Otherwise the gate remains `PARTIAL`, `OPEN`, `BLOCKED` or `NOT_EXECUTED`.
 
 ---
 
-# 19. NEXT CHECKPOINT
+# 20 — RESUME COMMAND
 
-**ARCH-2026-H1.4-CROSS-SOURCE-CONTRACT-CLOSURE**
+When the operator says **Continue / أكمل العمل على المسار**:
 
-Immediate sequence:
+1. read the current checkpoint;
+2. read this roadmap;
+3. read the Context Prompt;
+4. inspect the current branch/HEAD;
+5. verify the first unresolved dependency;
+6. inspect its canonical contracts/registers and provenance;
+7. perform external research only where material;
+8. make the smallest authorized correction;
+9. verify;
+10. update the three routing artifacts and checkpoint;
+11. report evidence and the next dependency.
 
-1. classify divergent branch evidence;
-2. complete canonical-reference sweep;
-3. Offer ownership/invariant/state closure;
-4. Payment/PaymentSchedule/Receipt/Ledger semantic closure;
-5. Building ownership/invariants;
-6. Scheduling ADR confirmation/supersession;
-7. command/action → aggregate → permission → state → event traceability;
-8. derived query/read-model contracts;
-9. task packet mapping where ownership is proven;
-10. update Source of Truth and checkpoint;
-11. verify references and architecture consistency;
-12. only then evaluate schema promotion.
-
-No code/database implementation authorization is implied by this checkpoint.
+Never restart completed work without evidence that it is invalid.
