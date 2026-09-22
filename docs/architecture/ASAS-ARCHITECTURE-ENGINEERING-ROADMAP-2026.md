@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-ROADMAP-2026-001  
 **Status:** ACTIVE — RECONCILED ENGINEERING ROUTE  
-**Version:** 2.0.0  
+**Version:** 2.0.1  
 **Effective date:** 2026-09-22  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Canonical branch:** `platform-architecture-2026`  
@@ -455,11 +455,17 @@ Historical artifacts are preserved. New canonical artifacts are created only whe
 
 ### Q0 — Control-plane convergence
 
-Reconcile active file headers and routing metadata. Current branch evidence shows Blueprint `v1.5.0`, Roadmap `v2.0.0` after this update, Context Prompt `v2.0.0` after this update, and Source of Truth metadata requiring alignment.
+Reconcile active file headers and routing metadata. The source package v1.6.1 is explicitly a research/provenance input for the lead architect, not an implementation authority for Claude Code/Codex. The repository Blueprint remains the architectural target.
 
 ### Q1 — Building contract
 
 Resolve aggregate/entity role, relationship semantics, structural mutation, archival and persistence representation without inventing a table.
+
+A new evidence record now captures historical schema evidence for `Building`:
+
+`docs/architecture/ASAS-BUILDING-SCHEMA-PROVENANCE-RECONCILIATION-2026.md`
+
+That evidence confirms historical existence of a Building schema concept but does not prove current executable or live-database state. Q1 therefore remains `OPEN / BLOCKED` until current schema/runtime reconciliation and semantic closure are complete.
 
 ### Q2 — Offer contract
 
@@ -524,7 +530,34 @@ When the operator says **Continue / أكمل العمل على المسار**:
 7. perform external research only where material;
 8. make the smallest authorized correction;
 9. verify;
-10. update the three routing artifacts and checkpoint;
+10. update the routing artifacts and checkpoint when the route changes;
 11. report evidence and the next dependency.
 
 Never restart completed work without evidence that it is invalid.
+
+---
+
+# 21 — CURRENT RECONCILIATION AMENDMENT 001
+
+**Date:** 2026-09-22  
+**Reason:** Building provenance reconciliation and explicit source-package role enforcement.
+
+### Decision A — v1.6.1 source package role
+
+The supplied v1.6.1 package is an architect research/provenance source. It is not an implementation authority for Claude Code or Codex. Any useful conclusion must be promoted through the canonical Blueprint/ADR/contract/register/task chain before implementation.
+
+### Decision B — Building evidence
+
+Historical schema evidence proves the existence of a Building concept in prior ASAS material. It does not authorize a current table, fields, aggregate, state machine, permission, event or migration.
+
+### Decision C — no premature closure
+
+Building remains `OPEN / IMPLEMENTATION BLOCKED`. The correct next work is reconciliation, not schema invention.
+
+### Evidence record
+
+`docs/architecture/ASAS-BUILDING-SCHEMA-PROVENANCE-RECONCILIATION-2026.md`
+
+### Verification rule
+
+No Q1 closure may be claimed until the current schema contract and, when identity is verified, live database reality have been reconciled against this evidence.
