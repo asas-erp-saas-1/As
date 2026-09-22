@@ -1,66 +1,495 @@
-# ASAS Master Execution Path
+# ASAS — MASTER EXECUTION PATH 2026
 
-Status: CANONICAL HANDOFF CONTROL
-Repository: `asas-erp-saas-1/As`
-Implementation state: PRE-IMPLEMENTATION FOUNDATION
+**Status:** CANONICAL HANDOFF CONTROL  
+**Version:** 2.0.0  
+**Effective date:** 2026-09-22  
+**Repository:** `asas-erp-saas-1/As`  
+**Architecture branch:** `platform-architecture-2026`  
+**Implementation state:** PRE-IMPLEMENTATION / ARCHITECTURE ENGINEERING
 
-## Mission
-Prepare and govern the ASAS Real Estate OS so an implementation agent can build it incrementally without inventing business semantics, bypassing security boundaries, or confusing research with canonical truth.
+## 0 — Mission
 
-## Non-negotiable sequence
-1. Establish repository identity and governance.
-2. Reconcile product, architecture, domain contracts, registers, and repository reality.
-3. Define bounded contexts and ownership.
-4. Close command/event/state/permission/data contracts for the implementation slice.
-5. Build the task dependency graph and task packets.
-6. Establish CI and verification gates appropriate to the actual stack.
-7. Define database/migration safety contracts before schema implementation.
-8. Define UX/UI contracts and Figma handoff for the affected slice.
-9. Authorize implementation only for a bounded, verified slice.
-10. Implement on a short-lived branch.
-11. Verify correctness, security, tenancy, concurrency, idempotency, migration safety, UX states, and external side effects.
-12. Produce evidence and open a PR.
-13. Review and merge only when all applicable gates are closed.
-14. Update current session state and task graph before starting the next slice.
+Prepare and govern the ASAS Real Estate OS so Claude Code or another autonomous engineering agent can implement it incrementally without inventing business semantics, bypassing security, confusing research with authority, or turning future architecture into accidental MVP scope.
 
-## Product execution order
-- Platform Kernel: identity, tenancy, organizations, authorization, audit, files, notifications, configuration.
-- Real Estate Core: developers/promoters, projects, buildings, units, inventory, pricing, availability.
-- CRM & Sales: leads, contacts, opportunities, activities, visits, options, reservations, contracts.
-- Finance: receivables, payments, allocations, accounting controls, financial auditability.
-- Operations: construction/project progress, delivery, handover, SAV.
-- Digital Experience: website, CMS/page builder, property/project pages, forms, CTA, WhatsApp, SEO, analytics.
-- Integrations: maps, calendar, communications, social channels, identity/payment/document providers where justified.
-- Analytics: operational, commercial, financial and executive reporting.
+The path is an execution control plane, not a replacement for the Blueprint or domain contracts.
 
-This is a sequencing model, not permission to implement every area at once.
+---
 
-## Implementation slice rule
-A slice is implementation-ready only when its task packet identifies bounded context and owner, objective/non-goals, authoritative contracts, dependencies, actors and authorization, tenant/data boundary, legal state transitions, commands/events, invariants, transaction boundary, idempotency/concurrency strategy where applicable, audit, external effects/failure handling, migration impact, UX/accessibility/localization impact, acceptance tests/evidence, and rollback/recovery where applicable.
+# 1 — Non-negotiable sequence
 
-## Hard stops
-Implementation MUST stop for unresolved affected-scope conflicts involving business semantics, privileged authorization, tenant isolation, financial mutation, illegal state transitions, cross-context write ownership, destructive migrations, external side effects, critical invariant evidence, task dependencies, or repository reality contradicting declared architecture.
+```text
+IDENTITY
+→ REALITY
+→ PROVENANCE
+→ AUTHORITY
+→ RECONCILIATION
+→ DOMAIN MODEL
+→ CONTRACTS
+→ DATA CONTRACT
+→ SECURITY/TENANCY
+→ DESIGN SYSTEM
+→ LOCAL PLATFORM
+→ TESTS
+→ CONTROLLED IMPLEMENTATION
+→ INTEGRATION
+→ RUNTIME EVIDENCE
+→ PRODUCTION
+```
 
-## Claude autonomy
-Claude may inspect, research, propose, implement, test and refactor within an authorized task boundary. It may not silently redefine product scope, canonical business semantics, tenant model, financial invariants, security policy, or irreversible data operations. C0 may be normalized. C1 may be proposed and recorded. C2/C3 requires explicit recorded resolution before implementation.
+Code and database programming are downstream of architecture and contracts.
 
-## Closure
-A task is CLOSED only after implementation is complete for declared scope; applicable automated and adversarial tests pass; security/tenant isolation and relevant data/migration/UX/external effects are verified; evidence and residual risks are recorded; task status and current session state are updated; and the PR is reviewable.
+Cloud infrastructure is not required to construct the architecture or local development foundation.
 
-## Resume protocol
-When the operator says `أكمل عملك على المسار` / `continue the path`:
-1. Read this file.
-2. Read `docs/handoff/CURRENT-SESSION-STATE.md`.
-3. Read governance and current task graph.
-4. Inspect the repository at the current target ref; do not trust stale conversation state.
-5. Find the highest-priority task that is not CLOSED.
-6. Verify prerequisites and evidence.
-7. Continue from the first incomplete gate.
-8. Never restart completed work without evidence that it is invalid.
-9. Never mark a gate green merely because documentation exists.
+---
 
-## Authority rule
-This path governs execution order. It does not override higher-authority product decisions or reconciled domain contracts. If a contradiction exists, invoke the Contract Reconciliation Protocol and stop the affected implementation slice.
+# 2 — Entry / loading protocol
 
-## Canonical checkpoint rule
-`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. The legacy checkpoint filename is retained only as historical compatibility material and MUST NOT be used as the current checkpoint. New automation, documentation, or task packets MUST reference `CURRENT-SESSION-STATE.md`.
+On every continuation:
+
+```text
+Repository
+→ branch
+→ HEAD
+→ AGENTS.md
+→ CURRENT-SESSION-STATE.md
+→ ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md
+→ ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md
+→ ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md
+→ ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md
+→ this file
+→ affected contracts/registers/governance
+```
+
+Then inspect branch provenance and external sources only where the current dependency requires them.
+
+`CURRENT-SESSION-STATE.md` is the sole active checkpoint.
+
+---
+
+# 3 — Current route
+
+```text
+Q0 CONTROL-PLANE CONVERGENCE
+        ↓
+Q1 BUILDING CONTRACT
+        ↓
+Q2 OFFER CONTRACT
+        ↓
+Q3 PAYMENT / RECEIPT / ALLOCATION / LEDGER
+        ↓
+Q4 SCHEDULING ADR
+        ↓
+Q5 QUERY / READ-MODEL CONTRACTS
+        ↓
+Q6 PERMISSION / EVENT RECONCILIATION
+        ↓
+Q7 IMPLEMENTATION TASK PACKETS
+        ↓
+Q8 LOCAL EXECUTABLE SCHEMA
+        ↓
+Q9 ARCHITECTURE-AS-CODE / CI
+        ↓
+Q10 FIRST AUTHORIZED VERTICAL SLICE
+        ↓
+Q11 CONTROLLED INTEGRATION
+        ↓
+Q12 OPERATIONAL / RECOVERY EVIDENCE
+        ↓
+Q13 PRODUCTION READINESS
+```
+
+The route is evidence-driven. If Q1 reveals a missing prerequisite, the route expands; it does not bypass the dependency.
+
+---
+
+# 4 — Q0 Control-plane convergence
+
+Current architecture branch evidence identifies stale routing/version metadata between the Source of Truth, Blueprint, Roadmap and Context Prompt.
+
+The active branch now establishes:
+
+- Blueprint `v1.5.0`;
+- Roadmap `v2.0.0` after reconciliation;
+- Context Prompt `v2.0.0` after reconciliation;
+- Master Execution Path `v2.0.0` after reconciliation;
+- Source of Truth must be aligned next;
+- current checkpoint remains the operational state authority.
+
+**Gate:** `PARTIAL`
+
+Closure requires all routing metadata to agree and reference the same active artifacts.
+
+---
+
+# 5 — Q1 Building contract
+
+Resolve without inventing persistence:
+
+```text
+Project → Building → Floor → Unit
+```
+
+Determine:
+
+- entity vs aggregate role;
+- ownership;
+- relationship cardinality;
+- structural mutation policy;
+- archival/deletion semantics;
+- construction milestone relationship;
+- permission impact;
+- event impact;
+- concurrency impact;
+- schema representation;
+- historical schema provenance.
+
+No Building table/model/migration is authorized merely because historical schema evidence contains one.
+
+**Gate:** `OPEN / IMPLEMENTATION BLOCKED`
+
+---
+
+# 6 — Q2 Offer contract
+
+Close:
+
+```text
+submit_offer
+approve_discount
+send_offer
+expire_offer
+accept_offer
+```
+
+For each define:
+
+`authentication / authorization / tenant scope / preconditions / pricing authority / approval / state transition / idempotency / concurrency / audit / event / failure`
+
+Offer is not Reservation.
+
+Accepted Offer does not itself create an inventory winner.
+
+**Gate:** `PARTIAL / IMPLEMENTATION BLOCKED`
+
+---
+
+# 7 — Q3 Finance contract
+
+Reconcile:
+
+```text
+Contract
+→ Payment Plan
+→ Schedule Item / Obligation
+→ Payment fact
+→ Receipt
+→ Receipt Allocation
+→ Subledger / Ledger
+→ Reconciliation
+→ Reporting
+```
+
+Do not invent a standalone Payment aggregate solely to resolve terminology.
+
+Close:
+
+- money units/currency/rounding;
+- eligibility;
+- receipt semantics;
+- allocation;
+- over/under payment;
+- refund/reversal;
+- ledger posting;
+- immutability;
+- commission boundary;
+- idempotency/concurrency;
+- legal assumptions requiring external verification.
+
+**Gate:** `PARTIAL / EXECUTABLE FINANCE CONTRACT OPEN`
+
+---
+
+# 8 — Q4 Scheduling ADR
+
+Historical ADR-0018 and current architecture material contain conflicting ownership statements.
+
+Required action:
+
+`FOUNDER DECISION / EXPLICIT ADR SUPERSESSION`
+
+No silent ownership change.
+
+**Gate:** `FOUNDER-DECISION-REQUIRED`
+
+---
+
+# 9 — Q5 Query / Read-model contracts
+
+Define read ownership separately from write ownership.
+
+Every critical query must specify:
+
+`source context / authorized scope / filters / pagination / consistency expectation / freshness / projection owner / tenant boundary / sensitive fields / performance expectation`
+
+Read models must not become an accidental back door for cross-context writes or tenant leakage.
+
+**Gate:** `NOT_STARTED / DEPENDENT`
+
+---
+
+# 10 — Q6 Permission / Event reconciliation
+
+Map every critical command to:
+
+`permission → scope → actor/persona → state transition → invariant → event → audit → test`
+
+The registered event/permission counts are observations, not implementation quotas.
+
+Catalog presence does not prove runtime enforcement.
+
+**Gate:** `BLOCKED until affected contracts close`
+
+---
+
+# 11 — Q7 Implementation task packets
+
+A task is executable only when it contains:
+
+```text
+ID
+Objective
+Scope
+Non-goals
+Owner
+Context
+Module
+Dependencies
+Contracts
+Schema impact
+Commands
+Queries
+Permissions
+Invariants
+State transitions
+Events
+Concurrency
+Security
+UX
+Tests
+Definition of Done
+Evidence
+Rollback/Recovery
+Authorization state
+```
+
+Missing information is `OPEN`/`BLOCKED`, never guessed.
+
+---
+
+# 12 — Q8 Local executable schema
+
+Only after relevant contract gates close:
+
+```text
+source schema extraction
+→ structural validation
+→ semantic reconciliation
+→ executable schema
+→ local database
+→ forward migrations
+→ replay
+→ constraint tests
+→ RLS tests
+→ concurrency tests
+→ evidence
+```
+
+No destructive production command is allowed.
+
+---
+
+# 13 — Q9 Architecture-as-code / CI
+
+Machine-check what is actually checkable:
+
+- canonical file paths;
+- headers/version routing;
+- stale checkpoint references;
+- duplicate authority;
+- context/module consistency;
+- event consistency;
+- permission consistency;
+- state-machine consistency;
+- task references;
+- schema-contract consistency;
+- destructive operation patterns;
+- dangerous dependencies;
+- future-scope contamination.
+
+Never fabricate commands for a green CI result.
+
+---
+
+# 14 — Q10 First authorized vertical slice
+
+Candidate commercial journey:
+
+```text
+Project
+→ Building
+→ Unit
+→ Lead
+→ Assignment
+→ Activity
+→ Visit
+→ Offer
+→ Reservation
+→ Contract
+→ Payment Plan
+→ Payment/Receipt
+→ Audit
+→ Reporting
+```
+
+The actual first slice may be smaller if dependencies remain open.
+
+Required verification:
+
+- unit;
+- integration;
+- contract;
+- authorization;
+- tenancy/RLS;
+- state machine;
+- concurrency;
+- idempotency;
+- event/outbox;
+- audit;
+- E2E;
+- migration safety;
+- failure/retry;
+- UX/accessibility/localization.
+
+**Gate:** `BLOCKED until explicit implementation authorization`
+
+---
+
+# 15 — Q11 Controlled integration
+
+Introduce remote systems only after local evidence exists.
+
+Required:
+
+- canonical runtime identity;
+- environment separation;
+- schema reconciliation;
+- RLS verification;
+- storage verification;
+- webhook/integration security;
+- remote observability;
+- rollback/recovery evidence.
+
+---
+
+# 16 — Q12 Operational evidence
+
+Measure:
+
+`SLI / SLO / latency / error rate / availability / queue lag / event lag / DB saturation / reservation latency / financial posting latency`
+
+Recovery:
+
+`backup → restore → integrity → RPO/RTO → evidence`
+
+A backup without restore evidence is not recovery readiness.
+
+---
+
+# 17 — Q13 Production readiness
+
+Production is authorized only when all applicable gates are objectively evidenced:
+
+`architecture / security / tenancy / schema / migration / tests / performance / observability / recovery / rollback / incident ownership / release evidence`
+
+No document-only green status.
+
+---
+
+# 18 — Hard stops
+
+Stop the affected slice for:
+
+- unresolved business semantics;
+- founder-level scope;
+- unresolved aggregate ownership;
+- privileged authorization ambiguity;
+- tenant isolation uncertainty;
+- financial mutation ambiguity;
+- illegal state transition;
+- cross-context write ownership conflict;
+- destructive migration;
+- external side-effect uncertainty;
+- missing critical invariant evidence;
+- missing task dependency;
+- repository reality contradicting declared architecture;
+- unverified runtime identity.
+
+---
+
+# 19 — Claude autonomy boundary
+
+Claude may inspect, research, reason, propose, implement, test and refactor within an authorized task.
+
+Claude may not silently redefine:
+
+- product scope;
+- canonical business semantics;
+- bounded-context ownership;
+- tenancy model;
+- financial invariants;
+- security policy;
+- legal rules;
+- irreversible data operations;
+- autonomous high-impact AI authority.
+
+---
+
+# 20 — Change loop
+
+Every material change follows:
+
+`DISCOVER → CLASSIFY → RESEARCH → RECONCILE → MODEL → DECIDE → CONTRACT → PLAN → IMPLEMENT → TEST → ADVERSARIAL REVIEW → VERIFY → CONVERGE → EVIDENCE`
+
+No step is silently skipped for a high-risk change.
+
+---
+
+# 21 — Closure rule
+
+A finding/task/gate is closed only when:
+
+`root cause → corrective action → references → verification → evidence → canonical reconciliation`
+
+all exist.
+
+Documentation alone cannot close an implementation gate.
+
+---
+
+# 22 — Resume command
+
+When the operator says **Continue / أكمل العمل على المسار**:
+
+1. load this path;
+2. load `CURRENT-SESSION-STATE.md`;
+3. load Roadmap and Context Prompt;
+4. inspect branch/HEAD;
+5. identify the first unresolved dependency;
+6. inspect canonical sources and provenance;
+7. research material gaps;
+8. make the smallest authorized change;
+9. verify;
+10. update the routing artifacts and checkpoint;
+11. report exact evidence and next dependency.
+
+Never restart from conversational memory. Never claim closure without evidence.
