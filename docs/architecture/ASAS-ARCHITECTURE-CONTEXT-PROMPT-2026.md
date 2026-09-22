@@ -1,212 +1,451 @@
-# ASAS Architecture Context Prompt 2026
+# ASAS — ARCHITECTURE CONTEXT PROMPT 2026
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
-**Status:** CANONICAL AGENT OPERATING PROMPT FOR ARCHITECTURE WORK  
-**Version:** 1.9.0  
-**Canonical branch:** `platform-architecture-2026`
+**Status:** CANONICAL AI ENGINEERING OPERATING CONTEXT  
+**Version:** 2.0.0  
+**Effective date:** 2026-09-22  
+**Canonical branch:** `platform-architecture-2026`  
+**Repository:** `asas-erp-saas-1/As`  
+**Companions:** Source of Truth / Blueprint / Roadmap / Master Execution Path / Current Session State
 
-## Operating mission
+## 0 — Mission
 
-Operate ASAS through evidence-first architectural engineering. Never infer implementation authority from document naming, branch age, or model memory.
+Operate ASAS as an evidence-first architecture and engineering program. The agent must reconstruct engineering truth before implementation, preserve provenance, expose contradictions, research material gaps, derive solutions only when necessary, and never disguise inference as source truth.
 
-The agent's responsibility is not merely to find a plausible implementation. It must reconstruct the current engineering truth from repository evidence, branch provenance, source-package evidence, approved architecture, runtime evidence where authorized, and authoritative external engineering sources.
+The objective is not document completion. The objective is an implementation environment in which incorrect engineering is difficult, detectable, recoverable and blocked from production without evidence.
 
-## Mandatory loading order
+---
 
-`repository identity → branch → commit → AGENTS.md → CURRENT-SESSION-STATE.md → this prompt → ASAS-CANONICAL-EVIDENCE-CONTROL-2026.md → blueprint → roadmap → relevant contracts/registers → source packages when provenance is required → live runtime/database only when identity and authorization are verified`
+# 1 — Mandatory loading order
 
-## Deep repository reading standard
+```text
+repository identity
+→ branch
+→ HEAD
+→ AGENTS.md
+→ docs/handoff/CURRENT-SESSION-STATE.md
+→ this Context Prompt
+→ ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md
+→ ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md
+→ ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md
+→ ASAS-MASTER-EXECUTION-PATH.md
+→ relevant contracts/registers/governance
+→ source packages when provenance is required
+→ live runtime/database only after identity + authorization are verified
+```
 
-When a task requests repository audit, reconciliation, organization, architecture review or continuation, do not summarize from filenames alone.
+`CURRENT-SESSION-STATE.md` is the sole current checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
-The agent MUST:
+---
 
-1. enumerate the complete repository tree;
-2. read `AGENTS.md` completely before making a plan;
-3. read the current checkpoint completely;
-4. read the complete active architecture control plane required by the checkpoint;
-5. inspect relevant governance, handoff, architecture, audit, contracts, registers, schema, design, CI and command/script artifacts;
-6. inspect headers, versions, status fields, authority labels, identifiers, tables, commands, references and cross-document claims;
-7. compare active branch state with `main` and relevant historical branches;
-8. extract unique information from divergent branches before any consolidation or deletion;
-9. search for all active references to canonical files, historical filenames, old version numbers and superseded terminology;
-10. identify duplicates, stale references, contradictory metadata, orphan artifacts and unresolved ownership;
-11. distinguish documentation presence from implementation/runtime evidence;
-12. produce a finding record with evidence and verification requirements before making a material correction.
+# 2 — Deep-reading standard
 
-`Read carefully` means literal evidence inspection: file path, file name, header, version, status, owner, references, content claims and relationships are all part of the audit surface.
+For repository audit/reconciliation, filenames are not enough.
 
-## Cross-source discovery rule
+The agent MUST inspect:
 
-Before a load-bearing architectural decision inspect, as applicable:
+1. complete tree;
+2. AGENTS completely;
+3. current checkpoint completely;
+4. active control plane;
+5. relevant governance/handoff/architecture/audit/contracts/registers/schema/design/CI/scripts;
+6. headers, versions, status, owners, IDs, references, tables and claims;
+7. current branch vs main and relevant historical branches;
+8. divergent branch evidence before consolidation/deletion;
+9. active references to canonical and legacy filenames;
+10. duplicate concepts and stale versions;
+11. documentation presence vs implementation/runtime evidence;
+12. verification requirements before material correction.
 
-1. canonical repository and current branch;
-2. all relevant remote branches and their provenance;
-3. commits, PRs and workflow evidence;
-4. repository source/configuration;
-5. supplied source packages/files;
-6. canonical contracts/registers;
-7. current official external documentation/standards for technical or legal facts;
-8. independent authoritative corroboration where risk warrants.
+`Read` means inspect the actual content and relationships, not merely the filename.
 
-Branch contents are evidence, not authority. Historical artifacts remain historical unless explicitly promoted.
+---
 
-## Reconciliation algorithm
+# 3 — Authority model
 
-`locate → classify → identify authority → preserve conflicting evidence → decide only within authority → update canonical artifact → verify → record evidence`
+### Brownfield reality
 
-Use only:
+`LIVE DATABASE/RUNTIME > IMPLEMENTATION > APPROVED CONTRACT/REGISTER > APPROVED ARCHITECTURE > HISTORICAL ARTIFACT > INFERENCE`
 
-`VERIFIED | SUPPORTED | PARTIAL | BLOCKED | NOT_EXECUTED | OPEN | CONFLICT | FOUNDER DECISION REQUIRED | ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
+### Desired future behavior
 
-## Authority
+`FOUNDER/PRODUCT DECISION > APPROVED ARCHITECTURE > APPROVED ADR > CANONICAL CONTRACT/REGISTER > IMPLEMENTATION`
 
-Brownfield reality:
-`LIVE RUNTIME / DATABASE > IMPLEMENTATION > APPROVED CONTRACT > APPROVED ARCHITECTURE > HISTORY > INFERENCE`
+### External engineering facts
 
-Future behavior:
-`FOUNDER/PRODUCT DECISION > APPROVED ARCHITECTURE > APPROVED ADR > CONTRACT/REGISTER > IMPLEMENTATION`
-
-External facts:
-`OFFICIAL DOCUMENTATION / STANDARD > PRIMARY ENGINEERING SOURCE > AUTHORITATIVE RESEARCH > REPUTABLE SECONDARY SOURCE > COMMUNITY`
+`OFFICIAL DOCUMENTATION/STANDARD > PRIMARY ENGINEERING SOURCE > AUTHORITATIVE RESEARCH > REPUTABLE SECONDARY SOURCE > COMMUNITY`
 
 Conflicts are never silently averaged.
 
-## Architecture distinctions
+---
+
+# 4 — Evidence classification
+
+Use exactly the most accurate state:
+
+`SOURCE-VERIFIED`  
+`RUNTIME-VERIFIED`  
+`TEST-VERIFIED`  
+`EXTERNALLY-VERIFIED`  
+`ENGINEERING-DERIVATION`  
+`PROPOSED`  
+`SUPPORTED`  
+`UNVERIFIED`  
+`PARTIAL`  
+`OPEN`  
+`CONFLICT`  
+`BLOCKED`  
+`NOT_EXECUTED`  
+`FOUNDER-DECISION-REQUIRED`  
+`ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
+
+Never call a document claim `VERIFIED` merely because the document exists.
+
+---
+
+# 5 — Mandatory cross-source discovery
+
+Before any load-bearing architecture decision, inspect as applicable:
+
+```text
+canonical repository
+→ current branch
+→ relevant remote branches
+→ commits / PRs / workflow evidence
+→ repository source/config
+→ supplied source packages
+→ contracts/registers/ADRs
+→ official technical/legal sources
+→ independent authoritative corroboration
+```
+
+Branch content is evidence, not authority.
+
+Historical artifacts remain historical until explicitly promoted.
+
+---
+
+# 6 — Gap-completion protocol
+
+When the required answer is absent from ASAS sources:
+
+```text
+EXHAUST PROJECT SOURCES
+→ TRACE BRANCH/HISTORY
+→ INSPECT SOURCE PACKAGE
+→ RESEARCH OFFICIAL EXTERNAL SOURCES
+→ CORROBORATE
+→ MODEL ALTERNATIVES
+→ ANALYZE FAILURE MODES
+→ DERIVE SMALLEST DEFENSIBLE SOLUTION
+→ LABEL ENGINEERING-DERIVATION
+→ RECORD PROVENANCE
+→ CREATE/UPDATE CONTRACT OR ADR
+→ TEST
+→ VERIFY
+```
+
+The agent may use engineering expertise to complete missing engineering knowledge, but it must not convert derived knowledge into a project fact without provenance and authority.
+
+Stop at `FOUNDER-DECISION-REQUIRED` for founder scope, unresolved ownership, legal interpretation, financial correction semantics, destructive production changes, security exceptions or autonomous high-impact AI authority.
+
+---
+
+# 7 — Architectural distinctions
+
+Never collapse:
 
 `Bounded Context ≠ Module ≠ Aggregate ≠ Entity ≠ Value Object ≠ Database Schema ≠ Read Model ≠ Worker ≠ Event Consumer ≠ Platform Capability`
 
 Counts are observations, not quotas.
 
-## Current target architecture
+---
 
-Nine bounded contexts remain the supported target view:
+# 8 — Current target architecture
+
+Current high-level target:
 
 `Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
 
-Scheduling, Integrations, Workflow, AI, Search, Media, Notifications and SaaS Control remain platform capabilities/subdomains unless an approved ADR proves an independent bounded-context boundary.
+The historical 15-module proposal is implementation evidence, not a competing nine-context architecture.
 
-### Scheduling conflict — explicit authority stop
+Scheduling remains:
 
-The supplied Blueprint v1.6.1 explicitly states that Scheduling is the **CRM context's scheduling submodule** and gives the intended repository home as `src/modules/crm/scheduling/`. The same source package contains ADR-0018, which records Scheduling as a **Core-hosted** submodule. The current `AGENTS.md` also states CRM ownership. These sources are materially inconsistent.
+`FOUNDER-DECISION-REQUIRED`
 
-Therefore the status is:
+because historical ADR-0018 and current architecture material disagree on ownership. No persistence/event/permission/dependency ownership may be silently reassigned.
 
-`FOUNDER DECISION REQUIRED`
+---
 
-No implementation ownership, persistence ownership, event ownership, permission ownership or dependency rule for Scheduling may be changed until an explicit ADR confirms or supersedes the historical decision.
+# 9 — Contract-first rule
 
-## Contract-first execution
+A feature is not implementation-ready because its noun exists in a document.
 
-`Discover → Inspect → Research → Reconcile → Model → Decide → Contract → Plan → Implement → Test → Red Team → Verify → Converge → Evidence`
+Critical behavior must close:
 
-No schema or application implementation is authorized merely because a domain concept appears in a document.
+`owner / aggregate-role / invariant / command / state transition / permission / tenant scope / concurrency / event / audit / failure / test / evidence`
 
-Critical domain work must close:
+State mutation follows:
 
-`owner / invariant / command / state transition / authorization / tenant scope / concurrency / event / audit / test / evidence`
+```text
+Command
+→ Authentication
+→ Authorization
+→ Tenant Scope
+→ Aggregate Load
+→ Preconditions
+→ Legal Transition
+→ Invariants
+→ State Mutation
+→ Audit
+→ Domain Event
+→ Transactional Outbox
+→ Commit
+```
 
-## Mandatory branch and repository audit command
+Direct governed status mutation is prohibited.
 
-When performing repository audit, consolidation or continuation, execute this exact conceptual sequence before deciding what to change:
+---
+
+# 10 — Database discipline
+
+Treat these separately:
+
+`Domain Model ≠ Target Schema ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`
+
+No production destructive migration.
+
+No blind `DROP`, `TRUNCATE`, `RESET`, recreate or destructive rename.
+
+Local-first sequence:
+
+`design → local schema → migrations → tests → CI → controlled staging → production`
+
+Cloud access is not required for architecture construction or local foundation work.
+
+---
+
+# 11 — Security / tenancy
+
+Target hierarchy:
+
+`Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`
+
+Rules:
+
+- deny by default;
+- server-side authorization;
+- tenant scope before sensitive access;
+- RLS defense-in-depth;
+- tenant-aware events/search/cache/analytics;
+- explicit service-worker authority;
+- support/admin access controls.
+
+Threat model must cover tenant escape, IDOR, privilege escalation, mass assignment, injection, XSS/CSRF, webhook forgery/replay, secret exposure, PII leakage, financial manipulation, reservation races, API abuse, cross-tenant analytics and AI abuse.
+
+---
+
+# 12 — AI safety
+
+AI authority path:
+
+`Intent → Proposal → Tool Request → Policy → Caller Authorization → Domain/Application Service → Transaction → Audit → Event`
+
+AI must not:
+
+- obtain direct database authority;
+- bypass authorization;
+- widen tenant scope;
+- directly mutate authoritative finance/reservation/contract data;
+- perform destructive operations without explicit policy/authorization;
+- silently change founder-level product decisions.
+
+AI may research, propose, analyze, test and implement within an explicitly authorized task boundary.
+
+---
+
+# 13 — Design engineering
+
+Design precedes page coding:
+
+`tokens → primitives → components → patterns → templates → surfaces`
+
+Required considerations:
+
+`Arabic/RTL / French / English / responsive / accessibility / loading / empty / error / offline / mobile operations / public property experience / admin workspace / visual verification`
+
+Existing design artifacts are evidence and should be reconciled before duplicates are created.
+
+---
+
+# 14 — Task authorization
+
+An implementation task requires:
+
+```text
+Task ID
+Objective
+Scope
+Non-goals
+Owner
+Context
+Module
+Dependencies
+Contracts
+Schema impact
+Commands
+Queries
+Permissions
+Invariants
+States
+Events
+Concurrency
+Security
+UX
+Tests
+Definition of Done
+Evidence
+Rollback/Recovery
+Authorization state
+```
+
+Missing fields remain `OPEN`/`BLOCKED`.
+
+---
+
+# 15 — Architecture-as-code
+
+Where a rule is machine-checkable, prefer CI enforcement.
+
+Eventually verify:
+
+- canonical paths and headers;
+- stale checkpoint references;
+- version/routing consistency;
+- duplicate canonical concepts;
+- context/module ownership;
+- events;
+- permissions;
+- state machines;
+- task references;
+- schema contracts;
+- dangerous/destructive operations;
+- future-scope contamination.
+
+Never invent a command solely to make CI green.
+
+---
+
+# 16 — Branch/repository continuation protocol
+
+When continuing work:
 
 ```text
 IDENTIFY
 → repository / branch / HEAD / merge-base
 
 READ
-→ AGENTS.md
-→ CURRENT-SESSION-STATE.md
+→ AGENTS
+→ CURRENT-SESSION-STATE
 → Source of Truth
 → Blueprint
 → Roadmap
 → Context Prompt
-→ required contracts/registers
-
-ENUMERATE
-→ complete tree
-→ canonical files
-→ historical files
-→ machine-readable artifacts
-→ CI/scripts/configuration
+→ Master Execution Path
+→ affected contracts/registers
 
 COMPARE
-→ platform-architecture-2026 vs main
+→ current branch vs main
 → relevant historical branches
-→ commits / PRs / unique SHAs
+→ commits / PRs / unique evidence
 
 TRACE
-→ references to every canonical and legacy filename
-→ version numbers
-→ status/authority labels
-→ duplicated concepts
+→ canonical/legacy names
+→ versions
+→ authority labels
+→ duplicates
 
 CLASSIFY
-→ SOURCE-VERIFIED
-→ RUNTIME-VERIFIED
-→ TEST-VERIFIED
-→ EXTERNALLY-VERIFIED
-→ ENGINEERING-DERIVATION
-→ PROPOSED
-→ UNVERIFIED
-→ CONFLICT
-→ BLOCKED
-→ FOUNDER-DECISION-REQUIRED
+→ evidence state
 
 DECIDE
-→ use the first unresolved dependency from CURRENT-SESSION-STATE
-→ do not invent missing authority
-→ do not choose based on document age/count/name
+→ first unresolved dependency
 
 CHANGE
-→ smallest coherent correction
-→ update canonical owner
-→ update consumers/references
-→ preserve historical provenance
+→ smallest authorized correction
 
 VERIFY
-→ reference search
-→ structural validation
-→ tests/CI
-→ exact commit evidence
+→ structural/reference/test/CI evidence
 
 CONVERGE
-→ update checkpoint
-→ update affected canonical routing artifacts
-→ record remaining blockers
+→ update routing artifacts + checkpoint
 ```
 
-### Repository reading command examples
+Do not delete historical branches solely because they are old. Branch deletion is separate from architecture consolidation.
 
-```bash
-git fetch --all --prune
-git branch -a --no-color
-git ls-remote --heads origin
-git log --all --oneline --decorate --graph --date-order
-git log --all --follow -- <path>
-git diff --name-status main...platform-architecture-2026
-git diff --stat main...platform-architecture-2026
-rg -n "SESSION_STATE|CURRENT-SESSION-STATE|ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT|Version:|Status:|C2-001|C2-002|ADR-|Scheduling|building_id" .
+---
+
+# 17 — Current work route
+
+```text
+CONTROL-PLANE CONVERGENCE
+→ BUILDING CONTRACT
+→ OFFER CONTRACT
+→ PAYMENT / RECEIPT / ALLOCATION / LEDGER
+→ SCHEDULING ADR
+→ QUERY / READ-MODEL CONTRACTS
+→ PERMISSION / EVENT RECONCILIATION
+→ TASK PACKET DERIVATION
+→ LOCAL EXECUTABLE SCHEMA
+→ ARCHITECTURE CI
+→ FIRST AUTHORIZED VERTICAL SLICE
 ```
 
-For branch-level comparison, use the GitHub compare/commit history when available. For source-package provenance, inspect the supplied package directly. For technical claims, prefer official documentation and standards. Do not treat branch existence as authority.
+The route expands if evidence reveals missing dependencies.
 
-Do not delete branches solely because they are old. Classify provenance first and preserve unique evidence until its authority is reconciled.
+---
 
-## Current work sequence
+# 18 — Current checkpoint
 
-`Evidence control → canonical artifact/branch provenance → Building → Offer → Payment/Receipt/Ledger → Scheduling decision → cross-domain reconciliation → schema authority → implementation authorization`
+`ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE`
 
-## Safety boundaries
+Current blockers:
 
-Do not guess or autonomously execute unresolved founder-level product scope, bounded-context ownership, legal interpretation, destructive database strategy, financial correction semantics, autonomous AI authority, tenant deletion, or material production/security changes.
+- control-plane version/routing metadata;
+- canonical live DB identity;
+- executable schema promotion;
+- full task packets;
+- Offer closure;
+- Building ownership/structural semantics;
+- Scheduling decision;
+- runtime security/RLS evidence;
+- implementation authorization.
 
-## Closure rule
+---
 
-A finding is closed only when root cause, corrective action, references, verification, evidence, and canonical reconciliation exist.
+# 19 — Closure rule
 
-## Current checkpoint
+A finding is CLOSED only when:
 
-**ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE**
+`root cause identified + corrective action + references updated + verification passed + evidence captured + conflicting artifact reconciled + canonical owner updated`
 
-Current blockers include live DB identity, security/runtime verification, implementation authorization, unresolved Scheduling ownership, incomplete Offer/Building/Finance contract closure, and control-plane version metadata reconciliation.
+Otherwise it remains open/blocked/not executed.
+
+---
+
+# 20 — Resume instruction
+
+When the operator says **Continue / أكمل العمل على المسار**:
+
+1. load the current checkpoint;
+2. load this prompt and the roadmap;
+3. inspect current GitHub branch/HEAD;
+4. identify the first unresolved dependency;
+5. inspect its evidence and authority;
+6. research external gaps when material;
+7. make only authorized changes;
+8. verify the changes;
+9. update roadmap, context prompt, execution path and checkpoint when the route changes;
+10. report exact evidence and next dependency.
+
+Never restart the project from conversation memory.
