@@ -1,82 +1,57 @@
 # ASAS — ENGINEERING SOURCE OF TRUTH 2026
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
-**Status:** CANONICAL CONTROL RESOURCE — PROPOSED / EVIDENCE-BACKED  
-**Version:** 1.3.0  
-**Effective date:** 2026-09-20  
+**Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
+**Version:** 1.4.0  
+**Effective date:** 2026-09-22  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
 **Role:** Single consolidation and routing resource for architecture engineering
 
-> This resource consolidates verified repository facts, source-package facts, historical architectural proposals, current engineering decisions, external research principles, unresolved conflicts, and implementation constraints. It does not erase provenance, and it does not convert inference into fact. Authoritative source artifacts remain authoritative for their own concepts unless an approved decision explicitly promotes or supersedes them.
+> This resource consolidates verified repository facts, source-package facts, historical proposals, current engineering decisions, external engineering evidence, unresolved conflicts and implementation constraints. It preserves provenance and cannot silently override an A1 source.
 
----
-
-# 0. OPERATING RULE
-
-ASAS engineering follows:
+## 0 — Operating rule
 
 `REALITY → PROVENANCE → AUTHORITY → RECONCILIATION → MODEL → CONTRACT → VERIFICATION → IMPLEMENTATION`
 
-Status vocabulary:
+## 1 — Source hierarchy
 
-`VERIFIED | SUPPORTED | PARTIAL | OPEN | CONFLICT | BLOCKED | NOT_EXECUTED | FOUNDER DECISION REQUIRED | ARCHITECTURAL RESERVATION`
+### Brownfield
+`LIVE DATABASE / LIVE RUNTIME > REPOSITORY IMPLEMENTATION > APPROVED CONTRACT/REGISTER > APPROVED ARCHITECTURE > HISTORICAL ARTIFACT > INFERENCE`
 
----
+### Desired future behavior
+`FOUNDER / PRODUCT DECISION > APPROVED ARCHITECTURE > APPROVED ADR > CANONICAL CONTRACT/REGISTER > IMPLEMENTATION`
 
-# 1. SOURCE HIERARCHY
+### External engineering facts
+`OFFICIAL DOCUMENTATION / STANDARD > PRIMARY ENGINEERING SOURCE > AUTHORITATIVE RESEARCH > REPUTABLE SECONDARY SOURCE > COMMUNITY`
 
-## 1.1 Brownfield reality
+## 2 — Canonical control plane
 
-`LIVE DATABASE / LIVE RUNTIME` > `REPOSITORY IMPLEMENTATION` > `APPROVED CONTRACT / REGISTER` > `APPROVED ARCHITECTURE` > `HISTORICAL ARTIFACT` > `INFERENCE`
-
-## 1.2 Desired future behavior
-
-`FOUNDER / PRODUCT DECISION` > `APPROVED ARCHITECTURE` > `APPROVED ADR` > `CANONICAL CONTRACT / REGISTER` > `IMPLEMENTATION`
-
-## 1.3 External engineering technique
-
-`OFFICIAL DOCUMENTATION / STANDARD` > `PRIMARY ENGINEERING SOURCE` > `AUTHORITATIVE RESEARCH` > `REPUTABLE SECONDARY SOURCE` > `COMMUNITY`
-
----
-
-# 2. CANONICAL CONTROL FILES
-
-| Role | Canonical resource | State |
+| Role | Canonical resource | Current state |
 |---|---|---|
-| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.4.0 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE PROPOSED v1.5.0 |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v1.5.0 |
-| Consolidated engineering truth | this file | CANONICAL CONTROL RESOURCE v1.3 |
-| Context/domain/module evidence | `docs/architecture/ASAS-CONTEXT-DOMAIN-MODULE-EVIDENCE-MATRIX-2026.md` | CANONICAL DERIVED EVIDENCE |
-| Aggregate/invariant contract | `docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md` | DERIVED CONTRACT v1.0 / OPEN |
-| Command/action contract | `docs/architecture/ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md` | DERIVED CONTRACT v1.0.1 / OPEN |
-| Offer domain contract | `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md` | DERIVED CONTRACT v1.0 / OPEN |
-| Current checkpoint | `docs/handoff/CURRENT-SESSION-STATE.md` | sole current checkpoint |
+| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.0 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.0 |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.0 |
+| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.0 |
+| Consolidated engineering truth | this file | CANONICAL CONTROL v1.4.0 |
+| Current checkpoint | `docs/handoff/CURRENT-SESSION-STATE.md` | sole active checkpoint |
 | Artifact authority | `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` | governance register |
 | Founder decisions | `docs/governance/FOUNDER-DECISIONS.md` | decision boundary |
+| Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
 
-`ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026-AMENDMENT-001.md` is retained as historical provenance after incorporation into Blueprint v1.4.0; it is not an active competing blueprint authority.
+Historical Blueprint Amendment 001 remains provenance and is not an active competing blueprint.
 
----
+## 3 — Repository identity
 
-# 3. REPOSITORY IDENTITY
+Canonical repository: `asas-erp-saas-1/As`  
+Architecture branch: `platform-architecture-2026`  
+Current branch HEAD is maintained in the session checkpoint.
 
-Canonical repository:
+Historical branches are provenance. Branch deletion is not implied by reconciliation.
 
-`asas-erp-saas-1/As`
+## 4 — Structural source observations
 
-Current architecture branch:
-
-`platform-architecture-2026`
-
-Historical branches are provenance, not implementation authority. Branch deletion remains a repository-maintainer operation and is not claimed unless executed with evidence.
-
----
-
-# 4. SOURCE-PACKAGE FACTS
-
-Current reconciled structural observations include:
+Current source-package observations recorded by the repository include:
 
 - 119 unique phase task IDs;
 - 3 recurring ritual IDs;
@@ -86,319 +61,179 @@ Current reconciled structural observations include:
 - 56 indexes;
 - 22 unique constraints;
 - 19 relation annotations;
-- 103 domain events across 11 emission groups;
-- 50 permission keys across 8 persona columns;
+- 103 domain events / 11 emission groups;
+- 50 permission keys / 8 persona columns;
 - 11 state machines;
 - 42 design primitives.
 
-These are source observations, not runtime proof and not architecture quotas.
+These are observations, not quotas and not runtime proof.
 
----
+## 5 — Architecture authority
 
-# 5. ARCHITECTURAL AUTHORITY RECONCILIATION
+Current target contexts:
 
-## 5.1 Nine-context target
+`Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
 
-The current V3 target uses:
-
-`Core / CRM / Sales / Inventory / Finance / Website Studio / Marketing / Analytics / Documents`
-
-This is the current high-level domain grouping.
-
-## 5.2 Fifteen-module proposal
-
-The historical `ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md` and `CANONICAL-CONTEXT-TO-MODULE-MAP.md` contain a proposed implementation decomposition:
-
-`Lead & CRM / Property & Inventory / Visit Management / Reservation & Contract / Payment & Finance / Commission & Payout / Communication / Identity, Access & Workspace / Notification / Collaboration & Extensibility / Calendar & Scheduling / Activity, Timeline & Audit / Search / Reporting & Analytics / Workflow & Automation Engine`
-
-The historical ADR explicitly marks this proposal as awaiting founder acceptance.
-
-### Reclassification
-
-This is **not** currently a requirement to choose between 9 and 15.
+The historical 15-module proposal is implementation evidence, not a competing bounded-context architecture.
 
 `C2-001 = OPEN ARCHITECTURAL REFINEMENT`
 
-The engineering task is to derive implementation modules from ownership, aggregates, invariants, consistency, security, data ownership, change cadence, failure isolation and integration cost.
+Scheduling remains unresolved:
 
-## 5.3 Scheduling
+`C2-002 = FOUNDER-DECISION-REQUIRED`
 
-Historical `ADR-0018` accepted Scheduling as a Core/CRM-hosted capability. The 2026 architecture reopened the question.
+Historical ADR-0018 and current architecture material conflict on Scheduling ownership. No silent reassignment is permitted.
 
-`C2-002 = OPEN / PROPOSED SUPERSESSION`
-
-Do not silently supersede ADR-0018. Either explicitly adopt it in the 2026 baseline or create an ADR that replaces it.
-
----
-
-# 6. DOMAIN / MODULE / DATA DISTINCTIONS
+## 6 — Domain distinctions
 
 Never collapse:
 
-`Bounded Context ≠ Implementation Module ≠ Aggregate ≠ Entity ≠ Database Schema ≠ Read Model ≠ Worker ≠ Event Consumer ≠ Platform Capability`
+`Bounded Context ≠ Module ≠ Aggregate ≠ Entity ≠ Value Object ≠ Database Schema ≠ Read Model ≠ Worker ≠ Event Consumer ≠ Platform Capability`
 
-No aggregate becomes a table by naming convention. No module becomes a service merely because it exists.
+## 7 — Current contract state
 
----
+### Unit / Reservation
+`PARTIALLY CLOSED / IMPLEMENTATION UNVERIFIED`
 
-# 7. AGGREGATE & INVARIANT CONTRACT
+The business invariant and historical ADR-0017 reservation protocol are reconciled; executable database enforcement and race evidence remain open.
 
-Canonical derived contract:
+### Building
+`OPEN / IMPLEMENTATION BLOCKED`
 
-`docs/architecture/ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md`
+Hierarchy is supported, but aggregate/entity classification, relationship semantics, structural mutation, archival and executable schema representation require reconciliation. Historical schema evidence containing a Building model is evidence, not automatic current schema authority.
 
-The current source-supported aggregate candidates include:
+### Offer
+`PARTIAL / IMPLEMENTATION BLOCKED`
 
-- Lead;
-- Client;
-- Project;
-- Unit;
-- Listing;
-- Visit;
-- Reservation;
-- Contract;
-- PaymentSchedule / Installment;
-- CommissionRule;
-- CommissionRecord;
-- Agency;
-- Branch;
-- User;
-- NotificationPreference.
+Offer is a supported commercial concept. Pricing authority, Offer/Reservation separation and approval concepts are supported; command/state/permission/event/idempotency/concurrency closure remains incomplete.
 
-Source material describes CommunicationLog, Attachment, Activity/Timeline/Audit, Search and Reporting differently; they must not be promoted to aggregates without evidence.
+### Finance
+`PARTIALLY CLOSED / EXECUTABLE FINANCE CONTRACT OPEN`
 
-Critical open boundaries:
+Current source semantics support:
 
-- Unit ↔ Reservation atomic consistency;
-- Offer ownership and invariants;
-- Payment vs PaymentSchedule vs Receipt semantics;
-- Building ownership and invariants;
-- Scheduling ownership.
+`Contract → PaymentPlan / schedule items → Receipt → ReceiptAllocation → Finance/Ledger where authorized`
 
-Offer now has a dedicated derived domain contract at `docs/architecture/ASAS-OFFER-DOMAIN-CONTRACT-2026.md`; it remains OPEN until state, permission, approval, event and concurrency mappings are closed.
+Do not invent a standalone Payment aggregate solely from terminology.
 
----
+### Scheduling
+`FOUNDER-DECISION-REQUIRED`
 
-# 8. CORE INVARIANTS
+## 8 — Core invariants
 
-Current source-backed/target invariants include:
+Current source-supported/target invariants include:
 
 1. Lead has one current owner.
-2. Lead source/acquisition semantics are controlled.
-3. Lead stage transitions follow a legal state machine.
-4. Tenant-owned records cannot escape tenant scope.
-5. Unit commercial availability and construction state are separate dimensions.
-6. One active reservation winner per Unit under concurrency.
-7. Contract requires an approved Reservation.
-8. Governed Track A installment collection is milestone-gated according to the source rule; legal applicability requires qualified legal verification.
-9. Money uses explicit currency and integer minor units where applicable.
-10. Posted financial facts are immutable and corrected through controlled reversal/new facts.
-11. Balanced double-entry posting is required where ledger functionality is authorized.
-12. Commission adjustments require approval.
-13. Durable domain events use transactional publication semantics, with outbox as the default architecture.
-14. Event consumers are idempotent.
-15. AI cannot widen caller authority.
+2. Lead stage follows a legal state machine.
+3. Tenant-owned records remain tenant-scoped.
+4. Unit commercial availability and construction state remain separate dimensions.
+5. One active Reservation winner per Unit under concurrency.
+6. Contract requires an approved Reservation.
+7. Governed Track A collection is milestone-gated according to source rules; legal applicability requires qualified legal verification.
+8. Money uses explicit currency and integer minor units where applicable.
+9. Posted financial facts are immutable and corrected through reversal/new facts.
+10. Balanced double-entry posting applies where ledger functionality is authorized.
+11. Durable domain events use transactional publication semantics; outbox is the default architecture.
+12. Event consumers are idempotent.
+13. AI cannot widen caller authority.
 
-Runtime enforcement remains UNVERIFIED unless evidence exists.
+Runtime enforcement is unverified unless objective evidence exists.
 
----
-
-# 9. RESERVATION CORRECTNESS
-
-The system must guarantee one active winner per Unit under concurrency.
-
-Required evidence:
-
-- database-level constraint/conditional write strategy;
-- transaction/concurrency policy;
-- idempotency;
-- expiry handling;
-- audit;
-- outbox/event behavior;
-- two-agent race tests;
-- duplicate-command tests;
-- expiry-vs-conversion race tests;
-- reconciliation after partial failure.
-
-The approved historical reservation protocol is preserved as source evidence and reconciled into the current consistency contract. The exact executable PostgreSQL mechanism is not promoted until schema/workload evidence is available.
-
----
-
-# 10. STATE MACHINE CONTRACT
+## 9 — State machine doctrine
 
 `Command → Authentication → Authorization → Tenant Scope → Aggregate Load → Preconditions → Legal Transition → Invariants → State Mutation → Audit → Domain Event → Transactional Outbox → Commit`
 
-Direct governed status mutation is prohibited.
+No arbitrary governed status setter.
 
----
+## 10 — Event doctrine
 
-# 11. EVENT CONTRACT
+The registered 103-event / 11-group count is source observation. Each implemented event requires producer, aggregate, trigger, version, tenant, causation/correlation, consumers, idempotency, ordering, replay, DLQ, retention, reconciliation and evidence.
 
-Registered observation: 103 event names / 11 emission groups.
-
-Every implementation event requires:
-
-`ID / name / version / producer / aggregate / trigger / invariant / transaction boundary / tenant / causation / correlation / consumers / idempotency / ordering / replay / DLQ / retention / reconciliation / evidence`
-
-Catalog presence does not prove runtime publication.
-
----
-
-# 12. PERMISSION AND TENANCY
-
-Registered observation: 50 permission keys across 8 persona columns.
+## 11 — Permission / tenancy
 
 Target hierarchy:
 
 `Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`
 
-Rules:
+Deny-by-default, server-side authorization and tenant-aware data access are mandatory. RLS is defense-in-depth, not the only authorization layer.
 
-- deny by default;
-- server-side authorization;
-- tenant scope before sensitive access;
-- RLS as defense-in-depth;
-- tenant-aware events, caches, search and analytics;
-- AI inherits caller authority.
-
-Runtime RLS/tenancy remains BLOCKED until canonical runtime identity is verified and policies are tested.
-
----
-
-# 13. DATABASE TRUTH
+## 12 — Database truth
 
 Separate:
 
 `Target Domain Model ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`
 
-Source schema observation:
-
-`59 models / 17 enums / 56 indexes / 22 uniques / 19 relations`
-
 Required reconciliation:
 
 `Introspect → Capture → Drift Inventory → Compare → ADR → Migration Plan → Backup Verification → Rehearsal → Forward-only Migration → Verification → Evidence`
 
-No destructive production shortcut is authorized.
+No destructive production shortcut.
 
----
-
-# 14. SECURITY AND AI
-
-Threat coverage must include tenant escape, IDOR, privilege escalation, mass assignment, injection, XSS/CSRF, webhook forgery/replay, secret exposure, PII leakage, financial manipulation, reservation races, API abuse, cross-tenant analytics leakage, prompt injection, excessive AI agency and tool abuse.
-
-AI authority path:
+## 13 — AI safety
 
 `Intent → Proposal → Tool Request → Policy → Caller Authorization → Domain/Application Service → Transaction → Audit → Event`
 
-AI is never a direct database authority.
+AI is not direct database authority and cannot bypass domain authorization.
 
----
+## 14 — Design
 
-# 15. DESIGN / UX
-
-Design architecture precedes page coding:
+Design precedes page implementation:
 
 `tokens → primitives → components → patterns → templates → surfaces`
 
-Source evidence includes 42 design primitives. Arabic/RTL, French/English, mobile field operations, accessibility and failure states are architecture requirements, not cosmetic afterthoughts.
+Arabic/RTL, French/English, accessibility, responsive behavior, mobile operations and failure states are engineering requirements.
 
----
+## 15 — Task truth
 
-# 16. TASK TRUTH
+Implementation packets must identify scope, owner, dependencies, contracts, commands, permissions, invariants, states, events, concurrency, security, UX, tests, DoD, evidence and authorization. Missing information remains open.
 
-Source reconciliation establishes 119 phase task IDs, 3 recurring rituals and 122 total `T-*` identifiers including rituals.
+## 16 — Current gates
 
-Implementation packets must carry:
+- G0 repository identity/checkpoint — GREEN
+- G1 authority/control-plane — AMBER / metadata convergence active
+- G2 domain/module authority — AMBER / Scheduling open
+- G3 aggregate/invariant contracts — AMBER
+- G4 executable invariants — AMBER / implementation absent
+- G5 state machines — AMBER / runtime absent
+- G6 events — BLOCKED
+- G7 implementation authorization — BLOCKED
+- G8 tenancy/RLS — BLOCKED
+- G9 security evidence — AMBER
+- G10 live DB/schema — BLOCKED
+- G11 CI — AMBER
+- G12 observability/recovery — BLOCKED
+- G13 backup/restore evidence — BLOCKED
+- G14 AI tooling evidence — AMBER
+- G15 implementation authorization — BLOCKED
 
-`Task / objective / scope / non-goals / owner / context / module / dependencies / contracts / schema / commands / permissions / invariants / states / events / concurrency / security / UX / tests / DoD / evidence / rollback / authorization`
+## 17 — Current roadmap
 
-Unknown fields remain OPEN or BLOCKED.
+`H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`
 
----
+See the v2.0 roadmap for the executable route.
 
-# 17. PRODUCT SCOPE
+## 18 — Current checkpoint
 
-Controlled initial direction:
-
-- property/project presentation;
-- inventory visibility;
-- lead capture/qualification;
-- assignment and activities;
-- visits;
-- offers/reservations with correctness controls;
-- contract foundations;
-- controlled payment-plan/financial recording where authorized;
-- audit;
-- commercial reporting;
-- Arabic/RTL, French and English;
-- mobile-first operations.
-
-Future capabilities remain architectural reservations unless separately authorized.
-
----
-
-# 18. OBSERVABILITY AND RECOVERY
-
-Production readiness requires measured SLI/SLO, latency/error/availability, queue/event lag, database health, reservation latency, financial posting latency, backup verification, restore rehearsal, RPO/RTO and operational runbooks.
-
-A backup without verified restore is not recovery readiness.
-
----
-
-# 19. CURRENT GATES
-
-- G00 Platform Identity — BLOCKED
-- G01 Canonical Artifacts — PARTIAL
-- G02 Domain/Module Authority — OPEN REFINEMENT
-- G03 Aggregate/Invariant Contracts — PARTIAL / ACTIVE
-- G04 Database Reality — BLOCKED
-- G05 Security/Tenancy — BLOCKED
-- G06 CI Architecture Enforcement — NOT_EXECUTED
-- G07 Implementation Authorization — BLOCKED
-
-No implementation authorization is implied.
-
----
-
-# 20. CURRENT ROADMAP
-
-- H0 Reality and Source Control — PARTIAL
-- H1 Architectural Reconciliation — PARTIAL / H1.4 ACTIVE
-- H2 Domain Contracts — PARTIAL / H1-dependent
-- H3 Events and Integrations — BLOCKED for runtime implementation
-- H4 Security/Tenancy — BLOCKED
-- H5 Data Architecture — BLOCKED
-- H6 Design System — PARTIAL
-- H7 Application Platform Skeleton — BLOCKED
-- H8 Controlled Commercial Slice — BLOCKED
-- H9 Observability/Recovery — BLOCKED
-- H10 Cloud/Runtime Verification — BLOCKED
-- H11 Production Readiness — BLOCKED
-
----
-
-# 21. BRANCH CONSOLIDATION
-
-Historical branches remain provenance. The current GitHub connection can inventory and modify branch refs but no branch is reported deleted unless deletion is actually executed with evidence. Branch cleanup must follow provenance extraction, reference search, canonical promotion and verification.
-
----
-
-# 22. CURRENT CHECKPOINT
-
-**ARCH-2026-H1.4-COMMAND-QUERY-CONTRACT-CLOSURE**
+`ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE`
 
 Immediate sequence:
 
-1. close Offer command/state/permission/event contract;
-2. define Building ownership/invariants;
-3. complete receipt/allocation/ledger contract;
-4. reconcile Scheduling through an explicit ADR confirmation/supersession path;
-5. build query/read-model contracts;
-6. reconcile critical actions against canonical permission and event registers;
-7. only then promote executable schema design toward local implementation;
-8. establish reproducible local database/application foundation;
-9. run architecture CI and capture evidence;
-10. verify canonical runtime identity before any remote introspection.
+1. finish control-plane metadata convergence;
+2. reconcile Building;
+3. close Offer;
+4. close Payment/Receipt/Allocation/Ledger;
+5. resolve Scheduling by explicit ADR;
+6. define query/read models;
+7. reconcile permissions/events;
+8. derive implementation task packets;
+9. promote executable schema locally;
+10. enforce architecture CI;
+11. authorize first bounded vertical slice only after applicable gates are GREEN.
 
-No application or production database implementation is authorized by this document.
+## 19 — Branch provenance rule
+
+The architecture branch was built from the foundation reconstruction lineage. Historical command-contract and source-authority branches contain unique evidence and must remain provenance until reconciled. Branch existence alone never grants authority.
+
+## 20 — Hard stop
+
+No application feature implementation, production schema mutation, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the affected architecture gates are closed.
