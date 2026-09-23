@@ -4,7 +4,7 @@
 
 The ASAS repository is governed by its reconciled canonical architecture, approved ADRs, canonical contracts/registers, current runtime evidence where applicable, and the current session checkpoint.
 
-The supplied **ASAS Architecture Blueprint v1.6.1 / source package is a research and provenance source for the lead architect. It is NOT implementation authority for Codex or Claude.**
+The supplied **ASAS Architecture Blueprint v1.6.1 / source package is a research and provenance source for the lead architect. It is NOT implementation authority for Codex or Claude.** Any artifact extracted from that package becomes implementation-relevant only after repository reconciliation, authority review, and explicit promotion into a current canonical contract/register/ADR.
 
 The authority model is:
 
@@ -34,6 +34,16 @@ The authority model is:
 5. Community material
 
 Conflicts are recorded and reconciled; they are never silently averaged.
+
+### Schema-specific authority clarification
+
+A source-package schema file, historical model count, ERD, or Chapter 39 reference is not by itself an executable ASAS schema contract. The repository may intentionally retain source observations without promoting them.
+
+The active schema promotion procedure is:
+
+`docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md`
+
+Until that procedure's promotion gate is satisfied, `schema/asas-contracts.index.json` remains reconciliation evidence and the absence of an executable `schema/asas-contracts.prisma` must not be interpreted as a final rejection of any domain concept.
 
 ## Codex-first execution model
 
