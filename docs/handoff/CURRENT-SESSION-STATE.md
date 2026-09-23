@@ -1,8 +1,8 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.3  
-**Date:** 2026-09-23  
+**Version:** 3.4  
+**Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
@@ -12,17 +12,18 @@
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.0-Q1-BUILDING-DOMAIN-ANALYSIS`
+`ARCH-2026-H1.5.1-Q1-BUILDING-PERSISTENCE-RECONCILIATION`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
 ## 3. Current branch evidence
 
 - Branch: `platform-architecture-2026`
-- Latest observed branch HEAD: `177db96d2bb5bc1338d4e8337780a69f68b02a95`
+- Latest observed branch HEAD before this checkpoint update: `6d31349c97d1667c0b0f898ae233518e961c4591`
 - Repository: `asas-erp-saas-1/As`
 - Foundation CI verified successfully at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
 - Later Q1 documentation commits must be independently checked by CI before latest HEAD is described as CI-verified.
+- Branch inspection on 2026-09-24 confirmed the branch currently points beyond the previously recorded `177db96d2bb5bc1338d4e8337780a69f68b02a95`; the branch HEAD observed immediately before this checkpoint update was `ae0cf0aee52a9a8b5bc4a054323ba0834d16c0bc`, and the Building persistence reconciliation update advanced it to `6d31349c97d1667c0b0f898ae233518e961c4591`.
 
 ## 4. Canonical control plane
 
@@ -39,7 +40,8 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed |
 | Building contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
 | Building domain analysis | `docs/architecture/reconciliation/ASAS-BUILDING-DOMAIN-DECISION-ANALYSIS-2026.md` | ANALYSIS COMPLETE / contract remains open |
-| Building reconciliation | `ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
+| Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED / v1.1.0 |
+| Schema contract index | `schema/asas-contracts.index.json` | DERIVATION-CONTROLLED / RECONCILIATION REQUIRED |
 | Codex control-plane audit | `docs/audit/ASAS-CODEX-CONTROL-PLANE-VERIFICATION-2026-09-23.md` | REPOSITORY-VERIFIED / runtime pending |
 | Current checkpoint | this file | sole active checkpoint |
 
@@ -87,7 +89,7 @@ Historical ADR-0018 and current architecture materials conflict on Scheduling ow
 
 Building is supported as a first-class real-estate hierarchy concept by current product truth, lifecycle mapping and architecture evidence.
 
-The new domain analysis concludes:
+The domain analysis concludes:
 
 - bounded-context ownership: Real Estate / Inventory — SUPPORTED;
 - initial implementation module: Real Estate / Inventory — SUPPORTED target direction;
@@ -100,6 +102,19 @@ The new domain analysis concludes:
 
 The detailed analysis is:
 `docs/architecture/reconciliation/ASAS-BUILDING-DOMAIN-DECISION-ANALYSIS-2026.md`
+
+### Building persistence
+
+The current repository contains a schema contract index but intentionally has not promoted an executable Prisma contract.
+
+`schema/asas-contracts.index.json` records a historical declaration of `59/16/15` (models/enums/indexes) and a verified source observation of `59/17/56`, with status `OBSERVED / NOT YET PROMOTED AS EXECUTABLE CONTRACT`.
+
+Therefore:
+
+- absence of `schema/asas-contracts.prisma` is current repository evidence;
+- absence of a Building model from an executable Prisma contract is **not** evidence that the final target schema rejects Building;
+- the schema promotion gate must be resolved before any local Building schema decision;
+- Building persistence remains OPEN / IMPLEMENTATION BLOCKED.
 
 ### Offer
 
@@ -129,7 +144,9 @@ The contract intentionally does not authorize a table/model/migration.
 - natural identity/uniqueness remains open;
 - rename/move/archive semantics remain open;
 - tenant ownership representation remains open;
-- current executable schema representation not fully reconciled;
+- current executable schema representation is not promoted;
+- 59/17/56 source observation must be reconciled against historical 59/16/15 declaration;
+- complete target schema source extraction/validation remains outstanding;
 - live DB/project identity not verified;
 - runtime security/RLS evidence absent;
 - implementation authorization absent;
@@ -162,12 +179,14 @@ The contract intentionally does not authorize a table/model/migration.
 4. Establish rename/move/archive semantics and audit implications.
 5. Establish tenant ownership/inheritance semantics.
 6. Reconcile current repository persistence representation, including all references to Building-like identifiers.
-7. Verify live persistence only after runtime identity/access is established.
-8. Map permissions/events/state implications without inventing Building-specific contracts.
-9. Define invariant and verification requirements.
-10. Retest current HEAD through existing CI.
-11. Promote Q1 only when closure criteria are evidenced.
-12. Only then authorize schema/code work for Building if actually required.
+7. Reconcile the schema index's 59/17/56 observation against the historical 59/16/15 declaration.
+8. Extract and validate the complete target schema source before any executable Prisma contract is promoted.
+9. Verify live persistence only after runtime identity/access is established.
+10. Map permissions/events/state implications without inventing Building-specific contracts.
+11. Define invariant and verification requirements.
+12. Retest current HEAD through existing CI.
+13. Promote Q1 only when closure criteria are evidenced.
+14. Only then authorize schema/code work for Building if actually required.
 
 ## 11. Non-authorizations
 
