@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.1  
+**Version:** 1.5.2  
 **Effective date:** 2026-09-23  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
@@ -30,9 +30,9 @@
 | Role | Canonical resource | Current state |
 |---|---|---|
 | Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + skills amendment |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + skills amendment |
-| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + skills amendment |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + amendments |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + amendments |
+| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + amendments |
 | AI agent operating model | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | CANONICAL v1.0.0 |
 | Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
@@ -41,6 +41,8 @@
 | Artifact authority | `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` | governance register |
 | Founder decisions | `docs/governance/FOUNDER-DECISIONS.md` | decision boundary |
 | Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
+| Building domain contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
+| Building reconciliation | `ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
 
 Historical Blueprint Amendment 001 remains provenance and is not an active competing blueprint.
 
@@ -105,9 +107,15 @@ Scheduling remains unresolved:
 `PARTIALLY CLOSED / IMPLEMENTATION UNVERIFIED`
 
 ### Building
-`OPEN / IMPLEMENTATION BLOCKED`
+`Q1 ACTIVE / OPEN / IMPLEMENTATION BLOCKED`
 
-Historical schema evidence containing a Building model is evidence, not automatic current schema authority.
+Canonical working contract:
+`docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md`
+
+Current supported conclusion:
+`BUILDING = REAL-ESTATE STRUCTURAL DOMAIN CONCEPT`
+
+The contract intentionally does not authorize a persistence representation. Aggregate/entity/reference classification, relationship cardinality, identity/uniqueness, lifecycle operations, tenant ownership, current repository representation and live persistence remain open until evidenced.
 
 ### Offer
 `PARTIAL / IMPLEMENTATION BLOCKED`
@@ -190,9 +198,9 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 ## 16 — Current gates
 
 - G0 repository identity/checkpoint — GREEN
-- G1 authority/control-plane — AMBER / repository-side Codex skill routing verified; live Codex execution evidence pending
+- G1 authority/control-plane — GREEN (repository-side CI verified; live Codex execution evidence pending)
 - G2 domain/module authority — AMBER / Scheduling open
-- G3 aggregate/invariant contracts — AMBER
+- G3 aggregate/invariant contracts — AMBER / Building Q1 active
 - G4 executable invariants — AMBER / implementation absent
 - G5 state machines — AMBER / runtime absent
 - G6 events — BLOCKED
@@ -200,7 +208,7 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 - G8 tenancy/RLS — BLOCKED
 - G9 security evidence — AMBER
 - G10 live DB/schema — BLOCKED
-- G11 CI — AMBER / workflow corrected; execution evidence pending
+- G11 CI — GREEN at verified run `35879311233`; latest HEAD requires retest after contract/checkpoint updates
 - G12 observability/recovery — BLOCKED
 - G13 backup/restore evidence — BLOCKED
 - G14 AI tooling evidence — AMBER / repository skills verified; live Codex discovery not executed
@@ -212,7 +220,7 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 
 ## 18 — Current checkpoint
 
-`ARCH-2026-H1.4.7-Q0-CONTROL-PLANE-VERIFIED`
+`ARCH-2026-H1.4.9-Q1-BUILDING-CONTRACT-ACTIVE`
 
 Immediate sequence:
 
