@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-RECON-SCHEMA-PROMOTION-2026-001  
 **Status:** CANONICAL PROCEDURE / ACTIVE  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Database Engineering  
 **Branch:** `platform-architecture-2026`  
@@ -147,9 +147,7 @@ Migration work requires a separate authorized task and must use an expand/contra
 
 Production must never be reset, dropped, truncated, blindly recreated, or destructively renamed as part of reconciliation.
 
-Prisma's official documentation confirms that introspection is intended to reflect an existing relational database into a Prisma data model and that baseline migration is the appropriate concept when adopting migration history around an existing database whose data must be preserved. citeturn0search0turn0search1
-
-Prisma also documents `migrate diff` as a mechanism for comparing arbitrary schema sources and emphasizes that migration history and actual database state must be reconciled rather than assumed identical. citeturn0search7turn0search4
+**External engineering evidence:** Prisma's official documentation describes introspection as a mechanism for reflecting an existing relational database into a Prisma data model, and documents baselining when adopting migration history around an existing database whose data must be preserved. Prisma also documents `migrate diff` for comparing schema sources and emphasizes reconciliation between migration history and actual database state. These sources inform this procedure but do not override ASAS authority.
 
 ## 6. ASAS-specific promotion gate
 
