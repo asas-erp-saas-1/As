@@ -1,7 +1,7 @@
 # ASAS — Codex Control-Plane Verification
 
 **Artifact ID:** ASAS-AUDIT-CODEX-CONTROL-PLANE-2026-001  
-**Status:** PARTIAL / CI EXECUTION PENDING / RUNTIME VERIFICATION PENDING  
+**Status:** REPOSITORY-VERIFIED / RUNTIME VERIFICATION PENDING  
 **Date:** 2026-09-23  
 **Repository:** `asas-erp-saas-1/As`  
 **Branch:** `platform-architecture-2026`  
@@ -14,9 +14,9 @@ This artifact verifies repository structure and governance. It does **not** clai
 
 ## 2. Repository identity
 
-- Repository: `asas-erp-saas-1/As` — **RUNTIME/REPOSITORY VERIFIED**
+- Repository: `asas-erp-saas-1/As` — **REPOSITORY VERIFIED**
 - Branch: `platform-architecture-2026` — **REPOSITORY VERIFIED**
-- Latest observed branch HEAD: `7678206091014144369ff2ac9beb64d057c11e03`
+- Latest observed branch HEAD at this verification: `6a57c46a1f326cc7f3d023911724b36683b7fdb3`
 
 ## 3. Codex entrypoint
 
@@ -66,19 +66,36 @@ Each registered skill has a matching `.agents/skills/<name>/SKILL.md` manifest w
 
 ### First execution result
 
-Workflow run `35837534604` on commit `58f6cd464fe5e7a4c8048c0e606186120415f49b` failed at `Verify Codex entrypoint and routing` after the required-file and nine-skill checks had already passed.
+Workflow run `35837534604` failed at `Verify Codex entrypoint and routing` after the required-file and nine-skill checks had passed.
 
-Root cause: the first routing assertion searched for a filename string inside the Codex entrypoint rather than validating its actual header/content.
+Root cause: the first routing assertion was too brittle and did not match the actual entrypoint content reliably.
 
-Corrective action: the assertion was changed to validate the entrypoint heading and explicit references to the current skills catalog and the new Codex-first context/roadmap amendments.
+### Corrective execution
 
-The corrected workflow is now at commit `7678206091014144369ff2ac9beb64d057c11e03`. No workflow result exists yet for that commit.
+The routing assertion was hardened to use explicit file/needle pairs and fixed-string matching, with diagnostic output on failure.
 
-**Status:** PARTIAL / CORRECTIVE CHANGE APPLIED / CI RETEST PENDING
+The corrected workflow was committed in `2686e117d70a0aafcb9f03b4d15325c3fbdd36ee`, which exposed a second genuine content omission: `CODEX-START-HERE.md` did not explicitly load the skills catalog even though `AGENTS.md` routed it.
+
+The entrypoint was then corrected to version `1.0.2`, explicitly loading and referencing:
+
+`docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
+
+### Verified execution
+
+Workflow run `35879311233` on head commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` completed with **SUCCESS**.
+
+This execution verified:
+
+- all required foundation files;
+- all nine skill manifests;
+- Codex entrypoint heading and routing references;
+- the corrected CI logic itself.
+
+**Status:** TEST-VERIFIED / REPOSITORY-VERIFIED
 
 ## 6. Canonical artifact routing
 
-`docs/governance/CANONICAL-ARTIFACT-REGISTER.md` now identifies `CODEX-START-HERE.md` and the Codex Skills Catalog as required Codex control-plane resources.
+`docs/governance/CANONICAL-ARTIFACT-REGISTER.md` identifies `CODEX-START-HERE.md` and the Codex Skills Catalog as required Codex control-plane resources.
 
 Retained Claude artifacts are classified as specialized design-collaboration resources or historical/provenance material. They do not authorize application/database implementation.
 
@@ -90,38 +107,35 @@ Retained Claude artifacts are classified as specialized design-collaboration res
 
 **Status:** CLOSED at repository governance level.
 
-Evidence:
-
-- `AGENTS.md`
-- `docs/handoff/CODEX-START-HERE.md`
-- `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
-- canonical artifact register
-
 ### Q0-F02 — Foundation CI was still Claude-oriented
 
 **Status:** CORRECTED.
 
-The foundation workflow previously required Claude implementation handoff artifacts even though Codex is now the primary engineering executor. The workflow was updated to require the Codex entrypoint, agent operating model, architecture control plane and skill manifests instead.
-
-Historical/specialized Claude artifacts were not deleted.
-
 ### Q0-F03 — CI routing assertion defect
 
-**Status:** CORRECTED / RETEST PENDING.
+**Status:** CLOSED.
 
-The first Codex-first workflow run exposed a test defect in the newly added routing assertion. This was a CI defect, not evidence that the Codex control plane itself was invalid.
+The initial assertion defect was detected by execution, corrected, re-executed, and passed.
 
-### Q0-F04 — Runtime Codex skill discovery
+### Q0-F04 — Explicit skills-catalog loading
+
+**Status:** CLOSED at repository routing level.
+
+The entrypoint now explicitly loads and references the canonical skills catalog.
+
+### Q0-F05 — Runtime Codex skill discovery
 
 **Status:** NOT_EXECUTED.
 
-Repository files prove that skills are present and CI can validate their manifests. They do not prove that a live Codex session actually discovered, loaded and executed a skill. This requires Codex-side execution evidence.
+Repository files and CI prove that skills are present and machine-validated. They do not prove that a live Codex session actually discovered, loaded and executed a skill. This remains a separate runtime-evidence item.
 
 ## 8. Closure boundary
 
-Q0 is **repository-control-plane converged but not fully evidence-closed**.
+The **repository control-plane gate is VERIFIED**.
 
-Q1 may be prepared architecturally, but the Q0 gate should not be described as fully VERIFIED until the corrected CI workflow executes successfully and, separately, Codex-side skill discovery is evidenced.
+The **Codex runtime execution gate remains NOT_EXECUTED** because no live Codex session evidence is available through this verification surface.
+
+This distinction is intentional and must remain visible.
 
 ## 9. Exact next dependency
 
