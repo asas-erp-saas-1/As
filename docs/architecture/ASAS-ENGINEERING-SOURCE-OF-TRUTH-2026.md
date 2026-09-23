@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.0  
+**Version:** 1.5.1  
 **Effective date:** 2026-09-23  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
@@ -190,7 +190,7 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 ## 16 — Current gates
 
 - G0 repository identity/checkpoint — GREEN
-- G1 authority/control-plane — AMBER / skill routing added; final verification pending
+- G1 authority/control-plane — AMBER / repository-side Codex skill routing verified; live Codex execution evidence pending
 - G2 domain/module authority — AMBER / Scheduling open
 - G3 aggregate/invariant contracts — AMBER
 - G4 executable invariants — AMBER / implementation absent
@@ -200,10 +200,10 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 - G8 tenancy/RLS — BLOCKED
 - G9 security evidence — AMBER
 - G10 live DB/schema — BLOCKED
-- G11 CI — AMBER
+- G11 CI — AMBER / workflow corrected; execution evidence pending
 - G12 observability/recovery — BLOCKED
 - G13 backup/restore evidence — BLOCKED
-- G14 AI tooling evidence — AMBER / skill discovery evidence pending
+- G14 AI tooling evidence — AMBER / repository skills verified; live Codex discovery not executed
 - G15 implementation authorization — BLOCKED
 
 ## 17 — Current roadmap
@@ -212,21 +212,20 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 
 ## 18 — Current checkpoint
 
-`ARCH-2026-H1.4.6-CODEX-SKILLS-SYSTEM`
+`ARCH-2026-H1.4.7-Q0-CONTROL-PLANE-VERIFIED`
 
 Immediate sequence:
 
-1. verify skill discovery and control-plane metadata;
-2. reconcile Building;
-3. close Offer;
-4. close Payment/Receipt/Allocation/Ledger;
-5. resolve Scheduling by explicit ADR;
-6. define query/read models;
-7. reconcile permissions/events;
-8. derive implementation task packets;
-9. promote executable schema locally;
-10. enforce architecture CI;
-11. authorize first bounded vertical slice only after applicable gates are GREEN.
+1. complete Q1 Building semantic/persistence reconciliation;
+2. close Offer;
+3. close Payment/Receipt/Allocation/Ledger;
+4. resolve Scheduling by explicit ADR;
+5. define query/read models;
+6. reconcile permissions/events;
+7. derive implementation task packets;
+8. promote executable schema locally;
+9. enforce architecture CI;
+10. authorize first bounded vertical slice only after applicable gates are GREEN.
 
 ## 19 — Branch provenance rule
 
