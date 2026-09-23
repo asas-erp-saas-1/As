@@ -2,15 +2,15 @@
 
 **Artifact ID:** ASAS-RECON-BUILDING-SCHEMA-2026-001  
 **Status:** OPEN / IMPLEMENTATION BLOCKED  
-**Version:** 1.0.0  
-**Effective date:** 2026-09-23  
+**Version:** 1.1.0  
+**Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Domain Engineering  
 **Branch:** `platform-architecture-2026`  
 **Authority:** Reconciliation evidence only. This artifact does not authorize schema, migration, API, permission, event, or production changes.
 
 ## 1. Purpose
 
-Reconcile the `Building` concept across the current ASAS control plane, the supplied ASAS Blueprint v1.6.1 source package, and the current aggregate/invariant register without promoting historical source material into implementation authority.
+Reconcile the `Building` concept across the current ASAS control plane, the supplied ASAS Blueprint v1.6.1 source package, the repository schema contract index, and the current aggregate/invariant register without promoting historical source material into implementation authority.
 
 The governing rule is:
 
@@ -84,7 +84,29 @@ as the governed construction state-machine target. Building may be a constructio
 
 No Building construction state machine is authorized by this reconciliation.
 
-## 7. Persistence reconciliation protocol
+## 7. Repository schema evidence
+
+The current branch contains `schema/asas-contracts.index.json` but does **not** contain an executable `schema/asas-contracts.prisma` file at the indexed repository path.
+
+The schema index explicitly classifies itself as:
+
+`DERIVATION-CONTROLLED / RECONCILIATION REQUIRED`
+
+and records:
+
+- historical declaration: 59 models / 16 enums / 15 indexes;
+- verified source observation: 59 models / 17 enums / 56 indexes;
+- status: `OBSERVED / NOT YET PROMOTED AS EXECUTABLE CONTRACT`;
+- role: version-neutral target contract index, not live database schema and not a migration;
+- promotion gate: do not create `schema/asas-contracts.prisma` until source text is completely extracted, validated for internal consistency, and the 59/17/56 observation is reconciled with the historical 59/16/15 declaration.
+
+This is direct repository evidence that the current engineering process intentionally has **not** promoted the schema source into an executable Prisma contract.
+
+It also means that the absence of a `Building` model from an executable Prisma schema cannot currently be interpreted as proof that a final target schema has deliberately rejected Building. The executable target schema itself is not yet promoted.
+
+**Classification:** CURRENT REPOSITORY CONTROL-PLANE EVIDENCE.
+
+## 8. Persistence reconciliation protocol
 
 Before any Building persistence change is authorized:
 
@@ -96,10 +118,12 @@ Before any Building persistence change is authorized:
 6. obtain verified live database identity when access is authorized;
 7. introspect live schema without destructive operations;
 8. classify drift as intentional, legacy, missing, dangerous, or undocumented;
-9. make the DDD/persistence decision through the canonical contract/ADR path;
-10. only then prepare an expand/contract migration if persistence is required.
+9. fully reconcile the 59/17/56 schema observation against the historical 59/16/15 declaration;
+10. extract and validate the complete target schema source before promoting any executable Prisma contract;
+11. make the DDD/persistence decision through the canonical contract/ADR path;
+12. only then prepare an expand/contract migration if persistence is required.
 
-## 8. Current decision
+## 9. Current decision
 
 **No Building table/model/migration is authorized by this artifact.**
 
@@ -111,11 +135,36 @@ The correct current engineering state is:
 
 `AGGREGATE CLASSIFICATION = OPEN`
 
+`EXECUTABLE TARGET SCHEMA = NOT PROMOTED`
+
 `LIVE DATABASE = BLOCKED / UNVERIFIED`
 
-## 9. Closure requirements
+## 10. Newly confirmed engineering finding
 
-This artifact can move from `OPEN` only when the Building contract closes the DDD boundary questions and the repository/runtime schema is reconciled. Closure requires objective evidence and must be reflected in the canonical checkpoint.
+The persistence problem is broader than `Building` alone.
+
+The repository deliberately has a **schema-contract promotion gate** before an executable Prisma contract may exist. Therefore the next engineering dependency is not "create Building model". It is:
+
+`schema source extraction → 59/17/56 reconciliation → relation/ownership/invariant validation → target-schema promotion decision`
+
+Building must be reconciled inside that process, not independently inserted into a schema.
+
+This prevents a local Building decision from silently creating a target schema that conflicts with the broader ASAS domain model.
+
+## 11. Closure requirements
+
+This artifact can move from `OPEN` only when:
+
+1. the Building contract closes the DDD boundary questions;
+2. Project → Building → Floor → Unit semantics and cardinalities are explicitly reconciled;
+3. durable identity/uniqueness is established;
+4. tenant ownership/inheritance is established;
+5. repository persistence representation is fully inspected;
+6. the target schema promotion gate is satisfied;
+7. live database identity/schema is verified when runtime access is authorized;
+8. any required ADR and implementation authorization exist;
+9. objective verification evidence is captured; and
+10. the canonical checkpoint is updated.
 
 ### Non-negotiable prohibition
 
