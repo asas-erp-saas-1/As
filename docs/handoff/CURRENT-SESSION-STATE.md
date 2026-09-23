@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 2.9  
+**Version:** 3.0  
 **Date:** 2026-09-23  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST AGENT TOPOLOGY + MODULAR SKILL SYSTEM → H1.4 BUILDING PROVENANCE RECONCILIATION`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST AGENT TOPOLOGY + Q0 CONTROL-PLANE CONVERGENCE → Q1 BUILDING CONTRACT`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.4.6-CODEX-SKILLS-SYSTEM`
+`ARCH-2026-H1.4.7-Q0-CONTROL-PLANE-VERIFIED`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
@@ -21,21 +21,21 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Role | Artifact | Current version/state |
 |---|---|---|
 | Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + A002 + Skills A001 |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + A003 + Skills A004 |
-| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + A002 + Skills A003 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + amendments |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + amendments |
+| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + amendments |
 | AI agent operating model | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | CANONICAL v1.0.0 |
 | Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
-| Repository skills | `.agents/skills/` | 9 skills / active |
-| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL v1.4.0 |
+| Repository skills | `.agents/skills/` | 9 skills / repository-verified |
+| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL v1.5.1 |
 | Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
-| Building provenance evidence | `docs/architecture/ASAS-BUILDING-SCHEMA-PROVENANCE-RECONCILIATION-2026.md` | EVIDENCE / OPEN |
+| Codex control-plane audit | `docs/audit/ASAS-CODEX-CONTROL-PLANE-VERIFICATION-2026-09-23.md` | PARTIAL / runtime execution pending |
 | Current checkpoint | this file | sole active checkpoint |
 
 ## 4. Agent capability system
 
-ASAS now has a repository-local modular Codex skill system under `.agents/skills/`. The catalog is the routing resource; individual `SKILL.md` files are task-specific procedures.
+ASAS has a repository-local modular Codex skill system under `.agents/skills/`. The catalog is the routing resource; individual `SKILL.md` files are task-specific procedures.
 
 Registered skills:
 
@@ -51,11 +51,34 @@ Registered skills:
 
 The skills are procedural and cannot override canonical architecture, ADRs, contracts, founder decisions or task authorization.
 
-## 5. Source discipline
+## 5. Q0 verification result
+
+Repository-side Codex control-plane convergence is **VERIFIED at the repository-structure/governance level**:
+
+- repository identity verified;
+- target branch verified;
+- `AGENTS.md` declares Codex as primary engineering executor;
+- `CODEX-START-HERE.md` exists;
+- skills catalog exists;
+- all nine registered skill manifests exist with matching names/descriptions;
+- canonical artifact register routes Codex correctly;
+- foundation CI now validates the Codex entrypoint and skill manifests;
+- stale Claude-oriented foundation requirements were removed from the CI contract without deleting retained Claude/Figma design artifacts.
+
+What is **NOT** verified:
+
+- a live Codex session actually discovering/loading/executing the skills;
+- successful execution of the updated CI workflow on the current HEAD;
+- runtime database/project identity;
+- implementation authorization.
+
+These remain explicitly `NOT_EXECUTED` or `BLOCKED`.
+
+## 6. Source discipline
 
 The source package/Blueprint v1.6.1 is a research/provenance source for the lead architect. It is not implementation authority for Claude Code or Codex. Repository artifacts are derived shadows unless explicitly promoted. Runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering technique but does not override ASAS authority.
 
-## 6. Important reconciliations
+## 7. Important reconciliations
 
 ### Contexts / modules
 
@@ -86,7 +109,7 @@ Building is supported as a real-estate hierarchy concept. Historical schema evid
 
 `PARTIALLY CLOSED / EXECUTABLE CONTRACT OPEN`.
 
-## 7. Agent topology
+## 8. Agent topology
 
 ```text
 Founder / Product Authority
@@ -100,7 +123,7 @@ Founder / Product Authority
 
 Claude remains the specialized design/visual collaborator, primarily through Figma and design-system workflows. Codex is the primary engineering executor.
 
-## 8. Current blockers
+## 9. Current blockers
 
 - canonical live DB/project identity not verified;
 - executable schema promotion incomplete;
@@ -110,14 +133,14 @@ Claude remains the specialized design/visual collaborator, primarily through Fig
 - Scheduling ownership unresolved;
 - runtime security/RLS evidence absent;
 - implementation authorization absent;
-- architecture CI requires final control-plane verification;
+- architecture CI execution evidence pending;
 - design acceptance pipeline is defined but not yet evidenced against a production-quality screen;
-- skill workflows are structurally created but require Codex discovery/execution verification.
+- live Codex skill discovery/execution evidence pending.
 
-## 9. Gate state
+## 10. Gate state
 
 `G0 GREEN` — repository identity/checkpoint  
-`G1 AMBER` — control-plane/skill routing convergence  
+`G1 GREEN (repository)` — control-plane/skill routing converged; runtime Codex execution evidence pending  
 `G2 AMBER` — domain grouping/Scheduling open  
 `G3 AMBER` — aggregate/invariant contracts active  
 `G4 AMBER` — executable invariants absent  
@@ -127,19 +150,15 @@ Claude remains the specialized design/visual collaborator, primarily through Fig
 `G8 BLOCKED` — live tenancy/RLS evidence absent  
 `G9 AMBER` — security doctrine exists, executable evidence absent  
 `G10 BLOCKED` — live DB identity/executable schema absent  
-`G11 AMBER` — CI/control-plane verification required  
+`G11 AMBER` — CI contract corrected; execution evidence pending  
 `G12 BLOCKED` — observability/recovery evidence absent  
 `G13 BLOCKED` — restore evidence absent  
-`G14 AMBER` — AI safety/agent tooling defined; execution evidence pending  
+`G14 AMBER` — AI safety/agent tooling defined; runtime skill execution evidence pending  
 `G15 BLOCKED` — implementation authorization absent
 
-## 10. Next execution queue
+## 11. Next execution queue
 
-### Q0 — Verify control plane and skill discovery
-
-Verify the latest routing artifacts, `.agents/skills/` manifests, AGENTS routing and current HEAD. Do not claim skill discovery works until Codex-side evidence exists.
-
-### Q1 — Building
+### Q1 — Building contract
 
 Reconcile historical schema evidence with current schema contract and, once runtime identity is verified, live database reality. Close entity/aggregate/relationship semantics without inventing persistence.
 
@@ -179,7 +198,7 @@ Machine-check control plane, contracts, agent routing and design-contract refere
 
 Authorize only after applicable gates are GREEN. Codex is the default implementation executor.
 
-## 11. Continuation rule
+## 12. Continuation rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
