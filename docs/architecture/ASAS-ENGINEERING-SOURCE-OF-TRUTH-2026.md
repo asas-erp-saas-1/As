@@ -2,8 +2,8 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.4.0  
-**Effective date:** 2026-09-22  
+**Version:** 1.5.0  
+**Effective date:** 2026-09-23  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
 **Role:** Single consolidation and routing resource for architecture engineering
@@ -29,11 +29,14 @@
 
 | Role | Canonical resource | Current state |
 |---|---|---|
-| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.0 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.0 |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.0 |
-| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.0 |
-| Consolidated engineering truth | this file | CANONICAL CONTROL v1.4.0 |
+| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + skills amendment |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + skills amendment |
+| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + skills amendment |
+| AI agent operating model | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | CANONICAL v1.0.0 |
+| Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
+| Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
+| Repository skills | `.agents/skills/` | 9 registered skills |
 | Current checkpoint | `docs/handoff/CURRENT-SESSION-STATE.md` | sole active checkpoint |
 | Artifact authority | `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` | governance register |
 | Founder decisions | `docs/governance/FOUNDER-DECISIONS.md` | decision boundary |
@@ -41,7 +44,23 @@
 
 Historical Blueprint Amendment 001 remains provenance and is not an active competing blueprint.
 
-## 3 — Repository identity
+## 3 — Agent execution model
+
+```text
+Founder / Product Authority
+→ Lead Architecture / Control Plane
+→ Canonical decision + authorized task
+→ Skill selection
+→ Codex implementation
+→ Independent verification
+→ Evidence / gate
+```
+
+Claude is the specialized design/visual collaboration agent, primarily for Figma/UX/design-system work. It is not the default repository/database implementation writer.
+
+Skills are procedural and cannot override architecture authority.
+
+## 4 — Repository identity
 
 Canonical repository: `asas-erp-saas-1/As`  
 Architecture branch: `platform-architecture-2026`  
@@ -49,7 +68,7 @@ Current branch HEAD is maintained in the session checkpoint.
 
 Historical branches are provenance. Branch deletion is not implied by reconciliation.
 
-## 4 — Structural source observations
+## 5 — Structural source observations
 
 Current source-package observations recorded by the repository include:
 
@@ -68,10 +87,9 @@ Current source-package observations recorded by the repository include:
 
 These are observations, not quotas and not runtime proof.
 
-## 5 — Architecture authority
+## 6 — Architecture authority
 
 Current target contexts:
-
 `Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
 
 The historical 15-module proposal is implementation evidence, not a competing bounded-context architecture.
@@ -79,45 +97,29 @@ The historical 15-module proposal is implementation evidence, not a competing bo
 `C2-001 = OPEN ARCHITECTURAL REFINEMENT`
 
 Scheduling remains unresolved:
-
-`C2-002 = FOUNDER-DECISION-REQUIRED`
-
-Historical ADR-0018 and current architecture material conflict on Scheduling ownership. No silent reassignment is permitted.
-
-## 6 — Domain distinctions
-
-Never collapse:
-
-`Bounded Context ≠ Module ≠ Aggregate ≠ Entity ≠ Value Object ≠ Database Schema ≠ Read Model ≠ Worker ≠ Event Consumer ≠ Platform Capability`
+`C2-002 = FOUNDER-DECISION-REQUIRED`.
 
 ## 7 — Current contract state
 
 ### Unit / Reservation
 `PARTIALLY CLOSED / IMPLEMENTATION UNVERIFIED`
 
-The business invariant and historical ADR-0017 reservation protocol are reconciled; executable database enforcement and race evidence remain open.
-
 ### Building
 `OPEN / IMPLEMENTATION BLOCKED`
 
-Hierarchy is supported, but aggregate/entity classification, relationship semantics, structural mutation, archival and executable schema representation require reconciliation. Historical schema evidence containing a Building model is evidence, not automatic current schema authority.
+Historical schema evidence containing a Building model is evidence, not automatic current schema authority.
 
 ### Offer
 `PARTIAL / IMPLEMENTATION BLOCKED`
-
-Offer is a supported commercial concept. Pricing authority, Offer/Reservation separation and approval concepts are supported; command/state/permission/event/idempotency/concurrency closure remains incomplete.
 
 ### Finance
 `PARTIALLY CLOSED / EXECUTABLE FINANCE CONTRACT OPEN`
 
 Current source semantics support:
-
-`Contract → PaymentPlan / schedule items → Receipt → ReceiptAllocation → Finance/Ledger where authorized`
-
-Do not invent a standalone Payment aggregate solely from terminology.
+`Contract → PaymentPlan / schedule items → Receipt → ReceiptAllocation → Finance/Ledger where authorized`.
 
 ### Scheduling
-`FOUNDER-DECISION-REQUIRED`
+`FOUNDER-DECISION-REQUIRED`.
 
 ## 8 — Core invariants
 
@@ -152,34 +154,32 @@ The registered 103-event / 11-group count is source observation. Each implemente
 ## 11 — Permission / tenancy
 
 Target hierarchy:
-
-`Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`
+`Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`.
 
 Deny-by-default, server-side authorization and tenant-aware data access are mandatory. RLS is defense-in-depth, not the only authorization layer.
 
 ## 12 — Database truth
 
 Separate:
-
-`Target Domain Model ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`
+`Target Domain Model ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`.
 
 Required reconciliation:
-
-`Introspect → Capture → Drift Inventory → Compare → ADR → Migration Plan → Backup Verification → Rehearsal → Forward-only Migration → Verification → Evidence`
+`Introspect → Capture → Drift Inventory → Compare → ADR → Migration Plan → Backup Verification → Rehearsal → Forward-only Migration → Verification → Evidence`.
 
 No destructive production shortcut.
 
 ## 13 — AI safety
 
-`Intent → Proposal → Tool Request → Policy → Caller Authorization → Domain/Application Service → Transaction → Audit → Event`
+`Intent → Proposal → Tool Request → Policy → Caller Authorization → Domain/Application Service → Transaction → Audit → Event`.
 
 AI is not direct database authority and cannot bypass domain authorization.
 
 ## 14 — Design
 
 Design precedes page implementation:
+`tokens → primitives → components → patterns → templates → surfaces`.
 
-`tokens → primitives → components → patterns → templates → surfaces`
+Figma MCP/Code Connect are optional design-to-code mechanisms; accepted design contracts, not Figma itself, authorize implementation.
 
 Arabic/RTL, French/English, accessibility, responsive behavior, mobile operations and failure states are engineering requirements.
 
@@ -190,7 +190,7 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 ## 16 — Current gates
 
 - G0 repository identity/checkpoint — GREEN
-- G1 authority/control-plane — AMBER / metadata convergence active
+- G1 authority/control-plane — AMBER / skill routing added; final verification pending
 - G2 domain/module authority — AMBER / Scheduling open
 - G3 aggregate/invariant contracts — AMBER
 - G4 executable invariants — AMBER / implementation absent
@@ -203,22 +203,20 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 - G11 CI — AMBER
 - G12 observability/recovery — BLOCKED
 - G13 backup/restore evidence — BLOCKED
-- G14 AI tooling evidence — AMBER
+- G14 AI tooling evidence — AMBER / skill discovery evidence pending
 - G15 implementation authorization — BLOCKED
 
 ## 17 — Current roadmap
 
-`H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`
-
-See the v2.0 roadmap for the executable route.
+`H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`.
 
 ## 18 — Current checkpoint
 
-`ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE`
+`ARCH-2026-H1.4.6-CODEX-SKILLS-SYSTEM`
 
 Immediate sequence:
 
-1. finish control-plane metadata convergence;
+1. verify skill discovery and control-plane metadata;
 2. reconcile Building;
 3. close Offer;
 4. close Payment/Receipt/Allocation/Ledger;
@@ -232,7 +230,7 @@ Immediate sequence:
 
 ## 19 — Branch provenance rule
 
-The architecture branch was built from the foundation reconstruction lineage. Historical command-contract and source-authority branches contain unique evidence and must remain provenance until reconciled. Branch existence alone never grants authority.
+The architecture branch was built from foundation reconstruction lineage. Historical command-contract and source-authority branches contain unique evidence and remain provenance until reconciled. Branch existence never grants authority.
 
 ## 20 — Hard stop
 
