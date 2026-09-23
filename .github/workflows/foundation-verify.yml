@@ -31,12 +31,13 @@ jobs:
             AGENTS.md
             docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
             docs/handoff/CURRENT-SESSION-STATE.md
-            docs/handoff/CLAUDE-START-HERE.md
-            docs/handoff/CLAUDE-CONTEXT-INDEX.md
-            docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
-            docs/handoff/CLAUDE-EXECUTION-CHECKLIST.md
-            docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
-            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+            docs/handoff/CODEX-START-HERE.md
+            docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md
+            docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md
+            docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md
+            docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md
+            docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md
+            docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md
             docs/governance/CANONICAL-ARTIFACT-REGISTER.md
             docs/governance/REPOSITORY-REALITY-MAP.md
             docs/governance/FOUNDER-DECISIONS.md
@@ -56,6 +57,42 @@ jobs:
           if [[ "$missing" -ne 0 ]]; then
             exit 1
           fi
+
+      - name: Verify Codex skill manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          skills=(
+            asas-engineering
+            asas-repository-forensics
+            asas-architecture-governance
+            asas-domain-contracts
+            asas-database-engineering
+            asas-security-ai-safety
+            asas-design-fidelity
+            asas-testing-verification
+            asas-observability-reliability
+          )
+          for skill in "${skills[@]}"; do
+            path=".agents/skills/$skill/SKILL.md"
+            test -f "$path" || { echo "MISSING SKILL: $path"; exit 1; }
+            grep -q "^name: $skill$" "$path" || { echo "INVALID SKILL NAME: $path"; exit 1; }
+            grep -q '^description:' "$path" || { echo "MISSING SKILL DESCRIPTION: $path"; exit 1; }
+            echo "VALID SKILL: $skill"
+          done
+          test "$(find .agents/skills -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l | tr -d ' ')" -eq "${#skills[@]}"
+          echo "Codex skill manifest inventory is structurally verified."
+
+      - name: Verify Codex entrypoint and routing
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Codex is the primary ASAS engineering executor' AGENTS.md
+          grep -q '.agents/skills/' AGENTS.md
+          grep -q 'docs/handoff/CODEX-START-HERE.md' AGENTS.md || true
+          grep -q 'CODEX-START-HERE.md' docs/handoff/CODEX-START-HERE.md
+          grep -q 'ASAS-CODEX-SKILLS-CATALOG-2026.md' docs/handoff/CODEX-START-HERE.md
+          echo 'Codex entrypoint and routing references are present.'
 
       - name: Reject wrong-project references in executable/configuration surfaces
         shell: bash
