@@ -1,22 +1,30 @@
 # ASAS — CURRENT SESSION STATE
 
-**Status:** CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.1  
+**Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
+**Version:** 3.2  
 **Date:** 2026-09-23  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST AGENT TOPOLOGY + Q0 CONTROL-PLANE CONVERGENCE → Q1 BUILDING CONTRACT`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING CONTRACT CLOSURE`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.4.8-Q0-CI-RETEST-PENDING`
+`ARCH-2026-H1.4.9-Q1-BUILDING-CONTRACT-ACTIVE`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
-## 3. Canonical control plane
+## 3. Current branch evidence
+
+- Branch: `platform-architecture-2026`
+- Latest observed branch HEAD: `fa62aa87351e6e87f4f7e4c5ac6dcfde4e395b94`
+- Repository: `asas-erp-saas-1/As`
+- Foundation CI verified successfully at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
+- The latest Q1 contract commit is expected to trigger the same foundation workflow; its result must be checked before claiming that latest HEAD is CI-verified.
+
+## 4. Canonical control plane
 
 | Role | Artifact | Current version/state |
 |---|---|---|
@@ -29,61 +37,35 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
 | Repository skills | `.agents/skills/` | 9 skills / repository-verified |
 | Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL v1.5.1 |
-| Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
-| Codex control-plane audit | `docs/audit/ASAS-CODEX-CONTROL-PLANE-VERIFICATION-2026-09-23.md` | PARTIAL / CI retest + runtime execution pending |
+| Building contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
+| Building reconciliation | `ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
+| Codex control-plane audit | `docs/audit/ASAS-CODEX-CONTROL-PLANE-VERIFICATION-2026-09-23.md` | REPOSITORY-VERIFIED / runtime pending |
 | Current checkpoint | this file | sole active checkpoint |
 
-## 4. Agent capability system
+## 5. Q0 result
 
-ASAS has a repository-local modular Codex skill system under `.agents/skills/`. The catalog is the routing resource; individual `SKILL.md` files are task-specific procedures.
+### Repository control plane
 
-Registered skills:
+`VERIFIED`
 
-1. `asas-engineering`
-2. `asas-repository-forensics`
-3. `asas-architecture-governance`
-4. `asas-domain-contracts`
-5. `asas-database-engineering`
-6. `asas-security-ai-safety`
-7. `asas-design-fidelity`
-8. `asas-testing-verification`
-9. `asas-observability-reliability`
+Evidence:
 
-The skills are procedural and cannot override canonical architecture, ADRs, contracts, founder decisions or task authorization.
-
-## 5. Q0 verification result
-
-Repository-side Codex control-plane convergence is **STRUCTURALLY VERIFIED**, but Q0 is not yet fully evidence-closed because the first CI execution exposed and then received a corrective change.
-
-Verified:
-
-- repository identity;
-- target branch;
+- repository identity and branch verified;
 - `AGENTS.md` declares Codex as primary engineering executor;
-- `CODEX-START-HERE.md` exists and routes current amendments;
-- skills catalog exists;
-- all nine registered skill manifests exist with matching names/descriptions;
-- canonical artifact register routes Codex correctly;
-- foundation CI validates the Codex entrypoint and skill manifests;
-- the first CI run passed required-file and all-nine-skill checks.
+- Codex entrypoint exists and explicitly loads the skills catalog and current amendments;
+- all nine registered skill manifests exist and pass structural checks;
+- foundation CI successfully executed at run `35879311233`;
+- all repository-contract workflow steps passed, including entrypoint routing, skill manifests, wrong-project checks, JSON validation, checkpoint references, promoted-shadow inventory and foundation status vocabulary.
 
-Correction:
+### Runtime Codex skill execution
 
-- the first CI run failed in the Codex routing assertion because the assertion searched for a filename inside the entrypoint instead of validating the actual heading/content;
-- the assertion has been corrected.
+`NOT_EXECUTED`
 
-Pending evidence:
+The repository-side evidence does not prove that a separate live Codex runtime loaded and executed the skills. No such runtime evidence is available through the current verification surface.
 
-- successful CI execution for the corrected workflow at current HEAD;
-- a live Codex session actually discovering/loading/executing the skills;
-- runtime database/project identity;
-- implementation authorization.
+This does not block architectural contract preparation, but it blocks any claim that runtime agent execution has been proven.
 
-## 6. Source discipline
-
-The source package/Blueprint v1.6.1 is a research/provenance source for the lead architect. It is not implementation authority for Claude Code or Codex. Repository artifacts are derived shadows unless explicitly promoted. Runtime/database facts require runtime evidence. Architecture defines desired future behavior. External research validates engineering technique but does not override ASAS authority.
-
-## 7. Important reconciliations
+## 6. Important reconciliations
 
 ### Contexts / modules
 
@@ -102,9 +84,9 @@ Historical ADR-0018 and current architecture materials conflict on Scheduling ow
 
 ### Building
 
-`OPEN / IMPLEMENTATION BLOCKED`.
+`Q1 ACTIVE / IMPLEMENTATION BLOCKED`.
 
-Building is supported as a real-estate hierarchy concept. Historical schema evidence confirms prior existence of a Building model with Project and Apartment/Unit relationships, but current executable/live representation remains unresolved.
+Building is supported as a first-class real-estate hierarchy concept by current product truth and the Master Execution Path. Its aggregate classification, relationship cardinality, identity/uniqueness semantics, tenant ownership, lifecycle semantics and current persistence representation remain open.
 
 ### Offer
 
@@ -114,102 +96,84 @@ Building is supported as a real-estate hierarchy concept. Historical schema evid
 
 `PARTIALLY CLOSED / EXECUTABLE CONTRACT OPEN`.
 
-## 8. Agent topology
+## 7. Q1 Building contract
 
-```text
-Founder / Product Authority
-→ Lead Architecture / Control Plane
-→ Canonical decision + authorized task
-→ Skill selection
-→ Codex implementation
-→ Independent verification
-→ Evidence / gate
-```
+Canonical working artifact:
 
-Claude remains the specialized design/visual collaborator, primarily through Figma and design-system workflows. Codex is the primary engineering executor.
+`docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md`
 
-## 9. Current blockers
+Current contract conclusion:
 
-- corrected foundation CI has not yet produced a successful run;
-- canonical live DB/project identity not verified;
-- executable schema promotion incomplete;
-- full implementation task packets not yet derived;
-- Offer closure incomplete;
-- Building ownership/structural semantics incomplete;
-- Scheduling ownership unresolved;
+`BUILDING = REAL-ESTATE STRUCTURAL DOMAIN CONCEPT`
+
+The contract intentionally does not authorize a table/model/migration.
+
+Current evidence establishes the domain concept but does not yet establish whether Building is an aggregate root, entity inside another aggregate, or structural reference entity.
+
+Construction scope must not be confused with the registered apartment construction state-machine aggregate.
+
+## 8. Current blockers
+
+- latest Q1 contract commit CI result pending;
+- authoritative Building home-chapter definition still needs extraction/reconciliation;
+- Building aggregate/entity/reference classification open;
+- relationship/cardinality semantics open;
+- natural identity/uniqueness open;
+- rename/move/archive semantics open;
+- tenant ownership semantics open;
+- current executable schema representation not verified;
+- live DB/project identity not verified;
 - runtime security/RLS evidence absent;
 - implementation authorization absent;
-- design acceptance pipeline is defined but not yet evidenced against a production-quality screen;
-- live Codex skill discovery/execution evidence pending.
+- live Codex skill discovery/execution evidence absent.
 
-## 10. Gate state
+## 9. Gate state
 
 `G0 GREEN` — repository identity/checkpoint  
-`G1 AMBER` — repository control-plane structurally converged; corrected CI execution pending; runtime Codex execution pending  
-`G2 AMBER` — domain grouping/Scheduling open  
-`G3 AMBER` — aggregate/invariant contracts active  
+`G1 GREEN (repository)` — Codex control-plane CI verified; runtime Codex execution remains NOT_EXECUTED  
+`G2 AMBER` — domain/module authority; Scheduling open  
+`G3 AMBER` — aggregate/invariant contracts active; Building open  
 `G4 AMBER` — executable invariants absent  
 `G5 AMBER` — runtime state-machine enforcement absent  
 `G6 BLOCKED` — runtime event implementation absent  
 `G7 BLOCKED` — implementation authorization absent  
 `G8 BLOCKED` — live tenancy/RLS evidence absent  
-`G9 AMBER` — security doctrine exists, executable evidence absent  
+`G9 AMBER` — security doctrine exists; executable evidence absent  
 `G10 BLOCKED` — live DB identity/executable schema absent  
-`G11 AMBER` — CI contract corrected; execution evidence pending  
+`G11 GREEN (verified run 35879311233)` — foundation CI verified at prior tested HEAD; latest commit pending retest  
 `G12 BLOCKED` — observability/recovery evidence absent  
 `G13 BLOCKED` — restore evidence absent  
-`G14 AMBER` — AI safety/agent tooling defined; runtime skill execution evidence pending  
+`G14 AMBER` — AI safety/agent tooling defined; live Codex discovery not executed  
 `G15 BLOCKED` — implementation authorization absent
 
-## 11. Next execution queue
+## 10. Q1 execution queue
 
-### Q0-R — CI retest and Codex runtime discovery
+1. Extract authoritative Building home-chapter evidence from the available ASAS source package/provenance.
+2. Reconcile that evidence with Product Truth and the current architecture baseline.
+3. Establish Building DDD classification without inferring from database shape.
+4. Establish Project → Building → Floor → Unit relationship semantics.
+5. Establish identity and uniqueness rules.
+6. Establish rename/move/archive semantics and their audit implications.
+7. Establish tenant ownership/inheritance semantics.
+8. Reconcile current repository persistence representation.
+9. Reconcile live persistence only after verified runtime identity is available.
+10. Map permissions/events/state implications.
+11. Define invariant and verification requirements.
+12. Promote the contract only when the closure criteria are evidenced.
 
-1. Confirm the corrected foundation workflow executes successfully on the latest branch HEAD.
-2. Run a bounded Codex session using `CODEX-START-HERE.md` and the master skill.
-3. Capture which skills are discovered/loaded and the exact verification evidence.
-4. Update the Q0 audit and checkpoint.
-5. Only then mark G1 fully VERIFIED.
+## 11. Non-authorizations
 
-### Q1 — Building contract
+Q1 does not authorize:
 
-After Q0 evidence is closed, reconcile historical schema evidence with current schema contract and, once runtime identity is verified, live database reality. Close entity/aggregate/relationship semantics without inventing persistence.
-
-### Q2 — Offer
-
-Close commands, states, permissions, approvals, events, idempotency and concurrency.
-
-### Q3 — Finance
-
-Close PaymentPlan/schedule → Receipt → Allocation → Ledger and commission semantics.
-
-### Q4 — Scheduling
-
-Founder decision / explicit ADR confirmation or supersession.
-
-### Q5 — Query/read models
-
-Close read ownership, consistency and tenant-safe projections.
-
-### Q6 — Permission/event reconciliation
-
-Map critical commands to canonical permission/event registers.
-
-### Q7 — Task packets
-
-Derive implementation-ready packets with explicit Codex skill selection and verification boundaries.
-
-### Q8 — Local executable schema
-
-Only after applicable contracts close.
-
-### Q9 — Architecture CI
-
-Machine-check control plane, contracts, agent routing and design-contract references.
-
-### Q10 — First vertical slice
-
-Authorize only after applicable gates are GREEN. Codex is the default implementation executor.
+- Prisma schema creation/change;
+- database table creation;
+- migrations;
+- destructive schema operations;
+- Building-specific permissions;
+- Building-specific events;
+- Building-specific state machine;
+- production changes;
+- autonomous financial/AI mutations.
 
 ## 12. Continuation rule
 
