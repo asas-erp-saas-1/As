@@ -2,8 +2,8 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.2  
-**Effective date:** 2026-09-23  
+**Version:** 1.5.3  
+**Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
 **Role:** Single consolidation and routing resource for architecture engineering
@@ -42,7 +42,8 @@
 | Founder decisions | `docs/governance/FOUNDER-DECISIONS.md` | decision boundary |
 | Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
 | Building domain contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
-| Building reconciliation | `ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
+| Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
+| Schema contract promotion | `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md` | CANONICAL PROCEDURE / ACTIVE v1.0.1 |
 
 Historical Blueprint Amendment 001 remains provenance and is not an active competing blueprint.
 
@@ -87,7 +88,7 @@ Current source-package observations recorded by the repository include:
 - 11 state machines;
 - 42 design primitives.
 
-These are observations, not quotas and not runtime proof.
+These are observations, not quotas and not runtime proof. The repository separately retains a historical declaration of 59 models / 16 enums / 15 indexes; this discrepancy is explicitly unresolved until complete source extraction and reconciliation.
 
 ## 6 — Architecture authority
 
@@ -174,6 +175,9 @@ Separate:
 Required reconciliation:
 `Introspect → Capture → Drift Inventory → Compare → ADR → Migration Plan → Backup Verification → Rehearsal → Forward-only Migration → Verification → Evidence`.
 
+The active procedure for promotion of an executable target schema is:
+`docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md`.
+
 No destructive production shortcut.
 
 ## 13 — AI safety
@@ -217,28 +221,3 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 ## 17 — Current roadmap
 
 `H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`.
-
-## 18 — Current checkpoint
-
-`ARCH-2026-H1.4.9-Q1-BUILDING-CONTRACT-ACTIVE`
-
-Immediate sequence:
-
-1. complete Q1 Building semantic/persistence reconciliation;
-2. close Offer;
-3. close Payment/Receipt/Allocation/Ledger;
-4. resolve Scheduling by explicit ADR;
-5. define query/read models;
-6. reconcile permissions/events;
-7. derive implementation task packets;
-8. promote executable schema locally;
-9. enforce architecture CI;
-10. authorize first bounded vertical slice only after applicable gates are GREEN.
-
-## 19 — Branch provenance rule
-
-The architecture branch was built from foundation reconstruction lineage. Historical command-contract and source-authority branches contain unique evidence and remain provenance until reconciled. Branch existence never grants authority.
-
-## 20 — Hard stop
-
-No application feature implementation, production schema mutation, destructive operation, production configuration change, or autonomous financial/AI mutation is authorized until the affected architecture gates are closed.
