@@ -89,7 +89,7 @@ jobs:
           set -euo pipefail
           grep -q 'Codex is the primary ASAS engineering executor' AGENTS.md
           grep -q '.agents/skills/' AGENTS.md
-          grep -q 'ASAS — CODEX START HERE' docs/handoff/CODEX-START-HERE.md
+          grep -q '^# ASAS — CODEX START HERE$' docs/handoff/CODEX-START-HERE.md
           grep -q 'ASAS-CODEX-SKILLS-CATALOG-2026.md' docs/handoff/CODEX-START-HERE.md
           grep -q 'ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026-AMENDMENT-004-CODEX-FIRST.md' docs/handoff/CODEX-START-HERE.md
           grep -q 'ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-003-CODEX-FIRST.md' docs/handoff/CODEX-START-HERE.md
