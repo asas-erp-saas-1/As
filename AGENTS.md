@@ -60,6 +60,35 @@ The design/code continuity contract is:
 
 `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md`
 
+The reusable Codex capability catalog is:
+
+`docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
+
+Repository-local Codex skills live under:
+
+`.agents/skills/`
+
+## Skill routing
+
+Select the smallest sufficient skill set for the task. Do not inject every skill into every context.
+
+Core skill:
+
+`.agents/skills/asas-engineering/SKILL.md`
+
+Specialized skills:
+
+- `.agents/skills/asas-repository-forensics/SKILL.md`
+- `.agents/skills/asas-architecture-governance/SKILL.md`
+- `.agents/skills/asas-domain-contracts/SKILL.md`
+- `.agents/skills/asas-database-engineering/SKILL.md`
+- `.agents/skills/asas-security-ai-safety/SKILL.md`
+- `.agents/skills/asas-design-fidelity/SKILL.md`
+- `.agents/skills/asas-testing-verification/SKILL.md`
+- `.agents/skills/asas-observability-reliability/SKILL.md`
+
+Skills are procedures, not authority. A skill cannot override the architecture, ADRs, contracts, founder decisions or task authorization.
+
 ## v1.6.1 source-package rule
 
 Use v1.6.1 to:
@@ -151,6 +180,7 @@ Locate task
 → reason / derive where necessary
 → record provenance
 → contract-first design
+→ select applicable skills
 → authorized implementation by Codex
 → fresh verification
 → adversarial review
