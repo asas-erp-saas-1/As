@@ -1,7 +1,7 @@
 # ASAS — CODEX START HERE
 
 **Status:** CANONICAL CODEX ENTRYPOINT  
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Branch:** `platform-architecture-2026`  
 **Repository:** `asas-erp-saas-1/As`
 
@@ -25,6 +25,9 @@ AGENTS.md
 → docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-003-CODEX-FIRST.md
 → docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
 → docs/handoff/ASAS-MASTER-EXECUTION-PATH-2026-AMENDMENT-002.md
+→ docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md
+→ .agents/skills/asas-engineering/SKILL.md
+→ applicable specialized skill manifests
 → applicable contract/register/ADR/task packet
 ```
 
@@ -39,6 +42,10 @@ Codex receives implementation authority only from an authorized task backed by c
 ## Skill routing
 
 Select the smallest sufficient repository-local skills for the authorized task. Start with `.agents/skills/asas-engineering/SKILL.md` and add only the specialized skills required by the dependency graph. Skills describe procedure; they do not grant authority.
+
+The catalog defines the available skill families and routing intent:
+
+`docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
 
 Repository-side skill manifests are validated by `.github/workflows/foundation-verify.yml`. A repository check does not prove live Codex skill execution; do not claim runtime discovery without evidence.
 
