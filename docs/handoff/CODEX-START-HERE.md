@@ -1,7 +1,7 @@
 # ASAS — CODEX START HERE
 
 **Status:** CANONICAL CODEX ENTRYPOINT  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Branch:** `platform-architecture-2026`  
 **Repository:** `asas-erp-saas-1/As`
 
@@ -17,10 +17,12 @@ AGENTS.md
 → docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md
 → docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md
 → docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026-AMENDMENT-003.md
+→ docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026-AMENDMENT-004-CODEX-FIRST.md
 → docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md
 → docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md
 → docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md
 → docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-002.md
+→ docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-003-CODEX-FIRST.md
 → docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
 → docs/handoff/ASAS-MASTER-EXECUTION-PATH-2026-AMENDMENT-002.md
 → applicable contract/register/ADR/task packet
@@ -33,6 +35,12 @@ v1.6.1 source package = research/provenance input for the lead architect only.
 It is not implementation authority.
 
 Codex receives implementation authority only from an authorized task backed by canonical architecture/contracts/registers/ADRs and the current checkpoint.
+
+## Skill routing
+
+Select the smallest sufficient repository-local skills for the authorized task. Start with `.agents/skills/asas-engineering/SKILL.md` and add only the specialized skills required by the dependency graph. Skills describe procedure; they do not grant authority.
+
+Repository-side skill manifests are validated by `.github/workflows/foundation-verify.yml`. A repository check does not prove live Codex skill execution; do not claim runtime discovery without evidence.
 
 ## Execution
 
