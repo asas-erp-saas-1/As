@@ -1,7 +1,7 @@
 # ASAS Canonical Artifact Register
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.3
+Version: 1.4
 Date: 2026-09-23
 
 ## Purpose
@@ -44,6 +44,13 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/governance/REPOSITORY-REALITY-MAP.md` | A5/A3-derived | YES for forensic state | Observed repository reality; never overrides contracts |
 | `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md` | A5 | YES for audit continuation | Evidence-backed forensic findings |
 | `docs/governance/FOUNDER-DECISIONS.md` | A1 decision boundary | WHEN BLOCKED | Escalation register; open items do not authorize implementation |
+
+### Domain contracts
+
+| Artifact | Authority | Current state | Rule |
+|---|---|---|---|
+| `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | A1 candidate / domain contract | PROPOSED / OPEN | Defines Building semantics without authorizing persistence |
+| `ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | A5/A6 evidence + reconciliation | OPEN / BLOCKED | Records Building schema ambiguity and required evidence |
 
 ### Specialized design collaboration
 
