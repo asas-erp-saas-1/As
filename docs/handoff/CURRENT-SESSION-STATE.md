@@ -1,28 +1,28 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.2  
+**Version:** 3.3  
 **Date:** 2026-09-23  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING CONTRACT CLOSURE`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → PERSISTENCE RECONCILIATION`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.4.9-Q1-BUILDING-CONTRACT-ACTIVE`
+`ARCH-2026-H1.5.0-Q1-BUILDING-DOMAIN-ANALYSIS`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
 ## 3. Current branch evidence
 
 - Branch: `platform-architecture-2026`
-- Latest observed branch HEAD: `fa62aa87351e6e87f4f7e4c5ac6dcfde4e395b94`
+- Latest observed branch HEAD: `177db96d2bb5bc1338d4e8337780a69f68b02a95`
 - Repository: `asas-erp-saas-1/As`
 - Foundation CI verified successfully at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
-- The latest Q1 contract commit is expected to trigger the same foundation workflow; its result must be checked before claiming that latest HEAD is CI-verified.
+- Later Q1 documentation commits must be independently checked by CI before latest HEAD is described as CI-verified.
 
 ## 4. Canonical control plane
 
@@ -36,8 +36,9 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
 | Repository skills | `.agents/skills/` | 9 skills / repository-verified |
-| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL v1.5.1 |
+| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed |
 | Building contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
+| Building domain analysis | `docs/architecture/reconciliation/ASAS-BUILDING-DOMAIN-DECISION-ANALYSIS-2026.md` | ANALYSIS COMPLETE / contract remains open |
 | Building reconciliation | `ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
 | Codex control-plane audit | `docs/audit/ASAS-CODEX-CONTROL-PLANE-VERIFICATION-2026-09-23.md` | REPOSITORY-VERIFIED / runtime pending |
 | Current checkpoint | this file | sole active checkpoint |
@@ -63,8 +64,6 @@ Evidence:
 
 The repository-side evidence does not prove that a separate live Codex runtime loaded and executed the skills. No such runtime evidence is available through the current verification surface.
 
-This does not block architectural contract preparation, but it blocks any claim that runtime agent execution has been proven.
-
 ## 6. Important reconciliations
 
 ### Contexts / modules
@@ -86,7 +85,21 @@ Historical ADR-0018 and current architecture materials conflict on Scheduling ow
 
 `Q1 ACTIVE / IMPLEMENTATION BLOCKED`.
 
-Building is supported as a first-class real-estate hierarchy concept by current product truth and the Master Execution Path. Its aggregate classification, relationship cardinality, identity/uniqueness semantics, tenant ownership, lifecycle semantics and current persistence representation remain open.
+Building is supported as a first-class real-estate hierarchy concept by current product truth, lifecycle mapping and architecture evidence.
+
+The new domain analysis concludes:
+
+- bounded-context ownership: Real Estate / Inventory — SUPPORTED;
+- initial implementation module: Real Estate / Inventory — SUPPORTED target direction;
+- Building: domain Entity candidate with durable identity — CANDIDATE;
+- independent Building aggregate root: NOT PROMOTED; no Building-specific consistency invariant currently evidenced — OPEN;
+- Unit remains the inventory/commercial consistency boundary — SUPPORTED;
+- Building may be a construction aggregation scope without becoming the construction state-machine aggregate — SUPPORTED;
+- tenant scope is mandatory but physical tenant-key representation remains OPEN;
+- natural identity/uniqueness remains OPEN.
+
+The detailed analysis is:
+`docs/architecture/reconciliation/ASAS-BUILDING-DOMAIN-DECISION-ANALYSIS-2026.md`
 
 ### Offer
 
@@ -108,20 +121,15 @@ Current contract conclusion:
 
 The contract intentionally does not authorize a table/model/migration.
 
-Current evidence establishes the domain concept but does not yet establish whether Building is an aggregate root, entity inside another aggregate, or structural reference entity.
-
-Construction scope must not be confused with the registered apartment construction state-machine aggregate.
-
 ## 8. Current blockers
 
-- latest Q1 contract commit CI result pending;
+- latest Q1 documentation HEAD is not yet CI-verified;
 - authoritative Building home-chapter definition still needs extraction/reconciliation;
-- Building aggregate/entity/reference classification open;
-- relationship/cardinality semantics open;
-- natural identity/uniqueness open;
-- rename/move/archive semantics open;
-- tenant ownership semantics open;
-- current executable schema representation not verified;
+- Project → Building cardinality requires explicit closure;
+- natural identity/uniqueness remains open;
+- rename/move/archive semantics remain open;
+- tenant ownership representation remains open;
+- current executable schema representation not fully reconciled;
 - live DB/project identity not verified;
 - runtime security/RLS evidence absent;
 - implementation authorization absent;
@@ -140,7 +148,7 @@ Construction scope must not be confused with the registered apartment constructi
 `G8 BLOCKED` — live tenancy/RLS evidence absent  
 `G9 AMBER` — security doctrine exists; executable evidence absent  
 `G10 BLOCKED` — live DB identity/executable schema absent  
-`G11 GREEN (verified run 35879311233)` — foundation CI verified at prior tested HEAD; latest commit pending retest  
+`G11 GREEN (verified run 35879311233)` — foundation CI verified at prior tested HEAD; latest HEAD pending retest  
 `G12 BLOCKED` — observability/recovery evidence absent  
 `G13 BLOCKED` — restore evidence absent  
 `G14 AMBER` — AI safety/agent tooling defined; live Codex discovery not executed  
@@ -148,18 +156,18 @@ Construction scope must not be confused with the registered apartment constructi
 
 ## 10. Q1 execution queue
 
-1. Extract authoritative Building home-chapter evidence from the available ASAS source package/provenance.
-2. Reconcile that evidence with Product Truth and the current architecture baseline.
-3. Establish Building DDD classification without inferring from database shape.
-4. Establish Project → Building → Floor → Unit relationship semantics.
-5. Establish identity and uniqueness rules.
-6. Establish rename/move/archive semantics and their audit implications.
-7. Establish tenant ownership/inheritance semantics.
-8. Reconcile current repository persistence representation.
-9. Reconcile live persistence only after verified runtime identity is available.
-10. Map permissions/events/state implications.
-11. Define invariant and verification requirements.
-12. Promote the contract only when the closure criteria are evidenced.
+1. Reconcile authoritative Building home-chapter evidence with the current domain analysis.
+2. Reconcile Project → Building → Floor → Unit semantics and cardinality.
+3. Establish durable Building identity and uniqueness rules.
+4. Establish rename/move/archive semantics and audit implications.
+5. Establish tenant ownership/inheritance semantics.
+6. Reconcile current repository persistence representation, including all references to Building-like identifiers.
+7. Verify live persistence only after runtime identity/access is established.
+8. Map permissions/events/state implications without inventing Building-specific contracts.
+9. Define invariant and verification requirements.
+10. Retest current HEAD through existing CI.
+11. Promote Q1 only when closure criteria are evidenced.
+12. Only then authorize schema/code work for Building if actually required.
 
 ## 11. Non-authorizations
 
