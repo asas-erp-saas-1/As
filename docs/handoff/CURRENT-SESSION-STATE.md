@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL FOUNDATION / ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 2.7  
-**Date:** 2026-09-22  
+**Version:** 2.8  
+**Date:** 2026-09-23  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CONTROL-PLANE CONVERGENCE → H1.4 BUILDING PROVENANCE RECONCILIATION`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST AGENT TOPOLOGY + CONTROL-PLANE CONVERGENCE → H1.4 BUILDING PROVENANCE RECONCILIATION`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.4.4-BUILDING-PROVENANCE-RECONCILIATION`
+`ARCH-2026-H1.4.5-CODEX-FIRST-AGENT-TOPOLOGY`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
@@ -21,15 +21,17 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Role | Artifact | Current version/state |
 |---|---|---|
 | Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 |
-| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.0 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + Amendment 002 |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + Amendment 003 |
+| Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + Amendment 002 |
+| AI agent operating model | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | CANONICAL v1.0.0 |
+| Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL v1.4.0 |
 | Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
 | Building provenance evidence | `docs/architecture/ASAS-BUILDING-SCHEMA-PROVENANCE-RECONCILIATION-2026.md` | EVIDENCE / OPEN |
 | Current checkpoint | this file | sole active checkpoint |
 
-Derived contracts remain canonical for their own concepts.
+Base artifacts are preserved. Amendments are canonical overlays and do not erase historical/provenance content.
 
 ## 4. Completed / materially advanced
 
@@ -61,7 +63,10 @@ Derived contracts remain canonical for their own concepts.
 - Commercial/Finance semantic reconciliation;
 - cross-source research protocol;
 - architecture gap-completion protocol;
-- explicit v1.6.1 source-package governance decision.
+- explicit v1.6.1 source-package governance decision;
+- Codex-first AI engineering operating model;
+- Figma-to-Codex design continuity contract;
+- roadmap/execution/context amendments establishing agent topology.
 
 ## 5. Source discipline
 
@@ -117,11 +122,28 @@ Do not invent a standalone Payment aggregate solely from terminology.
 
 The active control plane is now:
 
-`Blueprint v1.5.1 → Roadmap v2.0.1 → Context Prompt v2.0.2 → Execution Path v2.0.0 → Source of Truth v1.4.0`
+`Blueprint v1.5.1 → Roadmap v2.0.1 + A002 → Context Prompt v2.0.2 + A003 → Execution Path v2.0.1 + A002 → AI Agent Operating Model v1.0.0 → Design/Code Continuity v1.0.0 → Source of Truth v1.4.0`
 
 The source package version `v1.6.1` is explicitly research/provenance input for the lead architect and is not the repository Blueprint version or an implementation instruction for Claude Code/Codex.
 
-## 8. Current blockers
+## 8. Agent topology decision
+
+ASAS now uses a Codex-first engineering execution model.
+
+```text
+Founder / Product Authority
+→ Lead Architecture / Control Plane
+→ Canonical decision + authorized task
+→ Codex implementation
+→ Independent verification
+→ Evidence / gate
+```
+
+Claude is a specialized design/visual collaboration agent, primarily for Figma and UX/design-system refinement. Claude is not the default repository/database implementation writer.
+
+The official Figma MCP server and Code Connect are approved integration mechanisms when configured and verified. They provide design context and code-component mapping; they do not become business/domain authority.
+
+## 9. Current blockers
 
 - canonical live DB/project identity not verified;
 - executable schema promotion incomplete;
@@ -131,9 +153,10 @@ The source package version `v1.6.1` is explicitly research/provenance input for 
 - Scheduling ownership unresolved;
 - runtime security/RLS evidence absent;
 - implementation authorization absent;
-- architecture CI requires final control-plane verification.
+- architecture CI requires final control-plane verification;
+- design acceptance pipeline is defined but not yet evidenced against a production-quality screen.
 
-## 9. Gate state
+## 10. Gate state
 
 `G0 GREEN` — repository identity/checkpoint evidence  
 `G1 AMBER` — control-plane convergence materially advanced; verification required  
@@ -149,14 +172,14 @@ The source package version `v1.6.1` is explicitly research/provenance input for 
 `G11 AMBER` — foundation CI exists; control-plane verification required  
 `G12 BLOCKED` — application observability/recovery evidence absent  
 `G13 BLOCKED` — restore evidence absent  
-`G14 AMBER` — AI safety doctrine exists; tooling evidence absent  
+`G14 AMBER` — AI safety doctrine exists; agent topology/tooling policy now defined, execution evidence absent  
 `G15 BLOCKED` — implementation authorization absent
 
-## 10. Next execution queue
+## 11. Next execution queue
 
 ### Q0 — Control-plane verification
 
-Verify the routing artifacts and Source of Truth against the latest HEAD after the current reconciliation commits.
+Verify the routing artifacts, amendments and Source of Truth against the latest HEAD after the current agent-topology commits.
 
 ### Q1 — Building
 
@@ -184,7 +207,7 @@ Map critical commands to canonical permission/event registers.
 
 ### Q7 — Task packets
 
-Derive implementation-ready packets without changing source semantics.
+Derive implementation-ready packets without changing source semantics, now with explicit Codex execution and verification boundaries.
 
 ### Q8 — Local executable schema
 
@@ -192,24 +215,25 @@ Only after applicable contracts close.
 
 ### Q9 — Architecture CI
 
-Machine-check the control plane and critical contracts.
+Machine-check the control plane and critical contracts, including agent-routing and design-contract references.
 
 ### Q10 — First vertical slice
 
-Authorize only after applicable gates become GREEN.
+Authorize only after applicable gates become GREEN. Codex is the default implementation executor.
 
-## 11. Continuation rule
+## 12. Continuation rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
 1. load this checkpoint;
-2. load the Roadmap, Context Prompt, Source of Truth and Master Execution Path;
+2. load the Roadmap, Context Prompt, Source of Truth, Master Execution Path and applicable amendments;
 3. inspect current branch/HEAD;
 4. resume from the first unresolved dependency;
 5. research material gaps using authoritative external sources;
-6. make the smallest authorized correction;
-7. verify;
-8. update affected routing artifacts and this checkpoint;
-9. report exact evidence and next dependency.
+6. choose the correct bounded agent/tool for the dependency;
+7. make the smallest authorized correction;
+8. verify independently where material;
+9. update affected routing artifacts and this checkpoint;
+10. report exact evidence and next dependency.
 
-Never restart from conversation memory. Never mark a gate green because documentation exists.
+Never restart from conversation memory. Never mark a gate green because documentation exists. Never let an agent convert research material into implementation authority by itself.
