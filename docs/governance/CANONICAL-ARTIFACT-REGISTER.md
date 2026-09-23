@@ -1,12 +1,12 @@
 # ASAS Canonical Artifact Register
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.2
-Date: 2026-09-20
+Version: 1.3
+Date: 2026-09-23
 
 ## Purpose
 
-This register defines which repository artifacts are authoritative, derived, operational, evidence, or historical. It prevents Claude or another implementation agent from assuming that a referenced artifact exists merely because an instruction mentions it.
+This register defines which repository artifacts are authoritative, derived, operational, evidence, or historical. It prevents Codex or another implementation agent from assuming that a referenced artifact exists merely because an instruction mentions it.
 
 ## Authority classes
 
@@ -26,23 +26,28 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 
 ## Canonical handoff chain
 
-| Artifact | Authority | Required for Claude | Rule |
+| Artifact | Authority | Required for Codex | Rule |
 |---|---|---:|---|
 | `AGENTS.md` | A4 | YES | Root operating contract |
-| `docs/handoff/CLAUDE-START-HERE.md` | A4 | YES | Entry point; cannot override higher authority |
+| `docs/handoff/CODEX-START-HERE.md` | A4 | YES | Codex entry point; cannot override higher authority |
 | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | A4 | YES | Execution sequence |
 | `docs/handoff/CURRENT-SESSION-STATE.md` | A3 | YES | Sole current checkpoint |
-| `docs/handoff/CLAUDE-CONTEXT-INDEX.md` | A4 | YES | Context routing |
+| `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | A4/A6 | YES | Agent operating model |
+| `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | A4/A6 | YES | AI engineering operating context |
 | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | A6 | YES | Consolidated architecture-engineering truth/routing resource |
 | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | A1 candidate | YES | Desired architecture; unresolved items remain blocked |
 | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | A4/A6 | YES | Ordered engineering route |
-| `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | A4/A6 | YES | AI engineering operating context |
+| `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | A4 | YES | Skill routing and capability catalog |
 | `docs/governance/FOUNDATION-GATE-REGISTER.md` | A3 | YES | Gate status |
 | `docs/governance/CONTRACT-RECONCILIATION-PROTOCOL.md` | A4 | YES | Conflict resolution |
 | `docs/governance/RECONCILIATION-RECORD-TEMPLATE.md` | A4 | WHEN RECONCILING | Evidence format |
 | `docs/governance/REPOSITORY-REALITY-MAP.md` | A5/A3-derived | YES for forensic state | Observed repository reality; never overrides contracts |
 | `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md` | A5 | YES for audit continuation | Evidence-backed forensic findings |
 | `docs/governance/FOUNDER-DECISIONS.md` | A1 decision boundary | WHEN BLOCKED | Escalation register; open items do not authorize implementation |
+
+### Specialized design collaboration
+
+The retained Claude/Figma artifacts are **specialized design-collaboration resources**, not the primary implementation handoff. They remain available for UX/Figma work and historical provenance. They do not authorize repository or database implementation.
 
 ## Current machine-readable shadows
 
@@ -70,6 +75,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 7. A status is `VERIFIED` only with objective evidence.
 8. Branch content does not become canonical merely because it is newer or more detailed.
 9. The consolidated Source of Truth is a routing/control resource, not a license to flatten provenance.
+10. Codex is the primary implementation executor; Claude/Figma is specialized design collaboration unless an explicit future decision changes that role.
 
 ## Branch consolidation rule
 
@@ -93,3 +99,7 @@ Never edit a canonical register merely to make it agree with implementation. If 
 ## Forensic correction
 
 This version retains the corrected finding that event/permission/state-machine/design shadows are present. Presence is not equivalent to runtime enforcement.
+
+## Codex control-plane verification
+
+Repository-side skill discovery is enforced by `.github/workflows/foundation-verify.yml`, which checks the canonical Codex entry point and all registered `.agents/skills/*/SKILL.md` manifests. A green repository check does not by itself prove that a live Codex session loaded or executed a skill; runtime agent discovery remains `NOT_EXECUTED` until Codex-side evidence exists.
