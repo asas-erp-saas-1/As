@@ -76,11 +76,15 @@ Scheduling ownership remains unresolved. Current architecture materials contain 
 
 ## 6. Building
 
-`Building` is verified as a real-estate structural domain concept in the current reconciliation work. Historical evidence supports the existence of a Building schema concept, but that evidence does not prove the current executable schema or live database representation.
+`Building` is verified as a real-estate structural domain concept in the current reconciliation work. Product truth and the core lifecycle map support `projects → buildings → units` and assign project/building/unit inventory to Real Estate / Inventory. This is domain evidence, not executable persistence proof.
+
+The v1.6.1 source-package observations show Building-adjacent persistence references through `ProjectMilestone.building_id` and `LedgerEntry.building_id`, while no standalone Building model is present in the measured 59-model source contract. `Apartment` carries `project_id`, optional `floor_number`, `floor_plan_id`, and `construction_status`; `FloorPlan` carries `project_id`.
 
 **Status:** `OPEN / IMPLEMENTATION BLOCKED`.
 
-**Placement:** Building domain contract + schema provenance/reconciliation. Do not invent a table, aggregate root, cardinality, or migration from the historical evidence alone.
+**Placement:** `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md` + Building domain contract + schema provenance/reconciliation.
+
+**Rule:** Do not invent a Building table/model, aggregate root, cardinality, natural key, tenant inheritance or migration from these observations alone.
 
 ## 7. Offer / Reservation
 
@@ -105,7 +109,7 @@ The required brownfield sequence remains:
 
 Current external verification also confirms that Prisma provides schema-diff tooling and brownfield baselining workflows; these are implementation references, not proof of ASAS runtime state. PostgreSQL documents row-level locking as an available concurrency control when application correctness requires explicit locking.
 
-**External evidence:** Prisma documentation on `migrate diff` and baselining; PostgreSQL 17 explicit-locking documentation.
+**External evidence:** Prisma documentation on `migrate diff` and baselining; PostgreSQL explicit-locking documentation.
 
 **Placement:** Database architecture / persistence reconciliation / research evidence. No production migration is authorized by this entry.
 
@@ -175,10 +179,18 @@ The current `registers/permissions.csv` contains commercial vocabulary including
 
 **Placement:** Event register / permission register / verification backlog.
 
-## 15. Next reconciliation dependency
+## 15. Real-estate persistence trace placement
 
-The next architectural dependency is not schema coding. It is closure of the remaining domain-authority blockers:
+The controlled trace is now canonical at:
 
-`V2 Authority Recovery → Building → Offer → Finance → Scheduling → Cross-context contracts → Data reconciliation → Security/Tenancy → Architecture-as-Code → Implementation authorization`
+`docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`
+
+It records repository-supported business hierarchy, measured v1.6.1 persistence observations, Building identity uncertainty, state-machine interaction, commercial boundaries, incomplete search results, required next evidence, and explicit non-authorizations.
+
+## 16. Next reconciliation dependency
+
+The next architectural dependency is not schema coding. It is closure of the remaining domain-authority and persistence blockers:
+
+`V2 Authority Recovery → Real-estate persistence trace → Project/Building/Unit cardinality → durable Building identity/uniqueness → historical persistence paths → live DB identity → Offer → Finance → Scheduling → Cross-context contracts → Data reconciliation → Security/Tenancy → Architecture-as-Code → Implementation authorization`
 
 No evidence in this register authorizes application-code or production-database changes.
