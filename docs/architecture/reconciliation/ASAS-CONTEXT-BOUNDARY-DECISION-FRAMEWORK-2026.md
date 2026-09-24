@@ -14,7 +14,7 @@ Provide a repeatable method for resolving the historical 9/13/15 context conflic
 
 A bounded context is established only when there is sufficient evidence of a coherent domain model and a meaningful semantic/ownership boundary. A module, schema, aggregate, worker, read model, event consumer, or platform capability is not automatically a bounded context.
 
-External DDD research supports this distinction: bounded contexts establish boundaries within which a model and vocabulary remain coherent; context maps make relationships between contexts explicit. citeturn0search0
+Current DDD research supports this distinction: a bounded context establishes a boundary within which a model and vocabulary remain coherent, and context maps make relationships between contexts explicit.
 
 ## 3. Decision dimensions
 
@@ -120,7 +120,7 @@ recover authoritative Domain Model / Context Map provenance
 
 ## 9. External architecture principle
 
-Architecture review should optimize for coherent models, explicit boundaries, security, reliability, and operational evidence rather than an arbitrary number of components. Modern architecture guidance likewise treats architecture as a set of explicit trade-offs across operational excellence, security, reliability, performance, cost, and sustainability. citeturn0search1turn0search3
+Architecture review should optimize for coherent models, explicit boundaries, security, reliability, and operational evidence rather than an arbitrary number of components. Current Well-Architected guidance treats architecture as explicit trade-offs across operational excellence, security, reliability, performance efficiency, cost optimization, and sustainability.
 
 ## 10. Current status
 
