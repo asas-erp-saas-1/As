@@ -1,28 +1,28 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.6  
+**Version:** 3.7  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA CONTRACT PROMOTION RECONCILIATION`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION / BROWNFIELDS RECONCILIATION`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.1-Q1-SCHEMA-PROMOTION-RECONCILIATION`
+`ARCH-2026-H1.5.1-Q1-SCHEMA-SOURCE-RECONCILIATION`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
-## 3. Current branch evidence
+## 3. Branch evidence
 
 - Branch: `platform-architecture-2026`
 - Repository: `asas-erp-saas-1/As`
-- Latest checkpointed HEAD: `80029e2a8f6e3046ee2f6634c38ae744e51ba54e`
+- Latest checkpointed HEAD: `c9fa72c10f49ba311b578db0d377fa8200046076`
 - Foundation CI was previously verified at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
-- Later documentation/governance commits must be independently checked by CI before latest HEAD is described as CI-verified.
+- Latest documentation/reconciliation commits require independent CI verification before latest HEAD is described as CI-verified.
 
 ## 4. Canonical control plane
 
@@ -40,7 +40,8 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Building contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
 | Building domain analysis | `docs/architecture/reconciliation/ASAS-BUILDING-DOMAIN-DECISION-ANALYSIS-2026.md` | ANALYSIS COMPLETE / contract remains open |
 | Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED / v1.1.0 |
-| Schema promotion procedure | `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md` | CANONICAL PROCEDURE / ACTIVE v1.0.1 |
+| Schema promotion procedure | `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md` | CANONICAL PROCEDURE / ACTIVE v1.0.2 |
+| Schema structural inventory | `docs/architecture/reconciliation/ASAS-SCHEMA-STRUCTURAL-INVENTORY-2026.md` | VERIFIED SOURCE OBSERVATION / NOT EXECUTABLE v1.0.0 |
 | Schema contract index | `schema/asas-contracts.index.json` | DERIVATION-CONTROLLED / RECONCILIATION REQUIRED |
 | Codex control-plane audit | `docs/audit/ASAS-CODEX-CONTROL-PLANE-VERIFICATION-2026-09-23.md` | REPOSITORY-VERIFIED / runtime pending |
 | Current checkpoint | this file | sole active checkpoint |
@@ -66,7 +67,7 @@ Evidence:
 
 Repository-side evidence does not prove that a separate live Codex runtime loaded and executed the skills. No such runtime evidence is currently available through the verification surface.
 
-## 6. Important reconciliations
+## 6. Current engineering findings
 
 ### Contexts / modules
 
@@ -83,7 +84,7 @@ Historical ADR-0018 and current architecture materials conflict on Scheduling ow
 
 `C2-002 = FOUNDER-DECISION-REQUIRED`
 
-### Building
+### Building domain
 
 `Q1 ACTIVE / IMPLEMENTATION BLOCKED`.
 
@@ -100,52 +101,66 @@ Current domain conclusion:
 - tenant scope is mandatory but physical tenant-key representation remains OPEN;
 - natural identity/uniqueness remains OPEN.
 
-### Building persistence
+### Schema source reconstruction — new evidence
 
-The current repository contains a schema contract index but intentionally has not promoted an executable Prisma contract.
+The complete v1.6.1 package source `blueprint/schema/asas-contracts.prisma` has now been independently extracted and structurally parsed.
 
-`schema/asas-contracts.index.json` records a historical declaration of `59/16/15` (models/enums/indexes) and a source observation of `59/17/56`, with status `OBSERVED / NOT YET PROMOTED AS EXECUTABLE CONTRACT`.
+Measured source facts:
 
-The repository's source-observation register independently records the same discrepancy and explicitly states that observation/derivation does not authorize application code or database migration.
+- 59 models;
+- 17 enums;
+- 56 `@@index` declarations;
+- 22 `@@unique` declarations;
+- 19 `@relation` annotations.
 
-Therefore:
+A new provenance artifact records the complete measured inventory:
+`docs/architecture/reconciliation/ASAS-SCHEMA-STRUCTURAL-INVENTORY-2026.md`.
 
-- absence of `schema/asas-contracts.prisma` is current repository evidence;
-- absence of a Building model from an executable Prisma contract is **not** evidence that the final target schema rejects Building;
-- schema promotion must be resolved before any local Building schema decision;
-- Building persistence remains OPEN / IMPLEMENTATION BLOCKED.
+The 59-model source does **not** contain standalone models named `Developer`, `Project`, `Building`, or `Floor`.
+
+However:
+
+- `FloorPlan` has `project_id`;
+- `Apartment` has `project_id`, optional `floor_number`, `floor_plan_id`, and `construction_status`;
+- `ProjectMilestone` has optional `building_id` and unique `(project_id, building_id, code)`;
+- `LedgerEntry` has optional `project_id` and `building_id` reporting dimensions.
+
+Therefore `building_id` has persisted semantic references in the candidate source without a first-class Building model. This is a genuine ownership/identity gap, not permission to invent a table.
+
+### State-machine alignment finding
+
+The source state-machine register identifies `apartment.construction_status` as the state owner while describing milestone certification as occurring per building. This can be a valid scope distinction, but it requires explicit identity semantics for `building_id` before schema promotion.
+
+### Master Spec conflict
+
+The v1.6.1 Master Spec contains a staged task for `Developer + project + building + floor models` while also stating that those entities are not separate models in the 59-model contract and may materialize during brownfield reconciliation.
+
+Classification:
+
+`CONFLICT / INTENTIONAL-STAGING-CANDIDATE — NOT RESOLVED`
+
+No migration or executable model has been authorized from this conflict.
 
 ### Schema promotion
 
 The active procedure is:
-
 `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md`
 
-Its controlled sequence is:
-
+The promotion sequence remains:
 `Identity → Complete source extraction → Structural parse → Reconciliation → Domain alignment → Security alignment → Target contract draft → Static verification → Brownfield verification → Promotion decision`
 
-The procedure is active but its promotion gate is currently `BLOCKED`.
-
-### Offer
-
-`PARTIAL / IMPLEMENTATION BLOCKED`.
-
-### Finance
-
-`PARTIALLY CLOSED / EXECUTABLE CONTRACT OPEN`.
+The complete historical source extraction step is now evidenced. The overall promotion gate remains `BLOCKED` because repository/runtime persistence and authority reconciliation are incomplete.
 
 ## 7. Current blockers
 
 - latest checkpointed HEAD has not yet been independently CI-verified;
-- authoritative Building home-chapter definition still needs extraction/reconciliation;
 - Project → Building cardinality requires explicit closure;
-- natural identity/uniqueness remains open;
+- natural Building identity/uniqueness remains open;
 - rename/move/archive semantics remain open;
 - tenant ownership representation remains open;
 - executable target schema is not promoted;
 - 59/17/56 source observation must be reconciled against historical 59/16/15 declaration;
-- complete target schema source extraction/validation remains outstanding;
+- repository implementation/migration representation for Project/Building/Floor is not yet fully reconciled;
 - live DB/project identity not verified;
 - runtime security/RLS evidence absent;
 - implementation authorization absent;
@@ -153,21 +168,20 @@ The procedure is active but its promotion gate is currently `BLOCKED`.
 
 ## 8. Q1 execution queue
 
-1. Locate and verify the complete provenance of the candidate 59-model schema source.
-2. Extract the complete source rather than reconstructing it from counts/snippets.
-3. Produce the model/enum/index/unique/relation inventory with provenance.
-4. Reconcile 59/17/56 against 59/16/15 and classify each discrepancy.
+1. Compare the measured v1.6.1 source inventory against the repository schema index and all current schema-related artifacts.
+2. Trace every `project_id` / `building_id` / `floor_number` persistence reference in repository implementation and migration history.
+3. Determine whether Project/Building/Floor exist under alternate names, legacy tables, or only as conceptual/reporting dimensions.
+4. Reconcile the 59/17/56 observation against the 59/16/15 historical declaration and classify the cause of each difference.
 5. Reconcile Project → Building → Floor → Unit semantics and cardinality.
 6. Establish durable Building identity and uniqueness rules.
 7. Establish rename/move/archive semantics and audit implications.
 8. Establish tenant ownership/inheritance semantics.
-9. Reconcile current repository persistence representation and all Building-like identifiers.
-10. Verify live persistence only after runtime identity/access is established.
-11. Map permissions/events/state implications without inventing Building-specific contracts.
-12. Define invariant and verification requirements.
-13. Retest current HEAD through existing CI.
-14. Promote the executable schema contract only if all promotion gates are evidenced.
-15. Only then authorize schema/code work for Building if actually required.
+9. Verify live persistence only after runtime identity/access is established.
+10. Map permissions/events/state implications without inventing Building-specific contracts.
+11. Define invariant and verification requirements.
+12. Retest current HEAD through existing CI.
+13. Promote the executable schema contract only if all promotion gates are evidenced.
+14. Only then authorize schema/code work for Building if actually required.
 
 ## 9. Non-authorizations
 
@@ -185,7 +199,7 @@ Q1 does not authorize:
 
 ## 10. External engineering evidence incorporated
 
-Current Prisma documentation was reviewed for the schema-reconciliation procedure. It confirms that database introspection reflects an existing relational database into a Prisma data model, that baselining is used when adopting migration history around an existing data-bearing database, and that `migrate diff` can compare schema sources. This external evidence informs the procedure but does not override ASAS repository authority.
+Prisma's current official documentation was reviewed for the reconciliation procedure. It supports using introspection as evidence capture of an existing relational database, baselining when adopting migration history around existing data, and schema-source comparison via `migrate diff`. This informs the procedure but does not override ASAS authority.
 
 ## 11. Continuation rule
 
