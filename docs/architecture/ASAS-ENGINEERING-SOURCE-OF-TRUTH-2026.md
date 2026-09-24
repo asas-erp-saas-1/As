@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.5  
+**Version:** 1.5.6  
 **Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
@@ -43,6 +43,7 @@
 | Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
 | Building domain contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
 | Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
+| Real-estate persistence trace | `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md` | VERIFIED REPOSITORY OBSERVATION / BROWNFIELD INCOMPLETE |
 | Schema contract promotion | `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md` | CANONICAL PROCEDURE / ACTIVE v1.0.1 |
 | Evidence placement | `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md` | ACTIVE / EVIDENCE REGISTER |
 
@@ -68,10 +69,7 @@ Skills are procedural and cannot override architecture authority.
 
 Canonical repository: `asas-erp-saas-1/As`  
 Architecture branch: `platform-architecture-2026`  
-Verified current branch HEAD for this pass: `a23fb933219227a1a21ba5e16066d29b646b3de4`.  
-Previous evidence-placement HEAD: `ea7efa12c3a7baba15741de4728efb865f7ed4c9`.  
-The current checkpoint remains the operational source for subsequent HEAD changes.
-
+The active checkpoint remains the operational source for the current HEAD.  
 Historical branches are provenance. Branch deletion is not implied by reconciliation.
 
 ## 5 — Structural source observations
@@ -122,6 +120,11 @@ Current supported conclusion:
 `BUILDING = REAL-ESTATE STRUCTURAL DOMAIN CONCEPT`
 
 The contract intentionally does not authorize a persistence representation. Aggregate/entity/reference classification, relationship cardinality, identity/uniqueness, lifecycle operations, tenant ownership, current repository representation and live persistence remain open until evidenced.
+
+The controlled persistence trace is:
+`docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`
+
+It establishes source-backed references such as `ProjectMilestone.building_id` and `LedgerEntry.building_id`, while confirming that the measured 59-model source contract does not contain a standalone Building model. These observations remain insufficient to authorize schema creation.
 
 ### Offer
 `PARTIAL / IMPLEMENTATION BLOCKED`
@@ -231,16 +234,14 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 
 ## 18 — Verified evidence placement — 2026-09-24
 
-The current forensic pass verified the repository-side architecture control surface at branch HEAD `a23fb933219227a1a21ba5e16066d29b646b3de4` and confirmed that the branch contains `AGENTS.md`, `.agents/skills/`, `.github/workflows/`, architecture governance/reconciliation artifacts, contracts, handoff controls and design artifacts.
-
-The nine registered repository skills are:
-`asas-architecture-governance`, `asas-database-engineering`, `asas-design-fidelity`, `asas-domain-contracts`, `asas-engineering`, `asas-observability-reliability`, `asas-repository-forensics`, `asas-security-ai-safety`, `asas-testing-verification`.
-
-The detailed evidence placement and provenance record is canonical at:
+The forensic pass established a controlled evidence-placement mechanism and the dedicated real-estate persistence trace. The evidence register is:
 `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`.
 
-A branch inventory/recovery pass confirmed numerous historical foundation/feature branches plus the active architecture branch. Relevant architecture branches inspected for context authority include `foundation/architecture-lineage-reconciliation-v1`, `foundation/source-authority-ledger-v1`, and `foundation/reconcile-context-map-v2`. The latter contains a proposed 15-module map and ADR-0001, but neither establishes acceptance of the missing approved v2 artifacts.
+The real-estate persistence trace is:
+`docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026-09-24.md`.
 
-This evidence confirms repository structure and control-plane presence only. It does not verify live Supabase/Vercel identity, live database state, production RLS, runtime behavior, or deployment health.
+It records repository-supported business hierarchy, measured v1.6.1 persistence observations, Building identity uncertainty, state-machine interaction, commercial boundaries, incomplete search results, required next evidence, and explicit non-authorizations.
+
+This evidence confirms repository structure and source observations only. It does not verify live Supabase/Vercel identity, live database state, production RLS, runtime behavior, or deployment health.
 
 External engineering research used in this pass confirms two implementation principles already present in ASAS architecture: PostgreSQL supports explicit row-level locking for concurrency control when MVCC alone does not provide the required behavior; and Prisma provides schema-diff/baselining workflows for existing databases. These sources support the architecture method but do not constitute ASAS runtime evidence.
