@@ -10,10 +10,6 @@
 
 **Verified:** The canonical repository is `asas-erp-saas-1/As` and the active architecture branch is `platform-architecture-2026`.
 
-**Verified current HEAD after this pass:** `14ae56388bce0cddf05e809c2f22eba66019bc94`.
-
-**Previous verified source-of-truth update HEAD:** `71a9392addaae3a2c9fcdebfec627a67a501fc1a`.
-
 **Evidence:** GitHub branch metadata and repository tree. The branch contains `AGENTS.md`, `.agents/skills/`, `.github/workflows/`, `docs/architecture/`, `docs/handoff/`, contracts, reconciliation artifacts, and design artifacts.
 
 **Placement:** Repository identity / control plane. Do not copy this as runtime identity evidence.
@@ -49,10 +45,26 @@ The repository currently identifies the following control-plane resources:
 - `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` — artifact authority register.
 - `docs/governance/FOUNDER-DECISIONS.md` — founder decision boundary.
 - `docs/handoff/CURRENT-SESSION-STATE.md` — sole active checkpoint.
+- `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` — consolidated proposed PRD.
+- `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — canonical research-first method.
 
 **Placement:** Canonical control plane. Do not create another competing "master" source for these same concepts.
 
-## 4. Context authority
+## 4. Founder product truth reconciliation
+
+Historical founder-confirmed product direction was re-inspected on `foundation/reconcile-context-map-v2` at `docs/product/PRODUCT_TRUTH.md`.
+
+It establishes that ASAS targets a coherent Real Estate Operating System combining public digital sales surface, Studio/CMS, inventory, CRM, sales, finance/ERP, marketing, analytics, communications, governance, workflows and future AI intelligence. It also explicitly defines the portfolio hierarchy as `projects → buildings → units` and requires the public website and internal operating system to use the same canonical data rather than manually duplicated records.
+
+The source records own-project/developer and third-party brokerage/resale tracks and a future multi-company/agency/workspace/branch hierarchy, while stating that exact legal/commercial representation must follow validated domain contracts.
+
+**Classification:** `FOUNDER-SOURCE / PRODUCT-DIRECTION`.
+
+**Placement:** `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` and founder product decision boundary.
+
+**Important:** This evidence expands the product target; it does not authorize architecture or implementation scope by itself.
+
+## 5. Context authority
 
 Current target bounded-context grouping remains:
 
@@ -64,7 +76,19 @@ The historical 15-module proposal is implementation evidence, not a second bound
 
 **Placement:** Domain architecture / context authority.
 
-## 5. Scheduling
+## 6. Historical 15-module map evidence
+
+The historical branch `foundation/reconcile-context-map-v2` contains `CANONICAL-CONTEXT-TO-MODULE-MAP.md`.
+
+The map is explicitly `PROPOSED —` pending ADR-0001 acceptance. Its Property & Inventory module owns Projects, Units, listings, pricing and availability. Its aggregate baseline lists `Project, Unit, Listing` but does not establish Building as an independent aggregate. The map also defines a modular-monolith shape and explicitly separates module boundaries from bounded-context authority.
+
+**Classification:** `HISTORICAL PROPOSAL / IMPLEMENTATION EVIDENCE`.
+
+**Architectural implication:** This is consistent with the current conservative hypothesis that Building is a structural entity within Real Estate/Inventory rather than an independent bounded context or aggregate root, but it does not prove that hypothesis.
+
+**Placement:** Context authority reconciliation / historical provenance.
+
+## 7. Scheduling
 
 Scheduling ownership remains unresolved. Current architecture materials contain conflicting provenance between the Master Spec/current CRM placement and historical ADR-0018/Core placement.
 
@@ -74,9 +98,9 @@ Scheduling ownership remains unresolved. Current architecture materials contain 
 
 **Placement:** Founder decision register + context reconciliation, not implementation code.
 
-## 6. Building
+## 8. Building
 
-`Building` is verified as a real-estate structural domain concept in the current reconciliation work. Product truth and the core lifecycle map support `projects → buildings → units` and assign project/building/unit inventory to Real Estate / Inventory. This is domain evidence, not executable persistence proof.
+`Building` is verified as a real-estate structural domain concept in the current reconciliation work. Founder product truth and the core lifecycle map support `projects → buildings → units` and assign project/building/unit inventory to Real Estate / Inventory. This is domain evidence, not executable persistence proof.
 
 The v1.6.1 source-package observations show Building-adjacent persistence references through `ProjectMilestone.building_id` and `LedgerEntry.building_id`, while no standalone Building model is present in the measured 59-model source contract. `Apartment` carries `project_id`, optional `floor_number`, `floor_plan_id`, and `construction_status`; `FloorPlan` carries `project_id`.
 
@@ -86,7 +110,7 @@ The v1.6.1 source-package observations show Building-adjacent persistence refere
 
 **Rule:** Do not invent a Building table/model, aggregate root, cardinality, natural key, tenant inheritance or migration from these observations alone.
 
-## 7. Offer / Reservation
+## 9. Offer / Reservation
 
 Current domain safety establishes:
 
@@ -97,7 +121,7 @@ Current domain safety establishes:
 
 **Placement:** Sales domain contract + Reservation consistency contract + invariant register.
 
-## 8. Database engineering
+## 10. Database engineering
 
 The repository explicitly separates:
 
@@ -107,13 +131,13 @@ The required brownfield sequence remains:
 
 `Introspect → Capture → Drift Inventory → Compare → ADR → Migration Plan → Backup Verification → Rehearsal → Forward-only Migration → Verification → Evidence`
 
-Current external verification also confirms that Prisma provides schema-diff tooling and brownfield baselining workflows; these are implementation references, not proof of ASAS runtime state. PostgreSQL documents row-level locking as an available concurrency control when application correctness requires explicit locking.
+PostgreSQL documents primary/unique/foreign-key constraints for identity and referential integrity and explicit locking for concurrency. Prisma documentation provides schema-diff and brownfield baselining workflows.
 
-**External evidence:** Prisma documentation on `migrate diff` and baselining; PostgreSQL explicit-locking documentation.
+These are external engineering facts, not ASAS runtime proof.
 
 **Placement:** Database architecture / persistence reconciliation / research evidence. No production migration is authorized by this entry.
 
-## 9. AI authority
+## 11. AI authority
 
 AI remains a non-authoritative actor:
 
@@ -123,7 +147,7 @@ AI does not receive direct database authority and cannot widen caller permission
 
 **Placement:** AI governance / agent operating model / security contract.
 
-## 10. Design-to-code authority
+## 12. Design-to-code authority
 
 Design artifacts are upstream inputs to implementation, but Figma itself is not the authorization source. Accepted design contracts and architecture contracts authorize implementation.
 
@@ -131,7 +155,7 @@ The repository contains a design system surface and an explicit design-to-code c
 
 **Placement:** Design architecture / design-to-code contract.
 
-## 11. Scope protection
+## 13. Scope protection
 
 The following remain architectural reservations rather than automatic implementation requirements unless separately authorized:
 
@@ -149,15 +173,15 @@ The following remain architectural reservations rather than automatic implementa
 
 **Placement:** Architecture blueprint non-goals/future reservations and roadmap scope control.
 
-## 12. Evidence classification rule
+## 14. Evidence classification rule
 
 Every newly discovered item must be placed into exactly one evidence class before it is reused:
 
-`SOURCE-VERIFIED | RUNTIME-VERIFIED | TEST-VERIFIED | EXTERNALLY-VERIFIED | SUPPORTED | ENGINEERING-DERIVATION | PROPOSED | UNVERIFIED | CONFLICT | BLOCKED | FOUNDER-DECISION-REQUIRED | ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
+`SOURCE-VERIFIED | RUNTIME-VERIFIED | TEST-VERIFIED | EXTERNALLY-VERIFIED | FOUNDER-SOURCE | SUPPORTED | ENGINEERING-DERIVATION | PROPOSED | UNVERIFIED | CONFLICT | BLOCKED | FOUNDER-DECISION-REQUIRED | ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
 
 A source-package claim is not runtime proof. A historical branch is not current authority. A design proposal is not an implementation contract.
 
-## 13. Branch provenance and V2 authority recovery — 2026-09-24
+## 15. Branch provenance and V2 authority recovery — 2026-09-24
 
 A repository branch inventory confirmed numerous historical feature/foundation branches and the active `platform-architecture-2026` branch. Architecture-authority inspection specifically covered:
 
@@ -171,7 +195,7 @@ A repository branch inventory confirmed numerous historical feature/foundation b
 
 **Placement:** Context authority reconciliation / source provenance ledger / checkpoint. Do not create a synthetic "approved v2" document from the missing evidence.
 
-## 14. Event and permission register placement
+## 16. Event and permission register placement
 
 The current `registers/events.json` states `103 events across 11 emission modules` and explicitly notes that emission groups are routing lanes, not bounded contexts. It also requires events to be represented in the register and committed through transactional outbox semantics. This is register evidence, not proof of runtime event execution.
 
@@ -179,15 +203,21 @@ The current `registers/permissions.csv` contains commercial vocabulary including
 
 **Placement:** Event register / permission register / verification backlog.
 
-## 15. Real-estate persistence trace placement
+## 17. Real-estate persistence trace placement
 
 The controlled trace is now canonical at:
 
 `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`
 
-It records repository-supported business hierarchy, measured v1.6.1 persistence observations, Building identity uncertainty, state-machine interaction, commercial boundaries, incomplete search results, required next evidence, and explicit non-authorizations.
+The research-first Q1 record is:
 
-## 16. Next reconciliation dependency
+`docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
+
+The Q1 trace plan remains the execution procedure:
+
+`docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
+
+## 18. Next reconciliation dependency
 
 The next architectural dependency is not schema coding. It is closure of the remaining domain-authority and persistence blockers:
 
