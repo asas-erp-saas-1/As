@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.13  
+**Version:** 3.14  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION → BROWNFIELD PERSISTENCE TRACE → CONTEXT AUTHORITY RECONCILIATION → EVIDENCE PLACEMENT → V2 AUTHORITY RECOVERY`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → REAL-ESTATE PERSISTENCE TRACE → SCHEMA SOURCE RECONSTRUCTION → BROWNFIELD PERSISTENCE TRACE → CONTEXT AUTHORITY RECONCILIATION → EVIDENCE PLACEMENT → V2 AUTHORITY RECOVERY`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.1-Q1-V2-AUTHORITY-RECOVERY`
+`ARCH-2026-H1.5.1-Q1-REAL-ESTATE-PERSISTENCE-TRACE`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
@@ -20,23 +20,23 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 
 - Branch: `platform-architecture-2026`
 - Repository: `asas-erp-saas-1/As`
-- Current branch HEAD before this checkpoint update: `9cd89580299118db451af20c36344ed69c50e48f`.
-- Foundation CI was previously verified at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
-- No new CI execution has been verified for the latest source-of-truth/evidence/checkpoint updates; current HEAD therefore remains `CI NOT VERIFIED` until the existing workflow is rerun.
+- Current HEAD after controlled architecture documentation updates: `36103e1b3a9b5a255e5c9406e64dd4bd3b51cbc6`.
+- Previous foundation CI was verified at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
+- No new CI execution has been verified for the latest source-of-truth/evidence/checkpoint/trace updates; current HEAD therefore remains `CI NOT VERIFIED` until the existing workflow is rerun.
 
 ## 4. Canonical control plane
 
 | Role | Artifact | Current version/state |
 |---|---|---|
 | Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
-| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + Amendment 004 |
-| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + Amendment 005 |
+| Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + amendments |
+| AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + amendments |
 | Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + amendments |
 | AI agent operating model | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | CANONICAL v1.0.0 |
 | Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
 | Repository skills | `.agents/skills/` | 9 skills / repository-verified |
-| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed v1.5.5 |
+| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed v1.5.6 |
 | Evidence placement register | `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md` | ACTIVE / evidence register |
 | Context boundary framework | `docs/architecture/reconciliation/ASAS-CONTEXT-BOUNDARY-DECISION-FRAMEWORK-2026.md` | ACTIVE / reconciliation control |
 | Context authority reconciliation | `docs/architecture/reconciliation/ASAS-CONTEXT-AUTHORITY-RECONCILIATION-2026.md` | CONFLICT / RECONCILIATION REQUIRED v1.1.0 |
@@ -44,6 +44,7 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Building domain analysis | `docs/architecture/reconciliation/ASAS-BUILDING-DOMAIN-DECISION-ANALYSIS-2026.md` | ANALYSIS COMPLETE / contract remains open |
 | Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED / v1.1.0 |
 | Building identity decision | `docs/architecture/reconciliation/ASAS-BUILDING-PERSISTENCE-IDENTITY-DECISION-2026.md` | PROPOSED / DERIVED / IMPLEMENTATION BLOCKED |
+| Real-estate persistence trace | `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md` | VERIFIED REPOSITORY OBSERVATION / BROWNFIELD INCOMPLETE |
 | Brownfield persistence trace | `docs/architecture/reconciliation/ASAS-BROWNFIELD-PERSISTENCE-TRACE-2026.md` | VERIFIED REPOSITORY OBSERVATION / BROWNFIELD INCOMPLETE v1.0.0 |
 | Schema promotion procedure | `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md` | CANONICAL PROCEDURE / ACTIVE v1.0.2 |
 | Schema structural inventory | `docs/architecture/reconciliation/ASAS-SCHEMA-STRUCTURAL-INVENTORY-2026.md` | VERIFIED SOURCE OBSERVATION / NOT EXECUTABLE v1.0.0 |
@@ -134,6 +135,39 @@ Current domain conclusion:
 - tenant scope is mandatory but physical tenant-key representation remains OPEN;
 - natural identity/uniqueness remains OPEN.
 
+### Real-estate persistence trace — Q1
+
+`VERIFIED REPOSITORY OBSERVATION / BROWNFIELD INCOMPLETE`
+
+The controlled artifact is:
+`docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`
+
+Source-backed findings:
+
+- Product truth supports `projects → buildings → units` as the promoter portfolio hierarchy.
+- The core lifecycle map assigns project/building/unit inventory to Real Estate / Inventory.
+- The measured v1.6.1 source contract contains no standalone `Building` model among its 59 models.
+- `ProjectMilestone` contains an optional `building_id` and a uniqueness tuple involving `project_id`, `building_id`, and `code`.
+- `LedgerEntry` contains an optional `building_id` reporting dimension.
+- `Apartment` contains `project_id`, optional `floor_number`, `floor_plan_id`, and `construction_status`.
+- `FloorPlan` contains `project_id`.
+- The state-machine register makes Apartment the construction-state owner while describing milestone certification per building; this relationship requires identity semantics before schema promotion.
+
+These findings prove semantic persistence references, not a first-class Building table or live database representation.
+
+The trace therefore keeps open:
+
+- Project → Building cardinality;
+- Building → Unit cardinality;
+- durable Building identity;
+- natural uniqueness;
+- tenant inheritance;
+- rename/move/archive semantics;
+- aggregate-root status;
+- live persistence representation.
+
+Repository search did not return direct executable matches for `building_id`, `floor_plan`, or a standalone Building aggregate on the active architecture branch. This is classified as incomplete search evidence, not proof of absence.
+
 ### Schema source reconstruction — verified source evidence
 
 The complete v1.6.1 package source `blueprint/schema/asas-contracts.prisma` has been independently extracted and structurally parsed.
@@ -148,18 +182,7 @@ Measured source facts:
 
 The 59-model source does **not** contain standalone models named `Developer`, `Project`, `Building`, or `Floor`.
 
-However:
-
-- `FloorPlan` has `project_id`;
-- `Apartment` has `project_id`, optional `floor_number`, `floor_plan_id`, and `construction_status`;
-- `ProjectMilestone` has optional `building_id` and unique `(project_id, building_id, code)`;
-- `LedgerEntry` has optional `project_id` and `building_id` reporting dimensions.
-
 Therefore `building_id` has persisted semantic references in the candidate source without a first-class Building model. This is an identity/ownership gap, not permission to invent a table.
-
-### State-machine alignment finding
-
-The source state-machine register identifies `apartment.construction_status` as the state owner while describing milestone certification as occurring per building. This can be a valid scope distinction, but it requires explicit identity semantics for `building_id` before schema promotion.
 
 ### Master Spec conflict
 
@@ -199,18 +222,17 @@ Historical source extraction is evidenced. Repository persistence trace is expli
 
 ### Evidence placement and V2 recovery — 2026-09-24
 
-The evidence placement register was updated to record the current HEAD, branch-provenance inspection, V2 authority recovery status, event/permission register placement and the prohibition against synthesizing missing approved v2 artifacts.
-
-The source-of-truth control resource was updated to v1.5.5. The active checkpoint was advanced to v3.13 and now resumes from V2 authority recovery.
+The evidence placement register now includes the real-estate persistence trace and the placement rule for semantic persistence evidence. The source-of-truth was advanced to v1.5.6. The checkpoint is now resumed from the real-estate persistence trace.
 
 ## 7. Current blockers
 
-- current evidence-placement/source-of-truth/checkpoint HEAD must be independently CI-verified;
+- current evidence-placement/source-of-truth/checkpoint/trace HEAD must be independently CI-verified;
 - exact approved Phase 1.5 Domain Model v2 remains unlocated;
 - exact approved Context Map v2 remains unlocated;
 - ADR-0001 from `foundation/reconcile-context-map-v2` remains PROPOSED and requires explicit founder acceptance if its proposed decomposition is to be adopted;
 - Project → Building cardinality requires explicit closure;
-- natural Building identity/uniqueness remains open;
+- Building → Unit cardinality requires explicit closure;
+- durable Building identity/uniqueness remains open;
 - rename/move/archive semantics remain open;
 - tenant ownership representation remains open;
 - executable target schema is not promoted;
@@ -226,7 +248,7 @@ The source-of-truth control resource was updated to v1.5.5. The active checkpoin
 
 1. Recover/locate the exact approved Phase 1.5 Domain Model v2 artifact and exact Context Map v2 artifact across repository branches/history and available source packages.
 2. Preserve the historical 15-context/15-module proposal as candidate evidence; do not promote it without its acceptance decision.
-3. Trace every `project_id` / `building_id` / `floor_number` and alternate naming across current repository paths.
+3. Exhaustively trace every `project_id` / `building_id` / `floor_number` / `floor_plan_id` and alternate naming across current repository paths.
 4. Trace historical commits/branches for migration SQL, Prisma migrations, legacy tables and alternate representations.
 5. Search seeds, fixtures, tests, API payloads, query builders and repository adapters for real-estate persistence references.
 6. Determine whether Project/Building/Floor exist under alternate names, legacy tables, or only as conceptual/reporting dimensions.
