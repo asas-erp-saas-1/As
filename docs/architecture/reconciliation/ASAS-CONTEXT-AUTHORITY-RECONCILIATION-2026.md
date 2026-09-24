@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-CONTEXT-AUTHORITY-RECONCILIATION-2026  
 **Status:** CONFLICT / RECONCILIATION REQUIRED / IMPLEMENTATION BLOCKED  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Active branch:** `platform-architecture-2026`
@@ -44,6 +44,21 @@ That artifact states:
 
 That ledger explicitly states that the exact approved Phase 1.5 Domain Model v2 and Context Map v2 have not been identified, and therefore their contents must remain UNVERIFIED.
 
+### 2.4 Additional historical branch evidence — `foundation/reconcile-context-map-v2`
+
+A dedicated historical branch named `foundation/reconcile-context-map-v2` was inspected on 2026-09-24.
+
+It contains:
+
+- `docs/architecture/CANONICAL-CONTEXT-TO-MODULE-MAP.md`;
+- `docs/decisions/ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md`;
+- a 15-module implementation decomposition;
+- an ADR proposing adoption of that decomposition.
+
+The ADR is explicitly marked **PROPOSED — awaiting explicit founder acceptance**. Therefore this branch proves that a 15-context/15-module implementation architecture was proposed and documented; it does **not** prove that the missing approved Phase 1.5 Domain Model v2 artifact has been recovered, nor that the ADR was accepted.
+
+The branch's candidate map explicitly states that it is derived and becomes canonical only with ADR-0001 acceptance. Its presence therefore cannot be used to silently close C2-001.
+
 ## 3. Authority conclusion
 
 The following statements are simultaneously true and must remain separate:
@@ -58,8 +73,10 @@ The following statements are simultaneously true and must remain separate:
 | Historical draft 13-context model | VERIFIED HISTORICAL SOURCE CLAIM |
 | 15 implementation modules | VERIFIED HISTORICAL IMPLEMENTATION SOURCE |
 | 15 PostgreSQL schemas | VERIFIED HISTORICAL IMPLEMENTATION SOURCE |
+| Historical 15-context/15-module candidate map | VERIFIED HISTORICAL PROPOSAL |
+| ADR-0001 accepting the 15-context/15-module proposal | NOT ACCEPTED / FOUNDER DECISION REQUIRED |
 
-Therefore the architecture cannot honestly report `bounded contexts = 9` as a fully reconciled canonical fact yet.
+Therefore the architecture cannot honestly report `bounded contexts = 9` or `bounded contexts = 15` as a fully reconciled canonical fact yet.
 
 ## 4. Corrected canonical position
 
@@ -75,6 +92,8 @@ The 13-context model is **historical draft evidence**.
 
 The 15-module model is **implementation architecture evidence** and must not be converted into bounded contexts by counting.
 
+The historical `foundation/reconcile-context-map-v2` branch contains a **proposed** 15-context/15-module candidate decomposition. Because its ADR is still `PROPOSED — awaiting explicit founder acceptance`, it is evidence of a candidate decision, not an accepted architectural authority.
+
 ## 5. Prohibited actions
 
 Until reconciliation closes, agents MUST NOT:
@@ -83,13 +102,14 @@ Until reconciliation closes, agents MUST NOT:
 - delete the nine-context model merely because an older source claims 15;
 - promote the 13-context draft to canonical;
 - equate 15 modules with 15 contexts;
+- promote the historical candidate map merely because it exists on a branch;
 - create aggregates, permissions, events, schemas, APIs, or tasks solely from context-count assumptions;
 - rewrite historical artifacts to make counts agree;
 - close C2-001 based only on documentation presence.
 
 ## 6. Required closure path
 
-`Locate approved v2 artifact → verify provenance → extract exact context inventory → compare with current nine-context candidate → compare with historical 13-context draft → separate modules/capabilities → reconcile splits/merges/renames → map aggregates/events/permissions/tasks → record decision → update canonical source of truth → verify references → close C2-001`
+`Locate approved v2 artifact → verify provenance → extract exact context inventory → compare with current nine-context candidate → compare with historical 13-context draft → compare with historical 15-context candidate proposal → separate modules/capabilities → reconcile splits/merges/renames → map aggregates/events/permissions/tasks → record decision → update canonical source of truth → verify references → close C2-001`
 
 If the approved v2 artifact cannot be recovered, the missing authority must be escalated as a founder/architecture decision rather than reconstructed by inference.
 
@@ -104,6 +124,7 @@ It does not block unrelated repository governance, evidence collection, static v
 - Current `platform-architecture-2026` checkpoint: `docs/handoff/CURRENT-SESSION-STATE.md` v3.8.
 - Historical `foundation/architecture-lineage-reconciliation-v1`: `docs/architecture/ARCHITECTURE-LINEAGE-RECONCILIATION.md`.
 - Historical `foundation/source-authority-ledger-v1`: `docs/architecture/SOURCE-AUTHORITY-LEDGER.md`.
+- Historical `foundation/reconcile-context-map-v2`: `docs/architecture/CANONICAL-CONTEXT-TO-MODULE-MAP.md` and `docs/decisions/ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md`.
 - GitHub branch comparison performed 2026-09-24.
 
 **Classification:** `CONFLICT / AUTHORITY RECONCILIATION REQUIRED`
