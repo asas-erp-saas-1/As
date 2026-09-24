@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.4  
+**Version:** 1.5.5  
 **Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
@@ -68,7 +68,8 @@ Skills are procedural and cannot override architecture authority.
 
 Canonical repository: `asas-erp-saas-1/As`  
 Architecture branch: `platform-architecture-2026`  
-Verified branch HEAD during the 2026-09-24 architecture pass: `ea7efa12c3a7baba15741de4728efb865f7ed4c9`.  
+Verified current branch HEAD for this pass: `a23fb933219227a1a21ba5e16066d29b646b3de4`.  
+Previous evidence-placement HEAD: `ea7efa12c3a7baba15741de4728efb865f7ed4c9`.  
 The current checkpoint remains the operational source for subsequent HEAD changes.
 
 Historical branches are provenance. Branch deletion is not implied by reconciliation.
@@ -103,6 +104,8 @@ The historical 15-module proposal is implementation evidence, not a competing bo
 
 Scheduling remains unresolved:
 `C2-002 = FOUNDER-DECISION-REQUIRED`.
+
+The historical `foundation/reconcile-context-map-v2` branch was re-inspected. Its 15-module candidate map and ADR-0001 remain explicitly proposed and awaiting founder acceptance. The historical `foundation/source-authority-ledger-v1` independently records that the exact approved Phase 1.5 Domain Model v2 and Context Map v2 are still unlocated. Therefore the final bounded-context authority remains OPEN / CONFLICT.
 
 ## 7 — Current contract state
 
@@ -160,7 +163,7 @@ No arbitrary governed status setter.
 
 ## 10 — Event doctrine
 
-The registered 103-event / 11-group count is source observation. Each implemented event requires producer, aggregate, trigger, version, tenant, causation/correlation, consumers, idempotency, ordering, replay, DLQ, retention, reconciliation and evidence.
+The registered 103-event / 11-group count is source observation. The current `registers/events.json` identifies 11 emission modules and explicitly states that emission groups are routing lanes rather than bounded contexts. Each implemented event requires producer, aggregate, trigger, version, tenant, causation/correlation, consumers, idempotency, ordering, replay, DLQ, retention, reconciliation and evidence.
 
 ## 11 — Permission / tenancy
 
@@ -168,6 +171,8 @@ Target hierarchy:
 `Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`.
 
 Deny-by-default, server-side authorization and tenant-aware data access are mandatory. RLS is defense-in-depth, not the only authorization layer.
+
+The current permission register directly contains commercial permissions including `offer.create`, `offer.discount.request`, and `reservation.create`. Their presence proves registered authorization vocabulary only; it does not prove runtime enforcement.
 
 ## 12 — Database truth
 
@@ -226,13 +231,15 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 
 ## 18 — Verified evidence placement — 2026-09-24
 
-The current forensic pass verified the repository-side architecture control surface at branch HEAD `ea7efa12c3a7baba15741de4728efb865f7ed4c9` and confirmed that the branch contains `AGENTS.md`, `.agents/skills/`, `.github/workflows/`, architecture governance/reconciliation artifacts, contracts, handoff controls and design artifacts.
+The current forensic pass verified the repository-side architecture control surface at branch HEAD `a23fb933219227a1a21ba5e16066d29b646b3de4` and confirmed that the branch contains `AGENTS.md`, `.agents/skills/`, `.github/workflows/`, architecture governance/reconciliation artifacts, contracts, handoff controls and design artifacts.
 
 The nine registered repository skills are:
 `asas-architecture-governance`, `asas-database-engineering`, `asas-design-fidelity`, `asas-domain-contracts`, `asas-engineering`, `asas-observability-reliability`, `asas-repository-forensics`, `asas-security-ai-safety`, `asas-testing-verification`.
 
 The detailed evidence placement and provenance record is canonical at:
 `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`.
+
+A branch inventory/recovery pass confirmed numerous historical foundation/feature branches plus the active architecture branch. Relevant architecture branches inspected for context authority include `foundation/architecture-lineage-reconciliation-v1`, `foundation/source-authority-ledger-v1`, and `foundation/reconcile-context-map-v2`. The latter contains a proposed 15-module map and ADR-0001, but neither establishes acceptance of the missing approved v2 artifacts.
 
 This evidence confirms repository structure and control-plane presence only. It does not verify live Supabase/Vercel identity, live database state, production RLS, runtime behavior, or deployment health.
 
