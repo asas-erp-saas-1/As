@@ -2,17 +2,21 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.6  
+**Version:** 1.5.7  
 **Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
 **Role:** Single consolidation and routing resource for architecture engineering
 
-> This resource consolidates verified repository facts, source-package facts, historical proposals, current engineering decisions, external engineering evidence, unresolved conflicts and implementation constraints. It preserves provenance and cannot silently override an A1 source.
+> This resource consolidates verified repository facts, source-package facts, founder product direction, historical proposals, current engineering decisions, external engineering evidence, unresolved conflicts and implementation constraints. It preserves provenance and cannot silently override an A1 source.
 
 ## 0 — Operating rule
 
 `REALITY → PROVENANCE → AUTHORITY → RECONCILIATION → MODEL → CONTRACT → VERIFICATION → IMPLEMENTATION`
+
+For material architecture questions, the operating method is research-first:
+
+`PROBLEM → RESEARCH → ALTERNATIVES / FAILURE MODES → HYPOTHESES → ASAS SOURCE VALIDATION → PROVENANCE / AUTHORITY → REJECT / ADAPT / DERIVE → CONTRACT / ADR / REGISTER → VERIFY → CHECKPOINT`
 
 ## 1 — Source hierarchy
 
@@ -29,6 +33,7 @@
 
 | Role | Canonical resource | Current state |
 |---|---|---|
+| Product requirements | `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` | PROPOSED v0.2.0 / FOUNDER REVIEW REQUIRED |
 | Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
 | Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + amendments |
 | AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + amendments |
@@ -41,6 +46,8 @@
 | Artifact authority | `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` | governance register |
 | Founder decisions | `docs/governance/FOUNDER-DECISIONS.md` | decision boundary |
 | Research protocol | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md` | canonical procedure |
+| Research-first method | `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` | CANONICAL OPERATING METHOD v1.0.0 |
+| Q1 research record | `docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md` | ACTIVE / DECISION SUPPORT |
 | Building domain contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
 | Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
 | Real-estate persistence trace | `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md` | VERIFIED REPOSITORY OBSERVATION / BROWNFIELD INCOMPLETE |
@@ -49,7 +56,22 @@
 
 Historical Blueprint Amendment 001 remains provenance and is not an active competing blueprint.
 
-## 3 — Agent execution model
+## 3 — Product truth reconciliation
+
+The founder-confirmed product direction recovered from `foundation/reconcile-context-map-v2/docs/product/PRODUCT_TRUTH.md` establishes ASAS as a broad Real Estate Operating System combining public website/sales surface, Studio/CMS, inventory, CRM, sales, finance/ERP, marketing, analytics, communications, governance, workflows and future AI intelligence.
+
+It establishes the portfolio hierarchy:
+
+`Promoter / portfolio → Project → Building → Unit`
+
+and the one-system-of-truth principle across public website, Studio, CRM and ERP. It also supports own-project/developer and third-party brokerage/resale tracks and future multi-company/workspace/branch growth.
+
+The consolidated PRD now records this evidence at:
+`docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md`.
+
+The PRD remains `PROPOSED — FOUNDER REVIEW REQUIRED`; therefore it cannot authorize implementation expansion.
+
+## 4 — Agent execution model
 
 ```text
 Founder / Product Authority
@@ -65,14 +87,14 @@ Claude is the specialized design/visual collaboration agent, primarily for Figma
 
 Skills are procedural and cannot override architecture authority.
 
-## 4 — Repository identity
+## 5 — Repository identity
 
 Canonical repository: `asas-erp-saas-1/As`  
 Architecture branch: `platform-architecture-2026`  
 The active checkpoint remains the operational source for the current HEAD.  
 Historical branches are provenance. Branch deletion is not implied by reconciliation.
 
-## 5 — Structural source observations
+## 6 — Structural source observations
 
 Current source-package observations recorded by the repository include:
 
@@ -91,7 +113,7 @@ Current source-package observations recorded by the repository include:
 
 These are observations, not quotas and not runtime proof. The repository separately retains a historical declaration of 59 models / 16 enums / 15 indexes; this discrepancy is explicitly unresolved until complete source extraction and reconciliation.
 
-## 6 — Architecture authority
+## 7 — Architecture authority
 
 Current target contexts:
 `Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
@@ -105,7 +127,7 @@ Scheduling remains unresolved:
 
 The historical `foundation/reconcile-context-map-v2` branch was re-inspected. Its 15-module candidate map and ADR-0001 remain explicitly proposed and awaiting founder acceptance. The historical `foundation/source-authority-ledger-v1` independently records that the exact approved Phase 1.5 Domain Model v2 and Context Map v2 are still unlocated. Therefore the final bounded-context authority remains OPEN / CONFLICT.
 
-## 7 — Current contract state
+## 8 — Current contract state
 
 ### Unit / Reservation
 `PARTIALLY CLOSED / IMPLEMENTATION UNVERIFIED`
@@ -119,12 +141,19 @@ Canonical working contract:
 Current supported conclusion:
 `BUILDING = REAL-ESTATE STRUCTURAL DOMAIN CONCEPT`
 
-The contract intentionally does not authorize a persistence representation. Aggregate/entity/reference classification, relationship cardinality, identity/uniqueness, lifecycle operations, tenant ownership, current repository representation and live persistence remain open until evidenced.
+Research-first Q1 conclusion currently supports the following provisional model:
+
+`Real Estate / Inventory → Project → Building (structural Entity candidate) → Floor (structural level if required) → Unit aggregate`
+
+This does not authorize a Building table, aggregate root, natural key, event stream or independent service.
 
 The controlled persistence trace is:
 `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`
 
-It establishes source-backed references such as `ProjectMilestone.building_id` and `LedgerEntry.building_id`, while confirming that the measured 59-model source contract does not contain a standalone Building model. These observations remain insufficient to authorize schema creation.
+The Q1 research record is:
+`docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
+
+Repository evidence currently includes Building-adjacent references such as `ProjectMilestone.building_id` and `LedgerEntry.building_id`, while the measured 59-model source contract has no standalone Building model. `Apartment` carries project/floor-related fields and construction state; `FloorPlan` carries project ownership. These remain source observations, not live-database proof.
 
 ### Offer
 `PARTIAL / IMPLEMENTATION BLOCKED`
@@ -138,7 +167,7 @@ Current source semantics support:
 ### Scheduling
 `FOUNDER-DECISION-REQUIRED`.
 
-## 8 — Core invariants
+## 9 — Core invariants
 
 Current source-supported/target invariants include:
 
@@ -158,17 +187,17 @@ Current source-supported/target invariants include:
 
 Runtime enforcement is unverified unless objective evidence exists.
 
-## 9 — State machine doctrine
+## 10 — State machine doctrine
 
 `Command → Authentication → Authorization → Tenant Scope → Aggregate Load → Preconditions → Legal Transition → Invariants → State Mutation → Audit → Domain Event → Transactional Outbox → Commit`
 
 No arbitrary governed status setter.
 
-## 10 — Event doctrine
+## 11 — Event doctrine
 
 The registered 103-event / 11-group count is source observation. The current `registers/events.json` identifies 11 emission modules and explicitly states that emission groups are routing lanes rather than bounded contexts. Each implemented event requires producer, aggregate, trigger, version, tenant, causation/correlation, consumers, idempotency, ordering, replay, DLQ, retention, reconciliation and evidence.
 
-## 11 — Permission / tenancy
+## 12 — Permission / tenancy
 
 Target hierarchy:
 `Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`.
@@ -177,7 +206,7 @@ Deny-by-default, server-side authorization and tenant-aware data access are mand
 
 The current permission register directly contains commercial permissions including `offer.create`, `offer.discount.request`, and `reservation.create`. Their presence proves registered authorization vocabulary only; it does not prove runtime enforcement.
 
-## 12 — Database truth
+## 13 — Database truth
 
 Separate:
 `Target Domain Model ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`.
@@ -190,13 +219,13 @@ The active procedure for promotion of an executable target schema is:
 
 No destructive production shortcut.
 
-## 13 — AI safety
+## 14 — AI safety
 
 `Intent → Proposal → Tool Request → Policy → Caller Authorization → Domain/Application Service → Transaction → Audit → Event`.
 
 AI is not direct database authority and cannot bypass domain authorization.
 
-## 14 — Design
+## 15 — Design
 
 Design precedes page implementation:
 `tokens → primitives → components → patterns → templates → surfaces`.
@@ -205,11 +234,11 @@ Figma MCP/Code Connect are optional design-to-code mechanisms; accepted design c
 
 Arabic/RTL, French/English, accessibility, responsive behavior, mobile operations and failure states are engineering requirements.
 
-## 15 — Task truth
+## 16 — Task truth
 
 Implementation packets must identify scope, owner, dependencies, contracts, commands, permissions, invariants, states, events, concurrency, security, UX, tests, DoD, evidence and authorization. Missing information remains open.
 
-## 16 — Current gates
+## 17 — Current gates
 
 - G0 repository identity/checkpoint — GREEN
 - G1 authority/control-plane — GREEN (repository-side CI verified; live Codex execution evidence pending)
@@ -228,20 +257,21 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 - G14 AI tooling evidence — AMBER / repository skills verified; live Codex discovery not executed
 - G15 implementation authorization — BLOCKED
 
-## 17 — Current roadmap
+## 18 — Current roadmap
 
 `H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`.
 
-## 18 — Verified evidence placement — 2026-09-24
+## 19 — Evidence placement and research records
 
-The forensic pass established a controlled evidence-placement mechanism and the dedicated real-estate persistence trace. The evidence register is:
-`docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`.
+Evidence register:
+`docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
 
-The real-estate persistence trace is:
-`docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026-09-24.md`.
+Q1 research record:
+`docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
 
-It records repository-supported business hierarchy, measured v1.6.1 persistence observations, Building identity uncertainty, state-machine interaction, commercial boundaries, incomplete search results, required next evidence, and explicit non-authorizations.
+Q1 forensic trace plan:
+`docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
 
-This evidence confirms repository structure and source observations only. It does not verify live Supabase/Vercel identity, live database state, production RLS, runtime behavior, or deployment health.
+These artifacts record source provenance, independent engineering research, alternatives, current conclusions and explicit non-authorizations.
 
-External engineering research used in this pass confirms two implementation principles already present in ASAS architecture: PostgreSQL supports explicit row-level locking for concurrency control when MVCC alone does not provide the required behavior; and Prisma provides schema-diff/baselining workflows for existing databases. These sources support the architecture method but do not constitute ASAS runtime evidence.
+External research currently incorporated includes DDD bounded-context/aggregate guidance, PostgreSQL identity/constraint/locking guidance and OWASP ASVS security-verification guidance. These sources support engineering method and verification design; they do not prove ASAS runtime state.
