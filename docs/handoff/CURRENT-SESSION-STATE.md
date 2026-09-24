@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.7  
+**Version:** 3.8  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION / BROWNFIELDS RECONCILIATION`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION → BROWNFIELD PERSISTENCE TRACE`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.1-Q1-SCHEMA-SOURCE-RECONCILIATION`
+`ARCH-2026-H1.5.1-Q1-BROWNFIELD-PERSISTENCE-TRACE`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
@@ -20,7 +20,7 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 
 - Branch: `platform-architecture-2026`
 - Repository: `asas-erp-saas-1/As`
-- Latest checkpointed HEAD: `c9fa72c10f49ba311b578db0d377fa8200046076`
+- Latest checkpointed HEAD: `d89f5cb7364a1c205013084f3cd27aecd7916e98`
 - Foundation CI was previously verified at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
 - Latest documentation/reconciliation commits require independent CI verification before latest HEAD is described as CI-verified.
 
@@ -40,6 +40,8 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Building contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
 | Building domain analysis | `docs/architecture/reconciliation/ASAS-BUILDING-DOMAIN-DECISION-ANALYSIS-2026.md` | ANALYSIS COMPLETE / contract remains open |
 | Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED / v1.1.0 |
+| Building identity decision | `docs/architecture/reconciliation/ASAS-BUILDING-PERSISTENCE-IDENTITY-DECISION-2026.md` | PROPOSED / DERIVED / IMPLEMENTATION BLOCKED |
+| Brownfield persistence trace | `docs/architecture/reconciliation/ASAS-BROWNFIELD-PERSISTENCE-TRACE-2026.md` | VERIFIED REPOSITORY OBSERVATION / BROWNFIELD INCOMPLETE v1.0.0 |
 | Schema promotion procedure | `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md` | CANONICAL PROCEDURE / ACTIVE v1.0.2 |
 | Schema structural inventory | `docs/architecture/reconciliation/ASAS-SCHEMA-STRUCTURAL-INVENTORY-2026.md` | VERIFIED SOURCE OBSERVATION / NOT EXECUTABLE v1.0.0 |
 | Schema contract index | `schema/asas-contracts.index.json` | DERIVATION-CONTROLLED / RECONCILIATION REQUIRED |
@@ -101,9 +103,9 @@ Current domain conclusion:
 - tenant scope is mandatory but physical tenant-key representation remains OPEN;
 - natural identity/uniqueness remains OPEN.
 
-### Schema source reconstruction — new evidence
+### Schema source reconstruction — verified source evidence
 
-The complete v1.6.1 package source `blueprint/schema/asas-contracts.prisma` has now been independently extracted and structurally parsed.
+The complete v1.6.1 package source `blueprint/schema/asas-contracts.prisma` has been independently extracted and structurally parsed.
 
 Measured source facts:
 
@@ -112,9 +114,6 @@ Measured source facts:
 - 56 `@@index` declarations;
 - 22 `@@unique` declarations;
 - 19 `@relation` annotations.
-
-A new provenance artifact records the complete measured inventory:
-`docs/architecture/reconciliation/ASAS-SCHEMA-STRUCTURAL-INVENTORY-2026.md`.
 
 The 59-model source does **not** contain standalone models named `Developer`, `Project`, `Building`, or `Floor`.
 
@@ -125,7 +124,7 @@ However:
 - `ProjectMilestone` has optional `building_id` and unique `(project_id, building_id, code)`;
 - `LedgerEntry` has optional `project_id` and `building_id` reporting dimensions.
 
-Therefore `building_id` has persisted semantic references in the candidate source without a first-class Building model. This is a genuine ownership/identity gap, not permission to invent a table.
+Therefore `building_id` has persisted semantic references in the candidate source without a first-class Building model. This is an identity/ownership gap, not permission to invent a table.
 
 ### State-machine alignment finding
 
@@ -141,6 +140,22 @@ Classification:
 
 No migration or executable model has been authorized from this conflict.
 
+### Current-branch persistence evidence
+
+The current `schema/` directory contains only `schema/asas-contracts.index.json`; there is no executable Prisma schema in that directory.
+
+The current repository root listing also contains no dedicated root `migrations/` directory.
+
+This is **repository structure evidence only**. It does not prove that:
+
+- the live database lacks these structures;
+- historical migrations never existed;
+- migration SQL does not exist under another historical path;
+- Project/Building/Floor are absent from production.
+
+A new forensic artifact records this boundary:
+`docs/architecture/reconciliation/ASAS-BROWNFIELD-PERSISTENCE-TRACE-2026.md`.
+
 ### Schema promotion
 
 The active procedure is:
@@ -149,7 +164,7 @@ The active procedure is:
 The promotion sequence remains:
 `Identity → Complete source extraction → Structural parse → Reconciliation → Domain alignment → Security alignment → Target contract draft → Static verification → Brownfield verification → Promotion decision`
 
-The complete historical source extraction step is now evidenced. The overall promotion gate remains `BLOCKED` because repository/runtime persistence and authority reconciliation are incomplete.
+Historical source extraction is evidenced. Repository persistence trace is now explicitly started. Overall promotion remains `BLOCKED` because brownfield/runtime persistence and authority reconciliation are incomplete.
 
 ## 7. Current blockers
 
@@ -160,7 +175,8 @@ The complete historical source extraction step is now evidenced. The overall pro
 - tenant ownership representation remains open;
 - executable target schema is not promoted;
 - 59/17/56 source observation must be reconciled against historical 59/16/15 declaration;
-- repository implementation/migration representation for Project/Building/Floor is not yet fully reconciled;
+- current repository does not expose an executable schema or dedicated root migrations directory;
+- historical migration/SQL/alternate persistence paths still require exhaustive trace;
 - live DB/project identity not verified;
 - runtime security/RLS evidence absent;
 - implementation authorization absent;
@@ -168,20 +184,22 @@ The complete historical source extraction step is now evidenced. The overall pro
 
 ## 8. Q1 execution queue
 
-1. Compare the measured v1.6.1 source inventory against the repository schema index and all current schema-related artifacts.
-2. Trace every `project_id` / `building_id` / `floor_number` persistence reference in repository implementation and migration history.
-3. Determine whether Project/Building/Floor exist under alternate names, legacy tables, or only as conceptual/reporting dimensions.
-4. Reconcile the 59/17/56 observation against the 59/16/15 historical declaration and classify the cause of each difference.
-5. Reconcile Project → Building → Floor → Unit semantics and cardinality.
-6. Establish durable Building identity and uniqueness rules.
-7. Establish rename/move/archive semantics and audit implications.
-8. Establish tenant ownership/inheritance semantics.
-9. Verify live persistence only after runtime identity/access is established.
-10. Map permissions/events/state implications without inventing Building-specific contracts.
-11. Define invariant and verification requirements.
-12. Retest current HEAD through existing CI.
-13. Promote the executable schema contract only if all promotion gates are evidenced.
-14. Only then authorize schema/code work for Building if actually required.
+1. Trace every `project_id` / `building_id` / `floor_number` and alternate naming across current repository paths.
+2. Trace historical commits/branches for migration SQL, Prisma migrations, legacy tables and alternate representations.
+3. Search seeds, fixtures, tests, API payloads, query builders and repository adapters for real-estate persistence references.
+4. Determine whether Project/Building/Floor exist under alternate names, legacy tables, or only as conceptual/reporting dimensions.
+5. Compare measured v1.6.1 source inventory against repository schema index and current schema-related artifacts.
+6. Reconcile 59/17/56 against 59/16/15 and classify the cause of each difference.
+7. Reconcile Project → Building → Floor → Unit semantics and cardinality.
+8. Establish durable Building identity and uniqueness rules.
+9. Establish rename/move/archive semantics and audit implications.
+10. Establish tenant ownership/inheritance semantics.
+11. Verify live persistence only after runtime identity/access is established and authorized.
+12. Map permissions/events/state implications without inventing Building-specific contracts.
+13. Define invariant and verification requirements.
+14. Retest current HEAD through existing CI.
+15. Promote the executable schema contract only if all promotion gates are evidenced.
+16. Only then authorize schema/code work for Building if actually required.
 
 ## 9. Non-authorizations
 
@@ -199,7 +217,7 @@ Q1 does not authorize:
 
 ## 10. External engineering evidence incorporated
 
-Prisma's current official documentation was reviewed for the reconciliation procedure. It supports using introspection as evidence capture of an existing relational database, baselining when adopting migration history around existing data, and schema-source comparison via `migrate diff`. This informs the procedure but does not override ASAS authority.
+Prisma official documentation was reviewed for the reconciliation procedure. It supports introspection as evidence capture of an existing relational database, baselining when adopting migration history around existing data, and schema-source comparison via `migrate diff`. PostgreSQL RLS documentation supports treating row-level policy as a database security layer rather than as a substitute for application/domain authorization. External engineering evidence informs the procedure but does not override ASAS authority.
 
 ## 11. Continuation rule
 
