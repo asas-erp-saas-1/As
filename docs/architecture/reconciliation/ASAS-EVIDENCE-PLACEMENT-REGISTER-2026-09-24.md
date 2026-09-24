@@ -10,9 +10,11 @@
 
 **Verified:** The canonical repository is `asas-erp-saas-1/As` and the active architecture branch is `platform-architecture-2026`.
 
-**Verified HEAD at this pass:** `ea7efa12c3a7baba15741de4728efb865f7ed4c9`.
+**Verified current HEAD after this pass:** `14ae56388bce0cddf05e809c2f22eba66019bc94`.
 
-**Evidence:** GitHub repository tree for the branch resolves to that commit and contains `AGENTS.md`, `.agents/skills/`, `.github/workflows/`, `docs/architecture/`, `docs/handoff/`, contracts, reconciliation artifacts, and design artifacts.
+**Previous verified source-of-truth update HEAD:** `71a9392addaae3a2c9fcdebfec627a67a501fc1a`.
+
+**Evidence:** GitHub branch metadata and repository tree. The branch contains `AGENTS.md`, `.agents/skills/`, `.github/workflows/`, `docs/architecture/`, `docs/handoff/`, contracts, reconciliation artifacts, and design artifacts.
 
 **Placement:** Repository identity / control plane. Do not copy this as runtime identity evidence.
 
@@ -30,7 +32,7 @@ The branch contains a registered `.agents/skills/` surface with nine ASAS skills
 - `asas-security-ai-safety`
 - `asas-testing-verification`
 
-**Evidence:** Repository tree at the verified branch HEAD.
+**Evidence:** Repository tree at the active architecture branch.
 
 **Placement:** Agent operating environment / skills catalog. These are procedural controls and do not become architecture authority.
 
@@ -151,10 +153,32 @@ Every newly discovered item must be placed into exactly one evidence class befor
 
 A source-package claim is not runtime proof. A historical branch is not current authority. A design proposal is not an implementation contract.
 
-## 13. Next reconciliation dependency
+## 13. Branch provenance and V2 authority recovery — 2026-09-24
+
+A repository branch inventory confirmed numerous historical feature/foundation branches and the active `platform-architecture-2026` branch. Architecture-authority inspection specifically covered:
+
+- `foundation/architecture-lineage-reconciliation-v1` — contains the architecture-lineage reconciliation contract;
+- `foundation/source-authority-ledger-v1` — explicitly records that the exact approved Phase 1.5 Domain Model v2 and Context Map v2 are unlocated;
+- `foundation/reconcile-context-map-v2` — contains a 15-module candidate map and ADR-0001, with ADR status `PROPOSED — awaiting explicit founder acceptance`;
+- `foundation/blueprint-canonical-shadows` — inspected architecture directory does not expose the missing approved v2 domain artifact;
+- `foundation/blueprint-register-ingestion` — direct lookup of the expected `ASAS_Enterprise_Domain_Model.md` path did not locate that artifact on the branch.
+
+**Conclusion:** the exact approved Phase 1.5 Domain Model v2 and Context Map v2 remain **UNLOCATED / UNVERIFIED**. This is not evidence that the artifacts never existed. It is evidence that the inspected branch set did not recover them. The historical 15-module candidate remains a proposal and cannot be promoted by inference.
+
+**Placement:** Context authority reconciliation / source provenance ledger / checkpoint. Do not create a synthetic "approved v2" document from the missing evidence.
+
+## 14. Event and permission register placement
+
+The current `registers/events.json` states `103 events across 11 emission modules` and explicitly notes that emission groups are routing lanes, not bounded contexts. It also requires events to be represented in the register and committed through transactional outbox semantics. This is register evidence, not proof of runtime event execution.
+
+The current `registers/permissions.csv` contains commercial vocabulary including `offer.create`, `offer.discount.request`, and `reservation.create`. Presence in the register establishes declared authorization vocabulary only; runtime enforcement remains unverified.
+
+**Placement:** Event register / permission register / verification backlog.
+
+## 15. Next reconciliation dependency
 
 The next architectural dependency is not schema coding. It is closure of the remaining domain-authority blockers:
 
-`Building → Offer → Finance → Scheduling → Cross-context contracts → Data reconciliation → Security/Tenancy → Architecture-as-Code → Implementation authorization`
+`V2 Authority Recovery → Building → Offer → Finance → Scheduling → Cross-context contracts → Data reconciliation → Security/Tenancy → Architecture-as-Code → Implementation authorization`
 
 No evidence in this register authorizes application-code or production-database changes.
