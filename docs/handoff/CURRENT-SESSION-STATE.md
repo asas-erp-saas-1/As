@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.11  
+**Version:** 3.12  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION → BROWNFIELD PERSISTENCE TRACE → CONTEXT AUTHORITY RECONCILIATION → EVIDENCE PLACEMENT`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION → BROWNFIELD PERSISTENCE TRACE → CONTEXT AUTHORITY RECONCILIATION → EVIDENCE PLACEMENT → V2 AUTHORITY RECOVERY`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.1-Q1-EVIDENCE-PLACEMENT`
+`ARCH-2026-H1.5.1-Q1-V2-AUTHORITY-RECOVERY`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
@@ -20,10 +20,9 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 
 - Branch: `platform-architecture-2026`
 - Repository: `asas-erp-saas-1/As`
-- Verified current branch HEAD before this checkpoint commit: `93a504907dbe650473ba7c787e2dcf1ac57aaf4e`.
-- This checkpoint commit becomes the new branch HEAD after successful update; branch metadata must be used for the final exact SHA.
+- Current branch HEAD before this checkpoint update: `71a9392addaae3a2c9fcdebfec627a67a501fc1a`.
 - Foundation CI was previously verified at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
-- No new CI execution has been verified for the evidence-placement commits; therefore the current evidence-placement HEAD remains `CI NOT VERIFIED` until the existing workflow is rerun.
+- No new CI execution has been verified for the latest source-of-truth/checkpoint updates; current HEAD therefore remains `CI NOT VERIFIED` until the existing workflow is rerun.
 
 ## 4. Canonical control plane
 
@@ -37,7 +36,7 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
 | Repository skills | `.agents/skills/` | 9 skills / repository-verified |
-| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed v1.5.4 |
+| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed v1.5.5 |
 | Evidence placement register | `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md` | ACTIVE / evidence register |
 | Context boundary framework | `docs/architecture/reconciliation/ASAS-CONTEXT-BOUNDARY-DECISION-FRAMEWORK-2026.md` | ACTIVE / reconciliation control |
 | Context authority reconciliation | `docs/architecture/reconciliation/ASAS-CONTEXT-AUTHORITY-RECONCILIATION-2026.md` | CONFLICT / RECONCILIATION REQUIRED v1.1.0 |
@@ -82,14 +81,25 @@ Repository-side evidence does not prove that a separate live Codex runtime loade
 
 A historical-branch inspection on 2026-09-24 added important evidence without closing the conflict.
 
+Relevant branches inspected:
+
+- `foundation/architecture-lineage-reconciliation-v1`
+- `foundation/source-authority-ledger-v1`
+- `foundation/reconcile-context-map-v2`
+- `foundation/blueprint-canonical-shadows`
+- `foundation/blueprint-register-ingestion`
+- active `platform-architecture-2026`
+
 The branch `foundation/reconcile-context-map-v2` contains:
 
 - `docs/architecture/CANONICAL-CONTEXT-TO-MODULE-MAP.md`, a 15-module candidate decomposition;
 - `docs/decisions/ADR-0001-CANONICAL-CONTEXT-MODULE-DECOMPOSITION.md`, explicitly marked `PROPOSED — awaiting explicit founder acceptance`.
 
-This proves that a 15-context/15-module decomposition was proposed and documented. It does not prove that the exact approved Phase 1.5 Domain Model v2 or Context Map v2 has been recovered, nor that ADR-0001 was accepted.
+The branch `foundation/source-authority-ledger-v1` explicitly states that the exact approved Phase 1.5 Domain Model v2 and Context Map v2 are not identified and must not be synthesized.
 
-The historical `foundation/source-authority-ledger-v1` independently states that the exact approved v2 artifacts remain unidentified and must not be synthesized.
+The branch `foundation/architecture-lineage-reconciliation-v1` independently records the same authority gap: the roadmap claims an approved 15-context v2, the available Domain Model is a 13-context draft, and the implementation specification defines 15 modules/15 PostgreSQL schemas.
+
+A repository-wide branch inventory confirms many historical foundation/feature branches, but the inspected architecture branches do not expose the exact approved v2 artifact. This is evidence that the artifact remains unlocated, not evidence that it never existed.
 
 Therefore the correct current statement is:
 
@@ -194,13 +204,13 @@ A dedicated evidence register was added:
 
 It records the verified repository HEAD, the nine registered repository skills, canonical control-plane artifact locations, context authority status, Scheduling status, Building status, Offer/Reservation safety boundaries, database methodology, AI authority boundary and scope reservations.
 
-The source-of-truth control resource was updated to v1.5.4 to route these facts without promoting them to runtime evidence.
+The source-of-truth control resource was updated to v1.5.5 to route these facts without promoting them to runtime evidence.
 
 Roadmap Amendment 004 and Context Prompt Amendment 005 now make evidence placement and truth classification mandatory for continuation sessions.
 
 ## 7. Current blockers
 
-- current evidence-placement HEAD must be independently CI-verified;
+- current evidence-placement/source-of-truth HEAD must be independently CI-verified;
 - exact approved Phase 1.5 Domain Model v2 remains unlocated;
 - exact approved Context Map v2 remains unlocated;
 - ADR-0001 from `foundation/reconcile-context-map-v2` remains PROPOSED and requires explicit founder acceptance if its proposed decomposition is to be adopted;
