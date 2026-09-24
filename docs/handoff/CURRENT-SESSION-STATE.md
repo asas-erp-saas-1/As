@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.9  
+**Version:** 3.10  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION → BROWNFIELD PERSISTENCE TRACE → CONTEXT AUTHORITY RECONCILIATION`
+`ARCHITECTURE ENGINEERING — CODEX-FIRST CONTROL PLANE VERIFIED → Q1 BUILDING DOMAIN ANALYSIS → SCHEMA SOURCE RECONSTRUCTION → BROWNFIELD PERSISTENCE TRACE → CONTEXT AUTHORITY RECONCILIATION → EVIDENCE PLACEMENT`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.1-Q1-CONTEXT-AUTHORITY-RECONCILIATION`
+`ARCH-2026-H1.5.1-Q1-EVIDENCE-PLACEMENT`
 
 This checkpoint remains the sole active execution state. Do not use `SESSION_STATE.md` as the current checkpoint.
 
@@ -20,11 +20,11 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 
 - Branch: `platform-architecture-2026`
 - Repository: `asas-erp-saas-1/As`
-- Current branch HEAD after this checkpoint update: to be verified from GitHub branch metadata after commit.
-- Prior branch HEAD: `dfa0b3198bae7870bba621e81212048f30ec8435`.
+- Verified current branch HEAD: `4efb961d5ad1d685d6e69cba7b5f5eee5a7a836d`.
+- Immediate parent: `325a73cac45faada183d42816d0dad1a99e5a179`.
+- The branch metadata confirms the current HEAD and that branch protection/status checks are not configured at the GitHub branch level.
 - Foundation CI was previously verified at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
-- No combined CI statuses were returned for `dfa0b3198bae7870bba621e81212048f30ec8435`; therefore that HEAD was `CI NOT VERIFIED`.
-- Latest reconciliation commits must be independently CI-verified before current HEAD is described as CI-verified.
+- No new CI execution has been verified for the current HEAD; therefore current HEAD remains `CI NOT VERIFIED`.
 
 ## 4. Canonical control plane
 
@@ -38,7 +38,8 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 | Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
 | Repository skills | `.agents/skills/` | 9 skills / repository-verified |
-| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed v1.5.3 |
+| Consolidated engineering truth | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | CANONICAL / evidence-backed v1.5.4 |
+| Evidence placement register | `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md` | ACTIVE / evidence register |
 | Context boundary framework | `docs/architecture/reconciliation/ASAS-CONTEXT-BOUNDARY-DECISION-FRAMEWORK-2026.md` | ACTIVE / reconciliation control |
 | Context authority reconciliation | `docs/architecture/reconciliation/ASAS-CONTEXT-AUTHORITY-RECONCILIATION-2026.md` | CONFLICT / RECONCILIATION REQUIRED v1.1.0 |
 | Building contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
@@ -65,7 +66,8 @@ Evidence:
 - Codex entrypoint exists and explicitly loads the skills catalog and current amendments;
 - all nine registered skill manifests exist and pass structural checks;
 - foundation CI successfully executed at run `35879311233`;
-- repository-contract workflow steps passed at that verified foundation HEAD.
+- repository-contract workflow steps passed at that verified foundation HEAD;
+- current branch tree was independently inspected at HEAD `4efb961d5ad1d685d6e69cba7b5f5eee5a7a836d`.
 
 ### Runtime Codex skill execution
 
@@ -79,7 +81,7 @@ Repository-side evidence does not prove that a separate live Codex runtime loade
 
 `OPEN / CONFLICT / IMPLEMENTATION BLOCKED`
 
-A new historical-branch inspection on 2026-09-24 added important evidence without closing the conflict.
+A historical-branch inspection on 2026-09-24 added important evidence without closing the conflict.
 
 The branch `foundation/reconcile-context-map-v2` contains:
 
@@ -186,9 +188,18 @@ The promotion sequence remains:
 
 Historical source extraction is evidenced. Repository persistence trace is now explicitly started. Overall promotion remains `BLOCKED` because brownfield/runtime persistence and authority reconciliation are incomplete.
 
+### Evidence placement pass — 2026-09-24
+
+A dedicated evidence register was added:
+`docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`.
+
+It records the verified repository HEAD, the nine registered repository skills, canonical control-plane artifact locations, context authority status, Scheduling status, Building status, Offer/Reservation safety boundaries, database methodology, AI authority boundary, design-to-code authority and scope reservations.
+
+The source-of-truth control resource was updated to v1.5.4 to route these facts without promoting them to runtime evidence.
+
 ## 7. Current blockers
 
-- latest checkpointed HEAD must be independently CI-verified;
+- current HEAD `4efb961d5ad1d685d6e69cba7b5f5eee5a7a836d` must be independently CI-verified;
 - exact approved Phase 1.5 Domain Model v2 remains unlocated;
 - exact approved Context Map v2 remains unlocated;
 - ADR-0001 from `foundation/reconcile-context-map-v2` remains PROPOSED and requires explicit founder acceptance if its proposed decomposition is to be adopted;
@@ -242,7 +253,7 @@ Q1 does not authorize:
 
 ## 10. External engineering evidence incorporated
 
-Prisma official documentation was reviewed for the reconciliation procedure. It supports introspection as evidence capture of an existing relational database, baselining when adopting migration history around existing data, and schema-source comparison via `migrate diff`. PostgreSQL RLS documentation supports treating row-level policy as a database security layer rather than as a substitute for application/domain authorization. External engineering evidence informs the procedure but does not override ASAS authority.
+Prisma official documentation was reviewed for the reconciliation procedure. It supports schema-source comparison and brownfield baselining workflows for existing databases. PostgreSQL official documentation confirms that explicit row-level locking is available when application correctness requires concurrency control beyond default MVCC behavior. External engineering evidence informs the procedure but does not override ASAS authority.
 
 ## 11. Continuation rule
 
