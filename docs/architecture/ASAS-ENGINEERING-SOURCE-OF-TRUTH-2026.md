@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.3  
+**Version:** 1.5.4  
 **Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
@@ -44,6 +44,7 @@
 | Building domain contract | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | PROPOSED / OPEN / IMPLEMENTATION BLOCKED |
 | Building reconciliation | `docs/architecture/reconciliation/ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | OPEN / IMPLEMENTATION BLOCKED |
 | Schema contract promotion | `docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md` | CANONICAL PROCEDURE / ACTIVE v1.0.1 |
+| Evidence placement | `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md` | ACTIVE / EVIDENCE REGISTER |
 
 Historical Blueprint Amendment 001 remains provenance and is not an active competing blueprint.
 
@@ -67,7 +68,8 @@ Skills are procedural and cannot override architecture authority.
 
 Canonical repository: `asas-erp-saas-1/As`  
 Architecture branch: `platform-architecture-2026`  
-Current branch HEAD is maintained in the session checkpoint.
+Verified branch HEAD during the 2026-09-24 architecture pass: `ea7efa12c3a7baba15741de4728efb865f7ed4c9`.  
+The current checkpoint remains the operational source for subsequent HEAD changes.
 
 Historical branches are provenance. Branch deletion is not implied by reconciliation.
 
@@ -221,3 +223,17 @@ Implementation packets must identify scope, owner, dependencies, contracts, comm
 ## 17 — Current roadmap
 
 `H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`.
+
+## 18 — Verified evidence placement — 2026-09-24
+
+The current forensic pass verified the repository-side architecture control surface at branch HEAD `ea7efa12c3a7baba15741de4728efb865f7ed4c9` and confirmed that the branch contains `AGENTS.md`, `.agents/skills/`, `.github/workflows/`, architecture governance/reconciliation artifacts, contracts, handoff controls and design artifacts.
+
+The nine registered repository skills are:
+`asas-architecture-governance`, `asas-database-engineering`, `asas-design-fidelity`, `asas-domain-contracts`, `asas-engineering`, `asas-observability-reliability`, `asas-repository-forensics`, `asas-security-ai-safety`, `asas-testing-verification`.
+
+The detailed evidence placement and provenance record is canonical at:
+`docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`.
+
+This evidence confirms repository structure and control-plane presence only. It does not verify live Supabase/Vercel identity, live database state, production RLS, runtime behavior, or deployment health.
+
+External engineering research used in this pass confirms two implementation principles already present in ASAS architecture: PostgreSQL supports explicit row-level locking for concurrency control when MVCC alone does not provide the required behavior; and Prisma provides schema-diff/baselining workflows for existing databases. These sources support the architecture method but do not constitute ASAS runtime evidence.
