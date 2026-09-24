@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-RECON-SCHEMA-PROMOTION-2026-001  
 **Status:** CANONICAL PROCEDURE / ACTIVE  
-**Version:** 1.0.1  
+**Version:** 1.0.2  
 **Effective date:** 2026-09-24  
 **Owner:** Lead Architecture / Database Engineering  
 **Branch:** `platform-architecture-2026`  
@@ -12,7 +12,7 @@
 
 Define the controlled process by which ASAS can move from source-package schema observations and brownfield database evidence to an executable target schema contract.
 
-The protocol exists because the repository currently contains a schema-contract index but does not yet contain an executable target Prisma contract. The repository records a historical declaration of 59 models / 16 enums / 15 indexes and a source observation of 59 models / 17 enums / 56 indexes. Those values are retained as separate evidence until reconciled.
+The protocol exists because the repository currently contains a schema-contract index but does not yet contain an executable target Prisma contract. The repository records a historical declaration of 59 models / 16 enums / 15 indexes and a source observation of 59 models / 17 enums / 56 indexes. The complete v1.6.1 source has now been extracted and measured independently; those values are retained as separate evidence until reconciled with repository implementation and live runtime reality.
 
 ## 2. Core principle
 
@@ -46,7 +46,9 @@ Verify repository, branch, commit, environment and database identity before inte
 
 Extract the complete candidate schema source from its actual provenance. Do not reconstruct a schema from headline counts, diagrams, snippets, or search results.
 
-**Required evidence:** complete source artifact, immutable hash, provenance path/ref.
+**Current evidence:** the supplied ASAS v1.6.1 package contains a complete `blueprint/schema/asas-contracts.prisma` source and it has been independently structurally parsed. See `ASAS-SCHEMA-STRUCTURAL-INVENTORY-2026.md`.
+
+**Required evidence:** complete source artifact, immutable hash when available, provenance path/ref.
 
 ### S2 — Structural parse
 
@@ -139,7 +141,27 @@ The executable schema contract may be promoted only when:
 - verification evidence exists;
 - the responsible architecture authority approves promotion.
 
-## 5. Migration safety doctrine
+## 5. Current measured source evidence
+
+The complete v1.6.1 source currently measures:
+
+- 59 models;
+- 17 enums;
+- 56 `@@index` declarations;
+- 22 `@@unique` declarations;
+- 19 `@relation` annotations.
+
+The 59-model source does **not** contain standalone Prisma models named `Developer`, `Project`, `Building`, or `Floor`.
+
+However, `ProjectMilestone` contains an optional `building_id`, `LedgerEntry` contains an optional `building_id` reporting dimension, and `Apartment` owns `construction_status`. This creates a real architectural question: a building identity is referenced by the candidate schema without a first-class Building model in that source.
+
+The state-machine register independently describes `apartment.construction_status` as the state owner while saying milestone certification is driven per building. This may be valid as a scope distinction, but the identity/ownership of `building_id` is unresolved.
+
+The Master Spec also contains a staged task for Developer/Project/Building/Floor models while separately describing those entities as absent from the 59-model contract. This is classified as `CONFLICT / INTENTIONAL-STAGING-CANDIDATE — NOT RESOLVED` until repository and runtime evidence determine the intended brownfield mapping.
+
+These observations strengthen the case for reconciliation; they do not authorize adding Building, Project, Floor, or Developer tables.
+
+## 6. Migration safety doctrine
 
 No schema contract promotion automatically authorizes a migration.
 
@@ -149,7 +171,7 @@ Production must never be reset, dropped, truncated, blindly recreated, or destru
 
 **External engineering evidence:** Prisma's official documentation describes introspection as a mechanism for reflecting an existing relational database into a Prisma data model, and documents baselining when adopting migration history around an existing database whose data must be preserved. Prisma also documents `migrate diff` for comparing schema sources and emphasizes reconciliation between migration history and actual database state. These sources inform this procedure but do not override ASAS authority.
 
-## 6. ASAS-specific promotion gate
+## 7. ASAS-specific promotion gate
 
 Current gate:
 
@@ -158,12 +180,13 @@ Current gate:
 Reason:
 
 - executable target Prisma contract is not promoted;
-- complete v1.6.1 schema source is not currently available at the expected repository path;
-- 59/17/56 observation versus 59/16/15 historical declaration remains unresolved;
+- complete v1.6.1 source is available as historical/reference provenance, but is not repository implementation authority;
+- 59/17/56 source observation versus 59/16/15 historical declaration remains unresolved;
+- Project/Building/Floor identity and ownership are not reconciled against repository/runtime persistence;
 - live database identity/schema is not verified;
-- Building persistence therefore cannot be decided from the absent executable contract.
+- Building persistence therefore cannot be decided from the historical candidate source alone.
 
-## 7. Required reconciliation matrix
+## 8. Required reconciliation matrix
 
 Before promotion, produce a machine-readable or tabular matrix containing at least:
 
@@ -172,7 +195,7 @@ Before promotion, produce a machine-readable or tabular matrix containing at lea
 
 No row may use an invented model or constraint merely to make the matrix complete.
 
-## 8. Forbidden shortcuts
+## 9. Forbidden shortcuts
 
 - Creating a Prisma model solely because a domain diagram contains a node.
 - Creating a table solely because a task mentions a noun.
@@ -183,16 +206,16 @@ No row may use an invented model or constraint merely to make the matrix complet
 - Treating introspection output as target architecture without domain reconciliation.
 - Using destructive reset/recreate operations to make environments look consistent.
 
-## 9. Exit statuses
+## 10. Exit statuses
 
 `VERIFIED | PARTIAL | BLOCKED | NOT_EXECUTED | OPEN | CONFLICT`
 
 Never use `READY`, `FINAL`, or `COMPLETE` as evidence status.
 
-## 10. Next authorized dependency for Q1
+## 11. Next authorized dependency for Q1
 
 The next work item is:
 
-**Q1-SCHEMA-01 — Complete source extraction and schema observation reconciliation.**
+**Q1-SCHEMA-03/04 — Reconcile the measured 59/17/56 source against the repository's historical declaration, then align Project/Building/Floor/Unit identity with domain invariants and brownfield persistence evidence.**
 
-It precedes any Building persistence decision and any executable Prisma contract promotion.
+This precedes any Building persistence decision and any executable Prisma contract promotion.
