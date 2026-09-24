@@ -1,30 +1,30 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.16  
+**Version:** 3.17  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → Q1 BUILDING / DOMAIN AUTHORITY RECOVERY`
+`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → Q1 BUILDING / ORGANIZATION COLLABORATION AUTHORITY`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.3-Q1-BUILDING-RESEARCH-RECONCILIATION`
+`ARCH-2026-H1.5.4-Q1-ORG-COLLAB-BUILDING-RECONCILIATION`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
 ## 3. Current HEAD
 
-The current branch HEAD is the commit produced by this checkpoint sequence. It contains the reconciled PRD, Q1 research record, evidence-register update, Source-of-Truth update and previous architecture-control artifacts.
+The current branch HEAD is the commit produced by this checkpoint sequence. It contains the reconciled PRD, organization collaboration contract, Q1 research/control artifacts and previous architecture-control artifacts.
 
 **CI:** `NOT VERIFIED FOR CURRENT HEAD` until the existing workflow is rerun. The previously verified foundation run was `35879311233` and is not evidence for the current HEAD.
 
 ## 4. Canonical control plane
 
-- Product requirements: `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` — PROPOSED v0.2.0 / FOUNDER REVIEW REQUIRED
+- Product requirements: `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` — PROPOSED v0.3.0 / FOUNDER REVIEW REQUIRED
 - Blueprint: `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` — PROPOSED v1.5.1
 - Roadmap: `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — ACTIVE v2.0.1 + amendments
 - Context Prompt: `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — ACTIVE v2.0.2 + amendments
@@ -41,6 +41,8 @@ The current branch HEAD is the commit produced by this checkpoint sequence. It c
 - Context boundary framework: `docs/architecture/reconciliation/ASAS-CONTEXT-BOUNDARY-DECISION-FRAMEWORK-2026.md`
 - Context authority reconciliation: `docs/architecture/reconciliation/ASAS-CONTEXT-AUTHORITY-RECONCILIATION-2026.md` — CONFLICT / OPEN
 - Building trace plan: `docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
+- Building domain contract: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` — PROPOSED / OPEN / IMPLEMENTATION BLOCKED
+- Organization collaboration contract: `docs/architecture/contracts/ASAS-ORGANIZATION-COLLABORATION-AUTHORIZATION-CONTRACT-2026.md` — PROPOSED / IMPLEMENTATION BLOCKED
 - Proposed PRD: `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` — PROPOSED / FOUNDER REVIEW REQUIRED
 
 ## 5. Method — effective now
@@ -57,7 +59,7 @@ Historical founder-confirmed product truth on `foundation/reconcile-context-map-
 
 It establishes ASAS as a broad Real Estate Operating System combining public digital sales surface, Studio/CMS, inventory, CRM, sales, finance/ERP, marketing, analytics, communications, governance, workflows and future AI intelligence. It also establishes the hierarchy `Promoter/portfolio → Project → Building → Unit` and a one-system-of-truth principle across public and internal surfaces.
 
-The consolidated PRD now records this evidence. It remains `PROPOSED — FOUNDER REVIEW REQUIRED` and does not authorize implementation expansion.
+The consolidated PRD now records this evidence and the founder's current product direction for a broad multi-organization real-estate platform. It remains `PROPOSED — FOUNDER REVIEW REQUIRED` and does not authorize implementation expansion.
 
 ## 7. Agent authority
 
@@ -124,11 +126,59 @@ This is a provisional architecture conclusion, not schema authorization.
 
 `docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
 
-## 11. Historical branch evidence
+## 11. Organization / Agency / Developer collaboration — Q1 extension
+
+`PROPOSED / PRODUCT-ARCHITECTURE DECISION RECORDED / IMPLEMENTATION BLOCKED`
+
+Canonical contract:
+
+`docs/architecture/contracts/ASAS-ORGANIZATION-COLLABORATION-AUTHORIZATION-CONTRACT-2026.md`
+
+### Decision
+
+ASAS is a broad multi-organization real-estate platform. Organization is the business principal. Developer, Agency, Brokerage, Property Manager, Investor, Construction Company and Real Estate Marketing Company are organization types, not nested account architectures.
+
+The initial commercial wedge is Developer + Agency, followed by Agency + Developer + Brokerage workflows, while the core remains extensible to additional real-estate organization types.
+
+### Ownership
+
+The authoritative organization controls/owns the authoritative business resource. In the current developer model:
+
+`Developer → Project → Building → Unit / Inventory`
+
+A partner Agency receives controlled access through a collaboration relationship; it does not receive a copied project/inventory record merely because it sells that inventory.
+
+### Collaboration
+
+The relationship is first-class and can be scoped to organization, project, building, inventory subset or other validated resources.
+
+Conceptual chain:
+
+`User → Membership → Organization Context → Relationship → Resource Scope → Permission → Command/Query → Invariant`
+
+### Visibility
+
+**Visibility follows responsibility.** Users should see only what is relevant to their task and authorized scope. A sales agent should not see developer internal finance, costs, unrelated projects or another agency's private CRM data merely because the records exist in the same platform.
+
+### Developer value
+
+An authorized Developer project view should be capable of showing controlled inventory and partner performance, including leads, visits, offers, reservations, sales, conversion, velocity and attribution where permitted.
+
+### Performance visibility
+
+Founder selected **E — Hybrid / configurable**. The product direction is to provide useful default project-level performance visibility while allowing authorized Developer administrators to control sensitive partner-performance detail and fields.
+
+This is recorded as a product direction but remains subject to final product/security contract closure.
+
+### Explicit non-decisions
+
+No schema, Prisma model, RLS policy, policy engine, production migration, nested account implementation or microservice design is authorized by this checkpoint.
+
+## 12. Historical branch evidence
 
 `foundation/reconcile-context-map-v2` contains a proposed 15-module map. Its Property & Inventory module owns Projects and Units, while its aggregate baseline does not establish Building as an independent aggregate. This supports the conservative direction but remains historical proposal evidence, not current authority.
 
-## 12. Schema truth
+## 13. Schema truth
 
 Keep separate:
 
@@ -138,11 +188,13 @@ Measured v1.6.1 source observations: 59 models, 17 enums, 56 indexes, 22 unique 
 
 Schema promotion remains BLOCKED pending complete brownfield/runtime reconciliation, domain closure, security alignment and executable verification.
 
-## 13. Current invariants / architectural doctrine
+## 14. Current invariants / architectural doctrine
 
 - no double-sale / one active reservation winner under concurrency;
 - governed state transitions only through command → authorization → invariant → mutation → audit → event/outbox;
 - tenant isolation and server-side authorization;
+- organization collaboration cannot implicitly widen tenant/resource access;
+- least privilege and deny-by-default apply to cross-organization resources;
 - immutable posted financial facts with reversal semantics;
 - explicit currency and integer minor units where applicable;
 - durable events require reliable publication semantics and idempotent consumers;
@@ -151,18 +203,59 @@ Schema promotion remains BLOCKED pending complete brownfield/runtime reconciliat
 
 Runtime enforcement is not claimed without evidence.
 
-## 14. External engineering evidence incorporated
+## 15. External engineering evidence incorporated
 
 Current research includes:
 
 - DDD bounded-context and aggregate guidance;
 - PostgreSQL constraints, identity, referential-integrity and locking guidance;
-- OWASP ASVS 5.0.0 security-verification guidance;
-- Prisma brownfield schema-diff/baselining guidance.
+- OWASP ASVS and authorization guidance;
+- Prisma brownfield schema-diff/baselining guidance;
+- Microsoft Azure Well-Architected SaaS identity/access guidance on role/resource-based authorization and granular authorization;
+- AWS SaaS architecture guidance on explicit tenant isolation, pooled/bridge/silo strategies and multi-tenant API authorization.
 
 External evidence validates engineering technique only. It does not prove ASAS runtime state.
 
-## 15. Next execution queue
+## 16. Current gates
+
+- G0 repository identity/checkpoint — GREEN
+- G1 authority/control-plane — GREEN (repository-side CI previously verified; current HEAD retest pending)
+- G2 domain/module authority — AMBER / Scheduling open
+- G3 aggregate/invariant contracts — AMBER / Building Q1 + Organization Collaboration contract open
+- G4 executable invariants — AMBER / implementation absent
+- G5 state machines — AMBER / runtime absent
+- G6 events — BLOCKED
+- G7 implementation authorization — BLOCKED
+- G8 tenancy/RLS — BLOCKED
+- G9 security evidence — AMBER
+- G10 live DB/schema — BLOCKED
+- G11 CI — GREEN at verified run `35879311233`; latest HEAD requires retest after contract/checkpoint updates
+- G12 observability/recovery — BLOCKED
+- G13 backup/restore evidence — BLOCKED
+- G14 AI tooling evidence — AMBER / repository skills verified; live Codex discovery not executed
+- G15 implementation authorization — BLOCKED
+
+## 17. Current roadmap
+
+`H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`.
+
+## 18. Evidence placement and research records
+
+Evidence register:
+`docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
+
+Q1 research record:
+`docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
+
+Q1 forensic trace plan:
+`docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
+
+Organization collaboration contract:
+`docs/architecture/contracts/ASAS-ORGANIZATION-COLLABORATION-AUTHORIZATION-CONTRACT-2026.md`
+
+These artifacts record source provenance, independent engineering research, founder interview decisions, alternatives, current conclusions and explicit non-authorizations.
+
+## 19. Next execution queue
 
 ### Q1-A — Recover exact approved Domain Model v2 / Context Map v2
 
@@ -180,7 +273,11 @@ Reconcile measured `59/17/56/22/19` source observations against historical decla
 
 Close cardinality, identity, uniqueness, tenant inheritance and rename/move/archive behavior before any schema authorization.
 
-### Q1-E — Retest current HEAD
+### Q1-E — Close Organization Collaboration semantics
+
+Define Organization/Workspace/Branch boundaries, relationship lifecycle, project/resource scopes, default/configurable partner-performance visibility, sensitive-field policy and final permission mapping before schema/RLS implementation.
+
+### Q1-F — Retest current HEAD
 
 Run the existing CI workflow. Do not invent a new command merely to create a green status.
 
@@ -196,7 +293,7 @@ PaymentSchedule → Receipt → Allocation → Ledger semantics.
 
 Founder decision / explicit supersession only.
 
-## 16. Non-authorizations
+## 20. Non-authorizations
 
 No authorization exists for:
 
@@ -205,11 +302,12 @@ No authorization exists for:
 - migrations;
 - destructive operations;
 - Building-specific events/permissions/state machine;
+- organization collaboration schema/RLS implementation before contract closure;
 - autonomous financial correction;
 - autonomous high-impact AI mutation;
 - broad implementation before contract gates close.
 
-## 17. Closure rule
+## 21. Closure rule
 
 A finding is CLOSED only when:
 
@@ -217,7 +315,7 @@ A finding is CLOSED only when:
 
 Otherwise it remains `OPEN`, `PARTIAL`, `BLOCKED`, `CONFLICT`, `NOT_EXECUTED` or `FOUNDER-DECISION-REQUIRED`.
 
-## 18. Resume rule
+## 22. Resume rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
