@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.12  
+**Version:** 3.13  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
@@ -20,9 +20,9 @@ This checkpoint remains the sole active execution state. Do not use `SESSION_STA
 
 - Branch: `platform-architecture-2026`
 - Repository: `asas-erp-saas-1/As`
-- Current branch HEAD before this checkpoint update: `71a9392addaae3a2c9fcdebfec627a67a501fc1a`.
+- Current branch HEAD before this checkpoint update: `9cd89580299118db451af20c36344ed69c50e48f`.
 - Foundation CI was previously verified at commit `6a57c46a1f326cc7f3d023911724b36683b7fdb3` via workflow run `35879311233`.
-- No new CI execution has been verified for the latest source-of-truth/checkpoint updates; current HEAD therefore remains `CI NOT VERIFIED` until the existing workflow is rerun.
+- No new CI execution has been verified for the latest source-of-truth/evidence/checkpoint updates; current HEAD therefore remains `CI NOT VERIFIED` until the existing workflow is rerun.
 
 ## 4. Canonical control plane
 
@@ -197,20 +197,15 @@ The promotion sequence remains:
 
 Historical source extraction is evidenced. Repository persistence trace is explicitly started. Overall promotion remains `BLOCKED` because brownfield/runtime persistence and authority reconciliation are incomplete.
 
-### Evidence placement pass — 2026-09-24
+### Evidence placement and V2 recovery — 2026-09-24
 
-A dedicated evidence register was added:
-`docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`.
+The evidence placement register was updated to record the current HEAD, branch-provenance inspection, V2 authority recovery status, event/permission register placement and the prohibition against synthesizing missing approved v2 artifacts.
 
-It records the verified repository HEAD, the nine registered repository skills, canonical control-plane artifact locations, context authority status, Scheduling status, Building status, Offer/Reservation safety boundaries, database methodology, AI authority boundary and scope reservations.
-
-The source-of-truth control resource was updated to v1.5.5 to route these facts without promoting them to runtime evidence.
-
-Roadmap Amendment 004 and Context Prompt Amendment 005 now make evidence placement and truth classification mandatory for continuation sessions.
+The source-of-truth control resource was updated to v1.5.5. The active checkpoint was advanced to v3.13 and now resumes from V2 authority recovery.
 
 ## 7. Current blockers
 
-- current evidence-placement/source-of-truth HEAD must be independently CI-verified;
+- current evidence-placement/source-of-truth/checkpoint HEAD must be independently CI-verified;
 - exact approved Phase 1.5 Domain Model v2 remains unlocated;
 - exact approved Context Map v2 remains unlocated;
 - ADR-0001 from `foundation/reconcile-context-map-v2` remains PROPOSED and requires explicit founder acceptance if its proposed decomposition is to be adopted;
