@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.15  
+**Version:** 3.16  
 **Date:** 2026-09-24  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
@@ -12,29 +12,27 @@
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.5.2-Q1-RESEARCH-FIRST-DOMAIN-AUTHORITY`
+`ARCH-2026-H1.5.3-Q1-BUILDING-RESEARCH-RECONCILIATION`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
 ## 3. Current HEAD
 
-`626397daa57dad46402c685bd30a7cbe4cb8e3e3`
+The current branch HEAD is the commit produced by this checkpoint sequence. It contains the reconciled PRD, Q1 research record, evidence-register update, Source-of-Truth update and previous architecture-control artifacts.
 
-Branch: `platform-architecture-2026`
-
-The current HEAD contains the research-first decision method, proposed PRD baseline, roadmap/context/source-of-truth amendments and previous architecture reconciliation work.
-
-**CI:** `NOT VERIFIED FOR CURRENT HEAD` until the existing workflow is rerun. The previously verified foundation run was `35879311233` and is not evidence for this HEAD.
+**CI:** `NOT VERIFIED FOR CURRENT HEAD` until the existing workflow is rerun. The previously verified foundation run was `35879311233` and is not evidence for the current HEAD.
 
 ## 4. Canonical control plane
 
+- Product requirements: `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` — PROPOSED v0.2.0 / FOUNDER REVIEW REQUIRED
 - Blueprint: `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` — PROPOSED v1.5.1
 - Roadmap: `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` — ACTIVE v2.0.1 + amendments
 - Context Prompt: `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — ACTIVE v2.0.2 + amendments
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
-- Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — v1.5.6
+- Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — v1.5.7
 - Research protocol: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-SOURCE-DISCOVERY-PROTOCOL-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL OPERATING METHOD v1.0.0
+- Q1 research record: `docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
 - Agent Operating Model: `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md`
 - Codex Skills Catalog: `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
 - Repository skills: `.agents/skills/` — 9 repository-verified skills
@@ -42,90 +40,105 @@ The current HEAD contains the research-first decision method, proposed PRD basel
 - Evidence register: `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
 - Context boundary framework: `docs/architecture/reconciliation/ASAS-CONTEXT-BOUNDARY-DECISION-FRAMEWORK-2026.md`
 - Context authority reconciliation: `docs/architecture/reconciliation/ASAS-CONTEXT-AUTHORITY-RECONCILIATION-2026.md` — CONFLICT / OPEN
+- Building trace plan: `docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
 - Proposed PRD: `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` — PROPOSED / FOUNDER REVIEW REQUIRED
 
-## 5. Method correction — effective now
+## 5. Method — effective now
 
-The architecture process is explicitly:
+The architecture process is:
 
 `PROBLEM → RESEARCH → ALTERNATIVES / FAILURE MODES → HYPOTHESES → ASAS SOURCE VALIDATION → PROVENANCE / AUTHORITY → REJECT / ADAPT / DERIVE → CONTRACT / ADR / REGISTER → VERIFY → CHECKPOINT`
 
-This is not source-first obedience and not web-first invention. Research expands the solution space; ASAS sources determine what is actually supported and authoritative.
+Research expands the solution space; ASAS sources determine what is supported and authoritative. No source is blindly obeyed and no external research is promoted to ASAS truth without reconciliation.
 
-For material questions, current official documentation, standards, primary engineering sources and authoritative research are preferred. High-risk decisions require adversarial analysis and explicit evidence.
+## 6. Product truth reconciliation
 
-## 6. Agent authority correction
+Historical founder-confirmed product truth on `foundation/reconcile-context-map-v2` was re-inspected.
+
+It establishes ASAS as a broad Real Estate Operating System combining public digital sales surface, Studio/CMS, inventory, CRM, sales, finance/ERP, marketing, analytics, communications, governance, workflows and future AI intelligence. It also establishes the hierarchy `Promoter/portfolio → Project → Building → Unit` and a one-system-of-truth principle across public and internal surfaces.
+
+The consolidated PRD now records this evidence. It remains `PROPOSED — FOUNDER REVIEW REQUIRED` and does not authorize implementation expansion.
+
+## 7. Agent authority
 
 `Codex = primary engineering executor` for authorized architecture implementation, code, schema/database work, tests, CI and controlled delivery.
 
 `Claude + Figma = specialized design / UX / UI / design-system collaboration`.
 
-Agents do not promote product or architecture decisions autonomously. They implement HOW only after WHAT is authorized.
-
-## 7. Product requirements status
-
-A consolidated PRD baseline now exists, but it is deliberately:
-
-`PROPOSED — FOUNDER REVIEW REQUIRED`
-
-It captures currently supported product intent, the commercial traceability spine, initial capability direction, quality requirements, explicit non-goals and open product decisions. It is not an implementation authorization.
+Agents implement HOW only after WHAT is authorized.
 
 ## 8. Context authority — C2-001
 
 `OPEN / CONFLICT / IMPLEMENTATION BLOCKED`
 
-Verified evidence from historical branches establishes:
-
-- nine-context model: current candidate artifact;
-- 13-context model: historical draft;
-- 15-module implementation design: historical implementation source;
-- 15-context/15-module candidate map: historical proposal;
-- ADR-0001 acceptance: not established / founder decision required if adopted;
-- exact approved Phase 1.5 Domain Model v2 and Context Map v2: still unlocated.
-
-Do not resolve the conflict by counting contexts or equating modules with bounded contexts.
+The exact approved Phase 1.5 Domain Model v2 and Context Map v2 remain unlocated. The historical 15-module candidate remains proposed pending explicit acceptance. Do not equate module count with bounded-context count.
 
 ## 9. Scheduling — C2-002
 
 `FOUNDER-DECISION-REQUIRED`
 
-Historical ADR-0018 and current architecture materials conflict. No persistence, event, permission or dependency ownership may be silently reassigned.
+No persistence, event, permission or dependency ownership may be silently reassigned.
 
 ## 10. Building — Q1
 
 `OPEN / IMPLEMENTATION BLOCKED`
 
-Supported conclusions:
+### Research-first conclusion
+
+The strongest current model is:
+
+`Real Estate / Inventory → Project → Building (structural Entity candidate) → Floor (structural level if required) → Unit aggregate`
+
+This is a provisional architecture conclusion, not schema authorization.
+
+### Supported
 
 - Building is a first-class real-estate hierarchy concept;
-- target ownership direction is Real Estate / Inventory;
-- Building is an Entity candidate with durable identity;
-- Unit remains the commercial/inventory consistency boundary;
-- Building is not promoted to independent aggregate root;
-- tenant scope, identity, uniqueness, cardinality and rename/move/archive semantics remain open;
-- no Building table/model/migration is authorized.
+- product direction uses `projects → buildings → units`;
+- ownership direction is Real Estate / Inventory;
+- Building should not currently be a bounded context;
+- Building should not currently be an independent aggregate root;
+- Unit remains the commercial/reservation consistency boundary;
+- no independent Building state machine is justified by current evidence;
+- no Building microservice or independent event stream is authorized.
 
-Controlled evidence artifacts:
+### Open
 
-`ASAS-BUILDING-DOMAIN-CONTRACT-2026.md`  
-`ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md`  
-`ASAS-BUILDING-PERSISTENCE-IDENTITY-DECISION-2026.md`  
-`ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`  
-`ASAS-BROWNFIELD-PERSISTENCE-TRACE-2026.md`
+- Project → Building cardinality;
+- Building → Floor → Unit persistence semantics;
+- durable identity and uniqueness;
+- rename semantics;
+- move semantics;
+- archive semantics;
+- tenant-key representation;
+- permission mapping;
+- historical reconstruction requirements;
+- actual brownfield persistence representation;
+- live DB representation.
 
-## 11. Schema truth
+### New research record
+
+`docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
+
+### Execution procedure
+
+`docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
+
+## 11. Historical branch evidence
+
+`foundation/reconcile-context-map-v2` contains a proposed 15-module map. Its Property & Inventory module owns Projects and Units, while its aggregate baseline does not establish Building as an independent aggregate. This supports the conservative direction but remains historical proposal evidence, not current authority.
+
+## 12. Schema truth
 
 Keep separate:
 
 `Domain Model ≠ Target Schema ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`
 
-Measured v1.6.1 source observations: 59 models, 17 enums, 56 indexes, 22 unique constraints and 19 relation annotations.
-
-These are source observations, not runtime proof.
+Measured v1.6.1 source observations: 59 models, 17 enums, 56 indexes, 22 unique constraints and 19 relation annotations. These are source observations, not runtime proof.
 
 Schema promotion remains BLOCKED pending complete brownfield/runtime reconciliation, domain closure, security alignment and executable verification.
 
-## 12. Current invariants / architectural doctrine
+## 13. Current invariants / architectural doctrine
 
 - no double-sale / one active reservation winner under concurrency;
 - governed state transitions only through command → authorization → invariant → mutation → audit → event/outbox;
@@ -138,30 +151,30 @@ Schema promotion remains BLOCKED pending complete brownfield/runtime reconciliat
 
 Runtime enforcement is not claimed without evidence.
 
-## 13. External engineering evidence incorporated
+## 14. External engineering evidence incorporated
 
-Current research used to improve the method includes:
+Current research includes:
 
-- DDD bounded-context guidance from Martin Fowler;
-- PostgreSQL official explicit-locking/concurrency documentation;
+- DDD bounded-context and aggregate guidance;
+- PostgreSQL constraints, identity, referential-integrity and locking guidance;
 - OWASP ASVS 5.0.0 security-verification guidance;
-- NIST SSDF material, with drafts explicitly distinguished from final normative publications.
+- Prisma brownfield schema-diff/baselining guidance.
 
 External evidence validates engineering technique only. It does not prove ASAS runtime state.
 
-## 14. Next execution queue
+## 15. Next execution queue
 
 ### Q1-A — Recover exact approved Domain Model v2 / Context Map v2
 
-Search branches, commit history, source packages and canonical references. Preserve all historical candidates. Do not synthesize an approved artifact if none is found.
+Search remaining historical branches, commit history, source packages and canonical references. Preserve all historical candidates. Do not synthesize an approved artifact if none is found.
 
-### Q1-B — Exhaust real-estate persistence trace
+### Q1-B — Execute Building persistence trace
 
-Trace `project_id`, `building_id`, `floor_number`, `floor_plan_id` and alternate names through current source, historical commits, seeds, fixtures, tests, APIs, adapters and migration artifacts.
+Trace `project_id`, `building_id`, `floor_number`, `floor_plan_id`, `buildingId`, `projectId`, `floorId` and legacy equivalents through repository schema, migration history, seeds, fixtures, tests, APIs, adapters and historical branches.
 
 ### Q1-C — Reconcile schema inventories
 
-Reconcile measured `59/17/56/22/19` source observations against historical declarations and the current schema index. Determine the cause of every discrepancy.
+Reconcile measured `59/17/56/22/19` source observations against historical declarations and current schema index. Determine the cause of every discrepancy.
 
 ### Q1-D — Close Building semantics
 
@@ -183,7 +196,7 @@ PaymentSchedule → Receipt → Allocation → Ledger semantics.
 
 Founder decision / explicit supersession only.
 
-## 15. Non-authorizations
+## 16. Non-authorizations
 
 No authorization exists for:
 
@@ -196,7 +209,7 @@ No authorization exists for:
 - autonomous high-impact AI mutation;
 - broad implementation before contract gates close.
 
-## 16. Closure rule
+## 17. Closure rule
 
 A finding is CLOSED only when:
 
@@ -204,7 +217,7 @@ A finding is CLOSED only when:
 
 Otherwise it remains `OPEN`, `PARTIAL`, `BLOCKED`, `CONFLICT`, `NOT_EXECUTED` or `FOUNDER-DECISION-REQUIRED`.
 
-## 17. Resume rule
+## 18. Resume rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
