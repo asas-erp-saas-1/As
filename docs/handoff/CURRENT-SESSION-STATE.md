@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.19  
+**Version:** 3.20  
 **Date:** 2026-09-25  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → ENGINEERING CONFERENCE → C02 ATTRIBUTION SEMANTICS`
+`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → ENGINEERING CONFERENCE → C02 PROJECT INVENTORY COLLABORATION`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.6-C02-ATTRIBUTION-01`
+`ARCH-2026-H1.6-C02-INVENTORY-COLLAB-01`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -36,6 +36,7 @@ Current conference decisions closed:
 - Branch as organizational subdivision, not automatic tenant boundary;
 - Lead ownership ≠ operational assignment ≠ source attribution ≠ commercial attribution ≠ commission entitlement;
 - reservation/sale attribution is snapshotted at the governing milestone;
+- Inventory ownership ≠ inventory visibility ≠ commercial allocation ≠ reservation control;
 - Codex as primary engineering executor;
 - Claude/Figma as design collaboration path;
 - v1.6.1 as architect research/provenance input, not coding-agent authority.
@@ -48,14 +49,16 @@ Current conference decisions closed:
 - Conference: `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md` — ACTIVE / CANONICAL DECISION WORKSTREAM v1.1.0
 - Context Prompt: `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` — ACTIVE + amendment 012
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
-- Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — v1.5.7 + amendment 011
+- Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` — v1.5.7 + amendments 011/014
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL v1.0.0
 - Organization collaboration contract: `docs/architecture/contracts/ASAS-ORGANIZATION-COLLABORATION-AUTHORIZATION-CONTRACT-2026.md` — PROPOSED / IMPLEMENTATION BLOCKED
 - Team/project authorization contract: `docs/architecture/contracts/ASAS-TEAM-PROJECT-ASSIGNMENT-AUTHORIZATION-CONTRACT-2026.md` — PROPOSED / IMPLEMENTATION BLOCKED
 - Lead ownership/assignment/attribution contract: `docs/architecture/contracts/ASAS-LEAD-OWNERSHIP-ASSIGNMENT-ATTRIBUTION-CONTRACT-2026.md` — PROPOSED / SEMANTIC SLICE CLOSED / IMPLEMENTATION BLOCKED
+- Project inventory collaboration contract: `docs/architecture/contracts/ASAS-PROJECT-INVENTORY-COLLABORATION-CONTRACT-2026.md` — PROPOSED / IMPLEMENTATION BLOCKED
 - Roadmap amendment: `docs/architecture/amendments/ASAS-ROADMAP-AMENDMENT-011-C02-ATTRIBUTION-SEMANTICS-2026-09-25.md`
+- Product amendment: `docs/product/amendments/ASAS-PRD-AMENDMENT-002-C02-ATTRIBUTION-SEMANTICS-2026-09-25.md`
 - Building research: `docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
-- Building domain contract: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` — PROPOSED / OPEN / IMPLEMENTATION BLOCKED
+- Building domain contract: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026-09-24.md` — PROPOSED / OPEN / IMPLEMENTATION BLOCKED
 - Evidence register: `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
 - Skills catalog: `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
 - Agent operating model: `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md`
@@ -69,7 +72,7 @@ The conference is a controlled semantic closure process, not a replacement for c
 
 ## 6. Organization / collaboration status
 
-`C02 PARTIAL — CORE MODEL CLOSED / ATTRIBUTION SLICE CLOSED / IMPLEMENTATION BLOCKED`
+`C02 PARTIAL — CORE MODEL CLOSED / ATTRIBUTION CLOSED / INVENTORY COLLABORATION PROPOSED / IMPLEMENTATION BLOCKED`
 
 The current model is:
 
@@ -93,11 +96,21 @@ Closed semantic slice:
 - Reservation/sale attribution is snapshotted at the governing milestone.
 - Cross-agency collaboration does not merge private CRM data.
 
-Current next sub-slices:
+## 8. Project inventory collaboration status
 
-`Project Inventory Access → Reservation Attribution → Commission Semantics → Developer/Agency Performance Read Models`
+Current proposed model:
 
-## 8. Building status
+`Inventory Ownership ≠ Inventory Visibility ≠ Commercial Allocation ≠ Reservation Control`
+
+- authoritative inventory remains with the owning organization;
+- partners receive scoped visibility;
+- optional commercial allocation is a policy/control object, not ownership transfer;
+- reservation/hold remains governed by Inventory/Sales state machines and concurrency controls;
+- allocation does not itself establish reservation or sales attribution.
+
+Exact permission keys and persistence remain blocked pending reconciliation against current contracts/registers and live reality.
+
+## 9. Building status
 
 `OPEN / IMPLEMENTATION BLOCKED`
 
@@ -106,13 +119,13 @@ Current provisional model:
 
 No Building schema, aggregate root, state machine, event stream or service is authorized until persistence and semantic reconciliation close.
 
-## 9. Existing blockers
+## 10. Existing blockers
 
 - Scheduling ownership conflict;
 - exact approved historical Context Map v2 / Domain Model v2 remains unlocated;
 - Building persistence representation;
 - live DB/runtime identity/evidence where unavailable;
-- Project inventory access semantics;
+- exact inventory permission mapping;
 - reservation attribution semantics;
 - commission semantics;
 - Offer lifecycle closure;
@@ -122,13 +135,13 @@ No Building schema, aggregate root, state machine, event stream or service is au
 - architecture-as-code enforcement;
 - implementation authorization.
 
-## 10. Verification status
+## 11. Verification status
 
 CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun. Previous run `35879311233` is historical evidence only.
 
 No schema/RLS implementation has been authorized by the conference decisions.
 
-## 11. Required end-of-session output
+## 12. Required end-of-session output
 
 Every continuation must report:
 
@@ -143,7 +156,7 @@ Every continuation must report:
 9. tests/evidence;
 10. exact next checkpoint.
 
-## 12. Resume rule
+## 13. Resume rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
