@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ENGINEERING-CONFERENCE-2026-001
 **Status:** ACTIVE / CANONICAL DECISION WORKSTREAM
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Date:** 2026-09-25
 **Branch:** `platform-architecture-2026`
 **Authority:** Founder decisions for product/business choices; architecture authority for engineering derivations; runtime/repository evidence for implemented reality.
@@ -217,19 +217,36 @@ Project
       Sales
 ```
 
-The platform must distinguish:
+### 8.1 Attribution doctrine — C02 closed
 
-- ownership of the Project/Unit;
-- lead ownership;
-- assignment;
-- visit attribution;
-- offer origin;
-- reservation attribution;
-- sale attribution;
-- commission attribution;
-- reporting attribution.
+The conference explicitly separates:
 
-These are not assumed to be the same field or concept.
+`Lead Ownership ≠ Operational Assignment ≠ Source Attribution ≠ Commercial Attribution ≠ Commission Entitlement`
+
+**Lead ownership** identifies the organization responsible for the CRM relationship record and its governed lifecycle. It does not automatically grant every employee access.
+
+**Operational assignment** identifies the user/team/queue responsible for current work. It is mutable and historical changes are auditable. Assignment does not silently change ownership or historical commercial credit.
+
+**Source attribution** records how the lead entered ASAS and preserves the original acquisition fact. It is corrected only through an auditable correction path.
+
+**Commercial attribution** identifies who receives credit for a defined commercial outcome such as a qualified lead, visit, offer, reservation or sale. Different actors may receive different attribution dimensions.
+
+**Commission entitlement** is a Finance-owned downstream fact derived from an approved commission rule and authoritative commercial facts. It is never inferred solely from current lead owner, assignee, team or project assignment.
+
+Example:
+
+```text
+Lead source: Agency A / Facebook campaign
+Lead owner: Agency A
+Current assignee: Ahmed / Agency A
+Visit contributor: Ahmed
+Reservation commercial credit: Agency A
+Sale contributor: Karim / Agency A
+```
+
+At reservation/sale milestones, the applicable attribution facts are snapshotted. Later reassignment does not rewrite historical attribution. Disputes use explicit correction/dispute workflows with audit evidence.
+
+Cross-agency collaboration never merges private CRM data. A Developer may receive an authorized performance projection without receiving another Agency's private notes or unrelated CRM records.
 
 ## 9. Domain conference sequence
 
@@ -242,6 +259,8 @@ Product scope, customer model, organization model, authority boundaries.
 ### C02 — Organization / Membership / Relationship
 
 Organization identity, membership, workspace, branch, team, relationship, assignment and support access.
+
+**C02 current status:** Core organization/collaboration decisions closed; lead ownership/assignment/attribution semantics closed; Project inventory access, reservation attribution and commission semantics remain open sub-slices.
 
 ### C03 — Real Estate Domain
 
@@ -440,7 +459,8 @@ Then Codex may implement the authorized slice.
 | Visibility follows responsibility | Canonical design/security principle |
 | Workspace as operational UX container, not automatic security boundary | Engineering derivation |
 | Branch as organizational subdivision, not automatic tenant boundary | Engineering derivation |
-| Separate Collaboration Space | Reserved, not required now |
+| Lead ownership ≠ assignment ≠ source attribution ≠ commercial attribution ≠ commission | C02 semantic decision |
+| Reservation/sale attribution is snapshotted at milestone | C02 semantic decision |
 | Codex as primary engineering executor | Founder-confirmed operating direction |
 | Claude/Figma as design collaboration path | Founder-confirmed operating direction |
 | v1.6.1 as architect research/provenance input | Canonical operating rule |
@@ -453,6 +473,9 @@ The conference does not erase existing blockers:
 - live runtime/database identity and evidence where unavailable;
 - RLS/runtime security evidence;
 - Building persistence reconciliation;
+- Project inventory access semantics;
+- reservation attribution semantics;
+- commission semantics;
 - Offer lifecycle closure;
 - Finance executable semantics;
 - event implementation evidence;
@@ -461,11 +484,13 @@ The conference does not erase existing blockers:
 
 ## 19. Next conference checkpoint
 
-Proceed from the organization/collaboration decisions into:
+Proceed from the C02 attribution closure into:
 
-`Lead Ownership → Assignment → Attribution → Project Inventory Access → Reservation Attribution → Commission Semantics → Developer/Agency Performance Read Models`
+`Project Inventory Access → Reservation Attribution → Commission Semantics → Developer/Agency Performance Read Models`
 
-Then return to the broader C03–C22 sequence and continuously synchronize canonical artifacts.
+Then continue through:
+
+`C03 Real Estate → C04 CRM → C05 Sales → C06 Finance → C07 Marketing → C08 Studio → C09 Analytics → C10 Documents → C11 Scheduling → C12 Workflow → C13 Integrations → C14 Search/Media/Notifications → C15 Security/Tenancy → C16 Data → C17 Events/Outbox → C18 AI → C19 Design → C20 Codex Engineering → C21 Runtime/Operations → C22 SaaS Evolution`
 
 ## 20. Final review after conference closure
 
