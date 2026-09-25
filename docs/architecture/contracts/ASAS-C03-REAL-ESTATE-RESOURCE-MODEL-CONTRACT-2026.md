@@ -1,91 +1,190 @@
 # ASAS C03 — Real Estate Resource Model Contract — 2026
 
-**Status:** PROPOSED — conference workstream opened, implementation blocked
+**Status:** PROPOSED — SEMANTIC DIRECTION CLOSED / IMPLEMENTATION BLOCKED
 **Date:** 2026-09-25
-**Depends on:** C01/C02 organization, collaboration, attribution, and multi-actor inventory authority decisions
+**Depends on:** C01/C02 organization, collaboration, attribution, multi-actor inventory and competition decisions
 
 ## 1. Objective
 
-Define the canonical business semantics for real-estate resources before target schema design.
+Define the canonical real-estate resource semantics before target schema design.
 
-The model must support Developer-led, Agency-led, mixed-channel, and future multi-actor operating models without duplicating authoritative inventory.
+The model must support Developer-led, Agency-led, mixed-channel and future multi-actor operating models without duplicating authoritative inventory.
 
-## 2. Required resource hierarchy to investigate
+## 2. Canonical resource model
+
+The preferred hierarchy is:
 
 ```text
 Portfolio / Collection (optional)
     ↓
 Project
     ↓
-Building / Block
+Building / Block (optional)
     ↓
-Floor / Level (where applicable)
+Floor / Level (optional)
     ↓
-Unit / Property
-    ↓
-Inventory / Availability state
+Unit / Inventory Item
 ```
 
-This is a semantic investigation target, not yet an approved database hierarchy.
+Not every project requires every structural level.
 
-## 3. Questions C03 must resolve
+A Project may contain Units directly where Building/Floor is not meaningful, including some villas, land parcels, parking, storage or other standalone assets.
 
-- What is the canonical identity of a Project?
-- Can a Project have multiple participating organizations with different authorities?
-- Is Building always required, or can a Project contain Units directly?
-- Is Floor a domain entity or derived structural metadata?
-- What exactly is an Inventory resource versus a Unit/Property resource?
-- Can one Unit have multiple listing representations without duplicate inventory truth?
-- How are parking, storage rooms, commercial units, villas, land parcels, and non-apartment assets represented?
-- Which attributes are structural facts versus commercial configuration?
-- How are prices versioned?
-- How are availability states governed?
-- Which states are inventory states versus sales workflow states?
-- How are ownership/control/authority relationships represented?
-- What is immutable after a reservation/sale milestone?
-- What constitutes a canonical resource key across imports/integrations?
+## 3. Unit semantics
 
-## 4. Initial architectural principle
+`Unit` is the canonical saleable/managed real-estate inventory resource.
 
-Do not encode the business assumption `Developer = owner = seller = reservation authority` into the core model.
+`Apartment` is a Unit type, not the universal root of the real-estate model.
 
-Those roles may coincide, but they are distinct dimensions.
+Supported types must be extensible to include, where applicable:
 
-## 5. Inventory principle
+- apartment;
+- villa;
+- land parcel;
+- retail/commercial unit;
+- office;
+- parking;
+- storage;
+- mixed-use or other governed asset types.
 
-A Unit/Property must have one authoritative commercial state within its owning/control context. Agencies, internal sales teams, and other authorized channels operate against that same truth through scoped rights.
+The Unit owns the authoritative commercial lifecycle reference used by Sales/Inventory. It is not duplicated when distributed through another organization or channel.
 
-## 6. Listing principle
+## 4. Canonical identity
 
-A listing is expected to be a representation/distribution context, not a second authoritative Unit. C03 must validate the exact semantics and lifecycle before implementation.
+Project and Unit receive stable system identities independent of display names, marketing codes or organizational relationships.
 
-## 7. Price principle
+Human reference codes are scoped business identifiers, not universal system identity.
 
-Price must be treated as time/version-sensitive commercial data rather than a mutable scalar when historical transactions depend on the previous value.
+Renaming, reassignment, listing changes or relationship changes must not mutate historical identity.
 
-## 8. Availability principle
+Referenced resources are not hard-deleted by default.
 
-Availability must be governed by a state machine and command preconditions. It must not be inferred solely from a free-form `status` field.
+## 5. Multi-actor authority
 
-## 9. C03 research method
+The desired model must not encode:
 
-For each domain question:
+`Developer = owner = seller = reservation authority`
 
-`Independent research → industry model comparison → ASAS source review → edge cases → authority decision → contract → test scenarios`
+Those dimensions may coincide but are independent.
 
-External research informs the model; ASAS founder decisions and canonical contracts remain authoritative for product meaning.
+A Project/Unit may have authorized actors with different authorities, including:
 
-## 10. Exit criteria
+- ownership/control;
+- development responsibility;
+- listing authority;
+- marketing authority;
+- sales authority;
+- allocation authority;
+- hold authority;
+- reservation authority;
+- contract authority;
+- collection/settlement responsibility;
+- reporting visibility.
 
-C03 is not implementation-ready until:
+Organization type does not automatically grant any of these authorities.
+
+An Agency may own/control its own inventory and may also represent inventory controlled by another organization.
+
+## 6. Listing separation
+
+`Unit ≠ Listing`
+
+A Listing is an authorized commercial representation of a canonical Unit for a channel, surface, market or audience.
+
+One Unit may have multiple Listings.
+
+Listing-specific content, publication state, media and marketing metadata do not create a second Unit.
+
+A Listing cannot bypass Unit authorization, commercial state, pricing policy, allocation, reservation rules or tenant scope.
+
+## 7. Inventory and state axes
+
+Construction/physical state and commercial state are separate dimensions.
+
+The conference must not introduce a second incompatible status vocabulary. Existing registered state machines remain the baseline until explicitly superseded.
+
+Commercial availability, Hold, Reservation, Contracted/Sold and Blocked/Off-market semantics remain governed by the registered state machines rather than arbitrary setters.
+
+## 8. Allocation
+
+Allocation is a separate commercial control object.
+
+`Ownership/Control ≠ Visibility ≠ Allocation ≠ Reservation`
+
+Allocation can define eligible organization/team/channel, scope, quantity/capacity, effective period, priority tier and release/expiry policy.
+
+Allocation does not transfer ownership and does not itself create a reservation, attribution or commission entitlement.
+
+C02 competition policy applies:
+
+`Project/Inventory Policy + Explicit Allocation + Deterministic Fallback`
+
+## 9. Pricing
+
+Price is a governed, time/version-sensitive commercial fact.
+
+The model must support effective periods, currency, price components where applicable, authorized overrides, approval thresholds and historical preservation.
+
+Historical reservation/contract facts must not be rewritten merely because the current Unit price changes.
+
+A Listing may present an authorized price representation but must remain traceable to authoritative pricing facts.
+
+## 10. Structural semantics
+
+Building and Floor are structural/domain concepts, not automatic ownership, tenancy or authorization boundaries.
+
+Building is optional at the Project level.
+
+Floor is optional and exists only where the physical model requires it.
+
+This avoids forcing land, villa, parking, storage and other non-building-centric assets into an artificial hierarchy.
+
+## 11. Required C03 scenarios
+
+The model must remain coherent for:
+
+1. Developer project + internal sales.
+2. Developer project + Agency A + Agency B.
+3. Agency-owned inventory.
+4. Agency representing Developer inventory.
+5. Brokerage participating alongside Developer internal sales.
+6. Mixed-use project.
+7. Project without Buildings.
+8. Project with Buildings but no Floors.
+9. Multiple Listings for one Unit.
+10. Authority change over time without historical rewrite.
+11. Unit reassignment without identity mutation.
+12. Price version change without rewriting historical reservation/contract facts.
+13. Concurrent reservation attempts.
+14. Cross-organization access denial.
+
+## 12. Schema non-assumptions
+
+C03 does not yet authorize a particular:
+
+- `Project.developer_id` ownership shortcut;
+- Building table shape;
+- Floor table shape;
+- Unit natural key;
+- Listing foreign-key strategy;
+- price table/version strategy;
+- allocation persistence shape;
+- reservation locking mechanism.
+
+These are downstream of semantic closure and repository/runtime reconciliation.
+
+## 13. Exit criteria
+
+C03 becomes implementation-ready only after:
 
 - resource identity is closed;
 - hierarchy semantics are closed;
-- ownership/control/authority dimensions are closed;
-- inventory state machine is closed;
+- multi-actor authority is closed;
+- inventory/listing distinction is closed;
+- registered state machines are reconciled;
 - price/version semantics are closed;
-- listing semantics are closed;
 - non-apartment asset strategy is closed;
 - cross-organization access scenarios are specified;
 - reservation/sale immutability boundaries are specified;
-- schema contract and test specification can be derived without inventing product meaning.
+- target schema can be derived without inventing product meaning;
+- adversarial tests are defined.
