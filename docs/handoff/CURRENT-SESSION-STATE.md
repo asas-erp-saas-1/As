@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.27  
+**Version:** 3.28  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
@@ -12,7 +12,7 @@
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.12-C03-FLOOR-SEMANTICS-CLOSED-01`
+`ARCH-2026-H1.13-C03-UNIT-SEMANTICS-CLOSED-01`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -58,9 +58,18 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Project → Building → [Floor] → Unit and Project → Building → Unit are both valid development topologies;
 - Building identity is stable and independent of mutable reference/name/slug;
 - Building-scoped access derives from Relationship + Project Context + Resource Scope + Permission; the Building record itself grants no authority;
-- **Floor semantics are now closed: Floor is a structural level object when independent floor-level semantics are required, but a standalone Floor entity is not mandatory merely because a Unit has a floor/level value;**
-- **Floor technical identity, when represented as an entity, is stable and independent of display numbering/labels;**
-- **Floor is not automatically an aggregate root or security boundary.**
+- Floor semantics are closed: Floor is a structural level object when independent floor-level semantics are required, but a standalone Floor entity is not mandatory merely because a Unit has a floor/level value;
+- Floor technical identity, when represented as an entity, is stable and independent of display numbering/labels;
+- Floor is not automatically an aggregate root or security boundary;
+- **Unit is the canonical development-inventory domain entity with stable technical identity;**
+- **Unit may exist directly under Project or through optional Building/Floor topology;**
+- **Unit human reference/number/slug is mutable business/display identity, not technical identity;**
+- **Unit commercial state and construction state are independent dimensions;**
+- **Unit does not own Reservation, Contract, Payment, Commission, Lead, Listing or Media lifecycles; those reference Unit through their own contracts;**
+- **Unit ownership ≠ visibility ≠ allocation ≠ reservation control;**
+- **Unit reservation is a critical single-winner consistency boundary, while the exact database mechanism remains implementation-gated;**
+- **Unit price is a versioned commercial fact, not immutable Unit identity;**
+- **Development Unit and brokerage Listing remain distinct domain concepts.**
 - Codex as primary engineering executor;
 - Claude/Figma as design collaboration path;
 - v1.6.1 as architect research/provenance input, not coding-agent authority.
@@ -82,9 +91,12 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Project ADR: `docs/architecture/decisions/ADR-0025-PROJECT-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.3 SEMANTICALLY CLOSED
 - Building ADR: `docs/architecture/decisions/ADR-0026-BUILDING-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.4 SEMANTICALLY CLOSED
 - Floor ADR: `docs/architecture/decisions/ADR-0027-FLOOR-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.5 SEMANTICALLY CLOSED
+- Unit ADR: `docs/architecture/decisions/ADR-0028-UNIT-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.6 SEMANTICALLY CLOSED
 - Project domain contract: `docs/architecture/contracts/ASAS-PROJECT-DOMAIN-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
+- Unit domain contract: `docs/architecture/contracts/ASAS-UNIT-DOMAIN-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 - Building research: `docs/architecture/research/ASAS-RESEARCH-RECORD-C03-BUILDING-2026-09-26.md` — ACCEPTED RESEARCH BASIS
 - Floor research: `docs/architecture/research/ASAS-RESEARCH-RECORD-C03-FLOOR-2026-09-26.md` — ACCEPTED RESEARCH BASIS
+- Unit research: `docs/architecture/research/ASAS-RESEARCH-RECORD-C03-UNIT-2026-09-26.md` — ACCEPTED RESEARCH BASIS
 - Historical Building contract reference: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026-09-24.md` — NOT VERIFIED IN CURRENT BRANCH CONTENT ENDPOINT; do not treat as current repository evidence until recovered/reconciled
 - Inventory competition contract: `docs/architecture/contracts/ASAS-INVENTORY-CHANNEL-PRIORITY-AND-RESERVATION-COMPETITION-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 - Evidence register: `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
@@ -112,7 +124,7 @@ Remaining C02 implementation/reconciliation work is evidence-driven:
 
 ## 7. C03 status
 
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03 ACTIVE`
 
 ### C03.3 Project — closed semantic slice
 
@@ -151,7 +163,35 @@ When a Floor entity exists, its technical identity is stable and independent of 
 
 Floor is not automatically an aggregate root, tenant boundary or commercial authority.
 
-The C03.5 decision is recorded in `ADR-0027-FLOOR-DOMAIN-SEMANTICS-2026-09-26.md` and `ASAS-RESEARCH-RECORD-C03-FLOOR-2026-09-26.md`.
+### C03.6 Unit — closed semantic slice
+
+Unit is the canonical development-inventory domain entity.
+
+Valid topology:
+
+`Project → Unit`
+`Project → Building → Unit`
+`Project → Building → Floor → Unit`
+
+Unit has stable technical identity independent of `unit_number`, reference, slug, name or display label. A human-facing reference can change without changing the Unit identity.
+
+Unit represents stable development-inventory identity and applicable physical/inventory characteristics. It does not own the lifecycles of Reservation, Contract, Payment, Commission, Lead, Listing or MediaAsset.
+
+Unit retains two independent state dimensions:
+
+Commercial:
+`AVAILABLE | HELD | RESERVED | CONTRACTED | SOLD | OFF_MARKET`
+
+Construction:
+`NOT_STARTED | FOUNDATION | STRUCTURE | MASONRY | MEP | FINISHING | READY | DELIVERED`
+
+Price is a versioned commercial fact and will be closed separately in C03.10. Historical transaction snapshots must remain stable.
+
+Unit ownership, visibility, allocation and reservation control remain separate.
+
+Unit is a critical reference point for reservation concurrency, but the exact reservation DB mechanism remains implementation-gated and must be proven by race tests.
+
+Development Unit and brokerage Listing remain distinct domain concepts.
 
 ## 8. Real-estate state doctrine
 
@@ -186,7 +226,9 @@ The next decisions must survive:
 - concurrent reservation attempts;
 - accepted Offer without Reservation;
 - Reservation without accepted Offer where policy permits;
-- price/version change after Offer/Reservation.
+- price/version change after Offer/Reservation;
+- media replacement without Unit identity change;
+- construction progress changing independently from commercial availability.
 
 ## 10. Inventory competition
 
@@ -210,9 +252,11 @@ For existing implementation reality, the verified live database wins after its i
 
 - canonical runtime/database identity;
 - RLS/runtime security evidence;
-- Building/Floor persistence representation;
+- Building/Floor/Unit persistence representation;
 - exact Project Inventory Access permission mapping;
 - reservation concurrency implementation mechanism;
+- price/version persistence model;
+- Inventory Batch relationship and persistence;
 - Finance executable contract details;
 - event implementation evidence;
 - architecture-as-code enforcement;
