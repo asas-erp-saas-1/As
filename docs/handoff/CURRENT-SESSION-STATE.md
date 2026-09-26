@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.34  
+**Version:** 3.35  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.19-C03-RESERVATION-BOUNDARY-SEMANTICS-CLOSED-01`
+`ARCH-2026-H1.20-C03.13-BROWNFIELD-PERSISTENCE-RECONCILIATION-OPEN-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -91,24 +91,45 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State, Pricing Versioning, Inventory Lifecycle and Reservation Consistency are semantically closed / implementation blocked.
 - Research records: Building, Floor, Unit and Listing accepted research basis; Pricing, Inventory Lifecycle and Reservation research basis recorded in ADR-0032/0033/0034.
 - Historical Building contract reference remains NOT VERIFIED and must not be treated as current evidence until recovered/reconciled.
+- Brownfield reality report: `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` — ACTIVE / EVIDENCE BASELINE.
+- Brownfield task packet: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-03-04-BROWNFIELD-PERSISTENCE-RECONCILIATION-2026-09-26.md` — OPEN / EVIDENCE-GATED.
 
 ## Operating method
 `PROBLEM → RESEARCH → ALTERNATIVES / FAILURE MODES → HYPOTHESES → ASAS SOURCE VALIDATION → PROVENANCE / AUTHORITY → REJECT / ADAPT / DERIVE → CONTRACT / ADR / REGISTER → VERIFY → CHECKPOINT`
 
 Founder/product decisions define desired future behavior. Research discovers omissions/conflicts but does not override founder decisions. Brownfield repository/runtime facts remain authoritative for what is already implemented.
 
+## Platform Engineering track
+`REALITY LOCK → REPOSITORY FORENSICS → RUNTIME INTROSPECTION → DRIFT MATRIX → CONTRACT RECONCILIATION → IMPLEMENTATION PLAN → CODE → TEST / RED TEAM → EVIDENCE → CONVERGENCE → CHECKPOINT`
+
+The Platform Engineering track is now active alongside the Conference. Conference decisions are semantic authority; platform engineering converts them into evidence-backed implementation only after brownfield reality is established.
+
+## Repository reality — current branch
+- Repository and branch are verified: `asas-erp-saas-1/As` / `platform-architecture-2026`.
+- The inspected branch contains the architecture/governance/control-plane repository and does not contain a root `src/` application tree.
+- `schema/asas-contracts.index.json` exists and is DERIVATION-CONTROLLED / RECONCILIATION REQUIRED.
+- `schema/asas-contracts.prisma` is not present in the inspected branch tree and remains explicitly unpromoted.
+- The schema index records historical 59/16/15 planning counts and a 59/17/56 verified-source observation; neither is a live database proof.
+- Foundation CI exists and explicitly validates the canonical control-plane files and rejects wrong-project references in executable/configuration surfaces.
+
 ## C02
 `SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED`
 Remaining evidence-driven work: Project Inventory Access permission mapping; brownfield persistence reconciliation; event/state/permission registration; Finance executable contract.
 
 ## C03
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03.12 RESERVATION BOUNDARY SEMANTICS CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03.12 RESERVATION BOUNDARY SEMANTICS CLOSED / C03.13 BROWNFIELD RECONCILIATION OPEN`
 
 ### C03.12 — closed semantic slice
 Reservation is a first-class transactional consistency boundary for a development Unit. Exactly one active winner may exist. The authoritative winner is the transaction that successfully commits the invariant. Required semantics include authorization, eligibility checks, database-enforced single-winner integrity, idempotency, conditional expiration/release, commercial snapshotting, auditability and transactional outbox publication. Exact state-machine encoding, permission/event registration, DB transaction/constraint strategy and runtime implementation remain gated.
 
+### C03.13 — brownfield persistence slice
+The next work is evidence collection, not schema invention. The repository contract index explicitly blocks executable schema promotion until the 59/17/56 source observation is reconciled with the historical declaration. Runtime database identity and live introspection are not yet independently verified on this branch. Therefore no production schema/RLS/reservation implementation is authorized by this checkpoint.
+
 ## External research basis
-- PostgreSQL official documentation supports unique constraints/indexes and transaction isolation. These are candidate enforcement mechanisms for the reservation invariant; exact selection remains gated by live-schema reconciliation and race testing: https://www.postgresql.org/docs/18/ddl-constraints.html and https://www.postgresql.org/docs/18/transaction-iso.html.
+- Prisma official documentation states that `prisma db pull` introspects the current relational database schema into a Prisma schema and warns that it can overwrite the existing schema; existing schema work should be preserved before introspection. https://www.prisma.io/docs/cli/v7/db/pull
+- Prisma's existing-database workflow supports repeated introspection when the database is changed outside Prisma, reinforcing that the database is the runtime source for brownfield structure. https://www.prisma.io/docs/orm/v7/prisma-schema/introspection
+- PostgreSQL Information Schema exposes table constraints; PostgreSQL-specific features may require system catalogs. https://www.postgresql.org/docs/18/infoschema-table-constraints.html
+- PostgreSQL unique constraints/indexes and transaction isolation remain candidate enforcement mechanisms for the reservation invariant; exact selection remains gated by live-schema reconciliation and race testing.
 - Effectivity/temporal modeling supports versioned commercial facts without rewriting history: Martin Fowler, Effectivity: https://www.martinfowler.com/eaaDev/Effectivity.html.
 - Transactional outbox is treated as the integration reliability pattern for publishing committed reservation lifecycle events; it does not replace the database reservation invariant.
 
@@ -142,7 +163,7 @@ V3 is target architecture, not proof of current implementation. Verified live DB
 - implementation authorization.
 
 ## Verification
-CI for current HEAD is `NOT VERIFIED` until workflow is rerun after latest checkpoint/ADR/research changes. Previous runs are historical evidence only. No schema/RLS implementation has been authorized by conference decisions.
+Latest repository checkpoint commits exist on `platform-architecture-2026`; CI has not been independently rerun after the latest checkpoint changes. Live database verification is NOT EXECUTED. No schema/RLS implementation has been authorized by conference decisions.
 
 ## Required continuation output
 Every continuation reports verified facts, corrections, derivations, external research, canonical artifacts updated, conflicts, blockers, founder decisions required, tests/evidence and exact next checkpoint.
