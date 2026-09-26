@@ -1,27 +1,22 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.21  
-**Date:** 2026-09-25  
+**Version:** 3.22  
+**Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → ENGINEERING CONFERENCE → C02 INVENTORY COMPETITION → C03 REAL ESTATE DOMAIN`
+`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → ENGINEERING CONFERENCE → C02 SEMANTIC CLOSURE → C03 REAL ESTATE DOMAIN`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.6-C02-INVENTORY-COMPETITION-CLOSED-01`
+`ARCH-2026-H1.7-C02-SCHEDULING-OWNERSHIP-CLOSED-01`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
-## 3. Conference path
-
-Canonical conference route:
-`docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md`
-
-Current conference decisions closed:
+## 3. Conference decisions closed to date
 
 - broad Real Estate Operating System + future SaaS direction;
 - extensible multi-organization model;
@@ -45,6 +40,7 @@ Current conference decisions closed:
 - if no allocation/priority applies, first valid committed reservation is the deterministic fallback;
 - Hold is distinct from Reservation;
 - manual adjudication is available for attribution disputes and audited overrides;
+- **Scheduling is a Core-hosted platform capability, not a separate bounded context and not CRM-owned persistence;**
 - Codex as primary engineering executor;
 - Claude/Figma as design collaboration path;
 - v1.6.1 as architect research/provenance input, not coding-agent authority.
@@ -59,6 +55,7 @@ Current conference decisions closed:
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL
+- Scheduling ADR: `docs/architecture/decisions/ADR-0021-SCHEDULING-OWNERSHIP-2026-09-26.md` — ACCEPTED
 - Inventory competition contract: `docs/architecture/contracts/ASAS-INVENTORY-CHANNEL-PRIORITY-AND-RESERVATION-COMPETITION-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 - Inventory competition research: `docs/architecture/research/ASAS-C02-INVENTORY-COMPETITION-RESEARCH-2026-09-25.md`
 - Founder decision: `docs/architecture/decisions/C02-03-INVENTORY-COMPETITION-FOUNDER-DECISION-2026-09-25.md` — CLOSED
@@ -81,7 +78,7 @@ Founder product/business decisions define desired future behavior. Sources and r
 
 ## 6. Organization / collaboration status
 
-`C02 CORE MODEL CLOSED / ATTRIBUTION CLOSED / INVENTORY COMPETITION CLOSED / IMPLEMENTATION BLOCKED`
+`C02 CORE MODEL CLOSED / ATTRIBUTION CLOSED / INVENTORY COMPETITION CLOSED / SCHEDULING OWNERSHIP CLOSED / IMPLEMENTATION BLOCKED`
 
 The current model is:
 
@@ -140,7 +137,13 @@ Rules:
 
 Exact database concurrency mechanism remains an implementation decision gated by adversarial concurrency testing.
 
-## 10. Building status
+## 10. Scheduling ownership
+
+`CLOSED / ACCEPTED — ADR-0021`
+
+Scheduling is a Core-hosted platform capability. It owns the canonical scheduling primitives and lifecycle; CRM, Sales, Studio and Marketing consume it through contracts. Provider synchronization remains Integrations-owned. No scheduling schema is authorized solely from this decision; brownfield persistence reconciliation remains required.
+
+## 11. Building status
 
 `OPEN / IMPLEMENTATION BLOCKED`
 
@@ -149,9 +152,9 @@ Current provisional model:
 
 No Building schema, aggregate root, state machine, event stream or service is authorized until persistence and semantic reconciliation close.
 
-## 11. C03 entry conditions
+## 12. C03 entry conditions
 
-C03 Real Estate Domain is now active.
+C03 Real Estate Domain is active.
 
 The next semantic workstream is:
 
@@ -169,9 +172,8 @@ C03 must be tested against at least:
 - unit/listing separation;
 - reassignment and historical preservation.
 
-## 12. Existing blockers
+## 13. Existing blockers
 
-- Scheduling ownership conflict;
 - exact approved historical Context Map v2 / Domain Model v2 remains unlocated;
 - Building persistence representation;
 - live DB/runtime identity/evidence where unavailable;
@@ -185,13 +187,13 @@ C03 must be tested against at least:
 - architecture-as-code enforcement;
 - implementation authorization.
 
-## 13. Verification status
+## 14. Verification status
 
 CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun after the latest checkpoint/contract changes. Previous run `35879311233` is historical evidence only.
 
 No schema/RLS implementation has been authorized by the conference decisions.
 
-## 14. Required end-of-session output
+## 15. Required end-of-session output
 
 Every continuation must report:
 
@@ -206,7 +208,7 @@ Every continuation must report:
 9. tests/evidence;
 10. exact next checkpoint.
 
-## 15. Resume rule
+## 16. Resume rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
