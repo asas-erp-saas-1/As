@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT  
-**Version:** 3.41  
+**Version:** 3.42  
 **Date:** 2026-09-27  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
@@ -100,6 +100,7 @@ C03–C06 semantic baselines have been re-audited. The active rule is now: **sem
 - ADRs: `ADR-0021` through `ADR-0037` are semantic decision history; C03–C06 remain implementation blocked pending convergence/evidence.
 - Deep C03–C06 decision record: `docs/architecture/reconciliation/ASAS-C03-C06-DEEP-CLOSURE-DECISIONS-2026-09-27.md` — ACTIVE / DEEP REVIEW.
 - External research record: `docs/architecture/research/ASAS-C03-C06-EXTERNAL-RESEARCH-2026-09-27.md` — ACTIVE / CURRENT EVIDENCE.
+- Environment mapping research: `docs/architecture/research/ASAS-VERCEL-SUPABASE-ENVIRONMENT-MAPPING-2026-09-27.md` — CANONICAL GATE-00 INPUT.
 - Brownfield reality report: `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` — ACTIVE / EVIDENCE BASELINE.
 - Brownfield drift matrix: `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` — ACTIVE / EVIDENCE CONTROL.
 - Brownfield task packet: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-03-04-BROWNFIELD-PERSISTENCE-RECONCILIATION-2026-09-26.md` — OPEN / EVIDENCE-GATED.
@@ -158,6 +159,32 @@ Therefore:
 - Vercel/environment mapping and any other runtime target must be independently verified;
 - no production schema/RLS/reservation implementation is authorized.
 
+## Environment identity doctrine
+
+`Vercel Environment ≠ Supabase Environment`.
+
+Vercel currently distinguishes Production, Preview and Development, with custom environments available where supported. Supabase uses Projects and database branches as the relevant runtime/isolation units; the names do not automatically map one-to-one.
+
+ASAS canonical mapping:
+
+```text
+Vercel Production
+    ↓
+Production deployment from configured Production Branch
+    ↓
+EXACT VERIFIED Supabase Production Project
+    ↓
+PROJECT_REF
+```
+
+`platform-architecture-2026` remains the sole active ASAS engineering work line. We do not create a staging branch merely to satisfy environment naming. Preview/non-production remote verification, when required, must use an explicitly isolated Supabase project/branch and must never point schema mutation or destructive testing at Production. Development is local-first; any remote development project requires a separately verified PROJECT_REF.
+
+For every candidate Supabase target, verify `Settings → General → Project Settings → Reference ID`, confirm the dashboard URL, then use `Connect` for the actual database connection configuration. Never identify a target by display name alone.
+
+For Vercel, verify `Settings → Git`, `Deployments`, `Settings → Environments`, and `Settings → Environment Variables`; compare non-secret Supabase URL/reference information with the intended PROJECT_REF and redeploy after variable changes.
+
+A technical guard must eventually compare the verified Production `PROJECT_REF` against one repository-controlled non-secret identity declaration and hard-fail before schema-touching work on mismatch.
+
 ## Conference state
 ```text
 C01     CLOSED
@@ -179,7 +206,10 @@ C15     OPEN
 ```
 
 ## Evidence blockers
-- Vercel project identity and environment mapping;
+- exact Vercel project identity;
+- configured Production Branch;
+- Production deployment commit/environment;
+- exact Production Supabase `PROJECT_REF` mapping;
 - canonical runtime/database identity across all ASAS environments;
 - canonical artifact convergence, including readiness-document ownership;
 - architecture conflict reconciliation;
