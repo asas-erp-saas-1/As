@@ -1,91 +1,58 @@
 # ASAS Engineering Conference — C06 Finance
 
-**Status:** OPEN / RESEARCH-FIRST / SEMANTIC DECISION WORK
+**Status:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 **Branch:** `platform-architecture-2026`
 **Depends on:** C02 attribution/commission semantics; C03 pricing/inventory semantics; C05 Sales semantics
-**Implementation:** BLOCKED by Foundation Gates
 
-## Objective
+## Closure decision
 
-Close Finance semantics as an integrity boundary without implementing the ledger yet.
+C06 is semantically closed by `ADR-0037-FINANCE-CANONICAL-SEMANTICS-2026-09-27.md` and `ASAS-FINANCE-CONTRACT-CANDIDATE-2026-09-27.md`.
 
-V3 defines Finance as a separate integrity domain: monetary values use integer centimes; posted double-entry entries are immutable; corrections are new entries; and the commercial transaction flows into payment obligations, payments, receipts, subledger, general ledger and reporting.
+The closure is semantic only. Foundation Gates 00–06 remain prerequisites for implementation.
 
-## Questions to close
+## Accepted decisions
 
-### Commercial → Finance boundary
-1. What exact Sales milestones create financial obligations?
-2. What is the authoritative handoff from Reservation/Contract to Finance?
-3. Which commercial terms are snapshots versus recalculable values?
-4. What changes after Contract must create a new financial fact rather than rewrite history?
+1. Authoritative financial obligations arise from governed commercial milestones; Reservation carries commercial facts but is not payment settlement.
+2. `PaymentPlan` is the ordered schedule; `Installment` is an individual obligation; `Payment` is settlement; `Receipt` is controlled payment evidence.
+3. DZD uses integer centimes; future currencies use explicit currency + minor-unit precision. Floating point is prohibited for authoritative money.
+4. Later price versions never rewrite contracted historical economics.
+5. Posted double-entry facts are immutable; corrections are new reversal/adjustment facts.
+6. Posted journals must balance debits and credits.
+7. Accounting periods are explicit and closed periods cannot be silently edited.
+8. Developer-track receivables derive from Contract/PaymentPlan and approved amendments; construction progress is not itself a ledger posting.
+9. Finance owns commission entitlement, payable and paid facts; Sales supplies authorized attribution/milestone facts.
+10. Payment recording is idempotent and duplicate external notifications cannot create duplicate settlement facts.
+11. Reconciliation is a controlled matching layer over external evidence and does not rewrite source facts.
+12. Financial reporting derives from posted ledger truth or explicitly labeled Finance projections.
+13. High-impact financial corrections and period controls remain human-authorized.
+14. AI may explain/reconcile/draft within caller authority but cannot bypass financial approval or rewrite posted truth.
 
-### Payment obligations
-5. What is a PaymentPlan versus Installment versus Payment versus Receipt?
-6. Which object is the legal/commercial obligation and which is settlement evidence?
-7. Can an installment be rescheduled, waived, replaced or split?
-8. What authorization is required for corrections?
+## Explicit deferrals
 
-### Ledger
-9. What is the chart-of-accounts ownership boundary?
-10. What creates a Journal/JournalEntry/JournalLine?
-11. What posting invariants must be enforced?
-12. What is the accounting period boundary?
-13. What is the reversal/correction model?
-14. What prevents mutation of posted entries?
+The following remain intentionally deferred to current primary/authoritative evidence and/or Founder/accounting/legal policy:
 
-### Developer-track economics
-15. How are staged payments tied to contract/payment-plan milestones?
-16. How do price revisions interact with already-contracted amounts?
-17. How are late payments, penalties and adjustments represented?
-18. What is the boundary between commercial penalty calculation and ledger posting?
+- Algeria-specific statutory accounting treatment;
+- invoice/receipt statutory requirements;
+- VAT/tax treatment;
+- jurisdiction-specific payment milestones;
+- chart of accounts;
+- approval thresholds and delegation matrix.
 
-### Brokerage economics
-19. How is commission entitlement derived from Sales attribution?
-20. When is commission earned versus payable versus paid?
-21. How do mandate/project/agency agreements affect commission policy?
-22. What happens when a transaction is cancelled after entitlement?
+## Required implementation evidence later
 
-### Money and currency
-23. Is AmountCentimes the canonical internal representation for DZD?
-24. How are non-DZD currencies represented for future SaaS expansion?
-25. What rounding rules apply to allocations, installments and commission calculations?
-
-### Receipts and reconciliation
-26. What makes a Receipt authoritative?
-27. How are bank/cash/payment-provider reconciliation facts represented?
-28. What is the idempotency boundary for recording a payment?
-29. How are duplicate payment notifications handled?
-
-### Audit / controls
-30. Which financial actions require approval?
-31. Which financial corrections are human-only?
-32. Which events must be emitted transactionally with posting/payment recording?
-33. What minimum audit evidence is required for a correction/reversal?
-
-### Reporting
-34. Which read models are Finance-owned?
-35. Which reports derive from ledger truth versus commercial projections?
-36. What consistency guarantees apply to dashboards and exports?
-
-## Required outputs
-
-- C06 ADR(s);
-- Finance domain contract candidates;
-- payment obligation/payment/receipt semantics;
-- ledger invariants and posting policy;
-- commission entitlement-to-payout boundary;
-- correction/reversal model;
-- finance event/permission/state deltas;
-- reconciliation and idempotency test plan;
-- traceability updates.
+- ledger posting invariants;
+- immutable-entry enforcement;
+- idempotency tests;
+- payment reconciliation tests;
+- commission entitlement tests;
+- period-close controls;
+- authorization/RLS evidence;
+- audit evidence;
+- race/concurrency tests where financial and commercial boundaries interact.
 
 ## Non-goals
 
 - No live financial migration.
 - No ledger implementation.
-- No financial correction in production.
+- No production financial correction.
 - No legal/accounting interpretation without primary/authoritative evidence.
-
-## Closure gate
-
-C06 can become SEMANTICALLY CLOSED only when every question is decided, explicitly deferred to a named policy/authority, rejected with rationale, or blocked by concrete evidence dependency. Implementation remains blocked until Foundation Gates 00–06 pass.
