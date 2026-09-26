@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT  
-**Version:** 3.39  
+**Version:** 3.40  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.24-GATE-01-CANONICAL-ARTIFACT-CONVERGENCE-PARTIAL-01`
+`ARCH-2026-H1.25-C04-CRM-SEMANTIC-CLOSURE-IMPLEMENTATION-BLOCKED-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -76,6 +76,16 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Authoritative reservation state is independent of website/search/cache/analytics projections.
 - Reservation lifecycle events must be emitted from committed state through a transactional outbox boundary.
 - Concrete PostgreSQL locking/isolation/constraint strategy remains implementation-gated pending brownfield schema reconciliation and race-test evidence.
+- **C04 CRM:** Person is the canonical human identity; Customer is an organization-scoped customer relationship over Person, not a second human identity.
+- **C04 CRM:** Lead is organization-owned; multiple active Leads for one Person are permitted only for materially distinct commercial engagements, with duplicate detection before creation.
+- **C04 CRM:** The existing 17-stage unified sales pipeline remains the semantic baseline; `Deal` is a derived view, not a separate CRM authority.
+- **C04 CRM:** Lead ownership, operational assignment, team scope, branch scope and organization/tenant are distinct responsibilities.
+- **C04 CRM:** Assignment changes preserve history; merge is an authorized domain action and never a silent destructive operation.
+- **C04 CRM:** Source, campaign, channel/touch, operational assignment, commercial attribution and commission entitlement remain distinct facts/authorities.
+- **C04 CRM:** Communication transport is platform-owned; CRM owns the relationship/projection to Person/Lead.
+- **C04 CRM:** Consent/purpose are first-class governed facts; legal basis, retention and data-subject execution remain country-pack/C15 governed.
+- **C04 CRM:** Activity, Task, Appointment and Communication are distinct objects/capabilities and must not be collapsed into one generic timeline record.
+- **C04 CRM:** AI may read/recommend/draft within caller authority; sensitive/financial/destructive/mass-communication actions require the applicable approval policy.
 - Codex is primary engineering executor; Claude/Figma design collaboration path; v1.6.1 architect research/provenance input, not coding-agent authority.
 
 ## Canonical control plane
@@ -87,9 +97,11 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL
-- ADRs: `ADR-0021` Scheduling through `ADR-0034` Reservation Boundary — accepted for their semantic slices.
-- Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State, Pricing Versioning, Inventory Lifecycle and Reservation Consistency are semantically closed / implementation blocked.
+- ADRs: `ADR-0021` Scheduling through `ADR-0034` Reservation Boundary — accepted for their semantic slices; **ADR-0035 CRM accepted**.
+- Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State, Pricing Versioning, Inventory Lifecycle, Reservation Consistency and **CRM** are semantically closed / implementation blocked.
 - Research records: Building, Floor, Unit and Listing accepted research basis; Pricing, Inventory Lifecycle and Reservation research basis recorded in ADR-0032/0033/0034.
+- CRM ADR: `docs/architecture/adr/ADR-0035-CRM-CANONICAL-SEMANTICS-2026-09-26.md` — ACCEPTED / SEMANTIC / IMPLEMENTATION BLOCKED.
+- CRM contract candidate: `docs/architecture/contracts/ASAS-CRM-CONTRACT-CANDIDATE-2026-09-26.md` — CANDIDATE / NOT IMPLEMENTATION AUTHORITY.
 - Brownfield reality report: `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` — ACTIVE / EVIDENCE BASELINE.
 - Brownfield drift matrix: `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` — ACTIVE / EVIDENCE CONTROL.
 - Brownfield task packet: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-03-04-BROWNFIELD-PERSISTENCE-RECONCILIATION-2026-09-26.md` — OPEN / EVIDENCE-GATED.
@@ -98,6 +110,7 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - GATE-00 Vercel reconciliation: `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` — OPEN / PARTIAL.
 - H0 foundation convergence packet: `docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md` — ACTIVE / HIGHEST PRIORITY.
 - GATE-01 canonical artifact task: `docs/architecture/task-packets/ASAS-TASK-H0-GATE-01-CANONICAL-ARTIFACT-CONVERGENCE-2026-09-26.md` — OPEN / EVIDENCE-GATED.
+- C04 CRM task: `docs/architecture/task-packets/ASAS-TASK-C04-CRM-ENGINEERING-CONFERENCE-2026-09-26.md` — SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED.
 - Platform Engineering control board: `docs/architecture/ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md` — ACTIVE.
 - Canonical artifact register: `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` — v1.5 / reconciled for the current platform track.
 
@@ -152,8 +165,41 @@ Therefore:
 - Vercel/environment mapping and any other runtime target must be independently verified;
 - no production schema/RLS/reservation implementation is authorized.
 
-## C03
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03.12 RESERVATION BOUNDARY SEMANTICS CLOSED / C03.13 BROWNFIELD RECONCILIATION OPEN`
+## Conference state
+
+```text
+C01     CLOSED
+C02     SEMANTICALLY CLOSED / downstream refinement remains explicit
+C03.1   CLOSED
+C03.2   CLOSED
+C03.3   CLOSED
+C03.4   CLOSED
+C03.5   CLOSED
+C03.6   CLOSED
+C03.7   CLOSED
+C03.8   CLOSED
+C03.9   CLOSED
+C03.10  CLOSED
+C03.11  CLOSED
+C03.12  CLOSED
+C03.13  OPEN — BROWNFIELD RECONCILIATION
+C04     SEMANTICALLY CLOSED — IMPLEMENTATION BLOCKED
+C05     OPEN — NEXT CONFERENCE WORK
+C06     OPEN
+C07     OPEN
+C08     OPEN
+C09     OPEN
+C10     OPEN
+C11     SEMANTIC OWNERSHIP CLOSED / CONTRACT OPEN
+C12     OPEN
+C13     OPEN
+C14     OPEN
+C15     OPEN
+```
+
+## C04 closure record
+
+C04 CRM is semantically closed by ADR-0035. The closure covers Person/Customer identity, Lead ownership and duplicate policy, the 17-stage pipeline baseline, assignment/ownership distinctions, attribution boundaries, communication boundary, consent/purpose handling, Activity/Task/Appointment/Communication separation and AI authority. Legal basis/retention execution remains explicitly delegated to the country-pack/security authority in C15; executable state/event/permission registry IDs remain blocked on registry reconciliation. No implementation authorization is implied.
 
 ## Evidence blockers
 - Vercel project identity and environment mapping;
@@ -183,3 +229,6 @@ Therefore:
 - Read-only database introspection executed successfully.
 - Canonical artifact register updated to v1.5 and reconciled with current Platform Engineering artifacts.
 - GATE-01 task packet created; closure remains evidence-gated.
+- C04 task packet reviewed against V3, Enterprise Domain Model and Master Implementation Specification.
+- ADR-0035 created and accepted as the C04 semantic decision record.
+- CRM contract candidate created without promoting it to executable schema authority.
