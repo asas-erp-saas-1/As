@@ -1,18 +1,18 @@
 # ASAS — CURRENT SESSION STATE
 
-**Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.22  
-**Date:** 2026-09-26  
-**Repository:** `asas-erp-saas-1/As`  
+**Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT
+**Version:** 3.23
+**Date:** 2026-09-26
+**Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
 
-`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → ENGINEERING CONFERENCE → C02 SEMANTIC CLOSURE → C03 REAL ESTATE DOMAIN`
+`ARCHITECTURE ENGINEERING — RESEARCH-FIRST + SOURCE-VALIDATION → C02 SEMANTIC CLOSURE → C03 REAL ESTATE DOMAIN`
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.7-C02-SCHEDULING-OWNERSHIP-CLOSED-01`
+`ARCH-2026-H1.8-C02-CLOSED-C03-ENTRY-01`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -29,7 +29,8 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - `Visibility follows responsibility` principle;
 - Workspace as operational/UX container, not automatic security boundary;
 - Branch as organizational subdivision, not automatic tenant boundary;
-- Lead ownership ≠ operational assignment ≠ source attribution ≠ commercial attribution ≠ commission entitlement;
+- nine canonical bounded contexts; historical 15-module material is implementation/provenance evidence, not a competing bounded-context model;
+- Lead ownership ≠ operational assignment ≠ source attribution ≠ commercial attribution ≠ commission entitlement ≠ commission payout;
 - reservation/sale attribution is snapshotted at the governing milestone;
 - Inventory ownership ≠ inventory visibility ≠ commercial allocation ≠ reservation control;
 - Developer internal sales team is a valid sales actor;
@@ -40,7 +41,9 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - if no allocation/priority applies, first valid committed reservation is the deterministic fallback;
 - Hold is distinct from Reservation;
 - manual adjudication is available for attribution disputes and audited overrides;
-- **Scheduling is a Core-hosted platform capability, not a separate bounded context and not CRM-owned persistence;**
+- Scheduling is a Core-hosted platform capability, not a separate bounded context and not CRM-owned persistence;
+- Commission is Finance-owned, policy-versioned, milestone-derived, snapshot-based and distinct from payout;
+- Offer is Sales-owned, versioned and distinct from Hold/Reservation;
 - Codex as primary engineering executor;
 - Claude/Figma as design collaboration path;
 - v1.6.1 as architect research/provenance input, not coding-agent authority.
@@ -56,6 +59,8 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL
 - Scheduling ADR: `docs/architecture/decisions/ADR-0021-SCHEDULING-OWNERSHIP-2026-09-26.md` — ACCEPTED
+- Commission ADR: `docs/architecture/decisions/ADR-0022-COMMISSION-ENTITLEMENT-SEMANTICS-2026-09-26.md` — ACCEPTED / SEMANTICALLY CLOSED
+- Offer ADR: `docs/architecture/decisions/ADR-0023-OFFER-LIFECYCLE-SEMANTICS-2026-09-26.md` — ACCEPTED / SEMANTICALLY CLOSED
 - Inventory competition contract: `docs/architecture/contracts/ASAS-INVENTORY-CHANNEL-PRIORITY-AND-RESERVATION-COMPETITION-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 - Inventory competition research: `docs/architecture/research/ASAS-C02-INVENTORY-COMPETITION-RESEARCH-2026-09-25.md`
 - Founder decision: `docs/architecture/decisions/C02-03-INVENTORY-COMPETITION-FOUNDER-DECISION-2026-09-25.md` — CLOSED
@@ -76,49 +81,62 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 
 Founder product/business decisions define desired future behavior. Sources and research are used to discover omissions, contradictions, risks, and better alternatives; they do not override a founder-approved decision. Brownfield runtime/repository facts remain authoritative for what is already implemented.
 
-## 6. Organization / collaboration status
+External validation continues to support the chosen strategy: domain boundaries should follow business capabilities and bounded-context semantics rather than technology-first decomposition; authorization should be least-privilege and deny-by-default; database constraints and transaction isolation should enforce critical invariants rather than relying on application checks alone. citeturn0search0turn0search1turn0search4turn0search6
 
-`C02 CORE MODEL CLOSED / ATTRIBUTION CLOSED / INVENTORY COMPETITION CLOSED / SCHEDULING OWNERSHIP CLOSED / IMPLEMENTATION BLOCKED`
+## 6. C02 status
 
-The current model is:
+`C02 SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED`
+
+Closed slices:
+
+1. Organization / Membership
+2. Organization Relationship
+3. Project + Resource Scope collaboration boundary
+4. Employee authorization
+5. Lead ownership / assignment / source / commercial attribution separation
+6. Reservation/sale attribution snapshot
+7. Inventory ownership / visibility / allocation / reservation control separation
+8. Inventory competition / deterministic winner
+9. Hold vs Reservation
+10. Scheduling ownership
+11. Commission entitlement semantics
+12. Offer lifecycle semantics
+
+Remaining C02 implementation/reconciliation work is evidence-driven, not open founder-product questions:
+
+- exact Project Inventory Access permission mapping;
+- brownfield persistence reconciliation;
+- reservation concurrency mechanism;
+- event/state/permission registration;
+- Finance executable contract details.
+
+## 7. Organization / collaboration model
 
 `Organization → Membership → Relationship → Team/Role Scope → Project Assignment → Individual Exception → Resource Authorization`
 
 The Project is the primary commercial collaboration context. Resource Scope supplies fine-grained authorization. A separate Collaboration Space remains reserved and is not required now.
 
-Developer-side partner performance visibility is Hybrid E/configurable. Employee access is Hybrid D.
+Developer-side partner performance visibility is configurable/hybrid. Employee access is Hybrid D.
 
-## 7. Attribution status
+## 8. Attribution and commission
 
-Closed semantic slice:
+Closed semantic doctrine:
 
-`Lead Ownership ≠ Operational Assignment ≠ Source Attribution ≠ Commercial Attribution ≠ Commission Entitlement`
+`Lead Ownership ≠ Operational Assignment ≠ Source Attribution ≠ Commercial Attribution ≠ Commission Entitlement ≠ Commission Payout`
 
-- Ownership identifies the organization responsible for the CRM relationship record.
-- Assignment identifies current operational responsibility and is mutable/auditable.
-- Source attribution preserves acquisition origin.
-- Commercial attribution records credit for defined milestones.
-- Commission entitlement is Finance-owned and rule-derived.
-- Reservation/sale attribution is snapshotted at the governing milestone.
-- Cross-agency collaboration does not merge private CRM data.
-- Manual adjudication is allowed for attribution disputes through audited correction workflows.
+Commission is Finance-owned. A CommissionPlan/CommissionRule version is snapshotted at the governing milestone; participant attribution is snapshotted; payout eligibility is separate from accrual; adjustments are additive and audited.
 
-## 8. Project inventory collaboration status
+Universal commission percentages, tax treatment and exact payout timing remain policy/country/project agreement concerns and are not architecture constants.
 
-Current closed semantic model:
+## 9. Offer
 
-`Inventory Ownership ≠ Inventory Visibility ≠ Commercial Allocation ≠ Reservation Control`
+Offer is Sales-owned and represents a commercial proposal. It does not reserve inventory.
 
-- an organization may own/control inventory;
-- partners receive scoped visibility;
-- optional commercial allocation is a policy/control object, not ownership transfer;
-- Developer internal sales and external agencies are both valid sales actors;
-- an Agency may also own/control its own inventory;
-- a Project may have multiple legitimate commercial actors;
-- reservation/hold remains governed by Inventory/Sales state machines and concurrency controls;
-- allocation does not itself establish reservation or sales attribution.
+`DRAFT → SUBMITTED → UNDER_REVIEW → ACCEPTED | REJECTED | WITHDRAWN | EXPIRED`
 
-## 9. Inventory competition status
+Accepted Offer may feed Hold/Reservation but cannot bypass Inventory/Sales reservation controls. Material terms are versioned/audited.
+
+## 10. Inventory competition
 
 Closed founder/product decision:
 
@@ -135,65 +153,93 @@ Rules:
 7. Failed/rolled-back transactions do not create winners.
 8. Manual attribution adjudication and audited overrides are permitted without silently rewriting historical facts.
 
-Exact database concurrency mechanism remains an implementation decision gated by adversarial concurrency testing.
+Exact database concurrency mechanism remains an implementation decision gated by adversarial concurrency testing. PostgreSQL supports unique constraints and serializable transactions, but the actual mechanism must be chosen after brownfield schema inspection and race testing rather than assumed in advance. citeturn0search4turn0search6
 
-## 10. Scheduling ownership
+## 11. Scheduling ownership
 
 `CLOSED / ACCEPTED — ADR-0021`
 
-Scheduling is a Core-hosted platform capability. It owns the canonical scheduling primitives and lifecycle; CRM, Sales, Studio and Marketing consume it through contracts. Provider synchronization remains Integrations-owned. No scheduling schema is authorized solely from this decision; brownfield persistence reconciliation remains required.
+Scheduling is a Core-hosted platform capability. It owns canonical scheduling primitives and lifecycle; CRM, Sales, Studio and Marketing consume it through contracts. Provider synchronization remains Integrations-owned. No scheduling schema is authorized solely from this decision; brownfield persistence reconciliation remains required.
 
-## 11. Building status
+## 12. Building status
 
 `OPEN / IMPLEMENTATION BLOCKED`
 
-Current provisional model:
-`Real Estate / Inventory → Project → Building (structural Entity candidate) → Floor (if required) → Unit aggregate`
+Current semantic direction:
 
-No Building schema, aggregate root, state machine, event stream or service is authorized until persistence and semantic reconciliation close.
+`Real Estate / Inventory → Project → Building (structural entity) → Floor (when required) → Unit`
 
-## 12. C03 entry conditions
+Building is a valid ontology/master-data object in V3, but its persistence representation is not yet proven against brownfield reality. No Building schema, aggregate root, state machine, event stream or service is authorized until reconciliation closes.
 
-C03 Real Estate Domain is active.
+## 13. C03 entry
 
-The next semantic workstream is:
+C03 is now the active conference.
 
-`Resource Identity → Asset Taxonomy → Project/Building/Floor/Unit hierarchy → Multi-actor authority → Listing representation → Construction vs commercial state → Pricing/versioning → Inventory lifecycle → Reservation boundary → schema contract`
+Sequence:
 
-C03 must be tested against at least:
+`C03.1 Resource Identity → C03.2 Asset Taxonomy → C03.3 Project → C03.4 Building → C03.5 Floor → C03.6 Unit → C03.7 Listing → C03.8 Multi-actor Authority → C03.9 Construction vs Commercial State → C03.10 Pricing/Versioning → C03.11 Inventory Lifecycle → C03.12 Reservation Boundary → C03.13 Schema Contract`
+
+Required adversarial scenarios:
 
 - Developer-owned project + internal sales;
 - Developer project + multiple agencies;
 - Agency-owned inventory;
 - Agency representing Developer inventory;
-- Brokerage participating alongside Developer internal sales;
+- brokerage participating alongside Developer internal sales;
 - mixed-use project;
 - project without conventional buildings;
 - unit/listing separation;
-- reassignment and historical preservation.
+- reassignment and historical preservation;
+- concurrent reservation attempts;
+- offer accepted without reservation;
+- reservation without accepted offer where policy permits;
+- price/version change after offer/reservation.
 
-## 13. Existing blockers
+## 14. Architecture truth / brownfield distinction
 
-- exact approved historical Context Map v2 / Domain Model v2 remains unlocated;
-- Building persistence representation;
-- live DB/runtime identity/evidence where unavailable;
-- exact inventory permission mapping;
-- reservation concurrency mechanism;
-- commission semantics;
-- Offer lifecycle closure;
-- Finance executable semantics;
+V3 architecture is target architecture. It is not evidence that the repository/runtime already implements it.
+
+The authority chain remains:
+
+`Founder/Product Constitution → Architecture → Contracts → Registers → Repository → Runtime → Evidence`
+
+For existing implementation reality, the verified live database wins after its identity is independently established. Documentation must never be changed merely to match an incorrect implementation. fileciteturn47file0L172-L194
+
+## 15. Existing evidence blockers
+
+- canonical runtime/database identity remains unverified after the documented wrong-project near-miss;
+- canonical artifact register/context-loading drift/readiness consolidation require repository closure where still unresolved;
 - RLS/runtime security evidence;
+- Building persistence representation;
+- exact Project Inventory Access permission mapping;
+- reservation concurrency implementation mechanism;
+- Finance executable contract details;
 - event implementation evidence;
 - architecture-as-code enforcement;
 - implementation authorization.
 
-## 14. Verification status
+The external audit independently verified the core ingested registers: 103 events, 50 permission keys × 8 personas, 11 state machines and 42 design primitives; the task/schema discrepancies are explicitly pending controlled sharding rather than being treated as verified canonical counts. fileciteturn48file9L1112-L1125
 
-CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun after the latest checkpoint/contract changes. Previous run `35879311233` is historical evidence only.
+## 16. Governance corrections still required
 
-No schema/RLS implementation has been authorized by the conference decisions.
+The external audit identified concrete governance drift that must be closed before implementation authorization:
 
-## 15. Required end-of-session output
+- stale canonical-artifact register;
+- deprecated `SESSION_STATE.md` references in two context-loading governance documents;
+- incomplete CI scan for deprecated session-state references;
+- unresolved runtime/database identity;
+- multiple overlapping readiness documents;
+- repository hygiene/visibility decisions where still open.
+
+These are control-plane issues, not reasons to redesign the domain. fileciteturn48file0L10-L33 fileciteturn48file4L288-L305
+
+## 17. Verification status
+
+CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun after the latest checkpoint/ADR changes. Previous run `35879311233` is historical evidence only.
+
+No schema/RLS implementation has been authorized by conference decisions.
+
+## 18. Required end-of-session output
 
 Every continuation must report:
 
@@ -208,7 +254,7 @@ Every continuation must report:
 9. tests/evidence;
 10. exact next checkpoint.
 
-## 16. Resume rule
+## 19. Resume rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
