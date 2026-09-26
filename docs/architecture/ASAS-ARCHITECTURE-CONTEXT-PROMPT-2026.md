@@ -2,8 +2,8 @@
 
 **Artifact ID:** ASAS-ARCH-CONTEXT-2026-001  
 **Status:** CANONICAL AI ENGINEERING OPERATING CONTEXT  
-**Version:** 2.0.2  
-**Effective date:** 2026-09-22  
+**Version:** 2.0.3  
+**Effective date:** 2026-09-27  
 **Canonical branch:** `platform-architecture-2026`  
 **Repository:** `asas-erp-saas-1/As`  
 **Companions:** Source of Truth / Blueprint / Roadmap / Master Execution Path / Current Session State
@@ -445,17 +445,15 @@ The route expands if evidence reveals missing dependencies.
 
 # 19 — Current checkpoint
 
-`ARCH-2026-H1.4.3-BUILDING-CONTRACT-CLOSURE`
+`ARCH-2026-H1.26-DEEP-C03-C06-REVIEW-SERIAL-GATE-EXECUTION-01`
 
 Current blockers:
 
-- control-plane version/routing metadata;
+- GATE-00 Vercel project / production branch / environment / exact Supabase mapping;
 - canonical live DB identity;
 - executable schema promotion;
 - full task packets;
-- Offer closure;
-- Building ownership/structural semantics;
-- Scheduling decision;
+- C03–C06 convergence;
 - runtime security/RLS evidence;
 - implementation authorization.
 
@@ -539,3 +537,73 @@ The agent must not convert historical fields into Prisma/schema requirements wit
 ## 22.4 Resume behavior
 
 On every **Continue / أكمل العمل على المسار** instruction, the first unresolved dependency is authoritative. The agent must execute work on that dependency, not restart the entire project or invent a new roadmap.
+
+---
+
+# 23 — ENVIRONMENT / RUNTIME IDENTITY AMENDMENT 003
+
+**Date:** 2026-09-27  
+**Status:** CANONICAL OPERATING RULE / GATE-00 INPUT  
+**Research record:** `docs/architecture/research/ASAS-VERCEL-SUPABASE-ENVIRONMENT-MAPPING-2026-09-27.md`
+
+## 23.1 Current-source requirement
+
+For current Vercel/Supabase behavior, use the newest official vendor documentation available at decision time. Do not use older blogs/changelogs when current official documentation answers the question. Older material is permitted only when a current official source cannot answer a required historical question.
+
+## 23.2 Environment distinction
+
+`Vercel Environment ≠ Supabase Environment`.
+
+Vercel currently distinguishes Production, Preview and Development, with custom environments available for supported plans/configurations. Supabase uses Projects and database branches as the relevant isolation/runtime units; the names do not form an automatic one-to-one mapping.
+
+## 23.3 ASAS canonical mapping
+
+```text
+Vercel Production
+    ↓
+ASAS production deployment from the configured Production Branch
+    ↓
+EXACT VERIFIED Supabase Production Project
+    ↓
+PROJECT_REF
+```
+
+`platform-architecture-2026` remains the sole active ASAS engineering work line. We do not create a staging branch merely to satisfy environment naming.
+
+Preview/non-production remote verification, if required, must use an explicitly isolated Supabase project or branch and must never point schema mutation/testing at Production.
+
+Development is local-first; if a remote Supabase development project is used, it must have a separately verified PROJECT_REF and must never inherit Production credentials accidentally.
+
+## 23.4 Supabase identity procedure
+
+For each candidate Supabase target:
+
+1. open the exact project;
+2. `Settings → General → Project Settings → Reference ID` is the canonical `PROJECT_REF`;
+3. confirm the dashboard URL carries the same reference;
+4. use `Connect` for the actual database connection mode/host;
+5. use project API/Connect configuration for project URL and keys;
+6. verify schema/runtime only after identity is established;
+7. record the result as `RUNTIME-VERIFIED`, `SOURCE-VERIFIED`, `PARTIAL` or `UNVERIFIED`.
+
+Never identify a database by display name alone.
+
+## 23.5 Vercel identity procedure
+
+For the exact Vercel project:
+
+1. `Settings → Git` → verify `asas-erp-saas-1/As` and configured Production Branch;
+2. `Deployments` → verify environment, source branch and commit;
+3. `Settings → Environments` → inspect Production/Preview/Development/custom environments;
+4. `Settings → Environment Variables` → inspect names and scopes without exposing secrets;
+5. compare the non-secret Supabase URL/reference with the intended `PROJECT_REF`;
+6. redeploy after environment-variable changes;
+7. archive deployment/commit/environment/database evidence.
+
+## 23.6 Technical guard requirement
+
+Before schema-touching tasks/CI, compare the verified production `PROJECT_REF` against one repository-controlled non-secret identity declaration and hard-fail on mismatch. Secrets remain in Vercel/Supabase/local secret stores and are never committed.
+
+## 23.7 Current ASAS status
+
+The inspected Supabase project `Asas platform` (`oliiumegstqujwexikhr`) remains a candidate/inspected project, not verified Production identity. Its current read-only inspection showed zero ASAS application tables in `public`. GATE-00 remains open until the exact Vercel Production mapping and exact Production Supabase `PROJECT_REF` are independently verified.
