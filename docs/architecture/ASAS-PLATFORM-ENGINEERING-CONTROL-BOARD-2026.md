@@ -24,7 +24,7 @@ EVIDENCE
 CHECKPOINT
 ```
 
-The V3 engineering model requires a Reality Lock before planning and implementation, and identifies live database introspection as GATE-03. Implementation authorization is GATE-07 and depends on the foundation gates. fileciteturn182file3
+The V3 engineering model requires a Reality Lock before planning and implementation, and identifies live database introspection as GATE-03. Implementation authorization is GATE-07 and depends on the foundation gates.
 
 ## Active workstreams
 
@@ -72,6 +72,6 @@ This is a read-only evidence task. Its output determines whether C03.13 can prog
 
 ## Source basis
 
-The canonical V3 requires: Reality Lock → repository/database verification → schema reconciliation → architecture-as-code gates → security/RLS gates → state/event/permission gates → implementation. fileciteturn182file10
+The canonical V3 requires Reality Lock → repository/database verification → schema reconciliation → architecture-as-code gates → security/RLS gates → state/event/permission gates → implementation.
 
-The AI developer protocol requires diagnosis, research, alternatives, verification, and exact blocker reporting rather than stopping at an error. fileciteturn182file8
+The AI developer protocol requires diagnosis, research, alternatives, verification, and exact blocker reporting rather than stopping at an error.
