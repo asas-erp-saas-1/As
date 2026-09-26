@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ENGINEERING-CONFERENCE-2026-001
 **Status:** ACTIVE / CANONICAL DECISION WORKSTREAM
-**Version:** 1.2.0
+**Version:** 1.3.0
 **Date:** 2026-09-26
 **Branch:** `platform-architecture-2026`
 **Authority:** Founder decisions for product/business choices; architecture authority for engineering derivations; runtime/repository evidence for implemented reality.
@@ -216,11 +216,6 @@ Canonical lifecycle:
 
 An accepted Offer is an input to Hold/Reservation, not a substitute for them. Material terms are versioned/audited. Discount and sensitive commercial overrides use the Approval Engine.
 
-See:
-
-- `docs/architecture/decisions/ADR-0022-COMMISSION-ENTITLEMENT-SEMANTICS-2026-09-26.md`
-- `docs/architecture/decisions/ADR-0023-OFFER-LIFECYCLE-SEMANTICS-2026-09-26.md`
-
 ## 9. Domain conference sequence
 
 The conference closes semantic areas in dependency order.
@@ -251,9 +246,9 @@ Closed:
 
 ### C03 — Real Estate Domain
 
-**Status: ACTIVE / NEXT MAJOR CONFERENCE.**
+**Status: ACTIVE / semantic slices through C03.12 closed; C03.13 brownfield/schema reconciliation remains OPEN / evidence-gated.**
 
-Resource identity, asset taxonomy, Project/Building/Floor/Unit hierarchy, multi-actor authority, Listing representation, state separation, pricing/versioning, inventory lifecycle and reservation boundary.
+Resource identity, asset taxonomy, Project/Building/Floor/Unit hierarchy, multi-actor authority, Listing representation, state separation, pricing/versioning, inventory lifecycle and reservation boundary have semantic decisions. Executable schema and runtime implementation remain gated by foundation evidence.
 
 ### C04 — CRM
 
@@ -431,9 +426,10 @@ Then Codex may implement the authorized slice.
 | Lead ownership ≠ assignment ≠ source attribution ≠ commercial attribution ≠ commission | C02 semantic decision |
 | Reservation/sale attribution snapshot | C02 semantic decision |
 | Inventory competition / deterministic winner | C02 closed |
-| Scheduling ownership | C02 closed / ADR-0021 |
+| Scheduling ownership | C02 closed / Core-hosted / ADR-0021 |
 | Commission entitlement semantics | C02 closed / ADR-0022 |
 | Offer lifecycle semantics | C02/C05 bridge closed / ADR-0023 |
+| Resource identity through reservation boundary | C03 semantic closure through C03.12 |
 | Codex as primary engineering executor | Founder-confirmed operating direction |
 | Claude/Figma as design collaboration path | Founder-confirmed operating direction |
 | v1.6.1 as architect research/provenance input | Canonical operating rule |
@@ -442,26 +438,35 @@ Then Codex may implement the authorized slice.
 
 The conference decisions do not erase evidence gates. Current blockers are:
 
-- live runtime/database identity and evidence;
+- GATE-00 platform/runtime identity;
+- canonical artifact convergence;
+- architecture/governance conflict reconciliation where still present;
+- live database identity and evidence;
 - RLS/runtime security evidence;
-- Building persistence reconciliation;
+- Building/Floor/Unit/Listing/Reservation persistence representation;
 - exact Project Inventory Access permission mapping;
 - exact reservation concurrency implementation mechanism;
 - Finance executable contract details;
 - event implementation evidence;
 - architecture-as-code enforcement;
-- canonical artifact/readiness/governance hygiene where still unresolved;
+- repository hygiene/readiness convergence;
 - implementation authorization.
 
-## 19. Next conference checkpoint
+## 19. Next conference + platform checkpoint
 
-**C03 — Real Estate Domain.**
+The next work is **not another feature-first domain slice**. V3's immediate implementation order requires foundation closure before implementation authorization.
 
-Proceed in this order:
+Execute:
 
-`C03.1 Resource Identity → C03.2 Asset Taxonomy → C03.3 Project → C03.4 Building → C03.5 Floor → C03.6 Unit → C03.7 Listing → C03.8 Multi-actor Authority → C03.9 Construction vs Commercial State → C03.10 Pricing/Versioning → C03.11 Inventory Lifecycle → C03.12 Reservation Boundary → C03.13 Schema Contract`
+`GATE-00 Platform Identity → GATE-01 Canonical Artifacts → GATE-02 Architecture Conflict → GATE-03 Database Reality → GATE-04 Security Baseline → GATE-05 Architecture CI → GATE-06 Repository Hygiene → GATE-07 Implementation Authorization`
 
-Required adversarial scenarios:
+The active execution packet is:
+
+`docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md`
+
+C03.13 remains open and is resumed as soon as the applicable foundation evidence permits schema reconciliation. No production schema/RLS/reservation implementation is authorized while the gates remain unresolved.
+
+Required adversarial scenarios remain:
 
 - Developer-owned project + internal sales;
 - Developer project + multiple agencies;
@@ -484,3 +489,11 @@ When all conference items are closed, perform a full convergence review:
 `Conference decisions → Product PRD → Architecture Baseline → Source of Truth → Roadmap → Context Prompt → Master Execution Path → Contracts → Registers → Skills → Agent instructions → Schema contract → Repository implementation → CI → Runtime evidence`
 
 Any inconsistency becomes a tracked finding. The main engineering roadmap is then updated to reflect the actual state, reopened gates, newly closed gates, and the next authorized implementation path.
+
+## 21. FOUNDATION PRIORITY AMENDMENT — 2026-09-26
+
+The V3 source establishes that foundation gates precede implementation authorization. Therefore the conference retains the C03 semantic decisions already closed, but the operational route is temporarily governed by the foundation sequence until GATE-00 through GATE-06 are evidenced.
+
+This is a sequencing correction, not a reversal of C03 decisions.
+
+`Semantic truth remains closed → implementation remains evidence-gated → foundation reality is established → schema/implementation is authorized only when gates permit.`
