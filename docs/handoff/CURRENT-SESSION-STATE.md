@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT  
-**Version:** 3.37  
+**Version:** 3.38  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.22-H0-FOUNDATION-GATE-CONVERGENCE-OPEN-01`
+`ARCH-2026-H1.23-GATE-00-PLATFORM-IDENTITY-PARTIAL-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -90,11 +90,11 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - ADRs: `ADR-0021` Scheduling through `ADR-0034` Reservation Boundary — accepted for their semantic slices.
 - Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State, Pricing Versioning, Inventory Lifecycle and Reservation Consistency are semantically closed / implementation blocked.
 - Research records: Building, Floor, Unit and Listing accepted research basis; Pricing, Inventory Lifecycle and Reservation research basis recorded in ADR-0032/0033/0034.
-- Historical Building contract reference remains NOT VERIFIED and must not be treated as current evidence until recovered/reconciled.
 - Brownfield reality report: `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` — ACTIVE / EVIDENCE BASELINE.
 - Brownfield drift matrix: `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` — ACTIVE / EVIDENCE CONTROL.
 - Brownfield task packet: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-03-04-BROWNFIELD-PERSISTENCE-RECONCILIATION-2026-09-26.md` — OPEN / EVIDENCE-GATED.
-- Runtime identity task: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-05-RUNTIME-IDENTITY-AND-READONLY-INTROSPECTION-2026-09-26.md` — READY / READ-ONLY.
+- Runtime identity task: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-05-RUNTIME-IDENTITY-AND-READONLY-INTROSPECTION-2026-09-26.md` — EXECUTED READ-ONLY / PARTIAL.
+- GATE-00 evidence: `docs/architecture/reconciliation/ASAS-GATE-00-PLATFORM-IDENTITY-EVIDENCE-2026-09-26.md` — PARTIAL / EVIDENCE BASELINE.
 - H0 foundation convergence packet: `docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md` — ACTIVE / HIGHEST PRIORITY.
 - Platform Engineering control board: `docs/architecture/ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md` — ACTIVE.
 
@@ -108,60 +108,57 @@ Founder/product decisions define desired future behavior. Research discovers omi
 
 The Platform Engineering track is active alongside the Conference. Conference decisions are semantic authority; platform engineering converts them into evidence-backed implementation only after foundation reality is established.
 
-## Foundation gate order
-
-The immediate operational route is now governed by V3's foundation sequence:
-
-`GATE-00 Platform Identity → GATE-01 Canonical Artifacts → GATE-02 Architecture Conflict → GATE-03 Database Reality → GATE-04 Security Baseline → GATE-05 Architecture CI → GATE-06 Repository Hygiene → GATE-07 Implementation Authorization`
-
-This is a sequencing correction, not a reversal of C03 semantic decisions.
-
-## Repository reality — current branch
-- Repository and branch are verified: `asas-erp-saas-1/As` / `platform-architecture-2026`.
-- The inspected branch contains the architecture/governance/control-plane repository and does not contain a root `src/` application tree.
-- `schema/asas-contracts.index.json` exists and is DERIVATION-CONTROLLED / RECONCILIATION REQUIRED.
-- `schema/asas-contracts.prisma` is not present in the inspected branch tree and remains explicitly unpromoted.
-- The schema index records historical 59/16/15 planning counts and a 59/17/56 verified-source observation; neither is a live database proof.
-- Foundation CI exists and explicitly validates the canonical control-plane files and rejects wrong-project references in executable/configuration surfaces.
-
-## C02
-`SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED`
-Remaining evidence-driven work: Project Inventory Access permission mapping; brownfield persistence reconciliation; event/state/permission registration; Finance executable contract.
-
-## C03
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03.12 RESERVATION BOUNDARY SEMANTICS CLOSED / C03.13 BROWNFIELD RECONCILIATION OPEN`
-
-### C03.13 — brownfield persistence slice
-The next work is evidence collection, not schema invention. The repository contract index explicitly blocks executable schema promotion until the 59/17/56 source observation is reconciled with the historical declaration. Runtime database identity and live introspection are not yet independently verified on this branch. Therefore no production schema/RLS/reservation implementation is authorized by this checkpoint.
-
 ## Foundation execution state
 
 ```text
-GATE-00 Platform Identity        OPEN / EVIDENCE REQUIRED
+GATE-00 Platform Identity        PARTIAL / REPOSITORY + SUPABASE CANDIDATE VERIFIED / VERCEL+ENV MAPPING OPEN
 GATE-01 Canonical Artifacts      OPEN / CONVERGENCE REQUIRED
 GATE-02 Architecture Conflict    OPEN / RECONCILIATION REQUIRED
-GATE-03 Database Reality         BLOCKED BY GATE-00
+GATE-03 Database Reality         OPEN / RUNTIME TARGET CONFIRMATION REQUIRED
 GATE-04 Security Baseline        BLOCKED BY GATE-03
 GATE-05 Architecture CI          PARTIAL / EVIDENCE REQUIRED
 GATE-06 Repository Hygiene       PARTIAL / RECONCILIATION REQUIRED
 GATE-07 Implementation Auth      BLOCKED
 ```
 
-## External research basis
-- Prisma official documentation: `prisma db pull` introspects the current relational database schema into a Prisma schema and can overwrite existing schema work; preserve the current contract before introspection.
-- Prisma existing-database workflow: repeated introspection is appropriate when the database changes outside Prisma.
-- PostgreSQL Information Schema exposes table constraints; PostgreSQL-specific features may require system catalogs.
-- PostgreSQL unique constraints/indexes and transaction isolation remain candidate enforcement mechanisms for the reservation invariant; exact selection remains gated by live-schema reconciliation and race testing.
-- Effectivity/temporal modeling supports versioned commercial facts without rewriting history.
-- Transactional outbox is the integration reliability pattern for publishing committed reservation lifecycle events; it does not replace the database reservation invariant.
+## GATE-00 runtime evidence
 
-## Adversarial model
-Must survive developer/internal sales; multiple agencies; agency-owned inventory; agency representing developer; mixed-use; optional Building/Floor; Unit reference changes; reassignment; reservation races; Offer/Reservation ordering; price changes after milestones; scheduled future prices; historical price reconstruction; price override/discount approval; hold expiration/release; duplicate/replayed lifecycle commands; stale search/cache/public projections; independent commercial/construction state; Listing withdrawal/mandate expiry; cross-tenant reads/writes; visibility without mutation; AI action exceeding caller authority.
+The connected Supabase account exposes:
+
+- `asas-web-site` — ref `xwokfufeeodobkuaxvgx`.
+- `Asas platform` — ref `oliiumegstqujwexikhr`, `eu-west-1`, PostgreSQL 17.6, GA.
+
+Read-only introspection was executed against `oliiumegstqujwexikhr`.
+
+Observed:
+
+- database `postgres`;
+- PostgreSQL 17.6;
+- cluster `main`;
+- zero base tables in `public`;
+- no ASAS application tables observed in `public`;
+- only Supabase-managed `auth`, `realtime`, `storage`, and `vault` tables observed outside system schemas;
+- Supabase migration inventory returned zero migrations.
+
+This is strong evidence that the inspected `Asas platform` project is currently a platform shell rather than an already-populated ASAS application database. It does **not** yet prove that this project is the runtime target of every ASAS environment.
+
+Therefore:
+
+- 59/17/56 remains source-package evidence, not live schema proof;
+- `Asas platform` is the current inspected candidate;
+- Vercel/environment mapping and any other runtime target must be independently verified;
+- no production schema/RLS/reservation implementation is authorized.
+
+## C03
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03.12 RESERVATION BOUNDARY SEMANTICS CLOSED / C03.13 BROWNFIELD RECONCILIATION OPEN`
 
 ## Evidence blockers
-- canonical runtime/database identity;
+- Vercel project identity and environment mapping;
+- canonical runtime/database identity across all ASAS environments;
+- canonical artifact convergence;
+- architecture conflict reconciliation;
 - RLS/runtime security evidence;
-- Building/Floor/Unit/Listing/Reservation persistence representation;
+- Building/Floor/Unit/Listing/Reservation persistence representation if another runtime DB exists;
 - exact Project Inventory Access mapping;
 - Owner/Mandate semantics and permissions;
 - Listing lifecycle/state-machine registration;
@@ -177,17 +174,13 @@ Must survive developer/internal sales; multiple agencies; agency-owned inventory
 - implementation authorization.
 
 ## Verification
-Latest repository checkpoint commits exist on `platform-architecture-2026`; CI has not been independently rerun after the latest checkpoint changes. Live database verification is NOT EXECUTED. No schema/RLS implementation has been authorized by conference decisions.
+- Repository/branch identity verified through GitHub.
+- Supabase project inventory verified through connected Supabase tooling.
+- `Asas platform` project identity and PostgreSQL version verified.
+- Read-only database introspection executed successfully.
+- No DDL, migration, RLS modification, seed, reset, or destructive operation executed.
+- Live runtime mapping remains PARTIAL until Vercel/environment evidence is obtained.
+- CI has not been independently rerun after this checkpoint change.
 
-## Required continuation output
-Every continuation reports verified facts, corrections, derivations, external research, canonical artifacts updated, conflicts, blockers, founder decisions required, tests/evidence and exact next checkpoint.
-
-## Resume rule
-`load checkpoint → inspect HEAD → load Source of Truth/Roadmap/Context/Conference → identify highest unresolved dependency → research → reconcile → decide within authority → update affected canonical artifacts → verify → checkpoint → continue`
-
-Do not implement merely because a conference decision exists.
-
-## H0 execution packet
-`docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md`
-
-H0 is now the highest unresolved dependency. C03 semantic decisions remain retained; C03.13 schema reconciliation proceeds when foundation evidence permits it.
+## Next execution step
+**GATE-00 completion:** verify Vercel project identity and environment-variable mapping, then reconcile the runtime target with the Supabase candidate before any schema-touching implementation.
