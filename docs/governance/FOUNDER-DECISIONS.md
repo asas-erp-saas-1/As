@@ -1,7 +1,7 @@
 # ASAS Founder Decision Register
 
 Status: CANONICAL DECISION ESCALATION REGISTER
-Version: 1.2
+Version: 1.3
 Date: 2026-09-26
 
 ## Purpose
@@ -14,23 +14,23 @@ The Founder explicitly instructed the Engineering Conference to perform a compre
 
 ## FD-001 — Context-to-module decomposition governance
 
-**Status:** OPEN / ARCHITECTURAL REFINEMENT — NOT A COUNT-BASED FOUNDER BLOCKER
+**Status:** CLOSED / ARCHITECTURE DECIDED — 2026-09-26
 
-**Reconciliation:** The 2026 Blueprint explicitly distinguishes bounded contexts/domain groupings from implementation modules, aggregates, schemas, read models, workers and event consumers. The nine-context view is retained as the proposed high-level domain grouping; the historical 15-module proposal is retained as candidate implementation evidence. The numerical difference is not itself a contradiction requiring a founder choice.
+**Decision:** Nine bounded contexts remain the canonical domain grouping for ASAS. Implementation modules, aggregates, schemas, read models, workers and event consumers are separate implementation concerns and are not required to have a one-to-one numerical correspondence with the nine contexts. The historical 15-module proposal remains provenance/implementation evidence only and must not be treated as a competing bounded-context model.
 
-**Founder decision is required only if:** a future ownership decision changes product/business semantics, creates a materially different domain boundary, changes financial/security authority, or otherwise crosses a founder authority boundary.
+**Canonical contexts:** Core, CRM, Sales, Inventory, Finance, Website Studio, Marketing, Analytics, Documents.
 
-**Engineering responsibility:** maintain the evidence-backed Context/Domain/Module Map and record material ownership decisions through ADRs/contracts rather than forcing one-to-one counts.
+**Platform capabilities:** Identity, Tenancy, Authorization, Audit, Events, Workflow, Scheduling, Search, Media, Notifications, Integrations, Configuration, AI, SaaS Control, Developer Platform.
+
+**Rationale:** V3 explicitly defines the nine contexts and states that a bounded context is a semantic and ownership boundary, not a feature list. Treating every capability as a context would create false boundaries and fragment the modular-monolith architecture.
+
+**Reopen only if:** new evidence proves independent domain ownership, materially different business semantics, security authority, transactional boundary or operational scaling requirements.
 
 ## FD-002 — Scheduling ownership
 
 **Status:** CLOSED / FOUNDER-DELEGATED DECISION — 2026-09-26
 
-**Decision:** Scheduling is a **Core-hosted platform capability**, not a separate bounded context and not a CRM-owned persistence boundary. Core owns the canonical scheduling primitives and appointment/activity scheduling semantics; CRM, Sales, Studio, Marketing and other domains consume them through explicit application contracts. Scheduling may expose domain-specific projections inside consuming contexts, but those projections do not transfer ownership of the canonical schedule. Calendar/provider integrations remain in Integrations.
-
-**Rationale:** Scheduling is cross-domain infrastructure for time-bound commitments and operational activities. Making it CRM-owned would force non-CRM workflows to depend on CRM persistence and would create unnecessary coupling. Making it a ninth/10th domain context would add a domain boundary without evidence that scheduling has an independent business model, authority, or consistency boundary. Core hosting preserves one canonical scheduling model while allowing domain-specific views.
-
-**Required consequences:** update the Context/Module Map, affected contracts, permission/event ownership, task dependencies and roadmap. No scheduling schema implementation is authorized until its contract and persistence ownership are verified against brownfield evidence.
+**Decision:** Scheduling is a Core-hosted platform capability, not a separate bounded context and not a CRM-owned persistence boundary. Core owns canonical scheduling primitives and appointment/activity scheduling semantics; CRM, Sales, Studio, Marketing and other domains consume them through explicit application contracts. Calendar/provider integrations remain in Integrations.
 
 ## FD-003 — Schema-contract count discrepancy
 
