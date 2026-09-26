@@ -1,8 +1,8 @@
 # ASAS Canonical Artifact Register
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.4
-Date: 2026-09-23
+Version: 1.5
+Date: 2026-09-26
 
 ## Purpose
 
@@ -45,6 +45,28 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md` | A5 | YES for audit continuation | Evidence-backed forensic findings |
 | `docs/governance/FOUNDER-DECISIONS.md` | A1 decision boundary | WHEN BLOCKED | Escalation register; open items do not authorize implementation |
 
+## Engineering Conference and Platform Engineering controls
+
+| Artifact | Authority | Current state | Rule |
+|---|---|---|---|
+| `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md` | A6 / canonical decision workstream | ACTIVE | Orchestrates research, decisions, ADR/contracts, verification and checkpoints; does not replace source authority |
+| `docs/architecture/ASAS-PLATFORM-ENGINEERING-TRACK-2026.md` | A6 | ACTIVE | Execution/control track from reality lock through evidence |
+| `docs/architecture/ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md` | A6 | ACTIVE | Cross-workstream engineering control board |
+| `docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md` | A4 | ACTIVE / HIGHEST PRIORITY | Foundation gate sequencing |
+| `docs/architecture/task-packets/ASAS-TASK-H0-GATE-01-CANONICAL-ARTIFACT-CONVERGENCE-2026-09-26.md` | A4 | OPEN / EVIDENCE-GATED | GATE-01 convergence task |
+
+## Platform identity and brownfield evidence
+
+| Artifact | Authority | Current state | Rule |
+|---|---|---|---|
+| `config/platform-identity.json` | A2 control configuration | FAIL-CLOSED / RUNTIME MAPPING UNVERIFIED | Machine-readable identity candidates; never by itself proof of production mapping |
+| `scripts/verify-platform-identity.sh` | A4 technical guard | PRESENT | Fails closed on missing/mismatched identity inputs; no runtime mutation |
+| `docs/architecture/reconciliation/ASAS-GATE-00-PLATFORM-IDENTITY-EVIDENCE-2026-09-26.md` | A5 | PARTIAL | Evidence for GATE-00; not an implementation contract |
+| `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` | A5 | OPEN / PARTIAL | Vercel/environment mapping evidence |
+| `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` | A5 | ACTIVE | Observed repository/runtime reality |
+| `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` | A5/A6 | ACTIVE | Reconciliation control; does not override runtime truth |
+| `docs/architecture/reconciliation/ASAS-ROADMAP-FOUNDATION-SEQUENCING-AMENDMENT-2026-09-26.md` | A6 | ACTIVE | Sequencing reconciliation; preserves historical provenance |
+
 ### Domain contracts
 
 | Artifact | Authority | Current state | Rule |
@@ -52,7 +74,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md` | A1 candidate / domain contract | PROPOSED / OPEN | Defines Building semantics without authorizing persistence |
 | `ASAS-BUILDING-SCHEMA-RECONCILIATION-2026.md` | A5/A6 evidence + reconciliation | OPEN / BLOCKED | Records Building schema ambiguity and required evidence |
 
-### Specialized design collaboration
+## Specialized design collaboration
 
 The retained Claude/Figma artifacts are **specialized design-collaboration resources**, not the primary implementation handoff. They remain available for UX/Figma work and historical provenance. They do not authorize repository or database implementation.
 
