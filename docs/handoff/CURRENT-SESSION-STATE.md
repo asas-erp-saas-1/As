@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.25  
+**Version:** 3.26  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
@@ -12,7 +12,7 @@
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.10-C03-PROJECT-SEMANTICS-CLOSED-01`
+`ARCH-2026-H1.11-C03-BUILDING-SEMANTICS-CLOSED-01`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -50,10 +50,14 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Building is a first-class structural domain/ontology object but optional at Project topology level;
 - Floor is optional;
 - Unit identity is stable and does not depend on human numbering;
-- **Project is a first-class development/commercial domain object and the primary development collaboration context; it is not merely a UI/listing container;**
-- **Project visibility is authorization-derived and does not imply ownership transfer;**
-- **Project publication is a projection and is not a second source of truth;**
-- **Project semantics are closed while lifecycle, inventory batches, pricing, permissions and persistence remain separate gated slices;**
+- Project is a first-class development/commercial domain object and the primary development collaboration context;
+- Project visibility is authorization-derived and does not imply ownership transfer;
+- Project publication is a projection and is not a second source of truth;
+- Project semantics are closed while lifecycle, inventory batches, pricing, permissions and persistence remain separate gated slices;
+- **Building semantics are now closed: Building is a structural entity under Project, optional at topology level, not automatically an aggregate root, and not a commercial/financial/security principal;**
+- **Project → Building → [Floor] → Unit and Project → Building → Unit are both valid development topologies;**
+- **Building identity is stable and independent of mutable reference/name/slug;**
+- **Building-scoped access derives from Relationship + Project Context + Resource Scope + Permission; the Building record itself grants no authority.**
 - Codex as primary engineering executor;
 - Claude/Figma as design collaboration path;
 - v1.6.1 as architect research/provenance input, not coding-agent authority.
@@ -73,10 +77,11 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Offer ADR: `docs/architecture/decisions/ADR-0023-OFFER-LIFECYCLE-SEMANTICS-2026-09-26.md` — ACCEPTED / SEMANTICALLY CLOSED
 - Real-estate resource ADR: `docs/architecture/decisions/ADR-0024-REAL-ESTATE-RESOURCE-IDENTITY-2026-09-26.md` — ACCEPTED / C03.1–C03.2 SEMANTICALLY CLOSED
 - Project ADR: `docs/architecture/decisions/ADR-0025-PROJECT-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.3 SEMANTICALLY CLOSED
+- Building ADR: `docs/architecture/decisions/ADR-0026-BUILDING-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.4 SEMANTICALLY CLOSED
 - Project domain contract: `docs/architecture/contracts/ASAS-PROJECT-DOMAIN-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
+- Building research: `docs/architecture/research/ASAS-RESEARCH-RECORD-C03-BUILDING-2026-09-26.md` — ACCEPTED RESEARCH BASIS
+- Historical Building contract reference: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026-09-24.md` — **NOT VERIFIED IN CURRENT BRANCH CONTENT ENDPOINT**; do not treat as current repository evidence until recovered/reconciled
 - Inventory competition contract: `docs/architecture/contracts/ASAS-INVENTORY-CHANNEL-PRIORITY-AND-RESERVATION-COMPETITION-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
-- Building research: `docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
-- Building domain contract: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026-09-24.md` — PROPOSED / OPEN / IMPLEMENTATION BLOCKED
 - Evidence register: `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
 - Skills catalog: `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
 - Agent operating model: `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md`
@@ -117,7 +122,7 @@ Remaining C02 implementation/reconciliation work is evidence-driven:
 
 ## 7. C03 status
 
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03 ACTIVE`
 
 ### C03.3 Project — closed semantic slice
 
@@ -137,27 +142,46 @@ Public Project pages are projections, not authoritative Project records.
 
 Project identity must be stable and independent of mutable human labels, codes and slugs.
 
-Closed by C03.3:
+### C03.4 Building — closed semantic slice
 
-- Project domain meaning;
-- Project as collaboration context;
-- ownership vs visibility separation;
-- stable identity principle;
-- topology anchor semantics;
-- publication-as-projection principle;
-- Project/domain ownership boundary.
+Building is a first-class structural real-estate entity within the development/inventory model.
 
-Not closed by C03.3:
+Canonical topology:
 
-- Project lifecycle/state machine;
-- Project type taxonomy;
-- geography/address model;
-- inventory batch model;
-- pricing/versioning;
-- exact Project Inventory Access permissions;
-- Building/Floor persistence;
-- schema/migration;
-- live runtime mapping.
+`Project → [Building] → [Floor] → Unit`
+
+Valid topology variants include:
+
+`Project → Unit`
+`Project → Building → Unit`
+`Project → Building → Floor → Unit`
+
+Building is optional when the Project has no meaningful building-level subdivision. Floor is optional when the Project/Building has no meaningful floor model.
+
+Building has stable technical identity independent of human reference/name/slug.
+
+Building is not:
+
+- an Organization or tenant;
+- a collaboration space;
+- a Listing;
+- a Reservation or commercial control object;
+- a financial object;
+- a legal contract;
+- an automatic security boundary;
+- automatically an aggregate root.
+
+Building-scoped access is derived from the existing authorization model; the Building record itself grants no authority.
+
+Building may scope construction milestones/progress/documents, but construction state remains separate from Unit commercial state.
+
+The C03.4 semantic decision is recorded in `ADR-0026-BUILDING-DOMAIN-SEMANTICS-2026-09-26.md` and the research record `ASAS-RESEARCH-RECORD-C03-BUILDING-2026-09-26.md`.
+
+### C03.4 evidence boundary
+
+The historical Building domain-contract path referenced by previous checkpoints could not be retrieved from the current GitHub branch content endpoint. It is therefore explicitly treated as **unverified historical material**, not as repository truth. This is a reconciliation fact, not permission to invent the missing contract.
+
+The semantic decision is supported by V3 ontology/master-data/hierarchy definitions and external DDD validation. Persistence remains open.
 
 ## 8. Real-estate state doctrine
 
@@ -183,21 +207,17 @@ The next decisions must survive:
 - mixed-use project;
 - project without conventional buildings;
 - project with buildings but no meaningful floor model;
+- Building with and without Floors;
 - Unit/listing separation;
 - human reference-number changes;
+- Building reference/name changes without Unit identity change;
 - reassignment and historical preservation;
 - concurrent reservation attempts;
 - accepted Offer without Reservation;
 - Reservation without accepted Offer where policy permits;
 - price/version change after Offer/Reservation.
 
-## 10. Building status
-
-`OPEN / IMPLEMENTATION BLOCKED`
-
-Building is a structural domain/ontology object, but persistence shape remains a brownfield/schema reconciliation question. No Building schema or aggregate implementation is authorized until current repository/database evidence is inspected.
-
-## 11. Inventory competition
+## 10. Inventory competition
 
 Closed founder/product decision:
 
@@ -205,7 +225,7 @@ Closed founder/product decision:
 
 Same-tier competition is resolved by the first valid reservation transaction to commit successfully against the Unit single-winner boundary. Client timestamps and UI ordering are not authoritative. Exact DB mechanism remains implementation-gated and must be proven by race tests.
 
-## 12. Architecture truth / brownfield distinction
+## 11. Architecture truth / brownfield distinction
 
 V3 architecture is target architecture. It is not evidence that the repository/runtime already implements it.
 
@@ -215,7 +235,7 @@ Authority chain:
 
 For existing implementation reality, the verified live database wins after its identity is independently established.
 
-## 13. Evidence blockers
+## 12. Evidence blockers
 
 - canonical runtime/database identity;
 - RLS/runtime security evidence;
@@ -228,13 +248,13 @@ For existing implementation reality, the verified live database wins after its i
 - canonical artifact/readiness/governance hygiene where still unresolved;
 - implementation authorization.
 
-## 14. Verification status
+## 13. Verification status
 
-CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun after the latest checkpoint/ADR/contract changes. Previous runs are historical evidence only.
+CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun after the latest checkpoint/ADR/research changes. Previous runs are historical evidence only.
 
 No schema/RLS implementation has been authorized by conference decisions.
 
-## 15. Required end-of-session output
+## 14. Required end-of-session output
 
 Every continuation must report:
 
@@ -249,7 +269,7 @@ Every continuation must report:
 9. tests/evidence;
 10. exact next checkpoint.
 
-## 16. Resume rule
+## 15. Resume rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
