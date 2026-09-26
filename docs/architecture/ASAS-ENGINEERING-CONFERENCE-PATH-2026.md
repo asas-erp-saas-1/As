@@ -2,8 +2,8 @@
 
 **Artifact ID:** ASAS-ENGINEERING-CONFERENCE-2026-001
 **Status:** ACTIVE / CANONICAL DECISION WORKSTREAM
-**Version:** 1.1.0
-**Date:** 2026-09-25
+**Version:** 1.2.0
+**Date:** 2026-09-26
 **Branch:** `platform-architecture-2026`
 **Authority:** Founder decisions for product/business choices; architecture authority for engineering derivations; runtime/repository evidence for implemented reality.
 
@@ -118,21 +118,6 @@ Resource authorization
 Authorized view / command
 ```
 
-Example:
-
-```text
-Agency A
- ├── Team 1 → Project X
- └── Team 2 → Project Y
-
-Ahmed → Team 1
-Karim → Team 2
-
-Ahmed: Project X ✓ / Project Y ✕
-Karim: Project X ✕ / Project Y ✓
-Director: broader performance visibility according to policy
-```
-
 **Primary UX/security rule:** `Visibility follows responsibility.`
 
 Users should not see unrelated modules, records, organizations, projects, private notes, financial data, or partner data merely because the platform stores them.
@@ -197,74 +182,78 @@ Cross-organization access is auditable.
 
 ## 8. Performance and attribution semantics
 
-For a project with multiple agencies, the Developer may receive authorized partner performance views such as:
-
-```text
-Project
-  Inventory
-  Partner Performance
-    Agency A
-      Leads
-      Visits
-      Offers
-      Reservations
-      Sales
-    Agency B
-      Leads
-      Visits
-      Offers
-      Reservations
-      Sales
-```
+For a project with multiple agencies, the Developer may receive authorized partner performance views. Private CRM data remains scoped to the owning/authorized organization.
 
 ### 8.1 Attribution doctrine — C02 closed
 
 The conference explicitly separates:
 
-`Lead Ownership ≠ Operational Assignment ≠ Source Attribution ≠ Commercial Attribution ≠ Commission Entitlement`
-
-**Lead ownership** identifies the organization responsible for the CRM relationship record and its governed lifecycle. It does not automatically grant every employee access.
-
-**Operational assignment** identifies the user/team/queue responsible for current work. It is mutable and historical changes are auditable. Assignment does not silently change ownership or historical commercial credit.
-
-**Source attribution** records how the lead entered ASAS and preserves the original acquisition fact. It is corrected only through an auditable correction path.
-
-**Commercial attribution** identifies who receives credit for a defined commercial outcome such as a qualified lead, visit, offer, reservation or sale. Different actors may receive different attribution dimensions.
-
-**Commission entitlement** is a Finance-owned downstream fact derived from an approved commission rule and authoritative commercial facts. It is never inferred solely from current lead owner, assignee, team or project assignment.
-
-Example:
-
-```text
-Lead source: Agency A / Facebook campaign
-Lead owner: Agency A
-Current assignee: Ahmed / Agency A
-Visit contributor: Ahmed
-Reservation commercial credit: Agency A
-Sale contributor: Karim / Agency A
-```
+`Lead Ownership ≠ Operational Assignment ≠ Source Attribution ≠ Commercial Attribution ≠ Commission Entitlement ≠ Commission Payout`
 
 At reservation/sale milestones, the applicable attribution facts are snapshotted. Later reassignment does not rewrite historical attribution. Disputes use explicit correction/dispute workflows with audit evidence.
 
-Cross-agency collaboration never merges private CRM data. A Developer may receive an authorized performance projection without receiving another Agency's private notes or unrelated CRM records.
+Cross-agency collaboration never merges private CRM data.
+
+### 8.2 Commission semantics — C02 closed
+
+Commission is a **Finance-owned derived financial fact**. It is produced from authoritative commercial milestones and a versioned CommissionPlan/CommissionRule.
+
+Canonical flow:
+
+`Commercial attribution / qualifying milestone → Policy snapshot → Commission accrual/entitlement → Approval/adjustment → Payout eligibility → Payout`
+
+Rules may depend on project, unit, agent, team, campaign, source, deal value, collection status and contract state. Multiple participants are supported. Historical participant attribution and policy version are snapshotted; corrections use audited adjustments rather than rewriting history.
+
+Commission percentage, tax treatment and exact payout timing remain configurable/legal/country/project policy concerns, not universal architecture constants.
+
+### 8.3 Offer semantics — C02/C05 bridge closed
+
+Offer is a Sales-owned commercial proposal. It does not itself reserve inventory.
+
+Canonical lifecycle:
+
+`DRAFT → SUBMITTED → UNDER_REVIEW → ACCEPTED | REJECTED | WITHDRAWN | EXPIRED`
+
+An accepted Offer is an input to Hold/Reservation, not a substitute for them. Material terms are versioned/audited. Discount and sensitive commercial overrides use the Approval Engine.
+
+See:
+
+- `docs/architecture/decisions/ADR-0022-COMMISSION-ENTITLEMENT-SEMANTICS-2026-09-26.md`
+- `docs/architecture/decisions/ADR-0023-OFFER-LIFECYCLE-SEMANTICS-2026-09-26.md`
 
 ## 9. Domain conference sequence
 
-The conference must close the following semantic areas in order of dependency:
+The conference closes semantic areas in dependency order.
 
 ### C01 — Platform Constitution
 
-Product scope, customer model, organization model, authority boundaries.
+**Status: CLOSED / baseline established.**
 
 ### C02 — Organization / Membership / Relationship
 
-Organization identity, membership, workspace, branch, team, relationship, assignment and support access.
+**Status: SEMANTICALLY CLOSED except Project Inventory Access / Developer-Agency performance read-model refinement.**
 
-**C02 current status:** Core organization/collaboration decisions closed; lead ownership/assignment/attribution semantics closed; Project inventory access, reservation attribution and commission semantics remain open sub-slices.
+Closed:
+
+- Organization identity;
+- membership;
+- workspace/branch semantics;
+- organization relationship;
+- project/resource-scope collaboration;
+- employee authorization;
+- lead ownership/assignment/source/commercial attribution separation;
+- reservation/sale attribution snapshot;
+- inventory ownership/visibility/allocation/reservation-control separation;
+- inventory competition and deterministic winner rule;
+- Hold vs Reservation distinction;
+- Scheduling ownership;
+- Commission entitlement semantics.
 
 ### C03 — Real Estate Domain
 
-Portfolio/Project/Building/Floor/Unit/Listing ownership, identity, hierarchy, lifecycle and inventory semantics.
+**Status: ACTIVE / NEXT MAJOR CONFERENCE.**
+
+Resource identity, asset taxonomy, Project/Building/Floor/Unit hierarchy, multi-actor authority, Listing representation, state separation, pricing/versioning, inventory lifecycle and reservation boundary.
 
 ### C04 — CRM
 
@@ -296,7 +285,7 @@ Templates, versions, access policy, generated documents, signatures/integrations
 
 ### C11 — Scheduling / Activities
 
-Appointment ownership and the unresolved Scheduling context placement must be explicitly resolved before persistence ownership is changed.
+**Ownership CLOSED:** Core-hosted platform capability. CRM, Sales, Studio and Marketing consume scheduling through explicit application contracts. Provider synchronization remains Integrations-owned.
 
 ### C12 — Workflow / Automation
 
@@ -348,12 +337,12 @@ Every write-side behavior must answer:
 
 `Owner → Aggregate/Entity → Command → Authorization → Scope → Preconditions → Invariants → State Transition → Audit → Event → Outbox → Verification`
 
-Mandatory cross-cutting invariants include:
+Mandatory invariants include:
 
 - tenant/resource scope established before sensitive access;
 - no direct governed status mutation;
 - reservation is a single-winner consistency boundary for a Unit;
-- offer approval does not itself create inventory ownership;
+- Offer acceptance does not itself create inventory control;
 - posted financial facts are immutable;
 - financial corrections use reversal/new facts;
 - double-entry balances where ledger functionality is authoritative;
@@ -387,17 +376,7 @@ Accepted design contracts—not a screenshot or an AI-generated mock alone—aut
 
 ## 13. AI-agent governance
 
-Every agent receives:
-
-- role;
-- scope;
-- skills;
-- authority boundary;
-- required inputs;
-- output artifacts;
-- verification obligations;
-- stop conditions;
-- evidence requirements.
+Every agent receives role, scope, skills, authority boundary, required inputs, output artifacts, verification obligations, stop conditions and evidence requirements.
 
 Agents must use research-first reasoning for missing information and must label engineering derivations.
 
@@ -421,17 +400,7 @@ A decision is not considered closed merely because it was discussed in chat.
 
 ## 15. Reopening protocol
 
-A previously closed item must be reopened when:
-
-- new runtime evidence contradicts it;
-- a stronger authoritative source contradicts it;
-- a domain invariant exposes a flaw;
-- security testing exposes a bypass;
-- concurrency testing exposes a race;
-- legal research changes a required assumption;
-- implementation reveals an unmodeled dependency.
-
-Reopening must preserve the old decision as history and create an explicit supersession/amendment trail.
+A previously closed item must be reopened when new runtime evidence, a stronger authoritative source, a domain invariant, security test, concurrency test, legal research or implementation evidence contradicts it. Reopening preserves the old decision as history and creates an explicit supersession/amendment trail.
 
 ## 16. Implementation authorization rule
 
@@ -460,37 +429,53 @@ Then Codex may implement the authorized slice.
 | Workspace as operational UX container, not automatic security boundary | Engineering derivation |
 | Branch as organizational subdivision, not automatic tenant boundary | Engineering derivation |
 | Lead ownership ≠ assignment ≠ source attribution ≠ commercial attribution ≠ commission | C02 semantic decision |
-| Reservation/sale attribution is snapshotted at milestone | C02 semantic decision |
+| Reservation/sale attribution snapshot | C02 semantic decision |
+| Inventory competition / deterministic winner | C02 closed |
+| Scheduling ownership | C02 closed / ADR-0021 |
+| Commission entitlement semantics | C02 closed / ADR-0022 |
+| Offer lifecycle semantics | C02/C05 bridge closed / ADR-0023 |
 | Codex as primary engineering executor | Founder-confirmed operating direction |
 | Claude/Figma as design collaboration path | Founder-confirmed operating direction |
 | v1.6.1 as architect research/provenance input | Canonical operating rule |
 
 ## 18. Current blockers
 
-The conference does not erase existing blockers:
+The conference decisions do not erase evidence gates. Current blockers are:
 
-- Scheduling ownership conflict;
-- live runtime/database identity and evidence where unavailable;
+- live runtime/database identity and evidence;
 - RLS/runtime security evidence;
 - Building persistence reconciliation;
-- Project inventory access semantics;
-- reservation attribution semantics;
-- commission semantics;
-- Offer lifecycle closure;
-- Finance executable semantics;
+- exact Project Inventory Access permission mapping;
+- exact reservation concurrency implementation mechanism;
+- Finance executable contract details;
 - event implementation evidence;
 - architecture-as-code enforcement;
+- canonical artifact/readiness/governance hygiene where still unresolved;
 - implementation authorization.
 
 ## 19. Next conference checkpoint
 
-Proceed from the C02 attribution closure into:
+**C03 — Real Estate Domain.**
 
-`Project Inventory Access → Reservation Attribution → Commission Semantics → Developer/Agency Performance Read Models`
+Proceed in this order:
 
-Then continue through:
+`C03.1 Resource Identity → C03.2 Asset Taxonomy → C03.3 Project → C03.4 Building → C03.5 Floor → C03.6 Unit → C03.7 Listing → C03.8 Multi-actor Authority → C03.9 Construction vs Commercial State → C03.10 Pricing/Versioning → C03.11 Inventory Lifecycle → C03.12 Reservation Boundary → C03.13 Schema Contract`
 
-`C03 Real Estate → C04 CRM → C05 Sales → C06 Finance → C07 Marketing → C08 Studio → C09 Analytics → C10 Documents → C11 Scheduling → C12 Workflow → C13 Integrations → C14 Search/Media/Notifications → C15 Security/Tenancy → C16 Data → C17 Events/Outbox → C18 AI → C19 Design → C20 Codex Engineering → C21 Runtime/Operations → C22 SaaS Evolution`
+Required adversarial scenarios:
+
+- Developer-owned project + internal sales;
+- Developer project + multiple agencies;
+- Agency-owned inventory;
+- Agency representing Developer inventory;
+- brokerage participating alongside Developer internal sales;
+- mixed-use project;
+- project without conventional buildings;
+- unit/listing separation;
+- reassignment and historical preservation;
+- concurrent reservation attempts;
+- offer accepted without reservation;
+- reservation without accepted offer where policy permits;
+- price/version change after offer/reservation.
 
 ## 20. Final review after conference closure
 
