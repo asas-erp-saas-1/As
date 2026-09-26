@@ -1,18 +1,22 @@
 # ASAS Founder Decision Register
 
 Status: CANONICAL DECISION ESCALATION REGISTER
-Version: 1.1
-Date: 2026-09-20
+Version: 1.2
+Date: 2026-09-26
 
 ## Purpose
 
 Record decisions that an autonomous engineering agent must not silently make. Open entries are blocking only for work that depends on the unresolved decision.
 
+## Delegation note — 2026-09-26
+
+The Founder explicitly instructed the Engineering Conference to perform a comprehensive research-first review of the ASAS architecture, governance, repository evidence and external engineering sources, and to take the appropriate product/business decisions for the conference questions unless a matter requires qualified legal interpretation, destructive production authority, or objective runtime/database evidence that is not available. This instruction authorizes the conference to close the currently open founder-level product/architecture questions within that boundary. It does not authorize implementation to bypass the implementation gates.
+
 ## FD-001 — Context-to-module decomposition governance
 
 **Status:** OPEN / ARCHITECTURAL REFINEMENT — NOT A COUNT-BASED FOUNDER BLOCKER
 
-**Reconciliation:** The 2026 Blueprint v1.4.0 explicitly distinguishes bounded contexts/domain groupings from implementation modules, aggregates, schemas, read models, workers and event consumers. The nine-context view is retained as a proposed high-level domain grouping; the historical 15-module proposal is retained as candidate implementation evidence. The numerical difference is not itself a contradiction requiring a founder choice.
+**Reconciliation:** The 2026 Blueprint explicitly distinguishes bounded contexts/domain groupings from implementation modules, aggregates, schemas, read models, workers and event consumers. The nine-context view is retained as the proposed high-level domain grouping; the historical 15-module proposal is retained as candidate implementation evidence. The numerical difference is not itself a contradiction requiring a founder choice.
 
 **Founder decision is required only if:** a future ownership decision changes product/business semantics, creates a materially different domain boundary, changes financial/security authority, or otherwise crosses a founder authority boundary.
 
@@ -20,16 +24,13 @@ Record decisions that an autonomous engineering agent must not silently make. Op
 
 ## FD-002 — Scheduling ownership
 
-**Status:** FOUNDER DECISION REQUIRED
+**Status:** CLOSED / FOUNDER-DELEGATED DECISION — 2026-09-26
 
-**Conflicting evidence:**
-- current Master-Spec-oriented handoff places Scheduling under CRM;
-- ADR-0018 is recorded as Core-hosted Scheduling submodule;
-- older ADR language contains a different context/module formulation.
+**Decision:** Scheduling is a **Core-hosted platform capability**, not a separate bounded context and not a CRM-owned persistence boundary. Core owns the canonical scheduling primitives and appointment/activity scheduling semantics; CRM, Sales, Studio, Marketing and other domains consume them through explicit application contracts. Scheduling may expose domain-specific projections inside consuming contexts, but those projections do not transfer ownership of the canonical schedule. Calendar/provider integrations remain in Integrations.
 
-**Decision required:** Choose the canonical ownership and record it in an ADR. Then update the Context/Module Map, affected contracts, tasks, events, permissions and implementation dependencies atomically.
+**Rationale:** Scheduling is cross-domain infrastructure for time-bound commitments and operational activities. Making it CRM-owned would force non-CRM workflows to depend on CRM persistence and would create unnecessary coupling. Making it a ninth/10th domain context would add a domain boundary without evidence that scheduling has an independent business model, authority, or consistency boundary. Core hosting preserves one canonical scheduling model while allowing domain-specific views.
 
-**Blocking scope:** Scheduling implementation, scheduling persistence ownership, scheduling event ownership and dependency rules.
+**Required consequences:** update the Context/Module Map, affected contracts, permission/event ownership, task dependencies and roadmap. No scheduling schema implementation is authorized until its contract and persistence ownership are verified against brownfield evidence.
 
 ## FD-003 — Schema-contract count discrepancy
 
@@ -57,4 +58,4 @@ Record decisions that an autonomous engineering agent must not silently make. Op
 
 ## Escalation rule
 
-Claude must STOP → DOCUMENT → ESCALATE whenever a change would resolve one of these entries by silently choosing a product, ownership, financial, legal, destructive-data or autonomous-authority interpretation.
+The engineering agent must STOP → DOCUMENT → ESCALATE whenever a change would resolve an open entry by silently choosing a product, ownership, financial, legal, destructive-data or autonomous-authority interpretation that is not covered by the Founder delegation above. Runtime/database identity and destructive production authority remain evidence/authorization gates even after delegation.
