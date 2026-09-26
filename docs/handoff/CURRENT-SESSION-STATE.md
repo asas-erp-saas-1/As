@@ -1,9 +1,9 @@
 # ASAS — CURRENT SESSION STATE
 
-**Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT
-**Version:** 3.24
-**Date:** 2026-09-26
-**Repository:** `asas-erp-saas-1/As`
+**Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
+**Version:** 3.25  
+**Date:** 2026-09-26  
+**Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## 1. Current phase
@@ -12,7 +12,7 @@
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.9-C03-RESOURCE-IDENTITY-TAXONOMY-CLOSED-01`
+`ARCH-2026-H1.10-C03-PROJECT-SEMANTICS-CLOSED-01`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -44,8 +44,16 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Scheduling is a Core-hosted platform capability, not a separate bounded context and not CRM-owned persistence;
 - Commission is Finance-owned, policy-versioned, milestone-derived, snapshot-based and distinct from payout;
 - Offer is Sales-owned, versioned and distinct from Hold/Reservation;
-- **Real Estate Resource is a conceptual category, not a mandatory universal database entity; development inventory uses Unit as the canonical resource, brokerage uses Listing under Owner/Mandate semantics;**
-- **Building is a first-class structural domain/ontology object but is optional at Project topology level; Floor is optional; Unit identity is stable and does not depend on human numbering;**
+- Real Estate Resource is a conceptual category, not a mandatory universal database entity;
+- development inventory uses Unit as the canonical resource;
+- brokerage uses Listing under Owner/Mandate semantics;
+- Building is a first-class structural domain/ontology object but optional at Project topology level;
+- Floor is optional;
+- Unit identity is stable and does not depend on human numbering;
+- **Project is a first-class development/commercial domain object and the primary development collaboration context; it is not merely a UI/listing container;**
+- **Project visibility is authorization-derived and does not imply ownership transfer;**
+- **Project publication is a projection and is not a second source of truth;**
+- **Project semantics are closed while lifecycle, inventory batches, pricing, permissions and persistence remain separate gated slices;**
 - Codex as primary engineering executor;
 - Claude/Figma as design collaboration path;
 - v1.6.1 as architect research/provenance input, not coding-agent authority.
@@ -64,13 +72,9 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Commission ADR: `docs/architecture/decisions/ADR-0022-COMMISSION-ENTITLEMENT-SEMANTICS-2026-09-26.md` — ACCEPTED / SEMANTICALLY CLOSED
 - Offer ADR: `docs/architecture/decisions/ADR-0023-OFFER-LIFECYCLE-SEMANTICS-2026-09-26.md` — ACCEPTED / SEMANTICALLY CLOSED
 - Real-estate resource ADR: `docs/architecture/decisions/ADR-0024-REAL-ESTATE-RESOURCE-IDENTITY-2026-09-26.md` — ACCEPTED / C03.1–C03.2 SEMANTICALLY CLOSED
+- Project ADR: `docs/architecture/decisions/ADR-0025-PROJECT-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.3 SEMANTICALLY CLOSED
+- Project domain contract: `docs/architecture/contracts/ASAS-PROJECT-DOMAIN-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 - Inventory competition contract: `docs/architecture/contracts/ASAS-INVENTORY-CHANNEL-PRIORITY-AND-RESERVATION-COMPETITION-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
-- Inventory competition research: `docs/architecture/research/ASAS-C02-INVENTORY-COMPETITION-RESEARCH-2026-09-25.md`
-- Founder decision: `docs/architecture/decisions/C02-03-INVENTORY-COMPETITION-FOUNDER-DECISION-2026-09-25.md` — CLOSED
-- Organization collaboration contract: `docs/architecture/contracts/ASAS-ORGANIZATION-COLLABORATION-AUTHORIZATION-CONTRACT-2026.md` — PROPOSED / IMPLEMENTATION BLOCKED
-- Team/project authorization contract: `docs/architecture/contracts/ASAS-TEAM-PROJECT-ASSIGNMENT-AUTHORIZATION-CONTRACT-2026.md` — PROPOSED / IMPLEMENTATION BLOCKED
-- Lead ownership/assignment/attribution contract: `docs/architecture/contracts/ASAS-LEAD-OWNERSHIP-ASSIGNMENT-ATTRIBUTION-CONTRACT-2026.md` — PROPOSED / SEMANTIC SLICE CLOSED / IMPLEMENTATION BLOCKED
-- Project inventory collaboration contract: `docs/architecture/contracts/ASAS-PROJECT-INVENTORY-COLLABORATION-CONTRACT-2026.md` — PROPOSED / IMPLEMENTATION BLOCKED
 - Building research: `docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
 - Building domain contract: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026-09-24.md` — PROPOSED / OPEN / IMPLEMENTATION BLOCKED
 - Evidence register: `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
@@ -83,8 +87,6 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 `PROBLEM → RESEARCH → ALTERNATIVES / FAILURE MODES → HYPOTHESES → ASAS SOURCE VALIDATION → PROVENANCE / AUTHORITY → REJECT / ADAPT / DERIVE → CONTRACT / ADR / REGISTER → VERIFY → CHECKPOINT`
 
 Founder product/business decisions define desired future behavior. Sources and research are used to discover omissions, contradictions, risks, and better alternatives; they do not override a founder-approved decision. Brownfield runtime/repository facts remain authoritative for what is already implemented.
-
-External validation supports the chosen strategy: domain boundaries should follow business capabilities and bounded-context semantics rather than technology-first decomposition; authorization should be least-privilege and deny-by-default; database constraints and transaction isolation should enforce critical invariants rather than relying on application checks alone. citeturn0search0turn0search1turn0search4turn0search6
 
 ## 6. C02 status
 
@@ -105,7 +107,7 @@ Closed slices:
 11. Commission entitlement semantics
 12. Offer lifecycle semantics
 
-Remaining C02 implementation/reconciliation work is evidence-driven, not open founder-product questions:
+Remaining C02 implementation/reconciliation work is evidence-driven:
 
 - exact Project Inventory Access permission mapping;
 - brownfield persistence reconciliation;
@@ -115,25 +117,47 @@ Remaining C02 implementation/reconciliation work is evidence-driven, not open fo
 
 ## 7. C03 status
 
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03 ACTIVE`
 
-### Resource identity
+### C03.3 Project — closed semantic slice
 
-`Real Estate Resource` is a conceptual category, not a mandatory universal table.
+Project is a first-class real-estate development/commercial domain object and the primary development collaboration context.
 
-Development:
+Canonical meaning:
 
 `Organization → Project → [Building] → [Floor] → Unit`
 
-Brokerage:
+Project does not become the owner of downstream CRM, Reservation, Contract, Finance, Commission, Campaign attribution or Scheduling facts merely because those facts reference it.
 
-`Owner → Mandate → Listing → Property representation`
+Project visibility is produced by authorization:
 
-Unit is the canonical development inventory resource. Listing is the canonical brokerage commercial representation. A universal Property aggregate is deliberately not introduced at this stage.
+`Relationship + Project Context + Resource Scope + Permission`
 
-Building is a first-class structural domain/ontology object but is not mandatory for every Project. Floor is conditional on project topology.
+Public Project pages are projections, not authoritative Project records.
 
-Human references are not primary technical identity. Stable internal identity must survive renumbering, relabeling and structural changes.
+Project identity must be stable and independent of mutable human labels, codes and slugs.
+
+Closed by C03.3:
+
+- Project domain meaning;
+- Project as collaboration context;
+- ownership vs visibility separation;
+- stable identity principle;
+- topology anchor semantics;
+- publication-as-projection principle;
+- Project/domain ownership boundary.
+
+Not closed by C03.3:
+
+- Project lifecycle/state machine;
+- Project type taxonomy;
+- geography/address model;
+- inventory batch model;
+- pricing/versioning;
+- exact Project Inventory Access permissions;
+- Building/Floor persistence;
+- schema/migration;
+- live runtime mapping.
 
 ## 8. Real-estate state doctrine
 
@@ -171,7 +195,7 @@ The next decisions must survive:
 
 `OPEN / IMPLEMENTATION BLOCKED`
 
-The domain decision is now stronger: Building is a structural entity, but persistence shape remains a brownfield/schema reconciliation question. No Building schema or aggregate implementation is authorized until current repository/database evidence is inspected.
+Building is a structural domain/ontology object, but persistence shape remains a brownfield/schema reconciliation question. No Building schema or aggregate implementation is authorized until current repository/database evidence is inspected.
 
 ## 11. Inventory competition
 
@@ -179,7 +203,7 @@ Closed founder/product decision:
 
 `Project/Inventory Policy + Explicit Allocation + Deterministic Fallback`
 
-Same-tier competition is resolved by the first valid reservation transaction to commit successfully against the Unit single-winner boundary. Client timestamps and UI ordering are not authoritative. PostgreSQL unique constraints and transaction isolation are candidate implementation mechanisms, but the exact mechanism remains implementation-gated and must be proven by race tests. citeturn0search4turn0search6
+Same-tier competition is resolved by the first valid reservation transaction to commit successfully against the Unit single-winner boundary. Client timestamps and UI ordering are not authoritative. Exact DB mechanism remains implementation-gated and must be proven by race tests.
 
 ## 12. Architecture truth / brownfield distinction
 
@@ -189,12 +213,11 @@ Authority chain:
 
 `Founder/Product Constitution → Architecture → Contracts → Registers → Repository → Runtime → Evidence`
 
-For existing implementation reality, the verified live database wins after its identity is independently established. Documentation must never be changed merely to match an incorrect implementation. fileciteturn47file0L172-L194
+For existing implementation reality, the verified live database wins after its identity is independently established.
 
 ## 13. Evidence blockers
 
-- canonical runtime/database identity remains unverified after the documented wrong-project near-miss;
-- canonical artifact register/context-loading drift/readiness consolidation require repository closure where still unresolved;
+- canonical runtime/database identity;
 - RLS/runtime security evidence;
 - Building persistence representation;
 - exact Project Inventory Access permission mapping;
@@ -202,30 +225,16 @@ For existing implementation reality, the verified live database wins after its i
 - Finance executable contract details;
 - event implementation evidence;
 - architecture-as-code enforcement;
+- canonical artifact/readiness/governance hygiene where still unresolved;
 - implementation authorization.
 
-The external audit independently verified the ingested registers: 103 events, 50 permission keys × 8 personas, 11 state machines and 42 design primitives; task/schema discrepancies remain pending controlled sharding rather than verified canonical counts. fileciteturn48file9L1112-L1125
+## 14. Verification status
 
-## 14. Governance corrections still required
-
-The external audit identified:
-
-- stale canonical-artifact register;
-- deprecated `SESSION_STATE.md` references in context-loading governance documents;
-- incomplete CI scan for deprecated session-state references;
-- unresolved runtime/database identity;
-- multiple overlapping readiness documents;
-- repository hygiene/visibility decisions where still open.
-
-These remain control-plane closure work and must be resolved before implementation authorization. fileciteturn48file0L10-L33 fileciteturn48file4L288-L305
-
-## 15. Verification status
-
-CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun after the latest checkpoint/ADR changes. Previous run `35879311233` is historical evidence only.
+CI for the current HEAD remains `NOT VERIFIED` until the workflow is rerun after the latest checkpoint/ADR/contract changes. Previous runs are historical evidence only.
 
 No schema/RLS implementation has been authorized by conference decisions.
 
-## 16. Required end-of-session output
+## 15. Required end-of-session output
 
 Every continuation must report:
 
@@ -240,7 +249,7 @@ Every continuation must report:
 9. tests/evidence;
 10. exact next checkpoint.
 
-## 17. Resume rule
+## 16. Resume rule
 
 When the operator says `Continue / أكمل العمل على المسار`:
 
