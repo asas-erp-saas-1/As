@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.31  
+**Version:** 3.32  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.16-C03-UNIT-STATE-DOCTRINE-CLOSED-01`
+`ARCH-2026-H1.17-C03-PRICING-VERSIONING-CLOSED-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -34,7 +34,14 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Unit technical identity is stable and independent of human numbering.
 - Unit commercial and construction states are independent.
 - Unit does not own Reservation, Contract, Payment, Commission, Lead, Listing or Media lifecycles.
-- Unit price is a versioned commercial fact.
+- Unit price is a versioned commercial fact; a mutable scalar price is not the historical pricing authority.
+- A price version is an immutable commercial fact with resource subject, amount/currency, effective time, revision and audit provenance.
+- Current price is a deterministic projection of the applicable effective price version.
+- Historical price must be reconstructable at a specified time.
+- Offer/Hold/Reservation/Contract capture the applicable commercial terms required by their governing milestone; later price changes do not rewrite prior transaction economics.
+- Discounts and price overrides are explicit adjustments subject to policy/approval; they do not rewrite base-price history.
+- Future-effective prices are allowed but must not become current before their effective time.
+- Public/search/analytics projections consume pricing authority and cannot mutate it.
 - Development Unit and brokerage Listing are distinct.
 - Listing is the brokerage commercial representation of an underlying property interest under Owner/Mandate semantics.
 - Listing ≠ Unit ≠ Property ≠ Mandate.
@@ -47,10 +54,10 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Mandate/relationship determines brokerage authority; Listing itself does not.
 - Project/resource scope can narrow development authority; AI inherits caller authority and cannot escalate it.
 - Tenant isolation must hold across database, cache, search, storage, events, jobs, analytics, AI memory, logs and integrations.
-- **Unit commercial lifecycle and construction lifecycle are independent state dimensions.**
-- **Commercial:** `AVAILABLE | HELD | RESERVED | CONTRACTED | SOLD | OFF_MARKET`.
-- **Construction:** `NOT_STARTED | FOUNDATION | STRUCTURE | MASONRY | MEP | FINISHING | READY | DELIVERED`.
-- **These states must never be collapsed into one status.**
+- Unit commercial lifecycle and construction lifecycle are independent state dimensions.
+- Commercial: `AVAILABLE | HELD | RESERVED | CONTRACTED | SOLD | OFF_MARKET`.
+- Construction: `NOT_STARTED | FOUNDATION | STRUCTURE | MASONRY | MEP | FINISHING | READY | DELIVERED`.
+- These states must never be collapsed into one status.
 - Construction progress cannot create/release/transfer a reservation; commercial transitions cannot silently rewrite construction progress.
 - Offer, Hold, Reservation, Contract, Payment, Commission and Listing/publication retain separate lifecycles.
 - Direct raw status mutation is prohibited; state transitions are governed domain actions/events with audit coverage.
@@ -65,9 +72,9 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL
-- ADRs: `ADR-0021` Scheduling through `ADR-0031` Unit State Doctrine — accepted for their semantic slices, except unresolved governance conflicts explicitly marked in the checkpoint.
-- Contracts: Project, Unit, Listing, Multi-Actor Authority and Unit State are semantically closed / implementation blocked.
-- Research records: Building, Floor, Unit and Listing accepted research basis.
+- ADRs: `ADR-0021` Scheduling through `ADR-0032` Pricing & Versioning — accepted for their semantic slices, except unresolved governance conflicts explicitly marked in the checkpoint.
+- Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State and Pricing Versioning are semantically closed / implementation blocked.
+- Research records: Building, Floor, Unit and Listing accepted research basis; Pricing research basis recorded in ADR-0032.
 - Historical Building contract reference remains NOT VERIFIED and must not be treated as current evidence until recovered/reconciled.
 
 ## Operating method
@@ -80,13 +87,17 @@ Founder/product decisions define desired future behavior. Research discovers omi
 Remaining evidence-driven work: Project Inventory Access permission mapping; brownfield persistence reconciliation; reservation concurrency mechanism; event/state/permission registration; Finance executable contract.
 
 ## C03
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03 ACTIVE`
 
-### C03.9 — closed semantic slice
-Unit has two independent lifecycle dimensions: commercial state and construction state. Their transitions are separate, auditable and governed by state-machine actions/events. Exact transition graph, guards, permission keys and event registration remain implementation-gated until reconciled against the canonical registers and brownfield runtime.
+### C03.10 — closed semantic slice
+Pricing is a temporal commercial fact. A resource can have successive price versions with effective periods. Current price is resolved from the applicable effective version; transaction terms are snapshot at governing milestones. Price history is immutable evidence. Exact persistence mechanism, overlap constraints, permissions, event registration and brownfield reconciliation remain implementation-gated.
+
+## External research basis
+- PostgreSQL supports unique constraints, partial unique indexes and exclusion/range constraints; range/exclusion mechanisms can enforce non-overlapping effective periods where the final schema requires it. Official PostgreSQL documentation: https://www.postgresql.org/docs/18/ddl-constraints.html and https://www.postgresql.org/docs/10/rangetypes.html.
+- Effectivity/temporal modeling is a recognized enterprise pattern for facts whose validity changes over time; this supports versioned price semantics but does not dictate ASAS persistence. Martin Fowler, Effectivity: https://www.martinfowler.com/eaaDev/Effectivity.html.
 
 ## Adversarial model
-Must survive developer/internal sales; multiple agencies; agency-owned inventory; agency representing developer; mixed-use; optional Building/Floor; Unit reference changes; reassignment; reservation races; Offer/Reservation ordering; price changes after milestones; independent commercial/construction state; Listing withdrawal/mandate expiry with stale projections; same property across channels; revoked access with stale cache/search; cross-tenant reads/writes; visibility without mutation; AI action exceeding caller authority.
+Must survive developer/internal sales; multiple agencies; agency-owned inventory; agency representing developer; mixed-use; optional Building/Floor; Unit reference changes; reassignment; reservation races; Offer/Reservation ordering; price changes after milestones; scheduled future prices; historical price reconstruction; price override/discount approval; independent commercial/construction state; Listing withdrawal/mandate expiry with stale projections; same property across channels; revoked access with stale cache/search; cross-tenant reads/writes; visibility without mutation; AI action exceeding caller authority.
 
 ## Inventory competition
 `Project/Inventory Policy + Explicit Allocation + Deterministic Fallback`. Same-tier winner is first valid reservation transaction to commit against Unit. UI/client timestamps are never authoritative. Exact DB mechanism remains implementation-gated and must be proven by race tests.
@@ -106,7 +117,7 @@ V3 is target architecture, not proof of current implementation. Verified live DB
 - publication/channel contract;
 - state-machine register reconciliation;
 - reservation concurrency mechanism;
-- price/version persistence;
+- price/version persistence and overlap enforcement;
 - Inventory Batch relationship/persistence;
 - Finance executable semantics;
 - event implementation evidence;
