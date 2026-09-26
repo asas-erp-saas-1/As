@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.26  
+**Version:** 3.27  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
@@ -12,7 +12,7 @@
 
 ## 2. Current checkpoint
 
-`ARCH-2026-H1.11-C03-BUILDING-SEMANTICS-CLOSED-01`
+`ARCH-2026-H1.12-C03-FLOOR-SEMANTICS-CLOSED-01`
 
 This file remains the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -54,10 +54,13 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Project visibility is authorization-derived and does not imply ownership transfer;
 - Project publication is a projection and is not a second source of truth;
 - Project semantics are closed while lifecycle, inventory batches, pricing, permissions and persistence remain separate gated slices;
-- **Building semantics are now closed: Building is a structural entity under Project, optional at topology level, not automatically an aggregate root, and not a commercial/financial/security principal;**
-- **Project → Building → [Floor] → Unit and Project → Building → Unit are both valid development topologies;**
-- **Building identity is stable and independent of mutable reference/name/slug;**
-- **Building-scoped access derives from Relationship + Project Context + Resource Scope + Permission; the Building record itself grants no authority.**
+- Building semantics are closed: Building is a structural entity under Project, optional at topology level, not automatically an aggregate root, and not a commercial/financial/security principal;
+- Project → Building → [Floor] → Unit and Project → Building → Unit are both valid development topologies;
+- Building identity is stable and independent of mutable reference/name/slug;
+- Building-scoped access derives from Relationship + Project Context + Resource Scope + Permission; the Building record itself grants no authority;
+- **Floor semantics are now closed: Floor is a structural level object when independent floor-level semantics are required, but a standalone Floor entity is not mandatory merely because a Unit has a floor/level value;**
+- **Floor technical identity, when represented as an entity, is stable and independent of display numbering/labels;**
+- **Floor is not automatically an aggregate root or security boundary.**
 - Codex as primary engineering executor;
 - Claude/Figma as design collaboration path;
 - v1.6.1 as architect research/provenance input, not coding-agent authority.
@@ -78,9 +81,11 @@ This file remains the sole active execution checkpoint. `SESSION_STATE.md` is le
 - Real-estate resource ADR: `docs/architecture/decisions/ADR-0024-REAL-ESTATE-RESOURCE-IDENTITY-2026-09-26.md` — ACCEPTED / C03.1–C03.2 SEMANTICALLY CLOSED
 - Project ADR: `docs/architecture/decisions/ADR-0025-PROJECT-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.3 SEMANTICALLY CLOSED
 - Building ADR: `docs/architecture/decisions/ADR-0026-BUILDING-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.4 SEMANTICALLY CLOSED
+- Floor ADR: `docs/architecture/decisions/ADR-0027-FLOOR-DOMAIN-SEMANTICS-2026-09-26.md` — ACCEPTED / C03.5 SEMANTICALLY CLOSED
 - Project domain contract: `docs/architecture/contracts/ASAS-PROJECT-DOMAIN-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 - Building research: `docs/architecture/research/ASAS-RESEARCH-RECORD-C03-BUILDING-2026-09-26.md` — ACCEPTED RESEARCH BASIS
-- Historical Building contract reference: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026-09-24.md` — **NOT VERIFIED IN CURRENT BRANCH CONTENT ENDPOINT**; do not treat as current repository evidence until recovered/reconciled
+- Floor research: `docs/architecture/research/ASAS-RESEARCH-RECORD-C03-FLOOR-2026-09-26.md` — ACCEPTED RESEARCH BASIS
+- Historical Building contract reference: `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026-09-24.md` — NOT VERIFIED IN CURRENT BRANCH CONTENT ENDPOINT; do not treat as current repository evidence until recovered/reconciled
 - Inventory competition contract: `docs/architecture/contracts/ASAS-INVENTORY-CHANNEL-PRIORITY-AND-RESERVATION-COMPETITION-CONTRACT-2026.md` — PROPOSED / SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED
 - Evidence register: `docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
 - Skills catalog: `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md`
@@ -97,21 +102,6 @@ Founder product/business decisions define desired future behavior. Sources and r
 
 `C02 SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED`
 
-Closed slices:
-
-1. Organization / Membership
-2. Organization Relationship
-3. Project + Resource Scope collaboration boundary
-4. Employee authorization
-5. Lead ownership / assignment / source / commercial attribution separation
-6. Reservation/sale attribution snapshot
-7. Inventory ownership / visibility / allocation / reservation control separation
-8. Inventory competition / deterministic winner
-9. Hold vs Reservation
-10. Scheduling ownership
-11. Commission entitlement semantics
-12. Offer lifecycle semantics
-
 Remaining C02 implementation/reconciliation work is evidence-driven:
 
 - exact Project Inventory Access permission mapping;
@@ -122,7 +112,7 @@ Remaining C02 implementation/reconciliation work is evidence-driven:
 
 ## 7. C03 status
 
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03 ACTIVE`
 
 ### C03.3 Project — closed semantic slice
 
@@ -134,21 +124,9 @@ Canonical meaning:
 
 Project does not become the owner of downstream CRM, Reservation, Contract, Finance, Commission, Campaign attribution or Scheduling facts merely because those facts reference it.
 
-Project visibility is produced by authorization:
-
-`Relationship + Project Context + Resource Scope + Permission`
-
-Public Project pages are projections, not authoritative Project records.
-
-Project identity must be stable and independent of mutable human labels, codes and slugs.
-
 ### C03.4 Building — closed semantic slice
 
 Building is a first-class structural real-estate entity within the development/inventory model.
-
-Canonical topology:
-
-`Project → [Building] → [Floor] → Unit`
 
 Valid topology variants include:
 
@@ -156,32 +134,24 @@ Valid topology variants include:
 `Project → Building → Unit`
 `Project → Building → Floor → Unit`
 
-Building is optional when the Project has no meaningful building-level subdivision. Floor is optional when the Project/Building has no meaningful floor model.
+Building is optional when the Project has no meaningful building-level subdivision. It has stable technical identity independent of human reference/name/slug. It is not an Organization, tenant, commercial actor, reservation authority, financial object, legal contract or automatic security boundary. It is not automatically an aggregate root.
 
-Building has stable technical identity independent of human reference/name/slug.
+### C03.5 Floor — closed semantic slice
 
-Building is not:
+Floor is a structural level object when independent floor-level semantics are meaningful.
 
-- an Organization or tenant;
-- a collaboration space;
-- a Listing;
-- a Reservation or commercial control object;
-- a financial object;
-- a legal contract;
-- an automatic security boundary;
-- automatically an aggregate root.
+Valid topology remains:
 
-Building-scoped access is derived from the existing authorization model; the Building record itself grants no authority.
+`Project → Building → Unit`
+`Project → Building → Floor → Unit`
 
-Building may scope construction milestones/progress/documents, but construction state remains separate from Unit commercial state.
+A standalone Floor entity is not mandatory merely because a Unit has a floor/level value. If the project only needs a simple level attribute, an approved Unit-level representation may be sufficient. If the level has its own identity, metadata, authorization scope, topology or business semantics, a Floor object is appropriate.
 
-The C03.4 semantic decision is recorded in `ADR-0026-BUILDING-DOMAIN-SEMANTICS-2026-09-26.md` and the research record `ASAS-RESEARCH-RECORD-C03-BUILDING-2026-09-26.md`.
+When a Floor entity exists, its technical identity is stable and independent of display numbering/labels.
 
-### C03.4 evidence boundary
+Floor is not automatically an aggregate root, tenant boundary or commercial authority.
 
-The historical Building domain-contract path referenced by previous checkpoints could not be retrieved from the current GitHub branch content endpoint. It is therefore explicitly treated as **unverified historical material**, not as repository truth. This is a reconciliation fact, not permission to invent the missing contract.
-
-The semantic decision is supported by V3 ontology/master-data/hierarchy definitions and external DDD validation. Persistence remains open.
+The C03.5 decision is recorded in `ADR-0027-FLOOR-DOMAIN-SEMANTICS-2026-09-26.md` and `ASAS-RESEARCH-RECORD-C03-FLOOR-2026-09-26.md`.
 
 ## 8. Real-estate state doctrine
 
@@ -208,9 +178,10 @@ The next decisions must survive:
 - project without conventional buildings;
 - project with buildings but no meaningful floor model;
 - Building with and without Floors;
-- Unit/listing separation;
+- Unit with scalar floor/level only;
+- Unit with a Floor entity;
 - human reference-number changes;
-- Building reference/name changes without Unit identity change;
+- Building/Floor reference changes without Unit identity change;
 - reassignment and historical preservation;
 - concurrent reservation attempts;
 - accepted Offer without Reservation;
@@ -239,7 +210,7 @@ For existing implementation reality, the verified live database wins after its i
 
 - canonical runtime/database identity;
 - RLS/runtime security evidence;
-- Building persistence representation;
+- Building/Floor persistence representation;
 - exact Project Inventory Access permission mapping;
 - reservation concurrency implementation mechanism;
 - Finance executable contract details;
