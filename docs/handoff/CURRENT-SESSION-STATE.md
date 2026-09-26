@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.33  
+**Version:** 3.34  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.18-C03-INVENTORY-LIFECYCLE-CLOSED-01`
+`ARCH-2026-H1.19-C03-RESERVATION-BOUNDARY-SEMANTICS-CLOSED-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -23,7 +23,7 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Inventory ownership, visibility, allocation and reservation control are distinct.
 - Same-tier inventory competition resolves by first valid reservation transaction to commit against the Unit single-winner boundary.
 - Hold ≠ Reservation.
-- Scheduling is Core-hosted by the conference decision. The current branch AGENTS contract is reconciled to the canonical architecture; older source-package/library AGENTS copies containing CRM-submodule wording are historical evidence only.
+- Scheduling is Core-hosted by the conference decision. Current branch governance is authoritative; older source-package/library copies are historical evidence only.
 - Commission is Finance-owned, policy-versioned, milestone-derived and snapshot-based; payout is distinct.
 - Offer is Sales-owned, versioned and distinct from Hold/Reservation.
 - Real Estate Resource is conceptual, not a mandatory universal database entity.
@@ -34,13 +34,13 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Unit technical identity is stable and independent of human numbering.
 - Unit commercial and construction states are independent.
 - Unit does not own Reservation, Contract, Payment, Commission, Lead, Listing or Media lifecycles.
-- Unit price is a versioned commercial fact; a mutable scalar price is not the historical pricing authority.
-- A price version is an immutable commercial fact with resource subject, amount/currency, effective time, revision and audit provenance.
+- Unit price is a versioned commercial fact; mutable scalar price is not historical pricing authority.
+- Price versions are immutable commercial facts with resource subject, amount/currency, effective time, revision and audit provenance.
 - Current price is a deterministic projection of the applicable effective price version.
 - Historical price must be reconstructable at a specified time.
 - Offer/Hold/Reservation/Contract capture the applicable commercial terms required by their governing milestone; later price changes do not rewrite prior transaction economics.
 - Discounts and price overrides are explicit adjustments subject to policy/approval; they do not rewrite base-price history.
-- Future-effective prices are allowed but must not become current before their effective time.
+- Future-effective prices are allowed but cannot become current before their effective time.
 - Public/search/analytics projections consume pricing authority and cannot mutate it.
 - Development Unit and brokerage Listing are distinct.
 - Listing is the brokerage commercial representation of an underlying property interest under Owner/Mandate semantics.
@@ -65,6 +65,17 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Construction progress cannot create/release/transfer a reservation; commercial transitions cannot silently rewrite construction progress.
 - Offer, Hold, Reservation, Contract, Payment, Commission and Listing/publication retain separate lifecycles.
 - Direct raw status mutation is prohibited; state transitions are governed domain actions/events with audit coverage.
+- **Reservation is a first-class transactional consistency boundary for the development Unit.**
+- **At most one active winning Reservation may exist for a Unit at any instant under the canonical policy.**
+- The authoritative winner is the successful transaction commit, never UI order, client timestamp, cache order or analytics state.
+- Reservation success and the Unit commercial-state consequence must be committed atomically within the selected transaction boundary.
+- Reservation requires database-enforced single-winner integrity; application/UI checks alone are insufficient.
+- Reservation commands must be idempotent; same key + same command returns the committed result, while same key + conflicting command is rejected deterministically.
+- Expiration/release must be conditional on the reservation identity/version that created the obligation; stale jobs cannot release a newer winner.
+- Reservation records capture the commercial terms required at the reservation milestone; later price versions do not rewrite reservation economics.
+- Authoritative reservation state is independent of website/search/cache/analytics projections.
+- Reservation lifecycle events must be emitted from committed state through a transactional outbox boundary.
+- Concrete PostgreSQL locking/isolation/constraint strategy remains implementation-gated pending brownfield schema reconciliation and race-test evidence.
 - Codex is primary engineering executor; Claude/Figma design collaboration path; v1.6.1 architect research/provenance input, not coding-agent authority.
 
 ## Canonical control plane
@@ -76,9 +87,9 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL
-- ADRs: `ADR-0021` Scheduling through `ADR-0033` Inventory Lifecycle — accepted for their semantic slices.
-- Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State, Pricing Versioning and Inventory Lifecycle are semantically closed / implementation blocked.
-- Research records: Building, Floor, Unit and Listing accepted research basis; Pricing and Inventory Lifecycle research basis recorded in ADR-0032/0033.
+- ADRs: `ADR-0021` Scheduling through `ADR-0034` Reservation Boundary — accepted for their semantic slices.
+- Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State, Pricing Versioning, Inventory Lifecycle and Reservation Consistency are semantically closed / implementation blocked.
+- Research records: Building, Floor, Unit and Listing accepted research basis; Pricing, Inventory Lifecycle and Reservation research basis recorded in ADR-0032/0033/0034.
 - Historical Building contract reference remains NOT VERIFIED and must not be treated as current evidence until recovered/reconciled.
 
 ## Operating method
@@ -88,23 +99,24 @@ Founder/product decisions define desired future behavior. Research discovers omi
 
 ## C02
 `SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED`
-Remaining evidence-driven work: Project Inventory Access permission mapping; brownfield persistence reconciliation; reservation concurrency mechanism; event/state/permission registration; Finance executable contract.
+Remaining evidence-driven work: Project Inventory Access permission mapping; brownfield persistence reconciliation; event/state/permission registration; Finance executable contract.
 
 ## C03
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03.12 RESERVATION BOUNDARY SEMANTICS CLOSED / C03 ACTIVE`
 
-### C03.11 — closed semantic slice
-Inventory commercial lifecycle is controlled Unit availability truth. Semantic paths include AVAILABLE↔HELD under hold policy, HELD→RESERVED, RESERVED→CONTRACTED, CONTRACTED→SOLD, authorized reservation release/expiration back to AVAILABLE where policy permits, and controlled OFF_MARKET transitions. Exact state-machine encoding, guards, permission keys, event registration and DB concurrency mechanism remain implementation-gated.
+### C03.12 — closed semantic slice
+Reservation is a first-class transactional consistency boundary for a development Unit. Exactly one active winner may exist. The authoritative winner is the transaction that successfully commits the invariant. Required semantics include authorization, eligibility checks, database-enforced single-winner integrity, idempotency, conditional expiration/release, commercial snapshotting, auditability and transactional outbox publication. Exact state-machine encoding, permission/event registration, DB transaction/constraint strategy and runtime implementation remain gated.
 
 ## External research basis
-- PostgreSQL official documentation supports unique constraints, partial unique indexes and exclusion/range constraints. These are candidate enforcement mechanisms for future non-overlap/uniqueness requirements, not yet selected for ASAS without live-schema reconciliation: https://www.postgresql.org/docs/18/ddl-constraints.html and https://www.postgresql.org/docs/10/rangetypes.html.
+- PostgreSQL official documentation supports unique constraints/indexes and transaction isolation. These are candidate enforcement mechanisms for the reservation invariant; exact selection remains gated by live-schema reconciliation and race testing: https://www.postgresql.org/docs/18/ddl-constraints.html and https://www.postgresql.org/docs/18/transaction-iso.html.
 - Effectivity/temporal modeling supports versioned commercial facts without rewriting history: Martin Fowler, Effectivity: https://www.martinfowler.com/eaaDev/Effectivity.html.
+- Transactional outbox is treated as the integration reliability pattern for publishing committed reservation lifecycle events; it does not replace the database reservation invariant.
 
 ## Adversarial model
 Must survive developer/internal sales; multiple agencies; agency-owned inventory; agency representing developer; mixed-use; optional Building/Floor; Unit reference changes; reassignment; reservation races; Offer/Reservation ordering; price changes after milestones; scheduled future prices; historical price reconstruction; price override/discount approval; hold expiration/release; duplicate/replayed lifecycle commands; stale search/cache/public projections; independent commercial/construction state; Listing withdrawal/mandate expiry; cross-tenant reads/writes; visibility without mutation; AI action exceeding caller authority.
 
-## Inventory competition
-`Project/Inventory Policy + Explicit Allocation + Deterministic Fallback`. Same-tier winner is first valid reservation transaction to commit against Unit. UI/client timestamps are never authoritative. Exact DB mechanism remains implementation-gated and must be proven by race tests.
+## Reservation competition
+`Project/Inventory Policy + Explicit Allocation + Deterministic Fallback`. Same-tier winner is first valid reservation transaction to commit against Unit. UI/client timestamps are never authoritative. Required race scenarios are captured in `docs/architecture/contracts/ASAS-RESERVATION-RACE-TEST-MATRIX-2026.md`. Exact DB mechanism remains implementation-gated.
 
 ## Architecture truth / brownfield distinction
 `Founder/Product Constitution → Architecture → Contracts → Registers → Repository → Runtime → Evidence`
@@ -114,7 +126,7 @@ V3 is target architecture, not proof of current implementation. Verified live DB
 ## Evidence blockers
 - canonical runtime/database identity;
 - RLS/runtime security evidence;
-- Building/Floor/Unit/Listing persistence representation;
+- Building/Floor/Unit/Listing/Reservation persistence representation;
 - exact Project Inventory Access mapping;
 - Owner/Mandate semantics and permissions;
 - Listing lifecycle/state-machine registration;
