@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE ENGINEERING CHECKPOINT  
-**Version:** 3.32  
+**Version:** 3.33  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.17-C03-PRICING-VERSIONING-CLOSED-01`
+`ARCH-2026-H1.18-C03-INVENTORY-LIFECYCLE-CLOSED-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -23,7 +23,7 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Inventory ownership, visibility, allocation and reservation control are distinct.
 - Same-tier inventory competition resolves by first valid reservation transaction to commit against the Unit single-winner boundary.
 - Hold ≠ Reservation.
-- Scheduling is Core-hosted by the conference decision; however AGENTS contains an older conflicting CRM-submodule statement that remains a governance conflict and must be reconciled before implementation.
+- Scheduling is Core-hosted by the conference decision. The current branch AGENTS contract is reconciled to the canonical architecture; older source-package/library AGENTS copies containing CRM-submodule wording are historical evidence only.
 - Commission is Finance-owned, policy-versioned, milestone-derived and snapshot-based; payout is distinct.
 - Offer is Sales-owned, versioned and distinct from Hold/Reservation.
 - Real Estate Resource is conceptual, not a mandatory universal database entity.
@@ -58,6 +58,10 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Commercial: `AVAILABLE | HELD | RESERVED | CONTRACTED | SOLD | OFF_MARKET`.
 - Construction: `NOT_STARTED | FOUNDATION | STRUCTURE | MASONRY | MEP | FINISHING | READY | DELIVERED`.
 - These states must never be collapsed into one status.
+- Inventory lifecycle is controlled by domain actions and canonical state-machine policy, not raw status setters.
+- Hold expiration/release can restore availability only through authorized deterministic processing.
+- Contracted/Sold inventory cannot be made available by stale public/search/cache state.
+- OFF_MARKET is a commercial policy state, not deletion and not a synonym for SOLD.
 - Construction progress cannot create/release/transfer a reservation; commercial transitions cannot silently rewrite construction progress.
 - Offer, Hold, Reservation, Contract, Payment, Commission and Listing/publication retain separate lifecycles.
 - Direct raw status mutation is prohibited; state transitions are governed domain actions/events with audit coverage.
@@ -72,9 +76,9 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md` — CANONICAL
-- ADRs: `ADR-0021` Scheduling through `ADR-0032` Pricing & Versioning — accepted for their semantic slices, except unresolved governance conflicts explicitly marked in the checkpoint.
-- Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State and Pricing Versioning are semantically closed / implementation blocked.
-- Research records: Building, Floor, Unit and Listing accepted research basis; Pricing research basis recorded in ADR-0032.
+- ADRs: `ADR-0021` Scheduling through `ADR-0033` Inventory Lifecycle — accepted for their semantic slices.
+- Contracts: Project, Unit, Listing, Multi-Actor Authority, Unit State, Pricing Versioning and Inventory Lifecycle are semantically closed / implementation blocked.
+- Research records: Building, Floor, Unit and Listing accepted research basis; Pricing and Inventory Lifecycle research basis recorded in ADR-0032/0033.
 - Historical Building contract reference remains NOT VERIFIED and must not be treated as current evidence until recovered/reconciled.
 
 ## Operating method
@@ -87,17 +91,17 @@ Founder/product decisions define desired future behavior. Research discovers omi
 Remaining evidence-driven work: Project Inventory Access permission mapping; brownfield persistence reconciliation; reservation concurrency mechanism; event/state/permission registration; Finance executable contract.
 
 ## C03
-`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03 ACTIVE`
+`C03.1 RESOURCE IDENTITY CLOSED / C03.2 ASSET TAXONOMY CLOSED / C03.3 PROJECT CLOSED / C03.4 BUILDING CLOSED / C03.5 FLOOR CLOSED / C03.6 UNIT CLOSED / C03.7 LISTING CLOSED / C03.8 MULTI-ACTOR AUTHORITY CLOSED / C03.9 UNIT STATE DOCTRINE CLOSED / C03.10 PRICING & VERSIONING CLOSED / C03.11 INVENTORY LIFECYCLE CLOSED / C03 ACTIVE`
 
-### C03.10 — closed semantic slice
-Pricing is a temporal commercial fact. A resource can have successive price versions with effective periods. Current price is resolved from the applicable effective version; transaction terms are snapshot at governing milestones. Price history is immutable evidence. Exact persistence mechanism, overlap constraints, permissions, event registration and brownfield reconciliation remain implementation-gated.
+### C03.11 — closed semantic slice
+Inventory commercial lifecycle is controlled Unit availability truth. Semantic paths include AVAILABLE↔HELD under hold policy, HELD→RESERVED, RESERVED→CONTRACTED, CONTRACTED→SOLD, authorized reservation release/expiration back to AVAILABLE where policy permits, and controlled OFF_MARKET transitions. Exact state-machine encoding, guards, permission keys, event registration and DB concurrency mechanism remain implementation-gated.
 
 ## External research basis
-- PostgreSQL supports unique constraints, partial unique indexes and exclusion/range constraints; range/exclusion mechanisms can enforce non-overlapping effective periods where the final schema requires it. Official PostgreSQL documentation: https://www.postgresql.org/docs/18/ddl-constraints.html and https://www.postgresql.org/docs/10/rangetypes.html.
-- Effectivity/temporal modeling is a recognized enterprise pattern for facts whose validity changes over time; this supports versioned price semantics but does not dictate ASAS persistence. Martin Fowler, Effectivity: https://www.martinfowler.com/eaaDev/Effectivity.html.
+- PostgreSQL official documentation supports unique constraints, partial unique indexes and exclusion/range constraints. These are candidate enforcement mechanisms for future non-overlap/uniqueness requirements, not yet selected for ASAS without live-schema reconciliation: https://www.postgresql.org/docs/18/ddl-constraints.html and https://www.postgresql.org/docs/10/rangetypes.html.
+- Effectivity/temporal modeling supports versioned commercial facts without rewriting history: Martin Fowler, Effectivity: https://www.martinfowler.com/eaaDev/Effectivity.html.
 
 ## Adversarial model
-Must survive developer/internal sales; multiple agencies; agency-owned inventory; agency representing developer; mixed-use; optional Building/Floor; Unit reference changes; reassignment; reservation races; Offer/Reservation ordering; price changes after milestones; scheduled future prices; historical price reconstruction; price override/discount approval; independent commercial/construction state; Listing withdrawal/mandate expiry with stale projections; same property across channels; revoked access with stale cache/search; cross-tenant reads/writes; visibility without mutation; AI action exceeding caller authority.
+Must survive developer/internal sales; multiple agencies; agency-owned inventory; agency representing developer; mixed-use; optional Building/Floor; Unit reference changes; reassignment; reservation races; Offer/Reservation ordering; price changes after milestones; scheduled future prices; historical price reconstruction; price override/discount approval; hold expiration/release; duplicate/replayed lifecycle commands; stale search/cache/public projections; independent commercial/construction state; Listing withdrawal/mandate expiry; cross-tenant reads/writes; visibility without mutation; AI action exceeding caller authority.
 
 ## Inventory competition
 `Project/Inventory Policy + Explicit Allocation + Deterministic Fallback`. Same-tier winner is first valid reservation transaction to commit against Unit. UI/client timestamps are never authoritative. Exact DB mechanism remains implementation-gated and must be proven by race tests.
@@ -123,7 +127,6 @@ V3 is target architecture, not proof of current implementation. Verified live DB
 - event implementation evidence;
 - architecture-as-code enforcement;
 - governance/readiness hygiene;
-- scheduling governance conflict between V3/Conference and legacy AGENTS statement;
 - implementation authorization.
 
 ## Verification
