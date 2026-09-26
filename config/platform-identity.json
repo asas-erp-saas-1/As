@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "status": "PARTIAL",
+  "repository": {
+    "owner": "asas-erp-saas-1",
+    "name": "As",
+    "conferenceBranch": "platform-architecture-2026"
+  },
+  "supabase": {
+    "candidateProjectRef": "oliiumegstqujwexikhr",
+    "candidateProjectName": "Asas platform",
+    "verificationStatus": "VERIFIED_CANDIDATE"
+  },
+  "vercel": {
+    "candidateProjectId": "prj_4yF8PAE1axukJh4fWwbZmBGXRKZB",
+    "candidateProjectName": "asas-erp-saasv2",
+    "verificationStatus": "UNVERIFIED_RUNTIME_MAPPING"
+  },
+  "productionRuntime": {
+    "verificationStatus": "UNVERIFIED"
+  },
+  "failClosed": true,
+  "note": "Candidate identifiers are evidence only. Do not treat this file as proof of production mapping until Vercel environment linkage and Supabase project reference are independently verified. Never store secrets here."
+}
