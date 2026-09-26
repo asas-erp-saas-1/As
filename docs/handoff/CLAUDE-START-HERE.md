@@ -64,4 +64,4 @@ This repository is being prepared for implementation. Do **not** assume global i
 
 ## Canonical checkpoint
 
-`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. `docs/handoff/SESSION_STATE.md` is historical compatibility material and MUST NOT be used as the current checkpoint.
+`docs/handoff/CURRENT-SESSION-STATE.md` is the sole current execution checkpoint. The legacy checkpoint filename is historical compatibility material and MUST NOT be used as the current checkpoint.

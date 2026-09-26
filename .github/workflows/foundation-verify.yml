@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, 'foundation/**']
+    branches: [main, 'foundation/**', 'platform-architecture-2026']
 
 permissions:
   contents: read
@@ -31,13 +31,17 @@ jobs:
             AGENTS.md
             docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
             docs/handoff/CURRENT-SESSION-STATE.md
-            docs/handoff/CLAUDE-START-HERE.md
-            docs/handoff/CLAUDE-CONTEXT-INDEX.md
-            docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
-            docs/handoff/CLAUDE-EXECUTION-CHECKLIST.md
-            docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
-            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+            docs/handoff/CODEX-START-HERE.md
+            docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md
+            docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md
+            docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md
+            docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md
+            docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md
+            docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md
             docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+            docs/governance/REPOSITORY-REALITY-MAP.md
+            docs/governance/FOUNDER-DECISIONS.md
+            docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md
             .github/PULL_REQUEST_TEMPLATE.md
             CODEOWNERS
           )
@@ -54,12 +58,65 @@ jobs:
             exit 1
           fi
 
-      - name: Reject known wrong project references
+      - name: Verify Codex skill manifests
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --exclude-dir=.git --exclude='*.lock' 'asas-erp-saas-1/Asas-website' .; then
-            echo 'ERROR: forbidden historical repository reference detected.'
+          skills=(
+            asas-engineering
+            asas-repository-forensics
+            asas-architecture-governance
+            asas-domain-contracts
+            asas-database-engineering
+            asas-security-ai-safety
+            asas-design-fidelity
+            asas-testing-verification
+            asas-observability-reliability
+          )
+          for skill in "${skills[@]}"; do
+            path=".agents/skills/$skill/SKILL.md"
+            test -f "$path" || { echo "MISSING SKILL: $path"; exit 1; }
+            grep -q "^name: $skill$" "$path" || { echo "INVALID SKILL NAME: $path"; exit 1; }
+            grep -q '^description:' "$path" || { echo "MISSING SKILL DESCRIPTION: $path"; exit 1; }
+            echo "VALID SKILL: $skill"
+          done
+          test "$(find .agents/skills -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l | tr -d ' ')" -eq "${#skills[@]}"
+          echo "Codex skill manifest inventory is structurally verified."
+
+      - name: Verify Codex entrypoint and routing
+        shell: bash
+        run: |
+          set -euo pipefail
+          checks=(
+            "AGENTS.md|Codex is the primary ASAS engineering executor"
+            "AGENTS.md|.agents/skills/"
+            "docs/handoff/CODEX-START-HERE.md|ASAS — CODEX START HERE"
+            "docs/handoff/CODEX-START-HERE.md|ASAS-CODEX-SKILLS-CATALOG-2026.md"
+            "docs/handoff/CODEX-START-HERE.md|ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026-AMENDMENT-004-CODEX-FIRST.md"
+            "docs/handoff/CODEX-START-HERE.md|ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-003-CODEX-FIRST.md"
+          )
+          for check in "${checks[@]}"; do
+            file="${check%%|*}"
+            needle="${check#*|}"
+            if ! grep -Fq -- "$needle" "$file"; then
+              echo "MISSING ROUTING EVIDENCE: $file -> $needle"
+              echo "--- relevant file content ---"
+              sed -n '1,220p' "$file"
+              exit 1
+            fi
+            echo "ROUTING OK: $file -> $needle"
+          done
+          echo 'Codex entrypoint and routing references are present.'
+
+      - name: Reject wrong-project references in executable/configuration surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git grep -n 'asas-erp-saas-1/Asas-website' -- \
+            ':!docs/**' \
+            ':!AGENTS.md' \
+            ':!.github/workflows/foundation-verify.yml'; then
+            echo 'ERROR: wrong ASAS repository reference detected outside approved governance/audit documentation.'
             exit 1
           fi
 
@@ -83,15 +140,29 @@ jobs:
               print(f'VALID JSON: {path}')
           PY
 
-      - name: Verify canonical session state references
+      - name: Verify canonical session state references repository-wide
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --exclude-dir=.git 'docs/handoff/SESSION_STATE.md' docs/handoff/CLAUDE-CONTEXT-INDEX.md docs/handoff/ASAS-MASTER-EXECUTION-PATH.md docs/handoff/CLAUDE-START-HERE.md; then
-            echo 'ERROR: canonical handoff files must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
+          matches=$(git grep -n 'docs/handoff/SESSION_STATE.md' -- \
+            ':!docs/**' \
+            ':!.github/workflows/foundation-verify.yml' || true)
+          if [[ -n "$matches" ]]; then
+            echo "$matches"
+            echo 'ERROR: active repository artifacts must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
             exit 1
           fi
           test -f docs/handoff/CURRENT-SESSION-STATE.md
+
+      - name: Verify promoted-shadow inventory is internally classified
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'registers/events.json' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'registers/permissions.csv' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'registers/state-machines.json' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'schema/asas-contracts.prisma.*NOT PRESENT' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          echo 'Canonical promoted-shadow inventory is present.'
 
       - name: Foundation status is explicit
         shell: bash
