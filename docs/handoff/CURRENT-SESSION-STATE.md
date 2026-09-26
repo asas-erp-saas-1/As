@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT  
-**Version:** 3.36  
+**Version:** 3.37  
 **Date:** 2026-09-26  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.21-C03.13-BROWNFIELD-DRIFT-CONTROL-OPEN-01`
+`ARCH-2026-H1.22-H0-FOUNDATION-GATE-CONVERGENCE-OPEN-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -95,6 +95,7 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 - Brownfield drift matrix: `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` — ACTIVE / EVIDENCE CONTROL.
 - Brownfield task packet: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-03-04-BROWNFIELD-PERSISTENCE-RECONCILIATION-2026-09-26.md` — OPEN / EVIDENCE-GATED.
 - Runtime identity task: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-05-RUNTIME-IDENTITY-AND-READONLY-INTROSPECTION-2026-09-26.md` — READY / READ-ONLY.
+- H0 foundation convergence packet: `docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md` — ACTIVE / HIGHEST PRIORITY.
 - Platform Engineering control board: `docs/architecture/ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md` — ACTIVE.
 
 ## Operating method
@@ -103,9 +104,17 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 Founder/product decisions define desired future behavior. Research discovers omissions/conflicts but does not override founder decisions. Brownfield repository/runtime facts remain authoritative for what is already implemented.
 
 ## Platform Engineering track
-`REALITY LOCK → REPOSITORY FORENSICS → RUNTIME INTROSPECTION → DRIFT MATRIX → CONTRACT RECONCILIATION → IMPLEMENTATION PLAN → CODE → TEST / RED TEAM → EVIDENCE → CONVERGENCE → CHECKPOINT`
+`REALITY LOCK → REPOSITORY FORENSICS → RUNTIME IDENTITY → FOUNDATION GATES → DRIFT MATRIX → CONTRACT RECONCILIATION → IMPLEMENTATION PLAN → CODE → TEST / RED TEAM → EVIDENCE → CONVERGENCE → CHECKPOINT`
 
-The Platform Engineering track is active alongside the Conference. Conference decisions are semantic authority; platform engineering converts them into evidence-backed implementation only after brownfield reality is established.
+The Platform Engineering track is active alongside the Conference. Conference decisions are semantic authority; platform engineering converts them into evidence-backed implementation only after foundation reality is established.
+
+## Foundation gate order
+
+The immediate operational route is now governed by V3's foundation sequence:
+
+`GATE-00 Platform Identity → GATE-01 Canonical Artifacts → GATE-02 Architecture Conflict → GATE-03 Database Reality → GATE-04 Security Baseline → GATE-05 Architecture CI → GATE-06 Repository Hygiene → GATE-07 Implementation Authorization`
+
+This is a sequencing correction, not a reversal of C03 semantic decisions.
 
 ## Repository reality — current branch
 - Repository and branch are verified: `asas-erp-saas-1/As` / `platform-architecture-2026`.
@@ -124,6 +133,19 @@ Remaining evidence-driven work: Project Inventory Access permission mapping; bro
 
 ### C03.13 — brownfield persistence slice
 The next work is evidence collection, not schema invention. The repository contract index explicitly blocks executable schema promotion until the 59/17/56 source observation is reconciled with the historical declaration. Runtime database identity and live introspection are not yet independently verified on this branch. Therefore no production schema/RLS/reservation implementation is authorized by this checkpoint.
+
+## Foundation execution state
+
+```text
+GATE-00 Platform Identity        OPEN / EVIDENCE REQUIRED
+GATE-01 Canonical Artifacts      OPEN / CONVERGENCE REQUIRED
+GATE-02 Architecture Conflict    OPEN / RECONCILIATION REQUIRED
+GATE-03 Database Reality         BLOCKED BY GATE-00
+GATE-04 Security Baseline        BLOCKED BY GATE-03
+GATE-05 Architecture CI          PARTIAL / EVIDENCE REQUIRED
+GATE-06 Repository Hygiene       PARTIAL / RECONCILIATION REQUIRED
+GATE-07 Implementation Auth      BLOCKED
+```
 
 ## External research basis
 - Prisma official documentation: `prisma db pull` introspects the current relational database schema into a Prisma schema and can overwrite existing schema work; preserve the current contract before introspection.
@@ -164,3 +186,8 @@ Every continuation reports verified facts, corrections, derivations, external re
 `load checkpoint → inspect HEAD → load Source of Truth/Roadmap/Context/Conference → identify highest unresolved dependency → research → reconcile → decide within authority → update affected canonical artifacts → verify → checkpoint → continue`
 
 Do not implement merely because a conference decision exists.
+
+## H0 execution packet
+`docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md`
+
+H0 is now the highest unresolved dependency. C03 semantic decisions remain retained; C03.13 schema reconciliation proceeds when foundation evidence permits it.
