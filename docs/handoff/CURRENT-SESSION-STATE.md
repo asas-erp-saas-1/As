@@ -1,13 +1,13 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT  
-**Version:** 3.44  
+**Version:** 3.45  
 **Date:** 2026-09-27  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.26-GATE-00-VERCEL-SUPABASE-RECONCILIATION-03`
+`ARCH-2026-H1.26-GATE-00-VERCEL-SUPABASE-RECONCILIATION-04`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -29,22 +29,26 @@ This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy 
 
 **OPEN.**
 
-The Production Branch is no longer unknown. It is known to be `main`, and that is the current configuration mismatch with the sole active engineering line `platform-architecture-2026`.
+The Production Branch is known to be `main`, which is a configuration mismatch with the sole active engineering line `platform-architecture-2026`.
 
-Current Vercel API enumeration is also returning `403 Forbidden` for project/deployment listing through the connected integration, so deployment commit and runtime environment-variable mapping cannot be independently verified from the connector at this moment.
+Vercel API enumeration through the connected integration currently returns `403 Forbidden`, so deployment commit and runtime environment-variable mapping cannot be independently verified from the connector.
 
-No production runtime mapping is claimed merely from the existence of the Vercel domain or the Supabase/Vercel integration.
+The Supabase project `oliiumegstqujwexikhr` is an inspected candidate, not verified production identity. A legacy/root context statement says the production DB already has 15 live tables, while this candidate exposes zero ASAS application tables. Per V3, the database/runtime is authoritative for brownfield reality; the conflict must be resolved by identifying the actual production project, not by rewriting either side to make them agree.
+
+## Fail-closed technical guard
+
+`config/platform-identity.json` is now version 3. It does **not** treat the inspected Supabase candidate as verified production. `scripts/verify-platform-identity.sh` now fails closed unless:
+
+1. the expected Vercel project ID is supplied;
+2. the runtime branch is verified as `platform-architecture-2026`;
+3. a Supabase production `PROJECT_REF` has been independently verified; and
+4. the supplied runtime `ASAS_SUPABASE_PROJECT_REF` matches that verified value.
+
+No schema-touching or production mutation is authorized by the guard while GATE-00 is OPEN.
 
 ## Current vendor authority used for GATE-00
 
-Research date: **2026-09-27**. Current primary vendor sources were checked before recording this checkpoint:
-
-- Supabase Vercel environment-variable explanation, last edited 2026-09-25: Production follows the configured Production Branch; other Git branches are Preview unless explicitly mapped; Development is CLI/local and does not apply to Git deployments.
-- Supabase Vercel Marketplace integration: environment variables are automatically synchronized for connected projects. Current documented names include the Postgres family plus `SUPABASE_SECRET_KEY`, `SUPABASE_PUBLISHABLE_KEY`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, and `NEXT_PUBLIC_SUPABASE_URL`.
-- Supabase deployment/environment guidance: local development, optional staging/preview, and production can be separate; production migrations should be deployed through CI/CD.
-- Vercel supports a custom Production Branch.
-
-The user's existing integration reports the legacy/compatibility variable family including `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. This is recorded as observed configuration nomenclature; no secret values are stored and no credential rotation is performed during GATE-00.
+Research date: **2026-09-27**. Current primary vendor sources were checked before recording this checkpoint. Current Vercel/Supabase behavior is recorded in `docs/architecture/research/ASAS-VERCEL-SUPABASE-ENVIRONMENT-MAPPING-2026-09-27.md`.
 
 ## Environment mapping rule
 
@@ -54,23 +58,24 @@ The canonical proof chain is:
 
 `Vercel deployment environment → exact Git branch / deployment commit → exact environment-variable scope → exact Supabase project/branch identity → exact PROJECT_REF → evidence`
 
-The current ASAS target is:
+The current ASAS target remains:
 
 `platform-architecture-2026 → Vercel Production → verified Supabase Production project`
 
 We do not create an additional Git engineering branch merely to satisfy environment naming. Local development remains local-first. Preview is not allowed to be assumed as a production-data environment.
 
-## Repository-side evidence changes in this continuation
+## Repository-side changes in this continuation
 
 On `platform-architecture-2026`:
 
-- `config/platform-identity.json` advanced to version 2 and now records the observed Vercel Production Branch, required branch, Supabase candidate Project Ref, fail-closed status, and required runtime evidence without secrets.
-- `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` was updated with current vendor evidence, exact identity matrix, connector limitation, and closure criteria.
+- `config/platform-identity.json` advanced to version 3 and now explicitly records that `oliiumegstqujwexikhr` is only an inspected candidate, not verified production.
+- `scripts/verify-platform-identity.sh` was hardened to fail closed when production Supabase identity is not independently verified and when the engineering branch is not verified.
+- No secret values were added to the repository.
 
-Latest commits on this branch include:
+Latest continuation commits:
 
-- `789a44c98e3f451adb35306d82789f6f4296cca5` — platform identity machine-readable evidence update.
-- `c7845418c6e381ff8eded3aa96d9cabef1af389f` — GATE-00 Vercel/Supabase reconciliation update.
+- `f434822f5321f3f8911e6e89c3586da45062c82b` — fail-closed platform identity configuration.
+- `9922e8f67454309693c029cc4d2934a6cfd37adf` — fail-closed GATE-00 verification guard.
 
 ## Deep-review authority
 C03–C06 semantic baselines have been re-audited. Semantic baseline does not equal conference completion. Full closure requires cross-context reconciliation, canonical contracts, registry IDs, invariant-to-test mapping, data-impact analysis, security/tenant review, current external authority where applicable, rejected alternatives, checkpoint evidence, and applicable foundation gates.
@@ -108,4 +113,4 @@ Founder/product decisions define desired future behavior. Research discovers omi
 
 **Gate policy:** execute gates serially; do not start GATE-01 until GATE-00 is GREEN. Do not return to C03–C06 for implementation work until the foundation gate sequence is completed, except for evidence reconciliation required by the current gate.
 
-**Immediate next action:** configure/verify Vercel Production Branch = `platform-architecture-2026`, then verify the resulting Production deployment commit and exact Supabase `PROJECT_REF` mapping. No secret values are to be recorded in repository context.
+**Immediate next action:** correct/verify Vercel Production Branch = `platform-architecture-2026`, obtain fresh Production deployment evidence, and identify the actual production Supabase `PROJECT_REF`. No secret values are to be recorded in repository context.
