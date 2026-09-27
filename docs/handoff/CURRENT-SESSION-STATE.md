@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT
-**Version:** 3.46
+**Version:** 3.47
 **Date:** 2026-09-27
 **Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-EC-GATE-00-01-ARCHITECTURE-FIRST-ROUTE-OPEN-01`
+`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -24,7 +24,7 @@ The primary workstream is the Engineering Conference and platform architecture. 
 - GitHub default branch: `main` — verified.
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — founder operating decision and branch verified.
 - Vercel primary domain: `asasplatform2026.vercel.app` — founder UI evidence.
-- Vercel current Production Branch observed: `main` — founder UI evidence; this remains an environment-mapping mismatch until corrected/verified.
+- Vercel current Production Branch observed: `main` — founder UI evidence; environment mapping remains a control-plane item to reconcile.
 - Vercel Preview scope observed: all unassigned Git branches.
 - Vercel Development scope observed: CLI.
 - Canonical ASAS Supabase platform project: `Asas platforme 2026 / Asas platform`.
@@ -32,9 +32,17 @@ The primary workstream is the Engineering Conference and platform architecture. 
 - Supabase Project Ref: `oliiumegstqujwexikhr`.
 - Supabase application schema has intentionally not been implemented as part of the current conference mission.
 
-## Corrected gate architecture
+## Single engineering path
 
-The canonical Engineering Conference route is now:
+The canonical path is governed by:
+
+`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`
+
+and:
+
+`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
+
+The route is:
 
 ```text
 GATE-00 Platform Identity & Control Plane
@@ -45,10 +53,12 @@ GATE-00 Platform Identity & Control Plane
 → GATE-05 Experience, Integration & Operational Architecture
 → GATE-06 Engineering System, Verification & AI-Agent Governance
 → GATE-07 Architecture Readiness & Slice-Specific Implementation Authorization
+→ controlled implementation
+→ runtime evidence
+→ production
 ```
 
-Canonical model:
-`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
+No alternative gate sequence is authoritative.
 
 ## Gate state
 
@@ -63,11 +73,11 @@ Canonical model:
 
 Gates are serial. Research may inspect later dependencies, but implementation may not be pulled forward.
 
-## Important correction
+## C-track relationship
 
-The former V3 GATE-00…GATE-07 sequence mixed architecture, runtime/database, CI, repository hygiene and implementation authorization. It remains useful as a foundation/delivery-control reference, but it is not the primary Engineering Conference gate model.
+C01–C22 are domain/platform conference tracks. They are not substitutes for the Engineering Conference gates and do not create a parallel implementation route.
 
-The Foundation/Implementation register now uses `F0…F13` to avoid numeric collision. Implementation-readiness gates should be treated as downstream `IG-*` controls.
+A C-track can produce semantic decisions, contracts and architecture consequences. Those outputs are reconciled through the applicable gates. C03–C06 remain semantic workstreams under deep review; they are not being implemented during the current architecture-gate sequence.
 
 ## Platform identity
 
@@ -94,34 +104,31 @@ No secret values are recorded in repository context.
 
 ## Canonical control plane
 
-- Architecture V3: `docs/architecture/ASAS-ARCHITECTURE-V3.md`
-- Engineering Conference: `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md`
+- Engineering Conference Constitution: `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`
 - Engineering Conference Gate Model: `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
+- Architecture V3: `docs/architecture/ASAS-ARCHITECTURE-V3.md`
+- Engineering Conference Path: `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md`
 - Conference-to-platform loop: `docs/architecture/ASAS-ENGINEERING-CONFERENCE-TO-PLATFORM-LOOP-2026.md`
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 - Context Prompt: `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`
 - Roadmap: `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
-- Gate-route amendment: `docs/architecture/amendments/ASAS-ARCHITECTURE-GATE-ROUTE-AMENDMENT-001-2026-09-27.md`
-- Roadmap gate amendment: `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-005-ENGINEERING-GATE-ROUTE.md`
-- Agent context amendment: `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026-AMENDMENT-006-ENGINEERING-GATES.md`
+- Engineering gap completion: `architecture/governance/ASAS-ENGINEERING-GAP-COMPLETION-PROTOCOL-2026.md`
+- Conference agent skill: `.agents/skills/asas-conference-engineering/SKILL.md`
 - Foundation/implementation controls: `docs/governance/FOUNDATION-GATE-REGISTER.md` — F0…F13
+- Implementation readiness: `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` — downstream IG-00…IG-07
 - Platform identity research: `docs/architecture/research/ASAS-VERCEL-SUPABASE-ENVIRONMENT-MAPPING-2026-09-27.md`
-
-## C-track relationship
-
-C01–C22 are domain/platform conference tracks. They are not substitutes for the Engineering Conference gates.
-
-A C-track can produce semantic decisions and contracts, but implementation is authorized only through the applicable gate dependencies and ultimately GATE-07 for a bounded slice.
-
-C03–C06 remain semantic workstreams under deep review. They are not being implemented during the current foundation/architecture gate sequence.
 
 ## Operating method
 
-`QUESTION → RESEARCH → ALTERNATIVES → FAILURE MODES → ASAS SOURCE RECONCILIATION → DECISION → ADR/CONTRACT → REGISTER IMPACT → ADVERSARIAL REVIEW → VERIFICATION → CHECKPOINT`
+`QUESTION → SCOPE/IMPACT → EVIDENCE → CURRENT PRIMARY RESEARCH → ALTERNATIVES → FAILURE MODES → ASAS RECONCILIATION → DECISION → ADR/CONTRACT/REGISTER → ADVERSARIAL REVIEW → VERIFICATION → EVIDENCE → CHECKPOINT`
 
 For unfamiliar external facts, use current authoritative sources first. Distinguish source fact, repository/runtime evidence, derivation, proposal and blocker.
+
+## AI-agent control
+
+Every conference task must identify role, gate, scope, non-goals, tools, evidence requirements, stop conditions, verification and output location. Agents may research ahead but may not bypass the first unresolved gate. High-risk or irreversible actions remain under human control.
 
 ## Immediate next action
 
