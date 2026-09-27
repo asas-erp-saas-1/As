@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT
-**Version:** 3.49
+**Version:** 3.50
 **Date:** 2026-09-27
 **Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-03`
+`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-04`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -22,7 +22,7 @@ The primary workstream is the Engineering Conference and platform architecture. 
 
 - GitHub repository: `asas-erp-saas-1/As` — verified.
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — founder operating decision and branch verified.
-- Current branch HEAD after the latest governance correction: `c32c03511db78754d50748b8a48d2f0732e365ec` — verified.
+- Current branch HEAD: `e4e9e85999202529001e058bac00464904556933` — verified after the latest conference-governance correction.
 - GitHub default branch: `main` — verified. This is repository metadata only and does **not** authorize engineering work on `main`.
 - `platform-architecture-2026` protection: currently observed **disabled/unprotected** via GitHub API; this is a repository-control gap and is not treated as authorization to use another engineering branch.
 - No engineering task is to be performed on `main` or any other branch. Historical branches may be inspected only for provenance/evidence when necessary.
