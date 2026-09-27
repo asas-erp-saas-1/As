@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "status": "PARTIAL",
   "repository": {
     "owner": "asas-erp-saas-1",
@@ -22,13 +22,13 @@
     "projectName": "Asas platform",
     "projectContainer": "Asas platforme 2026",
     "projectUrl": "https://oliiumegstqujwexikhr.supabase.co",
-    "identityStatus": "FOUNDER_DECLARED_CANONICAL_PLATFORM_PROJECT",
+    "identityStatus": "RUNTIME_VERIFIED_CANONICAL_ASAS_PLATFORM_PROJECT",
     "integrationStatus": "FOUNDER_DECLARED_GITHUB_VERCEL_SUPABASE_INTEGRATION",
     "schemaStatus": "NOT_IN_SCOPE_DURING_PLATFORM_ENGINEERING_CONFERENCE",
-    "productionRuntimeVerification": "PENDING_GATE_00_EVIDENCE"
+    "productionRuntimeVerification": "SUPABASE_PROJECT_ID_VERIFIED;_VERCEL_RUNTIME_MAPPING_PENDING"
   },
   "productionRuntime": {
-    "verificationStatus": "UNVERIFIED",
+    "verificationStatus": "PARTIAL",
     "requiredEvidence": [
       "Vercel Production Branch = platform-architecture-2026",
       "fresh Production deployment from that branch",
@@ -53,5 +53,5 @@
     "productionMutationAuthorized": false
   },
   "secretsPolicy": "Never store secret values in repository context; record only variable names, scope, provenance, and verification status.",
-  "correctionNote": "The Supabase project is not being treated as an uncertain candidate. The founder has explicitly identified oliiumegstqujwexikhr as the project created for ASAS and connected to GitHub/Vercel. Its currently observed lack of application tables is not a contradiction: the project is still in the platform-engineering/conference phase, before schema creation. Database reality/schema verification belongs to the later foundation gates when the architecture authorizes that work."
+  "correctionNote": "The founder has explicitly identified oliiumegstqujwexikhr as the ASAS platform project. The connected Supabase integration independently exposes and verifies this project identity. The absence of application tables is expected because schema implementation is outside the current Engineering Conference scope. Vercel production deployment/branch/environment linkage remains a separate GATE-00 control and is not conflated with Supabase project identity."
 }
