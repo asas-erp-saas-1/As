@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT
-**Version:** 3.47
+**Version:** 3.48
 **Date:** 2026-09-27
 **Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-01`
+`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-02`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -21,8 +21,10 @@ The primary workstream is the Engineering Conference and platform architecture. 
 ## Reality Lock
 
 - GitHub repository: `asas-erp-saas-1/As` — verified.
-- GitHub default branch: `main` — verified.
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — founder operating decision and branch verified.
+- Current branch HEAD: `2dc57b7e62dd23b775a96f3a9e33da14452ef4a0` — verified.
+- GitHub default branch: `main` — verified.
+- `platform-architecture-2026` protection: currently observed **disabled/unprotected** via GitHub API; this is a repository-control gap and is not treated as authorization to use another engineering branch.
 - Vercel primary domain: `asasplatform2026.vercel.app` — founder UI evidence.
 - Vercel current Production Branch observed: `main` — founder UI evidence; environment mapping remains a control-plane item to reconcile.
 - Vercel Preview scope observed: all unassigned Git branches.
@@ -62,7 +64,7 @@ No alternative gate sequence is authoritative.
 
 ## Gate state
 
-- GATE-00: **OPEN** — platform/environment control-plane evidence still being reconciled.
+- GATE-00: **OPEN** — platform/environment control-plane evidence and repository-control evidence still being reconciled.
 - GATE-01: PENDING.
 - GATE-02: PENDING.
 - GATE-03: PENDING.
@@ -115,6 +117,7 @@ No secret values are recorded in repository context.
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
 - Engineering gap completion: `architecture/governance/ASAS-ENGINEERING-GAP-COMPLETION-PROTOCOL-2026.md`
+- Single-path amendment: `docs/architecture/amendments/ASAS-SINGLE-ENGINEERING-PATH-AMENDMENT-007-2026-09-27.md`
 - Conference agent skill: `.agents/skills/asas-conference-engineering/SKILL.md`
 - Foundation/implementation controls: `docs/governance/FOUNDATION-GATE-REGISTER.md` — F0…F13
 - Implementation readiness: `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` — downstream IG-00…IG-07
@@ -132,4 +135,4 @@ Every conference task must identify role, gate, scope, non-goals, tools, evidenc
 
 ## Immediate next action
 
-Finish GATE-00 control-plane/environment evidence. Once GATE-00 is GREEN, move to GATE-01 and perform architecture-authority/canonical-baseline convergence. Do not create schema or application code as part of this step.
+Finish GATE-00 control-plane/environment evidence and repository-control reconciliation. Once GATE-00 is GREEN, move to GATE-01 and perform architecture-authority/canonical-baseline convergence. Do not create schema or application code as part of this step.
