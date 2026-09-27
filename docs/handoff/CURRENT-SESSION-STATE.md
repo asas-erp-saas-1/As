@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT
-**Version:** 3.48
+**Version:** 3.49
 **Date:** 2026-09-27
 **Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-02`
+`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-03`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -22,11 +22,12 @@ The primary workstream is the Engineering Conference and platform architecture. 
 
 - GitHub repository: `asas-erp-saas-1/As` — verified.
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — founder operating decision and branch verified.
-- Current branch HEAD: `2dc57b7e62dd23b775a96f3a9e33da14452ef4a0` — verified.
-- GitHub default branch: `main` — verified.
+- Current branch HEAD after the latest governance correction: `c32c03511db78754d50748b8a48d2f0732e365ec` — verified.
+- GitHub default branch: `main` — verified. This is repository metadata only and does **not** authorize engineering work on `main`.
 - `platform-architecture-2026` protection: currently observed **disabled/unprotected** via GitHub API; this is a repository-control gap and is not treated as authorization to use another engineering branch.
+- No engineering task is to be performed on `main` or any other branch. Historical branches may be inspected only for provenance/evidence when necessary.
 - Vercel primary domain: `asasplatform2026.vercel.app` — founder UI evidence.
-- Vercel current Production Branch observed: `main` — founder UI evidence; environment mapping remains a control-plane item to reconcile.
+- Vercel current Production Branch observed: `main` — founder UI evidence; this is a control-plane mismatch to reconcile because the sole ASAS engineering line is `platform-architecture-2026`.
 - Vercel Preview scope observed: all unassigned Git branches.
 - Vercel Development scope observed: CLI.
 - Canonical ASAS Supabase platform project: `Asas platforme 2026 / Asas platform`.
@@ -44,7 +45,7 @@ and:
 
 `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
 
-The route is:
+There are **eight serial Engineering Conference gates, GATE-00 through GATE-07**. The route is:
 
 ```text
 GATE-00 Platform Identity & Control Plane
@@ -135,4 +136,4 @@ Every conference task must identify role, gate, scope, non-goals, tools, evidenc
 
 ## Immediate next action
 
-Finish GATE-00 control-plane/environment evidence and repository-control reconciliation. Once GATE-00 is GREEN, move to GATE-01 and perform architecture-authority/canonical-baseline convergence. Do not create schema or application code as part of this step.
+Continue GATE-00 control-plane reconciliation. The current concrete blockers are: Vercel Production Branch still observed as `main` instead of the sole engineering line `platform-architecture-2026`, and repository branch protection is currently disabled. Do not create schema or application code as part of this step.
