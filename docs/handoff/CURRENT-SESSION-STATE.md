@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT
-**Version:** 3.52
+**Version:** 3.53
 **Date:** 2026-09-27
 **Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-06`
+`ARCH-2026-V3-ENGINEERING-MASTER-INSTALL-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -22,12 +22,12 @@ The primary workstream is the Engineering Conference and platform architecture. 
 
 - GitHub repository: `asas-erp-saas-1/As` — verified.
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — founder operating decision and branch verified.
-- Current branch HEAD: `e7625b9b3e1a24a1af0ed03292c686f378ee8ae0` — verified.
-- GitHub default branch: `main` — verified. This is repository metadata only and does **not** authorize engineering work on `main`.
-- `platform-architecture-2026` protection: currently observed **disabled/unprotected** via GitHub API; this is a repository-control gap and is not treated as authorization to use another engineering branch.
+- Current branch HEAD: `727da03e91ec8b6f3abe90d7b2314c22713e3dbe` — verified after V3 engineering-master installation and canonical-register/source-of-truth updates.
+- GitHub default branch: `main` — repository metadata only and does **not** authorize engineering work on `main`.
+- `platform-architecture-2026` protection: currently observed **disabled/unprotected** via GitHub API; this remains a repository-control gap and is not treated as authorization to use another engineering branch.
 - No engineering task is to be performed on `main` or any other branch. Historical branches may be inspected only for provenance/evidence when necessary.
 - Vercel primary domain: `asasplatform2026.vercel.app` — founder UI evidence.
-- Vercel current Production Branch observed: `main` — founder UI evidence; this is a control-plane mismatch to reconcile because the sole ASAS engineering line is `platform-architecture-2026`.
+- Vercel current Production Branch observed: `main` — founder UI evidence; this remains a control-plane mismatch to reconcile because the sole ASAS engineering line is `platform-architecture-2026`.
 - Vercel Preview scope observed: all unassigned Git branches.
 - Vercel Development scope observed: CLI.
 - Canonical ASAS Supabase platform project: `Asas platforme 2026 / Asas platform`.
@@ -109,32 +109,38 @@ No secret values are recorded in repository context.
 
 - Engineering Conference Constitution: `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`
 - Engineering Conference Gate Model: `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
-- Architecture V3: `docs/architecture/ASAS-ARCHITECTURE-V3.md`
+- **V3 Engineering Master:** `docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md`
+- V3 substantive source: supplied `ASAS-ARCHITECTURE-V3.md` source artifact; the repository engineering master above governs its engineering integration and does not silently rewrite its substantive content.
 - Engineering Conference Path: `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md`
 - Conference-to-platform loop: `docs/architecture/ASAS-ENGINEERING-CONFERENCE-TO-PLATFORM-LOOP-2026.md`
 - Master Execution Path: `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`
 - Context Prompt: `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md`
 - Roadmap: `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md`
 - Source of Truth: `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md`
+- Canonical Artifact Register: `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
 - Engineering gap completion: `architecture/governance/ASAS-ENGINEERING-GAP-COMPLETION-PROTOCOL-2026.md`
-- Single-path amendment: `docs/architecture/amendments/ASAS-SINGLE-ENGINEERING-PATH-AMENDMENT-007-2026-09-27.md`
-- Governance correction record: `docs/architecture/amendments/ASAS-ENGINEERING-CONFERENCE-GOVERNANCE-CORRECTION-008-2026-09-27.md`
-- Conference agent skill: `.agents/skills/asas-conference-engineering/SKILL.md`
-- Foundation/implementation controls: `docs/governance/FOUNDATION-GATE-REGISTER.md` — F0…F13
-- Implementation readiness: `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` — downstream IG-00…IG-07
-- Platform identity research: `docs/architecture/research/ASAS-VERCEL-SUPABASE-ENVIRONMENT-MAPPING-2026-09-27.md`
 
-## Operating method
+## V3 engineering installation
 
-`QUESTION → SCOPE/IMPACT → EVIDENCE → CURRENT PRIMARY RESEARCH → ALTERNATIVES → FAILURE MODES → ASAS RECONCILIATION → DECISION → ADR/CONTRACT/REGISTER → ADVERSARIAL REVIEW → VERIFICATION → EVIDENCE → CHECKPOINT`
+The V3 engineering master was installed at:
 
-For unfamiliar external facts, use current authoritative sources first. Distinguish source fact, repository/runtime evidence, derivation, proposal and blocker.
+`docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md`
 
-## AI-agent control
+It establishes the V3.1 engineering-control layer without falsely claiming that the entire substantive 3.0 source architecture is already implemented in the repository/runtime.
 
-Every conference task must identify role, gate, scope, non-goals, tools, evidence requirements, stop conditions and verification. Agents may research ahead but may not bypass the first unresolved gate. High-risk or irreversible actions remain under human control.
+The canonical artifact register and Source of Truth now point to this engineering master. This checkpoint is therefore the first resume point after the V3 installation.
 
-## Immediate next action
+## Non-authorization rule
 
-Continue GATE-00 control-plane reconciliation. The current concrete blockers are: Vercel Production Branch still observed as `main` instead of the sole engineering line `platform-architecture-2026`, and repository branch protection is currently disabled. Do not create schema or application code as part of this step.
+V3 installation does not authorize:
+
+- database schema creation;
+- Prisma contract promotion;
+- migrations;
+- RLS implementation;
+- API implementation;
+- ERP feature implementation;
+- global production changes.
+
+Those require the applicable gate and, ultimately, slice-specific GATE-07 authorization.
