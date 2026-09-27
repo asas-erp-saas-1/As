@@ -1,538 +1,368 @@
 # ASAS — MASTER EXECUTION PATH 2026
 
 **Status:** CANONICAL HANDOFF CONTROL  
-**Version:** 2.0.1  
-**Effective date:** 2026-09-22  
+**Version:** 3.0.0  
+**Effective date:** 2026-09-27  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`  
 **Implementation state:** PRE-IMPLEMENTATION / ARCHITECTURE ENGINEERING
 
 ## 0 — Mission
 
-Prepare and govern the ASAS Real Estate OS so Claude Code or another autonomous engineering agent can implement it incrementally without inventing business semantics, bypassing security, confusing research with authority, or turning future architecture into accidental MVP scope.
+Prepare and govern the ASAS Real Estate OS so an autonomous engineering executor can implement it incrementally without inventing business semantics, bypassing security, confusing research with authority, or turning future architecture into accidental MVP scope.
 
-The path is an execution control plane, not a replacement for the Blueprint or domain contracts.
+**Current mission:** engineer the platform architecture and close the Engineering Conference gates. Do not start application code or database construction merely because infrastructure already exists.
+
+This path is an execution control plane, not a replacement for the Blueprint, Source of Truth, contracts, registers, or runtime evidence.
 
 ---
 
-# 1 — Non-negotiable sequence
+# 1 — Non-negotiable architecture sequence
 
 ```text
 IDENTITY
-→ REALITY
-→ PROVENANCE
 → AUTHORITY
-→ RECONCILIATION
-→ DOMAIN MODEL
-→ CONTRACTS
-→ DATA CONTRACT
-→ SECURITY/TENANCY
-→ DESIGN SYSTEM
-→ LOCAL PLATFORM
-→ TESTS
+→ DOMAIN TOPOLOGY
+→ CONTRACTS / INVARIANTS
+→ PLATFORM KERNEL / SECURITY / TENANCY
+→ EXPERIENCE / INTEGRATION / OPERATIONS
+→ ENGINEERING SYSTEM / VERIFICATION / AI GOVERNANCE
+→ SLICE-SPECIFIC IMPLEMENTATION AUTHORIZATION
 → CONTROLLED IMPLEMENTATION
-→ INTEGRATION
 → RUNTIME EVIDENCE
 → PRODUCTION
 ```
 
-Code and database programming are downstream of architecture and contracts.
+The first seven stages are the **Engineering Conference Gates**. Implementation is downstream.
 
-Cloud infrastructure is not required to construct the architecture or local development foundation.
+Canonical gate model:
 
----
-
-# 2 — Entry / loading protocol
-
-On every continuation:
-
-```text
-Repository
-→ branch
-→ HEAD
-→ AGENTS.md
-→ CURRENT-SESSION-STATE.md
-→ ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md
-→ ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md
-→ ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md
-→ ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md
-→ this file
-→ affected contracts/registers/governance
-```
-
-Then inspect branch provenance and external sources only where the current dependency requires them.
-
-`CURRENT-SESSION-STATE.md` is the sole active checkpoint.
+`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
 
 ---
 
-# 3 — Source-package research boundary
+# 2 — Canonical Engineering Conference Gates
 
-The supplied **v1.6.1 source package** is a research/provenance input for the lead architecture process. It is **not an implementation authority for Claude Code or Codex**.
+## GATE-00 — Platform Identity & Control Plane
 
-Use it to discover:
+Verify:
 
-- historical design rationale;
-- candidate capabilities;
-- missing concerns;
-- alternative architectures;
-- security/reliability gaps;
-- research questions.
+- repository and active engineering line;
+- Vercel project/environment identity;
+- Supabase project identity;
+- development/preview/production model;
+- context-loading order;
+- canonical artifact ownership;
+- authority chain;
+- evidence classes;
+- technical guards for high-risk identity mistakes.
 
-Do not promote its claims directly into implementation. The required path is:
+This gate does **not** require a database schema, migrations, application code or populated tables.
 
-```text
-v1.6.1 / source package
-→ architect review
-→ repository + branch evidence
-→ official/authoritative corroboration
-→ contradiction analysis
-→ engineering decision
-→ ADR / canonical contract / register / roadmap
-→ explicit implementation authorization
-→ Claude Code / Codex
-```
+**Current:** OPEN / environment mapping and control-plane evidence.
 
-If v1.6.1 conflicts with verified repository/runtime evidence, classify the conflict and determine authority; never force the repository to match the package.
-
-Future capabilities from the package remain:
-
-`ARCHITECTURAL RESERVATION — NOT IMPLEMENTATION REQUIREMENT`
-
-until explicitly promoted by an approved canonical artifact.
-
-See `docs/architecture/ASAS-SOURCE-PACKAGE-ROLE-AND-DECISION-2026.md`.
-
----
-
-# 4 — Current route
-
-```text
-Q0 CONTROL-PLANE CONVERGENCE
-        ↓
-Q1 BUILDING CONTRACT
-        ↓
-Q2 OFFER CONTRACT
-        ↓
-Q3 PAYMENT / RECEIPT / ALLOCATION / LEDGER
-        ↓
-Q4 SCHEDULING ADR
-        ↓
-Q5 QUERY / READ-MODEL CONTRACTS
-        ↓
-Q6 PERMISSION / EVENT RECONCILIATION
-        ↓
-Q7 IMPLEMENTATION TASK PACKETS
-        ↓
-Q8 LOCAL EXECUTABLE SCHEMA
-        ↓
-Q9 ARCHITECTURE-AS-CODE / CI
-        ↓
-Q10 FIRST AUTHORIZED VERTICAL SLICE
-        ↓
-Q11 CONTROLLED INTEGRATION
-        ↓
-Q12 OPERATIONAL / RECOVERY EVIDENCE
-        ↓
-Q13 PRODUCTION READINESS
-```
-
-The route is evidence-driven. If Q1 reveals a missing prerequisite, the route expands; it does not bypass the dependency.
-
----
-
-# 5 — Q0 Control-plane convergence
-
-Current architecture branch evidence identifies stale routing/version metadata between the Source of Truth, Blueprint, Roadmap and Context Prompt.
-
-The active branch now establishes:
-
-- Blueprint `v1.5.0`;
-- Roadmap `v2.0.0`;
-- Context Prompt `v2.0.0`;
-- Master Execution Path `v2.0.1`;
-- Source of Truth must remain aligned with these routing artifacts;
-- current checkpoint remains the operational state authority.
-
-The v1.6.1 source package is research-only for the architect and is never an implementation instruction for Claude Code/Codex.
-
-**Gate:** `PARTIAL`
-
-Closure requires all routing metadata to agree and reference the same active artifacts.
-
----
-
-# 6 — Q1 Building contract
-
-Resolve without inventing persistence:
-
-```text
-Project → Building → Floor → Unit
-```
-
-Determine:
-
-- entity vs aggregate role;
-- ownership;
-- relationship cardinality;
-- structural mutation policy;
-- archival/deletion semantics;
-- construction milestone relationship;
-- permission impact;
-- event impact;
-- concurrency impact;
-- schema representation;
-- historical schema provenance.
-
-No Building table/model/migration is authorized merely because historical schema evidence contains one.
-
-**Gate:** `OPEN / IMPLEMENTATION BLOCKED`
-
----
-
-# 7 — Q2 Offer contract
-
-Close:
-
-```text
-submit_offer
-approve_discount
-send_offer
-expire_offer
-accept_offer
-```
-
-For each define:
-
-`authentication / authorization / tenant scope / preconditions / pricing authority / approval / state transition / idempotency / concurrency / audit / event / failure`
-
-Offer is not Reservation.
-
-Accepted Offer does not itself create an inventory winner.
-
-**Gate:** `PARTIAL / IMPLEMENTATION BLOCKED`
-
----
-
-# 8 — Q3 Finance contract
+## GATE-01 — Architecture Authority & Canonical Baseline
 
 Reconcile:
 
-```text
-Contract
-→ Payment Plan
-→ Schedule Item / Obligation
-→ Payment fact
-→ Receipt
-→ Receipt Allocation
-→ Subledger / Ledger
-→ Reconciliation
-→ Reporting
-```
+- V3 architecture;
+- Blueprint;
+- Source of Truth;
+- platform planes;
+- bounded contexts vs platform capabilities;
+- ownership map;
+- architecture principles;
+- canonical artifact register;
+- duplicate/stale authority.
 
-Do not invent a standalone Payment aggregate solely to resolve terminology.
+**Exit:** one coherent architecture baseline and one canonical owner per major concept.
 
-Close:
+## GATE-02 — Domain Topology, Ontology & Context Boundaries
 
-- money units/currency/rounding;
-- eligibility;
-- receipt semantics;
-- allocation;
-- over/under payment;
-- refund/reversal;
-- ledger posting;
-- immutability;
-- commission boundary;
-- idempotency/concurrency;
-- legal assumptions requiring external verification.
+Close the semantic architecture:
 
-**Gate:** `PARTIAL / EXECUTABLE FINANCE CONTRACT OPEN`
+- organization/membership/relationship;
+- bounded contexts;
+- platform capabilities;
+- ontology objects/links/actions/states;
+- aggregate candidates;
+- authority and ownership;
+- lifecycle/state machines;
+- cross-context dependencies;
+- multi-actor collaboration;
+- C01–C06 and later conference implications.
 
----
+**Exit:** critical concepts have owners, boundaries, lifecycles and dependency semantics.
 
-# 9 — Q4 Scheduling ADR
+## GATE-03 — Contracts, Invariants & Behavioral Architecture
 
-Historical ADR-0018 and current architecture material contain conflicting ownership statements.
+Define:
 
-Required action:
-
-`FOUNDER DECISION / EXPLICIT ADR SUPERSESSION`
-
-No silent ownership change.
-
-**Gate:** `FOUNDER-DECISION-REQUIRED`
-
----
-
-# 10 — Q5 Query / Read-model contracts
-
-Define read ownership separately from write ownership.
-
-Every critical query must specify:
-
-`source context / authorized scope / filters / pagination / consistency expectation / freshness / projection owner / tenant boundary / sensitive fields / performance expectation`
-
-Read models must not become an accidental back door for cross-context writes or tenant leakage.
-
-**Gate:** `NOT_STARTED / DEPENDENT`
-
----
-
-# 11 — Q6 Permission / Event reconciliation
-
-Map every critical command to:
-
-`permission → scope → actor/persona → state transition → invariant → event → audit → test`
-
-The registered event/permission counts are observations, not implementation quotas.
-
-Catalog presence does not prove runtime enforcement.
-
-**Gate:** `BLOCKED until affected contracts close`
-
----
-
-# 12 — Q7 Implementation task packets
-
-A task is executable only when it contains:
-
-```text
-ID
-Objective
-Scope
-Non-goals
-Owner
-Context
-Module
-Dependencies
-Contracts
-Schema impact
-Commands
-Queries
-Permissions
-Invariants
-State transitions
-Events
-Concurrency
-Security
-UX
-Tests
-Definition of Done
-Evidence
-Rollback/Recovery
-Authorization state
-```
-
-Missing information is `OPEN`/`BLOCKED`, never guessed.
-
----
-
-# 13 — Q8 Local executable schema
-
-Only after relevant contract gates close:
-
-```text
-source schema extraction
-→ structural validation
-→ semantic reconciliation
-→ executable schema
-→ local database
-→ forward migrations
-→ replay
-→ constraint tests
-→ RLS tests
-→ concurrency tests
-→ evidence
-```
-
-No destructive production command is allowed.
-
----
-
-# 14 — Q9 Architecture-as-code / CI
-
-Machine-check what is actually checkable:
-
-- canonical file paths;
-- headers/version routing;
-- stale checkpoint references;
-- duplicate authority;
-- context/module consistency;
-- event consistency;
-- permission consistency;
-- state-machine consistency;
-- task references;
-- schema-contract consistency;
-- destructive operation patterns;
-- dangerous dependencies;
-- future-scope contamination.
-
-Never fabricate commands for a green CI result.
-
----
-
-# 15 — Q10 First authorized vertical slice
-
-Candidate commercial journey:
-
-```text
-Project
-→ Building
-→ Unit
-→ Lead
-→ Assignment
-→ Activity
-→ Visit
-→ Offer
-→ Reservation
-→ Contract
-→ Payment Plan
-→ Payment/Receipt
-→ Audit
-→ Reporting
-```
-
-The actual first slice may be smaller if dependencies remain open.
-
-Required verification:
-
-- unit;
-- integration;
-- contract;
-- authorization;
-- tenancy/RLS;
-- state machine;
-- concurrency;
+- command/action contracts;
+- query/read contracts;
+- preconditions/postconditions;
+- authorization and tenancy semantics;
+- state transitions;
 - idempotency;
-- event/outbox;
+- concurrency boundaries;
+- events/outbox;
 - audit;
-- E2E;
-- migration safety;
-- failure/retry;
-- UX/accessibility/localization.
+- money invariants;
+- reservation consistency;
+- failure/compensation;
+- versioning.
 
-**Gate:** `BLOCKED until explicit implementation authorization`
+This is contract engineering, **not** schema or code implementation.
+
+## GATE-04 — Platform Kernel, Security, Tenancy & Data Governance Architecture
+
+Engineer:
+
+- identity/authentication;
+- authorization;
+- tenant/resource scope;
+- organization relationships;
+- RLS defense-in-depth doctrine;
+- service-role boundaries;
+- audit;
+- secrets/configuration boundaries;
+- data classification/lineage/retention;
+- storage/media security;
+- AI authority inheritance;
+- support/admin access;
+- threat model.
+
+No RLS implementation is required at this stage.
+
+## GATE-05 — Experience, Integration & Operational Architecture
+
+Engineer:
+
+- UX/design system;
+- Arabic/RTL, French, English;
+- responsive/mobile/field surfaces;
+- Studio/public website;
+- APIs/webhooks/integrations;
+- scheduling/search/media/notifications;
+- observability;
+- reliability/SLO/DR principles;
+- environment/deployment topology;
+- performance/scalability assumptions;
+- accessibility and failure UX;
+- external-provider failure/reconciliation.
+
+## GATE-06 — Engineering System, Verification & AI-Agent Governance
+
+Engineer the system that keeps architecture true:
+
+- task graph and dependencies;
+- task packet specification;
+- Definition of Done;
+- architecture-as-code checks;
+- register/contract drift detection;
+- CI verification strategy;
+- test/evidence model;
+- red-team review;
+- agent roles/skills/tools;
+- authority levels;
+- guardrails and safe outputs;
+- human approval boundaries;
+- rollback/recovery;
+- evidence placement;
+- reopening protocol.
+
+## GATE-07 — Architecture Readiness & Slice-Specific Implementation Authorization
+
+Authorize only a bounded slice with:
+
+- exact scope/non-goals;
+- owner/context;
+- contracts;
+- data impact;
+- security/tenancy impact;
+- states/events/audit;
+- UX/integration impact;
+- tests/evidence;
+- migration/recovery impact;
+- rollback;
+- dependencies;
+- executor/agent;
+- human approvals.
+
+GATE-07 is not a blanket authorization to build the whole platform.
 
 ---
 
-# 16 — Q11 Controlled integration
+# 3 — Gate closure rule
 
-Introduce remote systems only after local evidence exists.
+A gate is GREEN only when:
 
-Required:
+`Decision → Artifact → Ownership → Dependencies → Invariants → Verification → Evidence → Known Deferrals → Checkpoint`
 
-- canonical runtime identity;
-- environment separation;
-- schema reconciliation;
-- RLS verification;
-- storage verification;
-- webhook/integration security;
-- remote observability;
-- rollback/recovery evidence.
+exist.
+
+`Discussed ≠ Decided ≠ Contracted ≠ Verified ≠ Implemented ≠ Production-ready`.
+
+Gates close sequentially. Research may run ahead, but implementation may not.
 
 ---
 
-# 17 — Q12 Operational evidence
+# 4 — Relationship to C01–C22
 
-Measure:
+C01–C22 are **conference/domain tracks**, not the seven engineering gates.
 
-`SLI / SLO / latency / error rate / availability / queue lag / event lag / DB saturation / reservation latency / financial posting latency`
+A C-track produces semantic decisions, contracts and architecture consequences. The gate route determines when those outputs are sufficiently reconciled to authorize implementation.
 
-Recovery:
+Example:
 
-`backup → restore → integrity → RPO/RTO → evidence`
+`C03 Real Estate → GATE-02 topology → GATE-03 contracts → GATE-04 security/data governance → GATE-07 slice authorization`
 
-A backup without restore evidence is not recovery readiness.
-
----
-
-# 18 — Q13 Production readiness
-
-Production is authorized only when all applicable gates are objectively evidenced:
-
-`architecture / security / tenancy / schema / migration / tests / performance / observability / recovery / rollback / incident ownership / release evidence`
-
-No document-only green status.
+Therefore a C-track item must not be promoted into code simply because its domain discussion is closed.
 
 ---
 
-# 19 — Hard stops
+# 5 — Downstream implementation route
 
-Stop the affected slice for:
+The existing Q0–Q13 route remains useful, but it is **downstream** of the Engineering Conference and must not be used to pull implementation forward.
+
+```text
+Q0 CONTROL-PLANE CONVERGENCE
+→ Q1 DOMAIN CONTRACTS
+→ Q2 COMMERCIAL CONTRACTS
+→ Q3 FINANCE CONTRACTS
+→ Q4 CROSS-CONTEXT ADRs
+→ Q5 READ-MODEL CONTRACTS
+→ Q6 PERMISSION / EVENT RECONCILIATION
+→ Q7 IMPLEMENTATION TASK PACKETS
+→ Q8 LOCAL EXECUTABLE SCHEMA
+→ Q9 ARCHITECTURE-AS-CODE / CI
+→ Q10 FIRST AUTHORIZED VERTICAL SLICE
+→ Q11 CONTROLLED INTEGRATION
+→ Q12 OPERATIONAL / RECOVERY EVIDENCE
+→ Q13 PRODUCTION READINESS
+```
+
+Database/schema work is therefore downstream of architecture gates and applicable contract gates.
+
+---
+
+# 6 — Platform identity decision
+
+The current ASAS platform infrastructure is:
+
+```text
+GitHub
+  asas-erp-saas-1/As
+    platform-architecture-2026
+
+Vercel
+  asasplatform2026.vercel.app
+
+Supabase
+  Asas platforme 2026 / Asas platform
+  PROJECT_REF = oliiumegstqujwexikhr
+```
+
+The Supabase project is the canonical ASAS platform project identity for this engineering path. Its current absence of application schema does not constitute an architecture failure; schema construction is downstream.
+
+Vercel Environment ≠ Supabase Environment. Environment mapping is an explicit control-plane concern.
+
+---
+
+# 7 — Source-package research boundary
+
+The supplied v1.6.1 package is research/provenance input for architecture. It is not an implementation authority for Codex/Claude.
+
+Required path:
+
+`source package → architect review → official/current corroboration → contradiction analysis → engineering decision → ADR/contract/register → authorization → executor`
+
+Future capabilities remain architectural reservations until explicitly promoted.
+
+---
+
+# 8 — Research protocol
+
+For unfamiliar external facts:
+
+`Question → primary/current source → alternative evidence → contradiction analysis → decision → ADR/research record → review date`
+
+Prefer official documentation, standards, regulators and authoritative technical research. Current-version claims must not rely on stale web material when current primary sources exist.
+
+---
+
+# 9 — Hard stops
+
+Stop the affected work for:
 
 - unresolved business semantics;
-- founder-level scope;
-- unresolved aggregate ownership;
-- privileged authorization ambiguity;
+- founder-level scope ambiguity;
+- unresolved ownership;
+- authorization ambiguity;
 - tenant isolation uncertainty;
 - financial mutation ambiguity;
 - illegal state transition;
-- cross-context write ownership conflict;
+- cross-context write conflict;
 - destructive migration;
 - external side-effect uncertainty;
 - missing critical invariant evidence;
 - missing task dependency;
-- repository reality contradicting declared architecture;
-- unverified runtime identity.
+- repository/runtime contradiction;
+- unverified runtime identity;
+- architecture decision that has not passed the applicable gate.
 
 ---
 
-# 20 — Claude autonomy boundary
+# 10 — AI-agent operating boundary
 
-Claude may inspect, research, reason, propose, implement, test and refactor within an authorized task.
+Agents may inspect, research, reason, propose and execute within an authorized task.
 
-Claude may not silently redefine:
+Agents may not silently redefine:
 
 - product scope;
-- canonical business semantics;
+- business semantics;
 - bounded-context ownership;
-- tenancy model;
+- tenancy/security policy;
 - financial invariants;
-- security policy;
 - legal rules;
 - irreversible data operations;
-- autonomous high-impact AI authority.
+- high-impact autonomous authority.
 
-The v1.6.1 source package is not an autonomous implementation instruction. Its promoted conclusions must first appear in the canonical architecture/contracts/ADRs/task packets.
+Agent execution uses explicit scope, tools, guardrails, stop conditions and evidence. High-risk or irreversible actions require human control.
 
 ---
 
-# 21 — Change loop
-
-Every material change follows:
+# 11 — Material-change loop
 
 `DISCOVER → CLASSIFY → RESEARCH → RECONCILE → MODEL → DECIDE → CONTRACT → PLAN → IMPLEMENT → TEST → ADVERSARIAL REVIEW → VERIFY → CONVERGE → EVIDENCE`
 
-No step is silently skipped for a high-risk change.
+For the current pre-implementation phase, the loop stops at architecture evidence; implementation is not assumed.
 
 ---
 
-# 22 — Closure rule
+# 12 — Closure / reopening
 
-A finding/task/gate is closed only when:
+A finding or gate closes only when root cause, corrective action, references, verification, evidence and canonical reconciliation exist.
 
-`root cause → corrective action → references → verification → evidence → canonical reconciliation`
-
-all exist.
-
-Documentation alone cannot close an implementation gate.
+A closed decision reopens when stronger evidence, a new invariant, security finding, runtime contradiction, legal requirement, performance result or material architecture change invalidates it.
 
 ---
 
-# 23 — Resume command
+# 13 — Resume command
 
 When the operator says **Continue / أكمل العمل على المسار**:
 
 1. load this path;
 2. load `CURRENT-SESSION-STATE.md`;
-3. load Roadmap and Context Prompt;
-4. inspect branch/HEAD;
-5. identify the first unresolved dependency;
-6. inspect canonical sources and provenance;
-7. research material gaps;
-8. make the smallest authorized change;
-9. verify;
-10. update the routing artifacts and checkpoint;
-11. report exact evidence and next dependency.
+3. load the canonical gate model;
+4. load Roadmap + Context Prompt + Source of Truth;
+5. inspect branch/HEAD;
+6. identify the first unresolved gate dependency;
+7. inspect canonical sources and provenance;
+8. research material gaps using current authoritative sources;
+9. make the smallest authorized architecture change;
+10. verify;
+11. update canonical artifacts/checkpoint;
+12. report evidence and the next dependency.
 
-Never restart from conversational memory. Never claim closure without evidence.
+Never restart from conversational memory. Never claim gate closure without evidence.
