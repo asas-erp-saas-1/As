@@ -5,70 +5,87 @@
 
 ## Purpose
 
-Define the operating model for AI-assisted implementation so Claude can move quickly without turning undocumented assumptions into architecture, security, database, or business truth.
+Define the operating model for AI-assisted ASAS engineering so agents can move quickly without turning undocumented assumptions into architecture, security, database, or business truth.
 
 ## Core model
 
-`Task → Context → Contract → Branch → Change → Verify → Review → Merge → Record`
+`Task → Context → Contract → Engineering Line → Change → Verify → Review → Record`
 
-Claude is an implementation agent, not the authority for unresolved product meaning.
+Claude is an engineering collaboration agent, not the authority for unresolved product meaning. Codex remains the primary repository implementation executor when implementation is authorized.
 
-## Repository hierarchy
+## Sole engineering line
 
-- `main`: canonical integration branch and source of truth.
-- `foundation/*`: governance, architecture, contracts, repository controls and implementation-readiness work.
-- `design/*`: design-system, UX and Figma-contract work.
-- `feat/*`: bounded product implementation.
-- `fix/*`: bounded defect correction.
-- `refactor/*`: behavior-preserving structural change.
-- `chore/*`: tooling, CI and maintenance.
-- `hotfix/*`: exceptional production-critical correction; requires explicit review.
+ASAS has one active engineering line:
 
-Do not create long-lived branches without a documented reason. Prefer one task or one tightly coupled vertical slice per branch.
+`platform-architecture-2026`
 
-## Main branch policy
+This branch is the only branch on which ASAS engineering work is performed during the current program.
 
-`main` must remain releasable in principle and must not be used as a scratchpad.
+`main` is the GitHub repository default-branch metadata and is **not** an alternative ASAS engineering line. Do not develop, implement, or checkpoint work on `main`.
 
-No direct application implementation push to `main`.
+Other branches may be inspected only for provenance, historical evidence, or explicitly documented forensic comparison. They are not workspaces and must not become competing sources of truth.
 
-Changes enter `main` through a pull request unless an explicit repository emergency procedure exists.
+Do not create feature, foundation, design, fix, refactor, chore, hotfix, or other working branches unless the founder explicitly changes the single-line operating decision and the canonical governance artifacts are amended first.
 
-Never force-push, reset, rewrite shared history, or delete `main`.
+Never force-push, reset, rewrite shared history, or delete the active engineering line.
 
-## Task workspace contract
+## Main/default branch clarification
 
-Every implementation branch must have a task identity and bounded scope. The task record must identify:
+The repository may report `main` as its GitHub default branch. That repository fact does not override the ASAS operating decision that `platform-architecture-2026` is the sole engineering line.
+
+If a provider such as Vercel is configured to deploy `main` to Production while ASAS engineering is occurring on `platform-architecture-2026`, record this as a control-plane mismatch and reconcile it through GATE-00. Do not silently switch engineering work to `main` to make the provider configuration appear consistent.
+
+## Task contract
+
+Every engineering task must have:
 
 - objective;
+- current gate;
 - non-goals;
 - authoritative contracts;
 - dependencies;
-- affected bounded context;
-- expected files/modules;
+- affected bounded context or platform capability;
+- expected artifacts/files;
 - security and tenant boundary;
 - state/command/event impact;
-- database/migration impact;
+- database/migration impact if authorized;
 - verification plan;
-- Definition of Done.
+- Definition of Done;
+- evidence location.
 
 If these cannot be established, mark the task `BLOCKED` rather than inventing missing requirements.
 
 ## Context loading
 
-Before changing code Claude must load, in order:
+Before any material engineering task, not only implementation, load in this order:
 
 1. `AGENTS.md`;
-2. `docs/handoff/CLAUDE-START-HERE.md`;
-3. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`;
+2. `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`;
+3. `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`;
 4. `docs/handoff/CURRENT-SESSION-STATE.md`;
-5. the task packet;
-6. named dependencies and canonical contracts;
-7. relevant architecture/design/security/integration documents.
+5. `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md`;
+6. the current task packet;
+7. named dependencies and canonical contracts;
+8. relevant architecture/design/security/integration documents;
+9. actual repository state at `platform-architecture-2026`.
 
-Then inspect the actual repository state. Documentation never substitutes for repository reality.
+Then inspect reality. Documentation never substitutes for repository/runtime evidence.
+
+## Engineering Conference sequence
+
+During the pre-implementation conference, use:
+
+`Question → Scope → Evidence → Research → Alternatives → Failure modes → Reconciliation → Decision → Canonical artifact → Adversarial review → Verification → Checkpoint`
+
+The Engineering Conference gates are serial:
+
+`GATE-00 → GATE-01 → GATE-02 → GATE-03 → GATE-04 → GATE-05 → GATE-06 → GATE-07`
+
+Later-gate research may inform earlier decisions, but no agent may close or bypass the first unresolved gate.
 
 ## Implementation sequence
+
+Only after a specific slice receives GATE-07 authorization:
 
 `Inspect → Model → Plan → Implement → Test → Attack → Verify → Record`
 
@@ -96,7 +113,7 @@ Database migrations, production configuration, deployment, secrets, destructive 
 
 ## Verification gates
 
-A change is eligible for PR review only when the applicable checks exist and pass:
+A change is eligible for review only when the applicable checks exist and pass:
 
 - formatting/lint/type checks;
 - unit/integration tests;
@@ -109,39 +126,13 @@ A change is eligible for PR review only when the applicable checks exist and pas
 
 Do not claim a check was executed when it was not.
 
-## Pull requests
-
-Every PR must explain:
-
-- what changed;
-- why;
-- contract/task reference;
-- what did not change;
-- verification performed;
-- known limitations;
-- migration/deployment implications;
-- rollback or forward-fix approach when applicable.
-
-Large changes should be decomposed into reviewable PRs. Stacked PRs are allowed when dependency order requires them.
-
 ## Sensitive boundaries
 
-Changes touching any of these require extra scrutiny:
-
-- tenant isolation / RLS;
-- authentication and authorization;
-- financial ledger or posted financial data;
-- reservations, payments and inventory allocation;
-- legal documents;
-- webhooks and external integrations;
-- secrets and credentials;
-- migrations;
-- public/private data projections;
-- AI tools that can mutate data.
+Changes touching tenant isolation/RLS, authentication/authorization, financial ledger or posted financial data, reservations/payments/inventory allocation, legal documents, webhooks/external integrations, secrets, migrations, public/private data projections, or AI tools capable of mutation require extra scrutiny and the authority defined by V3/AGENTS.
 
 ## Stop-line
 
-Stop and record `BLOCKED` when a safe implementation requires inventing business meaning, bypassing authorization, weakening RLS, mutating real data destructively, duplicating money/reservations, or guessing an unresolved contract.
+Stop and record `BLOCKED` when a safe action requires inventing business meaning, bypassing authorization, weakening RLS, mutating real data destructively, duplicating money/reservations, guessing an unresolved contract, or leaving the sole engineering line.
 
 ## Evidence discipline
 
@@ -152,4 +143,4 @@ Use only these task states:
 - `BLOCKED`
 - `NOT EXECUTED`
 
-A status is not evidence. Evidence consists of repository diff, command output, test result, migration result, review record, or other reproducible artifact appropriate to the task.
+A status is not evidence. Evidence consists of repository diff, command output, test result, migration result, review record, runtime evidence, or another reproducible artifact appropriate to the task.
