@@ -4,7 +4,7 @@ set -euo pipefail
 # ASAS GATE-00 fail-closed guard.
 # Identity is evidence, not a guess. This script never discovers or mutates infrastructure.
 
-EXPECTED_VERCEL_PROJECT_ID="prj_4yF8PAE1axukJh4fWwbZmBGXRKZB"
+EXPECTED_VERCEL_PROJECT_ID="prj_LeReY3oaR4sarJrcA3pYuhiigQ9"
 EXPECTED_ENGINEERING_BRANCH="platform-architecture-2026"
 EXPECTED_SUPABASE_REF="oliiumegstqujwexikhr"
 
@@ -33,6 +33,6 @@ if [[ "${ASAS_SUPABASE_PROJECT_REF:-}" != "${EXPECTED_SUPABASE_REF}" ]]; then
   exit 5
 fi
 
-echo "GATE-00 PASS: supplied platform identity inputs match the canonical ASAS platform project and engineering branch."
+echo "GATE-00 PASS: supplied platform identity inputs match the canonical ASAS Vercel project, engineering branch, and Supabase project."
 echo "Production Vercel-to-Supabase runtime mapping must still be independently evidenced before GATE-00 closes."
 echo "No database mutation performed by this guard."
