@@ -2,7 +2,7 @@
 
 **Updated:** 2026-09-27
 **Branch:** `platform-architecture-2026`
-**Status:** PARTIAL — repository and Supabase candidate verified; Vercel deployment is founder-attested but environment/runtime mapping remains independently unverified
+**Status:** PARTIAL — Supabase project identity runtime-verified; Vercel production branch/environment mapping remains open
 **Authority:** H0 Foundation Gate Convergence
 
 ## Verified repository identity
@@ -12,14 +12,18 @@
 - Repository default branch: `main`
 - Conference/platform engineering work is operated exclusively on `platform-architecture-2026` by current execution policy.
 
-## Verified Supabase candidate
+## Supabase platform identity — CLOSED
 
-The connected Supabase account exposes two projects in the same organization:
+The connected Supabase integration exposes the ASAS platform project:
 
-1. `asas-web-site` — ref `xwokfufeeodobkuaxvgx`, region `eu-west-1`, PostgreSQL 17.
-2. `Asas platform` — ref `oliiumegstqujwexikhr`, region `eu-west-1`, PostgreSQL 17, GA release channel.
+- Project: `Asas platform`
+- Container: `Asas platforme 2026`
+- Ref: `oliiumegstqujwexikhr`
+- URL: `https://oliiumegstqujwexikhr.supabase.co`
+- Region: `eu-west-1`
+- PostgreSQL: 17 / GA release channel
 
-For the current Platform Engineering track, `Asas platform` is the explicitly named platform project and is therefore the inspected candidate. This is an evidence record, not a claim that every application environment already points to it.
+This project is no longer treated as an uncertain candidate. The founder designated it as the ASAS platform project, and the connected Supabase integration independently exposes and verifies the same project identity.
 
 ## Live read-only introspection
 
@@ -30,43 +34,37 @@ Observed:
 - database: `postgres`
 - PostgreSQL server version: `17.6`
 - cluster: `main`
-- no base tables exist in the `public` schema.
+- no ASAS application base tables exist in the `public` schema at this architecture stage.
 - observed non-system base tables are Supabase-managed `auth`, `realtime`, `storage`, or `vault` tables.
 - no ASAS application tables such as `projects`, `buildings`, `apartments`, `units`, `listings`, `reservations`, `offers`, `holds`, `price_versions`, or `outbox_events` were observed in `public`.
 - Supabase migration inventory for this project currently returns zero migrations.
 
-## Security observation
-
-RLS posture was inspected read-only on non-system tables. Supabase-managed schemas contain a mixture of RLS-enabled and non-RLS tables. This must not be interpreted as the ASAS application security baseline because no ASAS application tables currently exist in `public` on this inspected project.
+The lack of ASAS application tables is **not a project-identity contradiction**. It is consistent with the explicit conference rule that schema creation and database implementation have not yet been authorized.
 
 ## Vercel deployment attestation
 
-The founder has explicitly reported that an ASAS project has been deployed to Vercel and connected to the GitHub repository `asas-erp-saas-1/As`.
+The founder has explicitly reported that the ASAS project is deployed to Vercel and connected to `asas-erp-saas-1/As`.
 
-The current candidate previously recorded for reconciliation is:
+Recorded candidate:
 
 - Vercel project id: `prj_4yF8PAE1axukJh4fWwbZmBGXRKZB`
 - Vercel project name: `asas-erp-saasv2`
+- Primary domain: `asasplatform2026.vercel.app`
 
-This founder attestation is useful evidence of intended deployment state, but it is **not equivalent to independently verified runtime evidence**. The connected Vercel integration currently does not expose sufficient project/environment linkage to prove, from this execution environment, all of the following:
+The Vercel integration available to this execution environment does not independently expose enough project/environment linkage to prove the complete runtime chain:
 
 `GitHub repository → exact branch → Vercel production deployment → production environment variables → Supabase project ref`
 
-Therefore the Vercel mapping remains OPEN rather than being promoted to VERIFIED.
+Therefore Vercel runtime mapping remains **OPEN**. This is not uncertainty about the founder-designated Supabase project.
 
-## Critical interpretation
-
-The inspected `Asas platform` project is currently a Supabase platform shell with no ASAS application persistence in `public`, not an observed brownfield application database containing the previously discussed Unit/Apartment/Reservation model.
-
-Therefore prior repository/source observations of schema/model counts remain source-package evidence only. They are not live database evidence.
-
-## Remaining GATE-00 blockers
+## GATE-00 remaining blockers
 
 1. Independently verify the Vercel project identity.
 2. Independently verify the Vercel production deployment branch and commit.
-3. Verify the production environment mapping to `oliiumegstqujwexikhr`.
-4. Verify whether another Supabase project/database is the actual runtime target for an existing ASAS application deployment.
-5. Retain a machine-checkable wrong-project/schema-touch guard before any schema implementation.
+3. Verify production environment variable scope.
+4. Verify production Vercel → Supabase mapping to `oliiumegstqujwexikhr`.
+5. Retain the machine-checkable wrong-project/schema-touch guard before any schema implementation.
+6. Repository protection/control evidence remains open.
 
 ## Safety
 
@@ -74,8 +72,8 @@ No DDL, migration, RLS change, seed, reset, branch creation, or destructive oper
 
 ## Decision impact
 
-GATE-00 remains **PARTIAL / OPEN**.
+**Supabase project identity ambiguity: CLOSED.**
 
-GATE-03 database reality remains **OPEN / REQUIRES RUNTIME TARGET CONFIRMATION**.
+**GATE-00: OPEN** until the remaining Vercel/repository-control evidence is closed.
 
-No production schema, RLS, reservation, finance, or other database mutation is authorized by this evidence.
+**GATE-03 database implementation:** not authorized by this evidence.
