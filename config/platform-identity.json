@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "status": "PARTIAL",
   "repository": {
     "owner": "asas-erp-saas-1",
@@ -9,8 +9,9 @@
     "engineeringWorkLinePolicy": "platform-architecture-2026 is the sole active engineering work line"
   },
   "vercel": {
-    "projectIdObserved": "prj_4yF8PAE1axukJh4fWwbZmBGXRKZB",
-    "primaryDomainObserved": "asasplatform2026.vercel.app",
+    "projectIdObserved": "prj_LeReY3oaR4sarJrcA3pYuhiigQ9",
+    "projectNameObserved": "asas_platform_2026",
+    "primaryDomainDeclaredByFounder": "asasplatform2026.vercel.app",
     "productionBranchObserved": "main",
     "requiredProductionBranch": "platform-architecture-2026",
     "previewScopeObserved": "all-unassigned-git-branches",
@@ -53,5 +54,5 @@
     "productionMutationAuthorized": false
   },
   "secretsPolicy": "Never store secret values in repository context; record only variable names, scope, provenance, and verification status.",
-  "correctionNote": "The founder has explicitly identified oliiumegstqujwexikhr as the ASAS platform project. The connected Supabase integration independently exposes and verifies this project identity. The absence of application tables is expected because schema implementation is outside the current Engineering Conference scope. Vercel production deployment/branch/environment linkage remains a separate GATE-00 control and is not conflated with Supabase project identity."
+  "correctionNote": "The Vercel project list was re-verified and the canonical project is asas_platform_2026 with project ID prj_LeReY3oaR4sarJrcA3pYuhiigQ9. The founder-supplied production URL is recorded separately as declared identity. The previously recorded prj_4yF8PAE1axukJh4fWwbZmBGXRKZB was stale historical identity data and is no longer canonical. Supabase identity oliiumegstqujwexikhr remains runtime-verified. Production branch/runtime linkage remains open until directly evidenced."
 }
