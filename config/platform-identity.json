@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "status": "PARTIAL",
   "repository": {
     "owner": "asas-erp-saas-1",
@@ -8,32 +8,39 @@
     "conferenceBranch": "platform-architecture-2026",
     "engineeringWorkLinePolicy": "platform-architecture-2026 is the sole active engineering work line"
   },
-  "supabase": {
-    "candidateProjectRef": "oliiumegstqujwexikhr",
-    "candidateProjectName": "Asas platform",
-    "projectUrl": "https://oliiumegstqujwexikhr.supabase.co",
-    "verificationStatus": "VERIFIED_CANDIDATE"
-  },
   "vercel": {
     "candidateProjectId": "prj_4yF8PAE1axukJh4fWwbZmBGXRKZB",
-    "candidateProjectName": "asas-erp-saasv2",
     "primaryDomainObserved": "asasplatform2026.vercel.app",
     "productionBranchObserved": "main",
     "requiredProductionBranch": "platform-architecture-2026",
     "previewScopeObserved": "all-unassigned-git-branches",
     "developmentScopeObserved": "cli",
-    "verificationStatus": "RUNTIME_MAPPING_OPEN__PRODUCTION_BRANCH_MISMATCH"
+    "verificationStatus": "OPEN_PRODUCTION_BRANCH_MISMATCH"
+  },
+  "supabase": {
+    "candidateProjectRef": "oliiumegstqujwexikhr",
+    "candidateProjectName": "Asas platform",
+    "projectUrl": "https://oliiumegstqujwexikhr.supabase.co",
+    "verificationStatus": "INSPECTED_CANDIDATE_NOT_PRODUCTION_VERIFIED",
+    "observedPublicApplicationTables": 0,
+    "verifiedProductionProjectRef": null
   },
   "productionRuntime": {
     "verificationStatus": "UNVERIFIED",
     "requiredEvidence": [
-      "production deployment commit sha",
-      "production deployment branch",
-      "production environment variable target",
-      "supabase project ref mapping"
+      "Vercel Production Branch = platform-architecture-2026",
+      "fresh Production deployment from that branch",
+      "Production deployment commit SHA",
+      "Production environment variable scope",
+      "Production Supabase PROJECT_REF",
+      "runtime database identity confirmation"
     ]
   },
-  "failClosed": true,
+  "technicalGuard": {
+    "failClosed": true,
+    "schemaTouchingWorkAuthorized": false,
+    "productionMutationAuthorized": false
+  },
   "secretsPolicy": "Never store secret values in repository context; record only variable names, scope, provenance, and verification status.",
-  "note": "This file is machine-readable identity evidence, not proof of production mapping. The Production Branch mismatch must be corrected or explicitly re-decided before GATE-00 can close."
+  "conflictNote": "Some legacy/root context documents state that the production database already contains 15 live tables. The currently inspected Supabase candidate exposes zero ASAS application tables in public. This is unresolved identity evidence, not permission to rewrite the canonical reality."
 }
