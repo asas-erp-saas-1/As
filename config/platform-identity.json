@@ -1,24 +1,39 @@
 {
-  "version": 1,
+  "version": 2,
   "status": "PARTIAL",
   "repository": {
     "owner": "asas-erp-saas-1",
     "name": "As",
-    "conferenceBranch": "platform-architecture-2026"
+    "defaultBranchObserved": "main",
+    "conferenceBranch": "platform-architecture-2026",
+    "engineeringWorkLinePolicy": "platform-architecture-2026 is the sole active engineering work line"
   },
   "supabase": {
     "candidateProjectRef": "oliiumegstqujwexikhr",
     "candidateProjectName": "Asas platform",
+    "projectUrl": "https://oliiumegstqujwexikhr.supabase.co",
     "verificationStatus": "VERIFIED_CANDIDATE"
   },
   "vercel": {
     "candidateProjectId": "prj_4yF8PAE1axukJh4fWwbZmBGXRKZB",
     "candidateProjectName": "asas-erp-saasv2",
-    "verificationStatus": "UNVERIFIED_RUNTIME_MAPPING"
+    "primaryDomainObserved": "asasplatform2026.vercel.app",
+    "productionBranchObserved": "main",
+    "requiredProductionBranch": "platform-architecture-2026",
+    "previewScopeObserved": "all-unassigned-git-branches",
+    "developmentScopeObserved": "cli",
+    "verificationStatus": "RUNTIME_MAPPING_OPEN__PRODUCTION_BRANCH_MISMATCH"
   },
   "productionRuntime": {
-    "verificationStatus": "UNVERIFIED"
+    "verificationStatus": "UNVERIFIED",
+    "requiredEvidence": [
+      "production deployment commit sha",
+      "production deployment branch",
+      "production environment variable target",
+      "supabase project ref mapping"
+    ]
   },
   "failClosed": true,
-  "note": "Candidate identifiers are evidence only. Do not treat this file as proof of production mapping until Vercel environment linkage and Supabase project reference are independently verified. Never store secrets here."
+  "secretsPolicy": "Never store secret values in repository context; record only variable names, scope, provenance, and verification status.",
+  "note": "This file is machine-readable identity evidence, not proof of production mapping. The Production Branch mismatch must be corrected or explicitly re-decided before GATE-00 can close."
 }
