@@ -1,8 +1,8 @@
 # ASAS Canonical Artifact Register
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.5
-Date: 2026-09-26
+Version: 1.6
+Date: 2026-09-27
 
 ## Purpose
 
@@ -35,6 +35,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | A4/A6 | YES | Agent operating model |
 | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | A4/A6 | YES | AI engineering operating context |
 | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | A6 | YES | Consolidated architecture-engineering truth/routing resource |
+| `docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md` | A6 | YES | V3 engineering master/control companion; governs engineering integration of V3 without silently replacing substantive source architecture |
 | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | A1 candidate | YES | Desired architecture; unresolved items remain blocked |
 | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | A4/A6 | YES | Ordered engineering route |
 | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | A4 | YES | Skill routing and capability catalog |
@@ -52,6 +53,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md` | A6 / canonical decision workstream | ACTIVE | Orchestrates research, decisions, ADR/contracts, verification and checkpoints; does not replace source authority |
 | `docs/architecture/ASAS-PLATFORM-ENGINEERING-TRACK-2026.md` | A6 | ACTIVE | Execution/control track from reality lock through evidence |
 | `docs/architecture/ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md` | A6 | ACTIVE | Cross-workstream engineering control board |
+| `docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md` | A6 | INSTALLED / ACTIVE | V3 engineering-control companion; serial gate semantics, V3 reconciliation, evidence, agent routing and implementation authorization |
 | `docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md` | A4 | ACTIVE / HIGHEST PRIORITY | Foundation gate sequencing |
 | `docs/architecture/task-packets/ASAS-TASK-H0-GATE-01-CANONICAL-ARTIFACT-CONVERGENCE-2026-09-26.md` | A4 | OPEN / EVIDENCE-GATED | GATE-01 convergence task |
 
