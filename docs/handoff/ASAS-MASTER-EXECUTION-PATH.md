@@ -1,10 +1,10 @@
 # ASAS — MASTER EXECUTION PATH 2026
 
-**Status:** CANONICAL HANDOFF CONTROL  
-**Version:** 3.0.0  
-**Effective date:** 2026-09-27  
-**Repository:** `asas-erp-saas-1/As`  
-**Architecture branch:** `platform-architecture-2026`  
+**Status:** CANONICAL HANDOFF CONTROL
+**Version:** 3.1.0
+**Effective date:** 2026-09-27
+**Repository:** `asas-erp-saas-1/As`
+**Architecture branch:** `platform-architecture-2026`
 **Implementation state:** PRE-IMPLEMENTATION / ARCHITECTURE ENGINEERING
 
 ## 0 — Mission
@@ -12,6 +12,14 @@
 Prepare and govern the ASAS Real Estate OS so an autonomous engineering executor can implement it incrementally without inventing business semantics, bypassing security, confusing research with authority, or turning future architecture into accidental MVP scope.
 
 **Current mission:** engineer the platform architecture and close the Engineering Conference gates. Do not start application code or database construction merely because infrastructure already exists.
+
+The single control constitution is:
+
+`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`
+
+The canonical gate model is:
+
+`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
 
 This path is an execution control plane, not a replacement for the Blueprint, Source of Truth, contracts, registers, or runtime evidence.
 
@@ -35,9 +43,7 @@ IDENTITY
 
 The first seven stages are the **Engineering Conference Gates**. Implementation is downstream.
 
-Canonical gate model:
-
-`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
+No alternate gate sequence is authoritative.
 
 ---
 
@@ -45,17 +51,7 @@ Canonical gate model:
 
 ## GATE-00 — Platform Identity & Control Plane
 
-Verify:
-
-- repository and active engineering line;
-- Vercel project/environment identity;
-- Supabase project identity;
-- development/preview/production model;
-- context-loading order;
-- canonical artifact ownership;
-- authority chain;
-- evidence classes;
-- technical guards for high-risk identity mistakes.
+Verify repository and active engineering line; Vercel project/environment identity; Supabase project identity; development/preview/production model; context-loading order; canonical artifact ownership; authority chain; evidence classes; and technical guards for high-risk identity mistakes.
 
 This gate does **not** require a database schema, migrations, application code or populated tables.
 
@@ -63,131 +59,43 @@ This gate does **not** require a database schema, migrations, application code o
 
 ## GATE-01 — Architecture Authority & Canonical Baseline
 
-Reconcile:
-
-- V3 architecture;
-- Blueprint;
-- Source of Truth;
-- platform planes;
-- bounded contexts vs platform capabilities;
-- ownership map;
-- architecture principles;
-- canonical artifact register;
-- duplicate/stale authority.
+Reconcile V3 architecture, Blueprint, Source of Truth, platform planes, bounded contexts vs platform capabilities, ownership map, architecture principles, canonical artifact register and duplicate/stale authority.
 
 **Exit:** one coherent architecture baseline and one canonical owner per major concept.
 
 ## GATE-02 — Domain Topology, Ontology & Context Boundaries
 
-Close the semantic architecture:
-
-- organization/membership/relationship;
-- bounded contexts;
-- platform capabilities;
-- ontology objects/links/actions/states;
-- aggregate candidates;
-- authority and ownership;
-- lifecycle/state machines;
-- cross-context dependencies;
-- multi-actor collaboration;
-- C01–C06 and later conference implications.
+Close organization/membership/relationship semantics; bounded contexts; platform capabilities; ontology objects/links/actions/states; aggregate candidates; authority and ownership; lifecycle/state machines; cross-context dependencies; multi-actor collaboration; and C-track implications.
 
 **Exit:** critical concepts have owners, boundaries, lifecycles and dependency semantics.
 
 ## GATE-03 — Contracts, Invariants & Behavioral Architecture
 
-Define:
-
-- command/action contracts;
-- query/read contracts;
-- preconditions/postconditions;
-- authorization and tenancy semantics;
-- state transitions;
-- idempotency;
-- concurrency boundaries;
-- events/outbox;
-- audit;
-- money invariants;
-- reservation consistency;
-- failure/compensation;
-- versioning.
+Define command/action contracts, query/read contracts, preconditions/postconditions, authorization and tenancy semantics, state transitions, idempotency, concurrency boundaries, events/outbox, audit, money invariants, reservation consistency, failure/compensation and versioning.
 
 This is contract engineering, **not** schema or code implementation.
 
 ## GATE-04 — Platform Kernel, Security, Tenancy & Data Governance Architecture
 
-Engineer:
-
-- identity/authentication;
-- authorization;
-- tenant/resource scope;
-- organization relationships;
-- RLS defense-in-depth doctrine;
-- service-role boundaries;
-- audit;
-- secrets/configuration boundaries;
-- data classification/lineage/retention;
-- storage/media security;
-- AI authority inheritance;
-- support/admin access;
-- threat model.
+Engineer identity/authentication, authorization, tenant/resource scope, organization relationships, RLS defense-in-depth doctrine, service-role boundaries, audit, secrets/configuration boundaries, data classification/lineage/retention, storage/media security, AI authority inheritance, support/admin access and threat model.
 
 No RLS implementation is required at this stage.
 
 ## GATE-05 — Experience, Integration & Operational Architecture
 
-Engineer:
-
-- UX/design system;
-- Arabic/RTL, French, English;
-- responsive/mobile/field surfaces;
-- Studio/public website;
-- APIs/webhooks/integrations;
-- scheduling/search/media/notifications;
-- observability;
-- reliability/SLO/DR principles;
-- environment/deployment topology;
-- performance/scalability assumptions;
-- accessibility and failure UX;
-- external-provider failure/reconciliation.
+Engineer UX/design system; Arabic/RTL, French, English; responsive/mobile/field surfaces; Studio/public website; APIs/webhooks/integrations; scheduling/search/media/notifications; observability; reliability/SLO/DR principles; environment/deployment topology; performance/scalability assumptions; accessibility; failure UX; external-provider failure/reconciliation.
 
 ## GATE-06 — Engineering System, Verification & AI-Agent Governance
 
-Engineer the system that keeps architecture true:
+Engineer the system that keeps architecture true: task graph/dependencies; task packet specification; Definition of Done; architecture-as-code checks; register/contract drift detection; CI verification; test/evidence model; red-team review; agent roles/skills/tools; authority levels; guardrails/safe outputs; human approval boundaries; rollback/recovery; evidence placement; reopening protocol.
 
-- task graph and dependencies;
-- task packet specification;
-- Definition of Done;
-- architecture-as-code checks;
-- register/contract drift detection;
-- CI verification strategy;
-- test/evidence model;
-- red-team review;
-- agent roles/skills/tools;
-- authority levels;
-- guardrails and safe outputs;
-- human approval boundaries;
-- rollback/recovery;
-- evidence placement;
-- reopening protocol.
+Mandatory conference-agent procedure:
+
+`.agents/skills/asas-conference-engineering/SKILL.md`
 
 ## GATE-07 — Architecture Readiness & Slice-Specific Implementation Authorization
 
-Authorize only a bounded slice with:
-
-- exact scope/non-goals;
-- owner/context;
-- contracts;
-- data impact;
-- security/tenancy impact;
-- states/events/audit;
-- UX/integration impact;
-- tests/evidence;
-- migration/recovery impact;
-- rollback;
-- dependencies;
-- executor/agent;
-- human approvals.
+Authorize only a bounded slice with exact scope/non-goals, owner/context, contracts, data impact, security/tenancy impact, states/events/audit, UX/integration impact, tests/evidence, migration/recovery impact, rollback, dependencies, executor/agent and human approvals.
 
 GATE-07 is not a blanket authorization to build the whole platform.
 
@@ -242,7 +150,7 @@ Q0 CONTROL-PLANE CONVERGENCE
 → Q13 PRODUCTION READINESS
 ```
 
-Database/schema work is therefore downstream of architecture gates and applicable contract gates.
+Database/schema work is downstream of architecture gates and applicable contract gates.
 
 ---
 
@@ -293,23 +201,7 @@ Prefer official documentation, standards, regulators and authoritative technical
 
 # 9 — Hard stops
 
-Stop the affected work for:
-
-- unresolved business semantics;
-- founder-level scope ambiguity;
-- unresolved ownership;
-- authorization ambiguity;
-- tenant isolation uncertainty;
-- financial mutation ambiguity;
-- illegal state transition;
-- cross-context write conflict;
-- destructive migration;
-- external side-effect uncertainty;
-- missing critical invariant evidence;
-- missing task dependency;
-- repository/runtime contradiction;
-- unverified runtime identity;
-- architecture decision that has not passed the applicable gate.
+Stop the affected work for unresolved business semantics; founder-level scope ambiguity; unresolved ownership; authorization ambiguity; tenant isolation uncertainty; financial mutation ambiguity; illegal state transition; cross-context write conflict; destructive migration; external side-effect uncertainty; missing critical invariant evidence; missing task dependency; repository/runtime contradiction; unverified runtime identity; or an architecture decision that has not passed the applicable gate.
 
 ---
 
@@ -317,16 +209,7 @@ Stop the affected work for:
 
 Agents may inspect, research, reason, propose and execute within an authorized task.
 
-Agents may not silently redefine:
-
-- product scope;
-- business semantics;
-- bounded-context ownership;
-- tenancy/security policy;
-- financial invariants;
-- legal rules;
-- irreversible data operations;
-- high-impact autonomous authority.
+Agents may not silently redefine product scope, business semantics, bounded-context ownership, tenancy/security policy, financial invariants, legal rules, irreversible data operations or high-impact autonomous authority.
 
 Agent execution uses explicit scope, tools, guardrails, stop conditions and evidence. High-risk or irreversible actions require human control.
 
@@ -352,10 +235,10 @@ A closed decision reopens when stronger evidence, a new invariant, security find
 
 When the operator says **Continue / أكمل العمل على المسار**:
 
-1. load this path;
+1. load `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`;
 2. load `CURRENT-SESSION-STATE.md`;
 3. load the canonical gate model;
-4. load Roadmap + Context Prompt + Source of Truth;
+4. load V3 + Source of Truth + Context Prompt + Roadmap;
 5. inspect branch/HEAD;
 6. identify the first unresolved gate dependency;
 7. inspect canonical sources and provenance;
