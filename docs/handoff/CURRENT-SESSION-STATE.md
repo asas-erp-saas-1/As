@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT
-**Version:** 3.51
+**Version:** 3.52
 **Date:** 2026-09-27
 **Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-05`
+`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-06`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -22,7 +22,7 @@ The primary workstream is the Engineering Conference and platform architecture. 
 
 - GitHub repository: `asas-erp-saas-1/As` — verified.
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — founder operating decision and branch verified.
-- Current branch HEAD: `e7625b9b3e1a24a1af0ed03292c686f378ee8ae0` — verified after the governance-correction record was added.
+- Current branch HEAD: `e7625b9b3e1a24a1af0ed03292c686f378ee8ae0` — verified.
 - GitHub default branch: `main` — verified. This is repository metadata only and does **not** authorize engineering work on `main`.
 - `platform-architecture-2026` protection: currently observed **disabled/unprotected** via GitHub API; this is a repository-control gap and is not treated as authorization to use another engineering branch.
 - No engineering task is to be performed on `main` or any other branch. Historical branches may be inspected only for provenance/evidence when necessary.
@@ -133,7 +133,7 @@ For unfamiliar external facts, use current authoritative sources first. Distingu
 
 ## AI-agent control
 
-Every conference task must identify role, gate, scope, non-goals, tools, evidence requirements, stop conditions, verification and output location. Agents may research ahead but may not bypass the first unresolved gate. High-risk or irreversible actions remain under human control.
+Every conference task must identify role, gate, scope, non-goals, tools, evidence requirements, stop conditions and verification. Agents may research ahead but may not bypass the first unresolved gate. High-risk or irreversible actions remain under human control.
 
 ## Immediate next action
 
