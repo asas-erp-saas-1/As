@@ -1,223 +1,140 @@
-# ASAS — Claude Implementation Readiness Master
+# ASAS — Implementation Readiness Master
 
-**Purpose:** prepare the ASAS repository so Claude can autonomously develop application code and database changes once the relevant gates are closed.
+**Status:** DOWNSTREAM IMPLEMENTATION CONTROL / NOT ENGINEERING-CONFERENCE AUTHORITY
+**Version:** 2.0.0
+**Scope:** prepare an authorized implementation slice after the Engineering Conference has closed the applicable architecture gates.
 
-## 1. Primary mission
+## 1. Authority boundary
 
-The objective of the foundation program is not documentation for its own sake.
+This document does **not** define the ASAS Engineering Conference route.
 
-The objective is to eliminate the classes of ambiguity and operational risk that would force Claude to guess while implementing the real ASAS system.
+The canonical architecture-conference authority is:
 
-The desired end state is:
+`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`
 
-> Claude can take an implementation-ready task, inspect the repository and verified platform reality, implement the required code/database change, test it adversarially, produce evidence, commit it on a task-scoped branch, and continue to the next unblocked task — stopping only at protected founder decisions.
+and:
 
-## 2. Canonical project boundary
+`docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md`
+
+Its gate names are `GATE-00…GATE-07`.
+
+This document uses `IG-00…IG-07` for downstream implementation readiness. Historical references to `GATE-00…GATE-07` in this document are legacy implementation-control labels and are not authoritative.
+
+## 2. Purpose
+
+Prepare the repository so Codex can implement an explicitly authorized, bounded slice without inventing business semantics, bypassing security, confusing research with authority, or expanding scope.
+
+The objective is task-scoped readiness, not a blanket authorization to build the entire platform.
+
+## 3. Canonical project boundary
 
 **ONLY:** `asas-erp-saas-1/As`
 
-Never use these as project evidence:
+The current Engineering Conference work line is:
 
-- `asas-erp-saas-1/Asas-website`
-- Supabase project `asas-web-site` / ref `xwokfufeeodobkuaxvgx`
-- any similarly named repository, deployment or database unless the linkage is independently proven.
+`platform-architecture-2026`
 
-## 3. What foundation must deliver
+The canonical ASAS platform infrastructure identity is recorded in the current session state and platform identity control files. Never substitute the separate `asas-erp-saas-1/Asas-website` project or its Supabase project as ASAS platform reality.
 
-### A. Product authority
+## 4. Preconditions
 
-- product truth
-- canonical architecture
-- bounded contexts
-- aggregate ownership
-- state machines
-- commands
-- permissions and ABAC
-- events
-- invariants
-- protected founder decisions
+No implementation-readiness control can authorize work until the applicable Engineering Conference gate is GREEN.
 
-### B. Engineering authority
+Required inputs include, as applicable:
 
-- implementation task packets
-- dependency-aware build orders
-- migration rules
-- transaction boundaries
-- idempotency
-- concurrency controls
-- outbox/inbox
-- audit/evidence
-- observability
-- testing strategy
-- release gates
+- canonical architecture;
+- bounded-context ownership;
+- ontology/domain semantics;
+- contracts and invariants;
+- security/tenancy model;
+- state/event/permission definitions;
+- UX/integration/operational consequences;
+- verification requirements;
+- exact task scope.
 
-### C. Platform reality
+## 5. Downstream implementation controls
 
-Before schema-touching work, prove:
+### IG-00 — Reality and task identity
+`repo → active ref → verified applicable environment → runtime evidence where required → task scope → evidence`
 
-- repository identity
-- branch
-- actual Supabase project
-- actual Vercel project where applicable
-- environment classification
-- database version
-- migration history
-- schema and relationships
-- RLS/policies
-- backup/restore capability
-- repository-to-runtime-to-database linkage
+### IG-01 — Kernel contract readiness
+`identity → tenant → authorization → command boundary → validation → transaction → audit → idempotency → outbox/inbox`
 
-The identity gate is currently **OPEN/BLOCKED** because the only connected Supabase project discovered is `asas-web-site`, which is explicitly a different project.
+### IG-02 — Domain behavior readiness
+`state machines → invariants → concurrency → money/time/document correctness`
 
-## 4. Claude autonomy model
+### IG-03 — Cross-context behavior readiness
+`lead → qualification → visit → opportunity → offer → reservation → contract → payment/collection`
 
-### A0 — execute
+### IG-04 — Experience readiness
+Role/task UX, responsive behavior, RTL/LTR, accessibility, permission-aware states and design traceability.
 
-Claude acts without founder approval for reversible, contract-complete, testable implementation details.
+### IG-05 — Integration readiness
+Provider-neutral connectors, credentials, webhook verification, replay protection, reconciliation and failure handling.
 
-### A1 — execute + micro-ADR
+### IG-06 — Intelligence readiness
+AI recommendations and governed tool execution only after core authorization/data boundaries are proven and the AI task is explicitly authorized.
 
-Claude chooses among technical alternatives when business semantics do not change and records the decision.
+### IG-07 — Scale/reliability readiness
+Performance budgets, queues/projections/caching where justified, cost controls, SLOs, recovery evidence and operational readiness.
 
-### A2 — founder decision
+These are **implementation controls**, not architecture gates.
 
-Stop for business/legal/financial semantics, tenant/data ownership, canonical events/contexts, material provider commitments, privileged AI authority, production-data transformations, or irreversible migrations.
+## 6. Task-scoped readiness
 
-### A3 — prohibited
+A slice is implementation-ready only when:
 
-No production reset, destructive migration without approval, force push, security bypass, secret exposure, RLS weakening, or contract rewriting to fit code.
-
-## 5. Implementation gate sequence
-
-### GATE-00 — Reality
-
-`Repo → branch → platform identity → environment → database → migrations → backup/restore → evidence`
-
-### GATE-01 — Kernel
-
-`Identity → tenant → authorization → command boundary → validation → transaction → audit → idempotency → outbox/inbox`
-
-### GATE-02 — Domain
-
-`State machines → invariants → concurrency → money/time/document correctness`
-
-### GATE-03 — Cross-domain
-
-`Lead → qualification → visit → opportunity → offer → reservation → contract → payment/collection`
-
-### GATE-04 — Experience
-
-Role/task UX, Figma traceability, responsive behavior, RTL/LTR, accessibility and permission-aware states.
-
-### GATE-05 — Integrations
-
-Provider-neutral connectors, OAuth/credentials, webhook verification, replay protection, reconciliation and failure queues.
-
-### GATE-06 — Intelligence
-
-AI recommendations and governed tool execution after core authorization/data boundaries are proven.
-
-### GATE-07 — Scale/reliability
-
-Performance budgets, queues, projections, caching, load shedding, cost controls, SLOs and recovery drills.
-
-## 6. Current foundation priorities
-
-1. Verify the actual Supabase/Vercel identity for `As`.
-2. Perform read-only production/development reality inspection against the verified platform.
-3. Reconcile canonical schema/contracts with real schema before designing migrations.
-4. Close B.4 legal state graph.
-5. Close remaining B.2/B.3/B.5/B.6/B.7/B.8/B.9/B.11 policy predicates.
-6. Complete command ↔ permission ↔ ABAC ↔ state edge ↔ event traceability.
-7. Close critical invariant/security/tenant-negative test contracts.
-8. Turn the dependency graph into implementation-ready task packets.
-9. Open the first executable vertical slice when its gate is actually green.
-
-## 7. Definition of implementation readiness
-
-The foundation is ready for Claude to implement a task when:
-
-- authoritative contract exists;
-- repository/platform reality is known;
-- task dependencies are resolved;
+- the authoritative architecture is known;
+- the relevant Engineering Conference gates are GREEN;
+- contracts exist;
+- dependencies are resolved;
 - command/state/permission/event mappings are explicit;
 - invariants and concurrency hazards have verification methods;
 - migration impact is known and safe;
 - positive and negative tests are defined;
-- rollback/forward-fix path is known;
-- no A2/A3 decision is hidden inside the task.
+- rollback/forward-fix is known;
+- no founder/legal/financial/security decision is hidden inside the task.
 
-This does **not** require the entire ASAS product to be fully specified before any code can ever be written. Readiness is task-scoped and dependency-aware.
-
-## 8. Golden implementation pattern
-
-Every business mutation should follow:
+## 7. Golden mutation pattern
 
 `Command → Identity → Tenant → Authorization → Idempotency → Validation → Invariant → Transaction → State transition → Audit + Outbox → Response`
 
-External side effects occur after durable internal state and are protected by idempotency/retry/reconciliation semantics.
+External side effects occur only after durable internal state and require idempotency, retry and reconciliation semantics where applicable.
 
-## 9. Database doctrine
+## 8. Database doctrine
 
-- Existing production reality is authoritative for existing data.
-- Canonical contracts are authoritative for the target model.
+- Existing brownfield reality is authoritative for existing data.
+- Target contracts are authoritative for desired behavior.
 - Extend; never casually rewrite.
-- Use expand/contract migrations for live evolution.
+- Use controlled expand/contract evolution for live systems.
 - Never use production reset or uncontrolled `db push`.
-- Never delete real business records to repair application logic.
+- Never delete business records to repair application logic.
 - Posted financial truth is immutable; corrections are compensating entries.
-- Verify migrations with actual queries and evidence.
+- Verify migrations with actual evidence.
 
-## 10. Claude operating loop
+## 9. Agent autonomy
 
-`Locate → Load → Inspect → Research → Model → Plan → Build → Attack → Verify → Record → Integrate → Continue`
+Agents may execute reversible, contract-complete, testable implementation details within an authorized task.
 
-The loop must be autonomous after the relevant gate is open.
+They must stop for business/legal/financial semantics, tenant/data ownership, canonical context ownership, privileged AI authority, destructive production operations, irreversible migrations or security exceptions.
 
-## 11. Stop-line conditions
+## 10. Verification
 
-Stop immediately and surface evidence for:
+A task is complete only when the named acceptance evidence exists and passes, applicable controls are GREEN, the evidence record is delivered where required, and the diff remains inside the authorized blast radius.
 
-- production reality contradicting a canonical contract;
-- undefined business/legal/financial semantics;
-- missing canonical event/permission/context required for a feature;
-- unsafe cross-tenant access;
-- duplicate reservation/payment side effects;
-- accounting imbalance;
-- unsafe migration;
-- unverifiable backup/recovery boundary;
-- provider trust or webhook authenticity not established;
-- AI authorization/data-egress bypass;
-- material security weakening.
+Do not claim checks were executed when they were not.
 
-## 12. Founder decision boundary
+## 11. Relationship to the Engineering Conference
 
-Founder control is preserved over the business, not over every coding detail.
+```text
+ENGINEERING CONFERENCE
+GATE-00 → GATE-01 → GATE-02 → GATE-03 → GATE-04 → GATE-05 → GATE-06 → GATE-07
+                                      ↓
+                         bounded implementation slice
+                                      ↓
+                         IG-00 → IG-07 as applicable
+                                      ↓
+                                Codex execution
+```
 
-Claude should not ask the founder whether to:
-
-- write a normal test;
-- fix a type error;
-- refactor safely;
-- implement a registered component;
-- add loading/error/empty states;
-- improve accessibility;
-- add observability;
-- fix a defect inside the approved contract;
-- choose a reversible technical implementation under A1.
-
-Claude should ask when the choice changes what ASAS means, owns, promises, charges, records, exposes, or authorizes.
-
-## 13. Current status
-
-**Foundation direction: CORRECTED.**
-
-**Canonical repository: VERIFIED.**
-
-**Wrong-project contamination: IDENTIFIED AND CORRECTED in durable state.**
-
-**Actual platform identity: BLOCKED / NOT VERIFIED.**
-
-**Application implementation: waiting only on the relevant implementation gates, not on documentation perfection.**
-
-**Next action: GATE-00 platform identity and reality reconciliation.**
+This ordering is mandatory. Implementation readiness cannot pull architecture work forward, and an implementation control cannot override a canonical architecture decision.
