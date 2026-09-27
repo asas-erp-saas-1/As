@@ -1,7 +1,7 @@
 # ASAS Canonical Artifact Register
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.6
+Version: 1.7
 Date: 2026-09-27
 
 ## Purpose
@@ -35,7 +35,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | A4/A6 | YES | Agent operating model |
 | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | A4/A6 | YES | AI engineering operating context |
 | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | A6 | YES | Consolidated architecture-engineering truth/routing resource |
-| `docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md` | A6 | YES | V3 engineering master/control companion; governs engineering integration of V3 without silently replacing substantive source architecture |
+| `docs/architecture/ASAS-ARCHITECTURE-V3.md` | A1 architecture source | YES when V3 is referenced | Architecture reference; does not create a parallel engineering-control route |
 | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | A1 candidate | YES | Desired architecture; unresolved items remain blocked |
 | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | A4/A6 | YES | Ordered engineering route |
 | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | A4 | YES | Skill routing and capability catalog |
@@ -53,17 +53,18 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md` | A6 / canonical decision workstream | ACTIVE | Orchestrates research, decisions, ADR/contracts, verification and checkpoints; does not replace source authority |
 | `docs/architecture/ASAS-PLATFORM-ENGINEERING-TRACK-2026.md` | A6 | ACTIVE | Execution/control track from reality lock through evidence |
 | `docs/architecture/ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md` | A6 | ACTIVE | Cross-workstream engineering control board |
-| `docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md` | A6 | INSTALLED / ACTIVE | V3 engineering-control companion; serial gate semantics, V3 reconciliation, evidence, agent routing and implementation authorization |
 | `docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md` | A4 | ACTIVE / HIGHEST PRIORITY | Foundation gate sequencing |
 | `docs/architecture/task-packets/ASAS-TASK-H0-GATE-01-CANONICAL-ARTIFACT-CONVERGENCE-2026-09-26.md` | A4 | OPEN / EVIDENCE-GATED | GATE-01 convergence task |
+
+The previously created `ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md` is **REVERTED / REMOVED**. It is not a canonical artifact and must not be recreated as a parallel V3 control layer without an explicit future decision.
 
 ## Platform identity and brownfield evidence
 
 | Artifact | Authority | Current state | Rule |
 |---|---|---|---|
-| `config/platform-identity.json` | A2 control configuration | FAIL-CLOSED / RUNTIME MAPPING UNVERIFIED | Machine-readable identity candidates; never by itself proof of production mapping |
-| `scripts/verify-platform-identity.sh` | A4 technical guard | PRESENT | Fails closed on missing/mismatched identity inputs; no runtime mutation |
-| `docs/architecture/reconciliation/ASAS-GATE-00-PLATFORM-IDENTITY-EVIDENCE-2026-09-26.md` | A5 | PARTIAL | Evidence for GATE-00; not an implementation contract |
+| `config/platform-identity.json` | A2 control configuration | FAIL-CLOSED / VERCEL RUNTIME MAPPING OPEN | Machine-readable identity; Supabase project ref is pinned to `oliiumegstqujwexikhr` |
+| `scripts/verify-platform-identity.sh` | A4 technical guard | PRESENT / SUPABASE REF PINNED | Fails closed on missing/mismatched identity inputs; no runtime mutation |
+| `docs/architecture/reconciliation/ASAS-GATE-00-PLATFORM-IDENTITY-EVIDENCE-2026-09-26.md` | A5 | PARTIAL | Supabase identity is runtime-verified; Vercel production mapping remains open |
 | `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` | A5 | OPEN / PARTIAL | Vercel/environment mapping evidence |
 | `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` | A5 | ACTIVE | Observed repository/runtime reality |
 | `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` | A5/A6 | ACTIVE | Reconciliation control; does not override runtime truth |
