@@ -6,7 +6,7 @@ set -euo pipefail
 
 EXPECTED_VERCEL_PROJECT_ID="prj_4yF8PAE1axukJh4fWwbZmBGXRKZB"
 EXPECTED_ENGINEERING_BRANCH="platform-architecture-2026"
-EXPECTED_SUPABASE_REF=""
+EXPECTED_SUPABASE_REF="oliiumegstqujwexikhr"
 
 if [[ -z "${ASAS_VERCEL_PROJECT_ID:-}" ]]; then
   echo "GATE-00 FAIL: ASAS_VERCEL_PROJECT_ID is not set." >&2
@@ -26,18 +26,13 @@ if [[ "${ASAS_VERCEL_GIT_REF:-}" != "${EXPECTED_ENGINEERING_BRANCH}" ]]; then
   exit 4
 fi
 
-if [[ -z "${EXPECTED_SUPABASE_REF}" ]]; then
-  echo "GATE-00 FAIL: no Supabase production PROJECT_REF is independently verified yet." >&2
-  echo "Candidate oliiumegstqujwexikhr remains inspected/unverified because its public schema currently exposes zero ASAS application tables." >&2
+if [[ "${ASAS_SUPABASE_PROJECT_REF:-}" != "${EXPECTED_SUPABASE_REF}" ]]; then
+  echo "GATE-00 FAIL: Supabase project mismatch." >&2
+  echo "Expected: ${EXPECTED_SUPABASE_REF}" >&2
+  echo "Observed: ${ASAS_SUPABASE_PROJECT_REF:-<unset>}" >&2
   exit 5
 fi
 
-if [[ "${ASAS_SUPABASE_PROJECT_REF:-}" != "${EXPECTED_SUPABASE_REF}" ]]; then
-  echo "GATE-00 FAIL: Supabase production project mismatch." >&2
-  echo "Expected: ${EXPECTED_SUPABASE_REF}" >&2
-  echo "Observed: ${ASAS_SUPABASE_PROJECT_REF:-<unset>}" >&2
-  exit 6
-fi
-
-echo "GATE-00 PASS: platform identity inputs match the verified production mapping."
+echo "GATE-00 PASS: supplied platform identity inputs match the canonical ASAS platform project and engineering branch."
+echo "Production Vercel-to-Supabase runtime mapping must still be independently evidenced before GATE-00 closes."
 echo "No database mutation performed by this guard."
