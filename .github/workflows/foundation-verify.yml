@@ -2,9 +2,9 @@ name: Foundation Verify
 
 on:
   pull_request:
-    branches: [main]
+    branches: ['platform-architecture-2026']
   push:
-    branches: [main, 'foundation/**', 'platform-architecture-2026']
+    branches: ['platform-architecture-2026']
 
 permissions:
   contents: read
@@ -23,12 +23,14 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Verify required foundation files
+      - name: Verify required foundation and conference control files
         shell: bash
         run: |
           set -euo pipefail
           required=(
             AGENTS.md
+            docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+            docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md
             docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
             docs/handoff/CURRENT-SESSION-STATE.md
             docs/handoff/CODEX-START-HERE.md
@@ -64,6 +66,7 @@ jobs:
           set -euo pipefail
           skills=(
             asas-engineering
+            asas-conference-engineering
             asas-repository-forensics
             asas-architecture-governance
             asas-domain-contracts
@@ -100,13 +103,22 @@ jobs:
             needle="${check#*|}"
             if ! grep -Fq -- "$needle" "$file"; then
               echo "MISSING ROUTING EVIDENCE: $file -> $needle"
-              echo "--- relevant file content ---"
               sed -n '1,220p' "$file"
               exit 1
             fi
             echo "ROUTING OK: $file -> $needle"
           done
           echo 'Codex entrypoint and routing references are present.'
+
+      - name: Verify single engineering conference route
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md' docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
+          grep -Fq 'GATE-00 → GATE-01 → GATE-02 → GATE-03 → GATE-04 → GATE-05 → GATE-06 → GATE-07' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          grep -Fq 'C01–C22' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          grep -Fq 'IG-*' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          echo 'Single engineering conference route is present.'
 
       - name: Reject wrong-project references in executable/configuration surfaces
         shell: bash
@@ -145,8 +157,9 @@ jobs:
         run: |
           set -euo pipefail
           matches=$(git grep -n 'docs/handoff/SESSION_STATE.md' -- \
-            ':!docs/**' \
-            ':!.github/workflows/foundation-verify.yml' || true)
+            ':!docs/handoff/SESSION_STATE.md' \
+            ':!.git/**' \
+            || true)
           if [[ -n "$matches" ]]; then
             echo "$matches"
             echo 'ERROR: active repository artifacts must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
