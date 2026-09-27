@@ -2,8 +2,8 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.5.7  
-**Effective date:** 2026-09-24  
+**Version:** 1.6.0  
+**Effective date:** 2026-09-27  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
 **Role:** Single consolidation and routing resource for architecture engineering
@@ -34,7 +34,8 @@ For material architecture questions, the operating method is research-first:
 | Role | Canonical resource | Current state |
 |---|---|---|
 | Product requirements | `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` | PROPOSED v0.2.0 / FOUNDER REVIEW REQUIRED |
-| Architecture target | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 |
+| Architecture target | `docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md` | INSTALLED v3.1 engineering master; substantive V3 source remains authoritative for architecture content |
+| Legacy architecture blueprint | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 / provenance-supporting; not a competing V3 authority |
 | Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + amendments |
 | AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + amendments |
 | Execution path | `docs/handoff/ASAS-MASTER-EXECUTION-PATH.md` | CANONICAL v2.0.1 + amendments |
@@ -115,7 +116,7 @@ These are observations, not quotas and not runtime proof. The repository separat
 
 ## 7 — Architecture authority
 
-Current target contexts:
+V3 engineering baseline currently defines the target contexts:
 `Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
 
 The historical 15-module proposal is implementation evidence, not a competing bounded-context architecture.
@@ -125,7 +126,7 @@ The historical 15-module proposal is implementation evidence, not a competing bo
 Scheduling remains unresolved:
 `C2-002 = FOUNDER-DECISION-REQUIRED`.
 
-The historical `foundation/reconcile-context-map-v2` branch was re-inspected. Its 15-module candidate map and ADR-0001 remain explicitly proposed and awaiting founder acceptance. The historical `foundation/source-authority-ledger-v1` independently records that the exact approved Phase 1.5 Domain Model v2 and Context Map v2 are still unlocated. Therefore the final bounded-context authority remains OPEN / CONFLICT.
+The historical `foundation/reconcile-context-map-v2` branch was re-inspected. Its 15-module candidate map and ADR-0001 remain explicitly proposed and awaiting founder acceptance. The final bounded-context authority is therefore now governed by the installed V3 engineering master while any remaining historical context-map conflict stays recorded until the relevant C-track reconciliation closes it.
 
 ## 8 — Current contract state
 
@@ -178,100 +179,47 @@ Current source-supported/target invariants include:
 5. One active Reservation winner per Unit under concurrency.
 6. Contract requires an approved Reservation.
 7. Governed Track A collection is milestone-gated according to source rules; legal applicability requires qualified legal verification.
-8. Money uses explicit currency and integer minor units where applicable.
-9. Posted financial facts are immutable and corrected through reversal/new facts.
-10. Balanced double-entry posting applies where ledger functionality is authorized.
-11. Durable domain events use transactional publication semantics; outbox is the default architecture.
-12. Event consumers are idempotent.
-13. AI cannot widen caller authority.
 
-Runtime enforcement is unverified unless objective evidence exists.
+## 10 — V3 engineering-control installation
 
-## 10 — State machine doctrine
+The V3 engineering control companion is:
 
-`Command → Authentication → Authorization → Tenant Scope → Aggregate Load → Preconditions → Legal Transition → Invariants → State Mutation → Audit → Domain Event → Transactional Outbox → Commit`
+`docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md`
 
-No arbitrary governed status setter.
+It defines the engineering integration of the substantive V3 architecture with the single Engineering Conference route:
 
-## 11 — Event doctrine
+`GATE-00 → GATE-01 → GATE-02 → GATE-03 → GATE-04 → GATE-05 → GATE-06 → GATE-07`
 
-The registered 103-event / 11-group count is source observation. The current `registers/events.json` identifies 11 emission modules and explicitly states that emission groups are routing lanes rather than bounded contexts. Each implemented event requires producer, aggregate, trigger, version, tenant, causation/correlation, consumers, idempotency, ordering, replay, DLQ, retention, reconciliation and evidence.
+C01–C22 remain research/decision inputs to this single route, not parallel authorization paths.
 
-## 12 — Permission / tenancy
+Implementation readiness, when a separate vocabulary is needed, uses `IG-00 → IG-07` and must not redefine the Engineering Conference gates.
 
-Target hierarchy:
-`Platform → Organization → Workspace → Branch → Membership → Role → Permission → Scope → Resource`.
+The V3 engineering master does not authorize global implementation. GATE-07 is slice-specific and remains unavailable until its predecessor evidence is closed.
 
-Deny-by-default, server-side authorization and tenant-aware data access are mandatory. RLS is defense-in-depth, not the only authorization layer.
+## 11 — Current foundation status
 
-The current permission register directly contains commercial permissions including `offer.create`, `offer.discount.request`, and `reservation.create`. Their presence proves registered authorization vocabulary only; it does not prove runtime enforcement.
+GATE-00 remains OPEN. Critical control-plane evidence includes repository identity, sole engineering line, Supabase identity, Vercel identity/mapping, environment semantics, context loading, and repository governance. The current GitHub branch is recorded as unprotected with required checks off; this remains a governance blocker until independently resolved or explicitly accepted with compensating controls.
 
-## 13 — Database truth
+GATE-01 and later gates remain pending/not authorized according to the current session checkpoint.
 
-Separate:
-`Target Domain Model ≠ Schema Contract ≠ Prisma Contract ≠ Migration History ≠ Live Database`.
+## 12 — Source-of-truth rules
 
-Required reconciliation:
-`Introspect → Capture → Drift Inventory → Compare → ADR → Migration Plan → Backup Verification → Rehearsal → Forward-only Migration → Verification → Evidence`.
+The V3 engineering master is an A6 engineering-control artifact. It may consolidate and route V3 work, but it cannot silently override an A1 founder/product decision, a canonical domain contract, or verified runtime reality.
 
-The active procedure for promotion of an executable target schema is:
-`docs/architecture/reconciliation/ASAS-SCHEMA-CONTRACT-PROMOTION-PROTOCOL-2026.md`.
+One concept → one canonical owner.
 
-No destructive production shortcut.
+A source disagreement must be recorded as a conflict and reconciled; it must not be hidden by editing the register.
 
-## 14 — AI safety
+## 13 — Verification discipline
 
-`Intent → Proposal → Tool Request → Policy → Caller Authorization → Domain/Application Service → Transaction → Audit → Event`.
+A claim is `VERIFIED` only when objective evidence exists.
 
-AI is not direct database authority and cannot bypass domain authorization.
+The following are explicitly distinct:
 
-## 15 — Design
+- documentation vs runtime evidence;
+- test definition vs test result;
+- migration file vs live database state;
+- integration existence vs successful production mapping;
+- repository CI check vs live agent execution evidence.
 
-Design precedes page implementation:
-`tokens → primitives → components → patterns → templates → surfaces`.
-
-Figma MCP/Code Connect are optional design-to-code mechanisms; accepted design contracts, not Figma itself, authorize implementation.
-
-Arabic/RTL, French/English, accessibility, responsive behavior, mobile operations and failure states are engineering requirements.
-
-## 16 — Task truth
-
-Implementation packets must identify scope, owner, dependencies, contracts, commands, permissions, invariants, states, events, concurrency, security, UX, tests, DoD, evidence and authorization. Missing information remains open.
-
-## 17 — Current gates
-
-- G0 repository identity/checkpoint — GREEN
-- G1 authority/control-plane — GREEN (repository-side CI verified; live Codex execution evidence pending)
-- G2 domain/module authority — AMBER / Scheduling open
-- G3 aggregate/invariant contracts — AMBER / Building Q1 active
-- G4 executable invariants — AMBER / implementation absent
-- G5 state machines — AMBER / runtime absent
-- G6 events — BLOCKED
-- G7 implementation authorization — BLOCKED
-- G8 tenancy/RLS — BLOCKED
-- G9 security evidence — AMBER
-- G10 live DB/schema — BLOCKED
-- G11 CI — GREEN at verified run `35879311233`; latest HEAD requires retest after contract/checkpoint updates
-- G12 observability/recovery — BLOCKED
-- G13 backup/restore evidence — BLOCKED
-- G14 AI tooling evidence — AMBER / repository skills verified; live Codex discovery not executed
-- G15 implementation authorization — BLOCKED
-
-## 18 — Current roadmap
-
-`H0 Reality → H1 Architecture → H2 Domain Contracts → H3 Events/Integrations → H4 Security/Tenancy → H5 Data → H6 Design → H7 Platform Foundation → H8 Vertical Slice → H9 Operations/Recovery → H10 Runtime Integration → H11 Production`.
-
-## 19 — Evidence placement and research records
-
-Evidence register:
-`docs/architecture/reconciliation/ASAS-EVIDENCE-PLACEMENT-REGISTER-2026-09-24.md`
-
-Q1 research record:
-`docs/architecture/research/ASAS-RESEARCH-RECORD-Q1-BUILDING-2026-09-24.md`
-
-Q1 forensic trace plan:
-`docs/architecture/reconciliation/ASAS-Q1-BUILDING-PERSISTENCE-TRACE-PLAN-2026.md`
-
-These artifacts record source provenance, independent engineering research, alternatives, current conclusions and explicit non-authorizations.
-
-External research currently incorporated includes DDD bounded-context/aggregate guidance, PostgreSQL identity/constraint/locking guidance and OWASP ASVS security-verification guidance. These sources support engineering method and verification design; they do not prove ASAS runtime state.
+This separation is mandatory for all future Continue/resume cycles.
