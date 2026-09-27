@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT
-**Version:** 3.50
+**Version:** 3.51
 **Date:** 2026-09-27
 **Repository:** `asas-erp-saas-1/As`
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-04`
+`ARCH-2026-EC-SINGLE-PATH-CONSTITUTION-05`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
 
@@ -22,7 +22,7 @@ The primary workstream is the Engineering Conference and platform architecture. 
 
 - GitHub repository: `asas-erp-saas-1/As` — verified.
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — founder operating decision and branch verified.
-- Current branch HEAD: `e4e9e85999202529001e058bac00464904556933` — verified after the latest conference-governance correction.
+- Current branch HEAD: `e7625b9b3e1a24a1af0ed03292c686f378ee8ae0` — verified after the governance-correction record was added.
 - GitHub default branch: `main` — verified. This is repository metadata only and does **not** authorize engineering work on `main`.
 - `platform-architecture-2026` protection: currently observed **disabled/unprotected** via GitHub API; this is a repository-control gap and is not treated as authorization to use another engineering branch.
 - No engineering task is to be performed on `main` or any other branch. Historical branches may be inspected only for provenance/evidence when necessary.
@@ -119,6 +119,7 @@ No secret values are recorded in repository context.
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
 - Engineering gap completion: `architecture/governance/ASAS-ENGINEERING-GAP-COMPLETION-PROTOCOL-2026.md`
 - Single-path amendment: `docs/architecture/amendments/ASAS-SINGLE-ENGINEERING-PATH-AMENDMENT-007-2026-09-27.md`
+- Governance correction record: `docs/architecture/amendments/ASAS-ENGINEERING-CONFERENCE-GOVERNANCE-CORRECTION-008-2026-09-27.md`
 - Conference agent skill: `.agents/skills/asas-conference-engineering/SKILL.md`
 - Foundation/implementation controls: `docs/governance/FOUNDATION-GATE-REGISTER.md` — F0…F13
 - Implementation readiness: `docs/handoff/CLAUDE-IMPLEMENTATION-READINESS-MASTER.md` — downstream IG-00…IG-07
