@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ARCH-SOT-2026-001  
 **Status:** CANONICAL CONSOLIDATION / PROPOSED — EVIDENCE-BACKED  
-**Version:** 1.6.0  
+**Version:** 1.6.1  
 **Effective date:** 2026-09-27  
 **Owner:** Lead Architecture / Founder authority boundary  
 **Branch:** `platform-architecture-2026`  
@@ -34,7 +34,7 @@ For material architecture questions, the operating method is research-first:
 | Role | Canonical resource | Current state |
 |---|---|---|
 | Product requirements | `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` | PROPOSED v0.2.0 / FOUNDER REVIEW REQUIRED |
-| Architecture target | `docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md` | INSTALLED v3.1 engineering master; substantive V3 source remains authoritative for architecture content |
+| Architecture source | `docs/architecture/ASAS-ARCHITECTURE-V3.md` | V3 architecture reference; substantive architecture authority when installed and verified |
 | Legacy architecture blueprint | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 / provenance-supporting; not a competing V3 authority |
 | Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + amendments |
 | AI operating context | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | ACTIVE v2.0.2 + amendments |
@@ -116,7 +116,12 @@ These are observations, not quotas and not runtime proof. The repository separat
 
 ## 7 — Architecture authority
 
-V3 engineering baseline currently defines the target contexts:
+The Architecture V3 source is the architecture reference:
+`docs/architecture/ASAS-ARCHITECTURE-V3.md`
+
+The V3 source is not a separate engineering-control route and does not replace the Engineering Conference Constitution, Gate Model, execution path, canonical registers or current checkpoint.
+
+V3 target contexts are:
 `Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
 
 The historical 15-module proposal is implementation evidence, not a competing bounded-context architecture.
@@ -126,7 +131,7 @@ The historical 15-module proposal is implementation evidence, not a competing bo
 Scheduling remains unresolved:
 `C2-002 = FOUNDER-DECISION-REQUIRED`.
 
-The historical `foundation/reconcile-context-map-v2` branch was re-inspected. Its 15-module candidate map and ADR-0001 remain explicitly proposed and awaiting founder acceptance. The final bounded-context authority is therefore now governed by the installed V3 engineering master while any remaining historical context-map conflict stays recorded until the relevant C-track reconciliation closes it.
+The historical `foundation/reconcile-context-map-v2` branch was re-inspected. Its 15-module candidate map and ADR-0001 remain explicitly proposed and awaiting founder acceptance. Remaining historical context-map conflict stays recorded until the relevant C-track reconciliation closes it.
 
 ## 8 — Current contract state
 
@@ -180,31 +185,29 @@ Current source-supported/target invariants include:
 6. Contract requires an approved Reservation.
 7. Governed Track A collection is milestone-gated according to source rules; legal applicability requires qualified legal verification.
 
-## 10 — V3 engineering-control installation
+## 10 — Engineering Conference control
 
-The V3 engineering control companion is:
-
-`docs/architecture/ASAS-ARCHITECTURE-V3-ENGINEERING-MASTER-2026.md`
-
-It defines the engineering integration of the substantive V3 architecture with the single Engineering Conference route:
+The Engineering Conference is the sole engineering-control route:
 
 `GATE-00 → GATE-01 → GATE-02 → GATE-03 → GATE-04 → GATE-05 → GATE-06 → GATE-07`
 
 C01–C22 remain research/decision inputs to this single route, not parallel authorization paths.
 
-Implementation readiness, when a separate vocabulary is needed, uses `IG-00 → IG-07` and must not redefine the Engineering Conference gates.
+GATE-07 remains slice-specific and unavailable until predecessor evidence is closed.
 
-The V3 engineering master does not authorize global implementation. GATE-07 is slice-specific and remains unavailable until its predecessor evidence is closed.
+Architecture V3 is referenced by the conference as an architecture source. It does not create a second control plane.
 
 ## 11 — Current foundation status
 
-GATE-00 remains OPEN. Critical control-plane evidence includes repository identity, sole engineering line, Supabase identity, Vercel identity/mapping, environment semantics, context loading, and repository governance. The current GitHub branch is recorded as unprotected with required checks off; this remains a governance blocker until independently resolved or explicitly accepted with compensating controls.
+GATE-00 remains OPEN, but the previous platform-identity ambiguity is resolved for the Supabase project itself: `oliiumegstqujwexikhr` has been read-only inspected through the connected Supabase integration and is the canonical ASAS platform project for this conference.
+
+Remaining GATE-00 control work concerns Vercel production branch/deployment/environment mapping and repository protection/control evidence. No uncertainty remains about which Supabase project the founder designated for the ASAS platform track.
 
 GATE-01 and later gates remain pending/not authorized according to the current session checkpoint.
 
 ## 12 — Source-of-truth rules
 
-The V3 engineering master is an A6 engineering-control artifact. It may consolidate and route V3 work, but it cannot silently override an A1 founder/product decision, a canonical domain contract, or verified runtime reality.
+The Architecture V3 source is an architecture reference. Engineering Conference artifacts own engineering sequencing, gate state, evidence rules and implementation authorization.
 
 One concept → one canonical owner.
 
