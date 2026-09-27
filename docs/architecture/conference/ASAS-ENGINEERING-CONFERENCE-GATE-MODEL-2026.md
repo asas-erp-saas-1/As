@@ -2,7 +2,7 @@
 
 **Artifact ID:** ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026-001  
 **Status:** CANONICAL / ACTIVE  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Date:** 2026-09-27  
 **Branch:** `platform-architecture-2026`
 
@@ -20,11 +20,13 @@ The conference follows:
 
 `QUESTION → RESEARCH → ALTERNATIVES → FAILURE MODES → ASAS SOURCE RECONCILIATION → DECISION → ADR/CONTRACT/REGISTER → ADVERSARIAL REVIEW → VERIFICATION → CHECKPOINT`
 
-Architecture review is continuous and milestone-based. Hard-to-reverse decisions receive deeper review before implementation. This follows the principle that architecture reviews should happen early enough to avoid one-way-door mistakes and should continue as the system evolves. AWS describes the same continuous-review principle in its Well-Architected review process. 
+Architecture review is continuous and milestone-based. Hard-to-reverse decisions receive deeper review before implementation. This follows the principle that architecture reviews should happen early enough to avoid one-way-door mistakes and should continue as the system evolves.
 
-For AI-assisted engineering, agents must operate with explicit tools, instructions, guardrails, bounded authority, evidence requirements and human intervention for high-risk or irreversible actions. OpenAI's current agent guidance treats guardrails and human intervention as first-class reliability controls. GitHub's current agentic-workflow guidance likewise emphasizes read-only defaults, declared safe outputs and human review before write/merge actions.
+For AI-assisted engineering, agents must operate with explicit tools, instructions, guardrails, bounded authority, evidence requirements and human intervention for high-risk or irreversible actions.
 
 ## 2. Gate model
+
+There are **eight serial Engineering Conference gates: GATE-00 through GATE-07**. The numbering is intentional: GATE-00 is the identity/control-plane foundation, followed by seven architecture-engineering gates. No gate is skipped, merged by convenience, or closed merely because a downstream implementation artifact exists.
 
 ### GATE-00 — Platform Identity & Control Plane
 
@@ -198,7 +200,7 @@ Covers:
 - evidence placement;
 - change/reopen protocol.
 
-AI agents must receive role, scope, inputs, tools, guardrails, stop conditions and verification obligations. High-risk or irreversible actions require human control. This is consistent with current agent engineering guidance from OpenAI and GitHub.
+AI agents must receive role, scope, inputs, tools, guardrails, stop conditions and verification obligations. High-risk or irreversible actions require human control.
 
 **Exit:** the engineering system can detect architectural drift and prevent unauthorized implementation from becoming release reality.
 
@@ -269,7 +271,7 @@ Limited research may be performed ahead of a gate, but closure is sequential. No
 
 ## 5. Relationship to C01–C06 and later conferences
 
-C01–C22 are **domain/platform conference tracks**, not substitutes for the seven engineering gates.
+C01–C22 are **domain/platform conference tracks**, not substitutes for the eight Engineering Conference gates.
 
 A C-track may advance semantically only where its dependencies permit, but its output must pass through the relevant gates before implementation.
 
