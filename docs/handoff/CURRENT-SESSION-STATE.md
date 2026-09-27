@@ -1,15 +1,51 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + PLATFORM ENGINEERING CHECKPOINT  
-**Version:** 3.42  
+**Version:** 3.43  
 **Date:** 2026-09-27  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
-`ARCH-2026-H1.26-DEEP-C03-C06-REVIEW-SERIAL-GATE-EXECUTION-01`
+`ARCH-2026-H1.26-DEEP-C03-C06-REVIEW-SERIAL-GATE-EXECUTION-02`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as the active checkpoint.
+
+## New GATE-00 runtime evidence
+A founder-provided Vercel Environments screenshot has now established that the Vercel project serving `asasplatform2026.vercel.app` currently has:
+
+- Production → Git branch `main`
+- Preview → all unassigned Git branches
+- Development → CLI
+
+This is a verified current Vercel configuration observation. It supersedes the prior uncertainty about the configured Production Branch.
+
+The ASAS engineering conference policy remains:
+
+- `platform-architecture-2026` is the sole active engineering work line.
+- We do not create another engineering branch merely to satisfy environment naming.
+- Therefore the current Vercel Production Branch = `main` is a configuration mismatch with the active engineering line.
+
+**GATE-00 remains OPEN.** The next required platform action is to configure/verify Vercel Production against `platform-architecture-2026`, then verify the resulting Production deployment commit and its Supabase project mapping. No schema work is authorized before this is closed.
+
+## Supabase runtime identity currently in evidence
+
+- Display path: `Asas platforme 2026 / Asas platform`
+- Project URL: `https://oliiumegstqujwexikhr.supabase.co`
+- Project reference: `oliiumegstqujwexikhr`
+- Read-only introspection previously observed zero ASAS application tables in `public` and zero Supabase migrations.
+
+This project is an inspected candidate. Its identity is established, but its role as the application's verified Production database remains subject to end-to-end runtime mapping evidence.
+
+## Vercel ↔ Supabase integration evidence
+
+Founder reports that the paid Supabase/Vercel integration automatically synchronizes the Supabase/Postgres variable family, including Postgres URLs, Supabase URL/keys, JWT secret, and public Supabase URL/key variables. Secret values are never stored in repository context.
+
+The canonical mapping rule is:
+
+`Vercel deployment environment → exact Supabase project/branch identity → exact PROJECT_REF → evidence`
+
+`Vercel Environment ≠ Supabase Environment`.
 
 ## Deep-review authority
 C03–C06 semantic baselines have been re-audited. The active rule is now: **semantic baseline does not equal conference completion**. Full closure requires cross-context reconciliation, canonical contracts, registry IDs, invariant-to-test mapping, data-impact analysis, security/tenant review, current external authority where applicable, rejected alternatives, checkpoint evidence, and applicable foundation gates. The detailed record is `docs/architecture/reconciliation/ASAS-C03-C06-DEEP-CLOSURE-DECISIONS-2026-09-27.md`.
@@ -106,7 +142,7 @@ C03–C06 semantic baselines have been re-audited. The active rule is now: **sem
 - Brownfield task packet: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-03-04-BROWNFIELD-PERSISTENCE-RECONCILIATION-2026-09-26.md` — OPEN / EVIDENCE-GATED.
 - Runtime identity task: `docs/architecture/task-packets/ASAS-TASK-Q1-SCHEMA-05-RUNTIME-IDENTITY-AND-READONLY-INTROSPECTION-2026-09-26.md` — EXECUTED READ-ONLY / PARTIAL.
 - GATE-00 evidence: `docs/architecture/reconciliation/ASAS-GATE-00-PLATFORM-IDENTITY-EVIDENCE-2026-09-26.md` — PARTIAL / EVIDENCE BASELINE.
-- GATE-00 Vercel reconciliation: `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` — OPEN / PARTIAL.
+- GATE-00 Vercel reconciliation: `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` — OPEN / BRANCH MISMATCH EVIDENCED.
 - H0 foundation convergence packet: `docs/architecture/task-packets/ASAS-TASK-H0-FOUNDATION-GATE-CONVERGENCE-2026-09-26.md` — ACTIVE / HIGHEST PRIORITY.
 - GATE-01 canonical artifact task: `docs/architecture/task-packets/ASAS-TASK-H0-GATE-01-CANONICAL-ARTIFACT-CONVERGENCE-2026-09-26.md` — OPEN / EVIDENCE-GATED.
 - Platform Engineering control board: `docs/architecture/ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md` — ACTIVE.
@@ -118,118 +154,9 @@ C03–C06 semantic baselines have been re-audited. The active rule is now: **sem
 Founder/product decisions define desired future behavior. Research discovers omissions/conflicts but does not override founder decisions. Brownfield repository/runtime facts remain authoritative for what is already implemented.
 
 ## Platform Engineering track
-`REALITY LOCK → REPOSITORY FORENSICS → RUNTIME IDENTITY → FOUNDATION GATES → DRIFT MATRIX → CONTRACT RECONCILIATION → IMPLEMENTATION PLAN → CODE → TEST / RED TEAM → EVIDENCE → CONVERGENCE → CHECKPOINT`
 
-The Platform Engineering track is active. Conference decisions are semantic authority; platform engineering converts them into evidence-backed implementation only after foundation reality is established.
+**Current active gate:** `GATE-00` — Platform Identity.
 
-## Foundation execution state
-```text
-GATE-00 Platform Identity        PARTIAL / REPOSITORY + SUPABASE CANDIDATE VERIFIED / VERCEL+ENV MAPPING OPEN
-GATE-01 Canonical Artifacts      PARTIAL / REGISTER RECONCILED / READINESS OWNERSHIP STILL OPEN
-GATE-02 Architecture Conflict    OPEN / RECONCILIATION REQUIRED
-GATE-03 Database Reality         OPEN / RUNTIME TARGET CONFIRMATION REQUIRED
-GATE-04 Security Baseline        BLOCKED BY GATE-03
-GATE-05 Architecture CI          PARTIAL / EVIDENCE REQUIRED
-GATE-06 Repository Hygiene       PARTIAL / RECONCILIATION REQUIRED
-GATE-07 Implementation Auth      BLOCKED
-```
+**Gate policy:** execute gates serially; do not start GATE-01 until GATE-00 is GREEN. Do not return to C03–C06 for implementation work until the foundation gate sequence is completed, except for evidence reconciliation required by the current gate.
 
-## GATE-00 runtime evidence
-
-The connected Supabase account exposes:
-- `asas-web-site` — ref `xwokfufeeodobkuaxvgx`.
-- `Asas platform` — ref `oliiumegstqujwexikhr`, `eu-west-1`, PostgreSQL 17.6, GA.
-
-Read-only introspection was executed against `oliiumegstqujwexikhr`.
-
-Observed:
-- database `postgres`;
-- PostgreSQL 17.6;
-- cluster `main`;
-- zero base tables in `public`;
-- no ASAS application tables observed in `public`;
-- only Supabase-managed `auth`, `realtime`, `storage`, and `vault` tables observed outside system schemas;
-- Supabase migration inventory returned zero migrations.
-
-This is strong evidence that the inspected `Asas platform` project is currently a platform shell rather than an already-populated ASAS application database. It does **not** prove that this project is the runtime target of every ASAS environment.
-
-Therefore:
-- source-package schema counts remain source-package evidence, not live schema proof;
-- `Asas platform` is the current inspected candidate;
-- Vercel/environment mapping and any other runtime target must be independently verified;
-- no production schema/RLS/reservation implementation is authorized.
-
-## Environment identity doctrine
-
-`Vercel Environment ≠ Supabase Environment`.
-
-Vercel currently distinguishes Production, Preview and Development, with custom environments available where supported. Supabase uses Projects and database branches as the relevant runtime/isolation units; the names do not automatically map one-to-one.
-
-ASAS canonical mapping:
-
-```text
-Vercel Production
-    ↓
-Production deployment from configured Production Branch
-    ↓
-EXACT VERIFIED Supabase Production Project
-    ↓
-PROJECT_REF
-```
-
-`platform-architecture-2026` remains the sole active ASAS engineering work line. We do not create a staging branch merely to satisfy environment naming. Preview/non-production remote verification, when required, must use an explicitly isolated Supabase project/branch and must never point schema mutation or destructive testing at Production. Development is local-first; any remote development project requires a separately verified PROJECT_REF.
-
-For every candidate Supabase target, verify `Settings → General → Project Settings → Reference ID`, confirm the dashboard URL, then use `Connect` for the actual database connection configuration. Never identify a target by display name alone.
-
-For Vercel, verify `Settings → Git`, `Deployments`, `Settings → Environments`, and `Settings → Environment Variables`; compare non-secret Supabase URL/reference information with the intended PROJECT_REF and redeploy after variable changes.
-
-A technical guard must eventually compare the verified Production `PROJECT_REF` against one repository-controlled non-secret identity declaration and hard-fail before schema-touching work on mismatch.
-
-## Conference state
-```text
-C01     CLOSED
-C02     SEMANTICALLY CLOSED / downstream refinement remains explicit
-C03.1-12 CLOSED
-C03.13  OPEN — BROWNFIELD RECONCILIATION
-C04     SEMANTIC BASELINE / CONVERGENCE OPEN — DEEP REVIEW COMPLETED
-C05     SEMANTIC BASELINE / CONVERGENCE OPEN — DEEP REVIEW COMPLETED
-C06     SEMANTIC BASELINE / CONVERGENCE OPEN — DEEP REVIEW COMPLETED
-C07     OPEN
-C08     OPEN
-C09     OPEN
-C10     OPEN
-C11     SEMANTIC OWNERSHIP CLOSED / CONTRACT OPEN
-C12     OPEN
-C13     OPEN
-C14     OPEN
-C15     OPEN
-```
-
-## Evidence blockers
-- exact Vercel project identity;
-- configured Production Branch;
-- Production deployment commit/environment;
-- exact Production Supabase `PROJECT_REF` mapping;
-- canonical runtime/database identity across all ASAS environments;
-- canonical artifact convergence, including readiness-document ownership;
-- architecture conflict reconciliation;
-- RLS/runtime security evidence;
-- Building/Floor/Unit/Listing/Reservation persistence representation if another runtime DB exists;
-- exact Project Inventory Access mapping;
-- Owner/Mandate semantics and permissions;
-- Listing lifecycle/state-machine registration;
-- publication/channel contract;
-- state-machine register reconciliation;
-- reservation concurrency mechanism;
-- price/version persistence and overlap enforcement;
-- ancillary inventory / Inventory Batch persistence representation;
-- Finance executable semantics and country/accounting authority;
-- event implementation evidence.
-
-## Serial execution rule
-
-**No parallel gate hopping.** Work proceeds one gate at a time. Complete the active gate's evidence and closure criteria before advancing. The required order is:
-
-`GATE-00 → GATE-01 → GATE-02 → GATE-03 → GATE-04 → GATE-05 → GATE-06 → GATE-07`
-
-Only after GATE-00..06 are green may implementation begin. Domain conference work may be documented only when it does not bypass the active gate; schema, RLS, migrations, production mutations and implementation are prohibited until authorization.
+**Immediate next action:** correct/verify Vercel Production Branch so that the Production deployment follows `platform-architecture-2026`, then verify deployment commit and Supabase `PROJECT_REF` mapping. No secret values are to be recorded in repository context.
