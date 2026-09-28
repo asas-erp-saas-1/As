@@ -2,6 +2,8 @@
 
 **Repository:** `asas-erp-saas-1/As`
 **Status:** Active foundation control
+**Canonical closure control:** `docs/governance/ENGINEERING-CLOSURE-MATRIX-2026.md`
+**Domain register:** `docs/architecture/DOMAIN-ENGINEERING-TRACK-REGISTER-2026.md`
 
 | Gate | Purpose | Required before | Current state |
 |---|---|---|---|
@@ -12,7 +14,7 @@
 | G4 | CI/verification baseline | Merge of implementation | PARTIAL |
 | G5 | Security/tenant baseline | Auth/data implementation | OPEN |
 | G6 | Database/migration safety baseline | Schema/migration implementation | BLOCKED until G1 |
-| G7 | Claude autonomy authorization | A1/A2/A3 execution | NOT AUTHORIZED |
+| G7 | Claude/agent autonomy authorization | A1/A2/A3 execution | NOT AUTHORIZED |
 
 ## Gate semantics
 
@@ -21,6 +23,10 @@
 - **OPEN:** work remains; no downstream authorization follows.
 - **BLOCKED:** a prerequisite outside the current task must be resolved first.
 - **NOT AUTHORIZED:** the gate may be technically ready but the relevant execution authority has not been granted.
+
+## Control-plane / domain-plane rule
+
+The gates control engineering authorization. The nine Architecture V3 bounded contexts are engineered through the domain track register. Domain design/reconciliation may proceed while implementation remains unauthorized. Gate status must never be inferred from domain progress, and domain closure must never be inferred from a green foundation gate.
 
 ## Non-negotiable rule
 
