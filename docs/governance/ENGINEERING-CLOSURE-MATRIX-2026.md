@@ -37,7 +37,7 @@ A gate answers whether a class of architectural work is sufficiently engineered 
 | Gate | Canonical question | Current state | Closure evidence class |
 |---|---|---|---|
 | GATE-00 | Platform Identity & Control Plane — what exactly are we engineering, where is it controlled, and which artifacts have authority? | OPEN | repository + Vercel + Supabase + control-plane evidence |
-| GATE-01 | Architecture Authority & Canonical Baseline — what architecture is authoritative after reconciliation? | PENDING | canonical artifact reconciliation |
+| GATE-01 | Architecture Authority & Canonical Baseline — what architecture is authoritative after reconciliation? | IN PROGRESS | canonical artifact + provenance reconciliation |
 | GATE-02 | Domain Topology, Ontology & Context Boundaries — what does the platform mean and where do concepts belong? | PENDING | ontology/context/domain evidence |
 | GATE-03 | Contracts, Invariants & Behavioral Architecture — what behavior is allowed, forbidden, stateful, transactional and auditable? | PENDING | contract/invariant/state/event evidence |
 | GATE-04 | Platform Kernel, Security, Tenancy & Data Governance Architecture — how is truth protected, isolated and governed? | PENDING | security/tenancy/data-governance evidence |
@@ -82,22 +82,35 @@ Architecture V3 defines nine canonical bounded contexts:
 
 Shared platform capabilities include Identity, Tenancy, Authorization, Audit, Events, Workflow, Scheduling, Search, Media, Notifications, Integrations, Configuration, AI, SaaS Control and Developer Platform. These are not additional bounded contexts under the current V3 decision.
 
-## 6. C01–C22 are preserved
+## 6. C01–C22 preservation and recovered provenance
 
 `C01–C22` are canonical **Engineering Conference domain/platform tracks** according to the active Gate Model. They are not replaced by D01–D09 and must not be deleted or renumbered.
 
-However, the repository evidence currently available to this matrix does not provide a single canonical machine-readable mapping of every C label to a V3 context/capability. Therefore:
+The repository now contains explicit provenance for C03–C06. Therefore the previous blanket statement that every C label was unmapped is superseded.
 
-- C labels remain authoritative as conference-track IDs.
-- D01–D09 are engineering work packages for the nine V3 bounded contexts.
-- A C-track may cover one domain, a cross-domain concern, or a platform capability.
-- A C-track may produce outputs consumed by multiple gates.
-- No C-number → domain mapping is to be invented from memory.
-- The exact C01–C22 mapping is a reconciliation work item under GATE-02.
+| Track | Canonical routing established from repository evidence | Current semantic state |
+|---|---|---|
+| C01 | Not yet recovered from a single canonical track artifact | MAPPING OPEN |
+| C02 | Inventory authority / attribution / competition concerns; cross-domain inventory-commercial track | ACTIVE / full closure mapping OPEN |
+| C03 | Real Estate domain semantics / resource model | SEMANTIC BASELINE; C03.13 OPEN |
+| C04 | CRM | SEMANTIC BASELINE; registry/evidence convergence OPEN |
+| C05 | Sales | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED |
+| C06 | Finance | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; statutory/accounting convergence OPEN |
+| C07–C14 | Not yet recovered from a single canonical track artifact | MAPPING OPEN |
+| C15 | Security/Tenancy is a downstream dependency in C04/C05, but canonical C15 track artifact not yet recovered | MAPPING OPEN |
+| C16–C22 | Not yet recovered from a single canonical track artifact | MAPPING OPEN |
+
+### Provenance basis
+
+- `docs/architecture/reconciliation/ASAS-C03-C06-DEEP-CLOSURE-DECISIONS-2026-09-27.md` explicitly scopes C03 = Real Estate, C04 = CRM, C05 = Sales and C06 = Finance.
+- `docs/architecture/task-packets/ASAS-TASK-C04-CRM-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C04 as CRM.
+- `docs/architecture/task-packets/ASAS-TASK-C05-SALES-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C05 as Sales and semantic closure / implementation blocked.
+- `docs/architecture/task-packets/ASAS-TASK-C06-FINANCE-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C06 as Finance and semantic closure / implementation blocked.
+- C03 research, resource-model contract and checkpoint artifacts provide explicit C03 provenance.
 
 Known explicit routing rule from the canonical Gate Model:
 
-`C01/C02/C03… → GATE-02 topology → GATE-03 contracts → GATE-04 security/data governance → GATE-07 slice authorization`, with additional GATE-05/GATE-06 review where applicable.
+`C-track finding → GATE-02 topology → GATE-03 contracts → GATE-04 security/data governance → GATE-07 slice authorization`, with additional GATE-05/GATE-06 review where applicable.
 
 ## 7. Domain closure criteria
 
