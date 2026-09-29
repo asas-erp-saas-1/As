@@ -19,6 +19,8 @@ Founder/Product Constitution → Architecture/V3 → Contracts → Registers →
 
 For brownfield facts, runtime/database evidence is authoritative. Documentation must not be rewritten merely to match an unexpected runtime fact.
 
+The repository-forensics skill additionally requires explicit separation of current repository reality, desired architecture, historical source, runtime reality, and inference; closure requires root cause, corrective action, reference reconciliation, verification and evidence. The conference-engineering skill requires one authority chain, source reconciliation, contradiction analysis, downstream impact recording and a checkpoint for every material conference task.
+
 ## 3. Current canonical semantic baseline
 
 ### 3.1 Development hierarchy
@@ -91,13 +93,50 @@ C03 closure requires explicit review of:
 - V3 establishes the nine canonical bounded contexts; Core is distinct from CRM, Sales, Inventory and Finance.
 - The supplied BRD records two business tracks: own-project development and resale/brokerage, with a shared property concept and different transaction paths.
 - The supplied enterprise domain model identifies Project, Unit and Listing as separate aggregates and records Reservation/Contract dependencies and payment-milestone constraints.
+- The C03 resource-model contract is explicit that Unit is the canonical saleable/managed inventory resource, Apartment is a Unit type, Building/Floor are optional structural levels, Listing is distinct from Unit, authority dimensions are independent, and target persistence shapes remain non-assumptions until semantic and brownfield reconciliation is complete.
+- The repository contains dedicated C03 contracts, decisions, research records, reservation consistency artifacts, pricing/versioning artifacts, project/building/unit/listing contracts, and the historical C03 persistence trace. This means C03 is not missing engineering work; the work is distributed across canonical artifacts and must now be reconciled rather than recreated.
+- Current branch inventory is architecture/governance focused. The complete recursive tree for `platform-architecture-2026` contains `schema/asas-contracts.index.json` but no current-branch migration directory, executable ORM schema, or application persistence implementation path visible in the complete tree inventory. The schema index is therefore a contract observation, not executable persistence.
+- Repository commit search returned an explicit governance/workspace commit stating that no application code, schema, migrations or production-data changes were introduced at that stage. This is historical evidence, not proof that no deleted historical artifact ever existed.
+- GitHub branch inspection currently exposes `platform-architecture-2026` as the engineering branch. Historical evidence must not be treated as an alternative work path.
 - Current Supabase runtime inspection established that the project exists and is healthy, while the `public` schema currently contains no ASAS application tables. This is runtime evidence only; it is not authorization to create schema.
 
-## 7. Known open items
+## 7. C03.13 forensic result — current stage
+
+### Finding F-03.13-01 — Current repository persistence surface
+
+**Classification:** REPOSITORY-VERIFIED.
+
+The current branch contains a schema observation index and extensive architecture contracts/research, but no executable ASAS application migration/ORM path in the complete current tree inventory. Therefore the current repository does not provide an executable persistence implementation that can be promoted into C03.
+
+### Finding F-03.13-02 — Historical persistence is not proven absent
+
+**Classification:** OPEN / SEARCH-BOUNDARY.
+
+The existing Real Estate Persistence Trace correctly warned that connector search did not constitute byte-level historical proof. Current commit search also found only governance/workspace history for schema/migration terms in the accessible result set. This does not establish that no deleted or unreachable historical persistence artifact ever existed. We must not convert a search limitation into a negative fact.
+
+### Finding F-03.13-03 — Candidate source-package schema is not current persistence
+
+**Classification:** SOURCE-VERIFIED.
+
+The historical v1.6.1 source-package extraction records 59 models, 17 enums, 56 indexes, 22 unique constraints and 19 relation annotations, with Building-adjacent references through objects such as FloorPlan, Apartment, ProjectMilestone and LedgerEntry. Those observations are candidate-source evidence only and do not prove a current Building table, current production schema or required aggregate boundary.
+
+### Finding F-03.13-04 — Building semantics remain intentionally unresolved at persistence level
+
+**Classification:** OPEN.
+
+The existing trace leaves Building aggregate identity, natural key, Project→Building cardinality, Building→Unit cardinality, tenant ownership, rename/move/archive semantics and milestone ownership unresolved. The C03 contract likewise explicitly withholds authorization for a Building table shape. This remains correct.
+
+### Finding F-03.13-05 — C03 already has substantial contract coverage
+
+**Classification:** REPOSITORY-VERIFIED / SEMANTIC DIRECTION CLOSED.
+
+The branch contains dedicated contracts/ADRs for Project, Building, Floor, Unit, Listing, Unit state, Pricing, Inventory lifecycle, Reservation consistency, multi-actor authority and related cross-domain boundaries. Therefore the remaining work is not to invent more baseline semantics; it is to reconcile those artifacts, identify contradictions/gaps, and prove closure.
+
+## 8. Known open items
 
 ### C03.13 — Brownfield persistence reconciliation
 
-OPEN. Repository history and current repository artifacts must be traced for any executable persistence, migrations, repositories, fixtures, tests, or historical schema claims relating to Project, Building, Floor, Unit, Listing, Mandate, Reservation, Hold, Offer, Price, InventoryBatch and Outbox.
+OPEN. Current repository persistence surface is now better established, but historical/deleted persistence provenance is not conclusively exhausted. The remaining question is provenance completeness, not permission to design a schema.
 
 ### Cross-domain dependencies
 
@@ -111,7 +150,7 @@ OPEN where the supplied research marks legal questions as requiring validation. 
 
 RECONCILED AT ARCHITECTURAL LEVEL but historical artifacts must remain traceable. V3 states that nine bounded contexts are canonical; platform capabilities are not automatically additional bounded contexts.
 
-## 8. Closure rule
+## 9. Closure rule
 
 C03 may become CLOSED only when:
 
@@ -126,12 +165,12 @@ C03 may become CLOSED only when:
 - an independent red-team review finds no material unresolved contradiction;
 - implementation remains blocked unless the required foundation gates authorize it.
 
-## 9. Current decision
+## 10. Current decision
 
 **C03 remains OPEN.**
 
 No schema creation, migration, implementation authorization, or premature closure is permitted from this document.
 
-## 10. Next single step
+## 11. Next single step
 
-Perform the repository forensic trace for C03.13 and reconcile the findings against V3, the enterprise domain model, contracts/registers, and runtime evidence. Only after that review may the next C03 closure dimension be processed.
+Proceed to the next C03 forensic slice: reconcile the existing Project/Building/Floor/Unit contracts and ADRs against the C03 resource-model contract and the registered state machines, identifying any semantic contradiction or duplicate authority. Do not create schema. Only after this slice is reconciled may the next C03 closure dimension be processed.
