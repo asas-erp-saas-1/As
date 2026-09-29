@@ -1,0 +1,58 @@
+{
+  "version": 6,
+  "status": "PARTIAL",
+  "repository": {
+    "owner": "asas-erp-saas-1",
+    "name": "As",
+    "defaultBranchObserved": "main",
+    "conferenceBranch": "platform-architecture-2026",
+    "engineeringWorkLinePolicy": "platform-architecture-2026 is the sole active engineering work line"
+  },
+  "vercel": {
+    "projectIdObserved": "prj_LeReY3oaR4sarJrcA3pYuhiigQ9",
+    "projectNameObserved": "asas_platform_2026",
+    "primaryDomainDeclaredByFounder": "asasplatform2026.vercel.app",
+    "productionBranchObserved": "main",
+    "requiredProductionBranch": "platform-architecture-2026",
+    "previewScopeObserved": "all-unassigned-git-branches",
+    "developmentScopeObserved": "cli",
+    "verificationStatus": "OPEN_PRODUCTION_BRANCH_MISMATCH"
+  },
+  "supabase": {
+    "projectRef": "oliiumegstqujwexikhr",
+    "projectName": "Asas platform",
+    "projectContainer": "Asas platforme 2026",
+    "projectUrl": "https://oliiumegstqujwexikhr.supabase.co",
+    "identityStatus": "RUNTIME_VERIFIED_CANONICAL_ASAS_PLATFORM_PROJECT",
+    "integrationStatus": "FOUNDER_DECLARED_GITHUB_VERCEL_SUPABASE_INTEGRATION",
+    "schemaStatus": "NOT_IN_SCOPE_DURING_PLATFORM_ENGINEERING_CONFERENCE",
+    "productionRuntimeVerification": "SUPABASE_PROJECT_ID_VERIFIED;_VERCEL_RUNTIME_MAPPING_PENDING"
+  },
+  "productionRuntime": {
+    "verificationStatus": "PARTIAL",
+    "requiredEvidence": [
+      "Vercel Production Branch = platform-architecture-2026",
+      "fresh Production deployment from that branch",
+      "Production deployment commit SHA",
+      "Production environment variable scope",
+      "Production Supabase PROJECT_REF matches oliiumegstqujwexikhr",
+      "runtime database identity confirmation when brownfield/runtime verification becomes applicable"
+    ]
+  },
+  "engineeringConferenceScope": {
+    "currentPhase": "PLATFORM_ARCHITECTURE_AND_FOUNDATION_GOVERNANCE",
+    "implementationAuthorized": false,
+    "schemaDesignAuthorized": false,
+    "databaseCreationAuthorized": false,
+    "migrationAuthorized": false,
+    "codeFeatureImplementationAuthorized": false,
+    "identity_and_governance_work_authorized": true
+  },
+  "technicalGuard": {
+    "failClosed": true,
+    "schemaTouchingWorkAuthorized": false,
+    "productionMutationAuthorized": false
+  },
+  "secretsPolicy": "Never store secret values in repository context; record only variable names, scope, provenance, and verification status.",
+  "correctionNote": "The Vercel project list was re-verified and the canonical project is asas_platform_2026 with project ID prj_LeReY3oaR4sarJrcA3pYuhiigQ9. The founder-supplied production URL is recorded separately as declared identity. The previously recorded prj_4yF8PAE1axukJh4fWwbZmBGXRKZB was stale historical identity data and is no longer canonical. Supabase identity oliiumegstqujwexikhr remains runtime-verified. Production branch/runtime linkage remains open until directly evidenced."
+}

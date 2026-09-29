@@ -1,7 +1,8 @@
 # ASAS Blueprint → Claude Execution Contract
 
 Status: CANONICAL FOUNDATION CONTROL
-Version: 1.0
+Version: 1.1
+Date: 2026-09-20
 
 ## Purpose
 
@@ -19,15 +20,15 @@ This foundation phase does not authorize application code, database schema creat
 
 ## Required machine-readable shadows
 
-- `registers/tasks.json` — all 114 playbook tasks plus recurring rituals.
-- `registers/events.json` — 103 domain events and envelope contract.
-- `registers/permissions.csv` — 50 permission keys × 8 personas.
-- `registers/state-machines.json` — 11 lifecycle state machines.
-- `schema/asas-contracts.prisma` — 59 models + 16 enums + Appendix W indexes.
-- `design/design-tokens.json` — compiled design-system tokens.
-- `design/component-inventory.md` — 42 component contracts.
+- `registers/tasks.json` — intended full task shadow; source reconciliation currently records 119 top-level phase tasks / 121 task IDs including nested records, while the older declaration was 114. Do not treat 114 as current truth.
+- `registers/events.json` — 103 domain events and envelope contract; derived shadow present.
+- `registers/permissions.csv` — 50 permission keys × 8 personas; derived shadow present.
+- `registers/state-machines.json` — 11 lifecycle state machines; derived shadow present.
+- `schema/asas-contracts.prisma` — intended executable schema shadow; not yet present because source reconciliation is incomplete. Historical planning count was 59 models + 16 enums + 15 indexes; verified source observation is 59 models + 17 enums + 56 `@@index` declarations.
+- `design/design-tokens.json` — derived design-system tokens; present.
+- `design/component-inventory.md` — component contracts; present.
 
-If a declared artifact is absent or incomplete, record `PENDING_EXTRACT` or `UNVERIFIED`; never fabricate its contents.
+If a declared artifact is absent or incomplete, record `PENDING_EXTRACT`, `OPEN`, `BLOCKED` or `UNVERIFIED`; never fabricate its contents.
 
 ## Required provenance fields
 
@@ -47,7 +48,7 @@ Before canonical promotion, validate:
 
 1. permanent IDs are unique;
 2. all references resolve;
-3. declared counts match extracted records;
+3. declared counts are reconciled with extracted records;
 4. enum vocabulary is exact where the Blueprint requires exactness;
 5. state transitions agree with Appendix B;
 6. event names/payload envelopes agree with Appendix C;

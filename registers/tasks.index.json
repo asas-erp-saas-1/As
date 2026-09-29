@@ -5,9 +5,13 @@
   "declared_total": 114,
   "observed_source_task_entries": 119,
   "recurring_intelligence_rituals": 3,
+  "observed_task_id_total": 119,
+  "observed_t_identifier_total_including_rituals": 122,
+  "observed_nested_task_records": 0,
   "discrepancy": {"status":"OPEN","delta":5,"rule":"Do not silently choose a normative count; reconcile against the authoritative source/edition before promotion."},
   "phase_counts": {"P":9,"0":11,"1":9,"1.5":2,"2":14,"3":12,"4":9,"5":8,"6":12,"7":10,"8":5,"9":7,"10":5,"11":6},
   "source_ids_verified_by_parse": true,
+  "structural_parse_2026_09_20": {"status":"VERIFIED","unique_task_ids":119,"unique_recurring_ritual_ids":3,"duplicate_task_ids":0,"duplicate_recurring_ids":0,"nested_task_ids":0,"source_file":"ASAS-AI-PACKAGE-v1.6.1/02-HANDOFF/registers/tasks.json"},
   "canonicalization_requirements": ["Every task keeps its permanent source ID.","Task contract and acceptance evidence are preserved.","No task is implementation-ready until dependencies and applicable gates are resolved.","Counts, IDs, references, and provenance validate against the source.","Observed-vs-declared count discrepancies require explicit reconciliation."],
   "source_artifact": "ASAS-AI-PACKAGE-v1.6.1/02-HANDOFF/registers/tasks.json",
   "repository_copy_policy": "Do not blindly copy the package; derived shards/manifests must remain provenance-tagged and non-ambiguous."
