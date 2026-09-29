@@ -16,7 +16,17 @@ One C-track → one canonical directory:
 
 All future C-track reconciliation records, closure reviews, evidence indexes, red-team reviews, and track-specific decision summaries belong under the corresponding directory.
 
-Existing historical artifacts are **not** moved automatically. They remain in place until their canonical ownership is explicitly reconciled. Each C directory must contain an index that points to the authoritative existing artifacts and identifies historical/provenance material separately.
+Existing historical artifacts are **not moved automatically**. They remain in place until their canonical ownership is explicitly reconciled. Each C directory must contain an index that points to the authoritative existing artifacts and identifies historical/provenance material separately.
+
+## Source corpus
+
+The historical/current filename-identified C-track corpus is collected through:
+
+`docs/architecture/reconciliation/phase-c/Source/`
+
+The Source Corpus is an **index/discovery layer**, not a second source of truth. It groups C01–C22 material by track while preserving each artifact's existing canonical owner until an explicit ownership/move decision is made. This avoids creating two competing copies of a contract, ADR, research record, checkpoint, or gate artifact.
+
+See [`Source/README.md`](Source/README.md) for the branch inventory and provenance map.
 
 ## Required C-track lifecycle
 
