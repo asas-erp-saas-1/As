@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.62  
+**Version:** 3.63  
 **Date:** 2026-09-29  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-GATE-01-C03-DEEP-CLOSURE-REVIEW-01`
+`ARCH-2026-GATE-01-C03-C03.13-FORENSIC-RECONCILIATION-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as active state.
 
@@ -55,7 +55,7 @@ The previous founder requirement is preserved explicitly: C03 and every other C-
 ## Gate state
 
 - GATE-00: **OPEN** — repository/branch identity, current Vercel project identity and Supabase project identity are verified. Final production environment mapping, exact production deployment chain, repository protection evidence and final context/source-of-truth reconciliation remain open.
-- GATE-01: **IN PROGRESS** — canonical ownership model corrected; C03–C06 provenance recovered; runtime persistence evidence recorded; C-track deep-closure protocol now locked; C03 deep-closure review is now formally recorded as an active evidence-driven stage.
+- GATE-01: **IN PROGRESS** — canonical ownership model corrected; C03–C06 provenance recovered; runtime persistence evidence recorded; C-track deep-closure protocol locked; C03 deep-closure review is active; C03.13 forensic reconciliation has established current repository persistence reality but historical/deleted persistence provenance remains a bounded open question.
 - GATE-02: PENDING.
 - GATE-03: **OPENING EVIDENCE / NOT CLOSED** — Supabase runtime identity and empty application-schema state are runtime-verified; repository-side schema/ORM/migration reconciliation remains required.
 - GATE-04: PENDING.
@@ -76,7 +76,7 @@ C06 → Finance
 
 Current C03–C06 status:
 
-- **C03 Real Estate:** OPEN by explicit founder policy. Semantic baseline retained; C03.13 remains OPEN. Runtime persistence identity is verified and the connected application's `public` schema is empty; repository/schema reconciliation remains OPEN. A dedicated C03 Deep Closure Review record is now canonical for this stage. The full C03 deep-closure review is NOT complete and must not be represented as complete.
+- **C03 Real Estate:** OPEN by explicit founder policy. Semantic baseline retained; C03.13 remains OPEN. Runtime persistence identity is verified and the connected application's `public` schema is empty. The current branch is architecture/governance focused and its complete tree contains the schema observation index but no executable ASAS migration/ORM application persistence path. This establishes current repository reality, but does not prove historical/deleted persistence absence. The dedicated C03 Deep Closure Review is canonical for this stage. Full C03 deep closure is NOT complete.
 - **C04 CRM:** semantic baseline established; registry/evidence convergence remains OPEN and is subject to the same deep-closure protocol.
 - **C05 Sales:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED. This is not final C-track closure until the deep-closure protocol's evidence and independent-review requirements are satisfied.
 - **C06 Finance:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; statutory/accounting/country-pack convergence remains OPEN and final deep closure remains subject to the protocol.
@@ -89,19 +89,19 @@ C03 must be worked as one track, one stage at a time.
 
 Current stage:
 
-`C03 → Deep forensic reconciliation → repository/historical persistence trace`
+`C03 → Deep forensic reconciliation → C03.13 persistence provenance → next semantic reconciliation`
 
 Canonical review record:
 
 `docs/architecture/reconciliation/C03-DEEP-CLOSURE-REVIEW-2026-09-29.md`
 
-Required next evidence includes repository-wide/current-branch and historical provenance for:
+C03.13 findings now locked:
 
-`Project | Building | Floor | Unit | Apartment | Property | Listing | Mandate | Reservation | Hold | Offer | Price | InventoryBatch | Outbox`
-
-and related IDs, migrations, ORM representations, repositories/query builders, API contracts, tests, fixtures and seeds.
-
-The trace must distinguish current-branch evidence from historical evidence and must not infer a target persistence shape from absence of current executable schema.
+- current-branch architecture tree contains `schema/asas-contracts.index.json` but no executable ASAS application migration/ORM path visible in the complete recursive tree;
+- source-package schema observations are not current persistence;
+- the repository contains substantial C03 contracts/ADRs/research and must be reconciled rather than recreated;
+- historical/deleted persistence absence is NOT proven;
+- Project/Building/Floor/Unit persistence identity and cardinality remain semantic/reconciliation questions, not schema authorization.
 
 No schema creation, migration, RLS implementation or feature code is authorized.
 
@@ -123,7 +123,7 @@ L0 Reality Lock
 → Evidence Lock
 ```
 
-Before unfamiliar work, load `docs/skills/INDEX.md` and the last three lessons from `docs/memory/lessons.md`. For external load-bearing facts, use primary current sources and record the research evidence. Every material claim must have an evidence classification. A previous assistant answer is not an authority.
+Before unfamiliar work, load the repository skill and conference-engineering skill, then the active control plane and relevant C-track artifacts. For external load-bearing facts, use primary current sources and record the research evidence. Every material claim must have an evidence classification. A previous assistant answer is not an authority.
 
 ## Canonical control plane
 
@@ -143,6 +143,8 @@ Before unfamiliar work, load `docs/skills/INDEX.md` and the last three lessons f
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
 - C-track deep closure protocol: `docs/governance/C-TRACK-DEEP-CLOSURE-PROTOCOL-2026.md`
 - C03 Deep Closure Review: `docs/architecture/reconciliation/C03-DEEP-CLOSURE-REVIEW-2026-09-29.md`
+- C03 Real Estate Resource Model Contract: `docs/architecture/contracts/ASAS-C03-REAL-ESTATE-RESOURCE-MODEL-CONTRACT-2026.md`
+- Real Estate Persistence Trace: `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`
 
 ## Implementation authorization
 
