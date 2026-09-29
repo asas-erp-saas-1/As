@@ -31,6 +31,9 @@ A gate answers whether a class of architectural work is sufficiently engineered 
 9. Cross-domain consequences must be reconciled before an implementation slice is authorized.
 10. Historical artifacts preserve provenance; they do not silently override the current canonical chain.
 11. Any material architecture change requires an ADR/amendment and affected-gate review.
+12. C-track deep-reconciliation records have one canonical workspace: `docs/architecture/reconciliation/phase-c/CNN/`.
+13. Existing historical C-track artifacts are not bulk-moved merely for cosmetic organization. They are indexed/reconciled first; relocation occurs only when canonical ownership is proven and the move does not destroy provenance or create duplicate authority.
+14. `C01` through `C22` must each have a stable directory, even when their exact scope is still `MAPPING OPEN`.
 
 ## 3. Canonical Engineering Conference gates
 
@@ -44,8 +47,6 @@ A gate answers whether a class of architectural work is sufficiently engineered 
 | GATE-05 | Experience, Integration & Operational Architecture — how does the architecture behave across users, integrations and operations? | PENDING | UX/integration/operations evidence |
 | GATE-06 | Engineering System, Verification & AI-Agent Governance — how is architectural drift prevented as humans and agents change the repository? | PENDING | CI/task/evidence/agent-governance evidence |
 | GATE-07 | Architecture Readiness & Slice-Specific Implementation Authorization — is a specific implementation slice bounded enough to execute without inventing semantics? | NOT AUTHORIZED | slice authorization record |
-
-**Important:** this matrix no longer uses the earlier, conflicting G0/G1 meaning where G1 meant Vercel/Supabase identity. The canonical gate model owns the GATE-00…GATE-07 semantics.
 
 ## 4. GATE-00 current evidence position
 
@@ -85,6 +86,38 @@ Shared platform capabilities include Identity, Tenancy, Authorization, Audit, Ev
 ## 6. C01–C22 preservation and recovered provenance
 
 `C01–C22` are canonical **Engineering Conference domain/platform tracks** according to the active Gate Model. They are not replaced by D01–D09 and must not be deleted or renumbered.
+
+### Canonical C-track filesystem
+
+Each track owns a stable reconciliation workspace:
+
+```text
+docs/architecture/reconciliation/phase-c/
+├── C01/
+├── C02/
+├── C03/
+├── C04/
+├── C05/
+├── C06/
+├── C07/
+├── C08/
+├── C09/
+├── C10/
+├── C11/
+├── C12/
+├── C13/
+├── C14/
+├── C15/
+├── C16/
+├── C17/
+├── C18/
+├── C19/
+├── C20/
+├── C21/
+└── C22/
+```
+
+`README.md` in each directory is the track routing/index. It must identify status, canonical artifacts, historical/provenance artifacts, open questions, evidence and closure state. This directory is organizational control; it does not imply that a track is closed or implementation-ready.
 
 The repository now contains explicit provenance for C03–C06. Therefore the previous blanket statement that every C label was unmapped is superseded.
 
