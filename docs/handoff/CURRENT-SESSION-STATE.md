@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.60  
+**Version:** 3.61  
 **Date:** 2026-09-29  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-GATE-01-C03.13-RUNTIME-PERSISTENCE-REALITY-01`
+`ARCH-2026-GATE-01-C03-DEEP-CLOSURE-PROTOCOL-LOCK-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as active state.
 
@@ -44,12 +44,20 @@ and:
 
 There are eight serial Engineering Conference gates, GATE-00 through GATE-07. Research may inspect later dependencies, but implementation may not be pulled forward.
 
+## C-track deep-closure rule
+
+`docs/governance/C-TRACK-DEEP-CLOSURE-PROTOCOL-2026.md` is now the canonical operating rule for C01–C22 deep closure.
+
+A C-track remains OPEN until semantic, contract, evidence, dependency, research-freshness and independent-review criteria are satisfied. `SEMANTICALLY CLOSED` and `IMPLEMENTATION BLOCKED` are not equivalent to final `CLOSED`.
+
+The previous founder requirement is preserved explicitly: C03 and every other C-track previously left open must be re-reviewed deeply rather than treated as closed because a prior version called it a baseline or semantic closure.
+
 ## Gate state
 
 - GATE-00: **OPEN** — repository/branch identity, current Vercel project identity and Supabase project identity are verified. Final production environment mapping, exact production deployment chain, repository protection evidence and final context/source-of-truth reconciliation remain open.
-- GATE-01: **IN PROGRESS** — canonical ownership model corrected; C03–C06 provenance recovered; runtime persistence evidence is now recorded. Repository-wide canonical reconciliation continues.
+- GATE-01: **IN PROGRESS** — canonical ownership model corrected; C03–C06 provenance recovered; runtime persistence evidence recorded; C-track deep-closure protocol now locked. Repository-wide canonical reconciliation continues.
 - GATE-02: PENDING.
-- GATE-03: **OPENING EVIDENCE / NOT CLOSED** — Supabase runtime identity and empty application-schema state are now runtime-verified; repository-side schema/ORM/migration reconciliation remains required.
+- GATE-03: **OPENING EVIDENCE / NOT CLOSED** — Supabase runtime identity and empty application-schema state are runtime-verified; repository-side schema/ORM/migration reconciliation remains required.
 - GATE-04: PENDING.
 - GATE-05: PENDING.
 - GATE-06: PENDING.
@@ -68,33 +76,50 @@ C06 → Finance
 
 Current C03–C06 status:
 
-- **C03 Real Estate:** semantic baseline retained; C03.13 remains OPEN. Runtime persistence identity is verified and the connected application's `public` schema is empty; repository/schema reconciliation remains OPEN.
-- **C04 CRM:** semantic baseline established; registry/evidence convergence remains OPEN.
-- **C05 Sales:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED. Semantic closure does not authorize implementation.
-- **C06 Finance:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; statutory/accounting/country-pack convergence remains OPEN.
+- **C03 Real Estate:** OPEN by policy. Semantic baseline retained; C03.13 remains OPEN. Runtime persistence identity is verified and the connected application's `public` schema is empty; repository/schema reconciliation remains OPEN. The full C03 deep-closure review is NOT complete and must not be represented as complete.
+- **C04 CRM:** semantic baseline established; registry/evidence convergence remains OPEN and is subject to the same deep-closure protocol.
+- **C05 Sales:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED. This is not final C-track closure until the deep-closure protocol's evidence and independent-review requirements are satisfied.
+- **C06 Finance:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; statutory/accounting/country-pack convergence remains OPEN and final deep closure remains subject to the protocol.
 
 D01–D09 remain V3 bounded-context work packages and do not replace C01–C22.
 
-## C03.13 runtime evidence
+## Current C03 work item
 
-Canonical evidence record:
+C03 must be worked as one track, one stage at a time.
 
-`docs/architecture/reconciliation/ASAS-C03.13-RUNTIME-PERSISTENCE-REALITY-2026-09-29.md`
+Current stage:
 
-Observed runtime facts:
+`C03 → Deep forensic reconciliation → repository/historical persistence trace`
+
+Required next evidence includes repository-wide/current-branch and historical provenance for:
+
+`Project | Building | Floor | Unit | Apartment | Property | Listing | Mandate | Reservation | Hold | Offer | Price | InventoryBatch | Outbox`
+
+and related IDs, migrations, ORM representations, repositories/query builders, API contracts, tests, fixtures and seeds.
+
+The trace must distinguish current-branch evidence from historical evidence and must not infer a target persistence shape from absence of current executable schema.
+
+No schema creation, migration, RLS implementation or feature code is authorized.
+
+## Required working method
+
+For each C-track and each deep-closure stage:
 
 ```text
-Supabase project: oliiumegstqujwexikhr
-PostgreSQL: 17.6
-public tables: 0
-public views: 0
+L0 Reality Lock
+→ L1 Locate
+→ L2 Load
+→ L3 Scope / Questions
+→ L4 Research & Verify
+→ L5 Model / Decide
+→ L6 Prove / Cross-check
+→ L6.5 Reconcile
+→ Independent Red Team
+→ Closure Review
+→ Evidence Lock
 ```
 
-Therefore the runtime currently cannot prove persistence for:
-
-`Project | Building | Floor | Unit | Apartment | Property | Listing | Mandate | Reservation | Hold | Offer | Price | InventoryBatch | Outbox`.
-
-The next C03.13 task is repository-side forensic inventory and reconciliation against this runtime fact. No schema creation is authorized.
+Before unfamiliar work, load `docs/skills/INDEX.md` and the last three lessons from `docs/memory/lessons.md`. For external load-bearing facts, use primary current sources and record the research evidence. Every material claim must have an evidence classification. A previous assistant answer is not an authority.
 
 ## Canonical control plane
 
@@ -112,6 +137,7 @@ The next C03.13 task is repository-side forensic inventory and reconciliation ag
 - Domain Engineering Track Register: `docs/architecture/DOMAIN-ENGINEERING-TRACK-REGISTER-2026.md`
 - Foundation Gate Matrix: `docs/governance/FOUNDATION-GATE-MATRIX.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
+- C-track deep closure protocol: `docs/governance/C-TRACK-DEEP-CLOSURE-PROTOCOL-2026.md`
 
 ## Implementation authorization
 
