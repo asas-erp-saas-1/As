@@ -182,36 +182,44 @@ They require their own contracts and verification but do not create additional b
 
 ## 4. C01–C22 reconciliation register
 
-The active Gate Model explicitly establishes `C01–C22` as Engineering Conference domain/platform tracks. The current repository snapshot does not provide a single canonical machine-readable mapping of every C label to D01–D09 or a platform capability.
+The active Gate Model establishes `C01–C22` as Engineering Conference domain/platform tracks. The repository now provides explicit canonical provenance for C03–C06, so those mappings are no longer unresolved:
 
-Therefore the authoritative interim register is:
-
-| Track | Canonical state | Mapping | Rule |
+| Track | Canonical routing established from repository evidence | Current semantic state | Gate route / dependency |
 |---|---|---|---|
-| C01 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C02 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C03 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C04 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C05 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C06 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C07 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C08 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C09 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C10 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C11 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C12 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C13 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C14 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C15 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C16 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C17 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C18 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C19 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C20 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C21 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
-| C22 | ACTIVE / MAPPING OPEN | UNRESOLVED | recover from canonical provenance; do not guess |
+| C01 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C02 | Inventory authority / attribution / competition concerns; cross-domain inventory-commercial track | ACTIVE / provenance established, full closure mapping still OPEN | GATE-02 → GATE-03 → GATE-04 → GATE-07 |
+| C03 | Real Estate domain semantics / resource model | SEMANTIC BASELINE; C03.13 OPEN | GATE-02 → GATE-03 → GATE-04 → GATE-07 |
+| C04 | CRM | SEMANTIC BASELINE; registry/evidence convergence OPEN | GATE-02 → GATE-03 → GATE-04 → GATE-07 |
+| C05 | Sales | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED | GATE-03/04/07 dependencies remain; no implementation authorization |
+| C06 | Finance | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; statutory/accounting convergence OPEN | GATE-03/04/07 dependencies remain; country/accounting authority required |
+| C07 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C08 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C09 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C10 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C11 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C12 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C13 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C14 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C15 | Security/Tenancy is referenced as a downstream dependency in C04/C05 but a canonical C15 track artifact has not yet been recovered | MAPPING OPEN | GATE-02 → GATE-04 |
+| C16 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C17 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C18 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C19 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C20 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C21 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C22 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
 
-The explicit example in the canonical Gate Model routes C-track findings through GATE-02 topology, GATE-03 contracts, GATE-04 security/data governance and GATE-07 slice authorization, with GATE-05/GATE-06 where applicable.
+### Provenance basis for the recovered C03–C06 mapping
+
+- `docs/architecture/reconciliation/ASAS-C03-C06-DEEP-CLOSURE-DECISIONS-2026-09-27.md` explicitly scopes C03 = Real Estate, C04 = CRM, C05 = Sales and C06 = Finance and records their second-pass semantic review.
+- `docs/architecture/task-packets/ASAS-TASK-C04-CRM-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C04 as the CRM engineering conference track.
+- `docs/architecture/task-packets/ASAS-TASK-C05-SALES-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C05 as Sales and records semantic closure with implementation blocked.
+- `docs/architecture/task-packets/ASAS-TASK-C06-FINANCE-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C06 as Finance and records semantic closure with implementation blocked.
+- `docs/architecture/contracts/ASAS-C03-REAL-ESTATE-RESOURCE-MODEL-CONTRACT-2026.md` and the C03 research records provide additional C03 provenance.
+
+### Important status rule
+
+`SEMANTICALLY CLOSED` means the conference semantic questions are sufficiently decided for that track's current scope. It does **not** mean the domain is implementation-ready. The Gate Model requires downstream contract, security/data-governance, verification and slice-authorization controls before implementation.
 
 ## 5. Cross-domain engineering sequence
 
@@ -254,7 +262,7 @@ Before a domain work package or C-track finding can be marked CLOSED, verify whe
 
 ## 7. Founder-decision boundary
 
-The conference may derive technical consequences, but founder/product semantics remain founder authority. The existing `C02-03-RESERVATION-COMMISSION-FOUNDER-DECISION-GATE-2026-09-25.md` is an example: engineering has derived technical conclusions while seven commercial questions remain explicitly reserved for founder decisions. No schema/RLS implementation is authorized by that decision gate alone.
+The conference may derive technical consequences, but founder/product semantics remain founder authority. The existing `C02-03-RESERVATION-COMMISSION-FOUNDER-DECISION-GATE-2026-09-25.md` is an example: engineering has derived technical conclusions while commercial questions remain explicitly reserved for founder decisions. No schema/RLS implementation is authorized by that decision gate alone.
 
 ## 8. Reconciliation method
 
