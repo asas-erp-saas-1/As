@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.57  
+**Version:** 3.58  
 **Date:** 2026-09-29  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-ENGINEERING-CONFERENCE-GATE-00-C03-TRACK-RECONCILIATION-01`
+`ARCH-2026-ENGINEERING-CONFERENCE-GATE-01-CANONICAL-ARTIFACT-RECONCILIATION-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as active state.
 
@@ -24,13 +24,13 @@ The primary workstream is the Engineering Conference and platform architecture. 
 - Sole active Engineering Conference / Platform Engineering work line: `platform-architecture-2026` — verified.
 - GitHub default branch: `main` — repository metadata only; it does not authorize engineering work on `main`.
 - No engineering task is to be performed on `main` or another branch. Historical branches may be inspected only for provenance/evidence when necessary.
-- Current conference checkpoint commit: `be970237074c0b606beabd0deba042994f98aa97` — this checkpoint was written to `platform-architecture-2026`.
+- Current conference checkpoint commit: `7e1b4c04a20ca428919714d25d055870aeeace72` — this checkpoint was written to `platform-architecture-2026`.
 - Vercel current project: `asas_platform_2026`, project ID `prj_LeReyL3oaR4sarJrcA3pYuhiigQ9` — verified through the connected Vercel project/deployment inspection.
-- Current Vercel deployment observed: deployment linked to GitHub ref `platform-architecture-2026` and commit `aa60971e3c76fc672bdbc5f32c6cc8ffb4f4a0dd` — verified. This proves branch/commit linkage for that deployment; it does not by itself prove that the deployment is the production deployment.
+- Current Vercel deployment observed: deployment linked to GitHub ref `platform-architecture-2026` and commit `aa60971e3c76fc672bdbc5f32c6cc8ffb4f4a0dd` — verified. This proves branch/commit linkage for that deployment; it does not by itself prove that the deployment is the production deployment or that it contains the current checkpoint.
 - Founder-declared Vercel primary domain: `asasplatform2026.vercel.app` — recorded as deployment identity; final production-domain/runtime evidence remains part of GATE-00 closure.
 - Supabase canonical project: `Asas platform`, ref `oliiumegstqujwexikhr` — runtime-verified and `ACTIVE_HEALTHY` through the connected Supabase project inspection on 2026-09-29.
 - Supabase project region: `eu-west-1`; PostgreSQL engine: 17, GA release channel — runtime-verified. These facts are recorded for environment identity only; no schema mutation has been performed.
-- The Supabase project currently has no authorized ASAS application schema implementation under the conference mission. No database creation/migration is authorized by this checkpoint.
+- The Supabase project has no authorized ASAS application schema implementation under the conference mission. No database creation/migration is authorized by this checkpoint.
 
 ## Single engineering path
 
@@ -63,7 +63,7 @@ No alternative gate sequence is authoritative.
 ## Gate state
 
 - GATE-00: **OPEN** — repository/branch identity, current Vercel project identity and Supabase project identity are verified; final production environment mapping, exact production deployment chain, repository protection evidence and final context/source-of-truth reconciliation remain open.
-- GATE-01: PENDING.
+- GATE-01: **IN PROGRESS — canonical ownership model corrected; repository-wide reconciliation continues.**
 - GATE-02: PENDING.
 - GATE-03: PENDING.
 - GATE-04: PENDING.
@@ -129,13 +129,15 @@ No secret values are recorded in repository context.
 - Foundation Gate Matrix: `docs/governance/FOUNDATION-GATE-MATRIX.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
 
-## Latest verified correction
+## Latest verified corrections
 
-The previous Vercel identity `prj_4yF8PAE1axukJh4fWwbZmBGXRKZB` / `asas-erp-saasv2` is stale historical data and is not the active platform identity. The current connected Vercel project is `asas_platform_2026` / `prj_LeReY3oaR4sarJrcA3pYuhiigQ9`.
+1. The previous Vercel identity `prj_4yF8PAE1axukJh4fWwbZmBGXRKZB` / `asas-erp-saasv2` is stale historical data and is not the active platform identity. The current connected Vercel project is `asas_platform_2026` / `prj_LeReyL3oaR4sarJrcA3pYuhiigQ9`.
+2. The Supabase project identity is independently runtime-verified as `oliiumegstqujwexikhr`.
+3. The closure matrix was corrected to use the canonical GATE-00…GATE-07 semantics from the active Conference Gate Model; the earlier conflicting G0/G1 interpretation is no longer authoritative.
+4. C01–C22 are preserved as conference-track IDs; D01–D09 are V3 bounded-context work packages, not a replacement numbering system.
+5. The Canonical Artifact Register now explicitly assigns ownership of gate semantics to the Conference Gate Model and closure evidence to the Closure Matrix.
 
-The Supabase project identity is independently runtime-verified as `oliiumegstqujwexikhr`.
-
-These corrections do **not** close GATE-00. The remaining environment/runtime/control evidence must still be proven.
+These corrections do **not** close GATE-00 or GATE-01. Remaining evidence and repository-wide reconciliation must still be proven.
 
 ## Implementation authorization
 
