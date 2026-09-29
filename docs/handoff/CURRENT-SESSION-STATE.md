@@ -1,14 +1,14 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.63  
+**Version:** 3.64  
 **Date:** 2026-09-29  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
 ## Current checkpoint
 
-`ARCH-2026-GATE-01-C03-C03.13-FORENSIC-RECONCILIATION-01`
+`ARCH-2026-GATE-01-PHASE-C-CANONICAL-WORKSPACE-LOCK-01`
 
 This file is the sole active execution checkpoint. `SESSION_STATE.md` is legacy compatibility material and must not be used as active state.
 
@@ -44,9 +44,19 @@ and:
 
 There are eight serial Engineering Conference gates, GATE-00 through GATE-07. Research may inspect later dependencies, but implementation may not be pulled forward.
 
+## Phase C canonical filesystem
+
+All C01–C22 deep-reconciliation work now has one stable organizational home:
+
+`docs/architecture/reconciliation/phase-c/CNN/`
+
+with `CNN = C01 … C22`.
+
+`docs/architecture/reconciliation/phase-c/README.md` is the Phase C index/protocol. Each C directory has a `README.md` as its track routing/index. Existing historical artifacts are not bulk-moved merely for appearance; they are reconciled and indexed first so provenance and canonical ownership are preserved. No duplicate source-of-truth is created by the directory structure.
+
 ## C-track deep-closure rule
 
-`docs/governance/C-TRACK-DEEP-CLOSURE-PROTOCOL-2026.md` is now the canonical operating rule for C01–C22 deep closure.
+`docs/governance/C-TRACK-DEEP-CLOSURE-PROTOCOL-2026.md` is the canonical operating rule for C01–C22 deep closure.
 
 A C-track remains OPEN until semantic, contract, evidence, dependency, research-freshness and independent-review criteria are satisfied. `SEMANTICALLY CLOSED` and `IMPLEMENTATION BLOCKED` are not equivalent to final `CLOSED`.
 
@@ -55,7 +65,7 @@ The previous founder requirement is preserved explicitly: C03 and every other C-
 ## Gate state
 
 - GATE-00: **OPEN** — repository/branch identity, current Vercel project identity and Supabase project identity are verified. Final production environment mapping, exact production deployment chain, repository protection evidence and final context/source-of-truth reconciliation remain open.
-- GATE-01: **IN PROGRESS** — canonical ownership model corrected; C03–C06 provenance recovered; runtime persistence evidence recorded; C-track deep-closure protocol locked; C03 deep-closure review is active; C03.13 forensic reconciliation has established current repository persistence reality but historical/deleted persistence provenance remains a bounded open question.
+- GATE-01: **IN PROGRESS** — canonical ownership model corrected; C03–C06 provenance recovered; runtime persistence evidence recorded; C-track deep-closure protocol locked; canonical Phase C filesystem established; C03 deep-closure review is active; C03.13 forensic reconciliation has established current repository persistence reality but historical/deleted persistence provenance remains a bounded open question.
 - GATE-02: PENDING.
 - GATE-03: **OPENING EVIDENCE / NOT CLOSED** — Supabase runtime identity and empty application-schema state are runtime-verified; repository-side schema/ORM/migration reconciliation remains required.
 - GATE-04: PENDING.
@@ -125,6 +135,16 @@ L0 Reality Lock
 
 Before unfamiliar work, load the repository skill and conference-engineering skill, then the active control plane and relevant C-track artifacts. For external load-bearing facts, use primary current sources and record the research evidence. Every material claim must have an evidence classification. A previous assistant answer is not an authority.
 
+## External architecture research principles now adopted
+
+External research is supporting evidence, not a replacement for project authority. Current research confirms several useful professional practices:
+
+- Architectural decisions should capture the decision, rationale, alternatives/trade-offs, consequences, status and review/realization plan; the ADR community describes these as core elements of decision capture. urlADR Practiceshttps://adr.github.io/ad-practices/
+- C4 is a way to describe architecture at multiple abstraction levels; it is not a delivery process. Its official guidance recommends consistent scope, naming and relationships and warns against mixing abstraction levels. urlC4 modelhttps://c4model.com/
+- C4 explicitly supports supplementary diagrams for dynamic behavior, deployment and other concerns rather than forcing every architectural concern into one diagram. urlC4 diagramshttps://c4model.com/diagrams
+
+Therefore ASAS will use a **decision/evidence/reconciliation structure**, not a generic document dump. External patterns can improve our method, but they cannot silently override the ASAS canonical artifacts.
+
 ## Canonical control plane
 
 - Engineering Conference Constitution: `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md`
@@ -142,6 +162,7 @@ Before unfamiliar work, load the repository skill and conference-engineering ski
 - Foundation Gate Matrix: `docs/governance/FOUNDATION-GATE-MATRIX.md`
 - Research-first method: `docs/architecture/ASAS-ARCHITECTURE-RESEARCH-FIRST-DECISION-METHOD-2026.md`
 - C-track deep closure protocol: `docs/governance/C-TRACK-DEEP-CLOSURE-PROTOCOL-2026.md`
+- Phase C index/protocol: `docs/architecture/reconciliation/phase-c/README.md`
 - C03 Deep Closure Review: `docs/architecture/reconciliation/C03-DEEP-CLOSURE-REVIEW-2026-09-29.md`
 - C03 Real Estate Resource Model Contract: `docs/architecture/contracts/ASAS-C03-REAL-ESTATE-RESOURCE-MODEL-CONTRACT-2026.md`
 - Real Estate Persistence Trace: `docs/architecture/reconciliation/ASAS-REAL-ESTATE-PERSISTENCE-TRACE-2026.md`
