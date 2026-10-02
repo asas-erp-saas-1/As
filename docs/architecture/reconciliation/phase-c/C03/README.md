@@ -6,19 +6,29 @@ Canonical C03 workspace. Existing C03 contracts, ADRs, research, persistence tra
 
 ## Current stage
 
-`C03.13 persistence provenance` has established current repository/runtime persistence reality. Historical/deleted persistence absence remains an explicitly bounded open question.
+`C03.13 persistence provenance` established current repository/runtime persistence reality. Historical/deleted persistence absence remains an explicitly bounded open question.
 
-The active semantic stage is now:
+The Project semantic sequence has now reached the next active stage:
 
-`Project identity + ownership + lifecycle reconciliation`
+`Project ↔ Building relationship semantics → Building lifecycle independence → Building command boundary`
 
-Canonical record:
+Canonical records:
 
-`01-PROJECT-RECONCILIATION.md`
+- `17-PROJECT-BUILDING-RELATIONSHIP-ANALYSIS-2026-10-02.md`
+- `18-BUILDING-LIFECYCLE-INDEPENDENCE-AND-COMMAND-BOUNDARY-2026-10-02.md`
 
-Only after Project closure criteria are satisfied will the track advance to:
+Current position:
 
-`Building → Floor → Unit → Listing → Inventory → Price → Hold → Reservation`
+- Project→Building is a canonical ontology relationship.
+- Project and Building are master-data concepts.
+- Building has independent identity.
+- A Project+Building aggregate has **not** been established.
+- Building lifecycle is **not yet defined**.
+- Building transfer/archive/destructive semantics remain **OPEN / NOT AUTHORIZED** unless explicitly evidenced and governed.
+
+Next dependency sequence:
+
+`Building → Floor/Unit ownership → Inventory → Construction → Studio/Publication → Documents/Media → cross-domain red-team → aggregate boundary decision`
 
 C03 remains OPEN until the deep-closure protocol, evidence requirements and independent review are satisfied. A semantic baseline or implementation block is not final closure.
 
