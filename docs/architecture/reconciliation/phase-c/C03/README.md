@@ -10,7 +10,7 @@ Canonical C03 workspace. Existing C03 contracts, ADRs, research, persistence tra
 
 The Project semantic sequence has now advanced through:
 
-`Project → Building → Floor → Unit → Inventory/Availability/Pricing → Construction/Commercial Readiness → Studio/Publication → Documents/Media → Cross-Domain Red-Team`
+`Project → Building → Floor → Unit → Inventory/Availability/Pricing → Construction/Commercial Readiness → Studio/Publication → Documents/Media → Cross-Domain Red-Team → Source Reconciliation`
 
 Canonical records for the active sequence:
 
@@ -22,6 +22,8 @@ Canonical records for the active sequence:
 - `22-STUDIO-PUBLICATION-UNIT-INVENTORY-RECONCILIATION-2026-10-02.md`
 - `23-DOCUMENTS-MEDIA-REAL-ESTATE-STUDIO-RECONCILIATION-2026-10-02.md`
 - `24-C03-CROSS-DOMAIN-RED-TEAM-2026-10-02.md`
+- `25-C03-INDEPENDENT-CLOSURE-REVIEW-PACKET-2026-10-02.md`
+- `26-SOURCE-RECONCILIATION-STATE-MACHINE-COMMERCIAL-STATUS-2026-10-02.md`
 
 ## Current architectural position
 
@@ -30,6 +32,7 @@ Canonical records for the active sequence:
 - Building lifecycle is not inferred from construction milestones.
 - Floor lifecycle/aggregate semantics remain open.
 - Unit structural identity and aggregate ownership remain open at this stage.
+- The normative state-machine register establishes an `apartment.commercial_status` lifecycle; exact mapping of `apartment` to canonical Unit terminology remains an explicit reconciliation question.
 - Inventory availability is owned by the Real Estate capability boundary and PostgreSQL is authoritative.
 - Reservations are owned by Sales and cross the Inventory boundary.
 - Pricing belongs conceptually to Real Estate; price commitment/versioning remains open.
@@ -43,20 +46,22 @@ Canonical records for the active sequence:
 
 1. Floor identity/lifecycle and exact ownership semantics.
 2. Unit identity and structural mutation semantics.
-3. Inventory entity/state ownership and availability state machine.
-4. Reservation/hold concurrency and idempotency contract.
-5. Pricing version/snapshot/approval semantics.
-6. Construction-to-commercial-readiness policy.
-7. Studio publication eligibility and projection repair semantics.
-8. Document taxonomy, retention and authorization.
-9. Final Unit/Inventory aggregate boundary.
-10. Persistence constraints after semantic closure.
+3. Exact mapping of normative `apartment` terminology to canonical Unit terminology.
+4. Inventory entity/state ownership and availability state machine.
+5. Relationship between `apartment.commercial_status` and authoritative inventory availability.
+6. Reservation/hold concurrency and idempotency contract.
+7. Pricing version/snapshot/approval semantics.
+8. Construction-to-commercial-readiness policy.
+9. Studio publication eligibility and projection repair semantics.
+10. Document taxonomy, retention and authorization.
+11. Final Unit/Inventory aggregate boundary.
+12. Persistence constraints after semantic closure.
 
 ## Closure state
 
 C03 is **not closed**.
 
-Semantic reconciliation and cross-domain red-team work are complete for the current dependency sequence. Governance still requires:
+Semantic reconciliation and cross-domain red-team work are materially complete for the current dependency sequence, but source reconciliation identified a normative commercial state-machine contract that must be explicitly considered by the independent reviewer. Governance still requires:
 
 1. independent closure review;
 2. stale/contradictory artifact verification;
