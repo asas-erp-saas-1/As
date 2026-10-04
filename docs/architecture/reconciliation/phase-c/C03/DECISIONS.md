@@ -1,6 +1,6 @@
 # C03 — Decisions Register
 
-**Status:** ACTIVE — C03 OPEN / BLOCKED BY INDEPENDENT REVIEW
+**Status:** ACTIVE — C03 OPEN / BLOCKED
 **Branch:** `platform-architecture-2026`
 
 ## Locked decisions
@@ -14,9 +14,13 @@
 | C03-D05 | PostgreSQL is authoritative for inventory availability; cache/search/analytics/AI surfaces are derived. | Phase 11 Scalability Blueprint |
 | C03-D06 | Construction state is not automatically commercial availability. | C03 artifacts 19–21 |
 | C03-D07 | Structural archive/detach does not imply inventory release, reservation cancellation, contract cancellation or financial reversal. | C03 artifacts 19–24 |
-| C03-D08 | The full Project → Building → Floor → Unit → Inventory → Reservation → Finance chain is not accepted as one aggregate by inference. | C03 closure evidence + independent review |
+| C03-D08 | The full Project → Building → Floor → Unit → Inventory → Reservation → Finance chain is not accepted as one aggregate by inference. | C03 closure evidence + adversarial review |
 
-## Independent review decisions
+## Governance correction
+
+The artifact previously named `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` is explicitly **not independent evidence** because it was authored within the same engineering stream. It is retained as an adversarial review and its BLOCK conclusion stands. A genuine independent review remains required for C03 closure.
+
+## Independent-review decisions
 
 | ID | Decision | Status |
 |---|---|---|
@@ -25,6 +29,7 @@
 | C03-R03 | Reservation hold/expiry/concurrency/idempotency contract remains unresolved. | BLOCK |
 | C03-R04 | Pricing snapshot/commit semantics remain unresolved. | BLOCK |
 | C03-R05 | Real Estate / Sales / Finance boundaries are directionally supported, but cross-context command/event contracts are incomplete. | BLOCK |
+| C03-R06 | Independent review itself has not yet been independently evidenced. | BLOCK |
 
 ## Open decisions
 
@@ -37,6 +42,7 @@
 | C03-O05 | Pricing version/snapshot/commit semantics | BLOCKING |
 | C03-O06 | Cross-context command/event contracts | BLOCKING |
 | C03-O07 | Floor identity/lifecycle and structural command semantics | OPEN |
+| C03-O08 | Brownfield runtime identity and persistence evidence | BLOCKING |
 
 ## Governance rule
 
