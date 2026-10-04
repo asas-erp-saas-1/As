@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.67  
+**Version:** 3.68  
 **Date:** 2026-10-04  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
@@ -22,7 +22,7 @@ The primary workstream is the Engineering Conference and platform architecture. 
 
 - GitHub repository: `asas-erp-saas-1/As` — verified.
 - Sole active architecture work line: `platform-architecture-2026` — verified.
-- Current branch HEAD at checkpoint: `c314ef605f54f6a0ddd2e78bdbd85b2e4cdbbbb3` — verified.
+- Current branch HEAD at checkpoint: `145e5fa042e034f82a75893eae3b7b25e54b0934` — verified.
 - `main` remains a separate older foundation line. The active architecture branch is materially divergent from `main`; no merge/reset/rebase is authorized by this checkpoint.
 - Branch protection was not observed as enabled for `platform-architecture-2026` during the audit. This is a governance finding; no settings mutation is authorized from this checkpoint.
 - Vercel read-only inspection found project `asas_platform_2026` (`prj_LeReyL3oaR4sarJrcA3pYuhiigQ9`) and production deployment(s) for Git `main`; the active architecture branch is not independently established as the production deployment branch.
@@ -69,9 +69,10 @@ The following remain load-bearing and unresolved:
 5. pricing version/snapshot/commit semantics;
 6. cross-context command/event contracts;
 7. Floor structural semantics where implementation would depend on them;
-8. brownfield persistence identity/evidence.
+8. brownfield persistence identity/evidence;
+9. genuinely independent closure review evidence.
 
-The artifact previously labelled `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` is treated as an **adversarial closure review authored within the current engineering stream**, not as independent evidence. It correctly concluded BLOCK, but independence is not claimed.
+The artifact previously labelled `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` is now explicitly classified as an **adversarial closure review authored within the current engineering stream**, not as independent evidence. It correctly concluded BLOCK, but independence is not claimed.
 
 ## Next concrete work item
 
