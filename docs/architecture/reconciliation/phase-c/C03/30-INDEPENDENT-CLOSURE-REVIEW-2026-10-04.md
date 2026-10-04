@@ -1,79 +1,85 @@
-# C03 — Independent Closure Review
+# C03 — Adversarial Closure Review / Independence Status
 
 **Date:** 2026-10-04
-**Status:** INDEPENDENT REVIEW — BLOCK / REOPEN REQUIRED
+**Status:** ADVERSARIAL REVIEW — BLOCK / REOPEN REQUIRED
 **Branch:** `platform-architecture-2026`
 **Scope:** Project → Building → Floor → Unit / Apartment → Inventory / Availability / Pricing → Reservation boundary
 
+## 0. Governance correction
+
+This artifact was originally labelled **Independent Closure Review**. That label is corrected here.
+
+The review was authored within the same engineering stream as the C03 reconciliation work. It is therefore an **adversarial closure review**, not an independently sourced review. It remains useful evidence because it challenges the authoring conclusions, but it must not satisfy the independent-review requirement by itself.
+
 ## 1. Review mandate
 
-This review is intentionally adversarial. It does not inherit the authoring pass's conclusions merely because the evidence set is internally coherent. It tests whether the remaining blocking questions are actually resolved by authoritative source evidence.
+Test whether the C03 conclusions can survive adversarial challenge against authoritative sources. The review does not treat narrative coherence as closure evidence.
 
-The Phase C lifecycle requires: Reality Lock → Locate → Load → Scope → Research/Verify → Model/Decide → Prove/Cross-check → Reconcile → Independent Red Team → Closure Review → Evidence Lock. C03 cannot be closed while material semantic or safety conflicts remain unresolved.
+The Phase C lifecycle requires:
 
-## 2. Evidence reviewed
+`Reality Lock → Locate → Load → Scope → Research/Verify → Model/Decide → Prove/Cross-check → Reconcile → Independent Red Team → Closure Review → Evidence Lock`
 
-The review used the canonical C03 evidence ledger through artifact 29, the C03 Decisions/Open Questions/Evidence registers, the Phase C README, the Core Lifecycle Canonical Map, the Phase 11 Scalability Blueprint, the capability coverage matrix, the master execution path, and the normative v1.6.1 commercial state-machine register.
+C03 cannot be closed while material semantic or safety conflicts remain unresolved.
 
-## 3. Independent findings
+## 2. Findings
 
-### Finding F01 — Structural topology is supported, aggregate containment is not
-
-**VERDICT: PASS**
-
-Project → Building → Floor → Unit is supported as canonical structural topology. The evidence does not prove that the hierarchy is a single transactional aggregate. Destructive cascade and lifecycle inheritance remain correctly rejected.
-
-### Finding F02 — Apartment commercial state machine is authoritative
+### F01 — Structural topology vs aggregate containment
 
 **VERDICT: PASS**
 
-`apartment.commercial_status` is a normative state machine. A competing `UnitStatus` or duplicate commercial lifecycle must not be invented. The commercial state machine is nevertheless not equivalent to the complete Inventory availability model.
+Project → Building → Floor → Unit is supported as canonical structural topology. The hierarchy does not, by itself, prove one transactional aggregate. Destructive cascade and lifecycle inheritance remain rejected.
 
-### Finding F03 — Inventory authority is established, exact ownership is not
+### F02 — Apartment commercial state machine
 
-**VERDICT: BLOCK**
+**VERDICT: PASS**
 
-PostgreSQL is authoritative for inventory availability, and Real Estate owns the Inventory capability. However, the current evidence does not establish whether inventory is directly owned by Unit, represented as a separate authoritative inventory object keyed to Unit, or otherwise modeled. This is a load-bearing persistence and concurrency decision.
+`apartment.commercial_status` is a normative state machine. A competing commercial `UnitStatus` must not be invented. The commercial lifecycle is not automatically equivalent to complete Inventory availability.
 
-### Finding F04 — Commercial status and availability are not yet contractually separated
-
-**VERDICT: BLOCK**
-
-The evidence establishes two facts: `apartment.commercial_status` is normative and PostgreSQL is authoritative for inventory availability. It does not provide the complete mapping between commercial states and availability semantics. In particular, the legal/operational meaning of `HELD`, `RESERVED`, `BLOCKED`, `OFF_MARKET`, and release/expiry behavior cannot be inferred safely.
-
-### Finding F05 — Reservation safety invariant is known, mechanism/contract is not
+### F03 — Inventory ownership/cardinality
 
 **VERDICT: BLOCK**
 
-The architecture requires idempotency and concurrency verification for options/reservations and inventory. The double-booking prevention invariant is clear, but hold duration, expiry, conflict resolution, idempotency-key scope, retry behavior and exact transaction boundary remain unresolved. These are implementation-blocking because the canonical lifecycle map requires all of them before a state transition can be implemented.
+PostgreSQL is authoritative for Inventory availability and Real Estate owns the capability, but the exact Unit ↔ Inventory ownership/cardinality model remains unresolved.
 
-### Finding F06 — Pricing commitment is unresolved
+### F04 — Commercial status vs availability
 
 **VERDICT: BLOCK**
 
-Pricing belongs conceptually to the Real Estate Core, but the evidence does not establish versioning, effective dates, channel/customer overrides, price snapshot semantics, or the exact event at which price becomes committed. Current price must not be silently treated as contractual price.
+The complete mapping between commercial states and allocatability, including `HELD`, `RESERVED`, `BLOCKED`, `OFF_MARKET`, release and expiry behavior, remains unresolved.
 
-### Finding F07 — Cross-context boundaries are directionally established but command/event contracts are incomplete
+### F05 — Reservation safety contract
+
+**VERDICT: BLOCK**
+
+The no-double-commit invariant is known. Hold duration, expiry, conflict behavior, idempotency-key scope, retry semantics and transaction/concurrency boundary remain unresolved.
+
+### F06 — Pricing commitment
+
+**VERDICT: BLOCK**
+
+Price versioning, effective dates, offer/hold/reservation snapshots and the exact commitment event remain unresolved.
+
+### F07 — Cross-context commands/events
 
 **VERDICT: BLOCK / FOLLOW-UP**
 
-Real Estate owns inventory availability; Sales owns options/reservations; Finance owns financial truth. This is sufficient to reject a single aggregate spanning the whole business spine, but not sufficient to authorize the cross-context commands/events required for reservation and pricing commitments.
+Real Estate/Inventory, Sales/Reservation and Finance ownership are directionally established, but the commands/events required to cross those boundaries are not yet fully contracted.
 
-### Finding F08 — Floor semantics are not closure-critical for the current commercial boundary, but remain open
+### F08 — Floor semantics
 
 **VERDICT: FOLLOW-UP**
 
-Floor identity/lifecycle and structural commands remain open. They do not justify delaying all C03 work indefinitely, provided no implementation constraint assumes unproven Floor cardinality or cascade behavior. They must remain explicitly open rather than being silently inferred.
+Floor identity/lifecycle remains open. It must not be silently inferred where implementation depends on it.
 
-## 4. Aggregate-boundary verdict
+## 3. Aggregate-boundary verdict
 
-The review rejects the following default aggregate:
+The review rejects the inferred single aggregate:
 
 ```text
 Project → Building → Floor → Unit → Inventory → Reservation → Finance
 ```
 
-The evidence supports separate consistency boundaries at minimum between:
+At minimum, the architecture supports separate consistency concerns for:
 
 ```text
 Real Estate / Inventory
@@ -81,31 +87,27 @@ Sales / Reservation
 Finance
 ```
 
-It does not yet justify the exact internal aggregate boundary of Real Estate Inventory around Unit. That boundary remains BLOCKED pending F03–F06.
+The exact internal Real Estate Inventory aggregate boundary remains unresolved.
 
-## 5. Closure verdict
+## 4. Closure verdict
 
-**C03 = REOPEN / BLOCK.**
+**C03 = OPEN / BLOCKED.**
 
-C03 must NOT receive Evidence Lock or implementation authorization yet.
+No Evidence Lock. No implementation authorization.
 
-The previous authoring conclusion was correct to keep C03 OPEN. The independent review independently reaches the same governance outcome, but for explicit load-bearing reasons rather than procedural caution alone.
+This artifact is **not** independent evidence. A genuine independent review remains required before C03 can become `CLOSED` under the C-TRACK DEEP CLOSURE PROTOCOL.
 
-## 6. Required next reconciliation
+## 5. Next governed work
 
-The next governed work unit is a focused **Inventory–Unit–Reservation Contract Reconciliation**. It must produce, from authoritative evidence:
+Continue with the focused **Inventory–Unit–Reservation Contract Reconciliation** and produce:
 
 1. canonical Unit/Apartment identity mapping;
-2. Inventory ownership and cardinality;
+2. Inventory ownership/cardinality;
 3. availability semantics and mapping to commercial status;
-4. hold/reservation lifecycle, expiry and conflict semantics;
-5. idempotency and concurrency contract;
+4. hold/reservation lifecycle and expiry;
+5. concurrency/idempotency contract;
 6. pricing version/snapshot/commit rules;
 7. cross-context command/event matrix;
-8. acceptance/invariant matrix sufficient for GATE-03.
+8. acceptance/invariant matrix.
 
-No schema, ORM, migration or production API should be authored until those contracts are closed.
-
-## 7. Governance conclusion
-
-This review is an actual closure decision, not a placeholder for a future review. Its conclusion is **BLOCK**, with concrete reasons and a bounded next work unit. The next pass may continue the reconciliation without requiring another user instruction about where to work or where to place the evidence.
+No schema, ORM, migration or production API should be authored until these contracts are sufficiently closed for the applicable Gate.
