@@ -1,5 +1,16 @@
 # ASAS — BUILDING DOMAIN CONTRACT 2026
 
+> **POINTER — SUPERSEDED LOCATION (2026-10-14).**
+> The canonical Building domain contract is
+> `docs/architecture/contracts/ASAS-BUILDING-DOMAIN-CONTRACT-2026.md`
+> (`ASAS-CONTRACT-BUILDING-2026-001`), which is the path routed by
+> `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` §2.
+> This file is the earlier derived artifact
+> (`ASAS-ARCH-BUILDING-2026-001`, 2026-09-20). Its body is preserved verbatim as
+> historical provenance and must not be treated as current authority.
+> Recorded as finding F-02 in
+> `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md`.
+
 **Artifact ID:** ASAS-ARCH-BUILDING-2026-001  
 **Status:** DERIVED DOMAIN CONTRACT — OPEN / NOT IMPLEMENTATION AUTHORITY  
 **Version:** 1.0.0  

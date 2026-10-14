@@ -43,6 +43,19 @@ The artifact previously named `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` is e
 | C03-O06 | Cross-context command/event contracts | BLOCKING |
 | C03-O07 | Floor identity/lifecycle and structural command semantics | OPEN |
 | C03-O08 | Brownfield runtime identity and persistence evidence | BLOCKING |
+| C03-O09 | Commercial state enum and release path: register `apartment.commercial_status` (9 states, two-hop release) vs. contract set (6 states, direct release) | BLOCKING — CONFLICT (F-06) |
+| C03-O10 | Hold expiry policy/duration and deposit↔reservation semantics | FOUNDER-DECISION-REQUIRED |
+| C03-O11 | Missing register keys: reservation release/expiry, `apartment.release/unblock/off_market`, contract execution; missing structural-amendment event | BLOCKING — register gap |
+
+## Status of the commercial edge contract matrix — 2026-10-14
+
+`docs/architecture/contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md`
+now expresses all six required commercial edges in the required field set. It is
+`PROPOSED / ENGINEERING-DERIVATION` and is **not** a locked decision.
+
+It narrows blockers B4 (hold/reservation concurrency) and B5 (pricing
+commitment) to named gaps, but it does not close them. C03 remains
+**OPEN / BLOCKED**, and the independent-review prerequisite remains unsatisfied.
 
 ## Governance rule
 

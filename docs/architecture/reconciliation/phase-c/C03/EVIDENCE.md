@@ -36,6 +36,8 @@
 30. `29-C03-ADVERSARIAL-CLOSURE-PREVIEW-2026-10-03.md`
 31. `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` — corrected classification: adversarial, not independent
 32. `31-INVENTORY-UNIT-RESERVATION-CONTRACT-RECONCILIATION-2026-10-04.md`
+33. `docs/architecture/contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md` — six commercial edges in the required field set (`PROPOSED / ENGINEERING-DERIVATION`)
+34. `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md` — corpus integrity findings F-01…F-14 (authoring-stream review, not independent)
 
 ## Authoritative external-to-C03 evidence
 

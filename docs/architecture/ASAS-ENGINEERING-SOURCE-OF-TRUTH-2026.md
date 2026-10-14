@@ -42,7 +42,7 @@ For material architecture questions, the operating method is research-first:
 | AI agent operating model | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | CANONICAL v1.0.0 |
 | Design/code continuity | `docs/design/ASAS-DESIGN-TO-CODE-CONTINUITY-CONTRACT-2026.md` | CANONICAL v1.0.0 |
 | Agent skills catalog | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | CANONICAL v1.0.0 |
-| Repository skills | `.agents/skills/` | 9 registered skills |
+| Repository skills | `.agents/skills/` | 10 registered skills (reconciled 2026-10-14; this line previously stated 9) |
 | Current checkpoint | `docs/handoff/CURRENT-SESSION-STATE.md` | sole active checkpoint |
 | Artifact authority | `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` | governance register |
 | Founder decisions | `docs/governance/FOUNDER-DECISIONS.md` | decision boundary |
@@ -198,6 +198,15 @@ GATE-07 remains slice-specific and unavailable until predecessor evidence is clo
 Architecture V3 is referenced by the conference as an architecture source. It does not create a second control plane.
 
 ## 11 — Current foundation status
+
+> **SUPERSESSION POINTER (2026-10-14).** The two statements below are
+> contradicted by `docs/handoff/CURRENT-SESSION-STATE.md` and
+> `ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-006-ZERO-TRUST-REBASELINE-2026-10-04.md`
+> §5, which record the canonical Supabase runtime identity as
+> **UNVERIFIED / BLOCKED** after a fresh read-only project listing exposed only
+> `xwokfufeeodobkuaxvgx` (`asas-web-site`). The assertions are preserved verbatim
+> as provenance and are **not** current runtime fact. See finding F-05 in
+> `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md`.
 
 GATE-00 remains OPEN, but the previous platform-identity ambiguity is resolved for the Supabase project itself: `oliiumegstqujwexikhr` has been read-only inspected through the connected Supabase integration and is the canonical ASAS platform project for this conference.
 

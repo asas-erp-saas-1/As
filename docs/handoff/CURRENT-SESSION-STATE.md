@@ -1,8 +1,9 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.69  
-**Date:** 2026-10-04  
+**Version:** 3.70  
+**Date:** 2026-10-14  
+**Prior checkpoint date:** 2026-10-04 (zero-trust rebaseline)  
 **Repository:** `asas-erp-saas-1/As`  
 **Architecture branch:** `platform-architecture-2026`
 
@@ -76,9 +77,30 @@ The artifact previously labelled `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` i
 
 ## Next concrete work item
 
-`C03 → Inventory–Unit–Reservation commercial edge contract matrix`
+`C03 → Inventory–Unit–Reservation commercial edge contract matrix` — **PRODUCED 2026-10-14**
 
-Required edges:
+`docs/architecture/contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md`
+now expresses all six required edges in the required field set. It is
+`PROPOSED / ENGINEERING-DERIVATION` and is **not** a locked decision.
+
+It narrows C03 blockers B4 and B5 to named gaps, and it surfaced the governing
+conflict **F-06**: the canonical state-machine register and the accepted
+contract/ADR set disagree on the commercial state enum, the `HELD → RESERVED`
+trigger, and the release path. F-06 requires a superseding ADR.
+
+Accompanying review: `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md`
+(findings F-01…F-14; authoring-stream review, **not** independent evidence).
+
+### New next dependency
+
+1. **Resolve F-06** — superseding ADR on the commercial state enum and release path.
+2. **Founder decisions** — hold expiry policy/duration and deposit↔reservation
+   semantics (`FOUNDER-DECISION-REQUIRED`).
+3. **Register gaps** — permission keys for release/expiry/off-market/contract
+   execution, and the reservation/structural event names.
+4. Only then select the concrete concurrency mechanism under GATE-03.
+
+Required edges (all six now covered by the matrix):
 
 ```text
 AVAILABLE → HELD

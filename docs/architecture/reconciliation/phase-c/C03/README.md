@@ -1,14 +1,28 @@
 # C03 — Real Estate
 
 **Status:** OPEN — ZERO-TRUST DEEP CLOSURE REQUIRED
+**Last updated:** 2026-10-14
 
 Canonical C03 workspace. Existing C03 contracts, ADRs, research, persistence trace and deep-closure review remain authoritative where their ownership is established. Do not recreate them; index and reconcile them here.
 
 ## Current stage
 
-`C03 → Inventory–Unit–Reservation commercial edge contract reconciliation`
+`C03 → Inventory–Unit–Reservation commercial edge contract reconciliation` — **edge matrix produced 2026-10-14**
 
-The branch now contains the C03 sequence through artifact 31:
+The concrete edge contract artifact now exists:
+
+`docs/architecture/contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md`
+
+It is `PROPOSED / ENGINEERING-DERIVATION` and covers all six required edges
+(`AVAILABLE → HELD`, `HELD → RESERVED`, `RESERVED → CONTRACTED`,
+`RESERVED → CANCELLED/RELEASED`, price change during an active commitment,
+structural Unit amendment during an active commitment).
+
+It **narrows** blockers B4 and B5 but closes neither, and it introduces the
+governing conflict F-06 (state-machine register vs. contract states) which must
+be resolved by a superseding ADR before any edge is implementation-ready.
+
+The branch also contains the C03 sequence through artifact 31:
 
 `Project → Building → Floor → Unit → Inventory/Availability/Pricing → Construction/Commercial Readiness → Studio/Publication → Documents/Media → Cross-Domain Red-Team → Source Reconciliation → Adversarial Closure Review → Inventory–Unit–Reservation Contract Reconciliation`
 
