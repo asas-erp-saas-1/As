@@ -13,13 +13,13 @@
 
 | Source | Observed difference | Disposition |
 |---|---|---|
-| `main` | Three files were changed on the `main)-only side of the merge base. Two are C03 source-control files absent from the active architecture line; the source-corpus README is an independently divergent version of an existing path. | **Selected documentation-only promotion:** add the C03 queue and source register. **Hold** the README variant; preserve the active-line version. |
+| `main` | Three files were changed on the `main`-only side of the merge base. Two are C03 source-control files absent from the active architecture line; the source-corpus README is an independently divergent version of an existing path. | **Selected documentation-only promotion:** add the C03 queue and source register. **Hold** the README variant; preserve the active-line version. |
 | `cline/hp1c6fdq` | 14 commits ahead and 0 behind `platform-architecture-2026`; comparison contains roughly 57 changed paths across decisions, contracts, C-track controls, evidence, and CI tooling. | **Do not merge as a unit.** The semantic ADR/contract bundle merits a dedicated owner review. CI repair remains a separate control-plane change. |
-| Current review branch | `docs/architecture/README.md) was created for navigation here, and the same path is independently added with materially different content on `cline/hp1c6fdq`. | Keep one index path. Retain the version based on files present on the active line; reconcile useful candidate material only when its referenced artifacts are promoted or its links clearly label branch-only candidates. |
+| Current review branch | `docs/architecture/README.md` was created for navigation here, and the same path is independently added with materially different content on `cline/hp1c6fdq`. | Keep one index path. Retain the version based on files present on the active line; reconcile useful candidate material only when its referenced artifacts are promoted or its links clearly label branch-only candidates. |
 
 ## 2. `main` — selected C03 source-control promotion
 
-The compare of `platform-architecture-2026` against `main` reports a diverged history: `main` has three commits unique to its side of the merge base, while the architecture line has a much larger independent history. The three paths in the `main)-side file comparison are not all guaranteed to be absent from the architecture line: `docs/architecture/reconciliation/phase-c/Source/README.md` already exists on the active line and its contents differ substantially.
+The compare of `platform-architecture-2026` against `main` reports a diverged history: `main` has three commits unique to its side of the merge base, while the architecture line has a much larger independent history. The three paths in the `main`-side file comparison are not all guaranteed to be absent from the architecture line: `docs/architecture/reconciliation/phase-c/Source/README.md` already exists on the active line and its contents differ substantially.
 
 ### 2.1 Selected paths added here
 
@@ -32,7 +32,7 @@ The copied text is retained as repository documentation. Git commit ancestry is 
 
 ### 2.2 Path deliberately not replaced
 
-`docs/architecture/reconciliation/phase-c/Source/README.md) on the active line is a detailed corpus index (source blob `775132c5cef7f120acd7d7b7a3b4216284cb2f59`, 5,260 characters at review time). The `main)-side version is much shorter (source blob `d6cc00adfdf781f0a52b9c5bb0ac559dd9882601`, 1,231 characters) and represents a different description of the same path. It must not overwrite the active-line index. The new C03 register is linked from the existing index instead.
+`docs/architecture/reconciliation/phase-c/Source/README.md` on the active line is a detailed corpus index (source blob `775132c5cef7f120acd7d7b7a3b4216284cb2f59`, 5,260 characters at review time). The `main`-side version is much shorter (source blob `d6cc00adfdf781f0a52b9c5bb0ac559dd9882601`, 1,231 characters) and represents a different description of the same path. It must not overwrite the active-line index. The new C03 register is linked from the existing index instead.
 
 ### 2.3 Why this scope is safe
 
@@ -107,6 +107,6 @@ Both this review branch and `cline/hp1c6fdq` add `docs/architecture/README.md`, 
 ## 6. Verification performed
 
 - Compared `main` and `cline/hp1c6fdq` against `platform-architecture-2026` through the GitHub compare API.
-- Fetched source-corpus files from both `main` and the active architecture line; confirmed the Source Corpus README path conflict rather than assuming all three `main)-side paths were absent.
+- Fetched source-corpus files from both `main` and the active architecture line; confirmed the Source Corpus README path conflict rather than assuming all three `main`-side paths were absent.
 - Read the candidate ADR headers, C03 disposition register, provenance recovery, permissions delta, and candidate session checkpoint.
 - Kept candidate-branch status assertions explicitly separate from canonical target-branch status.
