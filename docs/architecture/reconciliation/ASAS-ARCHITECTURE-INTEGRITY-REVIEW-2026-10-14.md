@@ -293,9 +293,24 @@ also have failed once the earlier step was fixed.
 **No A1 canonical text was edited to make a check pass.** The Constitution was
 left unchanged; the check was corrected to match the canonical claim.
 
-**Verification status:** all workflow assertions were re-executed locally and
-pass. GitHub-side re-verification is `NOT_EXECUTED` from this session and must be
-confirmed by the next push-triggered run.
+**Push blocker.** The GitHub App used by the automation is not permitted to
+update workflow files, so the workflow repair cannot be committed to the branch:
+
+```text
+refusing to allow a GitHub App to create or update workflow
+`.github/workflows/foundation-verify.yml` without `workflows` permission
+```
+
+The repair is preserved as a reviewable patch:
+`docs/architecture/reconciliation/ASAS-CI-REPAIR-2026-10-14.patch`, with apply
+instructions in `docs/architecture/reconciliation/ASAS-CI-REPAIR-2026-10-14.md`.
+`scripts/verify-architecture-integrity.sh` is committed and can be invoked
+manually in the meantime.
+
+**Verification status.** With the patch applied locally, all 10 workflow
+run-blocks pass (0 failures). Without the patch, 2 steps fail — reproduced
+locally, matching the observed CI failure. GitHub-side re-verification is
+`NOT_EXECUTED` and requires the owner to apply the patch.
 
 ## 3. Findings closed by this review
 
@@ -309,7 +324,7 @@ confirmed by the next push-triggered run.
 | F-12 C-track README presence | machine-checked | integrity script asserts 22 track READMEs |
 | F-13 audit directory split | documented | `docs/architecture/README.md` §3 |
 | F-14 root contract lineage | documented + placement rule | `docs/architecture/README.md` §3; ADR register §4 |
-| F-15 CI control plane red | two broken checks corrected; new integrity step added | `.github/workflows/foundation-verify.yml`; local re-execution of all assertions passes |
+| F-15 CI control plane red | root causes identified and repair prepared as a patch | `docs/architecture/reconciliation/ASAS-CI-REPAIR-2026-10-14.patch`; local re-execution with the patch passes all 10 steps |
 
 ## 4. Findings remaining open
 
