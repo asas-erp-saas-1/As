@@ -7,7 +7,7 @@
 
 ## 1. Branch roles — do not conflate them
 
-- `main` — GitHub default branch / current PR integration target. It is not the active Engineering Conference work line and does not authorize architecture or implementation work by itself.
+- `main` — GitHub default branch. It is not the active Engineering Conference work line and does not authorize architecture or implementation work by itself. Each PR target must follow its task/governance route.
 - `platform-architecture-2026` — active Engineering Conference work line under the current closure-matrix and checkpoint policy.
 - `chore/engineering-corpus-index-2026-10-14` — task-scoped branch for the branch census and engineering corpus index. Merge only after review and verification.
 - `cline/hp1c6fdq` — unmerged, materially advanced architecture-reconciliation branch with 14 commits ahead of the active line in the 2026-10-14 compare snapshot. It includes potentially useful ADR, contract, integrity and CI-repair work, but its content is not canonical until promoted by reviewed changes.
