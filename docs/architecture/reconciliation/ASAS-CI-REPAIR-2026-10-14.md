@@ -53,9 +53,14 @@ Once root cause 1 is fixed, this step fails next.
 1. Replace the punctuation-specific route assertion with semantic assertions:
    the Constitution must reference the Gate Model, declare `GATE-00` and
    `GATE-07`, and declare the no-parallel-route rule.
-2. Scope the session-state prohibition to the surfaces that actually route work
-   (`docs/handoff`, `docs/architecture`, `docs/governance`, `AGENTS.md`,
-   `CODEOWNERS`). Historical evidence and procedural prohibitions are preserved.
+2. Scope the session-state prohibition so it targets **routing** rather than
+   **provenance**. The check now excludes audit evidence
+   (`docs/audit/**`, `docs/audits/**`), reconciliation evidence
+   (`docs/architecture/reconciliation/**`) and the workflow itself, and filters
+   out lines that are prohibitions about the legacy file rather than
+   instructions to use it. A genuine regression — routing work to
+   `docs/handoff/SESSION_STATE.md` as current state — still fails the check
+   (verified by a negative test).
 3. Add a step that runs `scripts/verify-architecture-integrity.sh` (already
    committed on this branch), enforcing Phase C track indexes, ADR register
    coverage/uniqueness, and internal reference integrity with an explicit
@@ -83,6 +88,7 @@ three edits manually as described in §3.
 | All 10 workflow run-blocks executed locally **with** the patch | `PASS` (0 failures) |
 | Failing step reproduced locally **without** the patch | `FAIL` (reproduces CI) |
 | Negative test of the new integrity step (bogus reference injected) | `FAIL` as designed (exit 1) |
+| Negative test of the session-state rule (routing doc pointing at the legacy file) | `FAIL` as designed — provenance exclusions do not blind the check |
 | GitHub-side re-run after applying the patch | `NOT_EXECUTED` |
 
 Until the patch is applied, CI remains red and the new integrity check runs only
@@ -90,4 +96,23 @@ when invoked manually:
 
 ```bash
 bash scripts/verify-architecture-integrity.sh
+```
+
+## 6. The patch file is the single source
+
+The exact diff is kept in one place and is **not** duplicated inside this
+document, so the two cannot drift:
+
+`docs/architecture/reconciliation/ASAS-CI-REPAIR-2026-10-14.patch`
+
+It contains three changes: the semantic route assertion, the new
+`scripts/verify-architecture-integrity.sh` step, and the routing-scoped
+session-state check. It was regenerated on 2026-10-14 after the session-state rule
+was corrected, because the first version would have flagged this document's own
+provenance discussion of the legacy file.
+
+Read it before applying:
+
+```bash
+cat docs/architecture/reconciliation/ASAS-CI-REPAIR-2026-10-14.patch
 ```

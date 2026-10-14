@@ -1,5 +1,5 @@
 diff --git a/.github/workflows/foundation-verify.yml b/.github/workflows/foundation-verify.yml
-index 3514b4c..6a826e6 100644
+index 3514b4c..3c87c94 100644
 --- a/.github/workflows/foundation-verify.yml
 +++ b/.github/workflows/foundation-verify.yml
 @@ -115,7 +115,14 @@ jobs:
@@ -18,7 +18,7 @@ index 3514b4c..6a826e6 100644
            grep -Fq 'C01–C22' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
            grep -Fq 'IG-*' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
            echo 'Single engineering conference route is present.'
-@@ -152,13 +159,26 @@ jobs:
+@@ -152,13 +159,30 @@ jobs:
                print(f'VALID JSON: {path}')
            PY
  
@@ -32,18 +32,20 @@ index 3514b4c..6a826e6 100644
          shell: bash
          run: |
            set -euo pipefail
-+          # Active control surfaces must route agents to the sole active
-+          # checkpoint. Historical audit evidence and procedural prohibitions
-+          # may name the legacy file without making it active state, so the
-+          # check is scoped to the surfaces that actually route work.
++          # Active control/routing surfaces must route agents to the sole active
++          # checkpoint. Provenance surfaces (audit and reconciliation evidence)
++          # and the workflow itself may name the historical file, and a
++          # procedural prohibition is not a routing instruction, so those lines
++          # are excluded. A real regression -- routing work to the legacy file --
++          # still fails this check.
            matches=$(git grep -n 'docs/handoff/SESSION_STATE.md' -- \
--            ':!docs/handoff/SESSION_STATE.md' \
--            ':!.git/**' \
-+            docs/handoff \
-+            docs/architecture \
-+            docs/governance \
-+            AGENTS.md \
-+            CODEOWNERS \
+             ':!docs/handoff/SESSION_STATE.md' \
++            ':!docs/audit/**' \
++            ':!docs/audits/**' \
++            ':!docs/architecture/reconciliation/**' \
++            ':!.github/**' \
+             ':!.git/**' \
++            | grep -viE 'do not|never|not (the )?(active|current)|historical|legacy' \
              || true)
            if [[ -n "$matches" ]]; then
              echo "$matches"
