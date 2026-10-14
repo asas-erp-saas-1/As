@@ -46,6 +46,7 @@ authority, cross-artifact contradiction, path closure state
 | F-14 | Root-level `ASAS-*-CONTRACT/REGISTER-2026.md` files bypass `docs/architecture/contracts/` | LOW | OPEN / ORGANIZATIONAL | Lead Architecture |
 | F-15 | CI `Foundation Verify` is RED on every recent push; two checks are broken | HIGH | OPEN / CONTROL-PLANE FAILURE | Lead Architecture |
 | F-16 | Two canonical registers recorded C01 and C07–C22 as "not recovered"; the provenance was recoverable by content search | HIGH | **RESOLVED — C-track provenance recovery 2026-10-14** | Lead Architecture |
+| F-17 | Registers recorded boundary questions as OPEN that accepted ADRs had already resolved | MEDIUM | **RESOLVED — statuses reconciled to their resolving ADRs** | Lead Architecture |
 
 ## 2. Findings in detail
 
@@ -353,6 +354,37 @@ an explicit gap requiring a CLOSED / DEFERRED / REJECTED / BLOCKED disposition.
 **Disposition:** RESOLVED for the mapping. Full record:
 `docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`.
 
+### F-17 — Registers recorded already-resolved questions as OPEN
+
+**Finding.** Two canonical reconciliation artifacts carried stale open questions
+whose answers already existed in accepted ADRs:
+
+| Artifact | Stale entry | Already resolved by |
+|---|---|---|
+| Aggregate & Invariant Boundary Register §10 | OI-002 Unit vs Project | `ADR-0040` Decision 4 |
+| Aggregate & Invariant Boundary Register §10 | OI-004 Offer ownership | `ADR-0023` |
+| Aggregate & Invariant Boundary Register §10 | OI-005 Payment vs PaymentSchedule | `ADR-0037` §2 |
+| Aggregate & Invariant Boundary Register §10 | OI-006 Receipt ownership | `ADR-0037` §2 |
+| Aggregate & Invariant Boundary Register §10 | OI-007 Building aggregate | `ADR-0041` |
+| Aggregate & Invariant Boundary Register §10 | OI-008 Scheduling | `FD-002`; `ADR-0021` |
+| Context / Module / Capability Ownership Map §3, §4 | Scheduling = `CONFLICT / FOUNDER DECISION REQUIRED` | `FD-002`; `ADR-0021` |
+
+**Why this matters more than tidiness.** A stale `OPEN` in a canonical register is
+not neutral: it invites a future agent to re-open a decided question, and the
+register's own rule warns that "an `OPEN` ownership mapping must not be used as if
+it were canonical". Stale OPENs are therefore a source of future duplicate
+decisions, not merely untidy documentation.
+
+**Disposition:** **RESOLVED.** The aggregate register §10 is now a reconciled
+status table citing the resolving authority for each item; OI-001 remains a
+deliberate DEFERRED with its ADR trigger. The ownership map records Scheduling as
+CLOSED and states explicitly why the remaining capability-owner rows are deferred
+to GATE-04 rather than omitted.
+
+**Residual (not a defect):** BLD-03/04/07 (Building cardinality, floor semantics,
+unit move) remain genuine product/domain decisions, and the ownership map's items
+2–5 remain GATE-04 scope. Both are dispositions with owners, not omissions.
+
 ## 3. Findings closed by this review
 
 | Finding | Closure basis | Evidence |
@@ -372,6 +404,7 @@ an explicit gap requiring a CLOSED / DEFERRED / REJECTED / BLOCKED disposition.
 | F-16 C-track provenance recorded as unrecovered | mapping recovered and both canonical registers corrected | `docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md` |
 | F-10 front-door doctrine statement | aligned with the `AGENTS.md` authority model | `README.md` |
 | F-11 cross-artifact status divergence | Control Board supersession notice; Gate Model §9 reconciled; C01 corroborated | `ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md`; Gate Model §9 |
+| F-17 already-resolved questions recorded as OPEN | both registers reconciled with cited authority | `ASAS-AGGREGATE-INVARIANT-BOUNDARY-REGISTER-2026.md` §10; `ASAS-CONTEXT-MODULE-OWNERSHIP-MAP-2026.md` §3/§4/§6/§8 |
 
 ## 4. Findings remaining open
 

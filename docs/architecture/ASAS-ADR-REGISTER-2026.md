@@ -43,6 +43,7 @@ fact rather than papering over it.
 | ADR-0038 | Unit state dimensions and commercial lifecycle | `adr/` | ACCEPTED — reconciliation; implementation gated |
 | ADR-0039 | Unit / Apartment canonical identity | `adr/` | ACCEPTED — reconciliation; implementation gated |
 | ADR-0040 | Inventory availability ownership and aggregate boundary | `adr/` | ACCEPTED — reconciliation; implementation gated |
+| ADR-0041 | Building consistency boundary and aggregate classification | `adr/` | ACCEPTED — reconciliation; implementation gated |
 
 ### 2.1 Partial supersessions recorded
 

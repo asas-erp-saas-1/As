@@ -143,5 +143,8 @@ must carry the parent name, a unique number and a descriptive slug.
 | 2026-10-14 | `adr/ADR-0040-INVENTORY-AVAILABILITY-OWNERSHIP-2026-10-14.md` | Availability *is* the Unit commercial dimension; no separate Inventory entity |
 | 2026-10-14 | `contracts/ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md` | Hold identity and conditional expiry (suppressed while a reservation references the Unit) |
 | 2026-10-14 | `reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md` | F-07 resolved with zero register edits; F-08 permission deltas proposed, awaiting owner ratification |
-| 2026-10-14 | `reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md` | Corpus integrity findings F-01…F-15 and the resolution log |
+| 2026-10-14 | `adr/ADR-0041-BUILDING-CONSISTENCY-BOUNDARY-2026-10-14.md` | Building is an aggregate root scoped to its own structural record, not over its Units; containment is a reference; construction is building-scoped with Unit projection. Resolves aggregate register OI-007 and Building contract BLD-02 |
+| 2026-10-14 | `reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md` | Complete C01–C22 scope recovery and corrections to two canonical registers |
+| 2026-10-14 | `reconciliation/ASAS-C-TRACK-DISPOSITION-REGISTER-2026-10-14.md` | Explicit disposition, owner and dependency for all 22 tracks (Recovery Map §9 requirement) |
+| 2026-10-14 | `reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md` | Corpus integrity findings F-01…F-17 and the resolution log |
 | 2026-10-14 | `reconciliation/ASAS-CI-REPAIR-2026-10-14.md` + `.patch` | CI control-plane repair (blocked on `workflows` permission) |

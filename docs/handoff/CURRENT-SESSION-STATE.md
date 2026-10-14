@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.71  
+**Version:** 3.72  
 **Date:** 2026-10-14  
 **Prior checkpoint date:** 2026-10-04 (zero-trust rebaseline)  
 **Repository:** `asas-erp-saas-1/As`  
@@ -88,6 +88,9 @@ The artifact previously labelled `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` i
 | B2 / B3 inventory ownership and availability | `ADR-0040` — availability *is* the Unit commercial dimension; no separate Inventory entity |
 | F-07 event drift | Closed with **zero** register edits; contract names map to registered events |
 | Hold lifecycle | Contracted — `ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md`, including the conditional-expiry safety rule |
+| Building consistency boundary (OI-007) | `ADR-0041` — Building is an aggregate root scoped to its own structural record, not over its Units |
+| Aggregate register OI-002/004/005/006/008 | Reconciled to the ADRs that resolved them (`ADR-0023`, `ADR-0037`, `ADR-0040`, `ADR-0041`, `FD-002`) |
+| C01–C22 scope and dispositions | Recovered and dispositioned — `ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`, `ASAS-C-TRACK-DISPOSITION-REGISTER-2026-10-14.md` |
 
 **Still blocking implementation:**
 
