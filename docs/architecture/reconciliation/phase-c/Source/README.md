@@ -54,6 +54,11 @@ A file is included when its **filename explicitly identifies a C-track (`C01` ..
 - `docs/handoff/ASAS-C03-CONFERENCE-CHECKPOINT-2026-09-25.md`
 - `docs/research/ASAS-C03-REAL-ESTATE-DOMAIN-RESEARCH-2026-09-25.md`
 
+**C03 source-control artifacts (added 2026-10-15; indexes/queues only, not architecture decisions):**
+- [C03 source register](C03/00-SOURCE-REGISTER.md) — classifies C03 source/provenance material and identifies reconciliation requirements.
+- [C03 source reconciliation queue](../C03/02-SOURCE-RECONCILIATION-QUEUE.md) — open checklist for resource semantics, concurrency, persistence provenance, cross-domain evidence, red-team review, and independent closure review.
+
+
 ### C04
 - `docs/architecture/task-packets/ASAS-TASK-C04-CRM-ENGINEERING-CONFERENCE-2026-09-26.md`
 
