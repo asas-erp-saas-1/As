@@ -182,32 +182,64 @@ They require their own contracts and verification but do not create additional b
 
 ## 4. C01–C22 reconciliation register
 
-The active Gate Model establishes `C01–C22` as Engineering Conference domain/platform tracks. The repository now provides explicit canonical provenance for C03–C06, so those mappings are no longer unresolved:
+The active Gate Model establishes `C01–C22` as Engineering Conference domain/platform tracks. As of 2026-10-14 the **complete** mapping is recovered from repository provenance: C03–C06 had explicit canonical provenance already, and C01, C02, C07–C22 were recovered by content-based search (see the provenance basis below). Track scope is recovered; closure state varies and is recorded per track.
 
 | Track | Canonical routing established from repository evidence | Current semantic state | Gate route / dependency |
 |---|---|---|---|
-| C01 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C02 | Inventory authority / attribution / competition concerns; cross-domain inventory-commercial track | ACTIVE / provenance established, full closure mapping still OPEN | GATE-02 → GATE-03 → GATE-04 → GATE-07 |
+| C01 | **Platform Constitution** — identity, source hierarchy, one canonical artifact rule, one engineering route, C-track subordination | CLOSED (baseline / architecture) | GATE-01 |
+| C02 | **Organization / Membership / Relationship** — business principal, membership, workspace, branch, organization relationship, collaboration boundary (Hybrid D), partner performance visibility (Hybrid E); extended by the closed attribution, commission, offer-bridge, competition and scheduling-ownership decisions | SEMANTICALLY CLOSED; one refinement OPEN | GATE-02 → GATE-03 → GATE-04 → GATE-07 |
 | C03 | Real Estate domain semantics / resource model | SEMANTIC BASELINE; C03.13 OPEN | GATE-02 → GATE-03 → GATE-04 → GATE-07 |
 | C04 | CRM | SEMANTIC BASELINE; registry/evidence convergence OPEN | GATE-02 → GATE-03 → GATE-04 → GATE-07 |
 | C05 | Sales | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED | GATE-03/04/07 dependencies remain; no implementation authorization |
 | C06 | Finance | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; statutory/accounting convergence OPEN | GATE-03/04/07 dependencies remain; country/accounting authority required |
-| C07 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C08 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C09 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C10 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C11 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C12 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C13 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C14 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C15 | Security/Tenancy is referenced as a downstream dependency in C04/C05 but a canonical C15 track artifact has not yet been recovered | MAPPING OPEN | GATE-02 → GATE-04 |
-| C16 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C17 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C18 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C19 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C20 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C21 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
-| C22 | Not yet recovered from a single canonical track artifact | MAPPING OPEN | GATE-02 reconciliation |
+| C07 | **Marketing** — campaigns, sources, attribution, ad spend, conversion, data lineage | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-03 |
+| C08 | **Studio / Website / CMS** — project/unit publishing, content ownership, media, SEO, forms, lead capture, one-system-of-truth sync | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-03 → GATE-05 |
+| C09 | **Analytics** — metric definitions, ownership, source facts, transformations, refresh, authorization, lineage, performance views | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-03 → GATE-05 |
+| C10 | **Documents** — templates, versions, access policy, generated documents, signatures/integrations, retention, legal validation | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-03 → GATE-04 |
+| C11 | **Scheduling / Activities** — Core-hosted platform capability; provider sync is Integrations-owned | OWNERSHIP CLOSED; implementation contract OPEN | GATE-03 |
+| C12 | **Workflow / Automation** — triggers, conditions, actions, approvals, retries, idempotency, compensation, audit | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-03 → GATE-06 |
+| C13 | **Integrations** — WhatsApp, ad providers, calendars, webhooks, external APIs, provider accounts, retries, signatures, rate limits, reconciliation | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-03 → GATE-05 |
+| C14 | **Search / Media / Notifications** — permission-aware search, multilingual indexing, phone normalization, sensitive-search audit, media access, notifications | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-03 → GATE-04 |
+| C15 | **Security / Tenancy** — tenant boundary, resource authorization, RLS, storage, jobs, cache, analytics, events, service roles, support access | SCOPE RECOVERED; NO DECISION PACKAGE | GATE-02 → GATE-04 |
+| C16 | **Data Architecture** — domain model → target schema → contract → migrations → live database reconciliation | SCOPE RECOVERED; CLOSURE NOT ASSESSED | GATE-01 → GATE-03 |
+| C17 | **Events / Outbox** — event ownership, envelope, versioning, idempotency, delivery, replay, DLQ, reconciliation | SCOPE RECOVERED; CLOSURE NOT ASSESSED | GATE-03 → GATE-06 |
+| C18 | **AI** — read-only intelligence first; tool authority inherits caller authority; no direct DB authority; human approval for sensitive actions | SCOPE RECOVERED; CLOSURE NOT ASSESSED | GATE-04 → GATE-05 |
+| C19 | **Design / Experience** — tokens → primitives → components → patterns → templates → surfaces; Arabic/RTL, French, English, responsive, accessibility, failure states | SCOPE RECOVERED; CLOSURE NOT ASSESSED | GATE-05 |
+| C20 | **Codex Engineering** — task packet, skills, implementation, tests, evidence, review, convergence | ACTIVE OPERATING WORKSTREAM | GATE-06 |
+| C21 | **Runtime / Operations** — CI, observability, backup/restore, deployment, staging, runtime identity, production gates | SCOPE RECOVERED; CLOSURE NOT ASSESSED | GATE-00 → GATE-06 |
+| C22 | **SaaS Evolution** — provisioning, billing/metering, enterprise isolation, API platform, extensions, marketplace, country packs (future) | FUTURE SCOPE — ARCHITECTURAL RESERVATION | not scheduled |
+
+### Provenance basis for the recovered C01–C22 mapping (updated 2026-10-14)
+
+The earlier statement that C01 and C07–C22 were "not yet recovered" was the result
+of a **filename-based** search. A **content-based** search recovers the full
+mapping from two independent enumerations:
+
+- `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md` §9 — enumerates all
+  twenty-two tracks with scope statements (C01 line 223 … C22 line 327), and
+  §8.1–8.3 records the C02-closed attribution, commission and offer decisions.
+- `docs/architecture/amendments/ASAS-ROADMAP-AMENDMENT-010-ENGINEERING-CONFERENCE-PATH-2026-09-25.md`
+  line 33 — states the full sequence and the governing qualifier "These are
+  workstreams, not bounded contexts."
+
+Corroborating artifacts: `docs/architecture/reconciliation/ASAS-ENGINEERING-CONFERENCE-RECOVERY-AND-COMPLETION-MAP-2026-09-26.md`
+§3 (C01 CLOSED; C02 SEMANTICALLY CLOSED with one refinement; C11 ownership closed),
+`docs/governance/FOUNDER-DECISIONS.md` FD-002 (Scheduling is Core-hosted) and
+`decisions/ADR-0021-SCHEDULING-OWNERSHIP-2026-09-26.md`.
+
+Full recovery record and the list of corrected register rows:
+`docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`.
+
+**Corrections applied to this register:** C01 was `MAPPING OPEN` → **CLOSED**;
+C02 was described only by its inventory/attribution extension → **Organization /
+Membership / Relationship** is its primary scope; C11 was `MAPPING OPEN` →
+**OWNERSHIP CLOSED**; C07–C14 and C16–C22 were `MAPPING OPEN` → **scope
+recovered** with per-track closure states as recorded above.
+
+**Still unresolved:** eight tracks (C07–C10, C12–C15) have scope but **no decision
+package**; C16–C22 have **no closure assessment** at all and require an explicit
+CLOSED / DEFERRED / REJECTED / BLOCKED disposition under the Recovery Map §9
+definition of done.
 
 ### Provenance basis for the recovered C03–C06 mapping
 

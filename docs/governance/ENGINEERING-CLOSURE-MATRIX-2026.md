@@ -119,19 +119,19 @@ docs/architecture/reconciliation/phase-c/
 
 `README.md` in each directory is the track routing/index. It must identify status, canonical artifacts, historical/provenance artifacts, open questions, evidence and closure state. This directory is organizational control; it does not imply that a track is closed or implementation-ready.
 
-The repository now contains explicit provenance for C03–C06. Therefore the previous blanket statement that every C label was unmapped is superseded.
+The repository now contains explicit provenance for C03–C06, and as of 2026-10-14 the **complete** C01–C22 mapping has been recovered by content-based search. The previous blanket statement that every C label was unmapped is superseded, as is the statement that C01 and C07–C22 were unrecovered. Recovery record: `docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`.
 
 | Track | Canonical routing established from repository evidence | Current semantic state |
 |---|---|---|
-| C01 | Not yet recovered from a single canonical track artifact | MAPPING OPEN |
-| C02 | Inventory authority / attribution / competition concerns; cross-domain inventory-commercial track | ACTIVE / full closure mapping OPEN |
+| C01 | **Platform Constitution** — identity, source hierarchy, one canonical artifact rule, one route, C-track subordination | CLOSED (baseline / architecture) |
+| C02 | **Organization / Membership / Relationship** — business principal, membership, workspace, branch, organization relationship, collaboration boundary, partner performance visibility; extended by the closed attribution, commission, offer-bridge, competition and scheduling-ownership decisions | SEMANTICALLY CLOSED; one refinement OPEN |
 | C03 | Real Estate domain semantics / resource model | SEMANTIC BASELINE; C03.13 OPEN |
 | C04 | CRM | SEMANTIC BASELINE; registry/evidence convergence OPEN |
 | C05 | Sales | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED |
 | C06 | Finance | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; statutory/accounting convergence OPEN |
-| C07–C14 | Not yet recovered from a single canonical track artifact | MAPPING OPEN |
-| C15 | Security/Tenancy is a downstream dependency in C04/C05, but canonical C15 track artifact not yet recovered | MAPPING OPEN |
-| C16–C22 | Not yet recovered from a single canonical track artifact | MAPPING OPEN |
+| C07–C14 | Marketing; Studio/Website/CMS; Analytics; Documents; Workflow/Automation; Integrations; Search/Media/Notifications — scope recovered 2026-10-14 | SCOPE RECOVERED; NO DECISION PACKAGE |
+| C15 | Security / Tenancy — tenant boundary, resource authorization, RLS, storage, jobs, cache, analytics, events, service roles, support access | SCOPE RECOVERED; NO DECISION PACKAGE |
+| C16–C22 | Data Architecture; Events/Outbox; AI; Design/Experience; Codex Engineering; Runtime/Operations; SaaS Evolution — scope recovered 2026-10-14 (C11 = Scheduling/Activities, ownership CLOSED, sits between C10 and C12) | SCOPE RECOVERED; CLOSURE NOT ASSESSED |
 
 ### Provenance basis
 
@@ -140,6 +140,10 @@ The repository now contains explicit provenance for C03–C06. Therefore the pre
 - `docs/architecture/task-packets/ASAS-TASK-C05-SALES-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C05 as Sales and semantic closure / implementation blocked.
 - `docs/architecture/task-packets/ASAS-TASK-C06-FINANCE-ENGINEERING-CONFERENCE-2026-09-26.md` explicitly identifies C06 as Finance and semantic closure / implementation blocked.
 - C03 research, resource-model contract and checkpoint artifacts provide explicit C03 provenance.
+- `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md` §9 enumerates all twenty-two tracks with scope statements, and §8.1–8.3 records the C02-closed attribution, commission and offer decisions.
+- `docs/architecture/amendments/ASAS-ROADMAP-AMENDMENT-010-ENGINEERING-CONFERENCE-PATH-2026-09-25.md` line 33 states the full sequence and the qualifier "These are workstreams, not bounded contexts."
+- `docs/architecture/reconciliation/ASAS-ENGINEERING-CONFERENCE-RECOVERY-AND-COMPLETION-MAP-2026-09-26.md` §3 records C01 CLOSED, C02 SEMANTICALLY CLOSED with one refinement, and C11 ownership closed.
+- `docs/governance/FOUNDER-DECISIONS.md` FD-002 and `decisions/ADR-0021-SCHEDULING-OWNERSHIP-2026-09-26.md` establish C11 ownership.
 
 Known explicit routing rule from the canonical Gate Model:
 

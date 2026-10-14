@@ -74,6 +74,16 @@ A file is included when its **filename explicitly identifies a C-track (`C01` ..
 
 No branch file whose **filename** explicitly identifies these tracks was found in the current recursive branch tree during this inventory. Their Phase C directories remain valid and intentionally empty of fabricated source material.
 
+> **Update 2026-10-14.** This statement was true for a **filename-based** search and
+> is now superseded for scope recovery. A content-based search recovers the full
+> C01–C22 mapping from `docs/architecture/ASAS-ENGINEERING-CONFERENCE-PATH-2026.md`
+> §9 and `docs/architecture/amendments/ASAS-ROADMAP-AMENDMENT-010-ENGINEERING-CONFERENCE-PATH-2026-09-25.md`.
+> The Phase C directories are therefore no longer empty of recovered material;
+> each now carries its recovered scope, provenance and closure state. See
+> `docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`.
+> Recovered scope is **not** closure: eight tracks still have no decision package,
+> and C16–C22 have no closure assessment.
+
 ## Important distinction
 
 `C-track source corpus` != `canonical artifact owner` != `closure status`.
