@@ -35,9 +35,9 @@ authority, cross-artifact contradiction, path closure state
 | F-03 | ADR series split; ADR-0001–0020 absent with unexplained numbering gap | MEDIUM | OPEN / PROVENANCE GAP | Lead Architecture |
 | F-04 | Two amendment lineages with colliding numbers, no global registry | MEDIUM | OPEN / ORGANIZATIONAL | Lead Architecture |
 | F-05 | Source of Truth contradicts the checkpoint and itself (skills count, Supabase identity) | HIGH | CONFLICT | Lead Architecture |
-| F-06 | State-machine register vs. Unit/Reservation contracts disagree on states and guards | HIGH | CONFLICT — AUTHORITY REQUIRED | Engineering Conference |
-| F-07 | Reservation lifecycle events used by contracts are absent from the 103-event register | MEDIUM | OPEN / CONTRACT-REGISTER DRIFT | Domain Architecture |
-| F-08 | Permission register has no keys for release/expire/unblock/off-market transitions | MEDIUM | OPEN / CONTRACT-REGISTER DRIFT | Security/Tenancy |
+| F-06 | State-machine register vs. Unit/Reservation contracts disagree on states and guards | HIGH | **RESOLVED — `ADR-0038`** | Engineering Conference |
+| F-07 | Reservation lifecycle events used by contracts are absent from the 103-event register | MEDIUM | **RESOLVED — zero register edits; contract names mapped (`ADR-0038` §11)** | Domain Architecture |
+| F-08 | Permission register has no keys for release/expire/unblock/off-market transitions | MEDIUM | OPEN — deltas specified, awaiting owner ratification | Security/Tenancy |
 | F-09 | 12 dangling internal references (3 recoverable from unmerged branches) | MEDIUM | OPEN / REFERENCE INTEGRITY | Lead Architecture |
 | F-10 | Root `README.md` states the v1.6.1 blueprint is the "specification baseline" | MEDIUM | STALE STATEMENT — contradicts `AGENTS.md` | Lead Architecture |
 | F-11 | Gate/C-track status disagrees across five canonical-ish artifacts | HIGH | CONFLICT | Lead Architecture |
@@ -145,9 +145,12 @@ conflict is never silently averaged. Resolution requires a superseding ADR that
 either (a) extends the contract states to the full normative enum, or (b) narrows
 the register to the contract subset through an explicit amendment.
 
-**Disposition:** recorded as `CONFLICT — AUTHORITY REQUIRED`. The commercial edge
-matrix produced in this session is deliberately written so it does **not** depend
-on which resolution is chosen, and it marks each affected edge `BLOCKED-ON-F-06`.
+**Disposition:** **RESOLVED 2026-10-14 by `ADR-0038`.** The register's enums were
+adopted as canonical (nine commercial, six construction, seven reservation
+states), the release path was decided two-hop, the mandatory `HELD` waypoint and
+the deposit trigger were established, and the divergent contract state lists were
+superseded with in-file pointers. No register file was edited, so the resolution
+required no canonical-count change. See §5.
 
 ### F-07 — Reservation event drift
 
@@ -158,8 +161,10 @@ ReservationRejected, ReservationReleased, ReservationExpired, ReservationCancell
 `reservation.created`, `reservation.cancelled`, plus `apartment.reserved`,
 `hold.expired`, `hold.released`, `apartment.released`.
 
-**Disposition:** no event name was invented. The edge matrix maps every edge to
-existing registered event names and records unmapped cases as open.
+**Disposition:** **RESOLVED 2026-10-14.** No event name was invented and no
+register edit was needed: the contract-level names were the divergent side.
+`ADR-0038` §11 maps every contract name onto a registered event, and the register
+delta record confirms the 103-event structural claim still holds.
 
 ### F-08 — Permission register coverage
 
@@ -168,10 +173,14 @@ but no key for reservation release/expiry, hold expiry, `apartment.release`,
 `apartment.unblock`, or `apartment.off_market`. Commercial edges that must be
 authorized therefore have no register key.
 
-**Disposition:** recorded. The matrix cites existing keys where they exist and
-marks the remainder `PERMISSION-GAP` instead of inventing keys, because the
-command/action register §8 forbids creating permissions absent from the canonical
-register.
+**Disposition:** recorded with an exact proposed delta.
+`docs/architecture/reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md` specifies the
+required keys (P-1…P-11), the persona analogues where they exist, and a structural
+finding the register cannot currently express: **system-principal authority** for
+deterministic expiry processing. The register is **not** edited until the
+Security/Tenancy owner ratifies, because the command/action register §8 forbids
+creating permissions absent from the canonical register and `AGENTS.md` treats
+tenant/security authority as a stop condition.
 
 ### F-09 — Dangling internal references
 
@@ -325,19 +334,53 @@ locally, matching the observed CI failure. GitHub-side re-verification is
 | F-13 audit directory split | documented | `docs/architecture/README.md` §3 |
 | F-14 root contract lineage | documented + placement rule | `docs/architecture/README.md` §3; ADR register §4 |
 | F-15 CI control plane red | root causes identified and repair prepared as a patch | `docs/architecture/reconciliation/ASAS-CI-REPAIR-2026-10-14.patch`; local re-execution with the patch passes all 10 steps |
+| F-06 state enum / release-path conflict | resolved by a superseding ADR | `docs/architecture/adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`; no register edit |
+| F-07 reservation event drift | resolved with zero register edits | `ADR-0038` §11; `docs/architecture/reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md` §2 |
 
 ## 4. Findings remaining open
 
 | Finding | State | Owner | Next action |
 |---|---|---|---|
 | F-01 absent A1 V3 baseline | OPEN / FOUNDER-DECISION-REQUIRED | Lead Architecture + Founder | install the verified baseline, or demote the register entry |
-| F-06 register/contract conflict | CONFLICT | Engineering Conference | superseding ADR (option a or b in F-06) |
-| F-07 reservation event drift | OPEN | Domain Architecture | reconcile event names against `registers/events.json` |
-| F-08 permission coverage | OPEN | Security/Tenancy | add or explicitly defer the missing permission keys |
+| F-08 permission coverage | OPEN — analysis complete, authority pending | Security/Tenancy | ratify the deltas and the system-principal authority gap in the register-delta record |
 | F-10 README doctrine statement | OPEN | Lead Architecture | align front-door doctrine with `AGENTS.md` |
 | F-11 cross-artifact status divergence | CONFLICT | Lead Architecture | add supersession notes to Control Board and Gate Model §9 |
 
 None of these can be closed by this review, and none authorizes implementation.
 This review is an **adversarial/authoring-stream review**, not independent
 evidence; it does not satisfy the C03 independent-review prerequisite.
+
+## 5. Resolution log — 2026-10-14
+
+Findings F-06 and F-07 were resolved after this review was authored, by decisions
+recorded under the founder delegation of 2026-09-26. The resolution deliberately
+required **no edit to any register file**, so no canonical structural count
+changed and no new authority was created by accident.
+
+| Artifact | Resolves | Nature |
+|---|---|---|
+| `adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md` | F-06; C03-O09 | Adopts the register's nine commercial and six construction states; decides two-hop release, the mandatory `HELD` waypoint, the `deposit.recorded` trigger, the projection doctrine, and event semantics; withdraws the divergent reservation state list |
+| `adr/ADR-0039-UNIT-APARTMENT-CANONICAL-IDENTITY-2026-10-14.md` | C03 blocker B1; C03-O01 | Adopts identity equivalence (`Unit = Apartment`), with `apartment.*` as the source/persistence namespace and an explicit statement that identity is not aggregate absorption |
+| `adr/ADR-0040-INVENTORY-AVAILABILITY-OWNERSHIP-2026-10-14.md` | C03 blockers B2 and B3; C03-O02 | Availability *is* the Unit commercial dimension, so B3 dissolves rather than being mapped; no separate Inventory aggregate or entity; ownership table; Unit as aggregate root |
+| `contracts/ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md` | Hold lifecycle gap | Hold identity requirement, creation, conditional expiry (suppressed while a reservation references the Unit), release, conversion, 12 acceptance scenarios |
+| `reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md` | F-07 fully; F-08 analysis | F-07 closes with zero register edits; F-08 deltas specified and awaiting Security/Tenancy ratification |
+| `contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md` (updated) | — | Re-expressed in the nine canonical states; edges moved off `BLOCKED-ON-F-06` |
+
+Superseded artifacts carry in-file supersession pointers:
+`ADR-0028`, `ADR-0031`, `ADR-0033`, `ASAS-UNIT-STATE-CONTRACT-2026.md`,
+`ASAS-INVENTORY-LIFECYCLE-CONTRACT-2026.md`, and
+`ASAS-RESERVATION-STATE-MACHINE-CONTRACT-2026.md` (withdrawn).
+
+**Authority basis.** The founder delegation of 2026-09-26 authorises the
+Engineering Conference to close open architecture questions that do not require
+legal interpretation, destructive production authority or unavailable runtime
+evidence. Enum reconciliation, trigger semantics, release-path shape and resource
+identity are architecture questions. Policy **values** (hold duration, cooling
+length, deposit amounts, approval thresholds) are commercial/product decisions and
+were deliberately left `FOUNDER-DECISION-REQUIRED`.
+
+**Not claimed.** These decisions close semantic conflicts. They do not establish
+runtime truth, do not authorise implementation, and do not substitute for the
+independent review that C03 closure requires.
+
 

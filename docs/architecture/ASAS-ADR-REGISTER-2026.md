@@ -40,6 +40,23 @@ fact rather than papering over it.
 | ADR-0035 | CRM canonical semantics | `adr/` | see file |
 | ADR-0036 | Sales canonical semantics | `adr/` | see file |
 | ADR-0037 | Finance canonical semantics | `adr/` | see file |
+| ADR-0038 | Unit state dimensions and commercial lifecycle | `adr/` | ACCEPTED — reconciliation; implementation gated |
+| ADR-0039 | Unit / Apartment canonical identity | `adr/` | ACCEPTED — reconciliation; implementation gated |
+| ADR-0040 | Inventory availability ownership and aggregate boundary | `adr/` | ACCEPTED — reconciliation; implementation gated |
+
+### 2.1 Partial supersessions recorded
+
+| Superseded artifact | Superseded by | Scope |
+|---|---|---|
+| `decisions/ADR-0028-UNIT-DOMAIN-SEMANTICS-2026-09-26.md` | ADR-0038 | State enum lists only; all other doctrine stands |
+| `decisions/ADR-0031-UNIT-STATE-DOCTRINE-2026-09-26.md` | ADR-0038 | Commercial and construction value lists; doctrine stands |
+| `decisions/ADR-0033-INVENTORY-LIFECYCLE-SEMANTICS-2026-09-26.md` | ADR-0038 | Six-state list and direct release; semantics stand |
+| `contracts/ASAS-UNIT-STATE-CONTRACT-2026.md` | ADR-0038 | State value lists; invariants stand |
+| `contracts/ASAS-INVENTORY-LIFECYCLE-CONTRACT-2026.md` | ADR-0038 | State list and release path; rules stand |
+| `contracts/ASAS-RESERVATION-STATE-MACHINE-CONTRACT-2026.md` | ADR-0038 §10 | Entire candidate state list (WITHDRAWN); ownership statement stands |
+
+Each superseded artifact carries an in-file supersession pointer, so a reader who
+opens it directly is not left with a stale enum.
 
 ## 3. Referenced but not present in this branch
 

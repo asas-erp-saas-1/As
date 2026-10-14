@@ -37,7 +37,12 @@
 31. `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` — corrected classification: adversarial, not independent
 32. `31-INVENTORY-UNIT-RESERVATION-CONTRACT-RECONCILIATION-2026-10-04.md`
 33. `docs/architecture/contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md` — six commercial edges in the required field set (`PROPOSED / ENGINEERING-DERIVATION`)
-34. `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md` — corpus integrity findings F-01…F-14 (authoring-stream review, not independent)
+34. `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md` — corpus integrity findings F-01…F-15 (authoring-stream review, not independent)
+35. `docs/architecture/adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md` — canonical state dimensions, two-hop release, mandatory HELD waypoint, deposit trigger, event semantics
+36. `docs/architecture/adr/ADR-0039-UNIT-APARTMENT-CANONICAL-IDENTITY-2026-10-14.md` — Unit/Apartment identity equivalence
+37. `docs/architecture/adr/ADR-0040-INVENTORY-AVAILABILITY-OWNERSHIP-2026-10-14.md` — availability ownership; no separate Inventory entity
+38. `docs/architecture/contracts/ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md` — hold identity, conditional expiry, conversion, acceptance scenarios
+39. `docs/architecture/reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md` — F-07 resolution and the proposed permission deltas for F-08
 
 ## Authoritative external-to-C03 evidence
 

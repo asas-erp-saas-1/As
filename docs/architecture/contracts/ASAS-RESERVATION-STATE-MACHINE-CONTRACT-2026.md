@@ -1,6 +1,15 @@
 # ASAS Reservation State Machine Contract — 2026
 
-**Status:** PROPOSED — implementation blocked
+**Status:** WITHDRAWN — state list superseded by ADR-0038 Decision 8
+
+> **Withdrawn (2026-10-14):** the candidate state list below
+> (`REQUESTED`, `PENDING_APPROVAL`, `CONFIRMED`, `ACTIVE`, `CANCELLED`, `EXPIRED`,
+> `CONVERTED`) is withdrawn by
+> `docs/architecture/adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`
+> §10. The reservation lifecycle is register B.6
+> (`DRAFT → PENDING_DEPOSIT → ACTIVE → CONVERTED | CANCELLED → REFUND_PROCESSING → CLOSED`),
+> approval is expressed through the Approval Engine, and expiry is expressed as
+> `CANCELLED` with an expiry reason. The ownership statement in §1 remains valid.
 **Conference:** C02 → C05
 
 ## 1. Ownership

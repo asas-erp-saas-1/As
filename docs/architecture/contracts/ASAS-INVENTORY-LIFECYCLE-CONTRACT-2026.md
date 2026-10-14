@@ -1,6 +1,13 @@
 # ASAS Inventory Lifecycle Contract — 2026
 
-**Status:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED  
+**Status:** SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED; state list and release path superseded by ADR-0038
+
+> **Superseded in part (2026-10-14):** the six-state list and the direct
+> `RESERVED → AVAILABLE` transition are superseded by
+> `docs/architecture/adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`
+> (nine canonical states; two-hop release through `CANCELLED`). State ownership,
+> independence rules, projection doctrine, command behaviour and acceptance tests
+> remain in force.  
 **ADR:** ADR-0033  
 **Conference:** C03.11
 

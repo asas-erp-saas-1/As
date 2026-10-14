@@ -1,6 +1,12 @@
 # ADR-0028 — Unit Domain Semantics
 
-**Status:** ACCEPTED
+**Status:** ACCEPTED — superseded in part by ADR-0038 (state enum lists only)
+
+> **Superseded in part (2026-10-14):** the commercial and construction state value
+> lists in this ADR are superseded by
+> `adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`.
+> All other doctrine in this ADR — identity, ownership, boundary, aggregate,
+> pricing, listing, media and AI rules — remains in force.
 **Date:** 2026-09-26
 **Branch:** `platform-architecture-2026`
 **Decision:** C03.6 Unit semantic slice closed

@@ -1,7 +1,13 @@
 # ADR-0033 — Inventory Lifecycle Semantics
 
 **Date:** 2026-09-26  
-**Status:** ACCEPTED — semantic slice closed; implementation gated  
+**Status:** ACCEPTED — semantic slice closed; implementation gated; superseded in part by ADR-0038
+
+> **Superseded in part (2026-10-14):** the six-state commercial list and the
+> direct `RESERVED → AVAILABLE` release are superseded by
+> `adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`
+> (nine canonical states; two-hop release). Lifecycle semantics, invariants,
+> concurrency and projection doctrine remain in force.  
 **Conference:** C03 Real Estate Domain
 
 ## Decision

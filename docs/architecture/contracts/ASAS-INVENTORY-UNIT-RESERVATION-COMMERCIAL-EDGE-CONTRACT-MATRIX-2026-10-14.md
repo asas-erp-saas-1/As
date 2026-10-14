@@ -1,7 +1,7 @@
 # ASAS — Inventory / Unit / Reservation Commercial Edge Contract Matrix 2026-10-14
 
 **Artifact ID:** `ASAS-CONTRACT-C03-COMMERCIAL-EDGE-MATRIX-2026-001`
-**Status:** PROPOSED / ENGINEERING-DERIVATION — OPEN / IMPLEMENTATION BLOCKED
+**Status:** SEMANTICALLY DECISION-BACKED (`ADR-0038` / `ADR-0039` / `ADR-0040`) — IMPLEMENTATION BLOCKED; permission and evidence gaps remain
 **Authority:** Architecture/contract engineering only. Authorizes no schema,
 ORM, migration, RLS or production API.
 **Conference:** C03 → GATE-03
@@ -39,6 +39,10 @@ This artifact does **not**:
 | `decisions/ADR-0032-PRICING-VERSIONING-SEMANTICS-2026-09-26.md` | price versioning + snapshot |
 | `decisions/ADR-0033-INVENTORY-LIFECYCLE-SEMANTICS-2026-09-26.md` | lifecycle + release doctrine |
 | `decisions/ADR-0034-RESERVATION-CONSISTENCY-BOUNDARY-2026-09-26.md` | single-winner consistency boundary |
+| `adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md` | canonical state dimensions, release path, mandatory HELD waypoint, event semantics |
+| `adr/ADR-0039-UNIT-APARTMENT-CANONICAL-IDENTITY-2026-10-14.md` | Unit/Apartment identity equivalence |
+| `adr/ADR-0040-INVENTORY-AVAILABILITY-OWNERSHIP-2026-10-14.md` | availability ownership; no separate Inventory entity |
+| `contracts/ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md` | hold identity and conditional expiry |
 | `contracts/ASAS-UNIT-STATE-CONTRACT-2026.md` | state dimensions |
 | `contracts/ASAS-INVENTORY-LIFECYCLE-CONTRACT-2026.md` | allowed transitions |
 | `contracts/ASAS-PRICING-VERSIONING-CONTRACT-2026.md` | snapshot rules |
@@ -52,16 +56,28 @@ This artifact does **not**:
 | `ASAS-COMMAND-ACTION-CONTRACT-REGISTER-2026.md` | action inventory + 16-field rule |
 | `reconciliation/phase-c/C03/31-INVENTORY-UNIT-RESERVATION-CONTRACT-RECONCILIATION-2026-10-04.md` | blocker set B1–B5 |
 
-## 4. Governing conflict notice (F-06)
+## 4. Resolution notice — F-06 is closed by ADR-0038
 
-The canonical state-machine register and the accepted ADR/contract set do not
-agree on the commercial state enum or on the `HELD → RESERVED` trigger. See
-`reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md` F-06.
+When this matrix was first authored, the canonical state-machine register and the
+accepted ADR/contract set disagreed on the commercial state enum, the
+`HELD → RESERVED` trigger and the release path (integrity finding F-06). The
+matrix was therefore written resolution-neutral and its disputed edges were
+marked `BLOCKED-ON-F-06`.
 
-This matrix is therefore written to be **resolution-neutral**: every edge is
-expressed in terms of the six contract states that both sources agree exist
-(`AVAILABLE, HELD, RESERVED, CONTRACTED, SOLD, OFF_MARKET`), and every edge whose
-behaviour depends on the disputed portion is marked `BLOCKED-ON-F-06`.
+**That conflict is now resolved by `ADR-0038`**, which:
+
+1. adopts the register's nine commercial states as canonical;
+2. makes the release path two-hop (`RESERVED → CANCELLED → AVAILABLE`);
+3. makes `HELD` a mandatory commercial waypoint;
+4. fixes `deposit.recorded` as the `HELD → RESERVED` trigger with the reservation
+   record as single-winner authority;
+5. withdraws the divergent reservation state list;
+6. maps every transition to a registered event without editing any register.
+
+This matrix is consequently re-expressed in terms of the **nine** canonical
+states. Edges are no longer `BLOCKED-ON-F-06`; what remains open per edge is
+recorded explicitly as permission gaps, founder policy decisions, or brownfield
+evidence.
 
 ## 5. Edge field definition
 
@@ -94,7 +110,7 @@ inference.
 | Audit | actor, organization, resource, policy, correlation/idempotency, timestamps (ADR-0034 §6) |
 | Failure/retry | no partial hold; typed conflict for the loser; retry of the same logical request returns the original result |
 | Acceptance evidence | INVENTORY-LIFECYCLE-CONTRACT acceptance 1; RACE-01/02/03/16 |
-| Open | hold expiry rule undefined; no registered permission for hold release/expiry (F-08) |
+| Open | hold expiry is now contracted (`ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md` §4); the permission key `apartment.hold.release` and system-principal expiry authority remain a register gap (F-08) |
 
 ## 7. E2 — `HELD → RESERVED`
 
@@ -103,7 +119,7 @@ inference.
 | Actor | `field.agent`, `sales.agent`, `sales.manager`, `director`, `ceo` |
 | Permission | `reservation.create` — registered; deposit capture uses `receipt.record` — registered (sales.agent YES "deposit at reservation") |
 | Tenant | tenant/organization scope; Unit/project resource scope |
-| Preconditions | an active, unexpired, un-released hold or an eligible Unit; caller authorized; no competing active reservation has won; commercial terms snapshot-able; transaction can establish the invariant atomically |
+| Preconditions | **the Unit is in `HELD` with an active hold — the mandatory commercial waypoint (`ADR-0038` Decision 6)**; caller authorized; no competing active reservation has won; commercial terms snapshot-able; transaction can establish the invariant atomically |
 | Invariant | INV-UR-001 single active reservation winner; reservation snapshot immutability (ADR-0032 rule 5) |
 | Command | `create_reservation` / hold conversion (ACT-008; status OPEN) |
 | Consistency boundary | the Unit; reservation persistence and the Unit commercial consequence commit atomically (ADR-0034 §8) |
@@ -114,27 +130,50 @@ inference.
 | Audit | reservation creation/rejection with actor, org, resource, policy, correlation/idempotency, timestamps |
 | Failure/retry | failed attempt leaves no second winner, no false `RESERVED` projection, no orphaned side effect |
 | Acceptance evidence | RACE-01…07, RACE-12, RACE-14, RACE-16; RESERVATION-CONSISTENCY adversarial matrix |
-| **Status** | **BLOCKED-ON-F-06** |
+| **Status** | SEMANTIC CLOSED — decision-backed (`ADR-0038` Decisions 6 and 7); deposit semantics and approval authority remain `FOUNDER-DECISION-REQUIRED` |
 
-### 7.1 Reconciliation hypothesis for the `HELD → RESERVED` trigger (ENGINEERING-DERIVATION)
+### 7.1 Resolution of the `HELD → RESERVED` trigger (decided by ADR-0038)
 
-The register and the ADR set can be read as compatible rather than contradictory,
-and this reading is offered for conference ratification:
+The register and the ADR set were reconciled rather than left in tension, and the
+reconciliation is now a decision rather than a hypothesis:
 
-- register `apartment.commercial_status` moves `HELD → RESERVED` on
+- the register moves `apartment.commercial_status` `HELD → RESERVED` on
   `deposit.recorded`;
-- register `reservation.status` (B.6) contains `DRAFT → PENDING_DEPOSIT → ACTIVE`,
-  i.e. deposit capture is an internal stage of the reservation lifecycle;
-- ADR-0034 requires that exactly one reservation wins the Unit boundary.
+- register `reservation.status` (B.6) places deposit capture inside the
+  reservation lifecycle (`DRAFT → PENDING_DEPOSIT → ACTIVE`);
+- `ADR-0034` requires exactly one reservation to win the Unit boundary.
 
-A single reading that satisfies all three is: the reservation record is created
-and wins the Unit boundary first (internally `DRAFT`/`PENDING_DEPOSIT`), and the
-Unit's commercial status becomes `RESERVED` when the deposit is recorded
-(`ACTIVE`). Under that reading `deposit.recorded` is the projection trigger, not
-the winner-determination event.
+`ADR-0038` Decision 7 resolves all three simultaneously: the reservation record is
+created first and wins the Unit boundary (internally `DRAFT`/`PENDING_DEPOSIT`,
+Unit still `HELD`), and the Unit's commercial status becomes `RESERVED` when the
+deposit is recorded. `deposit.recorded` is therefore the **projection trigger**,
+not the winner-determination event, and the reservation record remains the
+single-winner authority.
 
-This hypothesis is `ENGINEERING-DERIVATION`. It is **not** a decision and does
-not close F-06. It requires a superseding ADR from the Engineering Conference.
+The earlier `ENGINEERING-DERIVATION` label on this reading has been replaced by
+`ADR-0038` Decision 7.
+
+### 7.2 Mandatory hold waypoint (decided by ADR-0038 Decision 6)
+
+Because the register contains no `AVAILABLE → RESERVED` edge, this edge can only
+be reached from `HELD`. A reservation attempt on an `AVAILABLE` Unit must first
+establish a hold; the `apartment.held` fact is recorded even when a single
+user-facing action composes both steps.
+
+### 7.3 The window between reservation creation and deposit
+
+While a reservation exists and the Unit is still `HELD`, the hold must not be
+allowed to expire. The conditional-expiry rule is normative in
+`ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md` §4:
+
+```text
+expire(H) only if H is the active hold
+          and no active reservation references the Unit
+```
+
+Without it, `hold.expired` would release a Unit whose reservation is awaiting
+deposit — a double-booking path that the register's transition table implies but
+no prior contract stated.
 
 ## 8. E3 — `RESERVED → CONTRACTED`
 
@@ -154,7 +193,7 @@ not close F-06. It requires a superseding ADR from the Engineering Conference.
 | Audit | actor, org, resource, policy, correlation, timestamps, contract identity |
 | Failure/retry | no partial contract; no `CONTRACTED` projection without a committed contract fact |
 | Acceptance evidence | INVENTORY-LIFECYCLE-CONTRACT acceptance 6; RACE-10 |
-| **Status** | **BLOCKED-ON-F-06** (and on the missing execution permission key) |
+| **Status** | SEMANTIC CLOSED — decision-backed; permission key `contract.sign` (P-9) remains a register gap |
 
 ## 9. E4 — `RESERVED → CANCELLED / RELEASED`
 
@@ -174,18 +213,32 @@ not close F-06. It requires a superseding ADR from the Engineering Conference.
 | Audit | actor or system identity, reason, org, resource, correlation, timestamps |
 | Failure/retry | no partial release; no release of a newer reservation; deterministic conflict on a stale version |
 | Acceptance evidence | RACE-06, RACE-07, RACE-14; RESERVATION-CONSISTENCY adversarial matrix |
-| **Status** | **BLOCKED-ON-F-06** (permission gap + release-path conflict below) |
+| **Status** | SEMANTIC CLOSED — two-hop release decided by `ADR-0038` Decision 4; permission keys P-2/P-4/P-7 and system-expiry authority remain register gaps |
 
-### 9.1 Release-path reconciliation (OPEN — authority required)
+### 9.1 Release path is two-hop (decided by ADR-0038 Decision 4)
 
 The register models release as two hops: `RESERVED → CANCELLED` on
 `reservation.cancelled`, then `CANCELLED → AVAILABLE` on `apartment.released`.
-`ASAS-INVENTORY-LIFECYCLE-CONTRACT-2026.md` states `RESERVED → AVAILABLE` as an
-allowed transition.
+`ASAS-INVENTORY-LIFECYCLE-CONTRACT-2026.md` asserted a direct
+`RESERVED → AVAILABLE`; that assertion is **withdrawn**.
 
-These are not equivalent: a two-hop model creates an intermediate `CANCELLED`
-commercial state, while a one-hop model returns directly to `AVAILABLE`. This is
-part of F-06 and is **not** resolved here.
+`ADR-0038` Decision 4 prohibits direct release because the `CANCELLED`
+intermediate is the only representation of the cooling period that register B.6
+requires before a Unit returns to `AVAILABLE`.
+
+Consequently this edge is **two governed transitions**, each with its own actor,
+precondition and event:
+
+| Transition | Trigger event | Permission |
+|---|---|---|
+| `RESERVED → CANCELLED` | `reservation.cancelled` | `reservation.cancel` (registered) |
+| `CANCELLED → AVAILABLE` | `apartment.released` | `apartment.release` (proposed P-7) |
+
+**State-dependent cancellation.** A reservation cancelled *before* the deposit was
+recorded leaves the Unit in `HELD`, not `RESERVED`, and returns it by
+`HELD → AVAILABLE` on `hold.released`. The `CANCELLED` path applies only once the
+Unit actually reached `RESERVED`. Using the `CANCELLED` path for a pre-deposit
+cancellation would fabricate a state the Unit never occupied.
 
 ## 10. E5 — Price change during an active hold or reservation
 
@@ -205,7 +258,7 @@ part of F-06 and is **not** resolved here.
 | Audit | actor, approval reference, resource, prior/new version, effective period, reason, correlation |
 | Failure/retry | unauthorized or unapproved change rejected; failed change leaves the prior version authoritative |
 | Acceptance evidence | PRICING-VERSIONING acceptance 1–10 |
-| **Status** | contract semantics sufficient; permission-key gaps remain (F-08) |
+| **Status** | SEMANTIC CLOSED — `ADR-0032` unaffected by `ADR-0038`; identity settled by `ADR-0039`; permission-key gaps remain (F-08) |
 
 ## 11. E6 — Structural Unit amendment during an active commitment
 
@@ -225,7 +278,7 @@ part of F-06 and is **not** resolved here.
 | Audit | actor, before/after structural facts, org, resource, reason, correlation |
 | Failure/retry | amendment rejected if it would invalidate an active commitment; no partial structural mutation |
 | Acceptance evidence | ADR-0031 rules 5–6; C03 artifact 19; new tests required |
-| **Status** | OPEN — no registered event; policy for structural amendment under commitment undefined |
+| **Status** | PARTIAL — identity immutability and dimension independence are decided (`ADR-0039`, `ADR-0038`); no registered structural-amendment event exists and none is invented; policy for amendment during an active commitment remains OPEN |
 
 ## 12. Cross-edge invariants
 
@@ -250,18 +303,21 @@ part of F-06 and is **not** resolved here.
 
 ## 13. Register gaps and required decisions
 
-| ID | Gap | Type | Owner | Blocks |
-|---|---|---|---|---|
-| G-1 | Commercial state enum and release path disagree between register and contracts (F-06) | CONFLICT — authority required | Engineering Conference | E2, E3, E4 |
-| G-2 | Hold expiry policy/duration undefined; no registered permission for hold release/expiry | FOUNDER-DECISION-REQUIRED (commercial policy) + register gap | Founder / Security-Tenancy | E1, E2 |
-| G-3 | Deposit ↔ reservation semantics; who may confirm and what approval authority applies | FOUNDER-DECISION-REQUIRED (commercial) | Founder | E2 |
-| G-4 | No registered permission for reservation release/expiry, `apartment.release`, `apartment.unblock`, `apartment.off_market`, contract execution | Register gap | Security/Tenancy | E3, E4 |
-| G-5 | Reservation lifecycle events used by the consistency contract are not in the 103-event register (F-07) | Contract-register drift | Domain Architecture | E2, E4 |
-| G-6 | Price mutation and structural amendment commands are absent from the action inventory; no structural-amendment event | Register gap | Domain Architecture | E5, E6 |
-| G-7 | Brownfield persistence identity and existing Unit/Reservation representation unverified | EVIDENCE BLOCKED | GATE-00 / GATE-03 | all edges |
-| G-8 | Concrete transaction/isolation/constraint mechanism not selected | OPEN (deliberate) | GATE-03 | all edges |
+| ID | Gap | Type | Owner | Blocks | State |
+|---|---|---|---|---|---|
+| G-1 | Commercial state enum and release path disagreed between register and contracts (F-06) | CONFLICT — authority required | Engineering Conference | E2, E3, E4 | **CLOSED by `ADR-0038`** |
+| G-2 | Hold expiry policy/duration undefined; no registered permission for hold release/expiry | FOUNDER-DECISION-REQUIRED (commercial policy) + register gap | Founder / Security-Tenancy | E1, E2 | OPEN — expiry semantics contracted; duration and keys still open (G-14, P-2) |
+| G-3 | Deposit ↔ reservation semantics; who may confirm and what approval authority applies | FOUNDER-DECISION-REQUIRED (commercial) | Founder | E2 | OPEN |
+| G-4 | No registered permission for reservation release/expiry, `apartment.release`, `apartment.block/unblock/off_market`, contract execution | Register gap | Security/Tenancy | E3, E4 | OPEN — exact deltas specified in the register-delta record |
+| G-5 | Reservation lifecycle events used by the consistency contract are not in the 103-event register (F-07) | Contract-register drift | Domain Architecture | E2, E4 | **CLOSED — zero register edits; contract names map to registered events (`ADR-0038` §11)** |
+| G-6 | Price mutation and structural amendment commands are absent from the action inventory; no structural-amendment event | Register gap | Domain Architecture | E5, E6 | OPEN |
+| G-7 | Brownfield persistence identity and existing Unit/Reservation representation unverified | EVIDENCE BLOCKED | GATE-00 / GATE-03 | all edges | OPEN |
+| G-8 | Concrete transaction/isolation/constraint mechanism not selected | OPEN (deliberate) | GATE-03 | all edges | OPEN |
+| G-9 | Construction milestone scope (building vs unit) | OPEN | GATE-02/03 | E-construction | OPEN |
+| G-13 | Whether the hold obligation is a persisted record | OPEN | GATE-03 | E1, E2 | OPEN |
+| G-18 | Permission keys for hold release and expiry | Register gap | Security/Tenancy | E1, E2 | OPEN |
 
-G-2, G-3 and the F-06 resolution are **not** engineering-derivable. They are
+G-2, G-3 and the founder policy items are **not** engineering-derivable. They are
 recorded as founder/authority decisions rather than inferred.
 
 ## 14. Acceptance evidence requirements
@@ -284,12 +340,12 @@ A green unit-test suite without concurrent integration evidence is insufficient
 
 | Item | Position |
 |---|---|
-| C03 blockers B1 (Apartment ↔ Unit identity) | unaffected by this artifact; still OPEN |
-| C03 blocker B2 (Unit ↔ Inventory ownership) | boundary position confirmed; aggregate/persistence still OPEN |
-| C03 blocker B3 (commercial status ↔ availability) | mapping expressed as governed edges; exact mapping BLOCKED-ON-F-06 |
-| C03 blocker B4 (hold/reservation concurrency) | **narrowed** — edge-level contract shape now exists; mechanism selection and expiry policy still OPEN |
-| C03 blocker B5 (pricing commitment) | **narrowed** — snapshot/commit semantics mapped to ADR-0032 and the registered event; approval/key gaps remain |
-| C03 status | remains **OPEN / BLOCKED** |
+| C03 blocker B1 (Apartment ↔ Unit identity) | **CLOSED** by `ADR-0039` — identity equivalence adopted |
+| C03 blocker B2 (Unit ↔ Inventory ownership) | **CLOSED** by `ADR-0040` — no separate Inventory entity; Unit owns availability |
+| C03 blocker B3 (commercial status ↔ availability) | **DISSOLVED** by `ADR-0040` — availability *is* the Unit commercial dimension; there was no second concept to map |
+| C03 blocker B4 (hold/reservation concurrency) | SEMANTIC CLOSED — HELD waypoint, deposit trigger, conditional hold expiry and state-dependent cancellation decided (`ADR-0038`, hold contract). Mechanism selection and race evidence still OPEN |
+| C03 blocker B5 (pricing commitment) | SEMANTIC CLOSED — snapshot/commit semantics unchanged (`ADR-0032`); approval/key gaps remain |
+| C03 status | remains **OPEN / BLOCKED** — brownfield evidence, permission ratification, founder policy values and independent review remain |
 | Independent review prerequisite | **not satisfied** by this artifact |
 
 **No schema, ORM, migration, RLS or production API is authorized by this
@@ -297,10 +353,17 @@ artifact.**
 
 ## 16. Next work unit after this artifact
 
-1. Resolve F-06 by superseding ADR (commercial state enum + release path).
-2. Founder decisions G-2 and G-3 (hold expiry, deposit semantics/approval).
-3. Reconcile G-4 and G-5 register gaps against `registers/permissions.csv` and
-   `registers/events.json`.
-4. Only then select the concrete concurrency mechanism under GATE-03.
+1. **Register delta ratification** (F-08) — the exact permission deltas and the
+   system-principal authority gap, per
+   `reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md`.
+2. **Founder policy values** — hold duration (G-14), price protection during hold
+   (G-15), deposit semantics and approval authority (G-3), exceptional-hold
+   approval (G-16).
+3. **Brownfield evidence** — runtime identity and existing Unit/Reservation/Hold
+   representation (G-7), the last hard blocker for the mechanism decision.
+4. **Then** select the concrete transaction/isolation/constraint mechanism and
+   execute RACE-01…16 plus HOLD-01…12 under GATE-03.
+5. **Independent review** — the C03 closure prerequisite that this authoring
+   stream cannot satisfy.
 
 

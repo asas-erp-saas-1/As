@@ -1,7 +1,7 @@
 # ASAS — CURRENT SESSION STATE
 
 **Status:** CANONICAL ARCHITECTURE + ENGINEERING CONFERENCE CHECKPOINT  
-**Version:** 3.70  
+**Version:** 3.71  
 **Date:** 2026-10-14  
 **Prior checkpoint date:** 2026-10-04 (zero-trust rebaseline)  
 **Repository:** `asas-erp-saas-1/As`  
@@ -77,30 +77,37 @@ The artifact previously labelled `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` i
 
 ## Next concrete work item
 
-`C03 → Inventory–Unit–Reservation commercial edge contract matrix` — **PRODUCED 2026-10-14**
+`C03 → semantic closure achieved; evidence and authority blockers remain`
 
-`docs/architecture/contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md`
-now expresses all six required edges in the required field set. It is
-`PROPOSED / ENGINEERING-DERIVATION` and is **not** a locked decision.
+**Resolved 2026-10-14:**
 
-It narrows C03 blockers B4 and B5 to named gaps, and it surfaced the governing
-conflict **F-06**: the canonical state-machine register and the accepted
-contract/ADR set disagree on the commercial state enum, the `HELD → RESERVED`
-trigger, and the release path. F-06 requires a superseding ADR.
+| Item | Resolution |
+|---|---|
+| F-06 register/contract state conflict | `ADR-0038` — nine canonical commercial states, six construction states, two-hop release, mandatory `HELD` waypoint, deposit trigger |
+| B1 `Apartment ↔ Unit` identity | `ADR-0039` — identity equivalence; `apartment.*` is the source namespace |
+| B2 / B3 inventory ownership and availability | `ADR-0040` — availability *is* the Unit commercial dimension; no separate Inventory entity |
+| F-07 event drift | Closed with **zero** register edits; contract names map to registered events |
+| Hold lifecycle | Contracted — `ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md`, including the conditional-expiry safety rule |
+
+**Still blocking implementation:**
+
+1. **F-08 register ratification** — permission keys for release, block/unblock,
+   off-market, contract execution and milestone certification, plus the
+   system-principal authority gap the 8-persona matrix cannot express. Exact
+   deltas are in `docs/architecture/reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md`.
+2. **F-01** — the A1 architecture baseline `ASAS-ARCHITECTURE-V3.md` is still
+   absent from every branch. Owner decision required.
+3. **Founder policy values** — hold duration, price protection during hold,
+   deposit semantics and approval authority.
+4. **Brownfield evidence (G-7)** — runtime identity and existing
+   Unit/Reservation/Hold representation.
+5. **Independent review** — the C03 closure prerequisite this authoring stream
+   cannot satisfy.
 
 Accompanying review: `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md`
-(findings F-01…F-14; authoring-stream review, **not** independent evidence).
+(findings F-01…F-15; authoring-stream review, **not** independent evidence).
 
-### New next dependency
-
-1. **Resolve F-06** — superseding ADR on the commercial state enum and release path.
-2. **Founder decisions** — hold expiry policy/duration and deposit↔reservation
-   semantics (`FOUNDER-DECISION-REQUIRED`).
-3. **Register gaps** — permission keys for release/expiry/off-market/contract
-   execution, and the reservation/structural event names.
-4. Only then select the concrete concurrency mechanism under GATE-03.
-
-Required edges (all six now covered by the matrix):
+Required edges (all six covered by the matrix):
 
 ```text
 AVAILABLE → HELD

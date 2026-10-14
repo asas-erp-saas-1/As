@@ -7,20 +7,27 @@ Canonical C03 workspace. Existing C03 contracts, ADRs, research, persistence tra
 
 ## Current stage
 
-`C03 → Inventory–Unit–Reservation commercial edge contract reconciliation` — **edge matrix produced 2026-10-14**
+`C03 → semantic blockers resolved; evidence blockers remain`
 
-The concrete edge contract artifact now exists:
+**Resolved on 2026-10-14** (see `DECISIONS.md` C03-D09…C03-D16):
+
+| Blocker | Resolution |
+|---|---|
+| B1 `Apartment ↔ Unit` identity | **CLOSED** — `ADR-0039` adopts identity equivalence |
+| B2 Unit ↔ Inventory ownership | **CLOSED** — `ADR-0040`: no separate Inventory entity |
+| B3 commercial status ↔ availability | **DISSOLVED** — `ADR-0040`: availability *is* the commercial dimension |
+| B4 hold/reservation concurrency | SEMANTIC CLOSED — `ADR-0038` + hold contract (HELD waypoint, deposit trigger, conditional expiry) |
+| B5 pricing commitment | SEMANTIC CLOSED — `ADR-0032` unchanged; registered event mapped |
+| F-06 state enum / release path | **CLOSED** — `ADR-0038` (nine states, two-hop release) |
+| F-07 event drift | **CLOSED** — zero register edits; contract names mapped |
+
+**Still open:** brownfield persistence evidence (C03-O08), permission-register
+ratification (C03-O11), founder policy values (C03-O10), Floor semantics
+(C03-O07), and the independent-review prerequisite.
+
+The concrete edge artifact is:
 
 `docs/architecture/contracts/ASAS-INVENTORY-UNIT-RESERVATION-COMMERCIAL-EDGE-CONTRACT-MATRIX-2026-10-14.md`
-
-It is `PROPOSED / ENGINEERING-DERIVATION` and covers all six required edges
-(`AVAILABLE → HELD`, `HELD → RESERVED`, `RESERVED → CONTRACTED`,
-`RESERVED → CANCELLED/RELEASED`, price change during an active commitment,
-structural Unit amendment during an active commitment).
-
-It **narrows** blockers B4 and B5 but closes neither, and it introduces the
-governing conflict F-06 (state-machine register vs. contract states) which must
-be resolved by a superseding ADR before any edge is implementation-ready.
 
 The branch also contains the C03 sequence through artifact 31:
 

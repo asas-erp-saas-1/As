@@ -1,6 +1,12 @@
 # ASAS Unit State Contract — 2026
 
-**Status:** Semantic contract closed / implementation gated  
+**Status:** Semantic contract closed / implementation gated; state lists superseded by ADR-0038
+
+> **Superseded in part (2026-10-14):** the state value lists below are superseded
+> by `docs/architecture/adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`,
+> which adopts the nine canonical commercial states and six construction states
+> from the normative register. The cross-dimensional invariant, mutation doctrine
+> and separation rules remain in force.  
 **ADR:** ADR-0031  
 **Branch:** `platform-architecture-2026`
 

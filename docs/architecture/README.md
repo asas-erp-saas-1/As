@@ -130,3 +130,15 @@ must carry the parent name, a unique number and a descriptive slug.
    their recovery provenance.
 7. Every C-track keeps exactly one directory under
    `docs/architecture/reconciliation/phase-c/CNN/`.
+
+## 7. Recent material decisions
+
+| Date | Artifact | Effect |
+|---|---|---|
+| 2026-10-14 | `adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md` | Nine canonical commercial states, six construction states; two-hop release; mandatory `HELD` waypoint; deposit trigger; event semantics. Supersedes the enum lists of `ADR-0028`, `ADR-0031`, `ADR-0033` and three contracts |
+| 2026-10-14 | `adr/ADR-0039-UNIT-APARTMENT-CANONICAL-IDENTITY-2026-10-14.md` | `Unit = Apartment`: one identity, `apartment.*` as the source namespace |
+| 2026-10-14 | `adr/ADR-0040-INVENTORY-AVAILABILITY-OWNERSHIP-2026-10-14.md` | Availability *is* the Unit commercial dimension; no separate Inventory entity |
+| 2026-10-14 | `contracts/ASAS-HOLD-LIFECYCLE-CONTRACT-2026-10-14.md` | Hold identity and conditional expiry (suppressed while a reservation references the Unit) |
+| 2026-10-14 | `reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md` | F-07 resolved with zero register edits; F-08 permission deltas proposed, awaiting owner ratification |
+| 2026-10-14 | `reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md` | Corpus integrity findings F-01…F-15 and the resolution log |
+| 2026-10-14 | `reconciliation/ASAS-CI-REPAIR-2026-10-14.md` + `.patch` | CI control-plane repair (blocked on `workflows` permission) |

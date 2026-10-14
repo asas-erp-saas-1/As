@@ -15,6 +15,14 @@
 | C03-D06 | Construction state is not automatically commercial availability. | C03 artifacts 19–21 |
 | C03-D07 | Structural archive/detach does not imply inventory release, reservation cancellation, contract cancellation or financial reversal. | C03 artifacts 19–24 |
 | C03-D08 | The full Project → Building → Floor → Unit → Inventory → Reservation → Finance chain is not accepted as one aggregate by inference. | C03 closure evidence + adversarial review |
+| C03-D09 | The canonical Unit commercial dimension is the register's nine states (`DRAFT, AVAILABLE, HELD, RESERVED, CONTRACTED, SOLD, BLOCKED, OFF_MARKET, CANCELLED`); the six-state contract list is superseded. | ADR-0038 |
+| C03-D10 | Release is two-hop (`RESERVED/CONTRACTED → CANCELLED → AVAILABLE`); direct release is prohibited because `CANCELLED` carries the cooling period. | ADR-0038 Decision 4 |
+| C03-D11 | `HELD` is a mandatory commercial waypoint: there is no `AVAILABLE → RESERVED` edge, so a hold is required before any reservation. | ADR-0038 Decision 6 |
+| C03-D12 | The reservation record is the single-winner authority; the Unit commercial status is a governed projection, and `deposit.recorded` is the projection trigger. | ADR-0038 Decision 7 (reaffirms ADR-0034) |
+| C03-D13 | A hold must be individually identifiable and its expiry must be suppressed while an active reservation references the Unit. | ADR-0038 Decision 7; hold contract §4 |
+| C03-D14 | `Unit = Apartment`: one resource identity, `Unit` as the canonical domain term, `apartment.*` as the source/persistence namespace; no second identity. | ADR-0039 |
+| C03-D15 | Availability *is* the Unit commercial dimension; no separate Inventory aggregate or entity is created. | ADR-0040 |
+| C03-D16 | `apartment.published` means release to the commercial offering, not public-web publication. | ADR-0038 Decision 5 |
 
 ## Governance correction
 
@@ -35,17 +43,18 @@ The artifact previously named `30-INDEPENDENT-CLOSURE-REVIEW-2026-10-04.md` is e
 
 | ID | Decision required | Status |
 |---|---|---|
-| C03-O01 | Exact `apartment` ↔ canonical `Unit` identity mapping | BLOCKING |
-| C03-O02 | Unit ↔ Inventory ownership/cardinality model | BLOCKING |
-| C03-O03 | Exact relationship between `commercial_status` and Inventory availability | BLOCKING |
-| C03-O04 | Hold/reservation concurrency, expiry and idempotency contract | BLOCKING |
-| C03-O05 | Pricing version/snapshot/commit semantics | BLOCKING |
-| C03-O06 | Cross-context command/event contracts | BLOCKING |
+| C03-O01 | Exact `apartment` ↔ canonical `Unit` identity mapping | **CLOSED — ADR-0039** |
+| C03-O02 | Unit ↔ Inventory ownership/cardinality model | **CLOSED — ADR-0040** |
+| C03-O03 | Exact relationship between `commercial_status` and Inventory availability | **CLOSED / DISSOLVED — ADR-0040 (availability *is* the commercial dimension)** |
+| C03-O04 | Hold/reservation concurrency, expiry and idempotency contract | SEMANTIC CLOSED — ADR-0038 + hold contract; mechanism and race evidence OPEN |
+| C03-O05 | Pricing version/snapshot/commit semantics | SEMANTIC CLOSED — ADR-0032 unchanged; registered event mapped; approval/key gaps OPEN |
+| C03-O06 | Cross-context command/event contracts | PARTIAL — commercial edges decided; broader cross-context contracts OPEN |
 | C03-O07 | Floor identity/lifecycle and structural command semantics | OPEN |
 | C03-O08 | Brownfield runtime identity and persistence evidence | BLOCKING |
-| C03-O09 | Commercial state enum and release path: register `apartment.commercial_status` (9 states, two-hop release) vs. contract set (6 states, direct release) | BLOCKING — CONFLICT (F-06) |
-| C03-O10 | Hold expiry policy/duration and deposit↔reservation semantics | FOUNDER-DECISION-REQUIRED |
-| C03-O11 | Missing register keys: reservation release/expiry, `apartment.release/unblock/off_market`, contract execution; missing structural-amendment event | BLOCKING — register gap |
+| C03-O09 | Commercial state enum and release path: register vs contract set | **CLOSED — ADR-0038 (F-06 resolved)** |
+| C03-O10 | Hold expiry policy/duration and deposit↔reservation semantics | FOUNDER-DECISION-REQUIRED (policy values only) |
+| C03-O11 | Missing register keys and system-principal authority | OPEN — exact deltas specified in the register-delta record; owner ratification required |
+| C03-O12 | Construction milestone scope (building vs unit) | OPEN (G-9) |
 
 ## Status of the commercial edge contract matrix — 2026-10-14
 

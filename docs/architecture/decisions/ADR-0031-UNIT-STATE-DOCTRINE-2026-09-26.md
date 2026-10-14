@@ -1,7 +1,13 @@
 # ADR-0031 — Unit State Doctrine
 
 **Date:** 2026-09-26  
-**Status:** Accepted — semantic slice closed / implementation gated  
+**Status:** Accepted — semantic slice closed / implementation gated; superseded in part by ADR-0038
+
+> **Superseded in part (2026-10-14):** the `Commercial state` and
+> `Construction state` value lists are superseded by
+> `adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`.
+> The two-independent-dimensions doctrine and all ten semantic rules remain in
+> force.  
 **Branch:** `platform-architecture-2026`
 
 ## Decision
