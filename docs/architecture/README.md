@@ -4,7 +4,7 @@
 **Repository:** `asas-erp-saas-1/As`  
 **Active Engineering Conference line:** `platform-architecture-2026`  
 **Current index work:** `chore/engineering-corpus-index-2026-10-14`  
-**Last indexed:** 2026-10-14
+**Last indexed:** 2026-10-15
 
 > This file is a navigation map. It does not approve an architecture decision, close a gate, promote an artifact, or authorize code/schema/database work. If this index conflicts with a canonical artifact or verified runtime evidence, the higher-authority source wins.
 
