@@ -131,6 +131,7 @@ Research supports decisions; it is not a product decision. An audit finding reco
 ## 5. Branch and corpus inventory links
 
 - [Branch inventory and safe reconciliation plan](../governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md)
+- [Unmerged-branch promotion review (2026-10-15)](reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md)
 - [Branch hygiene register](../governance/BRANCH-HYGIENE-REGISTER.md)
 - [Canonical artifact register](../governance/CANONICAL-ARTIFACT-REGISTER.md)
 - [Engineering closure matrix](../governance/ENGINEERING-CLOSURE-MATRIX-2026.md)
