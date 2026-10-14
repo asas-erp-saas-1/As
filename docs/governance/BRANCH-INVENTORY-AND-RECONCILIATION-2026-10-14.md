@@ -5,7 +5,7 @@
 **Repository:** `asas-erp-saas-1/As`  
 **Inventory date:** 2026-10-14  
 **Active Engineering Conference line (per canonical governance):** `platform-architecture-2026`  
-**Default/integration branch:** `main`  
+**GitHub default branch:** `main` (not the active Engineering Conference work line)  
 **Task branch creating this record:** `chore/engineering-corpus-index-2026-10-14`
 
 ## 1. Purpose and safety boundary
@@ -20,7 +20,7 @@ It is a dated snapshot, not live branch protection or deployment evidence. Branc
 
 | Ref | Role in current governance | Evidence / action |
 |---|---|---|
-| `main` | GitHub default / integration target; not the active Engineering Conference work line | Compare reports divergence from `platform-architecture-2026`: 3 commits unique to `main`, 521 commits unique to the architecture line, 292 files in the compare response. Review the three main-only commits before any convergence. |
+| `main` | GitHub default branch; not the active Engineering Conference work line. PR target is task-specific. | Compare reports divergence from `platform-architecture-2026`: 3 commits unique to `main`, 521 commits unique to the architecture line, 292 files in the compare response. Review the three main-only commits before any convergence. |
 | `platform-architecture-2026` | Canonical active Engineering Conference line according to `ENGINEERING-CLOSURE-MATRIX-2026.md` and `CURRENT-SESSION-STATE.md` | Preserve as the base for architecture-control work unless governance explicitly changes. Do not treat its old checkpoint text as fresh runtime evidence. |
 | `cline/hp1c6fdq` | Material unmerged architecture-reconciliation work | Compare reports 14 commits ahead and 0 behind the architecture line, with 57 changed files. Contains ADR-0038–0041, hold/edge contracts, integrity findings and a CI repair proposal. These changes are not assumed canonical until reviewed and promoted through a PR. |
 | `chore/engineering-corpus-index-2026-10-14` | This task-scoped inventory/index branch | Created from `platform-architecture-2026`; contains only branch/corpus indexing changes in this workstream. |
