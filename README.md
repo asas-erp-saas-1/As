@@ -16,7 +16,9 @@ ASAS is being engineered as a Real Estate Operating System for real-estate agenc
 
 ## Engineering doctrine
 
-The uploaded ASAS Enterprise Architecture Blueprint v1.6.1 and its machine-readable handoff package are the specification baseline. Reality must be inspected before schema-touching work. Extend; do not rewrite production data. Every important implementation claim requires execution evidence.
+The ASAS Enterprise Architecture Blueprint v1.6.1 and its machine-readable handoff package are a **research and provenance source**, not implementation authority. Architecture authority is the reconciled canonical baseline, the approved ADRs, the canonical contracts/registers and the current session checkpoint. Reality must be inspected before schema-touching work. Extend; do not rewrite production data. Every important implementation claim requires execution evidence.
+
+See `AGENTS.md` for the authority model and `docs/architecture/ASAS-SOURCE-PACKAGE-ROLE-AND-DECISION-2026.md` for the source-package rule.
 
 ## Repository status
 

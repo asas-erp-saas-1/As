@@ -307,9 +307,13 @@ Reopening preserves historical evidence and creates a supersession/amendment rec
 
 ## 9. Current ASAS position
 
+Gate **status** is owned by `docs/governance/ENGINEERING-CLOSURE-MATRIX-2026.md`
+and the sole active checkpoint; this section is a pointer snapshot and is
+reconciled to the checkpoint on 2026-10-14.
+
 ```text
-GATE-00  OPEN / environment mapping and platform-control evidence
-GATE-01  PENDING
+GATE-00  OPEN / BLOCKED FOR FINAL IDENTITY PROOF
+GATE-01  IN PROGRESS / REBASELINED
 GATE-02  PENDING
 GATE-03  PENDING
 GATE-04  PENDING

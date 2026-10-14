@@ -84,16 +84,19 @@ the Closure Matrix and the checkpoint.
 
 C-track semantic state (evidence-backed only):
 
-| Track | Scope established from repository evidence | State |
+| Track | Scope (recovered 2026-10-14) | State |
 |---|---|---|
-| C01 | not recovered from a canonical track artifact | MAPPING OPEN |
-| C02 | Inventory authority / attribution / competition | ACTIVE, closure mapping OPEN |
-| C03 | Real Estate domain semantics / resource model | **OPEN / BLOCKED** |
+| C01 | Platform Constitution | CLOSED (baseline / architecture) |
+| C02 | Organization / Membership / Relationship (+ attribution, commission, offer-bridge, competition, scheduling ownership) | SEMANTICALLY CLOSED; one refinement OPEN |
+| C03 | Real Estate domain semantics / resource model | **OPEN / BLOCKED** — semantic blockers resolved 2026-10-14 |
 | C04 | CRM | SEMANTIC BASELINE, convergence OPEN |
 | C05 | Sales | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED |
 | C06 | Finance | SEMANTICALLY CLOSED / IMPLEMENTATION BLOCKED |
-| C07–C14, C16–C22 | not recovered | MAPPING OPEN |
-| C15 | Security/Tenancy (referenced downstream, artifact not recovered) | MAPPING OPEN |
+| C07–C10, C12–C15 | Marketing; Studio/Website/CMS; Analytics; Documents; Workflow/Automation; Integrations; Search/Media/Notifications; Security/Tenancy | SCOPE RECOVERED; NO DECISION PACKAGE |
+| C11 | Scheduling / Activities (Core-hosted) | OWNERSHIP CLOSED; implementation contract OPEN |
+| C16–C22 | Data Architecture; Events/Outbox; AI; Design/Experience; Codex Engineering; Runtime/Operations; SaaS Evolution | SCOPE RECOVERED; CLOSURE NOT ASSESSED |
+
+Recovery record: `docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`.
 
 Authorization is unchanged: `implementationAuthorized = false`,
 `schemaDesignAuthorized = false`, `databaseCreationAuthorized = false`,

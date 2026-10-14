@@ -2,7 +2,26 @@
 
 **Branch:** `platform-architecture-2026`  
 **Date:** 2026-09-27  
-**Status:** ACTIVE
+**Status:** ACTIVE — **SUPERSEDED IN PART (2026-10-14)**
+
+> **Status supersession notice (2026-10-14).** This control board is retained for
+> provenance, but its status claims are older than the current checkpoint and must
+> not be read as current state:
+>
+> - `docs/handoff/CURRENT-SESSION-STATE.md` is the **sole active checkpoint** and
+>   outranks this board for current status.
+> - The board's statement that Supabase project `oliiumegstqujwexikhr` is
+>   `ACTIVE_HEALTHY` is contradicted by the checkpoint and by
+>   `ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-006-ZERO-TRUST-REBASELINE-2026-10-04.md`
+>   §5, which record Supabase canonical runtime identity as
+>   **UNVERIFIED / BLOCKED**.
+> - The board's "C01 closed" statement is **correct** and is now corroborated:
+>   C01 = Platform Constitution, CLOSED (see
+>   `docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`).
+> - The GATE-00 / GATE-01 statuses in this board are superseded by the checkpoint.
+>
+> Recorded as finding F-11 in
+> `docs/architecture/reconciliation/ASAS-ARCHITECTURE-INTEGRITY-REVIEW-2026-10-14.md`.
 
 ## Operating model
 

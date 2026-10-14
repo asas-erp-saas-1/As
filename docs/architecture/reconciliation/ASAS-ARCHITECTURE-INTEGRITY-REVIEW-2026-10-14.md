@@ -39,12 +39,13 @@ authority, cross-artifact contradiction, path closure state
 | F-07 | Reservation lifecycle events used by contracts are absent from the 103-event register | MEDIUM | **RESOLVED — zero register edits; contract names mapped (`ADR-0038` §11)** | Domain Architecture |
 | F-08 | Permission register has no keys for release/expire/unblock/off-market transitions | MEDIUM | OPEN — deltas specified, awaiting owner ratification | Security/Tenancy |
 | F-09 | 12 dangling internal references (3 recoverable from unmerged branches) | MEDIUM | OPEN / REFERENCE INTEGRITY | Lead Architecture |
-| F-10 | Root `README.md` states the v1.6.1 blueprint is the "specification baseline" | MEDIUM | STALE STATEMENT — contradicts `AGENTS.md` | Lead Architecture |
-| F-11 | Gate/C-track status disagrees across five canonical-ish artifacts | HIGH | CONFLICT | Lead Architecture |
-| F-12 | C03 workspace has duplicate sequence numbers; C01 and C07–C22 lack track indexes | LOW | OPEN / ORGANIZATIONAL | Engineering Conference |
+| F-10 | Root `README.md` states the v1.6.1 blueprint is the "specification baseline" | MEDIUM | **RESOLVED — aligned with `AGENTS.md`** | Lead Architecture |
+| F-11 | Gate/C-track status disagrees across five canonical-ish artifacts | HIGH | **RESOLVED — statuses reconciled to the checkpoint** | Lead Architecture |
+| F-12 | C03 workspace has duplicate sequence numbers; C01 and C07–C22 lacked track indexes | LOW | **RESOLVED — 22 track indexes populated with recovered scope** | Engineering Conference |
 | F-13 | Two sibling audit directories (`docs/audit/`, `docs/audits/`) | LOW | OPEN / ORGANIZATIONAL | Lead Architecture |
 | F-14 | Root-level `ASAS-*-CONTRACT/REGISTER-2026.md` files bypass `docs/architecture/contracts/` | LOW | OPEN / ORGANIZATIONAL | Lead Architecture |
 | F-15 | CI `Foundation Verify` is RED on every recent push; two checks are broken | HIGH | OPEN / CONTROL-PLANE FAILURE | Lead Architecture |
+| F-16 | Two canonical registers recorded C01 and C07–C22 as "not recovered"; the provenance was recoverable by content search | HIGH | **RESOLVED — C-track provenance recovery 2026-10-14** | Lead Architecture |
 
 ## 2. Findings in detail
 
@@ -321,6 +322,37 @@ run-blocks pass (0 failures). Without the patch, 2 steps fail — reproduced
 locally, matching the observed CI failure. GitHub-side re-verification is
 `NOT_EXECUTED` and requires the owner to apply the patch.
 
+### F-16 — Canonical registers recorded recoverable C-track provenance as unrecovered
+
+`DOMAIN-ENGINEERING-TRACK-REGISTER-2026.md` §4 and
+`ENGINEERING-CLOSURE-MATRIX-2026.md` §6 both recorded C01, C07–C14 and C16–C22 as
+"Not yet recovered from a single canonical track artifact — MAPPING OPEN", and
+`phase-c/Source/README.md` stated that no branch file identified those tracks.
+
+**Root cause.** The search was **filename-based**. The tracks are named in
+artifact *content*, not in filenames.
+
+**Recovery.** A content-based search over `docs/**` for `Cnn` tokens located two
+independent enumerations: `ASAS-ENGINEERING-CONFERENCE-PATH-2026.md` §9 (all
+twenty-two tracks with scope statements) and
+`ASAS-ROADMAP-AMENDMENT-010-ENGINEERING-CONFERENCE-PATH-2026-09-25.md` line 33
+(the full sequence plus the qualifier "These are workstreams, not bounded
+contexts").
+
+**Corrections applied.** C01 → CLOSED; C02 → Organization / Membership /
+Relationship (the register had recorded only its inventory/attribution
+extension); C11 → ownership CLOSED (Core-hosted, `FD-002`, `ADR-0021`); C07–C14
+and C16–C22 → scope recovered. All 21 previously-stub track indexes were
+populated with recovered scope, provenance, canonical artifacts, open questions
+and closure state.
+
+**What this did not do.** It did not close any track. Eight tracks have scope but
+no decision package, and C16–C22 have no closure assessment at all — recorded as
+an explicit gap requiring a CLOSED / DEFERRED / REJECTED / BLOCKED disposition.
+
+**Disposition:** RESOLVED for the mapping. Full record:
+`docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md`.
+
 ## 3. Findings closed by this review
 
 | Finding | Closure basis | Evidence |
@@ -336,6 +368,10 @@ locally, matching the observed CI failure. GitHub-side re-verification is
 | F-15 CI control plane red | root causes identified and repair prepared as a patch | `docs/architecture/reconciliation/ASAS-CI-REPAIR-2026-10-14.patch`; local re-execution with the patch passes all 10 steps |
 | F-06 state enum / release-path conflict | resolved by a superseding ADR | `docs/architecture/adr/ADR-0038-UNIT-STATE-DIMENSIONS-AND-COMMERCIAL-LIFECYCLE-2026-10-14.md`; no register edit |
 | F-07 reservation event drift | resolved with zero register edits | `ADR-0038` §11; `docs/architecture/reconciliation/ASAS-REGISTER-DELTA-2026-10-14.md` §2 |
+| F-12 C-track index completeness | all 21 stub indexes populated with recovered scope | `docs/architecture/reconciliation/phase-c/C01…C22/README.md` |
+| F-16 C-track provenance recorded as unrecovered | mapping recovered and both canonical registers corrected | `docs/architecture/reconciliation/ASAS-C-TRACK-PROVENANCE-RECOVERY-2026-10-14.md` |
+| F-10 front-door doctrine statement | aligned with the `AGENTS.md` authority model | `README.md` |
+| F-11 cross-artifact status divergence | Control Board supersession notice; Gate Model §9 reconciled; C01 corroborated | `ASAS-PLATFORM-ENGINEERING-CONTROL-BOARD-2026.md`; Gate Model §9 |
 
 ## 4. Findings remaining open
 
@@ -343,8 +379,6 @@ locally, matching the observed CI failure. GitHub-side re-verification is
 |---|---|---|---|
 | F-01 absent A1 V3 baseline | OPEN / FOUNDER-DECISION-REQUIRED | Lead Architecture + Founder | install the verified baseline, or demote the register entry |
 | F-08 permission coverage | OPEN — analysis complete, authority pending | Security/Tenancy | ratify the deltas and the system-principal authority gap in the register-delta record |
-| F-10 README doctrine statement | OPEN | Lead Architecture | align front-door doctrine with `AGENTS.md` |
-| F-11 cross-artifact status divergence | CONFLICT | Lead Architecture | add supersession notes to Control Board and Gate Model §9 |
 
 None of these can be closed by this review, and none authorizes implementation.
 This review is an **adversarial/authoring-stream review**, not independent
