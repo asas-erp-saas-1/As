@@ -51,8 +51,8 @@ An identical head is necessary evidence for redundancy but is not sufficient per
 
 1. Maintain the branch inventory as a dated snapshot.
 2. Reconcile unmerged work by topic through small PRs into `platform-architecture-2026`.
-3. **`main) file review (2026-10-15):** selectively promoted two C03 source-control files; the divergent `Source/README.md` variant was not overlaid. See `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md`.
-4. **`cline/hp1c6fdq) first-pass review (2026-10-15):** no wholesale merge; semantic ADRs/contracts require an owner review, checkpoint contradictions require reconciliation, and CI changes remain separate.
+3. **`main` file review (2026-10-15):** selectively promoted two C03 source-control files; the divergent `Source/README.md` variant was not overlaid. See `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md`.
+4. **`cline/hp1c6fdq` first-pass review (2026-10-15):** no wholesale merge; semantic ADRs/contracts require an owner review, checkpoint contradictions require reconciliation, and CI changes remain separate.
 5. Only after the remaining PR/deployment/unique-evidence checks, prepare a separate cleanup proposal for redundant refs.
 6. Do not reset, rebase, force-push, or delete refs as a side effect of documentation cleanup.
 
