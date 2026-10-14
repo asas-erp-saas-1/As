@@ -231,31 +231,26 @@ This gate advances the Offer contract without inventing persistence or permissio
 
 No database model, migration, API endpoint or production change is authorized by this gate.
 
-## 10. OPEN BOUNDARY QUESTIONS
+## 10. BOUNDARY QUESTIONS — STATUS RECONCILED 2026-10-14
 
-### OI-001 — Lead vs Opportunity/Deal
-Source model deliberately keeps one Lead aggregate across the 17-stage pipeline. This is source-supported, but future product requirements may justify separation. No split is authorized without an ADR.
+These questions were recorded as OPEN when this register was authored on
+2026-09-20. Several have since been resolved by accepted ADRs. The original
+question text is preserved as provenance; each resolution cites its authority.
 
-### OI-002 — Unit vs Project
-Source model deliberately makes Unit its own aggregate because units are concurrently updated. This is strongly supported by the source model; implementation must still validate the actual write patterns.
+| ID | Question | Status | Resolution / authority |
+|---|---|---|---|
+| OI-001 | Lead vs Opportunity/Deal | DEFERRED — no split authorized | The source deliberately keeps one Lead aggregate across the pipeline. A split requires an ADR. Unchanged. |
+| OI-002 | Unit vs Project | **CLOSED** | Unit is an aggregate root for its identity, structural characteristics and two state dimensions; `Project → Building → Floor → Unit` is structural topology, not aggregate containment. Authority: `ADR-0040` Decision 4, reaffirmed by `ADR-0041`. |
+| OI-003 | Reservation ownership | **SEMANTIC CLOSED** / mechanism OPEN | Reservation is Sales-owned and is the authoritative single-winner boundary; the Unit commercial state is a governed projection. Authority: `ADR-0034`, reaffirmed by `ADR-0038` Decision 7. The concrete transaction mechanism remains implementation-gated (G-8). |
+| OI-004 | Offer ownership | **CLOSED** | Offer is a Sales-owned commercial proposal with its own lifecycle; acceptance does not reserve inventory. Authority: `ADR-0023`. |
+| OI-005 | Payment vs PaymentSchedule | **CLOSED** | `PaymentPlan` is the ordered schedule of contractual obligations; `Installment` is one obligation; `Payment` is a settlement fact that settles or partially settles an obligation and never rewrites it. Authority: `ADR-0037` §2 and the finance contract candidate. No `Payment` aggregate is created merely to reconcile naming. |
+| OI-006 | Receipt ownership | **CLOSED** | Receipt is Finance-owned controlled evidence/document of an accepted payment fact. It is not the accounting obligation and is not an independently governed commercial aggregate. Authority: `ADR-0037` §2. |
+| OI-007 | Building aggregate | **CLOSED** | Building is an aggregate root scoped to its own structural record, and explicitly not an aggregate root over its Units. Authority: `ADR-0041`. |
+| OI-008 | Scheduling | **CLOSED** | Scheduling is a Core-hosted platform capability; provider synchronization is Integrations-owned. Authority: `FD-002`; `ADR-0021`. |
 
-### OI-003 — Reservation ownership
-The commercial spine and source domain model place Reservation in Reservation & Contract, while inventory availability is owned by Unit. The exact atomic boundary is now governed by `ASAS-UNIT-RESERVATION-CONSISTENCY-CONTRACT-2026.md`. Aggregate separation remains; implementation mechanism remains OPEN.
-
-### OI-004 — Offer ownership
-V3 includes Offer in the commercial spine, while the supplied Enterprise Domain Model does not provide a detailed Offer aggregate. The derived Offer contract now establishes semantic invariants and candidate Sales/Commercial ownership, but ownership is not yet accepted as an implementation boundary. **Status: OPEN — CONTRACT IN PROGRESS.**
-
-### OI-005 — Payment vs PaymentSchedule
-The source model defines PaymentSchedule and PaymentReceived event, while V3 includes Payment as a business object. Do not create a Payment aggregate/table solely to reconcile naming. Define the authoritative payment fact and its relationship to schedules before schema promotion.
-
-### OI-006 — Receipt ownership
-Receipt appears in V3 commercial flow but lacks a complete source aggregate contract. Define whether it is an immutable financial document/projection of payment or an independently governed aggregate.
-
-### OI-007 — Building aggregate
-Building appears in the real-estate hierarchy and commercial spine, but source aggregate detail is incomplete. Ownership/invariants must be closed before implementation.
-
-### OI-008 — Scheduling
-Scheduling ownership remains separately unresolved. Do not move Visit into a new bounded context solely to solve the naming issue.
+**Effect.** None of these questions now blocks GATE-02 for the critical commercial
+path. What remains is product/domain decisions (BLD-03/04/07), brownfield evidence
+(G-7), and the implementation mechanism (G-8).
 
 ## 11. NON-GOALS
 

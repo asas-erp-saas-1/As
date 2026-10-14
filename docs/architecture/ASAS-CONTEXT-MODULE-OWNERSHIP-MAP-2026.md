@@ -49,7 +49,7 @@ These categories must never be treated as interchangeable.
 | Audit | Platform capability | OPEN | OPEN | Domain events and audit records remain distinct concepts. |
 | Events / Outbox | Platform capability | OPEN | OPEN | Reliability mechanism; event ownership remains with producers. |
 | Workflow | Platform capability | OPEN | OPEN | Does not automatically constitute a bounded context. |
-| Scheduling | Platform capability | CONFLICT | FOUNDER DECISION REQUIRED | Historical sources conflict between CRM ownership and Core-hosted capability. |
+| Scheduling | Platform capability | Core (hosted capability) | **CLOSED** — `FD-002` / `ADR-0021` | Resolved 2026-10-14: Scheduling is a Core-hosted platform capability; CRM, Sales, Studio and Marketing consume it through explicit application contracts. Provider synchronization is Integrations-owned. |
 | Search | Platform capability | OPEN | OPEN | Search indexes are projections, not domain authority. |
 | Media | Platform capability | OPEN | OPEN | Storage/media service does not own business entities. |
 | Notifications | Platform capability | OPEN | OPEN | Delivery mechanism; notification intent may originate in contexts. |
@@ -58,6 +58,17 @@ These categories must never be treated as interchangeable.
 | AI | Platform capability | OPEN | OPEN | AI cannot widen caller authority or bypass domain services. |
 | SaaS Control | Platform capability | OPEN | OPEN | Subscription/entitlement concerns remain future/controlled until scope is approved. |
 | Developer Platform | Architectural reservation | NONE | RESERVED | Not an MVP implementation requirement. |
+
+**Sequencing note (2026-10-14).** The remaining `OPEN` capability-owner rows are
+**not forgotten and not blocked** — they are deferred by design. Platform
+capability ownership (Identity, Tenancy, Authorization, Audit, Events, Workflow,
+Search, Media, Notifications, Integrations, Configuration, AI, SaaS Control) is
+GATE-04 scope, and the Gate Model requires sequential closure: "Limited research
+may be performed ahead of a gate, but closure is sequential." Assigning these
+owners now would pull GATE-04 work forward and pre-empt the GATE-02/GATE-03
+contracts that constrain it. They are recorded as `DEFERRED` in
+`docs/architecture/reconciliation/ASAS-C-TRACK-DISPOSITION-REGISTER-2026-10-14.md`
+(track C15).
 
 ## 4. Known implementation modules
 
@@ -76,7 +87,7 @@ The existence of a historical/module count does not prove that every module is a
 | Marketing | Module | Marketing | PROPOSED |
 | Analytics | Module | Analytics | PROPOSED |
 | Documents | Module | Documents | PROPOSED |
-| Scheduling | Capability | OPEN | FOUNDER DECISION REQUIRED |
+| Scheduling | Capability | Core | **CLOSED** — `FD-002` / `ADR-0021` |
 | Workflow | Capability | OPEN | OPEN |
 | Integrations | Capability | OPEN | OPEN |
 | Search | Capability | OPEN | OPEN |
@@ -105,11 +116,18 @@ A context may consume another context through an explicit application contract, 
 
 ## 6. Ownership questions that remain open
 
-1. Scheduling ownership — founder decision required.
+1. ~~Scheduling ownership — founder decision required.~~ **CLOSED 2026-10-14** by
+   `FD-002` and `ADR-0021`: Scheduling is a Core-hosted platform capability.
 2. Exact Core scope — must be prevented from becoming a generic shared bucket.
-3. Identity/Tenancy/Authorization relationship to Core — platform capability boundary requires explicit contract.
-4. Workflow ownership — platform capability versus domain-specific workflow remains open.
+3. Identity/Tenancy/Authorization relationship to Core — platform capability boundary requires explicit contract. **Deferred to GATE-04.**
+4. Workflow ownership — platform capability versus domain-specific workflow remains open. **Deferred to GATE-04.**
 5. SaaS control-plane scope — architectural reservation unless product scope authorizes implementation.
+
+**Why items 2–5 are deferred rather than decided here.** They are GATE-04
+(platform kernel, security, tenancy and data governance) questions, and gate
+closure is sequential. Deciding them now would pre-empt the GATE-02 topology and
+GATE-03 contract work that determines what those capabilities must actually do.
+Deferral with a named owner and gate is a disposition, not an omission.
 
 ## 7. Evidence rule
 
@@ -123,6 +141,11 @@ Closure requires:
 
 **ARCH-G02 Contexts:** `PARTIAL`
 
-**Blocking conditions:** Scheduling ownership and unresolved ownership boundaries listed above.
+**Blocking conditions:** unresolved ownership boundaries listed in §6. The
+previously-listed Scheduling ownership blocker is **removed** — resolved by
+`FD-002` and `ADR-0021`.
+
+**Not blocking:** the platform-capability owner rows. They are GATE-04 scope and
+are deferred by sequencing, not blocked.
 
 No application implementation task may use an `OPEN` ownership mapping as if it were canonical.
