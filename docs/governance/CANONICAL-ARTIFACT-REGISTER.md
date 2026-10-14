@@ -1,8 +1,8 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.9  
-**Date:** 2026-10-14  
+**Version:** 1.10  
+**Date:** 2026-10-15  
 **Active engineering line:** `platform-architecture-2026`
 
 ## Purpose
@@ -79,6 +79,16 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/governance/BRANCH-HYGIENE-REGISTER.md` | A6/A4 | ACTIVE REPOSITORY CONTROL | Branch policy and cleanup safeguards; no destructive Git action is authorized by this register |
 | `docs/governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md` | A5 | DATED SNAPSHOT / REVIEW REQUIRED | Evidence snapshot of observed refs and compare results; recheck PRs, deployments and unique commits before cleanup |
 | `README.md` | A6 | REPOSITORY FRONT DOOR | Navigation and project orientation; must not override canonical controls |
+| `docs/architecture/README.md` | A6 | ACTIVE NAVIGATION INDEX | Architecture corpus navigation; not a source of decisions or implementation authority |
+| `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md` | A5/A6 | DATED PROMOTION REVIEW | File-level review of unmerged branch evidence; authorizes no merge, closure, or implementation |
+
+## C03 source corpus and reconciliation controls
+
+| Artifact | Authority | State | Rule |
+|---|---|---|---|
+| `docs/architecture/reconciliation/phase-c/Source/README.md` | A5/A6 | ACTIVE INDEX | Source-corpus navigation; source presence does not confer canonical authority |
+| `docs/architecture/reconciliation/phase-c/Source/C03/00-SOURCE-REGISTER.md` | A5/A6 | ACTIVE SOURCE INDEX | Classifies C03 source material; does not duplicate decision authority |
+| `docs/architecture/reconciliation/phase-c/C03/02-SOURCE-RECONCILIATION-QUEUE.md` | A6 | OPEN WORK QUEUE | Tracks required source reconciliation, red-team review and independent closure review; does not close C03 |
 
 ## Machine-readable shadows
 
