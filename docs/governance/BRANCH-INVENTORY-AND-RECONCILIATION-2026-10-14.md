@@ -149,7 +149,7 @@ Compare API file lists can be truncated for very large differences. Counts are c
 ## 7. Immediate next steps
 
 - **Completed 2026-10-15 — `main` file-level review:** selected the C03 source register and reconciliation queue for documentation-only promotion; retained the active-line `Source/README.md` because the `main` version conflicts at the same path. Details and source blob SHAs: [promotion review](../architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md).
-- **Completed 2026-10-15 — `cline/hp1c6fdq) first-pass grouping:** separated the semantic ADR/contract bundle, C-track disposition/provenance controls, checkpoint contradiction, index collision, and CI-repair proposal. No wholesale promotion is recommended.
+- **Completed 2026-10-15 — `cline/hp1c6fdq` first-pass grouping:** separated the semantic ADR/contract bundle, C-track disposition/provenance controls, checkpoint contradiction, index collision, and CI-repair proposal. No wholesale promotion is recommended.
 - **Next:** prepare a task-scoped owner review for ADR-0038…0041, the Hold contract and edge matrix after reconciling the candidate checkpoint's stale unresolved list; keep permission deltas unratified until Security/Tenancy approval.
 - **Separate control-plane task:** validate the integrity script and CI patch; do not claim CI repaired until workflow permissions are available and fresh checks pass.
 - Verify PR and deployment references for identical branch families before any deletion proposal. Update this inventory after each accepted PR; do not mark a ref “cleaned” from a name comparison alone.
