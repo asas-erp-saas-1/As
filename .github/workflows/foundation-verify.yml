@@ -168,9 +168,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Active routing surfaces must not direct agents to the historical checkpoint.
+          # Audit/reconciliation evidence and explicit prohibitions may mention it.
           matches=$(git grep -n 'docs/handoff/SESSION_STATE.md' -- \
             ':!docs/handoff/SESSION_STATE.md' \
+            ':!docs/audit/**' \
+            ':!docs/audits/**' \
+            ':!docs/architecture/reconciliation/**' \
+            ':!.github/**' \
             ':!.git/**' \
+            | grep -viE 'do not|never|not (the )?(active|current)|historical|legacy' \
             || true)
           if [[ -n "$matches" ]]; then
             echo "$matches"
