@@ -33,7 +33,7 @@ For material architecture questions, the operating method is research-first:
 
 | Role | Canonical resource | Current state |
 |---|---|---|
-| Product requirements | `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` | PROPOSED v0.2.0 / FOUNDER REVIEW REQUIRED |
+| Product requirements | `docs/product/ASAS-PRODUCT-REQUIREMENTS-BASELINE-2026.md` | PROPOSED v0.3.0 / FOUNDER REVIEW REQUIRED |
 | Architecture source | `docs/architecture/ASAS-ARCHITECTURE-V3.md` | V3 architecture reference; substantive architecture authority when installed and verified |
 | Legacy architecture blueprint | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | PROPOSED v1.5.1 / provenance-supporting; not a competing V3 authority |
 | Engineering route | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | ACTIVE v2.0.1 + amendments |
@@ -116,22 +116,21 @@ These are observations, not quotas and not runtime proof. The repository separat
 
 ## 7 — Architecture authority
 
-The Architecture V3 source is the architecture reference:
-`docs/architecture/ASAS-ARCHITECTURE-V3.md`
+The control plane records nine canonical high-level bounded contexts by **FD-001 — accepted architecture decision, 2026-09-26**:
 
-The V3 source is not a separate engineering-control route and does not replace the Engineering Conference Constitution, Gate Model, execution path, canonical registers or current checkpoint.
+`Core / CRM / Sales / Inventory / Finance / Website Studio / Marketing / Analytics / Documents`
 
-V3 target contexts are:
-`Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
+FD-001 settles the high-level domain grouping. It does not authorize implementation, recover the exact historical Phase 1.5 Domain Model v2 / Context Map v2, or close detailed ownership of modules, aggregates, persistence, events, permissions or integration contracts.
 
-The historical 15-module proposal is implementation evidence, not a competing bounded-context architecture.
+The historical 15-module proposal remains implementation-decomposition evidence. It is not a competing bounded-context model, and mappings are not required to be one-to-one.
 
-`C2-001 = OPEN ARCHITECTURAL REFINEMENT`
+**Source-availability exception:** `docs/architecture/ASAS-ARCHITECTURE-V3.md` is referenced by this control plane but was not present at that path during the 2026-10-17 repository inspection. `docs/architecture/README.md` records this as a missing-reference alert. Do not fabricate the missing source or treat an amendment as its substitute. FD-001 remains the explicit current decision record for the nine-context grouping; the missing V3 artifact remains a provenance/owner-resolution gap.
 
-Scheduling remains unresolved:
-`C2-002 = FOUNDER-DECISION-REQUIRED`.
+Scheduling ownership is **CLOSED BY FD-002 and accepted ADR-0021 (2026-09-26)**: Scheduling is a Core-hosted platform capability, not a standalone bounded context or CRM-owned persistence boundary. Calendar/provider integrations belong to Integrations. The decision does not authorize a Scheduling schema or close the downstream persistence, permission, event, access-control and contract verification tasks.
 
-The historical `foundation/reconcile-context-map-v2` branch was re-inspected. Its 15-module candidate map and ADR-0001 remain explicitly proposed and awaiting founder acceptance. Remaining historical context-map conflict stays recorded until the relevant C-track reconciliation closes it.
+The historical `foundation/reconcile-context-map-v2` branch contains a proposed module map / ADR-0001, not an accepted competing decision. Preserve it as historical evidence. Continue reconciling the detailed context/module/aggregate/event/permission ownership map through the applicable C-tracks.
+
+**Identifier discipline:** do not cite a `C2-00x` identifier without its owning document and title. The Source of Truth and Roadmap previously used `C2-002` for Scheduling, while `docs/governance/OPEN-CONTRACT-CONFLICTS.md` uses `C2-002` for runtime/database identity. Use `FD-002 / ADR-0021` for Scheduling and the full path/title for the runtime-identity conflict.
 
 ## 8 — Current contract state
 
@@ -171,7 +170,7 @@ Current source semantics support:
 `Contract → PaymentPlan / schedule items → Receipt → ReceiptAllocation → Finance/Ledger where authorized`.
 
 ### Scheduling
-`FOUNDER-DECISION-REQUIRED`.
+`OWNER DECISION CLOSED BY FD-002 / ADR-0021; CONTRACT + PERSISTENCE TRACE OPEN`.
 
 ## 9 — Core invariants
 
@@ -199,9 +198,9 @@ Architecture V3 is referenced by the conference as an architecture source. It do
 
 ## 11 — Current foundation status
 
-GATE-00 remains OPEN, but the previous platform-identity ambiguity is resolved for the Supabase project itself: `oliiumegstqujwexikhr` has been read-only inspected through the connected Supabase integration and is the canonical ASAS platform project for this conference.
+GATE-00 remains OPEN. Repository records identify `Asas platform` (`oliiumegstqujwexikhr`) as an inspected/designated ASAS platform project, but that does not independently prove that the actual Vercel Production environment of this repository is bound to that project.
 
-Remaining GATE-00 control work concerns Vercel production branch/deployment/environment mapping and repository protection/control evidence. No uncertainty remains about which Supabase project the founder designated for the ASAS platform track.
+Remaining closure evidence includes the exact Vercel project/repository linkage, Production branch and deployment, Production environment scope, non-secret Supabase `PROJECT_REF` mapping, and GitHub protection/control evidence. The branch endpoint returned `protected: false` during the 2026-10-17 inspection. Do not infer runtime binding from project existence, naming or a healthy project status.
 
 GATE-01 and later gates remain pending/not authorized according to the current session checkpoint.
 

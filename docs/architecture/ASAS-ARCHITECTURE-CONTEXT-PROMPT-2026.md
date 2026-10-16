@@ -201,19 +201,17 @@ Counts are observations, not quotas.
 
 # 9 — Current target architecture
 
-Current high-level target:
+Current high-level domain grouping, explicitly decided by **FD-001 (accepted 2026-09-26)**:
 
-`Core / CRM / Sales / Inventory / Finance / Studio / Marketing / Analytics / Documents`
+`Core / CRM / Sales / Inventory / Finance / Website Studio / Marketing / Analytics / Documents`
 
-The historical 15-module proposal is implementation evidence, not a competing nine-context architecture.
+The historical 15-module proposal is implementation-decomposition evidence, not a competing bounded-context architecture. Individual module, aggregate, schema, worker and event-consumer ownership still requires contract-level evidence.
 
-Scheduling remains:
+Scheduling ownership is **settled** by **FD-002 and accepted ADR-0021 (2026-09-26)**: Core-hosted platform capability; not a separate bounded context or CRM-owned persistence boundary. Provider/calendar integration belongs to Integrations.
 
-`FOUNDER-DECISION-REQUIRED`
+This ownership decision **does not** authorize a scheduling schema or finish persistence reconciliation. Before implementation, inspect existing scheduling/appointment references and schema history, define the application/persistence/permission/event contracts, and verify tenant scoping, audit and relevant concurrency behavior. No owner decision is currently required unless new authoritative evidence supersedes ADR-0021.
 
-because historical ADR-0018 and current architecture material disagree on ownership. No persistence/event/permission/dependency ownership may be silently reassigned.
-
----
+The exact historical approved Domain Model v2 / Context Map v2 artifacts remain unlocated. Preserve that provenance gap; it no longer overrides the explicit FD-001 high-level decision. The missing `docs/architecture/ASAS-ARCHITECTURE-V3.md` path must not be reconstructed by inference; follow the missing-reference alert in `docs/architecture/README.md`.
 
 # 10 — Contract-first rule
 
@@ -430,7 +428,7 @@ CONTROL-PLANE CONVERGENCE
 → BUILDING CONTRACT
 → OFFER CONTRACT
 → PAYMENT / RECEIPT / ALLOCATION / LEDGER
-→ SCHEDULING ADR
+→ SCHEDULING CONTRACT / PERSISTENCE / EVENT / PERMISSION VERIFICATION (ADR-0021 ACCEPTED)
 → QUERY / READ-MODEL CONTRACTS
 → PERMISSION / EVENT RECONCILIATION
 → TASK PACKET DERIVATION
