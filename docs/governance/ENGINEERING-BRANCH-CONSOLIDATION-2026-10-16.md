@@ -44,15 +44,15 @@ The GitHub refs endpoint returned **48 branch refs and 20 distinct commit heads*
 
 | PR | Head | Base / status | Disposition |
 |---|---|---|---|
-| [#18](https://github.com/asas-erp-saas-1/As/pull/18) | `chore/engineering-corpus-index-2026-10-14` | `platform-architecture-2026`, Draft | Contains branch/corpus index and the two selected C03 source-control files; hold until checks and review resolve. |
-| [#20](https://github.com/asas-erp-saas-1/As/pull/20) | `feat/engineering-workflow-2026-10-16` | `platform-architecture-2026`, Draft | Workflow/CI change; Foundation Verify passed on recorded head, Vercel preview still fails (Issue #21). |
-| [#23](https://github.com/asas-erp-saas-1/As/pull/23) | `cline/hp1c6fdq` | `platform-architecture-2026`, Draft | 14-commit / 57-path architecture-integrity package; owner-review each semantic decision and checkpoint diff. |
-| [#5](https://github.com/asas-erp-saas-1/As/pull/5) | `foundation/blueprint-canonical-shadows` | Retargeted to `platform-architecture-2026`, Draft | Review checkpoint/register overlap; do not merge wholesale. |
-| [#6](https://github.com/asas-erp-saas-1/As/pull/6) | `foundation/reconcile-context-map-v2` | Retargeted to `platform-architecture-2026`, Draft | Review context-map and contract-conflict artifact. |
+| [#18](https://github.com/asas-erp-saas-1/As/pull/18) | `chore/engineering-corpus-index-2026-10-14` | `platform-architecture-2026`, Draft | Contains branch/corpus index, the two selected C03 source-control files and the CI route/checkpoint repairs; Foundation Verify passed on head `a721286b09527123d833f2f676568323335527d7`, but Vercel remains failed. |
+| [#20](https://github.com/asas-erp-saas-1/As/pull/20) | `feat/engineering-workflow-2026-10-16` | `platform-architecture-2026`, Draft | Workflow/CI change; Foundation Verify passed on recorded head `425fe168f98f54f8c055a2d8995c8f975c3946e6`, Vercel preview still fails (Issue #21). |
+| [#23](https://github.com/asas-erp-saas-1/As/pull/23) | `cline/hp1c6fdq` | `platform-architecture-2026`, Draft | 14-commit / 58-path architecture-integrity package; latest Foundation Verify run `38879545899` passed on head `e866cd4aa07c8a89ee146cb9dc83f28db71911fa`, including the architecture-integrity script; Vercel preview still fails. Owner-review each semantic decision and checkpoint diff. |
+| [#5](https://github.com/asas-erp-saas-1/As/pull/5) | `foundation/blueprint-canonical-shadows` | Retargeted to `platform-architecture-2026`, Draft; GitHub currently reports `mergeable=false` | Review checkpoint/register overlap; do not merge wholesale. |
+| [#6](https://github.com/asas-erp-saas-1/As/pull/6) | `foundation/reconcile-context-map-v2` | Retargeted to `platform-architecture-2026`, Draft; GitHub currently reports `mergeable=false` | Review context-map and contract-conflict artifact. |
 | [#8](https://github.com/asas-erp-saas-1/As/pull/8) | `foundation/source-authority-ledger-v1` | Retargeted to `platform-architecture-2026`, Draft | Review source-authority ledger. |
 | [#9](https://github.com/asas-erp-saas-1/As/pull/9) | `foundation/claude-agent-operating-protocol-v1` | Retargeted to `platform-architecture-2026`, Draft | Review operating protocol. |
 | [#12](https://github.com/asas-erp-saas-1/As/pull/12) | `foundation/architecture-lineage-reconciliation-v1` | Retargeted to `platform-architecture-2026`, Draft | Review lineage contract. |
-| [#13](https://github.com/asas-erp-saas-1/As/pull/13) | `foundation/repository-file-organization-v1` | Retargeted to `platform-architecture-2026`, Draft | Broad 35-path diff; reconcile overlap with #18/#20/#23 before merge. |
+| [#13](https://github.com/asas-erp-saas-1/As/pull/13) | `foundation/repository-file-organization-v1` | Retargeted to `platform-architecture-2026`, Draft; GitHub currently reports `mergeable=false` | Broad 35-path diff; reconcile overlap with #18/#20/#23 before merge. |
 | [#14](https://github.com/asas-erp-saas-1/As/pull/14) | `foundation/external-audit-integration-v1` | Retargeted to `platform-architecture-2026`, Draft | Review audit evidence and procedure. |
 
 **Closed as redundant / unsafe as a direct merge:** PR #16 (head is already contained in the active line; zero commits ahead and zero changed files against it), PR #19 (duplicate workflow head targeting divergent `main`), and PR #17 (521-commit whole-line convergence into `main` is not a safe feature merge). Closing these PRs did not delete any branch or commit.
@@ -70,7 +70,7 @@ Both are present on the PR #18 branch but are **not yet present on the canonical
 
 PR #23 isolates ADR-0038–0041, Hold/edge contracts, the integrity review, register delta, C-track recovery/disposition, checkpoint/closure edits, and CI integrity tooling. This is valuable, but not all of it is ready to promote as a unit. Before merging:
 
-Its first Foundation Verify run (`38878920659`) failed on the known literal gate-route assertion. Commit `0487906dfe55feb7db3013728bff76a2add699f7` updates the branch workflow to validate the Constitution declaration and all eight gate headings and adds `scripts/verify-architecture-integrity.sh`. The post-fix CI result has not yet been observed. This workflow hunk overlaps the related fix in PR #20 and must be reconciled before either PR is merged.
+Its first Foundation Verify run (`38878920659`) failed on the known literal gate-route assertion. Commit `0487906dfe55feb7db3013728bff76a2add699f7` replaced that assertion with semantic checks and added `scripts/verify-architecture-integrity.sh`. The next run exposed a false-positive reference to the documented placeholder `phase-c/CNN/README.md`; commit `cb85c656ed6faff785ab34345c0cd29d08e21884` allowlisted that exact placeholder. The verifier then passed, but the checkpoint guard exposed historical/prohibition references as false positives; commit `e866cd4aa07c8a89ee146cb9dc83f28db71911fa` narrowed that check. Foundation Verify run `38879545899` completed successfully on that head, including architecture-integrity and the checkpoint guard. The workflow hunk overlaps the related fix in PR #20 and PR #18 and must be reconciled before any merge.
 1. Verify decision-owner/delegation claims and reconcile the ADRs with canonical machine-readable state/event/permission registers.
 2. Resolve the candidate checkpoint's same-file contradiction between listed unresolved findings and later "resolved" statuses.
 3. Keep register deltas proposed until register owners approve them; preserve F-08/security-permission blockers.
@@ -96,7 +96,7 @@ Delete exact-head duplicates first, after checking the PR/deployment conditions.
 
 ## 6. Actions taken and not taken
 
-**Taken:** retargeted PRs #5, #6, #8, #9, #12, #13 and #14 to the canonical engineering line; closed redundant PR #16, duplicate-to-main PR #19, and unsafe whole-line PR #17 with explanatory comments; opened PR #23 to isolate the materially advanced `cline` package; opened [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24) for default-branch migration and [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25) for staged retirement of non-canonical refs.
+**Taken:** retargeted PRs #5, #6, #8, #9, #12, #13 and #14 to the canonical engineering line; closed redundant PR #16, duplicate-to-main PR #19, and unsafe whole-line PR #17 with explanatory comments; opened PR #23 to isolate the materially advanced `cline` package; opened [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24) for default-branch migration and [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25) for staged retirement of non-canonical refs; added the CI repairs to PR #18 and verified Foundation Verify on its latest inspected head.
 
 **Not taken:** no branch refs deleted; no commit history rewritten; no branch force-pushed or reset; no pull request merged; no architecture gate or C-track closed; no app/schema/migration/RLS/production changes.
 
