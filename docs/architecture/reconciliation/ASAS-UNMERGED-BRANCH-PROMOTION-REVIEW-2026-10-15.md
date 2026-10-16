@@ -110,3 +110,15 @@ Both this review branch and `cline/hp1c6fdq` add `docs/architecture/README.md`, 
 - Fetched source-corpus files from both `main` and the active architecture line; confirmed the Source Corpus README path conflict rather than assuming all three `main`-side paths were absent.
 - Read the candidate ADR headers, C03 disposition register, provenance recovery, permissions delta, and candidate session checkpoint.
 - Kept candidate-branch status assertions explicitly separate from canonical target-branch status.
+
+
+## 7. Addendum — 2026-10-16
+
+The original findings above are retained as the 2026-10-15 review snapshot. Subsequent verification changed the CI disposition as follows:
+
+- The brittle literal gate-route assertion and over-broad historical-checkpoint detector were repaired on review branches PR #18, PR #20 and PR #23. These branches intentionally overlap on the workflow hunk and must be reconciled after the first approved merge; do not treat them as three independent fixes.
+- PR #18 Foundation Verify run [38879645258](https://github.com/asas-erp-saas-1/As/actions/runs/38879645258) completed successfully on its inspected head.
+- PR #23's architecture-integrity verifier initially found the documented placeholder `phase-c/CNN/README.md` and then exposed the checkpoint detector's false positives. The exact placeholder was allowlisted with a comment, and the checkpoint detector was narrowed to exclude historical/audit/reconciliation references and explicit prohibitions.
+- PR #23 Foundation Verify run [38879545899](https://github.com/asas-erp-saas-1/As/actions/runs/38879545899) completed successfully on head `e866cd4aa07c8a89ee146cb9dc83f28db71911fa`; the architecture-integrity script and corrected checkpoint guard passed.
+- Vercel preview remains failed with `BUILD_FAILED / Resource provisioning failed`; see [Issue #21](https://github.com/asas-erp-saas-1/As/issues/21). No Vercel settings or production deployment configuration were changed.
+- The semantic ADR/contract package in `cline/hp1c6fdq` remains unmerged and not yet canonical. A green structural/reference-integrity check does not ratify the ADRs, resolve permission gaps, close C03, or authorize implementation.
