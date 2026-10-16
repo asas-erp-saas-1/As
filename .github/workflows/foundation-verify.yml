@@ -114,11 +114,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          constitution="docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md"
+          gate_model="docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md"
           grep -Fq 'ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md' docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
-          grep -Fq 'GATE-00 → GATE-01 → GATE-02 → GATE-03 → GATE-04 → GATE-05 → GATE-06 → GATE-07' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
-          grep -Fq 'C01–C22' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
-          grep -Fq 'IG-*' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          grep -Fq 'The first seven stages are `GATE-00` through `GATE-07`' "$constitution"
+          grep -Fq 'No parallel implementation path' "$constitution"
+          for gate in GATE-00 GATE-01 GATE-02 GATE-03 GATE-04 GATE-05 GATE-06 GATE-07; do
+            grep -Fq "### $gate" "$gate_model"
+          done
+          grep -Fq 'C01–C22' "$constitution"
+          grep -Fq 'IG-*' "$constitution"
           echo 'Single engineering conference route is present.'
+
+      - name: Verify architecture integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/verify-architecture-integrity.sh
 
       - name: Reject wrong-project references in executable/configuration surfaces
         shell: bash
