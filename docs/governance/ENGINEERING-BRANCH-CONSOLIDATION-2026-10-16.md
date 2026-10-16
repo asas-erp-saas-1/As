@@ -128,3 +128,18 @@ The latest pre-PR #27 census returned **49 branch refs / 21 distinct heads**. Th
 The default-branch change is complete and verified. Keep `main` through the observation period; it still has unique/divergent history and is not deleted. Do not delete any #6/#13/#23 source branch before PR #27 merges and each original PR is closed with the promotion register in place. Historical branch tips with unique material not selected for promotion are classified as candidate evidence, superseded, or deliberately not adopted in the ledger.
 
 The connected GitHub actions still do **not** expose a branch-delete operation. Therefore this record does not claim any physical ref deletion. The final delete phase requires a delete-capable repository-admin action with a fresh branch SHA, open-PR and deployment/workflow reference check immediately before each delete.
+
+
+## 9. Final legacy-corpus disposition snapshot — 2026-10-16 (before PR #28)
+
+After PR #27 was merged, the remaining source-only candidate corpus was compared and further evidence was preserved from `feat/foundation-command-registry`, `foundation/blueprint-register-ingestion`, `foundation/c2-001-traceability-v1`, and divergent `main`. The exact original source SHAs and destinations are in `docs/architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md`.
+
+Live refs census before opening this final preservation PR: **51 branch refs / 23 distinct commit heads**. This includes the new preservation branch and historical source refs; it does not mean there are 23 engineering lines. GitHub metadata continues to show `default_branch: platform-architecture-2026`. No pull requests were open at the moment of this snapshot; this last preservation PR is being opened separately so the latest source corpus is tested before merge.
+
+- Additional historical P0 research/contract candidates from the command-registry corpus are preserved with warnings in known audit paths or under `candidate-evidence/2026-10-16/command-registry-candidates/`.
+- The old product truth, 15-context proposal, ADR-0038–0041, and source-era readiness/organization docs remain candidates or historical evidence. Their original status wording is not ratified by inclusion.
+- The older ingestion branch’s provenance/ingestion/validation docs and the extra C2 traceability matrix are preserved as candidates. The one-line `registers/tasks.json` placeholder and stale copies of task/checkpoint/register files are deliberately not promoted.
+- The legacy `main` Source README is preserved outside its canonical path; its shorter contents are not overlaid on the richer Source Corpus README.
+- The older forensic branch remains a deletion candidate because its head compares as zero commits ahead and zero changed files; `foundation/repository-governance` is classified as superseded by current canonical governance and the merged engineering workflow.
+
+No physical branch refs have been deleted. The final admin deletion queue will keep `platform-architecture-2026`, and should keep `main` only through the selected rollback observation decision; every other ref is a retirement candidate after the current ref SHA and nonterminal dependencies are checked. The available connected GitHub actions still lack a branch-delete operation.
