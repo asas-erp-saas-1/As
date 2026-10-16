@@ -1,8 +1,8 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.10  
-**Date:** 2026-10-15  
+**Version:** 1.11  
+**Date:** 2026-10-16  
 **Active engineering line:** `platform-architecture-2026`
 
 ## Purpose
@@ -78,6 +78,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 |---|---|---|---|
 | `docs/governance/BRANCH-HYGIENE-REGISTER.md` | A6/A4 | ACTIVE REPOSITORY CONTROL | Branch policy and cleanup safeguards; no destructive Git action is authorized by this register |
 | `docs/governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md` | A5 | DATED SNAPSHOT / REVIEW REQUIRED | Evidence snapshot of observed refs and compare results; recheck PRs, deployments and unique commits before cleanup |
+| `docs/governance/ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md` | A5/A6 | LIVE CONSOLIDATION CONTROL / RETIREMENT PENDING | Records the canonical engineering line, exact branch-head groups, PR dispositions, promotion evidence and safe retirement criteria; branch deletion/default-branch change still requires admin action |
 | `README.md` | A6 | REPOSITORY FRONT DOOR | Navigation and project orientation; must not override canonical controls |
 | `docs/architecture/README.md` | A6 | ACTIVE NAVIGATION INDEX | Architecture corpus navigation; not a source of decisions or implementation authority |
 | `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md` | A5/A6 | DATED PROMOTION REVIEW | File-level review of unmerged branch evidence; authorizes no merge, closure, or implementation |
