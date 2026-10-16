@@ -98,3 +98,62 @@ The proposal is deliberately kept outside active ADR/contract paths because issu
 - PRs #5, #8, #9, #12, #14 and #20 were closed as superseded after their useful artifacts were selectively promoted.
 - This PR adds candidate preservation so PRs #6/#13/#23 can be dispositioned without relying on their branches as the only home for unique evidence.
 - No source branch is called “deleted” here. The connected GitHub interface used for this task exposes branch creation, ref updates, file/PR operations, but no branch-delete action. Physical deletion still requires a delete-capable repository-admin action with a fresh SHA/reference check.
+
+
+## 7. Additional historical unique-head branches
+
+### 7.1 `feat/foundation-command-registry`
+
+**Source head:** `affab220ff27d51f360061e5d66fa6b4396dd168` (98 commits ahead of the current canonical line at a prior compare; 70 files in that source tree). This is a divergent older architecture corpus, not just another ref name.
+
+The following higher-value safety, integration, and product-research candidates have been preserved with source blob SHA and a historical-candidate warning:
+
+| Source path | Source blob SHA | Preserved destination | Disposition |
+|---|---|---|---|
+| `docs/architecture/EXTERNAL-INTEGRATION-ECOSYSTEM-STRATEGY.md` | `e69887f78263e8e023360f3eca7440997c007c08` | same path | Proposed integration strategy; research and provider claims must be revalidated |
+| `docs/audit/B6-ALGERIA-PAYMENT-PROVIDER-FEASIBILITY.md` | `0047b37e65e9dc2de592871340d57a92eaa58470` | same path | Dated research; no legal/commercial onboarding implied |
+| `docs/audit/B6-COMMAND-EVENT-TRANSACTION-MATRIX.md` | `09133700b51229edf5d2086ef24f94bd8e935d26` | same path | Proposed P0 transaction matrix; implementation gated |
+| `docs/audit/B6-RESERVATION-HOLD-DEPOSIT-ATOMICITY.md` | `54a857962aa3d85d324525ebcd6c382020f2fba0` | same path | Proposed atomicity contract; canonical state and permission registers remain authoritative |
+| `docs/audit/CONCURRENCY-RACE-CATALOG.md` | `bd9e4b7ebe0f5116244c082653fa633ab2d20bff` | same path | Candidate race catalogue; exact mechanism and policy values remain unresolved |
+| `docs/audit/FINANCE-CORRECTNESS-CONTRACT.md` | `2f4054f7a5226346bccc8721a5d06b423d256951` | same path | Proposed finance correctness contract; commercial/accounting policy remains open |
+| `docs/audit/IDEMPOTENCY-CATALOG.md` | `c5380b1317ff05c36c8b813ea1c1bc41836b9b47` | same path | Proposed idempotency catalogue; source-open derivation/retention rules remain open |
+| `docs/audit/OUTBOX-INBOX-CONTRACT.md` | `dabb54be33c16eecd94c69cc21342c5ab6dfa005` | same path | Proposed delivery reliability contract; operational policy needs current review |
+| `docs/security/SECURITY-CONTROL-MATRIX.md` | `5e581a8f24ec94ab1d3612c8d1e43ac488de872c` | same path | Design/handoff only; no control implementation implied |
+| `docs/security/THREAT-MODEL-AND-SECURITY-BASELINE.md` | `3915b5a3cbc162047c3a65bb6a43e82157c052a9` | same path | Historical threat-model candidate; reconcile against current threat model |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/USER-PERSONA-AND-SYSTEM-PILLAR-AUTONOMY.md` | `eb10efe84a2dd58be9b35e429efcf84edb372471` | candidate archive | Historical autonomy model; not canonical |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/PRODUCT_TRUTH.md` | `df83568d1b2d27e2f99e1f44d9c8fc82ce82c5e2` | candidate archive | Product-scope evidence only; Issue #10 remains open |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/INTEGRATION-AND-PLUGIN-CONTRACT.md` | `a7607bf774a9234b590ac9dd9d49738512a39c2c` | candidate archive | Candidate integration contract |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/QUALITY-GATES-AND-EVIDENCE-MATRIX.md` | `b6bc13fb4bf25bd16e5e40013009d03e6ec16406` | candidate archive | Candidate quality framework |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/COMPETITIVE_CAPABILITY_BASELINE.md` | `8639ace259cc9ab1b254ec68a7d0050bcdd4eff2` | candidate archive | Dated competitive-research input |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/FOUNDATION-TECHNOLOGY-RESEARCH-2026-09.md` | `00b5cb26a424bac32aaa1146cacd8710ea984147` | candidate archive | Dated technical research; revalidate before use |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/GOLDEN-JOURNEYS-UX-SPEC.md` | `26260b5e0d4742ac267285dbbd9710ccce1ca7f3` | candidate archive | UX/product candidate |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/FIGMA-UX-UI-ENGINEERING-CONTRACT.md` | `9532331e3cec9be3d49f6348b910fbfcc30fe791` | candidate archive | Design-engineering candidate |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/DOMAIN-INVARIANT-CATALOG.md` | `a67d2351c25e85f8221768a388d06846e5819ea7` | candidate archive | Historical invariant catalogue; reconcile with current aggregate register |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/P0_DEPENDENCY_VERIFICATION.md` | `04f7237a9aef03d688842ca38f95f679b9e5ddd6` | candidate archive | Dated dependency verification; do not use as current provider proof |
+
+The branch also contains older governance, lifecycle, task, and closure documents, and a one-line `registers/tasks.json` placeholder. The placeholder was deliberately **not** promoted; the current canonical task shards/indexes and source reconciliation controls remain the authority. Older `AGENTS.md`, README, `SESSION_STATE.md`, gate/closure and broad task-packet copies were not promoted because they conflict with or are superseded by the current canonical handoff, PR #26 workflow and PR #27 disposition register.
+
+### 7.2 `foundation/blueprint-register-ingestion` and `foundation/c2-001-traceability-v1`
+
+| Source branch / path | Source blob SHA | Preserved destination | Disposition |
+|---|---|---|---|
+| `foundation/blueprint-register-ingestion`: `docs/governance/BLUEPRINT-DERIVATION-PROVENANCE.md` | source tree captured at `fb3afedfd5ee5070e0a89961976be8c7f9133b38` | `source-ingestion-candidates/BLUEPRINT-DERIVATION-PROVENANCE.md` | Candidate provenance procedure |
+| `foundation/blueprint-register-ingestion`: `docs/governance/BLUEPRINT-REGISTER-INGESTION-PLAN.md` | `fb3afedfd5ee5070e0a89961976be8c7f9133b38` | `source-ingestion-candidates/BLUEPRINT-REGISTER-INGESTION-PLAN.md` | Candidate ingestion plan |
+| `foundation/c2-001-traceability-v1`: `docs/governance/BLUEPRINT-REGISTER-VALIDATION-MATRIX.md` | `7aff25267d2549a390750ec0260f527f5a9564ee` | `source-ingestion-candidates/BLUEPRINT-REGISTER-VALIDATION-MATRIX.md` | Candidate validation matrix |
+| `foundation/c2-001-traceability-v1`: `docs/governance/BLUEPRINT-TO-CLAUDE-EXECUTION-CONTRACT.md` | `c0cabdbabe7f738b16b0f167d1468a045eef70a6` | `source-ingestion-candidates/BLUEPRINT-TO-CLAUDE-EXECUTION-CONTRACT.md` | Candidate handoff contract |
+| `foundation/c2-001-traceability-v1`: `docs/architecture/C2-001-TRACEABILITY-MATRIX.md` | `ea07d2ec51d24c53aa9cd78754a9ab0488c2c49e` | `context-map-proposal/C2-001-TRACEABILITY-MATRIX.md` | Proposal/evidence only; no context decision implied |
+
+These branches’ older manifest, task index, schema index and phase-P copies were not directly overlaid because the canonical line already has newer source observations and a controlled task source map. Count disagreements remain open.
+
+### 7.3 `foundation/repository-governance` and forensic reconstruction
+
+- `foundation/repository-governance` at `af3a17de9377dbe8310a0bda4372e9d8412fb8ef` has a large divergent set of older repository/governance documents. Its principal operating instructions, branch hygiene, templates, master execution routing and gate/checkpoint documents overlap with the current canonical line and the merged PR #26 workflow. No wholesale merge is recommended; the old branch is classified **SUPERSEDED / NOT REQUIRED AS AN ACTIVE LINE** after checking references.
+- `foundation/forensic-repository-reconstruction-2026-09-20` at `c8d3d7e23095ba6e169f1aae9c00b796f878217f` compares as **0 commits ahead / 0 changed files** against the current canonical line; the PR was previously closed. It is a strong ref-retirement candidate after a final SHA/open-reference check.
+- The three exact-head duplicate families remain: `2ce6b00536b83615f134998c57e191f51211036f` (17 names), `1a21a311bd27eb0e4c16415a7de6ee1a9e040389` (10 names), and `5c2021eaf5402e6316687b5bd99a6047d40387b9` (4 names). All duplicate-name members have the same tip SHA within their family; earlier Vercel inspection found no nonterminal deployments for the 31 names. Keep one representative per family until a final current-ref check; delete the other 28 redundant names first.
+
+### 7.4 Legacy `main` divergence
+
+- `main` is no longer the default branch; live metadata confirms `platform-architecture-2026` is default.
+- Its two C03 controls were promoted by PR #18.
+- The divergent `docs/architecture/reconciliation/phase-c/Source/README.md` from `main` (blob SHA `d6cc00adfdf781f0a52b9c5bb0ac559dd9882601`) is preserved at `docs/architecture/reconciliation/candidate-evidence/2026-10-16/main-divergent-source/Source-README-from-main.md`. It remains historical only because the canonical Source Corpus index is fuller and already owns the path.
+- `main` has no remaining identified unique accepted content in this ledger, but should only be deleted after the owner’s observation/rollback decision and a last check for workflow/release/deployment dependencies.
