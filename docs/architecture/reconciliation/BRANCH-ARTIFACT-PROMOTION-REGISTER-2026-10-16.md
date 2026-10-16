@@ -157,3 +157,14 @@ These branches’ older manifest, task index, schema index and phase-P copies we
 - Its two C03 controls were promoted by PR #18.
 - The divergent `docs/architecture/reconciliation/phase-c/Source/README.md` from `main` (blob SHA `d6cc00adfdf781f0a52b9c5bb0ac559dd9882601`) is preserved at `docs/architecture/reconciliation/candidate-evidence/2026-10-16/main-divergent-source/Source-README-from-main.md`. It remains historical only because the canonical Source Corpus index is fuller and already owns the path.
 - `main` has no remaining identified unique accepted content in this ledger, but should only be deleted after the owner’s observation/rollback decision and a last check for workflow/release/deployment dependencies.
+
+
+## 8. Final retirement authorization — live snapshot 2026-10-16
+
+After PRs #18, #26, #27 and #28 merged, the live GitHub state is 51 refs / 23 distinct heads, 50 noncanonical refs, zero open PRs, and default branch `platform-architecture-2026`. The current canonical head `2ae7c23acc4620060d44589f455427a0e3a363b6` passes Foundation Verify run [38888149259](https://github.com/asas-erp-saas-1/As/actions/runs/38888149259).
+
+The unique contents of the remaining historical heads have now been preserved in the canonical tree as source-aware evidence or explicitly left out with rationale. In particular, PR #28 preserves the command-registry candidates, Blueprint ingestion and C2-001 traceability material, and the divergent `main` Source README. Inclusion in the candidate archive is not architecture approval; old branch status labels do not become canonical authority.
+
+**Retirement decision:** all 50 refs other than `platform-architecture-2026` are candidates for deletion, including `main`. The canonical branch is the only engineering line. No open PR remains. The current connector does not expose a delete-ref operation, so physical deletion is still pending an authorized GitHub UI/admin or authenticated Git client action; do not mark a branch deleted until the live refs API confirms its absence.
+
+Vercel returned `Deployment rate limited — retry in 24 hours` on the canonical head; Foundation Verify is green. Branch protection could not be read (403) and no repository rulesets were returned, so protection enforcement remains unverified. These are separate deployment/governance follow-ups, not reasons to maintain extra engineering branches.
