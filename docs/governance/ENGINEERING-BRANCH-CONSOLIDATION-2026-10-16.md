@@ -107,3 +107,24 @@ The available GitHub integration exposes branch creation/ref updates but not a b
 - Current branch protection remains unverified due the integration's 403 response; see [Issue #22](https://github.com/asas-erp-saas-1/As/issues/22).
 - Vercel preview resource provisioning failures remain open; see [Issue #21](https://github.com/asas-erp-saas-1/As/issues/21). Do not treat Vercel as green or silently waive it.
 - The branch count and SHAs are a dated live snapshot; re-fetch immediately before each delete or default-branch mutation.
+
+
+## 8. Live consolidation update — 2026-10-16 (post-PR #26, candidate preservation in progress)
+
+The GitHub repository metadata has been re-read and verifies `default_branch: platform-architecture-2026`. The canonical branch head at the start of this promotion task was `8041835bffd67a968ca7d76a9eb7b0fa64f3e171` (PR #26 merge).
+
+The latest pre-PR #27 census returned **49 branch refs / 21 distinct heads**. The candidate-preservation branch adds one ref while this PR is in review; it is a task branch, not a second engineering line. Three old review PRs remain open until their uniquely useful content is preserved here and the disposition is recorded: #6 (15-context proposal), #13 (broad organization/reconciliation corpus), and #23 (semantic ADR/contract package).
+
+### Actual promotion / disposition since the previous snapshot
+
+- PR #18 merged at `cc37482a0604ef96f78ac7a3df73a65b7fa18435`; the selected C03 source controls and consolidation record are on the canonical branch.
+- PR #26 merged at `8041835bffd67a968ca7d76a9eb7b0fa64f3e171`; curated engineering workflow, structural verifier, source lineage ledger/protocols, dated audit evidence and source-count provenance are on the canonical branch.
+- The useful unique content from #6, #13 and #23 is being preserved in a candidate-evidence area with exact source blob SHAs. ADR-0038–0041 and the 15-context proposal are deliberately **not** promoted as accepted architecture decisions; their source branch status labels are explicitly downgraded in the archive.
+- Working traceability/safety artifacts from #13 were brought onto this review branch with warnings that they are proposed working controls and cannot close C2-001/GATE-00/GATE-03 or authorize implementation.
+- The promotion map is `docs/architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md`.
+
+### Retirement boundary
+
+The default-branch change is complete and verified. Keep `main` through the observation period; it still has unique/divergent history and is not deleted. Do not delete any #6/#13/#23 source branch before PR #27 merges and each original PR is closed with the promotion register in place. Historical branch tips with unique material not selected for promotion are classified as candidate evidence, superseded, or deliberately not adopted in the ledger.
+
+The connected GitHub actions still do **not** expose a branch-delete operation. Therefore this record does not claim any physical ref deletion. The final delete phase requires a delete-capable repository-admin action with a fresh branch SHA, open-PR and deployment/workflow reference check immediately before each delete.
