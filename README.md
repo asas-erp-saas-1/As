@@ -25,6 +25,7 @@ The supplied ASAS Enterprise Architecture Blueprint v1.6.1 and its machine-reada
 - [Engineering Conference Gate Model](docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md)
 - [Engineering Closure Matrix](docs/governance/ENGINEERING-CLOSURE-MATRIX-2026.md)
 - [Branch inventory and reconciliation record](docs/governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md)
+- [Engineering branch consolidation and retirement ledger](docs/governance/ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md)
 
 ## Repository status
 
