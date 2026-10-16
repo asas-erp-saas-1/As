@@ -1,7 +1,7 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.11  
+**Version:** 1.12  
 **Date:** 2026-10-16  
 **Active engineering line:** `platform-architecture-2026`
 
@@ -78,7 +78,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 |---|---|---|---|
 | `docs/governance/BRANCH-HYGIENE-REGISTER.md` | A6/A4 | ACTIVE REPOSITORY CONTROL | Branch policy and cleanup safeguards; no destructive Git action is authorized by this register |
 | `docs/governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md` | A5 | DATED SNAPSHOT / REVIEW REQUIRED | Evidence snapshot of observed refs and compare results; recheck PRs, deployments and unique commits before cleanup |
-| `docs/governance/ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md` | A5/A6 | LIVE CONSOLIDATION CONTROL / RETIREMENT PENDING | Records the canonical engineering line, exact branch-head groups, PR dispositions, promotion evidence and safe retirement criteria; branch deletion/default-branch change still requires admin action |
+| `docs/governance/ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md` | A5/A6 | LIVE CONSOLIDATION CONTROL / RETIREMENT PENDING | Records the canonical engineering line, exact branch-head groups, PR dispositions, promotion evidence and safe retirement criteria; default-branch migration is now verified, while branch deletion remains pending |
 | `README.md` | A6 | REPOSITORY FRONT DOOR | Navigation and project orientation; must not override canonical controls |
 | `docs/architecture/README.md` | A6 | ACTIVE NAVIGATION INDEX | Architecture corpus navigation; not a source of decisions or implementation authority |
 | `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md` | A5/A6 | DATED PROMOTION REVIEW | File-level review of unmerged branch evidence; authorizes no merge, closure, or implementation |
@@ -90,6 +90,31 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/reconciliation/phase-c/Source/README.md` | A5/A6 | ACTIVE INDEX | Source-corpus navigation; source presence does not confer canonical authority |
 | `docs/architecture/reconciliation/phase-c/Source/C03/00-SOURCE-REGISTER.md` | A5/A6 | ACTIVE SOURCE INDEX | Classifies C03 source material; does not duplicate decision authority |
 | `docs/architecture/reconciliation/phase-c/C03/02-SOURCE-RECONCILIATION-QUEUE.md` | A6 | OPEN WORK QUEUE | Tracks required source reconciliation, red-team review and independent closure review; does not close C03 |
+
+## Engineering delivery workflow
+
+| Artifact | Authority | Status | Rule |
+|---|---|---|---|
+| `docs/governance/ASAS-ENGINEERING-DELIVERY-WORKFLOW-2026.md` | A4 | ACTIVE OPERATIONAL PROCEDURE | Task-to-merge, verification, review, post-merge evidence and recovery; cannot redefine authority or gates |
+| `docs/governance/ENGINEERING-TASK-PACKET-TEMPLATE-2026.md` | A4 | TEMPLATE | Reuse for material work or an equivalent task packet; not itself authorization |
+| `docs/governance/ENGINEERING-EVIDENCE-RECORD-TEMPLATE-2026.md` | A4 | TEMPLATE | Records exact tested commit, checks, outcome and evidence; not proof until populated |
+| `docs/governance/work-items/ENG-WORKFLOW-2026-10-16-01.md` | A4/A5 | COMPLETED CONTROL-PLANE WORK ITEM | Scope and acceptance criteria for workflow/verifier promotion |
+| `docs/governance/evidence/ENG-WORKFLOW-2026-10-16-01-EVIDENCE.md` | A5 | DATED VERIFICATION RECORD | Evidence for the source workflow task; do not generalize it to later heads |
+| `scripts/verify-engineering-workflow.sh` | A4 | STRUCTURAL CI CHECK | Validates control-file anchors; does not prove approval, runtime state, gate closure or deployment success |
+| `.github/PULL_REQUEST_TEMPLATE.md` | A4 | ACTIVE TEMPLATE | Enforces task scope, authority, safety, verification and disposition fields |
+
+## Source, task and audit reconciliation evidence
+
+| Artifact | Authority | Status | Rule |
+|---|---|---|---|
+| `docs/architecture/SOURCE-AUTHORITY-LEDGER.md` | A5/A6 | RECONCILIATION REQUIRED | Distinguishes claimed approval from source artifacts actually identified; does not synthesize missing Domain Model v2 |
+| `docs/architecture/ARCHITECTURE-LINEAGE-RECONCILIATION.md` | A4/A6 | PROPOSED CONTROL | Defines evidence states and non-equivalence between contexts, modules, schemas and aggregates; does not resolve C2-001 itself |
+| `docs/handoff/CLAUDE-AGENT-OPERATING-PROTOCOL.md` | A4 | NON-IMPLEMENTATION PROCEDURE | Agent operating procedure subordinate to `AGENTS.md`, canonical governance and approved decisions |
+| `docs/audit/FOUNDATION-EXTERNAL-DEEP-AUDIT-2026-09-18.md` | A5 | DATED EXTERNAL AUDIT | Historical findings to reproduce against current state; not a current runtime claim |
+| `docs/governance/EXTERNAL-AUDIT-INTEGRATION-PLAN.md` | A4/A6 | CONTROLLED WORK PLAN | Routes audit findings into existing controls; does not override canonical authority |
+| `docs/governance/BLUEPRINT-REGISTER-RECONCILIATION-REPORT.md` | A5 | OPEN / SOURCE-COUNT RECONCILIATION | Preserves 114-vs-119 task and 59/17/56 schema observations without normalizing counts |
+| `registers/tasks.source-map.json` | A2/A5 | SOURCE MAP / RECONCILIATION REQUIRED | Lists source task IDs by phase; is not a complete canonical task body or implementation authorization |
+| `registers/BLUEPRINT-SOURCE-OBSERVATIONS.json` | A5 | PROVENANCE MANIFEST / RECONCILIATION REQUIRED | Retains source hashes and observed metrics; extraction evidence does not promote task or schema content automatically |
 
 ## Machine-readable shadows
 

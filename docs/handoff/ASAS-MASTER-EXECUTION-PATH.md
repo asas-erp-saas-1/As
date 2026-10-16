@@ -23,6 +23,8 @@ The canonical gate model is:
 
 This path is an execution control plane, not a replacement for the Blueprint, Source of Truth, contracts, registers, or runtime evidence.
 
+The task-level delivery loop—task packet, work lane, branch/PR discipline, verification, review, merge gates, post-merge evidence and blocker handling—is operationalized by `docs/governance/ASAS-ENGINEERING-DELIVERY-WORKFLOW-2026.md`. That procedure does not redefine the gates or authorize implementation.
+
 ---
 
 # 1 — Non-negotiable architecture sequence

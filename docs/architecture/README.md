@@ -137,3 +137,15 @@ Research supports decisions; it is not a product decision. An audit finding reco
 - [Engineering closure matrix](../governance/ENGINEERING-CLOSURE-MATRIX-2026.md)
 
 The branch inventory is a dated evidence snapshot. Recheck GitHub PR state, branch heads, deployment references, protection rules and unique commits before cleanup.
+
+
+## 6. Curated source and engineering procedures
+
+- [Source authority ledger](SOURCE-AUTHORITY-LEDGER.md) — distinguishes source claims from verified source artifacts.
+- [Architecture lineage reconciliation contract](ARCHITECTURE-LINEAGE-RECONCILIATION.md) — preserves unresolved context/module/schema distinctions pending authority.
+- [Blueprint register reconciliation report](../governance/BLUEPRINT-REGISTER-RECONCILIATION-REPORT.md) — records task and schema source-count discrepancies without normalizing them.
+- [External foundation audit (dated evidence)](../audit/FOUNDATION-EXTERNAL-DEEP-AUDIT-2026-09-18.md) and [integration plan](../governance/EXTERNAL-AUDIT-INTEGRATION-PLAN.md) — audit evidence remains subordinate to current source and runtime truth.
+- [Claude agent operating protocol](../handoff/CLAUDE-AGENT-OPERATING-PROTOCOL.md) — non-implementation procedure subordinate to `AGENTS.md`.
+- [Engineering delivery workflow](../governance/ASAS-ENGINEERING-DELIVERY-WORKFLOW-2026.md) — task, review, verification and post-merge evidence procedure.
+
+These are curated navigation/procedure/evidence artifacts. Their presence does not close C2-001, GATE-00, C03, or any other gate/track, and does not authorize schema, migration, RLS, application or production changes.
