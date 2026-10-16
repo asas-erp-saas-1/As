@@ -77,6 +77,8 @@ note "ADR register coverage and numbering verified."
 # 4. Internal reference integrity with explicit known-gap allowlist
 # ---------------------------------------------------------------------------
 allowlist=(
+  # Template placeholder used in documentation, not a real C-track path.
+  docs/architecture/reconciliation/phase-c/CNN/README.md
   docs/architecture/ARCHITECTURE-LINEAGE-RECONCILIATION.md
   docs/architecture/ASAS-ARCHITECTURE-V3.md
   docs/architecture/ASAS-CANONICAL-ARCHITECTURE-BASELINE-V3.md
