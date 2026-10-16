@@ -176,6 +176,7 @@ jobs:
             ':!docs/architecture/reconciliation/**' \
             ':!.github/**' \
             ':!engineering-history/branch-snapshots/**' \
+            ':!docs/engineering-history/**' \
             ':!.git/**' \
             | grep -viE 'do not|never|not (the )?(active|current)|historical|legacy' \
             || true)
