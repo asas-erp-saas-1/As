@@ -223,3 +223,6 @@ Stop and escalate when:
 - Do not create duplicate canonical artifacts merely because a gap was discovered; locate the canonical owner first.
 - Historical evidence must be preserved unless explicit governance authorizes archival/removal.
 - Parallel agent work must use explicit boundaries and must not create competing canonical truth.
+## Operational delivery workflow
+
+The practical task-to-merge, evidence, review, post-merge and recovery procedure is `docs/governance/ASAS-ENGINEERING-DELIVERY-WORKFLOW-2026.md`. Every material task must use `docs/governance/ENGINEERING-TASK-PACKET-TEMPLATE-2026.md` or an equivalent task packet containing all required fields, and must leave a durable evidence record using `docs/governance/ENGINEERING-EVIDENCE-RECORD-TEMPLATE-2026.md`. The workflow operationalizes this contract; it cannot override authority, gates, owner decisions or explicit task authorization.
