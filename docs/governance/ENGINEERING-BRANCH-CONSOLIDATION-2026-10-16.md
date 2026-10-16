@@ -90,7 +90,7 @@ A branch is deletable only when all conditions hold:
 5. The exact current SHA is re-read immediately before deletion; no concurrent change occurred.
 6. It is not the GitHub default branch and not the canonical engineering line.
 
-Delete exact-head duplicates first, after checking the PR/deployment conditions. Retain `main` until Issue #24 completes the admin-controlled default-branch migration and a defined observation/rollback period. Retain each task branch until its PR is merged/closed and its content disposition is recorded.
+Delete exact-head duplicates first, after checking the PR/deployment conditions. Retain `main` until Issue #24 completes the admin-controlled default-branch migration and a defined observation/rollback period. Retain each task branch until its PR is merged/closed and its content disposition is recorded. The administrative retirement queue is tracked in [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25).
 
 ## 6. Actions taken and not taken
 
