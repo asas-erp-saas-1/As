@@ -1,16 +1,16 @@
 # ASAS Engineering History — Archive Index
 
-## Current archive state
+## Archive census state (captured 2026-10-17)
 
-The current default branch is `platform-architecture-2026`. The archive inventory was captured from GitHub on 2026-10-17 and completed in commit `1aeb0907ae544caafb5160bd90d0e21488024c53`.
+The census was captured from GitHub on 2026-10-17 and committed to the then-current default branch `platform-architecture-2026` in commit `1aeb0907ae544caafb5160bd90d0e21488024c53`. This is a point-in-time inventory, not a live branch-list endpoint.
 
-- **Live branch refs:** 53
-- **Distinct live head commits:** 25
+- **Branch refs represented by the census:** 53
+- **Distinct live head commits at census time:** 25
 - **Numbered top-level snapshot folders:** 54
 - **File entries summed across top-level snapshots:** 57,563
 - **Verification result for snapshot folders 001–054:** 0 missing paths, 0 blob-SHA/mode mismatches, 0 unexpected paths
 
-The 54 snapshots comprise the original 51-folder census, the two live archive/CI support branches, and a second snapshot of the default branch at its pre-archive tip. Folder 051 preserves the earlier default-branch checkpoint. Folder 054 captures the default branch at `39ead7b4123666b0c20f301b9d4066864d3c88f5`, immediately before the archive-completion commit. The completion commit itself is not recursively snapshotted; doing so would make the archive self-referential.
+The 54 snapshots comprise the original 51-folder census, the two live archive/CI support branches, and a second snapshot of the default branch at its pre-archive tip. Folder 051 preserves the earlier default-branch checkpoint. Folder 054 captures the default branch at `39ead7b4123666b0c20f301b9d4066864d3c88f5`, immediately before the archive-completion commit. The completion commit itself is not recursively snapshotted; doing so would make the archive self-referential. The later review branch `archive/engineering-history-integrity-2026-10-17` was created after that census to correct the inventory documentation; it is an operational review branch, not a missing historical architecture stage.
 
 ## Ordering
 
