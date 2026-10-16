@@ -1,7 +1,7 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.12  
+**Version:** 1.13  
 **Date:** 2026-10-16  
 **Active engineering line:** `platform-architecture-2026`
 
@@ -82,6 +82,14 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `README.md` | A6 | REPOSITORY FRONT DOOR | Navigation and project orientation; must not override canonical controls |
 | `docs/architecture/README.md` | A6 | ACTIVE NAVIGATION INDEX | Architecture corpus navigation; not a source of decisions or implementation authority |
 | `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md` | A5/A6 | DATED PROMOTION REVIEW | File-level review of unmerged branch evidence; authorizes no merge, closure, or implementation |
+| `docs/architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md` | A5/A6 | LIVE PROMOTION / RETIREMENT LEDGER | Records exact source SHAs, promoted/candidate/discard dispositions and branch retirement gates |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/` | A5 / PROPOSED | CANDIDATE EVIDENCE ARCHIVE | Preserves unratified ADRs, candidate contracts, context-map proposals and integrity findings; source-branch status labels do not become canonical approval |
+| `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md` | A4 / PROPOSED | WORKING CONTRACT | Traceability only; C2-001/ADR-0021 acceptance remains a hard stop |
+| `docs/architecture/EVENT-OWNERSHIP-TRACEABILITY-WAVE-2.md` | A4 / PROPOSED | WORKING TRACEABILITY | Derived from event register and working contracts; does not redefine event ownership authority |
+| `docs/architecture/EVENT-STATE-PERMISSION-TRACEABILITY-MATRIX.md` | A5 / PROPOSED | WORKING TRACEABILITY MATRIX | Derived view; canonical event/state/permission registers remain the source of record |
+| `docs/architecture/STATE-MACHINE-IMPLEMENTATION-CONTRACT.md` | A4 / PROPOSED | PRE-IMPLEMENTATION CONTRACT | No schema, migration, or application implementation authorization |
+| `docs/audit/PLATFORM-IDENTITY-VERIFICATION-CONTRACT.md` | A4 / PROPOSED | GATE-00 SAFETY PROCEDURE | Defines fail-closed evidence needs; does not verify/select runtime resource identity |
+| `docs/governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md` | A4 / PROPOSED | TASK COUNT RECONCILIATION PROCEDURE | Preserves 114 vs 119 discrepancy; no source task is renumbered/deleted to force agreement |
 
 ## C03 source corpus and reconciliation controls
 

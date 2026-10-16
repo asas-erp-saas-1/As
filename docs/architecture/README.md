@@ -149,3 +149,15 @@ The branch inventory is a dated evidence snapshot. Recheck GitHub PR state, bran
 - [Engineering delivery workflow](../governance/ASAS-ENGINEERING-DELIVERY-WORKFLOW-2026.md) — task, review, verification and post-merge evidence procedure.
 
 These are curated navigation/procedure/evidence artifacts. Their presence does not close C2-001, GATE-00, C03, or any other gate/track, and does not authorize schema, migration, RLS, application or production changes.
+
+
+## 7. Branch promotion and candidate evidence archive
+
+- [Branch artifact promotion and retirement register](reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md) — source SHAs, file-level dispositions, current merge/delete gates.
+- [Candidate architecture evidence archive](reconciliation/candidate-evidence/2026-10-16/) — unratified ADR candidates, context-map proposal, candidate contracts and audit evidence retained to remove dependence on review-branch refs.
+- [Task register reconciliation protocol](../governance/TASK-REGISTER-RECONCILIATION-PROTOCOL.md) — controlled resolution of the 114-vs-119 task discrepancy.
+- [Domain ownership and traceability working contract](DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md) — working control only; C2-001 remains open.
+- [Event ownership traceability wave 2](EVENT-OWNERSHIP-TRACEABILITY-WAVE-2.md) and [event/state/permission traceability matrix](EVENT-STATE-PERMISSION-TRACEABILITY-MATRIX.md) — derived traceability views; canonical registers remain the source of record.
+- [State-machine implementation contract](STATE-MACHINE-IMPLEMENTATION-CONTRACT.md) and [platform identity verification contract](../audit/PLATFORM-IDENTITY-VERIFICATION-CONTRACT.md) — pre-implementation guardrails only.
+
+Archive contents are **candidate evidence**, not accepted architecture. No gate or C-track is closed, and no application, schema, migration, RLS or production work is authorized by storing these artifacts.
