@@ -1,13 +1,19 @@
 # ASAS Engineering History Archive
 
-This directory is the historical corpus for the platform's engineering work. It contains one full snapshot folder per branch, ordered from older tip commits to newer tip commits.
+This directory preserves full tracked-file-tree snapshots of the branch tips captured during engineering consolidation. It is designed to help reconstruct the platform's engineering history from the earliest available work to the consolidation checkpoint without overwriting older decisions or silently promoting them to approved architecture.
 
-**Important:** archived material is evidence, not automatically approved design. The goal of the next engineering pass is to reconcile the original studies, identify contradictions and missing decisions, and only then ratify a canonical architecture.
+**Archive contents are evidence, not automatically approved design.** Presence in this archive does not establish authority, consistency, or closure of an architecture gate.
 
-Start here:
-1. [`INDEX.md`](INDEX.md) — archive semantics and navigation.
-2. [`BRANCH-MANIFEST.csv`](BRANCH-MANIFEST.csv) — complete branch-to-folder mapping.
-3. [`catalogs/`](catalogs/) — branch-by-branch chronology and file counts.
-4. [`branches/`](branches/) — each branch's full file tree.
+Start with:
 
-The numbered folder order uses branch-tip committer dates, not branch creation dates. Duplicate head commits are intentionally archived separately because each branch had its own role in the engineering process.
+1. [`INDEX.md`](INDEX.md) — chronology, scope, and reading guidance.
+2. [`SNAPSHOT-MANIFEST-2026-10-17.csv`](SNAPSHOT-MANIFEST-2026-10-17.csv) — the authoritative 54-snapshot inventory: branch ref, source SHA, commit time, file count, and folder.
+3. [`SNAPSHOT-VERIFICATION-2026-10-17.csv`](SNAPSHOT-VERIFICATION-2026-10-17.csv) — per-snapshot file and integrity checks.
+4. [`VERIFICATION-REPORT-2026-10-17.md`](VERIFICATION-REPORT-2026-10-17.md) — verification methodology and limitations.
+5. [`BRANCH-DELTA-AUDIT-2026-10-17.md`](BRANCH-DELTA-AUDIT-2026-10-17.md), [`delta-audit/`](delta-audit/), and [`UNIQUE-CONTENT-REGISTER-2026-10-17.md`](UNIQUE-CONTENT-REGISTER-2026-10-17.md) — file-level differences and unique historical content.
+6. [`catalogs/`](catalogs/) — human-readable chronology.
+7. [`branches/`](branches/) — the original relative file paths under a separate numbered folder for each captured ref.
+
+The old [`BRANCH-MANIFEST.csv`](BRANCH-MANIFEST.csv) is preserved as the original 51-row census. Use the dated snapshot manifest for the follow-up census. Branches with identical commit heads remain separate folders because each branch ref is separately represented.
+
+Nested copies of the earlier archive in snapshots 052–054 are intentional: their source branch trees already included the archive at those historical tips. The historical version of `.github/workflows/foundation-verify.yml` must remain archived and must not replace the current workflow.
