@@ -4,6 +4,7 @@
 **Task:** Establish the ASAS end-to-end engineering delivery workflow and structural CI guard  
 **Request/PR:** [PR #20](https://github.com/asas-erp-saas-1/As/pull/20)  
 **Follow-up blocker:** [Issue #21 — Investigate Vercel preview resource provisioning failures](https://github.com/asas-erp-saas-1/As/issues/21)  
+**Evidence record:** [ENG-WORKFLOW-2026-10-16-01-EVIDENCE.md](../evidence/ENG-WORKFLOW-2026-10-16-01-EVIDENCE.md)  
 **Owner:** Repository operator / Lead Architecture (human merge approval remains required)  
 **Executor:** Codex  
 **Risk lane:** R1 — documentation/procedure + GATE-06 CI control-plane check  
