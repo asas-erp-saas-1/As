@@ -136,6 +136,7 @@ jobs:
           set -euo pipefail
           if git grep -n 'asas-erp-saas-1/Asas-website' -- \
             ':!docs/**' \
+            ':!engineering-history/branch-snapshots/**' \
             ':!AGENTS.md' \
             ':!.github/workflows/foundation-verify.yml'; then
             echo 'ERROR: wrong ASAS repository reference detected outside approved governance/audit documentation.'
