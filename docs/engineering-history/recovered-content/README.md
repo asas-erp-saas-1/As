@@ -1,5 +1,9 @@
-# Recovered historical configuration
+# Recovered historical content
 
-`pre-archive-exclusion-foundation-verify.yml` is an unmodified copy of Git blob `baaae4cde9dbb357ac968239e921930559e7b51e` (8,649 bytes), recovered from branch-tip snapshots 051 and 052.
+The corrected review has identified **222 distinct historical Git blob versions** whose exact content does not occur in the active canonical root (the root comparison contains 417 non-archival tracked files).
 
-It is a historical workflow version from before the active-state scan excluded `docs/engineering-history/**`. Keep it for provenance only. Do not replace `.github/workflows/foundation-verify.yml` with this file.
+- `by-blob/` contains a one-copy-per-blob view of every distinct historical version. Each copy preserves the original blob content and uses the source path beneath its SHA directory.
+- `UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv` maps each copy to source branch refs, commit SHAs, snapshot folders, byte counts, and original paths.
+- `pre-archive-exclusion-foundation-verify.yml` is the specifically named historic workflow version from before the archive exclusion. It must not replace the active workflow.
+
+The numbered branch snapshots remain the authoritative full-tree copies, including original object modes and surrounding context. Recovered content is not automatically approved for current architecture.

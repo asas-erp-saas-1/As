@@ -1,0 +1,51 @@
+permission,field.agent,sales.agent,sales.manager,marketing,accountant,director,ceo,admin
+lead.read,OWN,OWN,TEAM,ORG,—,ORG,ORG,ORG
+lead.create,YES,YES,YES,YES,—,YES,YES,—
+lead.update,OWN,OWN,TEAM,OWN,—,ORG,ORG,—
+lead.delete,—,—,—,—,—,—,—,—
+lead.transfer,—,—,TEAM,—,—,ORG,ORG,—
+lead.export,—,—,TEAM,ORG,—,ORG,ORG,—
+lead.pii.read,OWN,OWN,TEAM,OWN,—,ORG,ORG,ORG
+activity.read,OWN,OWN,TEAM,OWN (marketing only),—,ORG,ORG,ORG
+appointment.create,YES,YES,YES,—,—,YES,YES,—
+apartment.read,OWN (assigned),OWN (assigned),BRANCH,ORG (public),—,ORG,ORG,ORG
+apartment.create,—,—,BRANCH,—,—,ORG,ORG,—
+apartment.update,—,—,BRANCH,—,—,ORG,ORG,—
+apartment.hold.create,YES,YES,YES,—,—,YES,YES,—
+apartment.price.override,—,—,2–5% (approve),—,—,> 5% (approve),ANY (audited),—
+apartment.marketing.publish,—,—,—,ORG,—,ORG,ORG,—
+opportunity.read,OWN,OWN,TEAM,—,—,ORG,ORG,ORG
+offer.create,OWN,OWN,TEAM,—,—,ORG,ORG,—
+offer.discount.request,YES,YES,YES,—,—,YES,YES,—
+reservation.create,YES,YES,YES,—,—,YES,YES,—
+reservation.cancel,—,REQUEST,YES,—,—,YES,YES,—
+contract.read,OWN,OWN,TEAM,—,ORG,ORG,ORG,ORG
+contract.generate,—,YES,YES,—,—,YES,YES,—
+approval.decide,—,— (self-serve < 2%),YES (2–5% + tier 1),—,refunds ≤ 500k,YES,YES,—
+paymentplan.read,OWN (client view),OWN,TEAM,—,ORG,ORG,ORG,ORG
+paymentplan.manage,—,—,—,—,ORG,ORG,ORG,—
+receipt.record,—,YES (deposit at reservation),YES,—,YES,YES,YES,—
+refund.request,—,YES,YES,—,YES,YES,YES,—
+refund.approve,—,—,—,—,≤ 500k,> 500k (with accountant),YES,—
+ledger.read,—,—,—,—,ORG,ORG,ORG,ORG
+period.close,—,—,—,—,YES (propose),YES,YES,—
+commission.read,OWN,OWN,TEAM,—,ORG,ORG,ORG,—
+commission.payout.approve,—,—,—,—,YES (propose),YES,YES,—
+campaign.manage,—,—,—,ORG,—,ORG,ORG,—
+campaign.audience.sync,—,—,—,ORG,—,—,—,—
+message.send.approve,—,—,YES (team sends),ORG,—,ORG,ORG,—
+integration.manage,—,—,—,—,—,—,—,YES
+webhook.manage,—,—,—,—,—,—,—,YES
+calendar.connect,YES (self),YES (self),YES (self),YES (self),YES (self),YES (self),YES (self),YES (self)
+studio.draft,—,—,—,ORG,—,ORG,ORG,—
+studio.publish,—,—,—,ORG,—,ORG,ORG,—
+media.manage,OWN (visit photos),OWN,TEAM,ORG,—,ORG,ORG,ORG
+report.operational,OWN,OWN,TEAM,ORG,ORG,ORG,ORG,ORG
+report.finance,—,—,—,—,ORG,ORG,ORG,ORG
+report.executive,—,—,—,—,—,ORG,ORG,ORG
+user.invite,—,—,—,—,—,REQUEST,REQUEST,YES
+role.assign,—,—,—,—,—,REQUEST,REQUEST,YES
+workflow.manage,—,—,TEAM scope,ORG (marketing flows),—,ORG,ORG,YES
+settings.platform,—,—,—,—,—,—,—,YES
+audit.read,—,—,—,—,—,ORG,ORG,ORG
+copilot.use,—,YES (agent briefs),YES,YES,YES,YES,YES,—

@@ -1,7 +1,7 @@
 # Engineering History Archive
 
-This directory preserves the repository's committed engineering stages for later architectural reconstruction.
+**Current entry point:** [ASAS Engineering History — full branch snapshots and corrected delta audit](../docs/engineering-history/INDEX.md).
 
-Start with [the chronological branch-snapshot index](./branch-snapshots/INDEX.md). It identifies all branch refs captured, provides a full folder link per branch, and links to exact path-level comparison manifests against the `platform-architecture-2026` baseline commit.
+This older archive under `engineering-history/branch-snapshots/` remains a historical source from baseline commit `3009312dc803ca63dc32695d9deedcdcd3f91423`. It captures 51 branch refs and preserves six original machine-readable path-diff manifests in `branch-snapshots/_manifests/`. Retain it as evidence; do not delete it as part of branch cleanup until the consolidated archive review explicitly reconciles those original source manifests.
 
-The archive is evidentiary: it preserves source states without silently promoting historical material into the current architecture. Review the contents for conflicts, missing decisions, superseded assumptions, and unresolved gates before implementation.
+The newer `docs/engineering-history/` archive contains full tip snapshots for the later branch census and a corrected path/blob comparison against the active root. Both archives are intentionally preserved because they describe different historical capture boundaries.

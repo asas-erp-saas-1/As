@@ -1,26 +1,32 @@
-# Branch delta audit versus the current canonical root
+# Branch delta audit versus the active canonical root (corrected 2026-10-17)
 
-**Comparison baseline:** default branch `platform-architecture-2026`, tree `41ca2f90e3a616ba721d7af4de1d99767ec41d9b`, from commit `39ead7b4123666b0c20f301b9d4066864d3c88f5`. The audit excludes `docs/engineering-history/**` from both sides so the existing snapshots are not falsely compared against themselves.
+## Comparison baseline and correction
 
-## Results
+Baseline commit: `39ead7b4123666b0c20f301b9d4066864d3c88f5`, tree `41ca2f90e3a616ba721d7af4de1d99767ec41d9b`. The current default branch preserves the same 417 active tracked files outside the two archive namespaces.
 
-- Snapshot records evaluated: 54, representing 53 live branch refs plus one retained historical checkpoint of the default branch.
-- Unique branch-tip trees evaluated: 25. Every recursive source tree used by this audit returned `truncated=false`.
-- File-path delta rows across snapshots: 1,982.
-- At the same path but with different blob content: 589 rows.
-- The branch path is absent from the root, but its exact blob exists at another path in the root: 1,393 rows.
-- Within the same-path content differences, only 2 snapshot rows use a blob absent everywhere in the current root. These two records point to **one unique historical file blob**, repeated in two snapshots: the older `.github/workflows/foundation-verify.yml` (8,649 bytes; blob `baaae4cde9dbb357ac968239e921930559e7b51e`) in orders 051 and 052.
-- No other branch file blob in this comparison was absent from the current root by exact Git blob identity. This does not establish that the studies are semantically complete; it is a content-addressed file-level test.
+**Correction:** an earlier 2026-10-17 comparison incorrectly counted the legacy archive under `engineering-history/branch-snapshots/**` as part of active root content. That made old texts look like they were still active merely because their blobs were present in a previous archive. This revised audit excludes both `engineering-history/**` and `docs/engineering-history/**` from the current-root comparison and excludes those archive paths from source snapshots too. Use only the figures and CSV files linked here; the initial audit figures are superseded.
 
-## The sole exact historical-content gap
+## Verified results
 
-The one blob not present in the current root is the old version of `.github/workflows/foundation-verify.yml` from before the archive exclusion was added. The current version is 8,695 bytes (blob `b0d1c02bd83554e119316c52711a76e281150cdb`) and includes the `':!docs/engineering-history/**'` exclusion. The historical version is preserved without modification in the full branch snapshots and as a clearly labelled standalone reference at [`recovered-content/pre-archive-exclusion-foundation-verify.yml`](recovered-content/pre-archive-exclusion-foundation-verify.yml). It must **not** be copied over the active workflow because it would make the active-state scan inspect the historical archive again. CI and Foundation Verify passed on archive commit [`1aeb0907ae544caafb5160bd90d0e21488024c53`](https://github.com/asas-erp-saas-1/As/actions/runs/38982138908).
+- Live branch census: 53 refs, 25 unique live head commits at the census.
+- Snapshot records: 54 numbered folders (53 live ref names plus the superseded default checkpoint at order 051).
+- Active canonical root used for content comparison: 417 tracked files, 417 unique file blobs.
+- Branch-tip trees examined: all 25 unique trees, each fetched without the GitHub `truncated` flag.
+- Difference records: **1,982 branch-file instances** across **173 original paths**.
+- **589** records are historical content versions whose path exists in the active root but whose full-file blob differs.
+- **1,393** records are files whose original path is absent from the active root and whose exact blob is also absent from all other active-root paths.
+- **0** records were explained by the exact historical blob being found at a different active-root path.
+- Those 1,982 difference records resolve to **222 distinct historical file blobs** absent from the active root by exact Git blob SHA. Repeated branch tips intentionally yield repeated rows.
 
-## Detailed audit files
+All 222 distinct blobs have been added to `recovered-content/by-blob/<blob-sha>/<original-path>` by reference to their original Git blob IDs; their contents have not been regenerated. The full branch snapshots remain the source of truth for complete tree state and original file modes.
 
-The CSV parts contain one row per differing/missing branch file path, with snapshot order, branch-tip SHA, branch blob SHA, canonical blob SHA, sizes, and whether the branch blob is found elsewhere in the current root. The [per-snapshot summary CSV](delta-audit/SUMMARY-2026-10-17.csv) provides counts for every snapshot.
+## Detailed registers
 
-| Part | Snapshot orders | Delta rows | Detailed file |
+- [Updated per-snapshot summary](delta-audit/SUMMARY-2026-10-17.csv)
+- [222-blob unique historical-content manifest](recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv)
+- [Unique historical content register](UNIQUE-CONTENT-REGISTER-2026-10-17.md)
+
+| Detail part | Snapshot order range | Difference records | CSV |
 |---|---|---:|---|
 | 1 | 001–033 | 1,642 | [part-01-sept15.csv](delta-audit/part-01-sept15.csv) |
 | 2 | 034–038 | 103 | [part-02-sept16-17.csv](delta-audit/part-02-sept16-17.csv) |
@@ -28,8 +34,14 @@ The CSV parts contain one row per differing/missing branch file path, with snaps
 | 4 | 044–048 | 105 | [part-04-sept29-oct16.csv](delta-audit/part-04-sept29-oct16.csv) |
 | 5 | 049–054 | 10 | [part-05-follow-up-census.csv](delta-audit/part-05-follow-up-census.csv) |
 
-## Limits and interpretation
+Every detailed row records the snapshot order, branch ref, head commit SHA, original source path, delta classification, source blob SHA, active-root blob SHA at the same path (if any), exact-blob match count/path list outside that path, and file sizes. The unique-blob manifest maps each distinct historical version back to original branches and snapshot folders.
 
-This is a one-way path/blob comparison: it inventories branch files that differ by path or full-file content, not files that were deleted from a branch relative to the current root. It identifies exact whole-file blob presence and is not a line-by-line semantic review of every architectural claim. All full source files remain accessible in the numbered snapshots. The next review should reconcile conflicting requirements, authority, domain invariants, tenancy/security assumptions, workflow transitions, integration contracts, and unresolved gates before promoting decisions into the canonical architecture.
+## Known historical workflow version
 
-See the [unique-content register](UNIQUE-CONTENT-REGISTER-2026-10-17.md) for the single historical file blob that should remain archived rather than reactivated.
+One of the 222 unique blobs is the older `.github/workflows/foundation-verify.yml` (blob `baaae4cde9dbb357ac968239e921930559e7b51e`, 8,649 bytes), before the active-state scan excluded `docs/engineering-history/**`. It remains preserved as [a standalone historical reference](recovered-content/pre-archive-exclusion-foundation-verify.yml) and in snapshots 051/052. Do **not** copy it over the current workflow: the current version contains the exclusion needed so archived texts are not interpreted as active session instructions.
+
+## Interpretation and limits
+
+This is a full-file path/blob comparison, not a semantic verdict. A source file can differ from the canonical path and still be well-designed, superseded, incomplete, or contradictory. These files are preserved for review; none of the 222 historical versions is automatically promoted into approved architecture. This audit also does not inventory files deleted from a historical branch, because the complete branch snapshots already preserve them and the legacy archive's path-level manifests record earlier add/modify/delete comparisons against commit `3009312dc803ca63dc32695d9deedcdcd3f91423`.
+
+The next architectural pass should review these 222 content versions in chronological order, especially source-authority, domain invariants, authorization, state-machine behavior, tenant isolation, integration contracts, and readiness/closure gates before implementation.

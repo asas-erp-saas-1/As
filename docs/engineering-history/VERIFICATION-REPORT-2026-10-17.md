@@ -40,3 +40,17 @@ The scan identified one distinct historical blob absent from that baseline root,
 This procedure verifies tracked file trees; it does not by itself prove semantic completeness, establish architecture authority, resolve contradictions, or close architecture gates. The current archive completion and delta-audit commits also have independent CI/deployment status. This report is not a claim that every external deployment or security check is green.
 
 The archival changes affect historical documentation and inventory only; they do not modify application runtime behavior, schemas, migrations, or RLS policies.
+
+## Second live census and corrected delta audit (2026-10-17)
+
+The repository changed after the 53-ref census: a new operational review branch, `archive/engineering-history-integrity-2026-10-17`, appeared at `09a317253ce9abe473cc5915b2a00422febdd6a3`, and the default branch advanced to `5ecf8a74f622cfcdadb8d4883346f08dc9ae9453`. The second live census contains 54 refs and 26 distinct head commits.
+
+Two full snapshots were added:
+- Order 055: `archive/engineering-history-integrity-2026-10-17`, source tree `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3`.
+- Order 056: `platform-architecture-2026`, source tree `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3`.
+
+Both snapshot folder tree roots are exactly the same Git tree object as the source root, so the full tracked tree is preserved without content rewriting. A global recursive tree request returned `truncated=true` (28,291 returned entries), so the source and snapshot blob totals are intentionally left blank in the manifest rather than inferred from an incomplete response. The verification rows record `PASS_TREE_SHA`, zero known path/blob/mode differences, and the truncation limitation.
+
+The branch delta audit was corrected to exclude both legacy and current archive namespaces from the active baseline. The active canonical root has 417 tracked files; the one-way comparison yields 1,982 rows across 173 paths and 222 distinct historical blob versions absent from that active root. These 222 file blobs are exposed once under `recovered-content/by-blob/` and mapped by the unique-blob manifest. Use the corrected audit and summary files, not the initial 2026-10-17 audit figures.
+
+This is still an archival integrity report, not approval of historical architectural decisions.

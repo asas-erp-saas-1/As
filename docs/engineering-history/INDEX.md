@@ -2,19 +2,19 @@
 
 ## Census and archive state
 
-This is a **point-in-time archive**, not a live branch list. The follow-up census was captured on 2026-10-17 from the then-current GitHub repository state and completed on the default branch `platform-architecture-2026`.
+This is a **point-in-time archive**, not a live branch list. The latest follow-up census reads the repository at default commit `5ecf8a74f622cfcdadb8d4883346f08dc9ae9453` (2026-10-16 23:45:04 UTC).
 
-- Branch refs represented at census: **53**
-- Distinct head commits at census: **25**
-- Numbered full-tree snapshots: **54**
-- File entries summed across snapshots: **57,563** (repeated files and nested archives are intentionally counted again per snapshot)
-- Snapshot folders independently validated: **54**
-- Integrity result: **0 missing paths, 0 unexpected paths, 0 blob-SHA or file-mode mismatches**
+- Current live branch refs: **54**
+- Distinct current head commits: **26**
+- Numbered branch/checkpoint snapshots: **56**
+- Full recursive path/blob/mode verification completed for orders **001–054**: **54 snapshots**
+- Orders **055–056** are complete root-tree copies verified by an exact source-tree/snapshot-tree SHA match. GitHub's recursive response for source tree `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3` was truncated, so no file count is claimed for those two rows.
+- The first 54 snapshots contain **57,563 file entries summed per snapshot** (intentionally repeated identical contents and nested historical archives are counted again).
+- The earlier aggregate of 57,563 does **not** include expanded entries for orders 055–056; this index intentionally does not invent a total while the global recursive API enumeration is truncated.
 
-The 54 folders comprise the 53 refs observed at census time plus the older default-branch checkpoint retained at order 051. Folder 051 preserves `platform-architecture-2026` at `beaa42a95d947ae56379ae6fcab7850e3b60f50e`. Folder 054 preserves its pre-archive tip at `39ead7b4123666b0c20f301b9d4066864d3c88f5`. The archive-completion commit `1aeb0907ae544caafb5160bd90d0e21488024c53` is intentionally not recursively copied into itself.
+The snapshot folders comprise 54 live-ref names plus two historical checkpoints of the default branch. Order 051 preserves the earlier default checkpoint `beaa42a95d947ae56379ae6fcab7850e3b60f50e`. Order 054 preserves the pre-archive default tip `39ead7b4123666b0c20f301b9d4066864d3c88f5`. Order 055 preserves the full tree for `archive/engineering-history-integrity-2026-10-17` at `09a317253ce9abe473cc5915b2a00422febdd6a3`; order 056 preserves the full default-branch tree at `5ecf8a74f622cfcdadb8d4883346f08dc9ae9453` before this corrective archive update. Orders 055 and 056 have the same source root tree SHA `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3`.
 
-The review branch `archive/engineering-history-integrity-2026-10-17` was created after the census to improve verification documentation. It is an operational review branch, not a missing original architecture stage, and is not included in the 2026-10-17 source census.
-
+The archive-update commit created by this correction is not copied into itself. Use orders 055–056 to inspect the state immediately before this correction.
 ## Ordering and layout
 
 Snapshot folders are numbered by source tip-commit committer time, oldest to newest; branch name breaks ties. This is not branch creation order.
@@ -25,18 +25,23 @@ Snapshot folders are numbered by source tip-commit committer time, oldest to new
 - `SNAPSHOT-VERIFICATION-2026-10-17.csv` — per-snapshot file count and integrity outcome.
 - `VERIFICATION-REPORT-2026-10-17.md` — verification method, counts, scope, and limitations.
 - `BRANCH-DELTA-AUDIT-2026-10-17.md` and `delta-audit/` — branch-to-root path and blob comparisons.
-- `UNIQUE-CONTENT-REGISTER-2026-10-17.md` and `recovered-content/` — unique historical full-file blob not found in the canonical non-archive root.
+- `UNIQUE-CONTENT-REGISTER-2026-10-17.md`, `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`, and `recovered-content/by-blob/` — all 222 distinct historical file blobs not found in the active non-archive root.
 
 ## Integrity methodology
 
 Each snapshot's source tree was compared with its corresponding snapshot subtree by relative path, object type, file mode, and Git blob SHA. The per-snapshot recursive responses returned `truncated=false`. Because the total repository tree has grown large enough for a single global recursive-tree response to be truncated, it is **not** used as the source of truth for the per-snapshot checks.
 
-Snapshots 052–054 each contain a finite nested copy of the earlier archive because that content already existed in their source branch trees. These copies are deliberate, not extra top-level snapshots. File-entry totals are therefore not unique-file or unique-blob totals.
+Snapshots 052–056 contain finite nested copies of prior archives because their full source trees already included the archive. This is deliberate full-tree preservation. It can make a single global recursive-tree response truncate; each numbered snapshot's recorded root tree SHA or per-file verification record is the integrity evidence. File-entry totals are not unique-file or unique-blob totals.
 
 ## Branch-delta findings
 
-The path/blob audit against the canonical non-archive root baseline at commit `39ead7b4123666b0c20f301b9d4066864d3c88f5` records 1,982 delta rows: 589 same-path content differences and 1,393 path differences where the exact blob exists elsewhere in the root. It found one distinct historical blob absent from that baseline root, repeated in orders 051 and 052: the pre-exclusion version of `.github/workflows/foundation-verify.yml` (8,649 bytes; blob `baaae4cde9dbb357ac968239e921930559e7b51e`). It is preserved in the numbered snapshots and `recovered-content/pre-archive-exclusion-foundation-verify.yml`. **Do not replace the active workflow with this historical copy**; the active workflow excludes the archive from its state scan.
+The corrected path/blob comparison uses the active canonical root from commit `39ead7b4123666b0c20f301b9d4066864d3c88f5`, excluding both `engineering-history/**` and `docs/engineering-history/**` from the baseline and source snapshots. This avoids counting a prior archive copy as active engineering content. The active root contains **417 tracked files and 417 unique blob SHAs**.
 
+Across the 56 snapshot records, the one-way comparison finds **1,982 path/blob delta rows** over **173 source paths**: **589** older full-file versions differ from content at the same active path, and **1,393** branch files have paths absent from the active root. Those delta rows refer to **222 distinct historical file blobs** absent from the active root by exact Git blob SHA. No source blob in the delta set is found at a different active-root path.
+
+All 222 historical blob versions are available in `recovered-content/by-blob/<blob-sha>/<original-path>`, with source branch/snapshot provenance in `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`. The detailed CSV rows are split across `delta-audit/part-01-sept15.csv` through `part-05-follow-up-census.csv`, and the per-snapshot summary is `delta-audit/SUMMARY-2026-10-17.csv`.
+
+A prior version of `.github/workflows/foundation-verify.yml` remains preserved in the archive as historical evidence. It predates the active-state scan's exclusion of `docs/engineering-history/**`; do **not** restore it over the active workflow.
 ## Architecture guardrails
 
 Snapshots preserve evidence; they do not ratify old design claims, resolve source-authority conflicts, prove semantic completeness, or close architecture gates. The next review should reconcile historical decisions, unresolved domain requirements, invariants, tenancy/security assumptions, state transitions, integration contracts, and open gates before implementation begins.
