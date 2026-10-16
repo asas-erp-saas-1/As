@@ -5,7 +5,7 @@
 **Repository:** `asas-erp-saas-1/As`  
 **Inventory date:** 2026-10-14  
 **Active Engineering Conference line (per canonical governance):** `platform-architecture-2026`  
-**GitHub default branch:** `main` (not the active Engineering Conference work line)  
+**GitHub default branch at original 2026-10-14 inventory:** `main` (historical snapshot; on 2026-10-16 the default branch was changed and verified as `platform-architecture-2026`)  
 **Task branch creating this record:** `chore/engineering-corpus-index-2026-10-14`
 
 ## 1. Purpose and safety boundary
@@ -165,4 +165,9 @@ The live GitHub refs census is now **48 branch refs / 20 distinct commit heads**
 
 The two selected C03 source-control files from `main` are present on this review branch, but not yet on the canonical base until PR #18 is accepted and merged. The shorter divergent `Source/README.md` from `main` was not overlaid. PR #23 now isolates the 14-commit/57-path `cline/hp1c6fdq` package for review rather than wholesale promotion.
 
-PR #16 (already contained in the active line), PR #19 (duplicate workflow PR to `main`), and PR #17 (unsafe whole-line convergence to `main`) have been closed without merging or deleting their branches. PRs #5, #6, #8, #9, #12, #13 and #14 now target `platform-architecture-2026` for review. No branch refs have been deleted. Branch deletion and default-branch mutation remain pending repository-admin capability and the retirement gates in the consolidation record.
+PR #16 (already contained in the active line), PR #19 (duplicate workflow PR to `main`), and PR #17 (unsafe whole-line convergence to `main`) have been closed without merging or deleting their branches. PRs #5, #6, #8, #9, #12, #13 and #14 now target `platform-architecture-2026` for review. No branch refs have been deleted. The default-branch migration is now complete and live-verified. Branch deletion remains pending the retirement gates and a delete-capable repository-admin action; no branch is marked deleted until the refs API confirms it.
+
+
+## 9. Verified default-branch migration — 2026-10-16
+
+A fresh GitHub repository metadata read after the owner's change confirms `default_branch: platform-architecture-2026`. This completes the default-branch setting change; it does not retire `main` automatically. `main` remains a rollback reference because its history is divergent and it still carries a different `docs/architecture/reconciliation/phase-c/Source/README.md` blob. The two selected C03 control files remain on the PR #18 review branch until promoted. Branch deletion and final source disposition are separate steps tracked in [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24) and [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25).
