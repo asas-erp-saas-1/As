@@ -157,3 +157,12 @@ Compare API file lists can be truncated for very large differences. Counts are c
 ## 8. Non-authorizations
 
 This record authorizes no branch deletion, PR merge/closure, force-push, reset/rebase, production change, database/schema work, or application implementation. It records a safe basis for those decisions to be made separately.
+
+
+## 8. Live reconciliation update — 2026-10-16
+
+The live GitHub refs census is now **48 branch refs / 20 distinct commit heads**. Three duplicate-head groups account for 31 refs (17 command/contract/closure refs, 10 identity-gate refs, 4 event-permission/IAM/x refs). The full exact-SHA ledger, current PR routing, retirement criteria and current actions are in [Engineering Branch Consolidation Record — 2026-10-16](ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md). Treat this as the current snapshot; the 2026-10-14 census above remains historical evidence.
+
+The two selected C03 source-control files from `main` are present on this review branch, but not yet on the canonical base until PR #18 is accepted and merged. The shorter divergent `Source/README.md` from `main` was not overlaid. PR #23 now isolates the 14-commit/57-path `cline/hp1c6fdq` package for review rather than wholesale promotion.
+
+PR #16 (already contained in the active line), PR #19 (duplicate workflow PR to `main`), and PR #17 (unsafe whole-line convergence to `main`) have been closed without merging or deleting their branches. PRs #5, #6, #8, #9, #12, #13 and #14 now target `platform-architecture-2026` for review. No branch refs have been deleted. Branch deletion and default-branch mutation remain pending repository-admin capability and the retirement gates in the consolidation record.
