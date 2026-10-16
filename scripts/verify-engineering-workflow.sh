@@ -51,7 +51,7 @@ require_text docs/handoff/ASAS-MASTER-EXECUTION-PATH.md "ASAS-ENGINEERING-DELIVE
 constitution=docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
 gate_model=docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md
 require_text docs/handoff/ASAS-MASTER-EXECUTION-PATH.md "ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md"
-require_text "$constitution" "The first seven stages are `GATE-00` through `GATE-07`"
+require_text "$constitution" 'The first seven stages are `GATE-00` through `GATE-07`'
 require_text "$constitution" "No parallel implementation path"
 require_text "$constitution" "C01–C22"
 require_text "$constitution" "IG-*"
