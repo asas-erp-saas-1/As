@@ -5,11 +5,11 @@
 **Repository:** `asas-erp-saas-1/As`  
 **Canonical engineering line:** `platform-architecture-2026`  
 **Observed canonical SHA:** `fdb7e06fdc1818755440cdd72e21ad2b46fd3e48`  
-**GitHub default branch:** `main` — migration pending administrator action in [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24)
+**GitHub default branch:** `platform-architecture-2026` — verified from live GitHub repository metadata on 2026-10-16; legacy `main` remains a temporary rollback reference pending the observation period.
 
 ## 1. Decision: one engineering line
 
-All architecture and engineering PRs should target `platform-architecture-2026`. It is the active line named by the current checkpoint, Engineering Closure Matrix and Canonical Artifact Register. `main` remains the GitHub default branch only until an administrator completes and verifies the default-branch migration; it is not a second engineering work line.
+All architecture and engineering PRs should target `platform-architecture-2026`. It is the active line named by the current checkpoint, Engineering Closure Matrix and Canonical Artifact Register. The GitHub default branch has now been switched to and verified as `platform-architecture-2026`. `main` is not a second engineering work line; keep it only as a temporary rollback reference through the observation period.
 
 Do not converge the two histories with a wholesale merge, reset, rebase or force-push. The captured compare reports 521 commits unique to `platform-architecture-2026`, 3 commits unique to `main`, and 3 main-side paths. Two C03 source-control files are preserved in the PR #18 branch; the short main-side `Source/README.md` is intentionally not copied over the richer active-line index. Recheck this comparison before the default-branch change.
 
@@ -37,7 +37,7 @@ The GitHub refs endpoint returned **48 branch refs and 20 distinct commit heads*
 | `99a0f9481237baf603e463c0e0a9067e7d960ca4` | `foundation/repository-file-organization-v1` | PR #13; retargeted to platform; broad overlapping diff; do not merge wholesale | HOLD — PR #13 broad diff |
 | `af3a17de9377dbe8310a0bda4372e9d8412fb8ef` | `foundation/repository-governance` | No open PR observed; 34 ahead / 548 behind platform; historical provenance, review per file | REVIEW — unique governance docs; no wholesale merge |
 | `52a0c7359304ccc8f69ad0b6c1f1905f38e81c0a` | `foundation/source-authority-ledger-v1` | PR #8; retargeted to platform; review source authority ledger | HOLD — PR #8 review |
-| `9ae5cc1b2b395cee31760fb46cd578f1d3509bd6` | `main` | GitHub default branch; not engineering canonical; preserve until Issue #24 admin migration and verification | HOLD — default branch; do not delete before admin migration |
+| `9ae5cc1b2b395cee31760fb46cd578f1d3509bd6` | `main` | Legacy rollback reference; no longer the default branch as of 2026-10-16; has 3 unique commits plus a divergent same-path README | HOLD — keep through observation period; reconcile the unique `Source/README.md` and then retire |
 | `fdb7e06fdc1818755440cdd72e21ad2b46fd3e48` | `platform-architecture-2026` | CANONICAL ACTIVE ENGINEERING LINE; keep | KEEP — sole canonical engineering line |
 
 ## 3. Open pull requests — current routing
@@ -92,11 +92,11 @@ A branch is deletable only when all conditions hold:
 5. The exact current SHA is re-read immediately before deletion; no concurrent change occurred.
 6. It is not the GitHub default branch and not the canonical engineering line.
 
-Delete exact-head duplicates first, after checking the PR/deployment conditions. Retain `main` until Issue #24 completes the admin-controlled default-branch migration and a defined observation/rollback period. Retain each task branch until its PR is merged/closed and its content disposition is recorded. The administrative retirement queue is tracked in [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25).
+Delete exact-head duplicates first, after checking the PR/deployment conditions. The default-branch migration to `platform-architecture-2026` is completed and live-verified; retain `main` only through a defined observation/rollback period before deletion. Retain each task branch until its PR is merged/closed and its content disposition is recorded. The administrative retirement queue is tracked in [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25).
 
 ## 6. Actions taken and not taken
 
-**Taken:** retargeted PRs #5, #6, #8, #9, #12, #13 and #14 to the canonical engineering line; closed redundant PR #16, duplicate-to-main PR #19, and unsafe whole-line PR #17 with explanatory comments; opened PR #23 to isolate the materially advanced `cline` package; opened [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24) for default-branch migration and [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25) for staged retirement of non-canonical refs; added the CI repairs to PR #18 and verified Foundation Verify on its latest inspected head.
+**Taken:** retargeted PRs #5, #6, #8, #9, #12, #13 and #14 to the canonical engineering line; closed redundant PR #16, duplicate-to-main PR #19, and unsafe whole-line PR #17 with explanatory comments; opened PR #23 to isolate the materially advanced `cline` package; opened Issues #24 and #25; verified from live GitHub metadata that the default branch is now `platform-architecture-2026`; added CI repairs to this review branch and verified Foundation Verify on the previously inspected head. The canonical consolidation record is being updated to reflect the observed default-branch change.
 
 **Not taken:** no branch refs deleted; no commit history rewritten; no branch force-pushed or reset; no pull request merged; no architecture gate or C-track closed; no app/schema/migration/RLS/production changes.
 
