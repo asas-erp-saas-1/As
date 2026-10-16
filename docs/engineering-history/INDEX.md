@@ -1,46 +1,42 @@
-# ASAS Engineering History — Branch Snapshot Index
+# ASAS Engineering History — Archive Index
 
-## Purpose
-This archive preserves a full file-tree snapshot of every branch ref in the consolidation census, including the default branch itself. It is historical evidence, not an assertion that every old decision was approved.
+## Census and archive state
 
-## Ordering
-Folders are numbered by the committer timestamp of each branch's tip commit, oldest to newest. Branches with the same timestamp are ordered by branch name. This is not the branch creation date.
+This is a **point-in-time archive**, not a live branch list. The follow-up census was captured on 2026-10-17 from the then-current GitHub repository state and completed on the default branch `platform-architecture-2026`.
 
-## Layout
-- `branches/NNN-branch-name/` — snapshot of that branch at its recorded tip, with original relative paths.
-- `catalogs/` — chronological branch lists with commit IDs, dates, and file counts.
-- `BRANCH-MANIFEST.csv` — the original point-in-time inventory of the first 51 refs.
-- `SNAPSHOT-MANIFEST-2026-10-17.csv` — the updated 54-snapshot inventory, with statuses for current refs and superseded checkpoints.
-- `delta-audit/` — CSV comparisons of branch files against the current default-branch root.
-- `recovered-content/` — standalone copies of historical file blobs that are absent from the current root.
+- Branch refs represented at census: **53**
+- Distinct head commits at census: **25**
+- Numbered full-tree snapshots: **54**
+- File entries summed across snapshots: **57,563** (repeated files and nested archives are intentionally counted again per snapshot)
+- Snapshot folders independently validated: **54**
+- Integrity result: **0 missing paths, 0 unexpected paths, 0 blob-SHA or file-mode mismatches**
 
-## Preservation notes
-- Snapshot files reuse original Git blob/tree objects; file contents are not rewritten.
-- Every branch ref in the captured census has a separate numbered folder, including branches pointing to the same commit.
-- Historical material must be reviewed before being promoted into current architecture.
-- The original default-branch tip remains preserved at order 051. The updated default-branch tip at the follow-up census is preserved at order 054.
-- Three follow-up snapshots (052–054) contain finite nested copies of the previously existing archive because those branch-tip trees already included it.
+The 54 folders comprise the 53 refs observed at census time plus the older default-branch checkpoint retained at order 051. Folder 051 preserves `platform-architecture-2026` at `beaa42a95d947ae56379ae6fcab7850e3b60f50e`. Folder 054 preserves its pre-archive tip at `39ead7b4123666b0c20f301b9d4066864d3c88f5`. The archive-completion commit `1aeb0907ae544caafb5160bd90d0e21488024c53` is intentionally not recursively copied into itself.
 
-## Original census (2026-10-16)
-- Branch refs: 51
-- Distinct head commits: 23
-- Branch folders: 51
-- File entries across snapshots: 10,232, including repeated identical tips
-- Every recursive Git tree used for the original snapshot corpus was not truncated.
+The review branch `archive/engineering-history-integrity-2026-10-17` was created after the census to improve verification documentation. It is an operational review branch, not a missing original architecture stage, and is not included in the 2026-10-17 source census.
 
-## Follow-up census and completeness verification (2026-10-17)
-A fresh GitHub read found 53 live branch refs and 25 distinct head commits. Two refs were added after the original census: `archive/engineering-history-2026-10-16` and `fix/archive-snapshot-ci-exclusion-2026-10-16`. The default branch also advanced from its earlier archived tip.
+## Ordering and layout
 
-Three complete tip snapshots were added:
-- `052-archive__engineering-history-2026-10-16` — archival-work branch tip.
-- `053-fix__archive-snapshot-ci-exclusion-2026-10-16` — CI-exclusion fix branch tip.
-- `054-platform-architecture-2026` — current default branch tip at the follow-up census.
+Snapshot folders are numbered by source tip-commit committer time, oldest to newest; branch name breaks ties. This is not branch creation order.
 
-There are 54 numbered snapshot folders: one for each of the 53 live refs plus the superseded default-branch checkpoint at order 051. The original 51 snapshots contain 10,232 file entries. The three new snapshots contain 15,777 files each, so the archive contains 57,563 file entries across snapshots, including intentionally repeated entries.
+- `branches/NNN-branch-name/` — full tracked-file snapshot at that source tip, retaining original relative paths.
+- `catalogs/` — human-readable chronological inventories.
+- `SNAPSHOT-MANIFEST-2026-10-17.csv` — authoritative mapping for the 54 snapshots. The older `BRANCH-MANIFEST.csv` remains as the original 51-row inventory.
+- `SNAPSHOT-VERIFICATION-2026-10-17.csv` — per-snapshot file count and integrity outcome.
+- `VERIFICATION-REPORT-2026-10-17.md` — verification method, counts, scope, and limitations.
+- `BRANCH-DELTA-AUDIT-2026-10-17.md` and `delta-audit/` — branch-to-root path and blob comparisons.
+- `UNIQUE-CONTENT-REGISTER-2026-10-17.md` and `recovered-content/` — unique historical full-file blob not found in the canonical non-archive root.
 
-All three added recursive source trees returned `truncated=false`. Orders 052–054 contain a finite nested copy of the original archive because those branch tips already included it. These nested copies are part of those branch snapshots; they are not additional top-level census rows.
+## Integrity methodology
 
-## Branch delta and unique-content audit
-Use the [branch delta audit](BRANCH-DELTA-AUDIT-2026-10-17.md) for the path/blob comparison against the current default-branch root. The [per-snapshot totals](delta-audit/SUMMARY-2026-10-17.csv) and [five chronological detail files](delta-audit/) identify file paths that differ by location or exact content hash.
+Each snapshot's source tree was compared with its corresponding snapshot subtree by relative path, object type, file mode, and Git blob SHA. The per-snapshot recursive responses returned `truncated=false`. Because the total repository tree has grown large enough for a single global recursive-tree response to be truncated, it is **not** used as the source of truth for the per-snapshot checks.
 
-The content-addressed scan identified one distinct historical file blob absent from the current root: the prior version of `.github/workflows/foundation-verify.yml` before the archive exclusion. It is preserved in [the historical-content register](UNIQUE-CONTENT-REGISTER-2026-10-17.md) and as a [standalone recovered copy](recovered-content/pre-archive-exclusion-foundation-verify.yml). This historical file is evidence only and must not replace the active workflow.
+Snapshots 052–054 each contain a finite nested copy of the earlier archive because that content already existed in their source branch trees. These copies are deliberate, not extra top-level snapshots. File-entry totals are therefore not unique-file or unique-blob totals.
+
+## Branch-delta findings
+
+The path/blob audit against the canonical non-archive root baseline at commit `39ead7b4123666b0c20f301b9d4066864d3c88f5` records 1,982 delta rows: 589 same-path content differences and 1,393 path differences where the exact blob exists elsewhere in the root. It found one distinct historical blob absent from that baseline root, repeated in orders 051 and 052: the pre-exclusion version of `.github/workflows/foundation-verify.yml` (8,649 bytes; blob `baaae4cde9dbb357ac968239e921930559e7b51e`). It is preserved in the numbered snapshots and `recovered-content/pre-archive-exclusion-foundation-verify.yml`. **Do not replace the active workflow with this historical copy**; the active workflow excludes the archive from its state scan.
+
+## Architecture guardrails
+
+Snapshots preserve evidence; they do not ratify old design claims, resolve source-authority conflicts, prove semantic completeness, or close architecture gates. The next review should reconcile historical decisions, unresolved domain requirements, invariants, tenancy/security assumptions, state transitions, integration contracts, and open gates before implementation begins.
