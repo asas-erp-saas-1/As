@@ -138,7 +138,7 @@ The branch also contains older governance, lifecycle, task, and closure document
 | Source branch / path | Source blob SHA | Preserved destination | Disposition |
 |---|---|---|---|
 | `foundation/blueprint-register-ingestion`: `docs/governance/BLUEPRINT-DERIVATION-PROVENANCE.md` | `546b14edee4e04365321e7eefd8e24f28b38fedc` | `source-ingestion-candidates/BLUEPRINT-DERIVATION-PROVENANCE.md` | Candidate provenance procedure |
-| `foundation/blueprint-register-ingestion`: `docs/governance/BLUEPRINT-REGISTER-INGESTION-PLAN.md` | `fb3afedfd5ee5070e0a89961976be8c7f9133b38` | `source-ingestion-candidates/BLUEPRINT-REGISTER-INGESTION-PLAN.md` | Candidate ingestion plan |
+| `foundation/blueprint-register-ingestion`: `docs/governance/BLUEPRINT-REGISTER-INGESTION-PLAN.md` | `f5bfd890c9e3c45420fd411a70e35f54fc48251d` | `source-ingestion-candidates/BLUEPRINT-REGISTER-INGESTION-PLAN.md` | Candidate ingestion plan |
 | `foundation/c2-001-traceability-v1`: `docs/governance/BLUEPRINT-REGISTER-VALIDATION-MATRIX.md` | `7aff25267d2549a390750ec0260f527f5a9564ee` | `source-ingestion-candidates/BLUEPRINT-REGISTER-VALIDATION-MATRIX.md` | Candidate validation matrix |
 | `foundation/c2-001-traceability-v1`: `docs/governance/BLUEPRINT-TO-CLAUDE-EXECUTION-CONTRACT.md` | `c0cabdbabe7f738b16b0f167d1468a045eef70a6` | `source-ingestion-candidates/BLUEPRINT-TO-CLAUDE-EXECUTION-CONTRACT.md` | Candidate handoff contract |
 | `foundation/c2-001-traceability-v1`: `docs/architecture/C2-001-TRACEABILITY-MATRIX.md` | `ea07d2ec51d24c53aa9cd78754a9ab0488c2c49e` | `context-map-proposal/C2-001-TRACEABILITY-MATRIX.md` | Proposal/evidence only; no context decision implied |
