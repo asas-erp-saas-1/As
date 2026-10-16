@@ -143,3 +143,91 @@ Live refs census before opening this final preservation PR: **51 branch refs / 2
 - The older forensic branch remains a deletion candidate because its head compares as zero commits ahead and zero changed files; `foundation/repository-governance` is classified as superseded by current canonical governance and the merged engineering workflow.
 
 No physical branch refs have been deleted. The final admin deletion queue will keep `platform-architecture-2026`, and should keep `main` only through the selected rollback observation decision; every other ref is a retirement candidate after the current ref SHA and nonterminal dependencies are checked. The available connected GitHub actions still lack a branch-delete operation.
+
+
+## 11. Final consolidation after PR #28 — live snapshot 2026-10-16 11:46 +01:00
+
+This section supersedes earlier branch counts, PR status rows, and the previous “pending promotion” statements above wherever they conflict. Historical census data remains for provenance.
+
+### Verified canonical state
+
+- GitHub repository metadata: `default_branch = platform-architecture-2026`.
+- Canonical head: `2ae7c23acc4620060d44589f455427a0e3a363b6`.
+- Live refs endpoint: **51 branches / 23 distinct head SHAs**; **50 noncanonical refs** remain.
+- Live open-PR endpoint: **0 open pull requests**.
+- Consolidation PRs #18, #26, #27 and #28 are merged. PR #26 promoted the curated workflow, source authority ledger, lineage contract, operating protocol, audit evidence, and Blueprint extraction evidence. PR #27 preserved candidate-only architecture material from PRs #6, #13 and #23. PR #28 preserved remaining unique historical material from command-registry, ingestion, C2-001 and divergent `main` sources.
+- Latest `Foundation Verify` on canonical head succeeded: run [38888149259](https://github.com/asas-erp-saas-1/As/actions/runs/38888149259).
+- Vercel status on the same SHA is **failure: “Deployment rate limited — retry in 24 hours”**. This is a provider rate-limit result, not a failing Foundation Verify result. No deployment, project settings, secrets or production configuration was changed.
+- Branch protection could not be read by the connected integration (HTTP 403); the rulesets endpoint returned an empty list. Therefore required-check/branch-protection enforcement is **not verified**.
+- The connected GitHub actions expose no branch-delete operation. No branch ref has been deleted by this automation; do not infer physical deletion from this ledger.
+
+### Content preservation and retirement decision
+
+The promotion register now preserves the unique source material and records whether each item is canonical procedure, working evidence, candidate proposal, or historical-only material. This includes the three previously missing unique-source groups: the command-registry corpus, Blueprint ingestion and C2-001 traceability, and the divergent short `main` Source README. The source files are preserved without ratifying their old “ACCEPTED” or “CANONICAL” labels. The one-line `registers/tasks.json` placeholder remains deliberately unpromoted.
+
+**Decision:** there are no remaining open PRs and no additional engineering work should be performed on noncanonical refs. All 50 noncanonical refs below are authorized retirement candidates, including `main`; `platform-architecture-2026` is the only ref to keep. Delete them only after a last live ref/default-branch check. Because the GitHub connector has no delete-ref action, physical deletion must be executed through an authorized GitHub UI/admin or authenticated Git client. The current Vercel rate limit does not itself block branch retirement; preserve the deployment failure as a separate provider issue.
+
+### Exact current retirement queue (50 refs)
+
+- `chore/archive-candidate-architecture-evidence-2026-10-16` — `2558eb651eeeaeb10141b5f1dcb032f3963229cd`
+- `chore/consolidation-promotion-2026-10-16` — `c3a719124134e2736f49512de8a864cecda97650`
+- `chore/engineering-corpus-index-2026-10-14` — `4393ac9aa35dc0b12de8cf755dff351f93c1aeb6`
+- `chore/promote-final-legacy-candidates-2026-10-16` — `874487494955877091da5038da310bed85f5544a`
+- `cline/hp1c6fdq` — `e866cd4aa07c8a89ee146cb9dc83f28db71911fa`
+- `feat/engineering-workflow-2026-10-16` — `425fe168f98f54f8c055a2d8995c8f975c3946e6`
+- `feat/foundation-closure-pass-2` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final-2` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final-3` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final-4` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final-5` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final-6` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final-7` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-final-8` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-pass` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-pass-2` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-pass-3` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-pass-4` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-contract-pass-5` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-registry` — `affab220ff27d51f360061e5d66fa6b4396dd168`
+- `feat/foundation-command-registry-2` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-registry-3` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-command-registry-4` — `2ce6b00536b83615f134998c57e191f51211036f`
+- `feat/foundation-event-permission-command-closure` — `5c2021eaf5402e6316687b5bd99a6047d40387b9`
+- `feat/foundation-platform-identity-gate` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-2` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-3` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-4` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-5` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-6` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-7` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-8` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-9` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/foundation-platform-identity-gate-10` — `1a21a311bd27eb0e4c16415a7de6ee1a9e040389`
+- `feat/phase-1-iam-foundation` — `5c2021eaf5402e6316687b5bd99a6047d40387b9`
+- `foundation/architecture-lineage-reconciliation-v1` — `1a4cd48ca48506b5dc8f94acf768cdf07c3f7476`
+- `foundation/blueprint-canonical-shadows` — `a2a917faac6feee717e43366e687ac7b2b18f6b3`
+- `foundation/blueprint-register-ingestion` — `fb3afedfd5ee5070e0a89961976be8c7f9133b38`
+- `foundation/c2-001-traceability-v1` — `3bbadf385bcb1c63b5c6af73a9a2b6b4469729be`
+- `foundation/claude-agent-operating-protocol-v1` — `bfd5f2504790debd5b04d81e4b1873dd755cd3fb`
+- `foundation/external-audit-integration-v1` — `41ec1ea3e5df70011aec89e36483f730a7f921e0`
+- `foundation/forensic-repository-reconstruction-2026-09-20` — `c8d3d7e23095ba6e169f1aae9c00b796f878217f`
+- `foundation/reconcile-context-map-v2` — `c5dea5731b14224c72d2f02423ead54e2433d815`
+- `foundation/repository-file-organization-v1` — `99a0f9481237baf603e463c0e0a9067e7d960ca4`
+- `foundation/repository-governance` — `af3a17de9377dbe8310a0bda4372e9d8412fb8ef`
+- `foundation/source-authority-ledger-v1` — `52a0c7359304ccc8f69ad0b6c1f1905f38e81c0a`
+- `main` — `9ae5cc1b2b395cee31760fb46cd578f1d3509bd6`
+- `x` — `5c2021eaf5402e6316687b5bd99a6047d40387b9`
+- `x2` — `5c2021eaf5402e6316687b5bd99a6047d40387b9`
+
+### Duplicate-tip groups
+
+These are 31 refs across three identical-tip families; after the unique content was preserved by PRs #26–#28, retain no active branch from these families:
+
+- SHA `2ce6b00536b83615f134998c57e191f51211036f` (17 refs): `feat/foundation-closure-pass-2`, `feat/foundation-command-contract-final`, `feat/foundation-command-contract-final-2`, `feat/foundation-command-contract-final-3`, `feat/foundation-command-contract-final-4`, `feat/foundation-command-contract-final-5`, `feat/foundation-command-contract-final-6`, `feat/foundation-command-contract-final-7`, `feat/foundation-command-contract-final-8`, `feat/foundation-command-contract-pass`, `feat/foundation-command-contract-pass-2`, `feat/foundation-command-contract-pass-3`, `feat/foundation-command-contract-pass-4`, `feat/foundation-command-contract-pass-5`, `feat/foundation-command-registry-2`, `feat/foundation-command-registry-3`, `feat/foundation-command-registry-4`.
+- SHA `5c2021eaf5402e6316687b5bd99a6047d40387b9` (4 refs): `feat/foundation-event-permission-command-closure`, `feat/phase-1-iam-foundation`, `x`, `x2`.
+- SHA `1a21a311bd27eb0e4c16415a7de6ee1a9e040389` (10 refs): `feat/foundation-platform-identity-gate`, `feat/foundation-platform-identity-gate-2`, `feat/foundation-platform-identity-gate-3`, `feat/foundation-platform-identity-gate-4`, `feat/foundation-platform-identity-gate-5`, `feat/foundation-platform-identity-gate-6`, `feat/foundation-platform-identity-gate-7`, `feat/foundation-platform-identity-gate-8`, `feat/foundation-platform-identity-gate-9`, `feat/foundation-platform-identity-gate-10`.
+
+### Verification standard after retirement
+
+The final post-deletion check must show exactly one branch ref, `platform-architecture-2026`, with head `2ae7c23acc4620060d44589f455427a0e3a363b6` (or a later commit created by this same canonical line), zero open PRs, and the same default branch. If the canonical head advances while documentation is updated, record the new SHA and rerun `Foundation Verify` before treating the result as final.
