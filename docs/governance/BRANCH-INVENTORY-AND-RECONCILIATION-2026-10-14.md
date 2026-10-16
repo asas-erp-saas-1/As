@@ -182,3 +182,17 @@ A fresh GitHub repository metadata read after the owner's change confirms `defau
 - The three exact duplicate-head groups still contain 28 excess names over one representative per SHA; their deployment checks showed no active/nonterminal Vercel deployments. A final current-SHA/open-reference check is required before deletion.
 - Unique historical artifacts have been preserved or explicitly classified in [Branch Artifact Promotion Register](../architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md). The ref inventory is not proof that physical deletion has happened.
 - Branch deletion remains an administrator action because this connected GitHub interface exposes no delete-ref operation. No branch is marked deleted until GitHub's refs/branches API confirms its absence.
+
+
+## 11. Final live census after PR #28 — 2026-10-16
+
+Supersedes earlier “48 refs / 20 heads” and pre-PR #28 counts in this file:
+
+- Default branch verified from live GitHub metadata: `platform-architecture-2026`.
+- Canonical head at this snapshot: `2ae7c23acc4620060d44589f455427a0e3a363b6`.
+- Branch refs: 51; distinct head SHAs: 23; noncanonical refs eligible for retirement: 50.
+- Open pull requests: 0.
+- PRs #18, #26, #27 and #28 merged; source-aware promotion/archive register is on the canonical line.
+- Latest Foundation Verify run [38888149259](https://github.com/asas-erp-saas-1/As/actions/runs/38888149259) passed.
+- Vercel status: deployment rate limited, retry in 24 hours. Branch protection API read returned 403; no rulesets were listed. These states are explicitly not represented as passing.
+- Exact current retirement queue is in [the engineering consolidation record](ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md). No branch ref has yet been physically deleted by the connected integration because it has no delete-ref operation.
