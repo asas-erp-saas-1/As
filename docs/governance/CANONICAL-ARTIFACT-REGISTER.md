@@ -1,8 +1,8 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.8  
-**Date:** 2026-09-29  
+**Version:** 1.11  
+**Date:** 2026-10-16  
 **Active engineering line:** `platform-architecture-2026`
 
 ## Purpose
@@ -31,6 +31,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 |---|---|---|---|
 | `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md` | A1/A4 | ACTIVE | Conference constitution; higher-level operating authority |
 | `docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md` | A1/A6 | ACTIVE / CANONICAL | **Only authoritative GATE-00…GATE-07 semantics** |
+| `docs/architecture/README.md` | A6 | PRESENT / NAVIGATION ONLY | Engineering corpus index; does not create authority or close gates |
 | `docs/governance/ENGINEERING-CLOSURE-MATRIX-2026.md` | A6 | ACTIVE / CANONICAL | Evidence/closure matrix for gates + C-track/domain work |
 | `docs/architecture/DOMAIN-ENGINEERING-TRACK-REGISTER-2026.md` | A6 | ACTIVE / CANONICAL | D01–D09 topology work packages + C01–C22 reconciliation register |
 | `docs/governance/FOUNDATION-GATE-MATRIX.md` | A6 | ACTIVE INDEX | Compact operational index; must not redefine gate semantics |
@@ -70,6 +71,25 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` | A5 | OPEN / PARTIAL | Vercel/environment mapping evidence |
 | `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` | A5 | ACTIVE | Observed repository/runtime reality |
 | `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` | A5/A6 | ACTIVE | Reconciliation control; does not override runtime truth |
+
+## Branch and corpus inventory
+
+| Artifact | Authority | Current state | Rule |
+|---|---|---|---|
+| `docs/governance/BRANCH-HYGIENE-REGISTER.md` | A6/A4 | ACTIVE REPOSITORY CONTROL | Branch policy and cleanup safeguards; no destructive Git action is authorized by this register |
+| `docs/governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md` | A5 | DATED SNAPSHOT / REVIEW REQUIRED | Evidence snapshot of observed refs and compare results; recheck PRs, deployments and unique commits before cleanup |
+| `docs/governance/ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md` | A5/A6 | LIVE CONSOLIDATION CONTROL / RETIREMENT PENDING | Records the canonical engineering line, exact branch-head groups, PR dispositions, promotion evidence and safe retirement criteria; branch deletion/default-branch change still requires admin action |
+| `README.md` | A6 | REPOSITORY FRONT DOOR | Navigation and project orientation; must not override canonical controls |
+| `docs/architecture/README.md` | A6 | ACTIVE NAVIGATION INDEX | Architecture corpus navigation; not a source of decisions or implementation authority |
+| `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md` | A5/A6 | DATED PROMOTION REVIEW | File-level review of unmerged branch evidence; authorizes no merge, closure, or implementation |
+
+## C03 source corpus and reconciliation controls
+
+| Artifact | Authority | State | Rule |
+|---|---|---|---|
+| `docs/architecture/reconciliation/phase-c/Source/README.md` | A5/A6 | ACTIVE INDEX | Source-corpus navigation; source presence does not confer canonical authority |
+| `docs/architecture/reconciliation/phase-c/Source/C03/00-SOURCE-REGISTER.md` | A5/A6 | ACTIVE SOURCE INDEX | Classifies C03 source material; does not duplicate decision authority |
+| `docs/architecture/reconciliation/phase-c/C03/02-SOURCE-RECONCILIATION-QUEUE.md` | A6 | OPEN WORK QUEUE | Tracks required source reconciliation, red-team review and independent closure review; does not close C03 |
 
 ## Machine-readable shadows
 

@@ -1,46 +1,75 @@
 # ASAS Branch Hygiene Register
 
-Status: ACTIVE REPOSITORY CONTROL
-Repository: `asas-erp-saas-1/As`
+**Status:** ACTIVE REPOSITORY CONTROL  
+**Repository:** `asas-erp-saas-1/As`  
+**Last reconciled:** 2026-10-16  
+**Live consolidation ledger:** [Engineering Branch Consolidation Record — 2026-10-16](ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md)  
+**Detailed snapshot:** [Branch Inventory and Reconciliation Record](BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md)
 
-## Canonical branches
+## 1. Branch roles — do not conflate them
 
-- `main` — canonical integration branch.
-- `foundation/repository-governance` — current foundation-hardening branch.
+- `main` — GitHub default branch. It is not the active Engineering Conference work line and does not authorize architecture or implementation work by itself. Each PR target must follow its task/governance route.
+- `platform-architecture-2026` — active Engineering Conference work line under the current closure-matrix and checkpoint policy.
+- `chore/engineering-corpus-index-2026-10-14` — task-scoped branch for the branch census and engineering corpus index. Merge only after review and verification.
+- `cline/hp1c6fdq` — unmerged, materially advanced architecture-reconciliation branch with 14 commits ahead of the active line in the 2026-10-14 compare snapshot. It includes potentially useful ADR, contract, integrity and CI-repair work, but its content is not canonical until promoted by reviewed changes.
 
-## Historical branches retained pending controlled cleanup
+The current project doctrine has one active Engineering Conference line. Other feature/foundation refs are historical, task-scoped or unreviewed candidates until an explicit disposition is recorded.
 
-These branches exist in the repository and are not current implementation bases. They may be retained temporarily for provenance/history:
+**Single-line enforcement policy:** all engineering PRs must target `platform-architecture-2026`. `main` is retained only as the current GitHub default pending the administrator-controlled migration in Issue #24. Exact-head duplicate refs are retirement candidates, not automatically deletable; use the live consolidation ledger to check PRs, unique content and deployments before deletion.
 
-- `feat/foundation-command-contract-final`
-- `feat/foundation-event-permission-command-closure`
-- `feat/foundation-platform-identity-gate`
-- `feat/phase-1-iam-foundation`
+## 2. Redundant branch-ref families detected
 
-## Redundant branch refs detected
+Verified comparisons found identical heads within these groups:
 
-Multiple branch refs point to identical historical commits, including numbered variants of:
+- `feat/foundation-command-contract-final` and `feat/foundation-command-contract-final-2` through `-8`.
+- `feat/foundation-command-contract-pass` and `feat/foundation-command-contract-pass-2` through `-5`.
+- `feat/foundation-platform-identity-gate` and its numbered variants `-2` through `-10`.
+- `feat/foundation-command-registry-2`, `-3`, `-4` and `feat/foundation-closure-pass-2`.
+- `feat/foundation-event-permission-command-closure`, `feat/phase-1-iam-foundation`, `x` and `x2`.
 
-- `feat/foundation-command-contract-final-*`
-- `feat/foundation-command-contract-pass-*`
-- `feat/foundation-command-registry-*`
-- `feat/foundation-platform-identity-gate-*`
-- temporary refs `x` and `x2`
+The unnumbered `feat/foundation-command-registry` is **not** the same head as its numbered descendants; the compare snapshot shows it 38 commits ahead of the `-4` ref. Do not treat similarly named refs as identical without checking the actual commit comparison.
 
-These refs are repository-hygiene debt. They do not represent independent product work merely because the names differ.
+These duplicate heads are repository-hygiene debt. They do not represent independent product work merely because the branch names differ.
 
-## Cleanup rule
+## 3. Historical provenance branches
 
-Do not delete a branch solely because it looks old. Before deletion, verify:
+The inventory also contains foundation-era refs for source lineage, package ingestion, context maps, agent protocols, external audits, repository governance, file organization and forensic reconstruction. The full census, PR associations and captured ahead/behind comparisons are in the linked inventory.
 
-1. it is not the base/head of an open PR;
-2. it does not contain unique commits absent from retained canonical history;
-3. it is not referenced by release/deployment automation;
-4. any unique evidence has been preserved in the canonical repository;
-5. the branch deletion is recorded.
+Use historical refs to recover provenance and unique evidence, not as default implementation bases. A stale branch can still contain valuable material, while a newer branch can still be non-canonical.
 
-When the GitHub administrative capability is available, redundant refs should be deleted. No commit object should be rewritten or force-pushed to perform this cleanup.
+## 4. Mandatory checks before cleanup
 
-## Claude rule
+Before proposing to delete, rename, close or merge any branch:
 
-Claude must use only `main` plus the task-scoped branch specified by the task graph. Historical branches are evidence only and must not be selected as implementation bases unless a task explicitly names them.
+1. Recheck current branch head and compare against the proposed retained ref.
+2. Check every open PR where the branch is base or head, including review comments and draft state.
+3. Check deployment configuration, Vercel Git refs, release automation and workflow triggers.
+4. Find unique commits and unique file content; preserve accepted evidence in a canonical path or reviewed PR.
+5. Check whether the branch is referenced by governance documents or automation.
+6. Record the disposition and exact verification evidence.
+
+An identical head is necessary evidence for redundancy but is not sufficient permission to delete a ref; PR discussion, base branch, deployment and governance references may still matter.
+
+## 5. Safe cleanup sequence
+
+1. Maintain the branch inventory as a dated snapshot.
+2. Reconcile unmerged work by topic through small PRs into `platform-architecture-2026`.
+3. **`main` file review (2026-10-15):** selectively promoted two C03 source-control files; the divergent `Source/README.md` variant was not overlaid. See `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md`.
+4. **`cline/hp1c6fdq` first-pass review (2026-10-15):** no wholesale merge; semantic ADRs/contracts require an owner review, checkpoint contradictions require reconciliation, and CI changes remain separate.
+5. Only after the remaining PR/deployment/unique-evidence checks, prepare a separate cleanup proposal for redundant refs.
+6. Do not reset, rebase, force-push, or delete refs as a side effect of documentation cleanup.
+
+## 6. Authority and non-authorization
+
+This register is an organizational control, not authority to change architecture. The Canonical Artifact Register, Engineering Closure Matrix and current session checkpoint remain governing records.
+
+This update authorizes **no** branch deletion, PR merge/closure, force-push, reset/rebase, production change, database/schema operation or application implementation.
+
+
+## 7. Live consolidation update — 2026-10-16
+
+- Live census: 48 branch refs, 20 distinct heads.
+- PRs #5, #6, #8, #9, #12, #13 and #14 were retargeted to `platform-architecture-2026` and remain Draft for review.
+- PRs #16, #17 and #19 were closed without merging; their branches were not deleted.
+- PR #23 holds the material `cline/hp1c6fdq` package for file-level review.
+- The GitHub integration available for this task does not expose branch deletion or repository default-branch mutation. Those operations are tracked in Issue #24 and must be completed by an authorized repository administrator after all retention criteria pass.
