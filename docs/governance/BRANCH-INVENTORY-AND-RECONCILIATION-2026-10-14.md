@@ -171,3 +171,14 @@ PR #16 (already contained in the active line), PR #19 (duplicate workflow PR to 
 ## 9. Verified default-branch migration — 2026-10-16
 
 A fresh GitHub repository metadata read after the owner's change confirms `default_branch: platform-architecture-2026`. This completes the default-branch setting change; it does not retire `main` automatically. `main` remains a rollback reference because its history is divergent and it still carries a different `docs/architecture/reconciliation/phase-c/Source/README.md` blob. The two selected C03 control files remain on the PR #18 review branch until promoted. Branch deletion and final source disposition are separate steps tracked in [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24) and [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25).
+
+
+## 10. Post-consolidation ref census — 2026-10-16 (snapshot before PR #28)
+
+- GitHub default branch: `platform-architecture-2026` (live-verified).
+- Live ref count: 51 branches / 23 distinct head SHAs, including the final preservation task branch.
+- Open pull requests before opening the final preservation PR: zero.
+- PRs #18, #26 and #27 have been merged. PRs #5, #6, #8, #9, #12, #13, #14, #20 and #23 have been closed as superseded after content disposition.
+- The three exact duplicate-head groups still contain 28 excess names over one representative per SHA; their deployment checks showed no active/nonterminal Vercel deployments. A final current-SHA/open-reference check is required before deletion.
+- Unique historical artifacts have been preserved or explicitly classified in [Branch Artifact Promotion Register](../architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md). The ref inventory is not proof that physical deletion has happened.
+- Branch deletion remains an administrator action because this connected GitHub interface exposes no delete-ref operation. No branch is marked deleted until GitHub's refs/branches API confirms its absence.

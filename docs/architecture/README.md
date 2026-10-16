@@ -161,3 +161,16 @@ These are curated navigation/procedure/evidence artifacts. Their presence does n
 - [State-machine implementation contract](STATE-MACHINE-IMPLEMENTATION-CONTRACT.md) and [platform identity verification contract](../audit/PLATFORM-IDENTITY-VERIFICATION-CONTRACT.md) — pre-implementation guardrails only.
 
 Archive contents are **candidate evidence**, not accepted architecture. No gate or C-track is closed, and no application, schema, migration, RLS or production work is authorized by storing these artifacts.
+
+
+## 8. Historical safety and integration candidates
+
+The following files were recovered from the older `feat/foundation-command-registry` corpus and are retained as **proposed/historical evidence**, not as approved implementation contracts:
+
+- [External Integration Ecosystem Strategy](EXTERNAL-INTEGRATION-ECOSYSTEM-STRATEGY.md) — historical provider/integration plan; revalidate provider status and policy before reuse.
+- [B6 payment-provider feasibility](../audit/B6-ALGERIA-PAYMENT-PROVIDER-FEASIBILITY.md) — dated capability research; not proof of current legal onboarding or API availability.
+- [Command/event/transaction matrix](../audit/B6-COMMAND-EVENT-TRANSACTION-MATRIX.md) and [reservation/hold/deposit atomicity candidate](../audit/B6-RESERVATION-HOLD-DEPOSIT-ATOMICITY.md) — pre-implementation safety proposals.
+- [Concurrency/race catalogue](../audit/CONCURRENCY-RACE-CATALOG.md), [finance correctness contract](../audit/FINANCE-CORRECTNESS-CONTRACT.md), [idempotency catalogue](../audit/IDEMPOTENCY-CATALOG.md), and [outbox/inbox contract](../audit/OUTBOX-INBOX-CONTRACT.md) — historical P0 control candidates.
+- [Security control matrix](../security/SECURITY-CONTROL-MATRIX.md) and [threat model baseline](../security/THREAT-MODEL-AND-SECURITY-BASELINE.md) — design/handoff only; not evidence that controls are implemented.
+
+Each document carries a source SHA and warning. Current accepted machine-readable registers and approved decisions retain authority. The [promotion register](reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md) identifies the remaining older branch content that was deliberately not promoted as canonical.
