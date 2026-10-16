@@ -37,6 +37,10 @@ Snapshots 052–056 contain finite nested copies of prior archives because their
 
 The corrected file-level audit is distilled into [the 173-path architecture reconciliation queue](ARCHITECTURE-RECONCILIATION-QUEUE-2026-10-17.csv) and its [triage guide](ARCHITECTURE-RECONCILIATION-QUEUE-2026-10-17.md). The queue prioritizes active control surfaces first, architecture/governance second, and contextual material third. Every row remains pending review; no old design decision was automatically promoted.
 
+## Legacy closure-to-gate crosswalk (proposed)
+
+The [proposed crosswalk from 14 legacy closure dimensions to current Engineering Conference gates](GATE-CROSSWALK-CANDIDATE-2026-10-17.md) is explicitly unapproved and closes no gates. It prevents confusing G00–G13 closure dimensions with GATE-00–GATE-07 serial authority gates.
+
 ## Early-stage semantic reconciliation
 
 The [initial semantic review of foundational 2026-09 artifacts](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.md) distinguishes superseded agent instructions from partial/missing contracts and records critical unresolved ordering, authorization, domain-boundary, state-machine, gate-crosswalk and adversarial-closure work. The [machine-readable disposition table](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.csv) records source SHAs and next actions. This is a targeted first pass, not closure of all 173 queue entries.
