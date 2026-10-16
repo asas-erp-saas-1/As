@@ -69,6 +69,8 @@ Both are present on the PR #18 branch but are **not yet present on the canonical
 ### Candidate package from `cline/hp1c6fdq`
 
 PR #23 isolates ADR-0038–0041, Hold/edge contracts, the integrity review, register delta, C-track recovery/disposition, checkpoint/closure edits, and CI integrity tooling. This is valuable, but not all of it is ready to promote as a unit. Before merging:
+
+Its first Foundation Verify run (`38878920659`) failed on the known literal gate-route assertion. Commit `0487906dfe55feb7db3013728bff76a2add699f7` updates the branch workflow to validate the Constitution declaration and all eight gate headings and adds `scripts/verify-architecture-integrity.sh`. The post-fix CI result has not yet been observed. This workflow hunk overlaps the related fix in PR #20 and must be reconciled before either PR is merged.
 1. Verify decision-owner/delegation claims and reconcile the ADRs with canonical machine-readable state/event/permission registers.
 2. Resolve the candidate checkpoint's same-file contradiction between listed unresolved findings and later "resolved" statuses.
 3. Keep register deltas proposed until register owners approve them; preserve F-08/security-permission blockers.
@@ -94,7 +96,7 @@ Delete exact-head duplicates first, after checking the PR/deployment conditions.
 
 ## 6. Actions taken and not taken
 
-**Taken:** retargeted PRs #5, #6, #8, #9, #12, #13 and #14 to the canonical engineering line; closed redundant PR #16, duplicate-to-main PR #19, and unsafe whole-line PR #17 with explanatory comments; opened PR #23 to isolate the materially advanced `cline` package; opened [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24) for default-branch migration.
+**Taken:** retargeted PRs #5, #6, #8, #9, #12, #13 and #14 to the canonical engineering line; closed redundant PR #16, duplicate-to-main PR #19, and unsafe whole-line PR #17 with explanatory comments; opened PR #23 to isolate the materially advanced `cline` package; opened [Issue #24](https://github.com/asas-erp-saas-1/As/issues/24) for default-branch migration and [Issue #25](https://github.com/asas-erp-saas-1/As/issues/25) for staged retirement of non-canonical refs.
 
 **Not taken:** no branch refs deleted; no commit history rewritten; no branch force-pushed or reset; no pull request merged; no architecture gate or C-track closed; no app/schema/migration/RLS/production changes.
 
