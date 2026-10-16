@@ -46,6 +46,8 @@ Create a reproducible operational path from task intake to post-merge evidence, 
 
 The delivery workflow is A4 procedure and is proposed for review. It does not itself authorize R3/R4 work, create gate authority, or treat structural checks as runtime evidence.
 
+**Parallel-PR coordination:** [PR #18](https://github.com/asas-erp-saas-1/As/pull/18) also edits `docs/governance/CANONICAL-ARTIFACT-REGISTER.md` from the same base. The two PRs must not be merged as if independent: after the first lands, refresh the other branch and reconcile register version/date and both additive sections. No change to PR #18's scope is included here.
+
 ## 4. Acceptance criteria
 
 | ID | Criterion | Evidence | Status |
