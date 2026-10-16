@@ -33,6 +33,10 @@ Each snapshot's source tree was compared with its corresponding snapshot subtree
 
 Snapshots 052–056 contain finite nested copies of prior archives because their full source trees already included the archive. This is deliberate full-tree preservation. It can make a single global recursive-tree response truncate; each numbered snapshot's recorded root tree SHA or per-file verification record is the integrity evidence. File-entry totals are not unique-file or unique-blob totals.
 
+## Architecture reconciliation queue
+
+The corrected file-level audit is distilled into [the 173-path architecture reconciliation queue](ARCHITECTURE-RECONCILIATION-QUEUE-2026-10-17.csv) and its [triage guide](ARCHITECTURE-RECONCILIATION-QUEUE-2026-10-17.md). The queue prioritizes active control surfaces first, architecture/governance second, and contextual material third. Every row remains pending review; no old design decision was automatically promoted.
+
 ## Branch-delta findings
 
 The corrected path/blob comparison uses the active canonical root from commit `39ead7b4123666b0c20f301b9d4066864d3c88f5`, excluding both `engineering-history/**` and `docs/engineering-history/**` from the baseline and source snapshots. This avoids counting a prior archive copy as active engineering content. The active root contains **417 tracked files and 417 unique blob SHAs**.
