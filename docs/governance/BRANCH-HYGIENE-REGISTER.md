@@ -2,7 +2,8 @@
 
 **Status:** ACTIVE REPOSITORY CONTROL  
 **Repository:** `asas-erp-saas-1/As`  
-**Last reconciled:** 2026-10-14  
+**Last reconciled:** 2026-10-16  
+**Live consolidation ledger:** [Engineering Branch Consolidation Record — 2026-10-16](ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md)  
 **Detailed snapshot:** [Branch Inventory and Reconciliation Record](BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md)
 
 ## 1. Branch roles — do not conflate them
@@ -13,6 +14,8 @@
 - `cline/hp1c6fdq` — unmerged, materially advanced architecture-reconciliation branch with 14 commits ahead of the active line in the 2026-10-14 compare snapshot. It includes potentially useful ADR, contract, integrity and CI-repair work, but its content is not canonical until promoted by reviewed changes.
 
 The current project doctrine has one active Engineering Conference line. Other feature/foundation refs are historical, task-scoped or unreviewed candidates until an explicit disposition is recorded.
+
+**Single-line enforcement policy:** all engineering PRs must target `platform-architecture-2026`. `main` is retained only as the current GitHub default pending the administrator-controlled migration in Issue #24. Exact-head duplicate refs are retirement candidates, not automatically deletable; use the live consolidation ledger to check PRs, unique content and deployments before deletion.
 
 ## 2. Redundant branch-ref families detected
 
@@ -61,3 +64,12 @@ An identical head is necessary evidence for redundancy but is not sufficient per
 This register is an organizational control, not authority to change architecture. The Canonical Artifact Register, Engineering Closure Matrix and current session checkpoint remain governing records.
 
 This update authorizes **no** branch deletion, PR merge/closure, force-push, reset/rebase, production change, database/schema operation or application implementation.
+
+
+## 7. Live consolidation update — 2026-10-16
+
+- Live census: 48 branch refs, 20 distinct heads.
+- PRs #5, #6, #8, #9, #12, #13 and #14 were retargeted to `platform-architecture-2026` and remain Draft for review.
+- PRs #16, #17 and #19 were closed without merging; their branches were not deleted.
+- PR #23 holds the material `cline/hp1c6fdq` package for file-level review.
+- The GitHub integration available for this task does not expose branch deletion or repository default-branch mutation. Those operations are tracked in Issue #24 and must be completed by an authorized repository administrator after all retention criteria pass.
