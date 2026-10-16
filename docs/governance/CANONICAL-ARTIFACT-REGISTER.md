@@ -1,7 +1,7 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.13  
+**Version:** 1.14  
 **Date:** 2026-10-16  
 **Active engineering line:** `platform-architecture-2026`
 
@@ -84,6 +84,18 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/reconciliation/ASAS-UNMERGED-BRANCH-PROMOTION-REVIEW-2026-10-15.md` | A5/A6 | DATED PROMOTION REVIEW | File-level review of unmerged branch evidence; authorizes no merge, closure, or implementation |
 | `docs/architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md` | A5/A6 | LIVE PROMOTION / RETIREMENT LEDGER | Records exact source SHAs, promoted/candidate/discard dispositions and branch retirement gates |
 | `docs/architecture/reconciliation/candidate-evidence/2026-10-16/` | A5 / PROPOSED | CANDIDATE EVIDENCE ARCHIVE | Preserves unratified ADRs, candidate contracts, context-map proposals and integrity findings; source-branch status labels do not become canonical approval |
+| `docs/architecture/EXTERNAL-INTEGRATION-ECOSYSTEM-STRATEGY.md` | A5 / PROPOSED | HISTORICAL INTEGRATION STRATEGY | Preserved from the September source corpus; provider recommendations require fresh validation and owner acceptance |
+| `docs/audit/B6-ALGERIA-PAYMENT-PROVIDER-FEASIBILITY.md` | A5 / EVIDENCE | DATED PAYMENT RESEARCH | Source-era capability findings only; current provider/API/legal onboarding must be revalidated |
+| `docs/audit/B6-COMMAND-EVENT-TRANSACTION-MATRIX.md` | A5 / PROPOSED | CANDIDATE TRANSACTION MATRIX | No permission/event/register mutation authorized |
+| `docs/audit/B6-RESERVATION-HOLD-DEPOSIT-ATOMICITY.md` | A5 / PROPOSED | CANDIDATE ATOMICITY CONTRACT | Concurrency and hold/deposit policy remains gated |
+| `docs/audit/CONCURRENCY-RACE-CATALOG.md` | A5 / PROPOSED | CANDIDATE RACE CATALOGUE | Mechanism selection and race-test execution remain open |
+| `docs/audit/FINANCE-CORRECTNESS-CONTRACT.md` | A5 / PROPOSED | CANDIDATE FINANCE CONTRACT | Accounting and commercial policies remain open |
+| `docs/audit/IDEMPOTENCY-CATALOG.md` | A5 / PROPOSED | CANDIDATE IDEMPOTENCY CATALOGUE | Derivation, retention, and storage details remain source-open |
+| `docs/audit/OUTBOX-INBOX-CONTRACT.md` | A5 / PROPOSED | CANDIDATE OUTBOX/INBOX CONTRACT | Reliability pattern candidate; no runtime implementation proof |
+| `docs/security/SECURITY-CONTROL-MATRIX.md` and `docs/security/THREAT-MODEL-AND-SECURITY-BASELINE.md` | A5 / DESIGN ONLY | HISTORICAL SECURITY CANDIDATES | Preserved for review; no security control implementation or gate closure implied |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/command-registry-candidates/` | A5 / HISTORICAL | HISTORICAL PRODUCT / DESIGN / RESEARCH EVIDENCE | Contains source-era product-scope, UX, quality, technology, persona/autonomy, invariant and dependency artifacts; each carries source SHA and candidate warning |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/source-ingestion-candidates/` | A5 / PROPOSED | SOURCE-INGESTION CANDIDATES | Older ingestion/provenance/validation plans preserved without replacing canonical manifest, task map or schema index |
+| `docs/architecture/reconciliation/candidate-evidence/2026-10-16/main-divergent-source/Source-README-from-main.md` | A5 / HISTORICAL | LEGACY `main` FILE PRESERVATION | Retained for provenance only; canonical Source Corpus README remains authoritative |
 | `docs/architecture/DOMAIN-OWNERSHIP-AND-TRACEABILITY-CONTRACT.md` | A4 / PROPOSED | WORKING CONTRACT | Traceability only; C2-001/ADR-0021 acceptance remains a hard stop |
 | `docs/architecture/EVENT-OWNERSHIP-TRACEABILITY-WAVE-2.md` | A4 / PROPOSED | WORKING TRACEABILITY | Derived from event register and working contracts; does not redefine event ownership authority |
 | `docs/architecture/EVENT-STATE-PERMISSION-TRACEABILITY-MATRIX.md` | A5 / PROPOSED | WORKING TRACEABILITY MATRIX | Derived view; canonical event/state/permission registers remain the source of record |
