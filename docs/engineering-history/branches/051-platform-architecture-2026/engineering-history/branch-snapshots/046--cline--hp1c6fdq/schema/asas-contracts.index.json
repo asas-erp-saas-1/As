@@ -1,0 +1,32 @@
+{
+  "name": "ASAS Consolidated Schema Contract Index",
+  "status": "DERIVATION-CONTROLLED / RECONCILIATION REQUIRED",
+  "source": {
+    "document": "ASAS Master Implementation Specification v1.6.1 / Blueprint Chapter 39",
+    "authority": "Blueprint and approved implementation specification"
+  },
+  "historical_declaration": {
+    "model_count": 59,
+    "enum_count": 16,
+    "index_count": 15,
+    "note": "These were the previously declared repository planning counts. They are retained for provenance and must not be presented as the verified source shape."
+  },
+  "verified_source_observation": {
+    "model_count": 59,
+    "enum_count": 17,
+    "index_count": 56,
+    "status": "OBSERVED / NOT YET PROMOTED AS EXECUTABLE CONTRACT"
+  },
+  "role": "Version-neutral target contract index; not a live database schema and not a migration.",
+  "required_reconciliation": [
+    "bounded-context/module decomposition",
+    "model and enum identifiers",
+    "relations and cross-schema references",
+    "indexes and uniqueness constraints",
+    "tenant columns and ownership",
+    "audit/outbox requirements",
+    "money representation and financial immutability",
+    "state-machine alignment"
+  ],
+  "promotion_gate": "Do not create schema/asas-contracts.prisma until the source text is extracted completely and validated for internal consistency and the 59/17/56 observation is reconciled with the historical 59/16/15 declaration."
+}
