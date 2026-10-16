@@ -1,8 +1,8 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.8  
-**Date:** 2026-09-29  
+**Version:** 1.9  
+**Date:** 2026-10-16  
 **Active engineering line:** `platform-architecture-2026`
 
 ## Purpose
@@ -70,6 +70,16 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/reconciliation/ASAS-GATE-00-VERCEL-ENVIRONMENT-RECONCILIATION-2026-09-26.md` | A5 | OPEN / PARTIAL | Vercel/environment mapping evidence |
 | `docs/architecture/reconciliation/ASAS-BROWNFIELD-REALITY-REPORT-2026-09-26.md` | A5 | ACTIVE | Observed repository/runtime reality |
 | `docs/architecture/reconciliation/ASAS-BROWNFIELD-DRIFT-MATRIX-2026-09-26.md` | A5/A6 | ACTIVE | Reconciliation control; does not override runtime truth |
+
+## Engineering delivery workflow
+
+| Artifact | Authority | Status | Rule |
+|---|---|---|---|
+| `docs/governance/ASAS-ENGINEERING-DELIVERY-WORKFLOW-2026.md` | A4 | PROPOSED FOR REVIEW | Operationalizes task-to-merge/recovery; cannot redefine authority or gates |
+| `docs/governance/ENGINEERING-TASK-PACKET-TEMPLATE-2026.md` | A4 | TEMPLATE | Copy per material task; not itself authorization |
+| `docs/governance/ENGINEERING-EVIDENCE-RECORD-TEMPLATE-2026.md` | A4 | TEMPLATE | Records exact verification and disposition; not proof until populated |
+| `scripts/verify-engineering-workflow.sh` | A4 | STRUCTURAL CHECK | Validates control-file/route anchors; does not prove approval, runtime state, gate closure or deployment success |
+| `.github/PULL_REQUEST_TEMPLATE.md` | A4 | ACTIVE TEMPLATE | Requires task boundary, authority, safety, evidence, approvals and disposition |
 
 ## Machine-readable shadows
 
