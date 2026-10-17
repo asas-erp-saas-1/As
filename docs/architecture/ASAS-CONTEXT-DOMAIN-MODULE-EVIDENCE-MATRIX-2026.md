@@ -86,7 +86,7 @@ The historical `CANONICAL-CONTEXT-TO-MODULE-MAP.md` proposes a 15-module modular
 | M08 | Identity, Access & Workspace | users, roles, permissions, agency/workspace tenancy | Agency, Workspace, Branch, User, role/permission/session records | `identity_access` | Web | Core / Platform | PROPOSED |
 | M09 | Notification | in-app and external notification delivery | NotificationPreference, delivery records | `notification` | Worker | Platform | PROPOSED |
 | M10 | Collaboration & Extensibility | notes, tasks, attachments, custom fields | Note, Task, Attachment, custom-field definitions/values | `collaboration` | Web | Core / Platform | PROPOSED |
-| M11 | Calendar & Scheduling | calendar events and scheduling | CalendarEvent | `calendar_scheduling` | Web | CRM / Sales / Platform | FOUNDER DECISION REQUIRED |
+| M11 | Calendar & Scheduling | calendar events and scheduling | CalendarEvent | candidate only | Web | Core-hosted platform capability consumed by CRM / Sales / Studio / Marketing | OWNER DECISION ACCEPTED; CONTRACT OPEN |
 | M12 | Activity, Timeline & Audit | immutable audit/timeline projections | audit/timeline projections | `activity_audit` | Worker | Core / Documents / Platform | PROPOSED |
 | M13 | Search | cross-context global search read model | search projections | `search` | Worker | Platform | PROPOSED |
 | M14 | Reporting & Analytics | KPI/reporting read models | analytical/reporting projections | `reporting` | Worker | Analytics | PROPOSED |
@@ -106,7 +106,7 @@ The historical `CANONICAL-CONTEXT-TO-MODULE-MAP.md` proposes a 15-module modular
 | Audit | Platform capability / read model | Proposed | E1/E3 | Must not become an upstream owner of business state |
 | Events / Outbox | Platform capability | Proposed | E1/E3 | Reliability mechanism; domain event ownership remains with producer |
 | Workflow | Platform capability / candidate module | Proposed | E3 | Cannot mutate arbitrary contexts directly |
-| Scheduling | Platform capability / candidate module | **Founder decision required** | E1/E3 | No schema/module ownership may be assumed |
+| Scheduling | Core-hosted platform capability | **Owner decision accepted (FD-002 / ADR-0021); downstream contract open** | E1/E2/E3 | No schema/module ownership may be assumed without persistence, permission, event and contract evidence |
 | Search | Platform read capability | Proposed | E3 | Projection only unless a domain ownership case is proven |
 | Media / Storage | Platform capability | Open | E1 | Storage access must remain tenant-aware |
 | Notifications | Platform capability / worker | Proposed | E3 | Consumer/delivery role, not source of business truth |
@@ -132,7 +132,7 @@ IMPLEMENTATION MODULE VIEW
 M01 ... M15 candidate modular-monolith decomposition
 ```
 
-The nine-context view is **not** itself a founder blocker. C2-001 has been reclassified as **OPEN ARCHITECTURAL REFINEMENT** because the numerical difference from the historical 15-module candidate does not establish a semantic contradiction.
+FD-001 (2026-09-26) **closes the high-level nine-context grouping decision**. The historical 15-module decomposition is a different layer and does not override that decision. The remaining OPEN work is detailed context/module/aggregate/persistence/event/permission ownership. The exact historically claimed approved Domain Model v2 / Context Map v2 remains an unlocated provenance gap; it is not silently reconstructed.
 
 Neither side is allowed to silently redefine the other.
 
@@ -197,13 +197,15 @@ These are **candidate aggregate ownership statements**, not verified aggregate b
 
 ### C2-001 — Domain grouping vs implementation decomposition
 
-**Status:** OPEN ARCHITECTURAL REFINEMENT — NOT A COUNT-BASED FOUNDER BLOCKER
+**High-level grouping decision:** CLOSED BY FD-001 (2026-09-26). The nine-context grouping is the canonical high-level domain view. Historical 15-module/schema counts remain implementation-decomposition evidence and do not establish additional bounded contexts.
 
-**Reason:** The nine-context view and historical 15-module view represent different architectural layers. The numerical difference does not itself constitute a contradiction. Individual ownership/dependency decisions remain subject to evidence and ADR/contract closure.
+**Detailed ownership refinement:** OPEN. For every implementation-critical mapping, establish an accepted ADR/contract for aggregate ownership, invariant, persistence, transaction boundary, authorization/tenant scope, command/event ownership, access patterns and tests. The exact historical approved Phase 1.5 Domain Model v2 / Context Map v2 remains unlocated and must remain a provenance gap, not reconstructed by inference.
 
-### C2-002 — Scheduling ownership
+### Scheduling owner decision (legacy local C2-002 label)
 
-**Status:** FOUNDER DECISION REQUIRED
+**Owner status:** CLOSED BY FD-002 / ACCEPTED ADR-0021 (2026-09-26).
+
+Scheduling is a Core-hosted platform capability, not a separate bounded context and not a CRM-owned persistence boundary. Calendar/provider integrations belong to Integrations. Downstream persistence, event, permission, tenant/resource-scope, audit and application contracts remain OPEN and must be reconciled before implementation. The ADR itself does not authorize schema creation.
 
 ### C2-003 — Identity/Tenancy platform ownership
 
@@ -285,7 +287,7 @@ Founder/ADR authority
 H1 can close only when:
 
 - the domain/module relationship is explicit for all implementation-critical boundaries;
-- Scheduling ownership is resolved;
+- Scheduling owner selection is resolved by FD-002 / ADR-0021; downstream Scheduling contract and persistence evidence remains open;
 - aggregate ownership is accepted where implementation is authorized;
 - dependency matrix is accepted;
 - platform capabilities are classified;

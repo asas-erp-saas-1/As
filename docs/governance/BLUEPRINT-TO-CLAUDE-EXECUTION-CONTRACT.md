@@ -20,7 +20,7 @@ This foundation phase does not authorize application code, database schema creat
 
 ## Required machine-readable shadows
 
-- `registers/tasks.json` — intended full task shadow; source reconciliation currently records 119 top-level phase tasks / 121 task IDs including nested records, while the older declaration was 114. Do not treat 114 as current truth.
+- `registers/tasks.json` — intended full task shadow; the recorded direct parse is 119 phase-task entries / 119 unique phase-task IDs / 0 nested task IDs. Three recurring ritual IDs are tracked separately, giving 122 identifiers if task and ritual IDs are combined. The older declaration is 114, leaving an OPEN +5 discrepancy. `registers/tasks.index.json` is count/provenance metadata, not the full canonical task bodies.
 - `registers/events.json` — 103 domain events and envelope contract; derived shadow present.
 - `registers/permissions.csv` — 50 permission keys × 8 personas; derived shadow present.
 - `registers/state-machines.json` — 11 lifecycle state machines; derived shadow present.

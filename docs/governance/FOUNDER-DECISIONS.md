@@ -44,9 +44,9 @@ The Founder explicitly instructed the Engineering Conference to perform a compre
 
 **Status:** OPEN / ENGINEERING RECONCILIATION FIRST
 
-**Evidence:** historical declaration 114 versus verified source observation of 119 top-level phase tasks and 121 task IDs including nested records, plus 3 recurring rituals.
+**Evidence (reconciled 2026-10-17):** historical declaration 114 versus the recorded direct source parse of 119 phase-task entries, 119 unique phase-task IDs, and 0 nested task IDs; 3 recurring ritual IDs are separate (122 identifiers if task and ritual IDs are combined). The earlier “121 task IDs including nested records” claim is superseded by `docs/audit/SOURCE-REGISTER-STRUCTURAL-RECONCILIATION-2026-09-20.md` and the current `registers/tasks.index.json`. The historical 114-vs-119 discrepancy remains OPEN.
 
-**Decision required:** Engineering must reconcile source edition, top-level/nested semantics and promotion rules before implementation authorization. Founder decision is required only if two approved source artifacts remain contradictory.
+**Decision required:** Engineering must reconcile the source edition and the declared-vs-observed total, then record promotion rules before implementation authorization. The direct parse records zero nested task IDs; do not reuse the superseded 121-count claim. Founder decision is required only if two approved source artifacts remain contradictory.
 
 ## FD-005 — Canonical runtime/database identity
 

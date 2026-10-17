@@ -34,7 +34,7 @@ The CSV companion records the evidence requirements, open dependencies and expli
 
 ## Critical open issues already known
 
-1. **C2-001 and C2-001-S:** context/module decomposition and Scheduling ownership are still open. The mapping cannot close GATE-02 or resolve domain topology.
+1. **Decision status:** FD-001 has closed the high-level nine-context grouping, and FD-002 / accepted ADR-0021 has closed Scheduling owner selection. Detailed module/aggregate ownership remains open; this proposed crosswalk cannot close GATE-02 or settle any detailed topology/contract question by itself.
 2. **Authorization traceability:** `registers/permissions.csv` contains 50 permission rows and eight role/persona columns, but end-to-end command/route/scope/audit/test traceability is not proven.
 3. **State-machine closure:** the old register's `CLOSED/OPEN/DERIVED` classifications need revalidation against current registers and contracts. The current reservation consistency contract is accepted semantically but implementation-gated; the detailed state-machine contract remains proposed/blocked.
 4. **Transaction/idempotency/outbox:** command order, authoritative concurrency mechanism, retention, retries, DLQ and replay policy still require explicit closure and evidence.

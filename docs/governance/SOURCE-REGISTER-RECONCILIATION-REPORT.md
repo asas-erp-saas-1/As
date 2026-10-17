@@ -23,7 +23,7 @@ Record the objectively verified shape of the approved source package and the cur
 
 ## Structural counts
 
-- Task register: 14 phases; 119 top-level phase tasks; 121 task IDs including nested task records; IDs are unique in the source traversal.
+- Task register: 14 phases; 119 top-level phase-task entries; 119 unique phase-task IDs; 0 nested task IDs; 3 recurring ritual IDs separately (122 identifiers if task and ritual IDs are combined).
 - Event register: 11 modules; 103 event names.
 - Permission register: 50 permission rows; 50 unique permission keys.
 - State-machine register: 11 machines.
@@ -31,7 +31,7 @@ Record the objectively verified shape of the approved source package and the cur
 
 ## Important corrections
 
-1. Earlier planning references described the task register as containing 114 tasks. The current verified v1.6.1 source contains 119 top-level phase tasks and 121 task IDs when nested records are included. The verified source artifact is authoritative for this count; no older count should be treated as current.
+1. Earlier planning references declared 114 phase tasks. The recorded direct v1.6.1 source parse contains 119 phase-task entries with 119 unique task IDs and zero nested task IDs; 3 recurring rituals are separate. The older assertion of 121 task IDs including nested records was inaccurate and is superseded by the structural reconciliation. The 114-vs-119 difference remains OPEN pending source-edition and declaration reconciliation; do not silently normalize the declared count.
 2. The repository now contains selected derived shadows (`events.json`, `permissions.csv`, `state-machines.json`, task index/shard, design artifacts and schema index). Their presence does not mean the full source package has been promoted or that executable implementation exists.
 3. `schema/asas-contracts.prisma` remains intentionally absent because the source contract has not yet passed complete extraction and cross-register reconciliation in the repository.
 

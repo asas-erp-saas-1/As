@@ -37,11 +37,13 @@ Load these in order when resuming architecture engineering:
 | [Commercial / Finance Semantic Reconciliation](ASAS-COMMERCIAL-FINANCE-SEMANTIC-RECONCILIATION-2026.md) | Sales/finance vocabulary and dependency reconciliation. | Not an executable finance contract. |
 | [ADR Register](ASAS-ADR-REGISTER-2026.md) | Index across the two ADR directories. | The register is an index, not itself a decision. |
 
-### Missing-reference alert — do not silently fill
+### Source restoration record — exact V3 source recovered 2026-10-17
 
-Multiple artifacts refer to `docs/architecture/ASAS-ARCHITECTURE-V3.md` as an A1 architecture authority, but that file was not present at that path on the indexed base branch during this task. Its absence has also been recorded by the architecture-integrity review on another branch.
+The full `ASAS-ARCHITECTURE-V3.md` source has been restored at this path from the existing Library item `ASAS-ARCHITECTURE-V3.md` (version 3.0, dated 2026-09-20; 52,114 bytes). Byte identity was checked: Git blob `f2dbbc83489f0ded270fafdbcbea4d19739b1954`; SHA-256 `385ff27e5d62eda1b14cef216a4e596345b3fd4a4ad511f4c6f56d2a72722ce6`.
 
-Treat the V3 source as **NOT PRESENT / OWNER RESOLUTION REQUIRED** until the authorized source is supplied or the canonical artifact register is formally corrected. Do not fabricate a replacement or infer that an amendment alone reproduces the missing source.
+**Important historical distinction:** commit `6df24b35acc9a1c3ab8ce90b5059d4e14d654f05` briefly installed a much shorter 13,200-byte object (`d55c89a9e4a7be9a901f73ab5c84fbabf2f7cebb`); commit `bbe46cf0a2a2d6339d3b7fc13d5a3d71e4cf27a4` explicitly reverted it as a non-literal placeholder. Do not restore that object. The exact full source, not the reverted placeholder, is the file at this path after the recovery change.
+
+The V3 document is the architecture target/reference. Its presence is not proof that the repository, live database or production environment implements it, and it does not override explicit later decision records or close implementation gates. The separate historical approved Domain Model v2 / Context Map v2 remains unlocated.
 
 ## 3. Architecture corpus map
 

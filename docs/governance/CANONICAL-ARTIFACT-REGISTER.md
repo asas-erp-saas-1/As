@@ -1,8 +1,8 @@
 # ASAS Canonical Artifact Register
 
 **Status:** CANONICAL FOUNDATION CONTROL  
-**Version:** 1.14  
-**Date:** 2026-10-16  
+**Version:** 1.15  
+**Date:** 2026-10-17  
 **Active engineering line:** `platform-architecture-2026`
 
 ## Purpose
@@ -51,7 +51,7 @@ This is the canonical consolidation/routing resource for the 2026 architecture p
 | `docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md` | A4/A6 | YES | Agent operating model |
 | `docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md` | A4/A6 | YES | AI engineering operating context |
 | `docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md` | A6 | YES | Consolidated architecture-engineering routing resource |
-| `docs/architecture/ASAS-ARCHITECTURE-V3.md` | A1 | YES when V3 is referenced | Architecture target/reference; does not create a parallel control route |
+| `docs/architecture/ASAS-ARCHITECTURE-V3.md` | A1 | YES when V3 is referenced | PRESENT / exact source restored 2026-10-17; architecture target/reference, not runtime proof and not a parallel control route |
 | `docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md` | A1 candidate | YES | Desired architecture; unresolved items remain blocked |
 | `docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md` | A4/A6 | YES | Ordered engineering route |
 | `docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md` | A4 | YES | Skill routing and capability catalog |
@@ -192,3 +192,10 @@ Presence of event/permission/state-machine/design shadows is not equivalent to r
 ## Codex control-plane verification
 
 Repository-side skill discovery is enforced by `.github/workflows/foundation-verify.yml`. A green repository check does not by itself prove that a live Codex session loaded or executed a skill; runtime agent discovery remains `NOT_EXECUTED` until Codex-side evidence exists.
+
+
+## Exact Architecture V3 source restoration — 2026-10-17
+
+The repository path `docs/architecture/ASAS-ARCHITECTURE-V3.md` has been restored from the existing Library item `ASAS-ARCHITECTURE-V3.md` (version 3.0, dated 2026-09-20; 52,114 bytes). Exact source identity was verified via Git's blob SHA `f2dbbc83489f0ded270fafdbcbea4d19739b1954` and SHA-256 `385ff27e5d62eda1b14cef216a4e596345b3fd4a4ad511f4c6f56d2a72722ce6`.
+
+Do not restore the short Git object `d55c89a9e4a7be9a901f73ab5c84fbabf2f7cebb` installed in commit `6df24b35acc9a1c3ab8ce90b5059d4e14d654f05`; the following commit `bbe46cf0a2a2d6339d3b7fc13d5a3d71e4cf27a4` explicitly reverted it as a non-literal placeholder. The exact-source restoration closes the file-presence gap only. It does not recover the separate historically claimed approved Domain Model v2 / Context Map v2 and does not establish runtime or implementation readiness.
