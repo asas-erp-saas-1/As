@@ -4,8 +4,8 @@
 
 This is a **point-in-time archive**, not a live branch list. The latest follow-up census reads the repository at default commit `5ecf8a74f622cfcdadb8d4883346f08dc9ae9453` (2026-10-16 23:45:04 UTC).
 
-- Current live branch refs: **54**
-- Distinct current head commits: **26**
+- Branch refs observed at the 2026-10-16 23:45 UTC census: **54**
+- Distinct head commits observed at that census: **26**
 - Numbered branch/checkpoint snapshots: **56**
 - Full recursive path/blob/mode verification completed for orders **001–054**: **54 snapshots**
 - Orders **055–056** are complete root-tree copies verified by an exact source-tree/snapshot-tree SHA match. GitHub's recursive response for source tree `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3` was truncated, so no file count is claimed for those two rows.
@@ -21,7 +21,7 @@ Snapshot folders are numbered by source tip-commit committer time, oldest to new
 
 - `branches/NNN-branch-name/` — full tracked-file snapshot at that source tip, retaining original relative paths.
 - `catalogs/` — human-readable chronological inventories.
-- `SNAPSHOT-MANIFEST-2026-10-17.csv` — authoritative mapping for the 54 snapshots. The older `BRANCH-MANIFEST.csv` remains as the original 51-row inventory.
+- `SNAPSHOT-MANIFEST-2026-10-17.csv` — authoritative mapping for the original 54 per-branch snapshot records. Supplemental root-tree checkpoints 055–056 are described in this index; they were verified by exact tree SHA and intentionally have no claimed expanded file count. The older `BRANCH-MANIFEST.csv` remains as the original 51-row inventory.
 - `SNAPSHOT-VERIFICATION-2026-10-17.csv` — per-snapshot file count and integrity outcome.
 - `VERIFICATION-REPORT-2026-10-17.md` — verification method, counts, scope, and limitations.
 - `BRANCH-DELTA-AUDIT-2026-10-17.md` and `delta-audit/` — branch-to-root path and blob comparisons.
@@ -43,7 +43,7 @@ The [proposed crosswalk from 14 legacy closure dimensions to current Engineering
 
 ## Early-stage semantic reconciliation
 
-The [initial semantic review of foundational 2026-09 artifacts](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.md) distinguishes superseded agent instructions from partial/missing contracts and records critical unresolved ordering, authorization, domain-boundary, state-machine, gate-crosswalk and adversarial-closure work. The [machine-readable disposition table](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.csv) records source SHAs and next actions. This is a targeted first pass, not closure of all 173 queue entries.
+The [initial semantic review of foundational 2026-09 artifacts](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.md) distinguishes superseded agent instructions from partial/missing contracts and records critical unresolved ordering, authorization, state-machine, gate-crosswalk and adversarial-closure work. Its dated status correction records that FD-001 and FD-002/ADR-0021 have since closed the high-level context grouping and Scheduling owner selection; detailed contracts remain open. The [machine-readable disposition table](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.csv) records source SHAs and next actions. This is a targeted first pass, not closure of all 173 queue entries.
 
 ## Branch-delta findings
 
@@ -54,6 +54,12 @@ Across the 56 snapshot records, the one-way comparison finds **1,982 path/blob d
 All 222 historical blob versions are available in `recovered-content/by-blob/<blob-sha>/<original-path>`, with source branch/snapshot provenance in `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`. The detailed CSV rows are split across `delta-audit/part-01-sept15.csv` through `part-05-follow-up-census.csv`, and the per-snapshot summary is `delta-audit/SUMMARY-2026-10-17.csv`.
 
 A prior version of `.github/workflows/foundation-verify.yml` remains preserved in the archive as historical evidence. It predates the active-state scan's exclusion of `docs/engineering-history/**`; do **not** restore it over the active workflow.
+## Architecture source restoration and decision-status update
+
+The exact full `docs/architecture/ASAS-ARCHITECTURE-V3.md` source has been restored byte-for-byte in the current review branch from the Library item: 52,114 bytes; Git blob `f2dbbc83489f0ded270fafdbcbea4d19739b1954`; SHA-256 `385ff27e5d62eda1b14cef216a4e596345b3fd4a4ad511f4c6f56d2a72722ce6`. It is architecture source, not proof of runtime implementation. Source identity checks are recorded in `docs/architecture/README.md` and `docs/governance/CANONICAL-ARTIFACT-REGISTER.md`.
+
+The initial semantic review's “C2-001/C2-001-S open” text is a dated observation superseded by FD-001 and FD-002/ADR-0021 for the two owner questions only. Detailed mappings and the runtime/database identity gate remain open.
+
 ## Architecture guardrails
 
 Snapshots preserve evidence; they do not ratify old design claims, resolve source-authority conflicts, prove semantic completeness, or close architecture gates. The next review should reconcile historical decisions, unresolved domain requirements, invariants, tenancy/security assumptions, state transitions, integration contracts, and open gates before implementation begins.

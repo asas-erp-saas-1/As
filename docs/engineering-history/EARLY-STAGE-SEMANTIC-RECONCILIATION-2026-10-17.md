@@ -26,13 +26,16 @@ The later idempotency catalog currently describes a different order:
 
 These may be reconcilable—for example by separating safe key-format validation and lookup from execution of the protected business command—but the repository must have one explicit accepted contract. **Do not let implementation teams infer the order from either candidate in isolation.** The contract must also define whether any unauthenticated caller can probe a prior idempotency result, how tenant/actor/operation scope is applied, and when the stored result becomes visible.
 
-### 3. Domain topology remains open
+### 3. Domain topology: high-level decisions closed; detailed contracts remain open
 
-The early Domain Contracts Map says there are nine bounded contexts and places scheduling inside CRM. Current architecture artifacts provide more refined domain contracts and a Blueprint, but the live `OPEN-CONTRACT-CONFLICTS.md` still records C2-001 (context/module decomposition) and C2-001-S (Scheduling ownership) as open decisions. The historical map therefore helps discover assumptions but cannot close these boundaries by itself.
+The early Domain Contracts Map states nine bounded contexts and places Scheduling inside CRM. A later explicit decision check changes the current status:
 
-**Conclusion:** crosswalk historical entities, commands and ownership into current contract files, then close the existing conflict records with explicit evidence/authority. Preserve unresolved scope as open.
+- **FD-001 (2026-09-26) closes the high-level nine-context grouping decision.**
+- **FD-002 and accepted ADR-0021 (2026-09-26) close Scheduling owner selection:** Scheduling is a Core-hosted platform capability, and calendar/provider adapters belong to Integrations.
+- The initial review captured stale open-status text in the then-current `OPEN-CONTRACT-CONFLICTS.md`. That owner/status wording is now superseded by the explicit decision, not the historical source snapshot.
+- Detailed context/module/aggregate/persistence/transaction/permission/event ownership remains open; neither decision closes those implementation contracts.
 
-### 4. State-machine edge evidence is useful, but exact closure is not achieved by file presence
+**Updated conclusion (2026-10-17):** do not reopen the high-level context grouping or Scheduling owner decision without new authoritative evidence. Continue the crosswalk for detailed entity/module/aggregate/persistence/permission/event ownership, and preserve every unsupported detail as open.### 4. State-machine edge evidence is useful, but exact closure is not achieved by file presence
 
 The historical State-Machine Edge Closure Register explicitly separates `CLOSED`, `OPEN` and `DERIVED`, and permits implementation only for source-supported `CLOSED` edges. The current machine register and Blueprint still need to be the authoritative basis. The current reservation consistency contract is marked **accepted semantic contract; implementation gated**, while the separate reservation state-machine contract remains **proposed — implementation blocked** and says exact state/transaction details remain open.
 
@@ -64,7 +67,7 @@ The early AI Context Protocol and Engineering Prompt share durable principles wi
 | `docs/AI/ENGINEERING_PROMPT.md` | Mostly superseded prompt; reusable QA checklist may contain gaps | Retain and cross-check quality gates |
 | `docs/architecture/API-CONTRACT-MAP.md` | Partial coverage; request-order and route-to-command mapping are not closed | P0 reconciliation required |
 | `docs/architecture/AUTHORIZATION-TRACEABILITY.md` | 50-key register exists; command-level traceability remains unproven | P0 reconciliation required |
-| `docs/architecture/DOMAIN-CONTRACTS-MAP.md` | Partial replacement; C2-001/C2-001-S remain open | No promotion; close conflicts |
+| `docs/architecture/DOMAIN-CONTRACTS-MAP.md` | Historical map retained; high-level context grouping closed by FD-001 and Scheduling owner closed by FD-002/ADR-0021; detailed mappings remain open | No promotion; reconcile detailed contracts under the accepted decisions |
 | `docs/architecture/STATE-MACHINE-EDGE-CLOSURE-REGISTER.md` | Valuable edge inventory; current legal edges/implementation status require revalidation | Rebuild from authoritative registers |
 | `docs/architecture/FOUNDATION-MASTER-CLOSURE-PROGRAM.md` | Reusable 14-dimension completeness model; different from current eight-gate model | Crosswalk required |
 | `docs/audit/FOUNDATION-ADVERSARIAL-GAP-REGISTER.md` | Findings split across specialized candidate audits; P0 contracts still partial/open | Consolidate evidence and closure states |
@@ -77,8 +80,8 @@ The machine-readable version is `EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.
 2. Rebuild a state-machine edge matrix for all 11 registered machines, with explicit `CLOSED / OPEN / DERIVED` evidence and no arbitrary promotion.
 3. Crosswalk the 14 legacy closure dimensions to the current eight Engineering Conference gates without conflating them.
 4. Consolidate the P0 concurrency, idempotency, transactional outbox, finance and security findings into the canonical review queue with owners and acceptance evidence.
-5. Resolve C2-001, C2-001-S, and C2-002 through the existing authority/decision route. They are not closed by this archive work.
+5. Keep decision status precise: FD-001 closes the high-level context grouping; FD-002 / ADR-0021 closes Scheduling owner selection. Detailed context/module/aggregate contracts remain open. Runtime/database identity (`C2-002` in `OPEN-CONTRACT-CONFLICTS.md`) remains blocked, and the identifier collision must be resolved using full document paths and titles rather than bare IDs.
 
 ## Safety boundary
 
-This pass is documentation and historical reconciliation only. It does not change runtime code, schema, migrations, RLS or business behavior; it does not authorize implementation; and it does not claim GATE-00/GATE-01 or C03 are closed. Every unresolved item remains open until a decision and evidence are recorded.
+This pass is documentation and historical reconciliation only. It does not change runtime code, schema, migrations, RLS or business behavior; it does not authorize implementation; and it does not claim GATE-00/GATE-01 or C03 are closed. This dated update corrects the current status of FD-001/FD-002 without changing the historical source snapshot or closing the detailed implementation contracts.
