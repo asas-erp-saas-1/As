@@ -114,9 +114,11 @@ The historical 15-module proposal is not a second bounded-context architecture. 
 
 ## H1.2 Scheduling
 
-`C2-002 = FOUNDER-DECISION-REQUIRED`
+**Owner decision:** CLOSED by FD-002 and accepted ADR-0021 (2026-09-26).
 
-Historical ADR-0018 and current architecture materials disagree on Scheduling ownership. No silent reassignment of persistence, events, permissions or dependencies is allowed.
+Scheduling is a Core-hosted platform capability, not an independent bounded context and not a CRM-owned persistence boundary. Integrations owns calendar/provider adapters. The older ADR-0018 conflict is preserved as historical provenance; it is not an active reason to re-open owner selection.
+
+**Remaining work — OPEN:** inspect existing appointments/activity records and schema history; specify the Scheduling contract; reconcile persistence and ownership; map permissions, tenant/resource scopes, event ownership/outbox behavior, audit and failure/retry handling; define tests before any implementation authorization. ADR-0021 explicitly authorizes no schema by itself.
 
 ## H1.3 Aggregate / invariant boundaries
 
@@ -134,7 +136,7 @@ The active sequence is:
 2. Building ownership and relationship semantics;
 3. Offer command/state/permission/event closure;
 4. PaymentSchedule / Receipt / Allocation / Ledger semantics;
-5. Scheduling decision;
+5. Scheduling persistence/application contract and evidence verification under accepted ADR-0021;
 6. cross-context write/read contracts.
 
 ### Exit gate H1
@@ -475,9 +477,11 @@ Close command/state/permission/approval/event/idempotency/concurrency semantics.
 
 Close PaymentSchedule → Receipt → Allocation → Ledger semantics and legal assumptions.
 
-### Q4 — Scheduling ADR
+### Q4 — Scheduling contract / persistence verification
 
-Founder decision / explicit supersession only.
+The ownership decision is complete under FD-002 / ADR-0021. This queue item is no longer a founder-decision request.
+
+Required evidence: repository search for scheduling/appointment/activity persistence; schema and migration history reconciliation; explicit contract; permission/tenant/resource scope; event/outbox semantics; audit behavior; conflict and concurrency tests where applicable. Do not add a schema or migration merely to complete this queue item. Keep it OPEN until the applicable evidence and implementation gate are satisfied.
 
 ### Q5 — Query/read models
 
