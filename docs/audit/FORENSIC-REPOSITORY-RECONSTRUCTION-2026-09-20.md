@@ -247,3 +247,10 @@ This audit branch is a **forensic reconciliation pass**, not an implementation a
 ## 15. Audit rule
 
 Truth beats completeness. Unknown remains unknown. Conflict remains conflict. A missing implementation remains missing. No document may convert absence of evidence into evidence of implementation.
+
+
+## Post-audit task-count correction — 2026-10-17
+
+This dated forensic report contains the earlier statement that 119 phase tasks correspond to 121 task IDs including nested records. That statement was later checked against the recorded direct source parse and found to be inaccurate: the v1.6.1 task source records 119 phase-task entries, 119 unique phase-task IDs and zero nested task IDs. Three recurring ritual IDs are separate, producing 122 identifiers only when rituals are counted alongside phase tasks. Current corroboration is in `registers/tasks.index.json` and `docs/audit/SOURCE-REGISTER-STRUCTURAL-RECONCILIATION-2026-09-20.md`.
+
+The historical declared total of 114 versus the observed phase-task total of 119 remains an OPEN discrepancy (+5). This note supersedes only the incorrect “121 including nested” interpretation; it does not select a normative task count or authorize implementation.
