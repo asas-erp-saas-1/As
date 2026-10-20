@@ -1,12 +1,17 @@
-# Latest branch-head snapshots — 2026-10-20
+# Latest branch-head delta overlays — 2026-10-20
 
-The live branch census contains 54 refs and 26 distinct head commits. The previous manifest already contained every current branch name; two refs had advanced beyond their archived heads. The full source root tree is stored as the snapshot folder's root tree object, without rewriting file content.
+The live census contains 54 branch refs and 26 distinct head commits. Every current branch name is already represented in the prior manifest; two refs advanced after snapshots 055–056. Because the archive tree is deeply nested, GitHub's tree API rejects another full recursive copy as too large. The latest states are therefore recorded as explicit, file-level delta overlays whose base and shared snapshot dependencies are declared below.
 
-| Order | Branch | Source head | Commit date (UTC) | Source tree SHA | Verification |
-|---:|---|---|---|---|---|
-| 057 | `platform-architecture-2026` | `2672247aab8ce830091db1df83d1b233aa88d17f` | 2026-10-16 23:59:28 | `bc362b385189deb42618bb624c1a857b62c55c88` | PASS_TREE_SHA |
-| 058 | `archive/engineering-history-integrity-2026-10-17` | `e54e5726a09070fa91899c32cf6848b5cc728b36` | 2026-10-17 00:07:12 | `274493a3cceea1a8100d07ce8b2e4e6667643cd1` | PASS_TREE_SHA |
+| Order | Branch head | Source commit | Base snapshot | Delta files | Overlay path | Result |
+|---:|---|---|---:|---:|---|---|
+| 057 | `platform-architecture-2026` | `2672247aab8ce830091db1df83d1b233aa88d17f` | 056 | 12 | `docs/engineering-history/branches/057-platform-architecture-2026-head-delta` | PASS_DELTA_OVERLAY |
+| 058 | `archive/engineering-history-integrity-2026-10-17` | `e54e5726a09070fa91899c32cf6848b5cc728b36` | 055 | 21 | `docs/engineering-history/branches/058-archive__engineering-history-integrity-2026-10-17-head-delta` | PASS_DELTA_OVERLAY |
 
-GitHub's recursive tree enumeration is truncated for these nested archive trees. No file count is claimed. Each snapshot folder's tree SHA equals its source commit's root tree SHA, which preserves the entire tracked tree as a Git object. Orders 055 and 056 remain intact as historical checkpoints; 057 and 058 preserve the newer tips.
+## Reconstruction rules
 
-The updated verification register records the tree-SHA checks. Four newly identified historical file blobs from order 058 are preserved under `recovered-content/by-blob/` and listed in the unique-content manifest.
+- Order 057: apply its 12 exact source-blob paths over full snapshot 056. Reuse archived orders 055 and 056 as shared archive dependencies rather than duplicating their large nested trees.
+- Order 058: apply its 21 exact source-blob paths over full snapshot 055. The nested self-snapshot of order 055 is referenced through order 055 itself and is not copied recursively.
+- The overlay folders contain only changed paths; they are not standalone full-tree snapshots. Their source commit SHAs and exact file blob SHAs are recorded in Git history and the verification manifest.
+- Four historical blob versions in order 058 differ from the current active file at the same path. They are also available under `recovered-content/by-blob/` and listed in the unique historical blob manifest.
+
+This method preserves the complete reconstructable branch state without inventing file counts or recursively duplicating an already large archive.

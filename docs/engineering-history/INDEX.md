@@ -6,7 +6,7 @@ This point-in-time archive was refreshed against canonical commit `2672247aab8ce
 
 - Numbered snapshot folders: **58**. All 54 current branch refs are represented; four additional snapshot orders preserve superseded checkpoint heads.
 - Orders **001–054** have detailed path/blob/mode verification. Their summed snapshot file-entry count is **57,563** (repeated contents and nested archives are intentionally counted per snapshot).
-- Orders **055–058** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. GitHub recursive tree enumeration is truncated for these large nested snapshots, so their individual file counts and a complete aggregate are intentionally not claimed.
+- Orders **055–056** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. Orders **057–058** are verified delta overlays: 12 and 21 changed tracked paths respectively, each matched to exact source blob SHAs. The full recursive trees are too large for another nested copy through GitHub's tree API; the overlays use prior full snapshots and declared shared archive dependencies.
 - Orders **055–056** preserve the earlier heads of `archive/engineering-history-integrity-2026-10-17` and `platform-architecture-2026`. Orders **057–058** preserve the latest heads of those same refs as of this census.
 - All current branch names match a manifest entry; only those two refs had advanced since orders 055–056.
 - The updated branch-delta audit covers **1,986 delta rows across 174 source paths** and preserves **226 distinct historical file blobs** absent from the active non-archive root.
@@ -16,17 +16,17 @@ This point-in-time archive was refreshed against canonical commit `2672247aab8ce
 
 Snapshot folders are numbered by source tip-commit committer time, oldest to newest; branch name breaks ties. This is not branch creation order.
 
-- `branches/NNN-branch-name/` — full tracked-file snapshot at that source tip, retaining original relative paths.
+- `branches/NNN-branch-name/` — full tracked-file snapshots or explicitly labelled delta overlays; overlay base/dependencies and exact changed paths are recorded in the manifest and verification report.
 - `catalogs/` — human-readable chronological inventories.
-- `SNAPSHOT-MANIFEST-2026-10-17.csv` — authoritative mapping for the 54 snapshots. The older `BRANCH-MANIFEST.csv` remains as the original 51-row inventory.
+- `SNAPSHOT-MANIFEST-2026-10-17.csv` — authoritative mapping for the 58 snapshot records. The older `BRANCH-MANIFEST.csv` remains as the original 51-row inventory.
 - `SNAPSHOT-VERIFICATION-2026-10-17.csv` — per-snapshot file count and integrity outcome.
 - `VERIFICATION-REPORT-2026-10-17.md` — verification method, counts, scope, and limitations.
 - `BRANCH-DELTA-AUDIT-2026-10-17.md` and `delta-audit/` — branch-to-root path and blob comparisons.
-- `UNIQUE-CONTENT-REGISTER-2026-10-17.md`, `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`, and `recovered-content/by-blob/` — all 222 distinct historical file blobs not found in the active non-archive root.
+- `UNIQUE-CONTENT-REGISTER-2026-10-17.md`, `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`, and `recovered-content/by-blob/` — all 226 distinct historical file blobs not found in the active non-archive root.
 
 ## Integrity methodology
 
-For orders 001–054, each source tree was compared with its snapshot subtree by relative path, object type, file mode, and Git blob SHA; the per-snapshot recursive responses returned `truncated=false`. Orders 055–058 are verified by exact equality between the source root-tree SHA and the snapshot subtree-root SHA. GitHub recursive enumeration of those large nested snapshots is truncated, so no file count is claimed for orders 055–058. A global recursive-tree response is not used as the source of truth.
+For orders 001–054, each source tree was compared with its snapshot subtree by relative path, object type, file mode, and Git blob SHA; the per-snapshot recursive responses returned `truncated=false`. Orders 055–056 are verified by exact equality between source root-tree SHA and snapshot subtree-root SHA. Orders 057–058 are delta overlays: every changed non-nested file path is preserved using its exact source blob SHA, compared with the declared base snapshot, and verified with zero missing, unexpected, or mismatched paths. A global recursive-tree response is not used as the source of truth.
 
 Snapshots 052–056 contain finite nested copies of prior archives because their full source trees already included the archive. This is deliberate full-tree preservation. It can make a single global recursive-tree response truncate; each numbered snapshot's recorded root tree SHA or per-file verification record is the integrity evidence. File-entry totals are not unique-file or unique-blob totals.
 

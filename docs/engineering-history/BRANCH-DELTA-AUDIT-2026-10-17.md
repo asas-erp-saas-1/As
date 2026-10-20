@@ -49,7 +49,7 @@ The next architectural pass should review these 222 content versions in chronolo
 
 ## Third live census and latest-head delta — 2026-10-20
 
-The 2026-10-20 census found 54 live refs and 26 distinct head commits; all current ref names already exist in the manifest. Only the default branch and the integrity-review branch had advanced beyond their previously snapshotted heads. Snapshot 057 is the current default tree and has zero delta against the active non-archive baseline. Snapshot 058 adds four same-path content differences, recorded in `delta-audit/part-06-oct20-latest-heads.csv`.
+The 2026-10-20 census found 54 live refs and 26 distinct head commits; all current ref names already exist in the manifest. Only the default branch and the integrity-review branch had advanced beyond their previously snapshotted heads. Snapshot 057 records the 12 changed non-nested paths from the current default head over base snapshot 056; these changes are archival and add zero non-archive content deltas. Snapshot 058 records 21 changed non-nested paths over base snapshot 055. Four of those paths contain same-path historical content differences absent from the active root, recorded in `delta-audit/part-06-oct20-latest-heads.csv`.
 
 The four newly preserved historical blobs are:
 - `aac1d164cb586cbd46f6ba08266a448310970192` — `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md`

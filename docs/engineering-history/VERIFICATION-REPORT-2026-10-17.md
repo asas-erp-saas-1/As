@@ -60,9 +60,9 @@ This is still an archival integrity report, not approval of historical architect
 
 The current GitHub census contains 54 branch refs and 26 distinct head commits. A name-by-name comparison against the existing manifest found no unrepresented live branch names. Two branch refs had advanced beyond their previously archived heads:
 
-- Order 057: `platform-architecture-2026` at `2672247aab8ce830091db1df83d1b233aa88d17f`, source root tree `bc362b385189deb42618bb624c1a857b62c55c88`.
-- Order 058: `archive/engineering-history-integrity-2026-10-17` at `e54e5726a09070fa91899c32cf6848b5cc728b36`, source root tree `274493a3cceea1a8100d07ce8b2e4e6667643cd1`.
+- Order 057: `platform-architecture-2026` at `2672247aab8ce830091db1df83d1b233aa88d17f`; 12 changed non-nested paths over base snapshot 056.
+- Order 058: `archive/engineering-history-integrity-2026-10-17` at `e54e5726a09070fa91899c32cf6848b5cc728b36`; 21 changed non-nested paths over base snapshot 055.
 
-For each order, the archived folder subtree points to the exact source root-tree object; source and snapshot subtree SHA values therefore match exactly. GitHub recursive tree responses for these nested trees are truncated, so file counts are intentionally blank and the result is recorded as `PASS_TREE_SHA`, not a fabricated per-file count.
+GitHub's recursive tree API rejects another complete nested copy of these already deeply nested archive trees as too large. The latest states are therefore preserved as exact file-level overlays on the previous full snapshots, rather than falsely reported as full-tree copies:
 
-The latest-head content delta adds four exact historical blobs absent from the active non-archive root. They are preserved by blob SHA under `recovered-content/by-blob/`; the updated audit totals are 1,986 delta rows, 174 source paths, and 226 distinct historical blobs. This does not promote those historical statements to current architecture authority.
+Order 057 records all 12 changed non-nested file paths by exact source blob SHA and reuses orders 055–056 as shared archive dependencies. Order 058 records all 21 changed non-nested file paths by exact source blob SHA and reuses order 055 as its base. The verification manifest marks both `PASS_DELTA_OVERLAY`; they are not standalone full-tree snapshots. Four of order 058's paths contain historical blobs absent from the active non-archive root; those exact blobs are also preserved under `recovered-content/by-blob/`. The updated audit totals are 1,986 delta rows, 174 source paths, and 226 distinct historical blobs. No historical statement is promoted to current architecture authority.
