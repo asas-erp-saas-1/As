@@ -45,3 +45,16 @@ One of the 222 unique blobs is the older `.github/workflows/foundation-verify.ym
 This is a full-file path/blob comparison, not a semantic verdict. A source file can differ from the canonical path and still be well-designed, superseded, incomplete, or contradictory. These files are preserved for review; none of the 222 historical versions is automatically promoted into approved architecture. This audit also does not inventory files deleted from a historical branch, because the complete branch snapshots already preserve them and the legacy archive's path-level manifests record earlier add/modify/delete comparisons against commit `3009312dc803ca63dc32695d9deedcdcd3f91423`.
 
 The next architectural pass should review these 222 content versions in chronological order, especially source-authority, domain invariants, authorization, state-machine behavior, tenant isolation, integration contracts, and readiness/closure gates before implementation.
+
+
+## Third live census and latest-head delta — 2026-10-20
+
+The 2026-10-20 census found 54 live refs and 26 distinct head commits; all current ref names already exist in the manifest. Only the default branch and the integrity-review branch had advanced beyond their previously snapshotted heads. Snapshot 057 is the current default tree and has zero delta against the active non-archive baseline. Snapshot 058 adds four same-path content differences, recorded in `delta-audit/part-06-oct20-latest-heads.csv`.
+
+The four newly preserved historical blobs are:
+- `aac1d164cb586cbd46f6ba08266a448310970192` — `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md`
+- `20dd4bdc149b4e12cbca5d39897ebe397fe7683d` — `docs/governance/BLUEPRINT-TO-CLAUDE-EXECUTION-CONTRACT.md`
+- `89ac440e995b70303d581a6b7acdf3e757d1a2ce` — `docs/governance/FOUNDER-DECISIONS.md`
+- `8d46ef9ce5aa4e37a375fe6e77785723030cca13` — `docs/governance/SOURCE-REGISTER-RECONCILIATION-REPORT.md`
+
+All four source blob SHAs differ from the current blob at the same path and were not present in the prior 222-blob unique-content manifest. The current non-archive baseline remains 417 files. Reconciled totals: 1,986 delta rows, 174 paths, 593 same-path historical differences, 1,393 missing-path differences, and 226 distinct historical blobs absent from the active root.

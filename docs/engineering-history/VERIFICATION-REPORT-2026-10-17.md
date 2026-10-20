@@ -2,7 +2,7 @@
 
 ## Result
 
-**PASS — all 54 numbered snapshot folders checked.** The census represents 53 branch refs and 25 distinct heads observed at that point in time, plus the older default-branch checkpoint retained at order 051. The current default branch has continued to advance since the census; a follow-up review branch was created after it and is not an original historical stage.
+**Historical census result (2026-10-17): PASS — all 54 numbered snapshot folders checked at that census.** The census represents 53 branch refs and 25 distinct heads observed at that point in time, plus the older default-branch checkpoint retained at order 051. The current default branch has continued to advance since the census; a follow-up review branch was created after it and is not an original historical stage.
 
 ## Inventory
 
@@ -54,3 +54,15 @@ Both snapshot folder tree roots are exactly the same Git tree object as the sour
 The branch delta audit was corrected to exclude both legacy and current archive namespaces from the active baseline. The active canonical root has 417 tracked files; the one-way comparison yields 1,982 rows across 173 paths and 222 distinct historical blob versions absent from that active root. These 222 file blobs are exposed once under `recovered-content/by-blob/` and mapped by the unique-blob manifest. Use the corrected audit and summary files, not the initial 2026-10-17 audit figures.
 
 This is still an archival integrity report, not approval of historical architectural decisions.
+
+
+## Third live census and latest-head refresh — 2026-10-20
+
+The current GitHub census contains 54 branch refs and 26 distinct head commits. A name-by-name comparison against the existing manifest found no unrepresented live branch names. Two branch refs had advanced beyond their previously archived heads:
+
+- Order 057: `platform-architecture-2026` at `2672247aab8ce830091db1df83d1b233aa88d17f`, source root tree `bc362b385189deb42618bb624c1a857b62c55c88`.
+- Order 058: `archive/engineering-history-integrity-2026-10-17` at `e54e5726a09070fa91899c32cf6848b5cc728b36`, source root tree `274493a3cceea1a8100d07ce8b2e4e6667643cd1`.
+
+For each order, the archived folder subtree points to the exact source root-tree object; source and snapshot subtree SHA values therefore match exactly. GitHub recursive tree responses for these nested trees are truncated, so file counts are intentionally blank and the result is recorded as `PASS_TREE_SHA`, not a fabricated per-file count.
+
+The latest-head content delta adds four exact historical blobs absent from the active non-archive root. They are preserved by blob SHA under `recovered-content/by-blob/`; the updated audit totals are 1,986 delta rows, 174 source paths, and 226 distinct historical blobs. This does not promote those historical statements to current architecture authority.

@@ -1,6 +1,6 @@
-# Unique historical content register — corrected 2026-10-17
+# Unique historical content register — refreshed 2026-10-20
 
-The corrected file-level comparison excludes the contents of both archival roots from the active project baseline. The active canonical root contains 417 tracked files. The 54 branch snapshot records yield 1,982 difference records on 173 source paths. Those records map to 222 distinct historical file blobs absent from the active root by exact Git blob SHA.
+The file-level comparison excludes both archival roots from the active project baseline. The active canonical non-archive root contains 417 tracked files. The 2026-10-17 baseline audit recorded 1,982 difference rows on 173 paths; the 2026-10-20 latest-head follow-up adds four historical blob versions from snapshot 058, yielding 1,986 rows on 174 paths and 226 distinct historical file blobs absent from the active root by exact Git blob SHA.
 
 ## Preservation method
 
@@ -12,13 +12,18 @@ The file is wired to the exact original Git blob object. This avoids rewriting o
 
 ## Counts
 
-- Unique historical blob versions absent from active root: **222**
-- Distinct original paths with differences: **173**
-- Difference records across branch snapshot entries: **1,982**
-- Historical versions at a path whose canonical content differs: **589**
+- Unique historical blob versions absent from active root: **226**
+- Distinct original paths with differences: **174**
+- Difference records across branch snapshot entries: **1,986**
+- Historical versions at a path whose canonical content differs: **593**
 - Files whose path and exact content are absent from active root: **1,393**
-- File types among the 222 representative versions: 205 Markdown, 6 JSON, 8 YAML, 2 shell scripts, 1 patch.
+- File types among the 226 representative versions: 209 Markdown, 6 JSON, 8 YAML, 2 shell scripts, 1 patch.
 
 ## Safety and architecture status
 
 This register is archival evidence, not an approval list. Do not blindly move these files into active architecture paths; use the branch/snapshot chronology and compare sources, authority, status, and contradictions first. In particular, the older Foundation Verify workflow remains under the archive and must not replace the active workflow because it predates the archive-path exclusion.
+
+
+## Latest-head follow-up — 2026-10-20
+
+Four additional historical blob versions were identified in the updated `archive/engineering-history-integrity-2026-10-17` head (snapshot 058). They affect four existing non-archive paths, including one path not represented in the earlier delta rows. All four exact blob SHAs are preserved in `recovered-content/by-blob/` and are listed in the updated manifest. Snapshot 057 is the current default-branch tree and adds no non-archive delta. The full snapshots remain authoritative for complete tree state.

@@ -1,20 +1,17 @@
 # ASAS Engineering History — Archive Index
 
-## Census and archive state
+## Latest live census and archive state — 2026-10-20
 
-This is a **point-in-time archive**, not a live branch list. The latest follow-up census reads the repository at default commit `5ecf8a74f622cfcdadb8d4883346f08dc9ae9453` (2026-10-16 23:45:04 UTC).
+This point-in-time archive was refreshed against canonical commit `2672247aab8ce830091db1df83d1b233aa88d17f` on `platform-architecture-2026`. The live GitHub census contains **54 branch refs** and **26 distinct head commits**.
 
-- Current live branch refs: **54**
-- Distinct current head commits: **26**
-- Numbered branch/checkpoint snapshots: **56**
-- Full recursive path/blob/mode verification completed for orders **001–054**: **54 snapshots**
-- Orders **055–056** are complete root-tree copies verified by an exact source-tree/snapshot-tree SHA match. GitHub's recursive response for source tree `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3` was truncated, so no file count is claimed for those two rows.
-- The first 54 snapshots contain **57,563 file entries summed per snapshot** (intentionally repeated identical contents and nested historical archives are counted again).
-- The earlier aggregate of 57,563 does **not** include expanded entries for orders 055–056; this index intentionally does not invent a total while the global recursive API enumeration is truncated.
+- Numbered snapshot folders: **58**. All 54 current branch refs are represented; four additional snapshot orders preserve superseded checkpoint heads.
+- Orders **001–054** have detailed path/blob/mode verification. Their summed snapshot file-entry count is **57,563** (repeated contents and nested archives are intentionally counted per snapshot).
+- Orders **055–058** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. GitHub recursive tree enumeration is truncated for these large nested snapshots, so their individual file counts and a complete aggregate are intentionally not claimed.
+- Orders **055–056** preserve the earlier heads of `archive/engineering-history-integrity-2026-10-17` and `platform-architecture-2026`. Orders **057–058** preserve the latest heads of those same refs as of this census.
+- All current branch names match a manifest entry; only those two refs had advanced since orders 055–056.
+- The updated branch-delta audit covers **1,986 delta rows across 174 source paths** and preserves **226 distinct historical file blobs** absent from the active non-archive root.
+- Snapshotting preserves evidence; it does not approve historical design decisions, close architecture gates, or authorize implementation. No branch refs are deleted by this archive update.
 
-The snapshot folders comprise 54 live-ref names plus two historical checkpoints of the default branch. Order 051 preserves the earlier default checkpoint `beaa42a95d947ae56379ae6fcab7850e3b60f50e`. Order 054 preserves the pre-archive default tip `39ead7b4123666b0c20f301b9d4066864d3c88f5`. Order 055 preserves the full tree for `archive/engineering-history-integrity-2026-10-17` at `09a317253ce9abe473cc5915b2a00422febdd6a3`; order 056 preserves the full default-branch tree at `5ecf8a74f622cfcdadb8d4883346f08dc9ae9453` before this corrective archive update. Orders 055 and 056 have the same source root tree SHA `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3`.
-
-The archive-update commit created by this correction is not copied into itself. Use orders 055–056 to inspect the state immediately before this correction.
 ## Ordering and layout
 
 Snapshot folders are numbered by source tip-commit committer time, oldest to newest; branch name breaks ties. This is not branch creation order.
@@ -29,7 +26,7 @@ Snapshot folders are numbered by source tip-commit committer time, oldest to new
 
 ## Integrity methodology
 
-Each snapshot's source tree was compared with its corresponding snapshot subtree by relative path, object type, file mode, and Git blob SHA. The per-snapshot recursive responses returned `truncated=false`. Because the total repository tree has grown large enough for a single global recursive-tree response to be truncated, it is **not** used as the source of truth for the per-snapshot checks.
+For orders 001–054, each source tree was compared with its snapshot subtree by relative path, object type, file mode, and Git blob SHA; the per-snapshot recursive responses returned `truncated=false`. Orders 055–058 are verified by exact equality between the source root-tree SHA and the snapshot subtree-root SHA. GitHub recursive enumeration of those large nested snapshots is truncated, so no file count is claimed for orders 055–058. A global recursive-tree response is not used as the source of truth.
 
 Snapshots 052–056 contain finite nested copies of prior archives because their full source trees already included the archive. This is deliberate full-tree preservation. It can make a single global recursive-tree response truncate; each numbered snapshot's recorded root tree SHA or per-file verification record is the integrity evidence. File-entry totals are not unique-file or unique-blob totals.
 
@@ -45,15 +42,14 @@ The [proposed crosswalk from 14 legacy closure dimensions to current Engineering
 
 The [initial semantic review of foundational 2026-09 artifacts](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.md) distinguishes superseded agent instructions from partial/missing contracts and records critical unresolved ordering, authorization, domain-boundary, state-machine, gate-crosswalk and adversarial-closure work. The [machine-readable disposition table](EARLY-STAGE-SEMANTIC-RECONCILIATION-2026-10-17.csv) records source SHAs and next actions. This is a targeted first pass, not closure of all 173 queue entries.
 
-## Branch-delta findings
+## Branch-delta findings — refreshed 2026-10-20
 
-The corrected path/blob comparison uses the active canonical root from commit `39ead7b4123666b0c20f301b9d4066864d3c88f5`, excluding both `engineering-history/**` and `docs/engineering-history/**` from the baseline and source snapshots. This avoids counting a prior archive copy as active engineering content. The active root contains **417 tracked files and 417 unique blob SHAs**.
+The comparison baseline remains the active canonical root at commit `39ead7b4123666b0c20f301b9d4066864d3c88f5`, excluding both `engineering-history/**` and `docs/engineering-history/**`. That non-archive baseline contains **417 tracked files and 417 unique blob SHAs**.
 
-Across the 56 snapshot records, the one-way comparison finds **1,982 path/blob delta rows** over **173 source paths**: **589** older full-file versions differ from content at the same active path, and **1,393** branch files have paths absent from the active root. Those delta rows refer to **222 distinct historical file blobs** absent from the active root by exact Git blob SHA. No source blob in the delta set is found at a different active-root path.
+The earlier audit for snapshot orders 001–056 found 1,982 delta rows across 173 paths. The latest-head reconciliation adds four historical file versions from order 058 that differ from current content at the same paths; order 057 is the current default-root snapshot and adds no non-archive delta. The reconciled total is **1,986 delta rows across 174 source paths**: **593** same-path historical content versions and **1,393** source files whose path and exact blob are absent from the active root. The 1,986 rows resolve to **226 distinct historical file blobs** absent from the active root by exact Git blob SHA.
 
-All 222 historical blob versions are available in `recovered-content/by-blob/<blob-sha>/<original-path>`, with source branch/snapshot provenance in `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`. The detailed CSV rows are split across `delta-audit/part-01-sept15.csv` through `part-05-follow-up-census.csv`, and the per-snapshot summary is `delta-audit/SUMMARY-2026-10-17.csv`.
+All 226 distinct blobs are exposed at `recovered-content/by-blob/<blob-sha>/<original-path>` using their original Git blob objects. See the updated unique-blob manifest and [the latest-head delta rows](delta-audit/part-06-oct20-latest-heads.csv). The detailed parts 01–05 retain the earlier audit evidence; part 06 records the four newly reconciled differences.
 
-A prior version of `.github/workflows/foundation-verify.yml` remains preserved in the archive as historical evidence. It predates the active-state scan's exclusion of `docs/engineering-history/**`; do **not** restore it over the active workflow.
 ## Architecture guardrails
 
 Snapshots preserve evidence; they do not ratify old design claims, resolve source-authority conflicts, prove semantic completeness, or close architecture gates. The next review should reconcile historical decisions, unresolved domain requirements, invariants, tenancy/security assumptions, state transitions, integration contracts, and open gates before implementation begins.
