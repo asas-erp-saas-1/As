@@ -56,3 +56,8 @@ All 237 distinct blobs are exposed at `recovered-content/by-blob/<blob-sha>/<ori
 ## Architecture guardrails
 
 Snapshots preserve evidence; they do not ratify old design claims, resolve source-authority conflicts, prove semantic completeness, or close architecture gates. The next review should reconcile historical decisions, unresolved domain requirements, invariants, tenancy/security assumptions, state transitions, integration contracts, and open gates before implementation begins.
+
+
+## Archive maintenance branch note
+
+The census above records the 56 source refs observed before this archive refresh branch was created. The delivery branch `archive/refresh-engineering-history-2026-10-21` was created only to submit this archive update; it is not a historical source stage and is intentionally not self-snapshotted. After the archival PR is merged, this delivery branch should be removed during branch cleanup if the repository is to return to a single-branch operating model.
