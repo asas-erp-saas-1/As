@@ -1,16 +1,19 @@
 # ASAS Engineering History — Archive Index
 
-## Latest live census and archive state — 2026-10-20
+## Latest live census and archive state — 2026-10-21
 
-This point-in-time archive was refreshed against canonical commit `2672247aab8ce830091db1df83d1b233aa88d17f` on `platform-architecture-2026`. The live GitHub census contains **54 branch refs** and **26 distinct head commits**.
+This point-in-time archive was refreshed against canonical commit `2672247aab8ce830091db1df83d1b233aa88d17f` on `platform-architecture-2026`. The live GitHub census contains **56 branch refs** and **28 distinct head commits**.
 
-- Numbered snapshot folders: **58**. All 54 current branch refs are represented; four additional snapshot orders preserve superseded checkpoint heads.
+- Numbered snapshot folders: **60**. All 56 live branch refs are represented; four additional snapshot orders preserve superseded checkpoint heads.
 - Orders **001–054** have detailed path/blob/mode verification. Their summed snapshot file-entry count is **57,563** (repeated contents and nested archives are intentionally counted per snapshot).
-- Orders **055–056** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. Orders **057–058** are verified delta overlays: 12 and 27 changed tracked paths respectively, each matched to exact source blob SHAs. The full recursive trees are too large for another nested copy through GitHub's tree API; the overlays use prior full snapshots and declared shared archive dependencies.
-- Orders **055–056** preserve the earlier heads of `archive/engineering-history-integrity-2026-10-17` and `platform-architecture-2026`. Orders **057–058** preserve the latest heads of those same refs as of this census.
-- All current branch names match a manifest entry; only those two refs had advanced since orders 055–056.
-- The updated branch-delta audit covers **1,997 delta rows across 180 source paths** and preserves **237 distinct historical file blobs** absent from the active non-archive root.
-- Snapshotting preserves evidence; it does not approve historical design decisions, close architecture gates, or authorize implementation. No branch refs are deleted by this archive update.
+- Orders **055–056** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. Orders **057–058** are verified delta overlays: 12 and 27 changed tracked paths respectively.
+- Orders **059–060** are full root-tree snapshots, verified by exact source-root-tree/snapshot-subtree SHA equality. Their recursive listings are too large to count reliably, so file counts are intentionally blank rather than estimated.
+- Orders **055–056** preserve earlier heads of `archive/engineering-history-integrity-2026-10-17` and `platform-architecture-2026`; orders **057–058** preserve the later heads observed in the 2026-10-20 census.
+- Order **059** preserves `docs/asas-master-context-2026-10-21` at `80d21aad9474506757c168c046496333b298735f`; order **060** preserves `archive/refresh-engineering-history-2026-10-20` at `c7db09bada487957c30608d1fde981f299eafe4a`.
+- All 56 live branch names are represented in the manifest. The two branch refs added after the 2026-10-20 census are preserved by orders 059–060.
+- The updated branch-delta audit remains scoped to the 2026-10-20 comparison: **1,997 delta rows across 180 source paths** and **237 distinct historical file blobs** absent from the active non-archive root. The 2026-10-21 master-context branch is preserved as a full snapshot; it has not been promoted to canonical root authority.
+- Snapshotting preserves evidence; it does not approve historical design decisions, close architecture gates, authorize implementation, or delete branch refs.
+
 
 ## Ordering and layout
 

@@ -1,0 +1,205 @@
+name: Foundation Verify
+
+on:
+  pull_request:
+    branches: ['platform-architecture-2026']
+  push:
+    branches: ['platform-architecture-2026']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: foundation-verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-contract:
+    name: Repository contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Verify required foundation and conference control files
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            AGENTS.md
+            docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+            docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md
+            docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
+            docs/handoff/CURRENT-SESSION-STATE.md
+            docs/handoff/CODEX-START-HERE.md
+            docs/architecture/ASAS-AI-AGENT-ENGINEERING-OPERATING-MODEL-2026.md
+            docs/architecture/ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026.md
+            docs/architecture/ASAS-ENGINEERING-SOURCE-OF-TRUTH-2026.md
+            docs/architecture/ASAS-PLATFORM-ARCHITECTURE-BLUEPRINT-2026.md
+            docs/architecture/ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026.md
+            docs/governance/ASAS-CODEX-SKILLS-CATALOG-2026.md
+            docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+            docs/governance/REPOSITORY-REALITY-MAP.md
+            docs/governance/FOUNDER-DECISIONS.md
+            docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md
+            .github/PULL_REQUEST_TEMPLATE.md
+            CODEOWNERS
+          )
+          missing=0
+          for file in "${required[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "MISSING: $file"
+              missing=1
+            else
+              echo "OK: $file"
+            fi
+          done
+          if [[ "$missing" -ne 0 ]]; then
+            exit 1
+          fi
+
+      - name: Verify Codex skill manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          skills=(
+            asas-engineering
+            asas-conference-engineering
+            asas-repository-forensics
+            asas-architecture-governance
+            asas-domain-contracts
+            asas-database-engineering
+            asas-security-ai-safety
+            asas-design-fidelity
+            asas-testing-verification
+            asas-observability-reliability
+          )
+          for skill in "${skills[@]}"; do
+            path=".agents/skills/$skill/SKILL.md"
+            test -f "$path" || { echo "MISSING SKILL: $path"; exit 1; }
+            grep -q "^name: $skill$" "$path" || { echo "INVALID SKILL NAME: $path"; exit 1; }
+            grep -q '^description:' "$path" || { echo "MISSING SKILL DESCRIPTION: $path"; exit 1; }
+            echo "VALID SKILL: $skill"
+          done
+          test "$(find .agents/skills -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l | tr -d ' ')" -eq "${#skills[@]}"
+          echo "Codex skill manifest inventory is structurally verified."
+
+      - name: Verify Codex entrypoint and routing
+        shell: bash
+        run: |
+          set -euo pipefail
+          checks=(
+            "AGENTS.md|Codex is the primary ASAS engineering executor"
+            "AGENTS.md|.agents/skills/"
+            "docs/handoff/CODEX-START-HERE.md|ASAS — CODEX START HERE"
+            "docs/handoff/CODEX-START-HERE.md|ASAS-CODEX-SKILLS-CATALOG-2026.md"
+            "docs/handoff/CODEX-START-HERE.md|ASAS-ARCHITECTURE-CONTEXT-PROMPT-2026-AMENDMENT-004-CODEX-FIRST.md"
+            "docs/handoff/CODEX-START-HERE.md|ASAS-ARCHITECTURE-ENGINEERING-ROADMAP-2026-AMENDMENT-003-CODEX-FIRST.md"
+          )
+          for check in "${checks[@]}"; do
+            file="${check%%|*}"
+            needle="${check#*|}"
+            if ! grep -Fq -- "$needle" "$file"; then
+              echo "MISSING ROUTING EVIDENCE: $file -> $needle"
+              sed -n '1,220p' "$file"
+              exit 1
+            fi
+            echo "ROUTING OK: $file -> $needle"
+          done
+          echo 'Codex entrypoint and routing references are present.'
+
+      - name: Verify single engineering conference route
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md' docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
+          grep -Fq 'The first seven stages are `GATE-00` through `GATE-07`' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          grep -Fq 'No parallel implementation path' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          for gate in GATE-00 GATE-01 GATE-02 GATE-03 GATE-04 GATE-05 GATE-06 GATE-07; do
+            grep -Fq "### $gate" docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-GATE-MODEL-2026.md
+          done
+          grep -Fq 'C01–C22' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          grep -Fq 'IG-*' docs/architecture/conference/ASAS-ENGINEERING-CONFERENCE-CONSTITUTION-2026.md
+          echo 'Single engineering conference route is present.'
+
+      - name: Verify operational engineering workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/verify-engineering-workflow.sh
+
+      - name: Reject wrong-project references in executable/configuration surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git grep -n 'asas-erp-saas-1/Asas-website' -- \
+            ':!docs/**' \
+            ':!engineering-history/branch-snapshots/**' \
+            ':!AGENTS.md' \
+            ':!.github/workflows/foundation-verify.yml'; then
+            echo 'ERROR: wrong ASAS repository reference detected outside approved governance/audit documentation.'
+            exit 1
+          fi
+
+      - name: Validate JSON artifacts that already exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(registers/*.json schema/*.json design/*.json)
+          if (( ${#files[@]} == 0 )); then
+            echo 'No canonical JSON register/schema/design artifacts restored yet; this check is intentionally non-blocking at this foundation stage.'
+            exit 0
+          fi
+          python - <<'PY'
+          import json, pathlib
+          files = []
+          for root in ('registers','schema','design'):
+              files.extend(pathlib.Path(root).glob('*.json'))
+          for path in files:
+              json.loads(path.read_text(encoding='utf-8'))
+              print(f'VALID JSON: {path}')
+          PY
+
+      - name: Verify canonical session state references repository-wide
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Active routing surfaces must not direct agents to the historical checkpoint.
+          # Audit/reconciliation evidence and explicit prohibitions may mention it.
+          matches=$(git grep -n 'docs/handoff/SESSION_STATE.md' -- \
+            ':!docs/handoff/SESSION_STATE.md' \
+            ':!docs/audit/**' \
+            ':!docs/audits/**' \
+            ':!docs/architecture/reconciliation/**' \
+            ':!.github/**' \
+            ':!engineering-history/branch-snapshots/**' \
+            ':!docs/engineering-history/**' \
+            ':!.git/**' \
+            | grep -viE 'do not|never|not (the )?(active|current)|historical|legacy' \
+            || true)
+          if [[ -n "$matches" ]]; then
+            echo "$matches"
+            echo 'ERROR: active repository artifacts must reference CURRENT-SESSION-STATE.md, not the historical compatibility file.'
+            exit 1
+          fi
+          test -f docs/handoff/CURRENT-SESSION-STATE.md
+
+      - name: Verify promoted-shadow inventory is internally classified
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'registers/events.json' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'registers/permissions.csv' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'registers/state-machines.json' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          grep -q 'schema/asas-contracts.prisma.*NOT PRESENT' docs/governance/CANONICAL-ARTIFACT-REGISTER.md
+          echo 'Canonical promoted-shadow inventory is present.'
+
+      - name: Foundation status is explicit
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Eq '\b(BLOCKED|OPEN|IN PROGRESS|VERIFIED|FAILED|NOT EXECUTED)\b' docs/handoff/CURRENT-SESSION-STATE.md
+          echo 'Foundation status vocabulary present.'

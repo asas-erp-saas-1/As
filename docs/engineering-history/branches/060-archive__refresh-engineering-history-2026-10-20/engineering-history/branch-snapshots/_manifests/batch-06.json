@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "repository": "asas-erp-saas-1/As",
+  "baseline_branch": "platform-architecture-2026",
+  "baseline_commit": "3009312dc803ca63dc32695d9deedcdcd3f91423",
+  "ordering": "branch HEAD author timestamp ascending; equal timestamps by branch name; refs API has no branch-creation timestamp",
+  "batch": 6,
+  "groups": [
+    {
+      "head": "2558eb651eeeaeb10141b5f1dcb032f3963229cd",
+      "head_commit_date": "2026-10-16T10:28:42Z",
+      "head_commit_message": "docs(architecture): index recovered historical safety candidates",
+      "tracked_entries": 414,
+      "delta": {
+        "added_paths": [],
+        "modified_paths": [
+          "docs/architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md",
+          "docs/governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md",
+          "docs/governance/ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md"
+        ],
+        "deleted_paths": [
+          ".github/workflows/.github/workflows/delete-branches.yml",
+          ".github/workflows/blank.yml",
+          ".github/workflows/codacy.yml"
+        ]
+      },
+      "branches": [
+        {
+          "ordinal": 49,
+          "name": "chore/archive-candidate-architecture-evidence-2026-10-16",
+          "folder": "049--chore--archive-candidate-architecture-evidence-2026-10-16",
+          "snapshot_path": "engineering-history/branch-snapshots/049--chore--archive-candidate-architecture-evidence-2026-10-16",
+          "files": 414
+        }
+      ]
+    },
+    {
+      "head": "874487494955877091da5038da310bed85f5544a",
+      "head_commit_date": "2026-10-16T10:33:37Z",
+      "head_commit_message": "docs(governance): record latest post-consolidation ref census",
+      "tracked_entries": 414,
+      "delta": {
+        "added_paths": [],
+        "modified_paths": [
+          "docs/architecture/reconciliation/BRANCH-ARTIFACT-PROMOTION-REGISTER-2026-10-16.md",
+          "docs/governance/BRANCH-INVENTORY-AND-RECONCILIATION-2026-10-14.md",
+          "docs/governance/ENGINEERING-BRANCH-CONSOLIDATION-2026-10-16.md"
+        ],
+        "deleted_paths": [
+          ".github/workflows/.github/workflows/delete-branches.yml",
+          ".github/workflows/blank.yml",
+          ".github/workflows/codacy.yml"
+        ]
+      },
+      "branches": [
+        {
+          "ordinal": 50,
+          "name": "chore/promote-final-legacy-candidates-2026-10-16",
+          "folder": "050--chore--promote-final-legacy-candidates-2026-10-16",
+          "snapshot_path": "engineering-history/branch-snapshots/050--chore--promote-final-legacy-candidates-2026-10-16",
+          "files": 414
+        }
+      ]
+    },
+    {
+      "head": "3009312dc803ca63dc32695d9deedcdcd3f91423",
+      "head_commit_date": "2026-10-16T12:33:17Z",
+      "head_commit_message": "Add workflow to delete non-default branches",
+      "tracked_entries": 417,
+      "delta": {
+        "added_paths": [],
+        "modified_paths": [],
+        "deleted_paths": []
+      },
+      "branches": [
+        {
+          "ordinal": 51,
+          "name": "platform-architecture-2026",
+          "folder": "051--platform-architecture-2026",
+          "snapshot_path": "engineering-history/branch-snapshots/051--platform-architecture-2026",
+          "files": 417
+        }
+      ]
+    }
+  ]
+}

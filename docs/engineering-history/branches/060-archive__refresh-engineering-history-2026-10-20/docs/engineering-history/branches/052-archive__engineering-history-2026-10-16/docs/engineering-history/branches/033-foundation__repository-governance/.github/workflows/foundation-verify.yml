@@ -1,0 +1,90 @@
+name: Foundation Verify
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, 'foundation/**']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: foundation-verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-contract:
+    name: Repository contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Verify required foundation files
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            AGENTS.md
+            docs/handoff/ASAS-MASTER-EXECUTION-PATH.md
+            docs/handoff/SESSION_STATE.md
+            docs/handoff/CLAUDE-START-HERE.md
+            docs/handoff/CLAUDE-CONTEXT-INDEX.md
+            docs/handoff/CLAUDE-IMPLEMENTATION-BOUNDARY.md
+            docs/handoff/CLAUDE-EXECUTION-CHECKLIST.md
+            docs/handoff/IMPLEMENTATION-READINESS-MATRIX.md
+            docs/governance/CLAUDE-ENGINEERING-OPERATING-MODE.md
+            .github/PULL_REQUEST_TEMPLATE.md
+            CODEOWNERS
+          )
+          missing=0
+          for file in "${required[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "MISSING: $file"
+              missing=1
+            else
+              echo "OK: $file"
+            fi
+          done
+          if [[ "$missing" -ne 0 ]]; then
+            exit 1
+          fi
+
+      - name: Reject known wrong project references
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RIn --exclude-dir=.git --exclude='*.lock' 'asas-erp-saas-1/Asas-website' .; then
+            echo 'ERROR: forbidden historical repository reference detected.'
+            exit 1
+          fi
+
+      - name: Validate JSON artifacts that already exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(registers/*.json schema/*.json design/*.json)
+          if (( ${#files[@]} == 0 )); then
+            echo 'No canonical JSON register/schema/design artifacts restored yet; this check is intentionally non-blocking at this foundation stage.'
+            exit 0
+          fi
+          python - <<'PY'
+          import json, pathlib
+          files = []
+          for root in ('registers','schema','design'):
+              files.extend(pathlib.Path(root).glob('*.json'))
+          for path in files:
+              json.loads(path.read_text(encoding='utf-8'))
+              print(f'VALID JSON: {path}')
+          PY
+
+      - name: Foundation status is explicit
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Eq '\b(BLOCKED|OPEN|IN PROGRESS|VERIFIED|FAILED|NOT EXECUTED)\b' docs/handoff/SESSION_STATE.md
+          echo 'Foundation status vocabulary present.'

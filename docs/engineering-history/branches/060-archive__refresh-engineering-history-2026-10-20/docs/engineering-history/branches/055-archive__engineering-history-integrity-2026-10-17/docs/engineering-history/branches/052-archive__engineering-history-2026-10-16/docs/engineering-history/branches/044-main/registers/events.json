@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "name": "ASAS Real Estate OS — Domain Event Catalog",
+    "source": "Blueprint v1.6.1, Appendix C (domain event catalog)",
+    "envelope": {
+      "fields": ["eventId", "eventName", "eventVersion", "occurredAt", "actorId", "aggregateType", "aggregateId", "payload", "correlationId", "causationId"],
+      "rules": ["Naming is past-tense business fact: resource.action_past_tense.", "Consumers are idempotent and deduplicated by (eventId, handler).", "Events ride the transactional outbox, committed with the business change in one DB transaction (N6).", "Adding an event to the codebase without a row here is a defect; update this register and Appendix C together (Appendix S.6)."],
+      "optional_fields": ["causationId"],
+      "note": "eventName/eventVersion are columns on every event row (39.6 DomainEvent); causationId is optional (present when the event was triggered by handling another). Emission groups are event-routing lanes, not bounded contexts."
+    },
+    "note": "103 events across 11 emission modules; project.published/unpublished are included in v1.6.1.",
+    "version": "v1.6.1"
+  },
+  "modules": {
+    "Inventory": ["apartment.published","apartment.held","hold.expired","hold.released","apartment.reserved","apartment.released","apartment.contracted","apartment.sold","apartment.blocked","apartment.unblocked","apartment.off_marketed","apartment.back_on_market","apartment.price_changed","milestone.certified","change_order.approved","project.published","project.unpublished"],
+    "CRM": ["lead.created","lead.merged","lead.assigned","lead.contact_attempted","lead.contacted","lead.qualified","lead.disqualified","lead.status_changed","lead.promoted","lead.score_changed","activity.logged","appointment.requested","appointment.confirmed","appointment.rescheduled","appointment.cancelled","appointment.no_show","appointment.completed","conversation.message_received"],
+    "Sales": ["opportunity.created","opportunity.stage_changed","offer.created","offer.submitted","offer.approved","offer.rejected","offer.expired","reservation.created","reservation.cancelled","contract.generated","contract.signed","contract.notarized","contract.terminated"],
+    "Finance": ["paymentplan.installed","installment.due","installment.overdue","deposit.recorded","payment.recorded","receipt.allocated","refund.requested","refund.approved","refund.paid","ledger.posted","period.closed","commission.accrued","commission.clawed_back","commission.paid_out"],
+    "Approvals": ["approval.requested","approval.granted","approval.rejected","approval.escalated","approval.delegated"],
+    "Core": ["user.created","user.suspended","role.granted","role.revoked","session.started","session.revoked","audit.chain_verified"],
+    "Workflow": ["workflow.run_started","workflow.step_completed","workflow.failed"],
+    "Studio / Marketing": ["page.drafted","page.submitted","page.published","page.rolled_back","theme.updated","media.uploaded","campaign.launched","campaign.completed","campaign.message_sent","utm.captured","webevent.recorded","adlead.ingested","consent.changed"],
+    "Notifications": ["notification.created","notification.delivered","notification.failed"],
+    "Documents": ["document.generated","document.version_uploaded","document.expired"],
+    "Integrations": ["integration.connected","integration.disconnected","integration.credential_used","integration.credential_refreshed","webhook.delivered","webhook.dead_lettered","conversion.uploaded"]
+  }
+}

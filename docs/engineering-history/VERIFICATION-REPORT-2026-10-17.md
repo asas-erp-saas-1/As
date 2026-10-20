@@ -66,3 +66,16 @@ The current GitHub census contains 54 branch refs and 26 distinct head commits. 
 GitHub's recursive tree API rejects another complete nested copy of these already deeply nested archive trees as too large. The latest states are therefore preserved as exact file-level overlays on the previous full snapshots, rather than falsely reported as full-tree copies:
 
 Order 057 records all 12 changed non-nested file paths by exact source blob SHA and reuses orders 055–056 as shared archive dependencies. Order 058 records all 21 changed non-nested file paths by exact source blob SHA and reuses order 055 as its base. The verification manifest marks both `PASS_DELTA_OVERLAY`; they are not standalone full-tree snapshots. Fifteen of order 058's non-archive paths contain historical blobs absent from or different from the active non-archive root; those exact blobs are also preserved under `recovered-content/by-blob/`. The updated audit totals are 1,997 delta rows, 180 source paths, and 237 distinct historical blobs. No historical statement is promoted to current architecture authority.
+
+
+## Fourth live census and full-tree snapshot refresh — 2026-10-21
+
+The live GitHub census contains **56 branch refs** and **28 distinct head commits**. Two refs were added after the 2026-10-20 census and are preserved as snapshot orders 059–060:
+
+- Order 059: `docs/asas-master-context-2026-10-21`, head `80d21aad9474506757c168c046496333b298735f`, source root tree `85933920c8fe46e978884bda04b258ef5418fbf6`.
+- Order 060: `archive/refresh-engineering-history-2026-10-20`, head `c7db09bada487957c30608d1fde981f299eafe4a`, source root tree `6b98bb39b2978438802d2f1748be7049a50ba947`.
+
+For both snapshots, the snapshot folder is a Git tree entry pointing to the exact source root tree object. Therefore, the source tree and snapshot subtree root SHAs match by construction. GitHub's recursive listing for these deeply nested trees is truncated; file counts are intentionally left blank, not estimated. These are full tracked-tree snapshots, not delta overlays. The archive-refresh snapshot is a finite point-in-time commit and does not contain this follow-up archive commit, avoiding a self-reference.
+
+The 2026-10-20 file-level delta audit and 237-blob recovery register remain scoped to their documented baseline and census. The new master-context branch is preserved intact in order 059 but has not been promoted into canonical root paths. This refresh changes archival documentation only; it does not alter runtime code, database schemas, migrations, or RLS.
+
