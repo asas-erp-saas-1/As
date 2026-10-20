@@ -6,10 +6,10 @@ This point-in-time archive was refreshed against canonical commit `2672247aab8ce
 
 - Numbered snapshot folders: **58**. All 54 current branch refs are represented; four additional snapshot orders preserve superseded checkpoint heads.
 - Orders **001–054** have detailed path/blob/mode verification. Their summed snapshot file-entry count is **57,563** (repeated contents and nested archives are intentionally counted per snapshot).
-- Orders **055–056** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. Orders **057–058** are verified delta overlays: 12 and 21 changed tracked paths respectively, each matched to exact source blob SHAs. The full recursive trees are too large for another nested copy through GitHub's tree API; the overlays use prior full snapshots and declared shared archive dependencies.
+- Orders **055–056** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. Orders **057–058** are verified delta overlays: 12 and 27 changed tracked paths respectively, each matched to exact source blob SHAs. The full recursive trees are too large for another nested copy through GitHub's tree API; the overlays use prior full snapshots and declared shared archive dependencies.
 - Orders **055–056** preserve the earlier heads of `archive/engineering-history-integrity-2026-10-17` and `platform-architecture-2026`. Orders **057–058** preserve the latest heads of those same refs as of this census.
 - All current branch names match a manifest entry; only those two refs had advanced since orders 055–056.
-- The updated branch-delta audit covers **1,986 delta rows across 174 source paths** and preserves **226 distinct historical file blobs** absent from the active non-archive root.
+- The updated branch-delta audit covers **1,997 delta rows across 180 source paths** and preserves **237 distinct historical file blobs** absent from the active non-archive root.
 - Snapshotting preserves evidence; it does not approve historical design decisions, close architecture gates, or authorize implementation. No branch refs are deleted by this archive update.
 
 ## Ordering and layout
@@ -22,7 +22,7 @@ Snapshot folders are numbered by source tip-commit committer time, oldest to new
 - `SNAPSHOT-VERIFICATION-2026-10-17.csv` — per-snapshot file count and integrity outcome.
 - `VERIFICATION-REPORT-2026-10-17.md` — verification method, counts, scope, and limitations.
 - `BRANCH-DELTA-AUDIT-2026-10-17.md` and `delta-audit/` — branch-to-root path and blob comparisons.
-- `UNIQUE-CONTENT-REGISTER-2026-10-17.md`, `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`, and `recovered-content/by-blob/` — all 226 distinct historical file blobs not found in the active non-archive root.
+- `UNIQUE-CONTENT-REGISTER-2026-10-17.md`, `recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv`, and `recovered-content/by-blob/` — all 237 distinct historical file blobs not found in the active non-archive root.
 
 ## Integrity methodology
 
@@ -46,9 +46,9 @@ The [initial semantic review of foundational 2026-09 artifacts](EARLY-STAGE-SEMA
 
 The comparison baseline remains the active canonical root at commit `39ead7b4123666b0c20f301b9d4066864d3c88f5`, excluding both `engineering-history/**` and `docs/engineering-history/**`. That non-archive baseline contains **417 tracked files and 417 unique blob SHAs**.
 
-The earlier audit for snapshot orders 001–056 found 1,982 delta rows across 173 paths. The latest-head reconciliation adds four historical file versions from order 058 that differ from current content at the same paths; order 057 is the current default-root snapshot and adds no non-archive delta. The reconciled total is **1,986 delta rows across 174 source paths**: **593** same-path historical content versions and **1,393** source files whose path and exact blob are absent from the active root. The 1,986 rows resolve to **226 distinct historical file blobs** absent from the active root by exact Git blob SHA.
+The earlier audit for snapshot orders 001–056 found 1,982 delta rows across 173 paths. The latest-head reconciliation adds four historical file versions from order 058 that differ from current content at the same paths; order 057 is the current default-root snapshot and adds no non-archive delta. The reconciled total is **1,997 delta rows across 180 source paths**: **602** same-path historical content versions and **1,395** source files whose path and exact blob are absent from the active root. The 1,986 rows resolve to **237 distinct historical file blobs** absent from the active root by exact Git blob SHA.
 
-All 226 distinct blobs are exposed at `recovered-content/by-blob/<blob-sha>/<original-path>` using their original Git blob objects. See the updated unique-blob manifest and [the latest-head delta rows](delta-audit/part-06-oct20-latest-heads.csv). The detailed parts 01–05 retain the earlier audit evidence; part 06 records the four newly reconciled differences.
+All 237 distinct blobs are exposed at `recovered-content/by-blob/<blob-sha>/<original-path>` using their original Git blob objects. See the updated unique-blob manifest and [the latest-head delta rows](delta-audit/part-06-oct20-latest-heads.csv). The detailed parts 01–05 retain the earlier audit evidence; part 06 records the 15 newly reconciled differences.
 
 ## Architecture guardrails
 

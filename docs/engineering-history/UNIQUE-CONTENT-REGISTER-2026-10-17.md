@@ -1,6 +1,6 @@
 # Unique historical content register — refreshed 2026-10-20
 
-The file-level comparison excludes both archival roots from the active project baseline. The active canonical non-archive root contains 417 tracked files. The 2026-10-17 baseline audit recorded 1,982 difference rows on 173 paths; the 2026-10-20 latest-head follow-up adds four historical blob versions from snapshot 058, yielding 1,986 rows on 174 paths and 226 distinct historical file blobs absent from the active root by exact Git blob SHA.
+The file-level comparison excludes both archival roots from the active project baseline. The active canonical non-archive root contains 417 tracked files. The 2026-10-17 baseline audit recorded 1,982 difference rows on 173 paths; the 2026-10-20 latest-head follow-up adds four historical blob versions from snapshot 058, yielding 1,986 rows on 174 paths and 237 distinct historical file blobs absent from the active root by exact Git blob SHA.
 
 ## Preservation method
 
@@ -26,4 +26,4 @@ This register is archival evidence, not an approval list. Do not blindly move th
 
 ## Latest-head follow-up — 2026-10-20
 
-Four additional historical blob versions were identified in the updated `archive/engineering-history-integrity-2026-10-17` head (snapshot 058). They affect four existing non-archive paths, including one path not represented in the earlier delta rows. All four exact blob SHAs are preserved in `recovered-content/by-blob/` and are listed in the updated manifest. Snapshot 057 is the current default-branch tree and adds no non-archive delta. Full snapshots plus the explicitly declared delta overlays and shared snapshot dependencies are the authoritative reconstructable record.
+Fifteen additional historical blob versions were identified in the updated `archive/engineering-history-integrity-2026-10-17` head (snapshot 058). They affect 15 non-archive paths, including seven paths not represented in the earlier delta rows; two of those paths are absent from the active root and 13 have different content at an existing path. All four exact blob SHAs are preserved in `recovered-content/by-blob/` and are listed in the updated manifest. Snapshot 057 preserves the current default head's 12-file archive delta and adds no non-archive content delta. Full snapshots plus the explicitly declared delta overlays and shared snapshot dependencies are the authoritative reconstructable record.

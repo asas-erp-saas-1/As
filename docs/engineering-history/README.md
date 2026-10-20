@@ -22,3 +22,8 @@ Nested copies of the earlier archive in snapshots 052–054 are intentional: the
 ## Latest refresh — 2026-10-20
 
 The current census contains 54 live branch refs and 26 distinct head commits. The previous 56 snapshot records remain intact. Orders 057 and 058 capture the latest heads of the default branch and the engineering-history integrity branch as verified delta overlays because duplicating their deeply nested archive trees exceeds GitHub's tree API size limit. The overlays preserve every changed tracked file relative to base orders 056 and 055, respectively; those base snapshots remain preserved. Apply each overlay only to its declared base and shared snapshot dependencies. Do not treat a delta folder as a standalone full-tree snapshot.
+
+
+## Overlay scope note
+
+Order 057 contains 12 changed archive/index paths over order 056. Order 058 contains 27 changed non-nested paths over the shared base, including 15 non-archive architecture/governance paths and 12 archive-index/metadata paths. The deeply nested archive copies and common archive content are referenced by the source commit/tree identifiers rather than duplicated again. These folders are delta overlays, not standalone full-tree copies.

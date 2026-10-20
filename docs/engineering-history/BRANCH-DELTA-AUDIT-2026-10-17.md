@@ -49,12 +49,12 @@ The next architectural pass should review these 222 content versions in chronolo
 
 ## Third live census and latest-head delta — 2026-10-20
 
-The 2026-10-20 census found 54 live refs and 26 distinct head commits; all current ref names already exist in the manifest. Only the default branch and the integrity-review branch had advanced beyond their previously snapshotted heads. Snapshot 057 records the 12 changed non-nested paths from the current default head over base snapshot 056; these changes are archival and add zero non-archive content deltas. Snapshot 058 records 21 changed non-nested paths over base snapshot 055. Four of those paths contain same-path historical content differences absent from the active root, recorded in `delta-audit/part-06-oct20-latest-heads.csv`.
+The 2026-10-20 census found 54 live refs and 26 distinct head commits; all current ref names already exist in the manifest. Only the default branch and the integrity-review branch had advanced beyond their previously snapshotted heads. Snapshot 057 records the 12 changed non-nested paths from the current default head over base snapshot 056; these changes are archival and add zero non-archive content deltas. Snapshot 058 records 27 changed non-nested paths over base snapshot 055, including 15 non-archive paths and 12 archive-index/metadata paths. Fifteen of those paths contain historical blob versions absent from or different from the active root, recorded in `delta-audit/part-06-oct20-latest-heads.csv`.
 
-The four newly preserved historical blobs are:
+The four blob versions from the final task-count correction are listed below; the other 11 newly preserved versions from the earlier rebase/reconciliation commits are enumerated in part 06 and the unique-content manifest:
 - `aac1d164cb586cbd46f6ba08266a448310970192` — `docs/audit/FORENSIC-REPOSITORY-RECONSTRUCTION-2026-09-20.md`
 - `20dd4bdc149b4e12cbca5d39897ebe397fe7683d` — `docs/governance/BLUEPRINT-TO-CLAUDE-EXECUTION-CONTRACT.md`
 - `89ac440e995b70303d581a6b7acdf3e757d1a2ce` — `docs/governance/FOUNDER-DECISIONS.md`
 - `8d46ef9ce5aa4e37a375fe6e77785723030cca13` — `docs/governance/SOURCE-REGISTER-RECONCILIATION-REPORT.md`
 
-All four source blob SHAs differ from the current blob at the same path and were not present in the prior 222-blob unique-content manifest. The current non-archive baseline remains 417 files. Reconciled totals: 1,986 delta rows, 174 paths, 593 same-path historical differences, 1,393 missing-path differences, and 226 distinct historical blobs absent from the active root.
+All 15 source blob SHAs are absent from the prior 222-blob unique-content manifest; 13 differ from the active blob at the same path and two paths are absent from the active root. The current non-archive baseline remains 417 files. Reconciled totals: 1,997 delta rows, 180 paths, 602 same-path historical differences, 1,395 missing-path differences, and 237 distinct historical blobs absent from the active root.

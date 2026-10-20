@@ -55,5 +55,5 @@ snapshot_order,branch_ref,head_commit_sha,snapshot_path,delta_rows,different_con
 54,platform-architecture-2026,39ead7b4123666b0c20f301b9d4066864d3c88f5,docs/engineering-history/branches/054-platform-architecture-2026,0,0,0,0
 55,archive/engineering-history-integrity-2026-10-17,09a317253ce9abe473cc5915b2a00422febdd6a3,docs/engineering-history/branches/055-archive__engineering-history-integrity-2026-10-17,0,0,0,0
 56,platform-architecture-2026,5ecf8a74f622cfcdadb8d4883346f08dc9ae9453,docs/engineering-history/branches/056-platform-architecture-2026,0,0,0,0
-57,platform-architecture-2026,2672247aab8ce830091db1df83d1b233aa88d17f,docs/engineering-history/branches/057-platform-architecture-2026,0,0,0,0
-58,archive/engineering-history-integrity-2026-10-17,e54e5726a09070fa91899c32cf6848b5cc728b36,docs/engineering-history/branches/058-archive__engineering-history-integrity-2026-10-17,4,4,0,4
+57,platform-architecture-2026,2672247aab8ce830091db1df83d1b233aa88d17f,docs/engineering-history/branches/057-platform-architecture-2026-head-delta,0,0,0,0
+58,archive/engineering-history-integrity-2026-10-17,e54e5726a09070fa91899c32cf6848b5cc728b36,docs/engineering-history/branches/058-archive__engineering-history-integrity-2026-10-17-head-delta,15,13,2,15
