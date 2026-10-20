@@ -11,7 +11,7 @@ This point-in-time archive was refreshed against canonical commit `2672247aab8ce
 - Orders **055–056** preserve earlier heads of `archive/engineering-history-integrity-2026-10-17` and `platform-architecture-2026`; orders **057–058** preserve the later heads observed in the 2026-10-20 census.
 - Order **059** preserves the single-file delta for `docs/asas-master-context-2026-10-21` at `80d21aad9474506757c168c046496333b298735f`; order **060** preserves the 66-path delta for `archive/refresh-engineering-history-2026-10-20` at `c7db09bada487957c30608d1fde981f299eafe4a`. Apply each over order 057 to reconstruct the branch tree.
 - All 56 live branch names are represented in the manifest. The two branch refs added after the 2026-10-20 census are preserved by orders 059–060.
-- The updated branch-delta audit remains scoped to the 2026-10-20 comparison: **1,997 delta rows across 180 source paths** and **237 distinct historical file blobs** absent from the active non-archive root. The 2026-10-21 master-context branch is preserved as a full snapshot; it has not been promoted to canonical root authority.
+- The updated branch-delta audit remains scoped to the 2026-10-20 comparison: **1,997 delta rows across 180 source paths** and **237 distinct historical file blobs** absent from the active non-archive root. The 2026-10-21 master-context branch is preserved as a reconstructable overlay; it has not been promoted to canonical root authority.
 - Snapshotting preserves evidence; it does not approve historical design decisions, close architecture gates, authorize implementation, or delete branch refs.
 
 
