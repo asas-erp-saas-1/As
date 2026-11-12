@@ -2,56 +2,55 @@
 
 ## Identity
 - Task: ARCH-ARCHIVE-012
-- Risk lane: R1 — DOCS
 - Repository: asas-erp-saas-1/As
 - Base: platform-architecture-2026
-- Working branch: archive/complete-branch-census-2026-11-12
-- Review request: PR #35 (draft)
+- Work branch: archive/complete-branch-census-2026-11-12
+- Review: PR #35 (draft; not merged)
 - Census cut: 2026-11-12T01:17:00Z
-- Source default head: 3c9785cadf08e71a1b8898c64439d1383c68e517
+- Source head: 3c9785cadf08e71a1b8898c64439d1383c68e517
 - Source root tree: 6750ad77c18f8db696fb56374dd6885666b19b99
-- Overall status: IN REVIEW; final-head CI and independent owner review remain required.
+- Status: IN REVIEW; final-head checks and owner review must complete.
 
 ## 1. Source-ref census
-- Live historical/source branch refs at census cut: **57**.
+- Historical/source refs at census cut: **57**.
 - Distinct head commits: **28**.
-- All 57 branch names and head SHAs matched the live GitHub refs at verification; zero mismatches.
-- The task-scoped delivery branch archive/complete-branch-census-2026-11-12 is excluded because it did not exist at census cut and is not a historical engineering stage.
-- At later verification, total refs include this one operational delivery branch; it is not included in the 57-source-ref total.
+- All 57 branch names and head SHAs matched live GitHub refs; zero mismatches.
+- The task-scoped delivery branch is excluded because it did not exist at census cut and is not an engineering source stage.
 
-## 2. Tree preservation
-- Orders 061 and 062 represent platform-architecture-2026 and archive/refresh-engineering-history-2026-10-21.
-- Both source refs resolve to the exact same commit SHA and root-tree SHA.
-- Each snapshot folder is constructed as a pointer to the exact source root-tree object 6750ad77c18f8db696fb56374dd6885666b19b99.
-- Required proof: each snapshot-folder tree SHA equals 6750ad77c18f8db696fb56374dd6885666b19b99 exactly.
-- Recursive enumeration of the whole source root is truncated by GitHub; global file counts are intentionally not claimed. Exact root-tree object identity is the integrity proof.
+## 2. Full source-tree preservation for orders 061 and 062
+- Orders 061 and 062 are separate manifest rows and separate numbered folders.
+- Both source refs resolve to the exact same commit SHA and root tree SHA.
+- Each numbered folder contains README.md and a child source-snapshot gitlink with mode 160000 and type commit.
+- Both gitlinks pin exact commit 3c9785cadf08e71a1b8898c64439d1383c68e517.
+- The source commit resolves to root tree 6750ad77c18f8db696fb56374dd6885666b19b99.
+- Root .gitmodules contains both full paths and maps them to https://github.com/asas-erp-saas-1/As.git.
+- A recursive submodule checkout materializes the complete tracked source tree. This preserves the original Git tree and blobs; it does not copy or rewrite their bytes into the parent archive.
 
 ## 3. Independent comparison cross-check
 - Compared order-057 base 2672247aab8ce830091db1df83d1b233aa88d17f with source head 3c9785cadf08e71a1b8898c64439d1383c68e517.
 - Changed paths: **134** (124 additions, 10 modifications, zero deletions).
-- All 134 paths were mapped to exact source blob SHAs and file modes; zero missing mappings.
-- This is a comparison cross-check only. It is not the preservation format for orders 061/062; those are full-tree snapshots.
+- All 134 changed paths mapped to exact source blob SHAs and file modes.
+- This is an audit cross-check only; orders 061/062 are preserved using pinned full-tree commit references.
 
 ## 4. Unique historical content
-- Machine-readable unique-blob manifest: **237 data rows / 237 distinct Git blob SHAs**.
-- by-blob directory: **237** direct child directories.
-- Corrected delta totals: **1,997** branch-file difference records across **180** source paths; **602** different-content variants at existing active-root paths and **1,395** path/content absences.
-- File types: 220 Markdown, 6 JSON, 8 YAML (.yml), 2 shell, 1 patch.
+- Machine-readable manifest: **237 data rows / 237 distinct Git blob SHAs**.
+- by-blob directory: **237** child directories.
+- Corrected delta totals: **1,997** branch-file difference occurrences across **180** source paths; **602** same-path content differences and **1,395** missing path/content records.
+- File types: 220 Markdown, 6 JSON, 8 YAML, 2 shell, 1 patch.
 
 ## 5. Safety and scope
-- No application/runtime/schema/migration/RLS/production data changes.
-- No source branch ref is deleted.
-- No historical architecture is promoted to canonical design.
-- No gate or C-track closure is claimed.
-- PRs #32 and #33 are untouched.
-- Original branch refs must remain until a separate, approved commit-DAG retention plan is implemented and verified.
+- No application/runtime/schema/migration/RLS/production-data changes.
+- No historical source ref deleted.
+- No architecture promoted to canonical status and no gate/C-track closed.
+- PRs #32 and #33 remain untouched.
+- Original source refs must remain until a separate, approved commit-DAG retention plan has been verified.
 
-## 6. CI and review
-- The preceding archive commit 6179b822d37f1b0994b8320e2ffb4414cff4f84a passed CI and Foundation Verify; Codacy was still in progress at the last inspection.
-- The final full-tree snapshot update will produce a new PR head; CI, Foundation Verify and Codacy results for that final head must be checked separately.
-- Independent repository-owner / architecture review: PENDING.
-- PR #35 remains draft and is not merged.
+## 6. Remaining verification
+- Re-run CI, Foundation Verify and Codacy for the final PR head after the last archive/documentation commit.
+- Vercel status is recorded separately and is not a pass/fail requirement for this documentation-only task.
+- Independent repository-owner / architecture review remains PENDING.
+- PR #35 remains draft and unmerged.
 
 ## Conclusion
 
-The source-ref census, comparison cross-check and unique-blob counts are verified against GitHub source objects. Orders 061/062 are required to be full-tree snapshots with exact source root-tree equality. Do not treat this archival work as architecture approval or authorization to delete branch refs.
+The source-ref census, full-tree commit pins, source root-tree SHA, .gitmodules path mapping, 134-path comparison and 237 unique-blob inventory are grounded in GitHub objects. The archive preserves the full tracked branch-tip state by immutable commit references without duplicating the source repository. This does not approve architecture, authorize implementation or make source branch deletion safe.

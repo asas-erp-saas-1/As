@@ -1,21 +1,21 @@
-# Full branch snapshot reference — 061
+# Full branch snapshot reference — order 061
 
 - Original branch ref: `platform-architecture-2026`
 - Exact source commit: `3c9785cadf08e71a1b8898c64439d1383c68e517`
 - Exact source root tree: `6750ad77c18f8db696fb56374dd6885666b19b99`
-- Snapshot method: Git submodule gitlink pinned to the exact source commit.
-- Snapshot path: `source-snapshot/`
+- Snapshot mechanism: Git submodule gitlink at `source-snapshot/`, mode `160000`.
+- Repository mapping: root `.gitmodules` maps this path to `https://github.com/asas-erp-saas-1/As.git`.
 
-This folder represents the **complete tracked repository tree** at the exact source commit. The nested `source-snapshot/` gitlink points to the original immutable commit, rather than copying the repository into itself. The Git object graph preserves every tracked file, directory, path and file mode at that commit.
+This is a complete immutable reference to the tracked repository tree at the source commit. The files remain in their original Git objects; the archive does not rewrite, regenerate or duplicate them inside itself. The pinned commit resolves to the exact root tree SHA above.
 
-To check out the full snapshot locally:
+To materialize all source files from this archive branch:
 
 ```bash
-git clone https://github.com/asas-erp-saas-1/As.git
-cd As
-git checkout 3c9785cadf08e71a1b8898c64439d1383c68e517
+git clone --recurse-submodules --branch archive/complete-branch-census-2026-11-12 https://github.com/asas-erp-saas-1/As.git
+cd As/docs/engineering-history/branches/061-platform-architecture-2026-latest-head/source-snapshot
+git rev-parse HEAD
 ```
 
-When cloning this archive branch, use `git clone --recurse-submodules` to populate the pinned `source-snapshot/` directory. The source commit predates this archive reference, so the nested snapshot does not recurse into itself.
+The final command should print `3c9785cadf08e71a1b8898c64439d1383c68e517`.
 
-The source ref must remain available until commit-DAG retention is separately approved. This record does not promote historical architecture or close any engineering gate.
+This record preserves a branch-tip tree, not every intermediate commit in the branch DAG. Keep the original source ref until a separate history-retention decision has been approved. This evidence does not approve architecture or close engineering gates.

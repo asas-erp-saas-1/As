@@ -1,8 +1,8 @@
 # Engineering history archive verification — 2026-10-17
 
-## Latest branch-census and full-tree verification — 2026-11-12
+## Latest branch-census and full-tree reference verification — 2026-11-12
 
-**Archive inventory result: PASS_TREE_SHA for orders 061 and 062; historical-source census reconciled.**
+**Archive inventory result: PASS_COMMIT_PIN for orders 061 and 062; historical-source census reconciled.**
 
 - Census cut: 2026-11-12T01:17:00Z, before creating the temporary task-delivery branch archive/complete-branch-census-2026-11-12.
 - Source refs in census: **57**.
@@ -10,101 +10,18 @@
 - Delivery branch excluded from the source-history census: **1**, documented separately as a task-scoped review branch.
 - All 57 source branch names are represented in the updated snapshot manifest and live-ref census CSV; a post-commit comparison found zero branch-name or head-SHA mismatches.
 - New archive records: **061** for platform-architecture-2026 and **062** for archive/refresh-engineering-history-2026-10-21.
-- Both refs resolve to head 3c9785cadf08e71a1b8898c64439d1383c68e517 and root tree 6750ad77c18f8db696fb56374dd6885666b19b99. Each snapshot folder points directly to that exact full source root-tree object. The branch identities are separate; tree and blob objects are shared without copying file bytes.
-- As an independent audit cross-check, the source head differs from order 057 at **134 archive paths: 124 added, 10 modified, 0 removed**. All 134 paths were mapped to exact source blob SHAs and modes. This comparison does not define the preservation method for orders 061/062; those are full-tree snapshots, not overlays.
-- The relevant source subtrees used for the 134-path cross-check returned truncated=false: orders 057 (12 blobs), 058 (27), 059 (1), 060 (66), and recovered by-blob (237). The global repository-root recursive tree is truncated; no global source file count is claimed.
-- The historic unique-content manifest contains **237 rows / 237 unique SHA values**, matching the **237** immediate child blob directories under recovered-content/by-blob/.
-- The root-tree integrity result for orders 061/062 is PASS_TREE_SHA. Recursive enumeration was truncated for the full source root, so source and snapshot file_count fields are intentionally blank. Exact tree SHA equality is the verification proof.
+- Both refs resolve to the exact same source commit `3c9785cadf08e71a1b8898c64439d1383c68e517` and root tree `6750ad77c18f8db696fb56374dd6885666b19b99`.
+- Each numbered folder contains a README and a Git submodule gitlink at `source-snapshot/` (mode `160000`) pinned to that exact source commit. The root `.gitmodules` file maps both paths to this repository. This is a full immutable source-tree reference; no file contents are regenerated, altered, or copied into the parent tree.
+- Clone the archive branch with `git clone --recurse-submodules --branch archive/complete-branch-census-2026-11-12 https://github.com/asas-erp-saas-1/As.git` to materialize both complete source trees under their numbered folders. Git reuses the same commit/tree/blob objects for both refs because their heads are identical.
+- As an independent audit cross-check, the source head differs from order 057 at **134 archive paths: 124 added, 10 modified, 0 removed**. All 134 paths were mapped to exact source blob SHAs and modes. This comparison does not define the preservation format for orders 061/062; those are commit-pinned full-tree references, not overlays.
+- The relevant source subtrees used for the 134-path cross-check returned `truncated=false`: orders 057 (12 blobs), 058 (27), 059 (1), 060 (66), and recovered by-blob (237). The global repository-root recursive tree is truncated; no global source file count is claimed.
+- The historic unique-content manifest contains **237 rows / 237 unique SHA values**, matching the **237** immediate child blob directories under `recovered-content/by-blob/`.
+- Verification for 061/062 is based on exact gitlink commit SHA equality plus resolution of that commit to root tree `6750ad77c18f8db696fb56374dd6885666b19b99`. Counts are intentionally blank because tracked source files are referenced, not duplicated.
 
 ## Scope and limitations
 
-This verification establishes path/blob/mode mapping for the stated overlay delta and validates the census against live branch refs at the stated timestamp. It does **not** prove semantic completeness, approve historical architecture, close any GATE or C-track, establish application build/test coverage, verify deployments or database runtime state, or authorize implementation.
+This verification establishes the source-ref census, immutable full-tree commit references, order-057 comparison cross-check, and unique-blob counts. It does **not** prove semantic completeness, approve historical architecture, close any GATE or C-track, establish application build/test coverage, verify deployments or database runtime state, or authorize implementation.
 
-Snapshot folders preserve branch-tip tracked-tree state. They are not substitutes for the full intermediate commit DAG. Do not delete source refs on the basis of these snapshots alone. A separate, approved history-retention decision must preserve and verify the needed commit ancestry before any branch cleanup.
+Snapshot records preserve branch-tip source states. The gitlinks preserve the exact branch-tip commit objects; they do not replace or consolidate intermediate branch history. Do not delete source refs on the basis of this archive alone. A separate, approved history-retention decision must preserve and verify the needed commit ancestry before any branch cleanup.
 
-The temporary task-delivery branch is operational and is intentionally not counted as an engineering source stage. The separate open PRs #32 and #33 were not merged or closed by this work.
-
-
-## Result
-
-**Historical census result (2026-10-17): PASS — all 54 numbered snapshot folders checked at that census.** The census represents 53 branch refs and 25 distinct heads observed at that point in time, plus the older default-branch checkpoint retained at order 051. The current default branch has continued to advance since the census; a follow-up review branch was created after it and is not an original historical stage.
-
-## Inventory
-
-- Original snapshot folders 001–051: 10,232 blob-file entries.
-- Follow-up folders 052–054: 15,777 blobs each, 47,331 combined.
-- Total recorded file entries across all numbered snapshots: 57,563.
-- Current source-of-truth inventory: `SNAPSHOT-MANIFEST-2026-10-17.csv` (54 rows).
-- Per-snapshot results: `SNAPSHOT-VERIFICATION-2026-10-17.csv` (54 rows).
-
-Folder 051 preserves the default branch at `beaa42a95d947ae56379ae6fcab7850e3b60f50e`. Folder 052 preserves `archive/engineering-history-2026-10-16` at `806cd2fd9982cc8951504f53aad3432d57753364`. Folder 053 preserves `fix/archive-snapshot-ci-exclusion-2026-10-16` at `5e7dff8f5900373b395ac04cab66b0173a80c954`. Folder 054 preserves the default branch's pre-archive tip at `39ead7b4123666b0c20f301b9d4066864d3c88f5`. The archive-completion commit `1aeb0907ae544caafb5160bd90d0e21488024c53` is not recursively snapshotted into itself.
-
-## Integrity method and outcome
-
-For each snapshot folder, its source tree and snapshot subtree were compared by exact relative paths, object types, file modes, and Git blob SHAs. Folders 001–051 were checked against the original branch-tip tree and manifest; folders 052–054 were fetched and compared independently. Every per-snapshot recursive response used for validation returned `truncated=false`.
-
-| Check | Result |
-|---|---:|
-| Snapshot folders checked | 54 |
-| File entries counted across snapshots | 57,563 |
-| Missing paths | 0 |
-| Unexpected paths | 0 |
-| Blob-SHA or file-mode mismatches | 0 |
-| Per-snapshot source/snapshot trees truncated | 0 |
-
-A whole-repository recursive-tree request can now be truncated because the archive substantially increases repository size. That does not invalidate these checks: the verification was performed per snapshot, not by trusting one global recursive response.
-
-## Branch-delta / unique-content review
-
-The companion [branch delta audit](BRANCH-DELTA-AUDIT-2026-10-17.md) compares branch files against the canonical non-archive root baseline at commit `39ead7b4123666b0c20f301b9d4066864d3c88f5`, excluding the archive itself from both sides. It reports 1,982 file-path delta rows: 589 same-path content differences and 1,393 path differences whose exact blob is present elsewhere in the root.
-
-The scan identified one distinct historical blob absent from that baseline root, repeated in snapshots 051 and 052: the old `.github/workflows/foundation-verify.yml` (8,649 bytes; blob `baaae4cde9dbb357ac968239e921930559e7b51e`). It remains preserved in the full snapshots and standalone at `recovered-content/pre-archive-exclusion-foundation-verify.yml`. Do not restore it over the active workflow: it predates the exclusion that prevents archival files from being treated as active session-state instructions.
-
-## Scope and limitations
-
-This procedure verifies tracked file trees; it does not by itself prove semantic completeness, establish architecture authority, resolve contradictions, or close architecture gates. The current archive completion and delta-audit commits also have independent CI/deployment status. This report is not a claim that every external deployment or security check is green.
-
-The archival changes affect historical documentation and inventory only; they do not modify application runtime behavior, schemas, migrations, or RLS policies.
-
-## Second live census and corrected delta audit (2026-10-17)
-
-The repository changed after the 53-ref census: a new operational review branch, `archive/engineering-history-integrity-2026-10-17`, appeared at `09a317253ce9abe473cc5915b2a00422febdd6a3`, and the default branch advanced to `5ecf8a74f622cfcdadb8d4883346f08dc9ae9453`. The second live census contains 54 refs and 26 distinct head commits.
-
-Two full snapshots were added:
-- Order 055: `archive/engineering-history-integrity-2026-10-17`, source tree `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3`.
-- Order 056: `platform-architecture-2026`, source tree `a43a0d09d6c078264bbb3c3ef4bbf84dab9e7bd3`.
-
-Both snapshot folder tree roots are exactly the same Git tree object as the source root, so the full tracked tree is preserved without content rewriting. A global recursive tree request returned `truncated=true` (28,291 returned entries), so the source and snapshot blob totals are intentionally left blank in the manifest rather than inferred from an incomplete response. The verification rows record `PASS_TREE_SHA`, zero known path/blob/mode differences, and the truncation limitation.
-
-The branch delta audit was corrected to exclude both legacy and current archive namespaces from the active baseline. The active canonical root has 417 tracked files; the one-way comparison yields 1,982 rows across 173 paths and 222 distinct historical blob versions absent from that active root. These 222 file blobs are exposed once under `recovered-content/by-blob/` and mapped by the unique-blob manifest. Use the corrected audit and summary files, not the initial 2026-10-17 audit figures.
-
-This is still an archival integrity report, not approval of historical architectural decisions.
-
-
-## Third live census and latest-head refresh — 2026-10-20
-
-The current GitHub census contains 54 branch refs and 26 distinct head commits. A name-by-name comparison against the existing manifest found no unrepresented live branch names. Two branch refs had advanced beyond their previously archived heads:
-
-- Order 057: `platform-architecture-2026` at `2672247aab8ce830091db1df83d1b233aa88d17f`; 12 changed non-nested paths over base snapshot 056.
-- Order 058: `archive/engineering-history-integrity-2026-10-17` at `e54e5726a09070fa91899c32cf6848b5cc728b36`; 21 changed non-nested paths over base snapshot 055.
-
-GitHub's recursive tree API rejects another complete nested copy of these already deeply nested archive trees as too large. The latest states are therefore preserved as exact file-level overlays on the previous full snapshots, rather than falsely reported as full-tree copies:
-
-Order 057 records all 12 changed non-nested file paths by exact source blob SHA and reuses orders 055–056 as shared archive dependencies. Order 058 records all 21 changed non-nested file paths by exact source blob SHA and reuses order 055 as its base. The verification manifest marks both `PASS_DELTA_OVERLAY`; they are not standalone full-tree snapshots. Fifteen of order 058's non-archive paths contain historical blobs absent from or different from the active non-archive root; those exact blobs are also preserved under `recovered-content/by-blob/`. The updated audit totals are 1,997 delta rows, 180 source paths, and 237 distinct historical blobs. No historical statement is promoted to current architecture authority.
-
-
-## Fourth live census and reconstructable overlay refresh — 2026-10-21
-
-The live census before this archive-update delivery branch was created contains **56 source branch refs** and **28 distinct head commits**. Two refs added after the 2026-10-20 census are preserved as snapshot orders 059–060:
-
-- Order 059: `docs/asas-master-context-2026-10-21`, head `80d21aad9474506757c168c046496333b298735f`, source root tree `85933920c8fe46e978884bda04b258ef5418fbf6`. The branch differs from order 057 by one added file.
-- Order 060: `archive/refresh-engineering-history-2026-10-20`, head `c7db09bada487957c30608d1fde981f299eafe4a`, source root tree `6b98bb39b2978438802d2f1748be7049a50ba947`. The branch differs from order 057 by 66 tracked paths: 56 additions and 10 modifications, with no deletions.
-
-## Snapshot method and checkout scalability
-
-A first tree-pointer experiment placed the full source root tree beneath each new numbered folder. Although exact tree-SHA identity preserved all content, it multiplied the already deeply nested archive during checkout. Before merge, orders 059–060 were therefore converted to explicit, reconstructable delta overlays to avoid unnecessarily expanding the archive in every checkout.
-
-The overlays preserve every changed path with its exact source blob SHA. Reconstruct order 059 by applying its one-file overlay to order 057. Reconstruct order 060 by applying its 66-path overlay to order 057. The original source root tree SHAs remain in the manifest as provenance. The verification CSV records the exact overlay path counts and zero missing, unexpected, or mismatched blobs. These overlays are not standalone full-tree snapshots; their declared base is part of the archive contract.
-
-The 2026-10-20 file-level delta audit and 237-blob recovery register remain scoped to their documented baseline and census. The master-context branch is preserved as an overlay but has not been promoted into canonical root paths. This refresh changes archival documentation only; it does not alter runtime code, database schemas, migrations, or RLS.
-
+The temporary task-delivery branch is operational and is intentionally not counted as an engineering source stage. The separate open PRs #32 and #33 were not merged or closed by this work. PR #35 remains a draft pending final-head checks and independent owner review.

@@ -12,7 +12,7 @@ Start with:
 4. [`VERIFICATION-REPORT-2026-10-17.md`](VERIFICATION-REPORT-2026-10-17.md) — verification methodology and limitations.
 5. [`BRANCH-DELTA-AUDIT-2026-10-17.md`](BRANCH-DELTA-AUDIT-2026-10-17.md), [`delta-audit/`](delta-audit/), and [`UNIQUE-CONTENT-REGISTER-2026-10-17.md`](UNIQUE-CONTENT-REGISTER-2026-10-17.md) — file-level differences and unique historical content.
 6. [`catalogs/`](catalogs/) — human-readable chronology.
-7. [`branches/`](branches/) — the original relative file paths under numbered folders; orders 001–056 are full snapshots or exact root-tree copies; orders 057–060 are explicit delta overlays with their bases and exact changed blobs recorded in the manifest; orders 061–062 are standalone full tracked-tree snapshots whose folder root-tree SHAs exactly equal their source commit root-tree SHA.
+7. [`branches/`](branches/) — the original relative file paths under numbered folders; orders 001–056 are full snapshots or exact root-tree copies; orders 057–060 are explicit delta overlays with their bases and exact changed blobs recorded in the manifest; orders 061–062 are separate full-tree commit references: each numbered folder contains a README and a Git submodule gitlink pinned to the exact source commit. The root `.gitmodules` maps both links to this repository; clone with `--recurse-submodules` to materialize the full tracked source tree. This avoids duplicating the repository inside its own historical archive.
 
 The old [`BRANCH-MANIFEST.csv`](BRANCH-MANIFEST.csv) is preserved as the original 51-row census. Use the dated snapshot manifest for the follow-up census. Branches with identical commit heads remain separate folders because each branch ref is separately represented.
 
@@ -32,3 +32,8 @@ Order 057 contains 12 changed archive/index paths over order 056. Order 058 cont
 ## Live-ref census — 2026-11-12
 
 The pre-delivery source-branch census contains 57 refs and 28 distinct heads. Orders 061–062 preserve the latest default-branch head and its same-head alias in separate folders backed by one shared verified overlay tree. The temporary task-delivery branch used to submit the archive update is deliberately excluded from historical source-ref snapshots. See [`LIVE-REF-CENSUS-2026-11-12.csv`](LIVE-REF-CENSUS-2026-11-12.csv) and [`catalogs/08-live-census-2026-11-12.md`](catalogs/08-live-census-2026-11-12.md).
+
+
+## Full-tree references for orders 061–062
+
+Orders 061 and 062 each have their own numbered folder and README. Inside each folder, `source-snapshot/` is a Git submodule gitlink pinned to source commit `3c9785cadf08e71a1b8898c64439d1383c68e517` (root tree `6750ad77c18f8db696fb56374dd6885666b19b99`). Run `git clone --recurse-submodules --branch archive/complete-branch-census-2026-11-12 https://github.com/asas-erp-saas-1/As.git` to materialize both complete source trees. The two branch refs are separate inventory identities but share the exact same Git objects; no content is rewritten or duplicated.
