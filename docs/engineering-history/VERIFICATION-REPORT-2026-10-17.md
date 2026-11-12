@@ -1,5 +1,29 @@
 # Engineering history archive verification — 2026-10-17
 
+## Latest branch-census and overlay verification — 2026-11-12
+
+**Archive inventory result: PASS_DELTA_OVERLAY for orders 061 and 062; historical-source census reconciled.**
+
+- Census cut: 2026-11-12T01:17:00Z, before creating the temporary task-delivery branch archive/complete-branch-census-2026-11-12.
+- Source refs in census: **57**.
+- Distinct source head commits: **28**.
+- Delivery branch excluded from the source-history census: **1**, documented separately as a task-scoped review branch.
+- All 57 source branch names are represented in the updated snapshot manifest and live-ref census CSV.
+- New archive records: **061** for platform-architecture-2026 and **062** for archive/refresh-engineering-history-2026-10-21.
+- Both refs resolve to head 3c9785cadf08e71a1b8898c64439d1383c68e517 and root tree 6750ad77c18f8db696fb56374dd6885666b19b99. Separate snapshot folders point to one shared overlay tree; this preserves branch identity without duplicating file blobs.
+- The difference from order 057 is **134 changed paths: 124 added, 10 modified, 0 removed**. All 134 paths were mapped to exact source blob SHAs and file modes. Missing paths: 0. Unexpected paths: 0. SHA/mode mismatches: 0.
+- The five relevant source subtrees used for overlay assembly returned truncated=false: orders 057 (12 blobs), 058 (27), 059 (1), 060 (66), and recovered by-blob (237). The global repository-root recursive tree is truncated; no global source file count is claimed.
+- The historic unique-content manifest contains **237 rows / 237 unique SHA values**, matching the **237** immediate child blob directories under recovered-content/by-blob/.
+
+## Scope and limitations
+
+This verification establishes path/blob/mode mapping for the stated overlay delta and validates the census against live branch refs at the stated timestamp. It does **not** prove semantic completeness, approve historical architecture, close any GATE or C-track, establish application build/test coverage, verify deployments or database runtime state, or authorize implementation.
+
+Snapshot folders preserve branch-tip tracked-tree state. They are not substitutes for the full intermediate commit DAG. Do not delete source refs on the basis of these snapshots alone. A separate, approved history-retention decision must preserve and verify the needed commit ancestry before any branch cleanup.
+
+The temporary task-delivery branch is operational and is intentionally not counted as an engineering source stage. The separate open PRs #32 and #33 were not merged or closed by this work.
+
+
 ## Result
 
 **Historical census result (2026-10-17): PASS — all 54 numbered snapshot folders checked at that census.** The census represents 53 branch refs and 25 distinct heads observed at that point in time, plus the older default-branch checkpoint retained at order 051. The current default branch has continued to advance since the census; a follow-up review branch was created after it and is not an original historical stage.

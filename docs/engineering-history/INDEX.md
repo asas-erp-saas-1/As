@@ -1,10 +1,25 @@
 # ASAS Engineering History — Archive Index
 
-## Latest live census and archive state — 2026-10-21
+## Latest source-branch census — 2026-11-12
+
+The pre-delivery live GitHub census at `2026-11-12T01:17:00Z` contains **57 source branch refs** and **28 distinct head commits**. The current default remains `platform-architecture-2026`, at head `3c9785cadf08e71a1b8898c64439d1383c68e517` (source root tree `6750ad77c18f8db696fb56374dd6885666b19b99`). The separately created task-delivery branch `archive/complete-branch-census-2026-11-12` is excluded from this historical source-ref census and is the branch carrying the archive update for review.
+
+- The archive contains **62 numbered records**: 57 source refs plus five retained earlier branch-head checkpoints. All 57 pre-delivery source ref names are represented in the manifest and `LIVE-REF-CENSUS-2026-11-12.csv`.
+- Orders **061** and **062** preserve `platform-architecture-2026` and `archive/refresh-engineering-history-2026-10-21`. Both have the exact same source commit and root tree; they are kept as separate branch folders referencing one shared overlay tree, avoiding duplicate blob storage.
+- The latest source delta from order 057 has **134 changed archive paths**: 124 additions, 10 modifications and zero deletions. Every path was mapped to its exact source blob SHA and file mode; the overlay records the source root-tree SHA and reconstructs over order 057.
+- The per-snapshot source listings for orders 057–060 and the recovered-blob tree were complete (`truncated=false`). The whole repository-root recursive listing is truncated, so no global root file count is inferred. The path-to-blob match is exactly **134/134**.
+- The archive contains **237 distinct historical blob versions** under `recovered-content/by-blob/`; corrected delta totals are **1,997 branch-file difference records across 180 source paths** (602 same-path content differences and 1,395 path/content absences).
+- Snapshot folders preserve tracked tree state at each recorded head, not every intermediate commit in branch history. Keep the source refs until a separate history-retention strategy is approved and verified; snapshot completeness is not authority to delete branches.
+- Snapshotting preserves evidence only. It does not approve historical architecture, close gates, authorize implementation, or merge/close separate open PRs.
+
+See [the live-ref census](LIVE-REF-CENSUS-2026-11-12.csv), [the corrected unique-content register](UNIQUE-CONTENT-REGISTER-2026-10-17.md), and [the verification report](VERIFICATION-REPORT-2026-10-17.md).
+
+
+## Prior live census and archive state — 2026-10-21
 
 This point-in-time archive was refreshed against canonical commit `2672247aab8ce830091db1df83d1b233aa88d17f` on `platform-architecture-2026`. The live GitHub census contains **56 branch refs** and **28 distinct head commits**.
 
-- Numbered snapshot folders: **60**. All 56 live branch refs are represented; four additional snapshot orders preserve superseded checkpoint heads.
+- Numbered snapshot folders at that prior census: **60**. All 56 source refs then present were represented; four additional snapshot orders preserve superseded checkpoint heads.
 - Orders **001–054** have detailed path/blob/mode verification. Their summed snapshot file-entry count is **57,563** (repeated contents and nested archives are intentionally counted per snapshot).
 - Orders **055–056** are full root-tree copies verified by exact source-tree/snapshot-subtree SHA equality. Orders **057–058** are verified delta overlays: 12 and 27 changed tracked paths respectively.
 - Orders **059–060** are verified delta overlays on order 057: order 059 preserves 1 changed path and order 060 preserves 66 changed paths by exact Git blob SHA. The source root-tree SHAs are recorded in the manifest; the overlay folders are not standalone full-tree snapshots.
@@ -21,7 +36,7 @@ Snapshot folders are numbered by source tip-commit committer time, oldest to new
 
 - `branches/NNN-branch-name/` — full tracked-file snapshots or explicitly labelled delta overlays; overlay base/dependencies and exact changed paths are recorded in the manifest and verification report.
 - `catalogs/` — human-readable chronological inventories.
-- `SNAPSHOT-MANIFEST-2026-10-17.csv` — authoritative mapping for the 58 snapshot records. The older `BRANCH-MANIFEST.csv` remains as the original 51-row inventory.
+- `SNAPSHOT-MANIFEST-2026-10-17.csv` — authoritative mapping for the 62 snapshot records. The older `BRANCH-MANIFEST.csv` remains as the original 51-row inventory.
 - `SNAPSHOT-VERIFICATION-2026-10-17.csv` — per-snapshot file count and integrity outcome.
 - `VERIFICATION-REPORT-2026-10-17.md` — verification method, counts, scope, and limitations.
 - `BRANCH-DELTA-AUDIT-2026-10-17.md` and `delta-audit/` — branch-to-root path and blob comparisons.

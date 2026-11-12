@@ -1,29 +1,39 @@
-# Unique historical content register — refreshed 2026-10-20
+# Unique historical content register — corrected from machine-readable evidence (2026-11-12)
 
-The file-level comparison excludes both archival roots from the active project baseline. The active canonical non-archive root contains 417 tracked files. The 2026-10-17 baseline audit recorded 1,982 difference rows on 173 paths; the 2026-10-20 latest-head follow-up adds four historical blob versions from snapshot 058, yielding 1,986 rows on 174 paths and 237 distinct historical file blobs absent from the active root by exact Git blob SHA.
+## Scope and controlling counts
+
+This register is a path/blob inventory of historical branch snapshot content compared with the active canonical non-archive root at baseline commit 39ead7b4123666b0c20f301b9d4066864d3c88f5. Both archival namespaces are excluded from the active-root comparison. The baseline contains 417 tracked non-archive files.
+
+The controlling machine-readable source is [the unique historical blob manifest](recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv). It contains **237 data rows and 237 distinct Git blob SHAs**. The corresponding recovered-content/by-blob/ directory contains exactly **237 blob directories**. These exact-object counts supersede earlier prose in this file that inconsistently cited 222, 226, or 237.
+
+| Measure | Corrected value | Meaning |
+|---|---:|---|
+| Branch-file difference records | **1,997** | Occurrences across the audited snapshot records; repeated branch/tree content is intentionally counted again |
+| Distinct original source paths | **180** | Different source paths represented by the delta rows |
+| Different historical content at an existing active-root path | **602** | Historical full-file blob differs from the active blob at that same path |
+| Path absent from active root and exact blob absent from active root | **1,395** | Historical path/content not represented in the active non-archive root |
+| Distinct historical blob versions absent from active root | **237** | Exact SHA-deduplicated content versions, each represented once under by-blob/ |
+
+The 237 unique blobs consist of 220 Markdown files, 6 JSON files, 8 YAML files (.yml), 2 shell scripts, and 1 patch file. These counts sum to 237.
 
 ## Preservation method
 
-Each of the 222 unique file contents is exposed once at:
+- Full tracked-tree snapshots preserve original relative file paths, file modes, and exact Git blob SHAs.
+- Recovered unique content is exposed at recovered-content/by-blob/<blob-sha>/<original-path>, using the original Git blob objects rather than regenerated or normalized text.
+- The manifest records each unique SHA, byte count, representative path, source branch/head, snapshot order, occurrence rows, all original paths/branches, delta class, and preservation path.
+- Orders 057–062 are explicitly documented reconstructable overlays, not standalone full-tree copies. Their declared base and shared dependencies must be respected when reconstructing a branch tree.
+- The 15 additional source blob versions found in the order-058 latest-head reconciliation are all represented in the 237-row manifest and by-blob/ tree. Older prose saying “all four” referred only to a subset of explicitly enumerated examples and is not the total.
 
-`recovered-content/by-blob/<blob-sha>/<original-path>`
+## Important historical workflow reservation
 
-The file is wired to the exact original Git blob object. This avoids rewriting or normalizing text. The numbered branch folders preserve the whole source tree per branch tip, including original paths and object modes; the by-blob view is an additional convenience for direct review. See [the machine-readable manifest](recovered-content/UNIQUE-HISTORICAL-BLOB-MANIFEST-2026-10-17.csv) for SHA, byte count, original path, branch refs, snapshot order, occurrence count, and preservation path for each version.
+The older .github/workflows/foundation-verify.yml blob baaae4cde9dbb357ac968239e921930559e7b51e remains archived as historical evidence. It predates the active-state scan exclusion for docs/engineering-history/** and must not replace the active workflow.
 
-## Counts
+## Interpretation and architecture authority
 
-- Unique historical blob versions absent from active root: **226**
-- Distinct original paths with differences: **174**
-- Difference records across branch snapshot entries: **1,986**
-- Historical versions at a path whose canonical content differs: **593**
-- Files whose path and exact content are absent from active root: **1,393**
-- File types among the 226 representative versions: 209 Markdown, 6 JSON, 8 YAML, 2 shell scripts, 1 patch.
+This register is evidence of historical content, not an approval list. A historical file can be useful, superseded, incomplete, contradictory, or unsafe to promote. Do not copy these contents into active architecture paths without source-authority review, contradiction analysis, explicit disposition, and required decision authority.
 
-## Safety and architecture status
+The 2026-10-20 delta audit's figures remain scoped to its documented census and baseline. The 2026-11-12 archive refresh adds the latest live branch refs and exact tree overlay provenance; it does not silently extend the semantic comparison baseline or claim that every historical document has been adjudicated.
 
-This register is archival evidence, not an approval list. Do not blindly move these files into active architecture paths; use the branch/snapshot chronology and compare sources, authority, status, and contradictions first. In particular, the older Foundation Verify workflow remains under the archive and must not replace the active workflow because it predates the archive-path exclusion.
+## Prior prose correction
 
-
-## Latest-head follow-up — 2026-10-20
-
-Fifteen additional historical blob versions were identified in the updated `archive/engineering-history-integrity-2026-10-17` head (snapshot 058). They affect 15 non-archive paths, including seven paths not represented in the earlier delta rows; two of those paths are absent from the active root and 13 have different content at an existing path. All four exact blob SHAs are preserved in `recovered-content/by-blob/` and are listed in the updated manifest. Snapshot 057 preserves the current default head's 12-file archive delta and adds no non-archive content delta. Full snapshots plus the explicitly declared delta overlays and shared snapshot dependencies are the authoritative reconstructable record.
+This file previously mixed incompatible values: 222 unique blobs, 226 representative versions, 1,986 difference records, and an incomplete “four blob” follow-up. Those were inconsistent with the final machine-readable manifest and corrected delta totals. The table above is the controlling correction: **1,997 records, 180 source paths, and 237 unique historical blob SHAs**. Consult the CSV manifest and delta-audit parts for row-level evidence.

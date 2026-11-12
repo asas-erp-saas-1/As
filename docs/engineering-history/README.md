@@ -7,12 +7,12 @@ This directory preserves full tracked-file-tree snapshots of the branch tips cap
 Start with:
 
 1. [`INDEX.md`](INDEX.md) — chronology, scope, and reading guidance.
-2. [`SNAPSHOT-MANIFEST-2026-10-17.csv`](SNAPSHOT-MANIFEST-2026-10-17.csv) — the authoritative 60-record inventory (56 live refs, four retained checkpoints): branch ref, source SHA, commit time, file count, and folder.
+2. [`SNAPSHOT-MANIFEST-2026-10-17.csv`](SNAPSHOT-MANIFEST-2026-10-17.csv) — the authoritative 62-record inventory (57 source refs, five retained checkpoints): branch ref, source SHA, commit time, file count, and folder.
 3. [`SNAPSHOT-VERIFICATION-2026-10-17.csv`](SNAPSHOT-VERIFICATION-2026-10-17.csv) — per-snapshot file and integrity checks.
 4. [`VERIFICATION-REPORT-2026-10-17.md`](VERIFICATION-REPORT-2026-10-17.md) — verification methodology and limitations.
 5. [`BRANCH-DELTA-AUDIT-2026-10-17.md`](BRANCH-DELTA-AUDIT-2026-10-17.md), [`delta-audit/`](delta-audit/), and [`UNIQUE-CONTENT-REGISTER-2026-10-17.md`](UNIQUE-CONTENT-REGISTER-2026-10-17.md) — file-level differences and unique historical content.
 6. [`catalogs/`](catalogs/) — human-readable chronology.
-7. [`branches/`](branches/) — the original relative file paths under numbered folders; orders 001–056 are full snapshots or exact root-tree copies, and orders 057–060 are explicit delta overlays; each overlay's base and exact changed blobs are recorded in the manifest.
+7. [`branches/`](branches/) — the original relative file paths under numbered folders; orders 001–056 are full snapshots or exact root-tree copies, and orders 057–062 are explicit delta overlays; each overlay's base and exact changed blobs are recorded in the manifest.
 
 The old [`BRANCH-MANIFEST.csv`](BRANCH-MANIFEST.csv) is preserved as the original 51-row census. Use the dated snapshot manifest for the follow-up census. Branches with identical commit heads remain separate folders because each branch ref is separately represented.
 
@@ -27,3 +27,8 @@ The pre-maintenance census contains 56 source branch refs and 28 distinct head c
 ## Overlay scope note
 
 Order 057 contains 12 changed archive/index paths over order 056. Order 058 contains 27 changed non-nested paths over the shared base. Order 059 contains one added file over order 057. Order 060 contains 66 changed paths over order 057 (56 added and 10 modified, with no deletions). These are reconstructable delta overlays, not standalone full-tree copies; source root tree SHAs are retained as provenance.
+
+
+## Live-ref census — 2026-11-12
+
+The pre-delivery source-branch census contains 57 refs and 28 distinct heads. Orders 061–062 preserve the latest default-branch head and its same-head alias in separate folders backed by one shared verified overlay tree. The temporary task-delivery branch used to submit the archive update is deliberately excluded from historical source-ref snapshots. See [`LIVE-REF-CENSUS-2026-11-12.csv`](LIVE-REF-CENSUS-2026-11-12.csv) and [`catalogs/08-live-census-2026-11-12.md`](catalogs/08-live-census-2026-11-12.md).
