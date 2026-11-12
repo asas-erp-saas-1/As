@@ -37,3 +37,10 @@ The pre-delivery source-branch census contains 57 refs and 28 distinct heads. Or
 ## Full-tree references for orders 061–062
 
 Orders 057–062 each have their own numbered folder and README. Inside each folder, `source-snapshot/` is a Git submodule gitlink pinned to the exact source commit for that snapshot order. The root `.gitmodules` maps all six paths to this repository. Run `git clone --recurse-submodules --branch archive/complete-branch-census-2026-11-12 https://github.com/asas-erp-saas-1/As.git` to materialize all six complete source trees. Orders 061 and 062 are separate branch-ref identities but share the exact same Git objects; the other four orders preserve earlier branch-tip commits. No file content is rewritten or duplicated.
+
+
+## Commit-DAG reachability and retention — 2026-11-12
+
+A comparison of all 28 distinct live source head commits against the canonical default head produced: **4 ancestor heads / 4 refs**, **1 identical head / 2 refs**, **19 diverged heads / 19 refs**, and **4 unverified heads / 32 refs** (GitHub compare returned 422 because diff generation was too large). All 57 source refs are accounted for. See [the reachability report](BRANCH-HEAD-REACHABILITY-2026-11-12.md) and [the machine-readable matrix](HEAD-REACHABILITY-2026-11-12.csv).
+
+The 19 diverged refs contain commits not in the canonical default and must not be removed without an equivalent verified commit-DAG anchor. The 32 refs whose reachability could not be resolved are also not retirement candidates. Only four refs are proven ancestors and two are the identical canonical tip; even those are merely candidates for later cleanup after PR, CI, deployment, workflow, and branch-protection checks. Current branch protection is reported as `protected=false`. No refs are deleted by this work.

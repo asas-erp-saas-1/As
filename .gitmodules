@@ -5,19 +5,3 @@
 [submodule "asas-platform-branch-snapshot-062"]
 	path = docs/engineering-history/branches/062-archive__refresh-engineering-history-2026-10-21-identical-head/source-snapshot
 	url = https://github.com/asas-erp-saas-1/As.git
-
-[submodule "asas-platform-branch-snapshot-057"]
-	path = docs/engineering-history/branches/057-platform-architecture-2026-head-delta/source-snapshot
-	url = https://github.com/asas-erp-saas-1/As.git
-
-[submodule "asas-platform-branch-snapshot-058"]
-	path = docs/engineering-history/branches/058-archive__engineering-history-integrity-2026-10-17-head-delta/source-snapshot
-	url = https://github.com/asas-erp-saas-1/As.git
-
-[submodule "asas-platform-branch-snapshot-059"]
-	path = docs/engineering-history/branches/059-docs__asas-master-context-2026-10-21/source-snapshot
-	url = https://github.com/asas-erp-saas-1/As.git
-
-[submodule "asas-platform-branch-snapshot-060"]
-	path = docs/engineering-history/branches/060-archive__refresh-engineering-history-2026-10-20/source-snapshot
-	url = https://github.com/asas-erp-saas-1/As.git

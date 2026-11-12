@@ -76,3 +76,10 @@ Snapshots preserve evidence; they do not ratify old design claims, resolve sourc
 ## Archive maintenance branch note
 
 The census above records the 56 source refs observed before this archive refresh delivery branch was created. The delivery branch `archive/refresh-engineering-history-2026-10-21` was created only to submit this archive update; it is not a historical source stage and is intentionally not self-snapshotted. After the archival PR is merged, this delivery branch should be removed during branch cleanup if the repository is to return to a single-branch operating model.
+
+
+## Commit-DAG reachability and retention — 2026-11-12
+
+A comparison of all 28 distinct live source head commits against the canonical default head produced: **4 ancestor heads / 4 refs**, **1 identical head / 2 refs**, **19 diverged heads / 19 refs**, and **4 unverified heads / 32 refs** (GitHub compare returned 422 because diff generation was too large). All 57 source refs are accounted for. See [the reachability report](BRANCH-HEAD-REACHABILITY-2026-11-12.md) and [the machine-readable matrix](HEAD-REACHABILITY-2026-11-12.csv).
+
+The 19 diverged refs contain commits not in the canonical default and must not be removed without an equivalent verified commit-DAG anchor. The 32 refs whose reachability could not be resolved are also not retirement candidates. Only four refs are proven ancestors and two are the identical canonical tip; even those are merely candidates for later cleanup after PR, CI, deployment, workflow, and branch-protection checks. Current branch protection is reported as `protected=false`. No refs are deleted by this work.

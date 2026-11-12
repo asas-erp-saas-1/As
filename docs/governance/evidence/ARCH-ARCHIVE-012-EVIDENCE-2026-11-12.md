@@ -55,3 +55,15 @@ Gitlink pins reference the original immutable commits and their complete tracked
 ## Conclusion
 
 The source-ref census, six full-tree gitlink pins, exact source root-tree metadata, .gitmodules paths, 134-path comparison and 237 unique-blob inventory are grounded in GitHub source objects. No source file is rewritten or duplicated. This does not approve architecture, authorize implementation or make source branch deletion safe.
+
+
+## 7. Commit-DAG reachability review — 2026-11-12
+
+- Compared all 28 distinct live source head commits with canonical head 3c9785cadf08e71a1b8898c64439d1383c68e517.
+- 4 branch refs / 4 heads: source head is an ancestor of canonical default (reachable from canonical history).
+- 2 refs / 1 head: exact canonical head identity.
+- 19 refs / 19 heads: diverged; source-only commits exist outside canonical history.
+- 32 refs / 4 heads: compare result unverified due GitHub HTTP 422 “diff is taking too long to generate”. These are not treated as safe to retire.
+- Orders 057–060 were compared separately: 057 is ancestor; 058 has 5 source-only commits; 059 has 1 source-only commit; 060 is ancestor. Orders 061/062 are identical to canonical.
+- The report and CSV are committed at docs/engineering-history/BRANCH-HEAD-REACHABILITY-2026-11-12.md and docs/engineering-history/HEAD-REACHABILITY-2026-11-12.csv.
+- No refs were deleted. The gitlinks preserve branch-tip pointers but are not independent retention refs for the original source repository's full commit DAG.

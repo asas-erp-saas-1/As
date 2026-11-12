@@ -69,3 +69,14 @@ Preserve every historical branch-tip state in chronological numbered records. Or
 - Work branch: archive/complete-branch-census-2026-11-12.
 - Review: PR #35, draft.
 - No implementation authorization is granted by this task.
+
+
+## Commit-DAG reachability review — added 2026-11-12
+
+- Compared all 28 distinct source head SHAs with the canonical default head.
+- Proven ancestor heads: 4 refs across 4 heads.
+- Same canonical tip: 2 refs across 1 head.
+- Diverged: 19 refs across 19 heads; these contain commits outside the canonical default and require an independent DAG anchor before their refs can be removed.
+- Unverified: 32 refs across 4 heads; GitHub compare returned 422 because diff generation was too large. Unknown does not mean safe.
+- Full matrix: docs/engineering-history/HEAD-REACHABILITY-2026-11-12.csv; report: docs/engineering-history/BRANCH-HEAD-REACHABILITY-2026-11-12.md.
+- **Disposition:** No source refs may be deleted under ARCH-ARCHIVE-012. The four ancestor refs and the same-tip pair are only potential later cleanup candidates subject to further checks. The divergent and unverified refs must remain until an approved, verifiable retention mechanism is in place.
