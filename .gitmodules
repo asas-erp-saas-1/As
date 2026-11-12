@@ -1,0 +1,7 @@
+[submodule "asas-platform-branch-snapshot-061"]
+	path = docs/engineering-history/branches/061-platform-architecture-2026-latest-head/source-snapshot
+	url = https://github.com/asas-erp-saas-1/As.git
+
+[submodule "asas-platform-branch-snapshot-062"]
+	path = docs/engineering-history/branches/062-archive__refresh-engineering-history-2026-10-21-identical-head/source-snapshot
+	url = https://github.com/asas-erp-saas-1/As.git

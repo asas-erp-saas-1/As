@@ -12,7 +12,7 @@ Start with:
 4. [`VERIFICATION-REPORT-2026-10-17.md`](VERIFICATION-REPORT-2026-10-17.md) — verification methodology and limitations.
 5. [`BRANCH-DELTA-AUDIT-2026-10-17.md`](BRANCH-DELTA-AUDIT-2026-10-17.md), [`delta-audit/`](delta-audit/), and [`UNIQUE-CONTENT-REGISTER-2026-10-17.md`](UNIQUE-CONTENT-REGISTER-2026-10-17.md) — file-level differences and unique historical content.
 6. [`catalogs/`](catalogs/) — human-readable chronology.
-7. [`branches/`](branches/) — the original relative file paths under numbered folders; orders 001–056 are full snapshots or exact root-tree copies, and orders 057–062 are explicit delta overlays; each overlay's base and exact changed blobs are recorded in the manifest.
+7. [`branches/`](branches/) — the original relative file paths under numbered folders; orders 001–056 are full snapshots or exact root-tree copies; orders 057–060 are explicit delta overlays with their bases and exact changed blobs recorded in the manifest; orders 061–062 are standalone full tracked-tree snapshots whose folder root-tree SHAs exactly equal their source commit root-tree SHA.
 
 The old [`BRANCH-MANIFEST.csv`](BRANCH-MANIFEST.csv) is preserved as the original 51-row census. Use the dated snapshot manifest for the follow-up census. Branches with identical commit heads remain separate folders because each branch ref is separately represented.
 
