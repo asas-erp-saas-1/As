@@ -53,6 +53,6 @@ census_at_utc,branch_name,head_sha,head_commit_date_utc,head_group_size,archive_
 "2026-11-12T01:17:00Z","foundation/repository-governance",af3a17de9377dbe8310a0bda4372e9d8412fb8ef,2026-09-16T10:57:01Z,1,33,"docs/engineering-history/branches/033-foundation__repository-governance","existing_verified_snapshot_or_overlay"
 "2026-11-12T01:17:00Z","foundation/source-authority-ledger-v1",52a0c7359304ccc8f69ad0b6c1f1905f38e81c0a,2026-09-17T14:02:31Z,1,38,"docs/engineering-history/branches/038-foundation__source-authority-ledger-v1","existing_verified_snapshot_or_overlay"
 "2026-11-12T01:17:00Z","main",9ae5cc1b2b395cee31760fb46cd578f1d3509bd6,2026-09-29T13:09:41Z,1,44,"docs/engineering-history/branches/044-main","existing_verified_snapshot_or_overlay"
-"2026-11-12T01:17:00Z","platform-architecture-2026",3c9785cadf08e71a1b8898c64439d1383c68e517,2026-10-20T23:29:08Z,2,61,"docs/engineering-history/branches/061-platform-architecture-2026-latest-head","delta_overlay_on_order_057"
+"2026-11-12T01:17:00Z","platform-architecture-2026",3c9785cadf08e71a1b8898c64439d1383c68e517,2026-10-20T23:29:08Z,2,61,"docs/engineering-history/branches/061-platform-architecture-2026-latest-head","full_tree_via_gitlink_commit_pin"
 "2026-11-12T01:17:00Z","x",5c2021eaf5402e6316687b5bd99a6047d40387b9,2026-09-15T05:23:16Z,4,3,"docs/engineering-history/branches/003-x","existing_verified_snapshot_or_overlay"
 "2026-11-12T01:17:00Z","x2",5c2021eaf5402e6316687b5bd99a6047d40387b9,2026-09-15T05:23:16Z,4,4,"docs/engineering-history/branches/004-x2","existing_verified_snapshot_or_overlay"
